@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATLManager", "ATLManager\ATLManager.csproj", "{B7FCD0B7-7A2B-49D6-AA4F-83838461DB3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7FCD0B7-7A2B-49D6-AA4F-83838461DB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7FCD0B7-7A2B-49D6-AA4F-83838461DB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7FCD0B7-7A2B-49D6-AA4F-83838461DB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7FCD0B7-7A2B-49D6-AA4F-83838461DB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {377AFC82-6731-4376-9890-E5862B59651D}
+	EndGlobalSection
+EndGlobal
