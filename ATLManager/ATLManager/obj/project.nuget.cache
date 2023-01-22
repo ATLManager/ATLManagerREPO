@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vZOcCCwp4ZS0mrhU6IrJ1UTVSHcarXl8I2hOxPXQgpdU0hjw7ae6qok2Gs5BYI5AMbHNKs8Fc6/Zne6iM5RP/A==",
+  "dgSpecHash": "cR1Ks6Pd8EW8fi1MATjzUAgqKrswXAo7uOIcpP0w1agkFvyRHiPa/jpKefUK5fDkFJjKvVCfzJ65Xz+vRsitaQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManager\\ATLManager\\ATLManager.csproj",
+  "projectFilePath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bruno Resende\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Bruno Resende\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.10\\microsoft.aspnetcore.cryptography.internal.6.0.10.nupkg.sha512",
