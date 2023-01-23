@@ -352,3 +352,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+ATLManager/.vs/ATLManager/v17/.suo
+*.cache
+ATLManager/ATLManager/obj/Debug/net6.0/ATLManager.GeneratedMSBuildEditorConfig.editorconfig

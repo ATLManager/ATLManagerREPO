@@ -9,73 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ATLManager
 build_property.RootNamespace = ATLManager
-build_property.ProjectDir = C:\Users\Pedro\Desktop\Universidade\Licenciatura\2022-2023\ESA\Projeto\ATLManagerREPO\ATLManager\ATLManager\
+build_property.ProjectDir = C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Pedro\Desktop\Universidade\Licenciatura\2022-2023\ESA\Projeto\ATLManagerREPO\ATLManager\ATLManager
+build_property.MSBuildProjectDirectory = C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Privacy.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Login/LoginInsucessoView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Login/LoginInsucessoView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW5JbnN1Y2Vzc29WaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Login/LoginSucessoView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Login/LoginSucessoView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW5TdWNlc3NvVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Login/LoginView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Login/LoginView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW5WaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/RegistoAdmView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/RegistoAdmView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0b1xSZWdpc3RvQWRtVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/RegistoEncarregadoView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/RegistoEncarregadoView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0b1xSZWdpc3RvRW5jYXJyZWdhZG9WaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/RegistoView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/RegistoView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0b1xSZWdpc3RvVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/TipoRegistoView.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Registo/TipoRegistoView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0b1xUaXBvUmVnaXN0b1ZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/Error.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewImports.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewStart.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pedro/Desktop/Universidade/Licenciatura/2022-2023/ESA/Projeto/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_Layout.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-qkiz1whal5
