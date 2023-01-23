@@ -1,25 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ATLManager.Models.DAL
+namespace ATLManager.Models
 {
-    public class ContaUtilizadorDAL
+    public class Conta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ContaUtilizador_id { get; set; }
+        public Guid ContaID { get; set; }
 
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        
+        [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Tipo Conta ID")]
-        public int TipoContaId { get; set; }
+        [Display(Name = "Tipo Conta")]
+        public ContaRoles ContaRole { get; set; }
 
         [Required]
         [Display(Name = "Conta Estado ID")]
@@ -28,7 +32,7 @@ namespace ATLManager.Models.DAL
         [Required]
         [Display(Name = "Codigo Ativacao")]
         public string CodigoAtivacao { get; set; }
-        
+
         [DataType(DataType.Date)]
         [Display(Name = "Data Criacao")]
         public DateTime DataCriacao { get; set; }
@@ -37,13 +41,20 @@ namespace ATLManager.Models.DAL
         [Display(Name = "Data Ultima Alteracao")]
         public DateTime DataUltimaAlteracao { get; set; }
 
-        public ContaUtilizadorDAL( string email, string password, string password1, int tipoContaId, int contaEstadoId, string codigoAtivacao)
+        public Conta()
         {
-            Email = email;
-            Password = password;
-            TipoContaId = tipoContaId;
-            ContaEstadoId = contaEstadoId;
-            CodigoAtivacao = codigoAtivacao;
+            this.ContaID = Guid.NewGuid();
+            this.DataCriacao = DateTime.UtcNow;
+        }
+
+        public Conta(string Email, string Username, string Password, ContaRoles ContaRole, int ContaEstadoId, string CodigoAtivacao) : this ()
+        {
+            this.Email = Email;
+            this.Username = Username;
+            this.Password = Password;
+            this.ContaRole = ContaRole;
+            this.ContaEstadoId = ContaEstadoId;
+            this.CodigoAtivacao = CodigoAtivacao;
         }
     }
 }
