@@ -355,3 +355,6 @@ MigrationBackup/
 ATLManager/.vs/ATLManager/v17/.suo
 *.cache
 ATLManager/ATLManager/obj/Debug/net6.0/ATLManager.GeneratedMSBuildEditorConfig.editorconfig
+*.2
+*.v2
+ATLManager/.vs/ATLManager/v17/.suo
