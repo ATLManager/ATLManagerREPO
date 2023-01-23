@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Ignore directories
-obj/
-bin/
+**/obj
+**/bin
 
 # User-specific files
 *.rsuser
@@ -74,7 +74,7 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
-.obj
+*.obj
 *.iobj
 *.pch
 *.pdb
