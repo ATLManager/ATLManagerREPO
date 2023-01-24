@@ -4,18 +4,21 @@ using ATLManager.Data;
 using ATLManager.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection") ?? throw new InvalidOperationException("Connection string 'ATLManagerAuthContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection") 
+    ?? throw new InvalidOperationException("Connection string 'ATLManagerAuthContextConnection' not found.");
 
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ATLManagerUser>(options =>
-{
+builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
 	options.SignIn.RequireConfirmedAccount = true;
 	options.Password.RequireDigit = true;
 	options.Password.RequireLowercase = true;
 	options.Password.RequireUppercase = true;
-}).AddEntityFrameworkStores<ATLManagerAuthContext>();
+    options.Password.RequireNonAlphanumeric = true;
+})
+    .AddEntityFrameworkStores<ATLManagerAuthContext>()
+    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
