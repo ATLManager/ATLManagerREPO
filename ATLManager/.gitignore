@@ -7,6 +7,12 @@
 **/obj
 **/bin
 
+
+*.cache
+*.json
+*.props
+
+
 # User-specific files
 *.rsuser
 *.suo
