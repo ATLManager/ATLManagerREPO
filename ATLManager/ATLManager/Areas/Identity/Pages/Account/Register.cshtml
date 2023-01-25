@@ -36,7 +36,7 @@
     <!-- Image -->
     <div class="container-image">
         <!-- <div class="image"></div> -->
-        <img src="~/images/logo1.png" alt="ATLMANAGER">
+        <img src="~/images/logo1.png" class="image" alt="ATLMANAGER">
     </div>
 
     <!-- / Image -->
@@ -121,13 +121,7 @@
             <a href="#">Menu Item 3</a>
         </div>
     </nav>
-    <!-- / Menu Lateral de Ajuda -->
-    <!-- Botão de ajuda  -->
-    <div class="container-btnHelp">
-        <button class="custom-button">
-            <img src="~/images/question.png" class="image-question" alt="Button Image">
-        </button>
-    </div>
+   
 
     <div class="container-box">
         <!-- <div class="image"></div> -->
@@ -151,16 +145,17 @@
                 </div>
 
                 <br>
-                <div style="padding:5px;">
+                <div>
                     <label asp-for="Input.Email"></label>
                     <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
 
                 </div>
 
+                <br />
                 <div class="row-p">
 
-                <div style="padding:5px;">
+                <div>
                     <label asp-for="Input.Password"></label>
                     <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
@@ -174,9 +169,16 @@
                 </div>
          </div>
 
-    
-            <div class="button-box">
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                <div style="padding: 5px">
+                    <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;">Já tem uma conta?</a> <!-- acrescentar-->
+                </div>
+
+        
+
+
+
+                <div class="button-box">
+                    <button id="registerSubmit" type="submit" class="custom-submit">Register</button>
             </div>
 
             <div class="login-option">
@@ -203,6 +205,13 @@
 
 
 
+        
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+
         <script>
             let menuToggle = document.querySelector(".custom-button");
             let menu = document.querySelector(".menu");
@@ -214,7 +223,7 @@
 
 
 
-         <script>
+        <script>
             const instructionsButton = document.querySelector('.instructions-button');
             const instructionsList = document.querySelector('.instructions-list');
 
@@ -222,7 +231,7 @@
                 instructionsList.classList.toggle('visible');
             });
 
-        </script> 
+        </script>
 
         <script>
             document.getElementById("info-button1").addEventListener("click", function () {
@@ -279,10 +288,5 @@
                 }
             });
         </script>
-
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
-
 </body>
 </html>
