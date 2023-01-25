@@ -18,6 +18,9 @@ builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
 	options.Password.RequireLowercase = true;
 	options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = true;
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.DefaultLockoutTimeSpan= TimeSpan.FromMinutes(1);
+    options.Lockout.MaxFailedAccessAttempts = 5;
 })
     .AddEntityFrameworkStores<ATLManagerAuthContext>()
     .AddDefaultTokenProviders();
