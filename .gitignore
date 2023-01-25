@@ -364,3 +364,8 @@ ATLManager/ATLManager/obj/Debug/net6.0/ATLManager.GeneratedMSBuildEditorConfig.e
 *.2
 *.v2
 ATLManager/.vs/ATLManager/v17/.suo
+ATLManager/ATLManager/obj/Debug/net6.0/ATLManager.GeneratedMSBuildEditorConfig.editorconfig
+ATLManager/ATLManager/obj/Debug/net6.0/ATLManager.genruntimeconfig.cache
+ATLManager/ATLManager/obj/Debug/net6.0/staticwebassets.build.json
+ATLManager/ATLManager/obj/project.assets.json
+ATLManager/ATLManager/obj/project.nuget.cache
