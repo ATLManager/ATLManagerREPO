@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ATLManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection") 
@@ -23,6 +25,9 @@ builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 var app = builder.Build();
 
