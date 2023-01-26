@@ -67,6 +67,17 @@
 
 }
 
+.container-image-recover-password {
+    position: absolute;
+    top: 10%;
+    left: 42%;
+    /* padding: ; */
+    width: 600px;
+    height: 404px;
+    /* background-color: #000000; */
+    /* background-color: black; */
+}
+
 
 
 .image {
@@ -79,7 +90,7 @@
 }
 
 
-
+/* register */
 .box {
     margin-top: 10%;
     margin-left: 28%;
@@ -95,6 +106,35 @@
     border-radius: 45px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+.box-login {
+    margin-top: 12%;
+    margin-left: 28%;
+    /* margin-left: 35%;  */
+    /* margin: 25% 175%; */
+    background-color: white;
+    /* position: relative; */
+    width: 602px;
+    height: 500px;
+    border-radius: 45px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.box-recover-password {
+    margin-top: 12%;
+    margin-left: 28%;
+    /* margin-left: 35%;  */
+    /* margin: 25% 175%; */
+    background-color: white;
+    /* position: relative; */
+    width: 602px;
+    height: 300px;
+    border-radius: 45px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+
+
 
 .div-apelido{
     padding-left: 10px;
@@ -202,6 +242,16 @@ form {
     /* grid-template-columns: repeat(2,1fr); */
 }
 
+.button-box-login {
+    padding-top: 3%;
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* grid-template-columns: repeat(2,1fr); */
+}
+
 .login-option {
     /* background-color: black; */
     height: 50px;
@@ -222,7 +272,7 @@ form {
 }
 
 #facebook,
-#instagram,
+#outlook,
 #twitter,
 #google {
     width: 40px;

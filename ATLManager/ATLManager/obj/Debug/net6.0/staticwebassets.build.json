@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0l/l+lTUHThtfyrJnV1THNiV33zNNpkDxu2BIH96laU=",
+  "Hash": "XnCh9wiFlanGIr4DiJx1x5DU6z0LKngbZ8pDE8ZmQDw=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -1224,23 +1224,6 @@
       "OriginalItemSpec": "wwwroot\\images\\google.png"
     },
     {
-      "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\instagram.png",
-      "SourceId": "ATLManager",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
-      "BasePath": "_content/ATLManager",
-      "RelativePath": "images/instagram.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\instagram.png"
-    },
-    {
       "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\Logo.png",
       "SourceId": "ATLManager",
       "SourceType": "Discovered",
@@ -1275,6 +1258,23 @@
       "OriginalItemSpec": "wwwroot\\images\\logo1.png"
     },
     {
+      "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\outlook.png",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "images/outlook.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\outlook.png"
+    },
+    {
       "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question.png",
       "SourceId": "ATLManager",
       "SourceType": "Discovered",
@@ -1290,40 +1290,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\question.png"
-    },
-    {
-      "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question1.png",
-      "SourceId": "ATLManager",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
-      "BasePath": "_content/ATLManager",
-      "RelativePath": "images/question1.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\question1.png"
-    },
-    {
-      "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question2.png",
-      "SourceId": "ATLManager",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
-      "BasePath": "_content/ATLManager",
-      "RelativePath": "images/question2.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\question2.png"
     },
     {
       "Identity": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question-mark.png",
