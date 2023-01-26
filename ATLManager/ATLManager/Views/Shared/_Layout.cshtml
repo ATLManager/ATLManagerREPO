@@ -9,8 +9,23 @@
     <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
 *@
 
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/footer.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/menu.css'>
+    <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
+    
 </head>
 <body>
+
+    <partial name="_LoginPartial" />
+    <!-- Menu -->
+   @* <ul>
+        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+        <li style="float:right"><a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        <li style="float:right"><a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        
+    </ul>*@
+    <!-- / Menu -->
 
 @*    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -58,7 +73,7 @@
             <p id="f1">Contactos</p>
             <p id="f2">Suporte</p>
             <p id="f3">Mapa do site</p>
-            <p id="f4">COPYRIGHT 2022, by ATLMANAGER, IPS</p>
+            <p id="f4">COPYRIGHT 2023, by ATLMANAGER, IPS</p>
         </div>
 *@
 
@@ -66,6 +81,16 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>*@
+
+    <div class="footer">
+        <!-- Footer content goes here -->
+        <p id="f1">Contactos</p>
+        <p id="f2">Suporte</p>
+        <p id="f3">Mapa do site</p>
+        <p id="f4">COPYRIGHT 2023, by ATLMANAGER, IPS</p>
+    </div>
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

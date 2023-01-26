@@ -6,81 +6,312 @@
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ATLManager</title>
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
+    *@
+    <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/slide-help.css'>
+</head>
+
+<body class="body">
+
+    <!-- Image -->
+    <div class="container-image">
+        <!-- <div class="image"></div> -->
+        <img src="~/images/logo1.png" class="image" salt="ATLMANAGER">
+    </div>
+    <!-- / Image -->
+    <!-- Botão de ajuda  -->
+    <div class="container-btnHelp">
+        <button class="custom-button">
+            <img src="~/images/question.png" class="image-question" alt="Button Image">
+        </button>
+    </div>
+    <!-- <img src="images/question1.png" -->
+    <!-- / Botão de ajuda  -->
+    <!-- Menu Lateral de Ajuda -->
+    <nav class="menu">
+        <div class="first-container">
+            <div class="custom-h1">
+                <h1> Ajuda </h1>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Procure artigos que o ajude">
+            </div>
+
+
+
+            <div class="container-help-info">
+
                 <div>
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+                    <button class="custom-button-info" id="info-button1">Como fazer login na aplicação</button>
+
+                    <div id="info1" class="help-info1">
+                        <p class="p-information">
+                            Para iniciar sessão na sua conta, introduza o endereço de correio electrónico e a palavra-passe
+                            associada à sua conta. Clique em "Iniciar Sessão" para aceder à sua conta. Se se esqueceu da sua
+                            palavra-passe, clique em "Esqueceu-se da sua palavra-passe?" para a recuperar. Lembre-se de manter
+                            a sua conta segura, não partilhando a sua palavra-passe com ninguém e saia da sua conta quando utilizar
+                            um dispositivo partilhado.
+                        </p>
                     </div>
                 </div>
+                <br>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button class="custom-button-info" id="info-button2">Como fazer login via facebook</button>
+
+                    <div id="info2" class="help-info2">
+                        <p class="p-information">
+                            Para entrar na sua conta via Facebook, clique no botão "Facebook" na página de início de sessão.
+                            Isto irá redireccioná-lo para a página de início de sessão do Facebook. Introduza as suas credenciais
+                            de início de sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta
+                            para a nossa página e terá acesso à sua conta. Note que esta opção só estará disponível se tiver uma
+                            conta no Facebook e a tiver utilizado para se registar anteriormente.
+                        </p>
+                    </div>
                 </div>
+                <br>
                 <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
+                    <button class="custom-button-info" id="info-button3">Como fazer login via instagram</button>
+
+                    <div id="info3" class="help-info3">
+                        <p class="p-information">
+                            Para iniciar sessão na sua conta via Instagram, clique no botão "Instagram" na página de início de sessão.
+                            Isto irá redireccioná-lo para a página de login com Instagram. Introduza as suas credenciais de início de
+                            sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta para a nossa
+                            página e terá acesso à sua conta. Tenha em mente que esta opção só estará disponível se tiver uma conta
+                            Instagram e a tiver utilizado para se registar anteriormente.
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <button class="custom-button-info" id="info-button4">Como fazer login via twitter</button>
+
+                    <div id="info4" class="help-info4">
+                        <p class="p-information">
+                            Para entrar na sua conta via Twitter, clique no botão "Twitter"
+                            na página de início de sessão. Isto irá redireccioná-lo para a página de início de
+                            sessão do Twitter. Introduza as suas credenciais de início de sessão e autorize a
+                            permissão para aceder às suas informações básicas. Será então redireccionado de volta
+                            para a nossa página e terá acesso à sua conta. Tenha em mente que esta opção só estará
+                            disponível se tiver uma conta no Twitter e a tiver utilizado para se registar
+                            anteriormente.
+                        </p>
+
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <button class="custom-button-info" id="info-button5">Como fazer login via google</button>
+
+                    <div id="info5" class="help-info5">
+                        <p class="p-information">
+                            Para iniciar sessão na sua conta via Google,
+                            clique no botão "Google" na página de início de sessão.
+                            Isto irá redireccioná-lo para a página de início de sessão do Google.
+                            Introduza as suas credenciais de início de sessão e autorize a permissão de
+                            acesso às suas informações básicas. Será então redireccionado de volta para a
+                            nossa página e terá acesso à sua conta. Tenha em mente que esta opção só estará
+                            disponível se tiver uma conta Google e a tiver utilizado para se registar anteriormente.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="second-container">
+            <a href="#">Menu Item 1</a>
+            <a href="#">Menu Item 2</a>
+            <a href="#">Menu Item 3</a>
+        </div>
+    </nav>
+    <!-- / Menu Lateral de Ajuda -->
+
+
+    <div class="container-box">
+        <!-- <div class="image"></div> -->
+        <div class="box-login">
+            <form id="account" method="post">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <label asp-for="Input.Email" class="form-label"></label>
+                <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+               
+                <br /> @* se necessario fazer div na pw <comentario>*@
+                <label asp-for="Input.Password" class="form-label"></label>
+                <input asp-for="Input.Password" class="input-text" autocomplete="current-password" aria-required="true" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <br /><br />
+                
+                <div class="checkbox">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+
+                <div>
+                    <a id="forgot-password" asp-page="./ForgotPassword" style="float: left;">Esqueceu-se da password?</a>
+                </div>
+
+                <div>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="float: right;">Criar Conta</a> 
+                </div>
+
+                <br>
+             
+                <div class="button-box-login">
+                    <button id="login-submit" type="submit" class="custom-submit">Log in</button>
+                </div>
+
+                <div>
+                   
+                    <p style="text-align:center">
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
                 </div>
+
+
+
+                <div class="login-option">
+                    <p> Fazer o login via:</p>
+                </div>
+
+                <div class="container-login-option">
+                    <li class="li-icons"><img src="~/images/facebook.png" id="facebook"></li>
+                    <li class="li-icons"><img src="~/images/instagram.png" id="instagram"></li>
+                    <li class="li-icons"><img src="~/images/twitter.png" id="twitter"></li>
+                    <li class="li-icons"><img src="~/images/google.png" id="google"></li>
+                </div>
+
             </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        </div>
+
+        @*<div class="col-md-6 col-md-offset-2">
+            <section>
+                <h3>Use another service to log in.</h3>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
                         <div>
                             <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
+                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                    article
+                                    about setting up this ASP.NET application to support logging in via external services
+                                </a>.
                             </p>
                         </div>
-                    </form>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
                 }
-            }
-        </section>
-    </div>
-</div>
+            </section>
+        </div>*@
+
+ 
+@* ------------------------------------- *@
+
+    
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+        <script>
+            let menuToggle = document.querySelector(".custom-button");
+            let menu = document.querySelector(".menu");
+
+            menuToggle.addEventListener("click", function () {
+                menu.classList.toggle("open");
+            });
+        </script>
+
+
+
+        <script>
+            const instructionsButton = document.querySelector('.instructions-button');
+            const instructionsList = document.querySelector('.instructions-list');
+
+            instructionsButton.addEventListener('click', () => {
+                instructionsList.classList.toggle('visible');
+            });
+
+        </script>
+
+        <script>
+            document.getElementById("info-button1").addEventListener("click", function () {
+                var info = document.getElementById("info1");
+                if (info.style.display === "none") {
+                    info.style.display = "block";
+                } else {
+                    info.style.display = "none";
+                }
+            });
+
+            document.getElementById("info-button2").addEventListener("click", function () {
+                var info = document.getElementById("info2");
+                if (info.style.display === "none") {
+                    info.style.display = "block";
+                } else {
+                    info.style.display = "none";
+                }
+            });
+
+            document.getElementById("info-button3").addEventListener("click", function () {
+                var info = document.getElementById("info3");
+                if (info.style.display === "none") {
+                    info.style.display = "block";
+                } else {
+                    info.style.display = "none";
+                }
+            });
+
+            document.getElementById("info-button4").addEventListener("click", function () {
+                var info = document.getElementById("info4");
+                if (info.style.display === "none") {
+                    info.style.display = "block";
+                } else {
+                    info.style.display = "none";
+                }
+            });
+
+            document.getElementById("info-button5").addEventListener("click", function () {
+                var info = document.getElementById("info5");
+                if (info.style.display === "none") {
+                    info.style.display = "block";
+                } else {
+                    info.style.display = "none";
+                }
+            });
+
+            document.getElementById("info-button6").addEventListener("click", function () {
+                var info = document.getElementById("info6");
+                if (info.style.display === "none") {
+                    info.style.display = "block";
+                } else {
+                    info.style.display = "none";
+                }
+            });
+        </script>
+        </body>
