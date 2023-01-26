@@ -8,15 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\instagram.png" />
+    <Content Remove="wwwroot\images\question1.png" />
+    <Content Remove="wwwroot\images\question2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\images\facebook.png" />
     <None Include="wwwroot\images\google.png" />
-    <None Include="wwwroot\images\instagram.png" />
     <None Include="wwwroot\images\Logo.png" />
     <None Include="wwwroot\images\logo1.png" />
     <None Include="wwwroot\images\question-mark.png" />
     <None Include="wwwroot\images\question.png" />
-    <None Include="wwwroot\images\question1.png" />
-    <None Include="wwwroot\images\question2.png" />
     <None Include="wwwroot\images\twitter.png" />
     <None Include="wwwroot\css\Footer.css" />
     <None Include="wwwroot\css\Register.css" />

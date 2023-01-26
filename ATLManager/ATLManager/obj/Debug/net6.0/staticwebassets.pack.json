@@ -45,12 +45,12 @@
       "PackagePath": "staticwebassets\\images\\google.png"
     },
     {
-      "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\instagram.png",
-      "PackagePath": "staticwebassets\\images\\instagram.png"
-    },
-    {
       "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\logo1.png",
       "PackagePath": "staticwebassets\\images\\logo1.png"
+    },
+    {
+      "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\outlook.png",
+      "PackagePath": "staticwebassets\\images\\outlook.png"
     },
     {
       "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question-mark.png",
@@ -59,14 +59,6 @@
     {
       "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question.png",
       "PackagePath": "staticwebassets\\images\\question.png"
-    },
-    {
-      "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question1.png",
-      "PackagePath": "staticwebassets\\images\\question1.png"
-    },
-    {
-      "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question2.png",
-      "PackagePath": "staticwebassets\\images\\question2.png"
     },
     {
       "Id": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\twitter.png",
