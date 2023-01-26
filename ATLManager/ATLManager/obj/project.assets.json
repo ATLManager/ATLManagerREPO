@@ -53,6 +53,70 @@
       "MessagePackAnalyzer/2.1.152": {
         "type": "package"
       },
+      "Microsoft.AspNetCore.Authentication.Facebook/6.0.13": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.AspNetCore.Authentication.Google/6.0.13": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.AspNetCore.Authentication.MicrosoftAccount/6.0.13": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.AspNetCore.Authentication.Twitter/6.0.13": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Twitter.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Twitter.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.13": {
         "type": "package",
         "compile": {
@@ -3769,6 +3833,66 @@
         "messagepackanalyzer.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Facebook/6.0.13": {
+      "sha512": "pIgxV8LYUjiNGSu3I16n15AJF72dRF1KLjp0/Ak01wH9yAnhbZ9AXbt8qoaJyrfZTw09VfNXsjGC9qNvMkCDTw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.facebook/6.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.xml",
+        "microsoft.aspnetcore.authentication.facebook.6.0.13.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.facebook.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Google/6.0.13": {
+      "sha512": "3y4TSrLwWqOyog9j8Y4bqpq++SYUI/+RHDCAKFceB2ifFE1MH5kg9bVmOlQz8/0vD8MHBA/4jD7wlXYhziV6oQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/6.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.6.0.13.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.MicrosoftAccount/6.0.13": {
+      "sha512": "Y/iEi8SevRy+QZ0vJzdi+Czzfxp90qe32YR+MPfliSZgIpvn51uL8fImiJb4hVElh8kLNEvAG+wO3fRkspH/Og==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.microsoftaccount/6.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.xml",
+        "microsoft.aspnetcore.authentication.microsoftaccount.6.0.13.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.microsoftaccount.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Twitter/6.0.13": {
+      "sha512": "W3w3GdIf6GTpSDZu8hRbxbW+EZ6/nAVdHvAHwvSorUEcvz4T07sGpNqhh2FU1w0wXuIZq9JA/3wHbk6W0a81lA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.twitter/6.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Twitter.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Twitter.xml",
+        "microsoft.aspnetcore.authentication.twitter.6.0.13.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.twitter.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.13": {
@@ -10481,6 +10605,10 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.AspNetCore.Authentication.Facebook >= 6.0.13",
+      "Microsoft.AspNetCore.Authentication.Google >= 6.0.13",
+      "Microsoft.AspNetCore.Authentication.MicrosoftAccount >= 6.0.13",
+      "Microsoft.AspNetCore.Authentication.Twitter >= 6.0.13",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.13",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.13",
@@ -10490,19 +10618,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bruno Resende\\.nuget\\packages\\": {}
+    "C:\\Users\\Filipe\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+      "projectUniqueName": "C:\\Users\\Filipe\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
       "projectName": "ATLManager",
-      "projectPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
-      "packagesPath": "C:\\Users\\Bruno Resende\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
+      "projectPath": "C:\\Users\\Filipe\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+      "packagesPath": "C:\\Users\\Filipe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Filipe\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Bruno Resende\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Filipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10510,6 +10643,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10528,6 +10662,22 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Facebook": {
+            "target": "Package",
+            "version": "[6.0.13, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[6.0.13, )"
+          },
+          "Microsoft.AspNetCore.Authentication.MicrosoftAccount": {
+            "target": "Package",
+            "version": "[6.0.13, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Twitter": {
+            "target": "Package",
+            "version": "[6.0.13, )"
+          },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.13, )"
@@ -10574,7 +10724,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
