@@ -1,8 +1,34 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Confirm email";
+    ViewData["Title"] = "Confirmar email";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<body class="body">
+    <!-- Image -->
+    <div class="container-image-recover-password">
+        <!-- <div class="image"></div> -->
+        <img src="~/images/logo1.png" class="image" salt="ATLMANAGER">
+    </div>
+    <!-- / Image -->
+
+    <div class="container-box">
+        <!-- <div class="image"></div> -->
+        <div class="box-recover-password">
+
+            <form class="form">
+                <br />
+
+                <h1>@ViewData["Title"]</h1>
+                <p>Obrigado por confirmar o seu email.</p>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+@*<partial name="_StatusMessage" model="Model.StatusMessage" />*@

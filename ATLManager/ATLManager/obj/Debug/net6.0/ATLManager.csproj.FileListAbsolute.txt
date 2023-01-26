@@ -837,3 +837,7 @@ C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\n
 C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.pdb
 C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.genruntimeconfig.cache
 C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ref\ATLManager.dll
+C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
+C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Twitter.dll

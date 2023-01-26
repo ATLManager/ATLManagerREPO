@@ -134,8 +134,8 @@
     <div class="container-box">
         <!-- <div class="image"></div> -->
         <div class="box">
-
-             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+             
+            <form class="form-registo" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="row-p">
@@ -145,8 +145,7 @@
                         <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                     </div>
                     <div class="div-apelido">
-
-                        <label asp-for="Input.LastName"></label>
+                        <label asp-for="Input.LastName">Apelido</label>
                         <input asp-for="Input.LastName" class="input-text" autocomplete="username" aria-required="true" />
                         <span asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div>
@@ -171,7 +170,7 @@
 
                 @*<div style="padding:5px;">*@
                 <div class="div-apelido">
-                    <label asp-for="Input.ConfirmPassword"></label>
+                    <label asp-for="Input.ConfirmPassword">Confirme a password</label>
                         <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
@@ -187,31 +186,83 @@
 
                 <div class="button-box">
                     <button id="registerSubmit" type="submit" class="custom-submit">Register</button>
-            </div>
+                </div>
 
             <div class="login-option">
                 <p> Fazer o registo via:</p>
             </div>
 
-            <div class="container-login-option">
-                    <li class="li-icons"><img src="~/images/facebook.png" id="facebook" /></li>
-                    <li class="li-icons"><img src="~/images/outlook.png" id="outlook" /></li>
-                    <li class="li-icons"><img src="~/images/twitter.png" id="twitter" /></li>
-                    <li class="li-icons"><img src="~/images/google.png" id="google" /></li>
-            </div>
 
         </form>
-    </div>
+       
+                <div>
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                            <div>
+                                <p>
+                                    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                        article
+                                        about setting up this ASP.NET application to support logging in via external services
+                                    </a>.
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                <div class="icons-special-div">
 
-    <div class="footer">
-        <!-- Footer content goes here -->
-        <p id="f1">Contactos</p>
-        <p id="f2">Suporte</p>
-        <p id="f3">Mapa do site</p>
-        <p id="f4">COPYRIGHT 2023, by ATLMANAGER, IPS</p>
-    </div>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+
+                                        @if (provider.Name.Equals("Facebook"))
+                                        {
+
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <img src="~/images/facebook.png" style="width:40px;height:40px;" alt="Button Image" class="image-question">
+                                            </button>
+
+                                        }
+
+                                        @if (provider.Name.Equals("Microsoft"))
+                                        {
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <img src="~/images/outlook.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
+                                            </button>
+
+                                        }
+
+                                        @if (provider.Name.Equals("Twitter"))
+                                        {
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <img src="~/images/twitter.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
+                                            </button>
+
+                                        }
+
+                                        @if (provider.Name.Equals("Google"))
+                                        {
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <img src="~/images/google.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
+                                            </button>
+
+                                        }
+
+                                    }
+
+                                </div>
+                            </form>
+                        }
+                    }
 
 
+                </div>
+            </div>
+
+        </div>
+           
+   
 
         
 
