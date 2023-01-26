@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using NuGet.Protocol.Plugins;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -211,6 +212,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
                     $"override the external login page in /Areas/Identity/Pages/Account/ExternalLogin.cshtml");
             }
         }
+        
 
         private IUserEmailStore<ATLManagerUser> GetEmailStore()
         {
