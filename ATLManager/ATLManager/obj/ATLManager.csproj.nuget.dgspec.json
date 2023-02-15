@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {}
+    "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {
+    "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+        "projectUniqueName": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
         "projectName": "ATLManager",
-        "projectPath": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
-        "packagesPath": "C:\\Users\\Flame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Flame\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
+        "projectPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+        "packagesPath": "C:\\Users\\Bruno Resende\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Flame\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bruno Resende\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
