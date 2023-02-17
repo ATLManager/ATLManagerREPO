@@ -24,8 +24,6 @@ public class ATLManagerUser : IdentityUser
     [Required]
     [EmailAddress]
     [ProtectedPersonalData]
-    [RegularExpression(@"^[a-zA - Z0 - 9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)", 
-        ErrorMessage = "Email Inválido")]
     override public string Email { get; set; }
 
     [ProtectedPersonalData]
