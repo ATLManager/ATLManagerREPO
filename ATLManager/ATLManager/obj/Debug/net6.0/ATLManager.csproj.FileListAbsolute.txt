@@ -841,3 +841,7 @@ C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\n
 C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
 C:\Users\Flame\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Twitter.dll
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Twitter.dll

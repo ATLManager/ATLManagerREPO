@@ -60,8 +60,6 @@
                 <input type="text" id="search" placeholder="Procure artigos que o ajude">
             </div>
 
-
-
             <div class="container-help-info">
 
                 <div>
@@ -137,7 +135,6 @@
              
             <form class="form-registo" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
                 <div class="row-p">
                     <div>
                         <label asp-for="Input.FirstName">Nome:</label>
@@ -150,7 +147,6 @@
                         <span asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div>
                 </div>
-
                 <br>
                 <div>
                     <label asp-for="Input.Email"></label>
@@ -158,43 +154,30 @@
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
 
                 </div>
-
                 <br />
                 <div class="row-p">
-
                 <div>
                     <label asp-for="Input.Password"></label>
                     <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-
                 @*<div style="padding:5px;">*@
                 <div class="div-apelido">
                     <label asp-for="Input.ConfirmPassword">Confirme a password</label>
-                        <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
+                    <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
          </div>
-
                 <div style="padding: 5px">
                     <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;">Já tem uma conta?</a> <!-- acrescentar-->
                 </div>
-
-        
-
-
-
                 <div class="button-box">
                     <button id="registerSubmit" type="submit" class="custom-submit">Register</button>
                 </div>
-
             <div class="login-option">
                 <p> Fazer o registo via:</p>
             </div>
-
-
         </form>
-       
                 <div>
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -215,14 +198,12 @@
 
                                     @foreach (var provider in Model.ExternalLogins)
                                     {
-
                                         @if (provider.Name.Equals("Facebook"))
                                         {
 
                                             <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/facebook.png" style="width:40px;height:40px;" alt="Button Image" class="image-question">
                                             </button>
-
                                         }
 
                                         @if (provider.Name.Equals("Microsoft"))
@@ -230,7 +211,6 @@
                                             <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/outlook.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                             </button>
-
                                         }
 
                                         @if (provider.Name.Equals("Twitter"))
@@ -238,7 +218,6 @@
                                             <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/twitter.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                             </button>
-
                                         }
 
                                         @if (provider.Name.Equals("Google"))
@@ -246,20 +225,14 @@
                                             <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/google.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                             </button>
-
                                         }
-
                                     }
-
                                 </div>
                             </form>
                         }
                     }
-
-
                 </div>
             </div>
-
         </div>
            
    
