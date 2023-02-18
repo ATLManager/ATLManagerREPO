@@ -1,3 +1,17 @@
+* {
+    box-sizing: border-box; /* input boxes for same size */
+    font-family: 'lovelo';
+}
+
+.pClass {
+    font-size: 13px;
+}
+
+.inputLabel {
+    font-size: 15px;
+}
+
+
 .body {
     background-color: #EFEFEF;
     position: absolute;
@@ -5,10 +19,8 @@
     height: auto;
     margin: 0px;
     padding: 0px;
-
-    font-family: 'lovelo';
+   
     font-size: 17px;
-
     /* position: absolute; */
     /* text-transform: uppercase; */
     /* font-style: normal;
@@ -323,8 +335,6 @@ input[type=submit] {
 
 .bg-facebook {
     background-image: url(~/images/facebook.png);
-   
-
 }
 
 .bg-google {

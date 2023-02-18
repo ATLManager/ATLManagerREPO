@@ -15,10 +15,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
     *@
+
     <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/slide-help.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/footer.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/menu.css'>
+    <link rel="stylesheet" type='text/css' media='screen' href="~/css/site.css" asp-append-version="true" />
 
 </head>
 <body class="body">
@@ -169,7 +171,7 @@
                 </div>
          </div>
                 <div style="padding: 5px">
-                    <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;">Já tem uma conta?</a> <!-- acrescentar-->
+                    <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;" class="pClass">Já tem uma conta?</a> <!-- acrescentar-->
                 </div>
                 <div class="button-box">
                     <button id="registerSubmit" type="submit" class="custom-submit">Register</button>
@@ -193,7 +195,7 @@
                         }
                         else
                         {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <form target="_blank" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                                 <div class="icons-special-div">
 
                                     @foreach (var provider in Model.ExternalLogins)

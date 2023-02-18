@@ -151,7 +151,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <label asp-for="Input.Email" class="form-label"></label>
-                <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
+                    <input asp-for="Input.Email" class="input-text inputLabel" autocomplete="username" aria-required="true" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                
                 <br />
@@ -169,12 +169,12 @@
                 </div>
 
                 <div>
-                    <a id="forgot-password" asp-page="./ForgotPassword" style="float: left;">Esqueceu-se da password?</a>
+                        <a id="forgot-password" asp-page="./ForgotPassword" style="float: left;" class="pClass">Esqueceu-se da password?</a>
                 </div>
 
                 <div>
-                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="float: right;">Criar Conta</a> 
-                </div>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="float: right;" class="pClass">Criar Conta</a>
+                    </div>
 
                 <br>
              
@@ -185,7 +185,7 @@
                 <div>
                    
                     <p style="text-align:center">
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Reenvie email de confirmação</a>
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="pClass">Reenvie email de confirmação</a>
                     </p>
                 </div>
 
@@ -214,7 +214,7 @@
                         }
                         else
                         {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <form target="_blank" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                                     <div class="icons-special-div">
                            
                                         @foreach (var provider in Model.ExternalLogins)
