@@ -21,6 +21,11 @@
         },
         "runtime": {
           "ATLManager.dll": {}
+        },
+        "resources": {
+          "pt-PT/ATLManager.resources.dll": {
+            "locale": "pt-PT"
+          }
         }
       },
       "Humanizer.Core/2.8.26": {

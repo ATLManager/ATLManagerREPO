@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Passwort bestätigen</value>
+  </data>
+  <data name="contacts" xml:space="preserve">
+    <value>Kontakte</value>
+  </data>
+  <data name="copyright" xml:space="preserve">
+    <value>Urheberrecht von ATLManager - IPS 2023</value>
+  </data>
+  <data name="createAccount" xml:space="preserve">
+    <value>Konto erstellen</value>
+  </data>
+  <data name="doLoginBy" xml:space="preserve">
+    <value>Login über:</value>
+  </data>
+  <data name="doRegisterBy" xml:space="preserve">
+    <value>Registrierung über:</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="forgetPassword" xml:space="preserve">
+    <value>Haben Sie Ihr Passwort vergessen?</value>
+  </data>
+  <data name="haveAccount" xml:space="preserve">
+    <value>Sie haben bereits ein Konto?</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Hallo</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Startseite</value>
+  </data>
+  <data name="howToLoginOnApp" xml:space="preserve">
+    <value>Wie man sich bei der Anwendung anmeldet</value>
+  </data>
+  <data name="howToLoginViaFacebook" xml:space="preserve">
+    <value>Wie man sich über Facebook anmeldet</value>
+  </data>
+  <data name="howToLoginViaGoogle" xml:space="preserve">
+    <value>Wie man sich über Google anmeldet</value>
+  </data>
+  <data name="howToLoginViaOutlook" xml:space="preserve">
+    <value>Wie man sich über Outlook anmeldet</value>
+  </data>
+  <data name="howToLoginViaTwitter" xml:space="preserve">
+    <value>Wie man sich über Twitter anmeldet</value>
+  </data>
+  <data name="howToRegisterOnApp" xml:space="preserve">
+    <value>So registrieren Sie sich für die Anwendung</value>
+  </data>
+  <data name="howToRegisterViaFacebook" xml:space="preserve">
+    <value>Wie man sich über Facebook registriert</value>
+  </data>
+  <data name="howToRegisterViaGoogle" xml:space="preserve">
+    <value>Wie man sich über Google registriert</value>
+  </data>
+  <data name="howToRegisterViaOutlook" xml:space="preserve">
+    <value>Wie man sich über Outlook anmeldet</value>
+  </data>
+  <data name="howToRegisterViaTwitter" xml:space="preserve">
+    <value>Wie man sich über Twitter registriert</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="lastNameAccount" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="nameAccount" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>Datenschutz</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Erinnern Sie sich an mich?</value>
+  </data>
+  <data name="reSentEmailConfirmation" xml:space="preserve">
+    <value>Bestätigungs-E-Mail erneut senden</value>
+  </data>
+  <data name="siteMap" xml:space="preserve">
+    <value>Website-Karte</value>
+  </data>
+  <data name="support" xml:space="preserve">
+    <value>Unterstützung</value>
+  </data>
+  <data name="txtHowToLoginOnApp" xml:space="preserve">
+    <value>Um sich bei Ihrem Konto anzumelden, geben Sie bitte die E-Mail-Adresse und das Passwort ein, die mit Ihrem Konto verbunden sind. Klicken Sie auf "Anmelden", um auf Ihr Konto zuzugreifen. Wenn Sie Ihr Passwort vergessen haben, klicken Sie auf "Passwort vergessen", um es abzurufen. Denken Sie daran, Ihr Konto sicher zu halten, indem Sie Ihr Passwort nicht weitergeben und sich von Ihrem Konto abmelden, wenn Sie ein gemeinsames Gerät benutzen.</value>
+  </data>
+  <data name="txtHowToLoginViaFacebook" xml:space="preserve">
+    <value>Um sich über Facebook bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Facebook". Dadurch werden Sie auf die Facebook-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und haben Zugang zu Ihrem Konto. Bitte beachten Sie, dass diese Option nur zur Verfügung steht, wenn Sie ein Facebook-Konto besitzen und dieses bereits für die Anmeldung verwendet haben.</value>
+  </data>
+  <data name="txtHowToLoginViaGoogle" xml:space="preserve">
+    <value>Um sich über Google bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Google". Dadurch werden Sie auf die Google-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und genehmigen Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann wieder auf unsere Seite weitergeleitet und haben Zugang zu Ihrem Konto. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Google-Konto besitzen und sich zuvor damit angemeldet haben.</value>
+  </data>
+  <data name="txtHowToLoginViaOutlook" xml:space="preserve">
+    <value>Um sich über Outlook bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Outlook". Dadurch werden Sie zur Outlook-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann auf unsere Seite zurückgeleitet und haben Zugang zu Ihrem Konto. Denken Sie daran, dass diese Option nur verfügbar ist, wenn Sie ein Outlook-Konto haben und sich zuvor über dieses Konto angemeldet haben.</value>
+  </data>
+  <data name="txtHowToLoginViaTwitter" xml:space="preserve">
+    <value>Um sich über Twitter bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Twitter". Dadurch werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und genehmigen Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann wieder auf unsere Seite weitergeleitet und haben Zugriff auf Ihr Konto. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto haben und sich zuvor damit angemeldet haben.</value>
+  </data>
+  <data name="txtHowToRegisterOnApp" xml:space="preserve">
+    <value>Um ein Konto zu erstellen, geben Sie die E-Mail, das Passwort, die Passwortbestätigung, den Vor- und Nachnamen ein. Vergewissern Sie sich, dass die E-Mail gültig ist, dass die eingegebenen Passwörter gleich sind und den Sicherheitsanforderungen entsprechen (z. B. mindestens 6 Zeichen). Vergewissern Sie sich, dass das Feld für den Vor- und Nachnamen ausgefüllt ist. Klicken Sie auf "Registrieren", um den Vorgang abzuschließen. Denken Sie daran, Ihr Konto sicher zu halten, indem Sie Ihr Passwort nicht an Dritte weitergeben.</value>
+  </data>
+  <data name="txtHowToRegisterViaFacebook" xml:space="preserve">
+    <value>Um ein Konto über Facebook zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Facebook". Daraufhin werden Sie zur Facebook-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Facebook-Konto haben.</value>
+  </data>
+  <data name="txtHowToRegisterViaGoogle" xml:space="preserve">
+    <value>Um ein Konto über Google zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Google". Dadurch werden Sie auf die Google-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und erteilen Sie die Genehmigung für den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Google-Konto haben.</value>
+  </data>
+  <data name="txtHowToRegisterViaOutlook" xml:space="preserve">
+    <value>Um ein Konto über Outlook zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Outlook". Dadurch werden Sie auf die Anmeldeseite von Outlook weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Outlook-Konto haben.</value>
+  </data>
+  <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
+    <value>Um ein Konto über Twitter zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Twitter". Daraufhin werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre grundlegenden Informationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto besitzen.</value>
+  </data>
+  <data name="txtSearchHelpArticles" xml:space="preserve">
+    <value>Suchen Sie nach Artikeln, die Ihnen helfen</value>
+  </data>
+  <data name="txtWelcome" xml:space="preserve">
+    <value>Suchen Sie nach dem effizientesten Weg, Ihre ATL oder ATL-Gruppierung zu verwalten?</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Willkommen</value>
+  </data>
+</root>

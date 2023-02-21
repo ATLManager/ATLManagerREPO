@@ -4,6 +4,12 @@ using ATLManager.Data;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ATLManager.Services;
+using ATLManager;
+using ATLManager.Models;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+using System.Reflection;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection") 
@@ -28,6 +34,41 @@ builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<LanguageService>();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.AddMvc()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var assemblyName = new AssemblyName(typeof(ShareResource).GetTypeInfo().Assembly.FullName);
+            return factory.Create("SharedResource", assemblyName.Name);
+        };
+    });
+
+builder.Services.AddScoped<LanguageService>();
+
+builder.Services.Configure<RequestLocalizationOptions>(
+    options =>
+    {
+        var supportedCultures = new List<CultureInfo>
+        {
+                        new CultureInfo("en-US"),
+                        new CultureInfo("pt-PT"),
+                        new CultureInfo("de-DE"),
+                        new CultureInfo("fr-FR"),
+        };
+
+        options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+        options.SupportedCultures = supportedCultures;
+        options.SupportedUICultures = supportedCultures;
+
+        options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
+    });
+
+
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
@@ -55,6 +96,9 @@ builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 });
 
 var app = builder.Build();
+
+var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(locOptions.Value);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
