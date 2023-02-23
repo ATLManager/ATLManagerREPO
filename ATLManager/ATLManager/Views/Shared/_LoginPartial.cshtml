@@ -15,10 +15,10 @@
         <li>
             <div class="triangle"></div>
             <ul class="language" style="float:right">
-                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link"> <i class="flag-icon flag-icon-gb"></i>English</a></li>
-                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link"> <i class="flag-icon flag-icon-de"></i>Deutsch</a></li>
-                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link"> <i class="flag-icon flag-icon-pt"></i>Portuguese</a></li>
-                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link"> <i class="flag-icon flag-icon-fr"></i>French</a></li>
+                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link"> <i class="flag-icon flag-icon-gb"></i>@language.GetKey("txtMenuEnglish")</a></li>
+                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link"> <i class="flag-icon flag-icon-de"></i>@language.GetKey("txtMenuDeutsch")</a></li>
+                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link"> <i class="flag-icon flag-icon-pt"></i>@language.GetKey("txtMenuPortugues")</a></li>
+                <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link"> <i class="flag-icon flag-icon-fr"></i>@language.GetKey("txtMenuFrench")</a></li>
 
             </ul>
         </li>
@@ -45,10 +45,10 @@ else
                     <li>
                         <div class="triangle"></div>
                          <ul class="language" style="float:right">
-                            <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link"> <i class="flag-icon flag-icon-gb"></i>English</a></li>
-                            <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link"> <i class="flag-icon flag-icon-de"></i>Deutsch</a></li>
-                            <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link"> <i class="flag-icon flag-icon-pt"></i>Portuguese</a></li>
-                            <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link"> <i class="flag-icon flag-icon-fr"></i>French</a></li>
+                    <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link"> <i class="flag-icon flag-icon-gb"></i>@language.GetKey("txtMenuEnglish")</a></li>
+                    <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link"> <i class="flag-icon flag-icon-de"></i>@language.GetKey("txtMenuDeutsch")</a></li>
+                    <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link"> <i class="flag-icon flag-icon-pt"></i>@language.GetKey("txtMenuPortugues")</a></li>
+                    <li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link"> <i class="flag-icon flag-icon-fr"></i>@language.GetKey("txtMenuFrench")</a></li>
 
                         </ul>
                     </li>

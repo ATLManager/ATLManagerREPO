@@ -198,7 +198,7 @@
                                             @if (provider.Name.Equals("Facebook"))
                                             {
 
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginFacebook")">
                                                     <img src="~/images/facebook.png" style="width:40px;height:40px;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -206,7 +206,7 @@
 
                                             @if (provider.Name.Equals("Microsoft"))
                                             {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginMicrosoft")">
                                                     <img src="~/images/outlook.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -214,7 +214,7 @@
 
                                             @if (provider.Name.Equals("Twitter"))
                                             {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginTwitter")">
                                                     <img src="~/images/twitter.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -222,7 +222,7 @@
 
                                             @if (provider.Name.Equals("Google"))
                                             {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginGoogle")">
                                                     <img src="~/images/google.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                                 </button>
 

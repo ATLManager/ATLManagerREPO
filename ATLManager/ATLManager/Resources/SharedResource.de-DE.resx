@@ -216,6 +216,33 @@
   <data name="support" xml:space="preserve">
     <value>Unterstützung</value>
   </data>
+  <data name="txtConfirmEmail" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden können, überprüfen Sie bitte SPAM in Ihrer E-Mail.</value>
+  </data>
+  <data name="txtHoverLoginFacebook" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Facebook-Konto an</value>
+  </data>
+  <data name="txtHoverLoginGoogle" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Google-Konto an</value>
+  </data>
+  <data name="txtHoverLoginMicrosoft" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Microsoft-Konto an</value>
+  </data>
+  <data name="txtHoverLoginTwitter" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Twitter-Konto an</value>
+  </data>
+  <data name="txtHoverRegisterFacebook" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Facebook-Konto</value>
+  </data>
+  <data name="txtHoverRegisterGoogle" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Google-Konto</value>
+  </data>
+  <data name="txtHoverRegisterMicrosoft" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Microsoft-Konto</value>
+  </data>
+  <data name="txtHoverRegisterTwitter" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Twitter-Konto</value>
+  </data>
   <data name="txtHowToLoginOnApp" xml:space="preserve">
     <value>Um sich bei Ihrem Konto anzumelden, geben Sie bitte die E-Mail-Adresse und das Passwort ein, die mit Ihrem Konto verbunden sind. Klicken Sie auf "Anmelden", um auf Ihr Konto zuzugreifen. Wenn Sie Ihr Passwort vergessen haben, klicken Sie auf "Passwort vergessen", um es abzurufen. Denken Sie daran, Ihr Konto sicher zu halten, indem Sie Ihr Passwort nicht weitergeben und sich von Ihrem Konto abmelden, wenn Sie ein gemeinsames Gerät benutzen.</value>
   </data>
@@ -245,6 +272,21 @@
   </data>
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Um ein Konto über Twitter zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Twitter". Daraufhin werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre grundlegenden Informationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto besitzen.</value>
+  </data>
+  <data name="txtMenuDeutsch" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="txtMenuEnglish" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="txtMenuFrench" xml:space="preserve">
+    <value>Französisch</value>
+  </data>
+  <data name="txtMenuPortugues" xml:space="preserve">
+    <value>Portugiesisch</value>
+  </data>
+  <data name="txtRegisterConfirmation" xml:space="preserve">
+    <value>Register Confirmation</value>
   </data>
   <data name="txtSearchHelpArticles" xml:space="preserve">
     <value>Suchen Sie nach Artikeln, die Ihnen helfen</value>

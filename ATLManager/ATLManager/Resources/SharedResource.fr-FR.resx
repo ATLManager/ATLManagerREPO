@@ -216,6 +216,33 @@
   <data name="support" xml:space="preserve">
     <value>Soutien</value>
   </data>
+  <data name="txtConfirmEmail" xml:space="preserve">
+    <value>Veuillez vérifier votre e-mail pour confirmer votre compte, si vous ne trouvez pas le message dans votre boîte de réception, veuillez vérifier le SPAM dans votre e-mail.</value>
+  </data>
+  <data name="txtHoverLoginFacebook" xml:space="preserve">
+    <value>Connectez-vous en utilisant votre compte Facebook</value>
+  </data>
+  <data name="txtHoverLoginGoogle" xml:space="preserve">
+    <value>Connectez-vous à l'aide de votre compte Google</value>
+  </data>
+  <data name="txtHoverLoginMicrosoft" xml:space="preserve">
+    <value>Connectez-vous à l'aide de votre compte Microsoft</value>
+  </data>
+  <data name="txtHoverLoginTwitter" xml:space="preserve">
+    <value>Connectez-vous en utilisant votre compte Twitter</value>
+  </data>
+  <data name="txtHoverRegisterFacebook" xml:space="preserve">
+    <value>Inscrivez-vous en utilisant votre compte Facebook</value>
+  </data>
+  <data name="txtHoverRegisterGoogle" xml:space="preserve">
+    <value>Inscrivez-vous en utilisant votre compte Google</value>
+  </data>
+  <data name="txtHoverRegisterMicrosoft" xml:space="preserve">
+    <value>Inscrivez-vous en utilisant votre compte Microsoft</value>
+  </data>
+  <data name="txtHoverRegisterTwitter" xml:space="preserve">
+    <value>Inscrivez-vous en utilisant votre compte Twitter</value>
+  </data>
   <data name="txtHowToLoginOnApp" xml:space="preserve">
     <value>Pour vous connecter à votre compte, veuillez saisir l'adresse électronique et le mot de passe associés à votre compte. Cliquez sur "Login" pour accéder à votre compte. Si vous avez oublié votre mot de passe, cliquez sur "Mot de passe oublié ?" pour le récupérer. N'oubliez pas de sécuriser votre compte en ne partageant votre mot de passe avec personne et en vous déconnectant de votre compte lorsque vous utilisez un appareil partagé.</value>
   </data>
@@ -245,6 +272,21 @@
   </data>
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Pour créer un compte via Twitter, cliquez sur le bouton "Twitter" sur la page de création de compte. Vous serez alors redirigé vers la page de connexion de Twitter. Saisissez vos identifiants de connexion et autorisez l'accès à vos informations de base. Vous serez ensuite redirigé vers notre page et votre compte sera créé automatiquement. Notez que cette option n'est disponible que si vous avez un compte Twitter.</value>
+  </data>
+  <data name="txtMenuDeutsch" xml:space="preserve">
+    <value>Allemand</value>
+  </data>
+  <data name="txtMenuEnglish" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="txtMenuFrench" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="txtMenuPortugues" xml:space="preserve">
+    <value>Portugais</value>
+  </data>
+  <data name="txtRegisterConfirmation" xml:space="preserve">
+    <value>Confirmation de l'inscription</value>
   </data>
   <data name="txtSearchHelpArticles" xml:space="preserve">
     <value>Cherchez des articles qui vous aident</value>

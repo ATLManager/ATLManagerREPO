@@ -1,10 +1,11 @@
 ﻿@page
+@using ATLManager.Models;
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = @language.GetKey("txtRegisterConfirmation");
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-
+@inject LanguageService language
 
 <body class="body">
     <!-- Image -->
@@ -20,7 +21,7 @@
             <form method="post" class="form">
                 <h1>@ViewData["Title"]</h1>
                 <p>
-                    Por favor, verifique o seu email para confirmar a sua conta, caso não encontre a mensagem na caixa de entrada, verifique no SPAM do seu email.
+                    @language.GetKey("txtConfirmEmail")
                 </p>
                 
 

@@ -216,6 +216,33 @@
   <data name="support" xml:space="preserve">
     <value>Support</value>
   </data>
+  <data name="txtConfirmEmail" xml:space="preserve">
+    <value>Please check your email to confirm your account, if you can't find the message in your inbox, please check your email SPAM.</value>
+  </data>
+  <data name="txtHoverLoginFacebook" xml:space="preserve">
+    <value>Log in using your Facebook account</value>
+  </data>
+  <data name="txtHoverLoginGoogle" xml:space="preserve">
+    <value>Log in using your Google account</value>
+  </data>
+  <data name="txtHoverLoginMicrosoft" xml:space="preserve">
+    <value>Log in using your Microsoft account</value>
+  </data>
+  <data name="txtHoverLoginTwitter" xml:space="preserve">
+    <value>Log in using your Twitter account</value>
+  </data>
+  <data name="txtHoverRegisterFacebook" xml:space="preserve">
+    <value>Register using your Facebook account</value>
+  </data>
+  <data name="txtHoverRegisterGoogle" xml:space="preserve">
+    <value>Register using your Google account</value>
+  </data>
+  <data name="txtHoverRegisterMicrosoft" xml:space="preserve">
+    <value>Register using your Microsoft account</value>
+  </data>
+  <data name="txtHoverRegisterTwitter" xml:space="preserve">
+    <value>Register using your Twitter account</value>
+  </data>
   <data name="txtHowToLoginOnApp" xml:space="preserve">
     <value>To log into your account, enter the e-mail address and password associated with your account. Click "Login" to access your account. If you have forgotten your password, click "Forgot your password?" to retrieve it. Remember to keep your account secure by not sharing your password with anyone and log out of your account when using a shared device.</value>
   </data>
@@ -245,6 +272,21 @@
   </data>
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>To create an account via Twitter, click the "Twitter" button on the account creation page. This will redirect you to the Twitter login page. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and your account will be created automatically. Note that this option is only available if you have a Twitter account.</value>
+  </data>
+  <data name="txtMenuDeutsch" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="txtMenuEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="txtMenuFrench" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="txtMenuPortugues" xml:space="preserve">
+    <value>Portuguese</value>
+  </data>
+  <data name="txtRegisterConfirmation" xml:space="preserve">
+    <value>Register Confirmation</value>
   </data>
   <data name="txtSearchHelpArticles" xml:space="preserve">
     <value>Look for articles that will help you</value>

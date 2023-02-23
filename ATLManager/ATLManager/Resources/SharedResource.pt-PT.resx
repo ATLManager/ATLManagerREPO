@@ -216,6 +216,33 @@
   <data name="support" xml:space="preserve">
     <value>Suporte</value>
   </data>
+  <data name="txtConfirmEmail" xml:space="preserve">
+    <value>Por favor, verifique o seu email para confirmar a sua conta, caso não encontre a mensagem na caixa de entrada, verifique no SPAM do seu email.</value>
+  </data>
+  <data name="txtHoverLoginFacebook" xml:space="preserve">
+    <value>Inicie a sessão utilizando a sua conta do Facebook</value>
+  </data>
+  <data name="txtHoverLoginGoogle" xml:space="preserve">
+    <value>Inicie a sessão utilizando a sua conta Google</value>
+  </data>
+  <data name="txtHoverLoginMicrosoft" xml:space="preserve">
+    <value>Inicie a sessão utilizando a sua conta Microsoft</value>
+  </data>
+  <data name="txtHoverLoginTwitter" xml:space="preserve">
+    <value>Inicie a sessão utilizando a sua conta no Twitter</value>
+  </data>
+  <data name="txtHoverRegisterFacebook" xml:space="preserve">
+    <value>Registe-se utilizando a sua conta Facebook</value>
+  </data>
+  <data name="txtHoverRegisterGoogle" xml:space="preserve">
+    <value>Registe-se utilizando a sua conta Google</value>
+  </data>
+  <data name="txtHoverRegisterMicrosoft" xml:space="preserve">
+    <value>Registe-se utilizando a sua conta Microsoft</value>
+  </data>
+  <data name="txtHoverRegisterTwitter" xml:space="preserve">
+    <value>Registe-se utilizando a sua conta no Twitter</value>
+  </data>
   <data name="txtHowToLoginOnApp" xml:space="preserve">
     <value>Para iniciar sessão na sua conta, introduza o endereço de correio electrónico e a palavra-passe associada à sua conta. Clique em "Iniciar Sessão" para aceder à sua conta. Se se esqueceu da sua palavra-passe, clique em "Esqueceu-se da sua palavra-passe?" para a recuperar. Lembre-se de manter a sua conta segura, não partilhando a sua palavra-passe com ninguém e saia da sua conta quando utilizar um dispositivo partilhado.</value>
   </data>
@@ -245,6 +272,21 @@
   </data>
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Para criar uma conta via Twitter, clique no botão "Twitter" na página de criação de conta. Isto irá redireccioná-lo para a página de login do Twitter. Introduza as suas credenciais de início de sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta para a nossa página e a sua conta será criada automaticamente. Note que esta opção só está disponível se tiver uma conta no Twitter.</value>
+  </data>
+  <data name="txtMenuDeutsch" xml:space="preserve">
+    <value>Alemão</value>
+  </data>
+  <data name="txtMenuEnglish" xml:space="preserve">
+    <value>Inglês</value>
+  </data>
+  <data name="txtMenuFrench" xml:space="preserve">
+    <value>Francês</value>
+  </data>
+  <data name="txtMenuPortugues" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="txtRegisterConfirmation" xml:space="preserve">
+    <value>Confirmação de Registo</value>
   </data>
   <data name="txtSearchHelpArticles" xml:space="preserve">
     <value>Procure artigos que o ajude</value>
