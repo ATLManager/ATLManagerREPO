@@ -10,48 +10,52 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li><a asp-area="" asp-controller="Home" asp-action="Index">@language.GetKey("home")</a></li>
-        <li><a asp-area="" asp-controller="Home" asp-action="Privacy">@language.GetKey("privacy")</a></li>
+        <!-- Menu -->
+        <ul>
+
+            <li><a asp-area="" asp-controller="Home" asp-action="Index">@language.GetKey("home")</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">@language.GetKey("privacy")</a></li>
 
 
-        <li>
-            <div class="language-dropdown">
-                <a> @language.GetKey("language")</a>
-                <div class="language-content" style="float:right">
+            <li>
+                <div class="language-dropdown">
+                    <a> @language.GetKey("language")</a>
+                    <div class="language-content" style="float:right">
 
-                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
-                        <img src="~/images/flags/en.png" class="flag-logo" />
-                        <span class="language-label">English</span>
-                    </a>
+                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
+                            <img src="~/images/flags/en.png" class="flag-logo" />
+                            <span class="language-label">English</span>
+                        </a>
 
-                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
-                        <img src="~/images/flags/de.png" class="flag-logo" />
-                        <span class="language-label">Deutsch</span>
-                    </a>
+                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
+                            <img src="~/images/flags/de.png" class="flag-logo" />
+                            <span class="language-label">Deutsch</span>
+                        </a>
 
-                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
-                        <img src="~/images/flags/pt.png" class="flag-logo" />
-                        <span class="language-label">Portuguese</span>
-                    </a>
+                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
+                            <img src="~/images/flags/pt.png" class="flag-logo" />
+                            <span class="language-label">Portuguese</span>
+                        </a>
 
-                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
-                        <img src="~/images/flags/fr.png" class="flag-logo" />
-                        <span class="language-label">French</span>
-                    </a>
+                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
+                            <img src="~/images/flags/fr.png" class="flag-logo" />
+                            <span class="language-label">French</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
        
 
-        <li class="nav-item" style="float:right">
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@language.GetKey("hello") @UserManager.GetUserAsync(User).Result.FirstName!</a>
-        </li>
+            <li class="nav-item" style="float:right">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@language.GetKey("hello") @UserManager.GetUserAsync(User).Result.FirstName!</a>
+            </li>
 
-        <li class="nav-item" style="float:right">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="custom-submit">Logout</button>
-            </form>
-        </li>
+            <li class="nav-item" style="float:right">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="custom-submit">Logout</button>
+                </form>
+            </li>
+    </ul>
     }
     else
     {
