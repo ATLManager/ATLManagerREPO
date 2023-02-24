@@ -21,25 +21,25 @@
                 <div class="language-dropdown">
                     <a> @language.GetKey("language")</a>
                     <div class="language-content" style="float:right">
-
+                        
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
                             <img src="~/images/flags/en.png" class="flag-logo" />
-                            <span class="language-label">English</span>
+                            <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
                         </a>
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
                             <img src="~/images/flags/de.png" class="flag-logo" />
-                            <span class="language-label">Deutsch</span>
+                            <span class="language-label">@language.GetKey("txtMenuDeutsch")</span>
                         </a>
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
                             <img src="~/images/flags/pt.png" class="flag-logo" />
-                            <span class="language-label">Portuguese</span>
+                            <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
                         </a>
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
                             <img src="~/images/flags/fr.png" class="flag-logo" />
-                            <span class="language-label">French</span>
+                            <span class="language-label">@language.GetKey("txtMenuFrench")</span>
                         </a>
                     </div>
                 </div>
@@ -71,22 +71,22 @@
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
                             <img src="~/images/flags/en.png" class="flag-logo" />
-                            <span class="language-label">English</span>
+                            <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
                         </a>
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
                             <img src="~/images/flags/de.png" class="flag-logo" />
-                            <span class="language-label">Deutsch</span>
+                            <span class="language-label">@language.GetKey("txtMenuDeutsch")</span>
                         </a>
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
                             <img src="~/images/flags/pt.png" class="flag-logo" />
-                            <span class="language-label">Portuguese</span>
+                            <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
                         </a>
 
                         <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
                             <img src="~/images/flags/fr.png" class="flag-logo" />
-                            <span class="language-label">French</span>
+                            <span class="language-label">@language.GetKey("txtMenuFrench")</span>
                         </a>
                     </div>
                 </div>

@@ -9,8 +9,8 @@
       "PackagePath": "staticwebassets\\css\\Footer.css"
     },
     {
-      "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\Register.css",
-      "PackagePath": "staticwebassets\\css\\Register.css"
+      "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\flag-tab.css",
+      "PackagePath": "staticwebassets\\css\\flag-tab.css"
     },
     {
       "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\menu.css",
@@ -39,6 +39,22 @@
     {
       "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\facebook.png",
       "PackagePath": "staticwebassets\\images\\facebook.png"
+    },
+    {
+      "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\flags\\de.png",
+      "PackagePath": "staticwebassets\\images\\flags\\de.png"
+    },
+    {
+      "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\flags\\en.png",
+      "PackagePath": "staticwebassets\\images\\flags\\en.png"
+    },
+    {
+      "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\flags\\fr.png",
+      "PackagePath": "staticwebassets\\images\\flags\\fr.png"
+    },
+    {
+      "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\flags\\pt.png",
+      "PackagePath": "staticwebassets\\images\\flags\\pt.png"
     },
     {
       "Id": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\google.png",
