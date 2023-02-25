@@ -2,7 +2,7 @@
 @using ATLManager.Models;
 @model RegisterModel
 @{
-    ViewData["Title"] = "Registo";
+    ViewData["Title"] = @language.GetKey("register");
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 @inject LanguageService language
@@ -164,7 +164,7 @@
                     <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
-         </div>
+                </div>
                 <div style="padding: 5px">
                     <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;" class="pClass">@language.GetKey("haveAccount")</a> <!-- acrescentar-->
                 </div>

@@ -2,7 +2,7 @@
 @using ATLManager.Models;
 @model ExternalLoginModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = language.GetKey("register");
 }
 @inject LanguageService language
 
@@ -128,7 +128,7 @@
 <div class="container-box">
     <!-- <div class="image"></div> -->
     <div class="box">
-        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-registo">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row-p">
                 <div>

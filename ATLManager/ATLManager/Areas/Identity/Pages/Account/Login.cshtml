@@ -3,7 +3,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = @language.GetKey("login");
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 @inject LanguageService language

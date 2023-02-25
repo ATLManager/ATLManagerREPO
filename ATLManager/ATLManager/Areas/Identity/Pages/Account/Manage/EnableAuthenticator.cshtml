@@ -1,45 +1,46 @@
 ﻿@page
+@using ATLManager.Models;
 @model EnableAuthenticatorModel
 @{
-    ViewData["Title"] = "Configure authenticator app";
+    ViewData["Title"] = @language.GetKey("titleConfigure2factorAuth");
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
+@inject LanguageService language
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
 <div>
-    <p>To use an authenticator app go through the following steps:</p>
+    <p>@language.GetKey("txtConfigure2factorAuth")</p>
     <ol class="list">
         <li>
             <p>
-                Download a two-factor authenticator app like Microsoft Authenticator for
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> and
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
-                Google Authenticator for
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> and
+                @language.GetKey("txt1Configure2factorAuth")
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> @language.GetKey("and")
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> @language.GetKey("or")
+                @language.GetKey("txt2Configure2factorAuth")
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> @language.GetKey("and")
                 <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
             </p>
         </li>
         <li>
-            <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
-            <div class="alert alert-info">Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable QR code generation</a>.</div>
+            <p>@language.GetKey("txt3Configure2factorAuth") <kbd>@Model.SharedKey</kbd> @language.GetKey("txt4Configure2factorAuth")</p>
+            <div class="alert alert-info">@language.GetKey("txt5Configure2factorAuth") <a href="https://go.microsoft.com/fwlink/?Linkid=852423">@language.GetKey("txt6Configure2factorAuth")</a>.</div>
             <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         </li>
         <li>
             <p>
-                Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
-                with a unique code. Enter the code in the confirmation box below.
+                @language.GetKey("txt7Configure2factorAuth")
             </p>
             <div class="row">
                 <div class="col-md-6">
                     <form id="send-code" method="post">
                         <div class="form-floating">
                             <input asp-for="Input.Code" class="form-control" autocomplete="off" />
-                            <label asp-for="Input.Code" class="control-label form-label">Verification Code</label>
+                            <label asp-for="Input.Code" class="control-label form-label">@language.GetKey("txtVerificationCode")</label>
                             <span asp-validation-for="Input.Code" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="w-100 btn btn-lg btn-primary">Verify</button>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary">@language.GetKey("btnVerify")</button>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     </form>
                 </div>

@@ -117,6 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="2factorAuth" xml:space="preserve">
+    <value>Zwei-Faktor-Authentifizierung</value>
+  </data>
+  <data name="and" xml:space="preserve">
+    <value>und</value>
+  </data>
+  <data name="btnChangeEmail" xml:space="preserve">
+    <value>E-Mail ändern</value>
+  </data>
+  <data name="btnClickLogout" xml:space="preserve">
+    <value>Klicken Sie hier, um sich abzumelden</value>
+  </data>
+  <data name="btnClickResendEmail" xml:space="preserve">
+    <value>Erneut senden</value>
+  </data>
+  <data name="btnDeletePersonalData" xml:space="preserve">
+    <value>Daten löschen und mein Konto schließen</value>
+  </data>
+  <data name="btnDisable2factorAuth" xml:space="preserve">
+    <value>2FA deaktivieren</value>
+  </data>
+  <data name="btnDownloadPersonalData" xml:space="preserve">
+    <value>Herunterladen</value>
+  </data>
+  <data name="btnGenerateRecoveryCodes" xml:space="preserve">
+    <value>Wiederherstellungscodes generieren</value>
+  </data>
+  <data name="btnLoginExternalLogin" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem</value>
+  </data>
+  <data name="btnRemoveLogin" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="btnRemoveLogintxt1" xml:space="preserve">
+    <value>Dies entfernen</value>
+  </data>
+  <data name="btnRemoveLogintxt2" xml:space="preserve">
+    <value>Login von Ihrem Konto</value>
+  </data>
+  <data name="btnResetAuthKey" xml:space="preserve">
+    <value>Authentifikatorschlüssel zurücksetzen</value>
+  </data>
+  <data name="btnResetPassword" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Speichern Sie</value>
+  </data>
+  <data name="btnSendVerificationEmail" xml:space="preserve">
+    <value>Bestätigungs-E-Mail senden</value>
+  </data>
+  <data name="btnSetPassword" xml:space="preserve">
+    <value>Ihr Passwort festlegen</value>
+  </data>
+  <data name="btnUpdatePassword" xml:space="preserve">
+    <value>Passwort aktualisieren</value>
+  </data>
+  <data name="btnVerify" xml:space="preserve">
+    <value>Überprüfen Sie</value>
+  </data>
   <data name="confirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
   </data>
@@ -137,6 +197,9 @@
   </data>
   <data name="email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="externalLogins" xml:space="preserve">
+    <value>Externe Anmeldungen</value>
   </data>
   <data name="forgetPassword" xml:space="preserve">
     <value>Haben Sie Ihr Passwort vergessen?</value>
@@ -183,6 +246,9 @@
   <data name="howToRegisterViaTwitter" xml:space="preserve">
     <value>Wie man sich über Twitter registriert</value>
   </data>
+  <data name="hrefDeletePersonalData" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
   <data name="language" xml:space="preserve">
     <value>Sprache</value>
   </data>
@@ -195,8 +261,23 @@
   <data name="nameAccount" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="newEmail" xml:space="preserve">
+    <value>Neue E-Mail</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Neues Passwort</value>
+  </data>
+  <data name="oldPassword" xml:space="preserve">
+    <value>Altes Passwort</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>oder</value>
+  </data>
   <data name="password" xml:space="preserve">
     <value>Passwort</value>
+  </data>
+  <data name="personalData" xml:space="preserve">
+    <value>Persönliche Daten</value>
   </data>
   <data name="privacy" xml:space="preserve">
     <value>Datenschutz</value>
@@ -216,8 +297,218 @@
   <data name="support" xml:space="preserve">
     <value>Unterstützung</value>
   </data>
+  <data name="title2FactorAuth" xml:space="preserve">
+    <value>Zwei-Faktor-Authentifizierung (2FA)</value>
+  </data>
+  <data name="titleAccessDenied" xml:space="preserve">
+    <value>Zugriff abgelehnt</value>
+  </data>
+  <data name="titleChangePassword" xml:space="preserve">
+    <value>Passwort ändern</value>
+  </data>
+  <data name="titleConfigure2factorAuth" xml:space="preserve">
+    <value>Authenticator-Anwendung konfigurieren</value>
+  </data>
+  <data name="titleConfirmEmail" xml:space="preserve">
+    <value>E-Mail bestätigen</value>
+  </data>
+  <data name="titleConfirmEmailChange" xml:space="preserve">
+    <value>E-Mail-Änderung bestätigen</value>
+  </data>
+  <data name="titleDeletePersonalData" xml:space="preserve">
+    <value>Persönliche Daten löschen</value>
+  </data>
+  <data name="titleDisable2factorAuth" xml:space="preserve">
+    <value>Deaktivieren der Zwei-Faktor-Authentifizierung (2FA)</value>
+  </data>
+  <data name="titleDownloadData" xml:space="preserve">
+    <value>Laden Sie Ihre Daten herunter</value>
+  </data>
+  <data name="titleForgotPasswordConfirmation" xml:space="preserve">
+    <value>Bestätigungsmeldung</value>
+  </data>
+  <data name="titleGenerateRecoveryCodes" xml:space="preserve">
+    <value>Erzeugen von Wiederherstellungscodes für die Zwei-Faktor-Authentifizierung (2FA)</value>
+  </data>
+  <data name="titleLogout" xml:space="preserve">
+    <value>Ausloggen</value>
+  </data>
+  <data name="titleManageAccount" xml:space="preserve">
+    <value>Verwalten Sie Ihr Konto</value>
+  </data>
+  <data name="titleManageEmail" xml:space="preserve">
+    <value>E-Mail verwalten</value>
+  </data>
+  <data name="titleManageExternalLogins" xml:space="preserve">
+    <value>Verwalten Sie Ihre externen Logins</value>
+  </data>
+  <data name="titlePrivacyPolicy" xml:space="preserve">
+    <value>Datenschutzbestimmungen</value>
+  </data>
+  <data name="titleProfileIndex" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="titleResendEmailConfirmation" xml:space="preserve">
+    <value>E-Mail-Bestätigung erneut senden</value>
+  </data>
+  <data name="titleResetAuthKey" xml:space="preserve">
+    <value>Authentifikatorschlüssel zurücksetzen</value>
+  </data>
+  <data name="titleResetPassword" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="titleResetPasswordConfirmation" xml:space="preserve">
+    <value>Kennwortbestätigung zurücksetzen</value>
+  </data>
+  <data name="titleSetPassword" xml:space="preserve">
+    <value>Passwort festlegen</value>
+  </data>
+  <data name="titleShowRecoveryCodes" xml:space="preserve">
+    <value>Einziehungscodes</value>
+  </data>
+  <data name="txt10_2FactorAuth" xml:space="preserve">
+    <value>Vergessen Sie diesen Browser</value>
+  </data>
+  <data name="txt11_2FactorAuth" xml:space="preserve">
+    <value>2FA deaktivieren</value>
+  </data>
+  <data name="txt12_2FactorAuth" xml:space="preserve">
+    <value>Wiederherstellungscodes zurücksetzen</value>
+  </data>
+  <data name="txt13_2FactorAuth" xml:space="preserve">
+    <value>Authenticator-Anwendung</value>
+  </data>
+  <data name="txt14_2FactorAuth" xml:space="preserve">
+    <value>Hinzufügen einer Authentifizierungsanwendung</value>
+  </data>
+  <data name="txt15_2FactorAuth" xml:space="preserve">
+    <value>Authenticator-App einrichten</value>
+  </data>
+  <data name="txt16_2FactorAuth" xml:space="preserve">
+    <value>Authenticator-App zurücksetzen</value>
+  </data>
+  <data name="txt17_2FactorAuth" xml:space="preserve">
+    <value>Die Datenschutz- und Cookie-Richtlinien wurden nicht akzeptiert.</value>
+  </data>
+  <data name="txt18_2FactorAuth" xml:space="preserve">
+    <value>Sie müssen die Richtlinie akzeptieren, bevor Sie die Zwei-Faktor-Authentifizierung aktivieren können.</value>
+  </data>
+  <data name="txt1Configure2factorAuth" xml:space="preserve">
+    <value>Laden Sie eine Zwei-Faktor-Authentifizierungs-App wie Microsoft Authenticator für</value>
+  </data>
+  <data name="txt1Disable2factorAuth" xml:space="preserve">
+    <value>Diese Aktion deaktiviert nur die 2FA</value>
+  </data>
+  <data name="txt1GenerateRecoveryCodes" xml:space="preserve">
+    <value>Bewahren Sie diese Codes an einem sicheren Ort auf</value>
+  </data>
+  <data name="txt1PersonalData" xml:space="preserve">
+    <value>Ihr Konto enthält persönliche Daten, die Sie uns mitgeteilt haben. Auf dieser Seite können Sie diese Daten herunterladen oder löschen</value>
+  </data>
+  <data name="txt1PrivacyPolicy" xml:space="preserve">
+    <value>Willkommen auf der Seite</value>
+  </data>
+  <data name="txt1ResetAuthKey" xml:space="preserve">
+    <value>Wenn Sie Ihren Authenticator-Schlüssel zurücksetzen, funktioniert Ihre Authenticator-App nicht, bis Sie sie neu konfiguriert haben</value>
+  </data>
+  <data name="txt1ResetPasswordConfirmation" xml:space="preserve">
+    <value>Ihr Passwort wurde zurückgesetzt. Bitte</value>
+  </data>
+  <data name="txt1SetPassword" xml:space="preserve">
+    <value>Ihr Passwort festlegen</value>
+  </data>
+  <data name="txt1_2FactorAuth" xml:space="preserve">
+    <value>Sie müssen</value>
+  </data>
+  <data name="txt2Configure2factorAuth" xml:space="preserve">
+    <value>Google Authenticator für</value>
+  </data>
+  <data name="txt2Disable2factorAuth" xml:space="preserve">
+    <value>Durch die Deaktivierung von 2FA werden die in den Authentifizierungsanwendungen verwendeten Schlüssel nicht geändert. Wenn Sie den in einer Authentifikator-App verwendeten Schlüssel ändern möchten, sollten Sie</value>
+  </data>
+  <data name="txt2GenerateRecoveryCodes" xml:space="preserve">
+    <value>Wenn Sie Ihr Gerät verlieren und die Wiederherstellungscodes nicht haben, verlieren Sie den Zugang zu Ihrem Konto</value>
+  </data>
+  <data name="txt2PersonalData" xml:space="preserve">
+    <value>Wenn Sie diese Daten löschen, wird Ihr Konto dauerhaft gelöscht und kann nicht wiederhergestellt werden</value>
+  </data>
+  <data name="txt2PrivacyPolicy" xml:space="preserve">
+    <value>Diese Seite dient zur Erläuterung der Bewerbungspolitik (Fortsetzung folgt)</value>
+  </data>
+  <data name="txt2ResetAuthKey" xml:space="preserve">
+    <value>Durch diesen Vorgang wird 2FA deaktiviert, bis Sie Ihre Authenticator-App verifiziert haben. Wenn Sie die Konfiguration Ihrer Authenticator-App nicht abschließen, können Sie den Zugriff auf Ihr Konto verlieren</value>
+  </data>
+  <data name="txt2ResetPasswordConfirmation" xml:space="preserve">
+    <value>hier klicken, um sich anzumelden</value>
+  </data>
+  <data name="txt2SetPassword" xml:space="preserve">
+    <value>Sie haben keinen lokalen Benutzernamen/Passwort für diese Website. Fügen Sie ein lokales Konto hinzu, damit Sie sich ohne externe Anmeldung anmelden können</value>
+  </data>
+  <data name="txt2_2FactorAuth" xml:space="preserve">
+    <value>einen neuen Satz von Wiederherstellungscodes erzeugen</value>
+  </data>
+  <data name="txt3Configure2factorAuth" xml:space="preserve">
+    <value>Scannen Sie den QR-Code oder geben Sie diesen Schlüssel ein</value>
+  </data>
+  <data name="txt3Disable2factorAuth" xml:space="preserve">
+    <value>Ihre Authentifikatorschlüssel zurücksetzen.</value>
+  </data>
+  <data name="txt3GenerateRecoveryCodes" xml:space="preserve">
+    <value>Durch die Generierung neuer Wiederherstellungscodes werden die in Authentifizierungsanwendungen verwendeten Schlüssel nicht geändert. Wenn Sie den in einer Authenticator-App verwendeten Schlüssel ändern möchten, sollten Sie</value>
+  </data>
+  <data name="txt3_2FactorAuth" xml:space="preserve">
+    <value>bevor Sie sich mit einem Wiederherstellungscode anmelden können.</value>
+  </data>
+  <data name="txt4Configure2factorAuth" xml:space="preserve">
+    <value>in Ihre Zwei-Faktor-Authentifizierungs-App ein. Leerzeichen und Gehäuse spielen keine Rolle.</value>
+  </data>
+  <data name="txt4GenerateRecoveryCodes" xml:space="preserve">
+    <value>Ihre Authentifikatorschlüssel zurücksetzen.</value>
+  </data>
+  <data name="txt4_2FactorAuth" xml:space="preserve">
+    <value>Sie haben keine Wiederherstellungscodes mehr.</value>
+  </data>
+  <data name="txt5Configure2factorAuth" xml:space="preserve">
+    <value>Erfahren Sie, wie Sie</value>
+  </data>
+  <data name="txt5_2FactorAuth" xml:space="preserve">
+    <value>Sie haben noch 1 Wiederherstellungscode übrig.</value>
+  </data>
+  <data name="txt6Configure2factorAuth" xml:space="preserve">
+    <value>QR-Code-Generierung aktivieren</value>
+  </data>
+  <data name="txt6_2FactorAuth" xml:space="preserve">
+    <value>Sie können</value>
+  </data>
+  <data name="txt7Configure2factorAuth" xml:space="preserve">
+    <value>Sobald Sie den QR-Code gescannt oder den Schlüssel oben eingegeben haben, erhalten Sie von Ihrer Zwei-Faktor-Authentifizierungs-App einen eindeutigen Code. Geben Sie den Code in das Bestätigungsfeld unten ein.</value>
+  </data>
+  <data name="txt7_2FactorAuth" xml:space="preserve">
+    <value>Sie sollten</value>
+  </data>
+  <data name="txt8_2FactorAuth" xml:space="preserve">
+    <value>Sie haben</value>
+  </data>
+  <data name="txt9_2FactorAuth" xml:space="preserve">
+    <value>Wiederherstellungscodes übrig.</value>
+  </data>
+  <data name="txtAccessDenied" xml:space="preserve">
+    <value>Sie haben keinen Zugriff auf diese Ressource</value>
+  </data>
+  <data name="txtAddAnotherServiceLogin" xml:space="preserve">
+    <value>Einen weiteren Dienst zur Anmeldung hinzufügen</value>
+  </data>
+  <data name="txtConfigure2factorAuth" xml:space="preserve">
+    <value>Um eine Authentifizierungs-App zu verwenden, führen Sie die folgenden Schritte aus:</value>
+  </data>
   <data name="txtConfirmEmail" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden können, überprüfen Sie bitte SPAM in Ihrer E-Mail.</value>
+  </data>
+  <data name="txtDeletePersonalData" xml:space="preserve">
+    <value>Wenn Sie diese Daten löschen, wird Ihr Konto dauerhaft gelöscht und kann nicht wiederhergestellt werden</value>
+  </data>
+  <data name="txtForgotPasswordConfirmation" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden, überprüfen Sie Ihren E-Mail-SPAM</value>
   </data>
   <data name="txtHoverLoginFacebook" xml:space="preserve">
     <value>Melden Sie sich mit Ihrem Facebook-Konto an</value>
@@ -273,6 +564,12 @@
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Um ein Konto über Twitter zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Twitter". Daraufhin werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre grundlegenden Informationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto besitzen.</value>
   </data>
+  <data name="txtLogoutSuccess" xml:space="preserve">
+    <value>Sie haben sich erfolgreich von der Anwendung abgemeldet</value>
+  </data>
+  <data name="txtManageAccount" xml:space="preserve">
+    <value>Ändern Sie Ihre Kontoeinstellungen</value>
+  </data>
   <data name="txtMenuDeutsch" xml:space="preserve">
     <value>Deutsch</value>
   </data>
@@ -285,11 +582,26 @@
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Portugiesisch</value>
   </data>
+  <data name="txtPhoneNumber" xml:space="preserve">
+    <value>Rufnummer</value>
+  </data>
   <data name="txtRegisterConfirmation" xml:space="preserve">
     <value>Register Confirmation</value>
   </data>
+  <data name="txtRegisteredLogins" xml:space="preserve">
+    <value>Registrierte Anmeldungen</value>
+  </data>
+  <data name="txtResetPassword" xml:space="preserve">
+    <value>Setze dein Passwort zurück</value>
+  </data>
   <data name="txtSearchHelpArticles" xml:space="preserve">
     <value>Suchen Sie nach Artikeln, die Ihnen helfen</value>
+  </data>
+  <data name="txtThankYouConfirmEmail" xml:space="preserve">
+    <value>Vielen Dank für die Bestätigung Ihrer E-Mail</value>
+  </data>
+  <data name="txtVerificationCode" xml:space="preserve">
+    <value>Verifizierungscode</value>
   </data>
   <data name="txtWelcome" xml:space="preserve">
     <value>Suchen Sie nach dem effizientesten Weg, Ihre ATL oder ATL-Gruppierung zu verwalten?</value>
