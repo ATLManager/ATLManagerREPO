@@ -2,13 +2,10 @@
     border-radius: 25px;
     position: fixed;
     bottom: 0;
-    
-    right:0; 
-    right: -500px; 
-    
-    
+    right: 0;
+    right: -500%;
     /* set the initial position of the menu */
-    width: 450px;
+    width: 25%;
     /* set the width of the menu */
     height: 80%;
     /* set the height of the menu */
@@ -18,35 +15,51 @@
     /* set the transition for the menu */
 }
 
-.menu.open {
-    right: 0;
-    
-    /* set the position of the menu when it is open */
-}
+    .menu.open {
+        
+        right: 0%;
 
-.custom-h1{
-    color:white;
+        /* set the position of the menu when it is open */
+    }
+
+
+
+.custom-h1 {
+    color: white;
     display: flex;
-    padding: 10px;
+    padding: 0px;
     justify-content: center;
 }
 
-.first-container{
+.first-container {
+ 
     border-radius: 25px 25px 0px 0px;
     height: 100%;
     width: 100%;
     background-color: #5271FF;
-    
+    overflow-x: hidden;
+    overflow-y: auto;
+    display:block;
 }
 
-.search-container{
-    padding: 10px 30px;
+.container-top {
+    position: fixed;
+    width: 25%;
+    display: block;
+    border-radius: 25px 25px 0px 0px;
+    background-color: #5271FF;
+}
+
+.search-container {
+    /*position:fixed;*/
+    padding-bottom:3%;
+
     height: 8%;
     display: flex;
     justify-content: center;
 }
 
-#search{
+#search {
     height: 80%;
     width: 80%;
     text-align: center;
@@ -54,87 +67,83 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.custom-button-info{
+.custom-button-info {
     height: 50px;
     font-size: 15px;
-
-
-  /* Add padding and a background color */
-  /* padding: 10px 20px; */
-  background-color: #DCECFF;
-
-  /* Add hover effect */
-  transition: background-color 0.3s ease;
+    /* Add padding and a background color */
+    /* padding: 10px 20px; */
+    background-color: #DCECFF;
+    /* Add hover effect */
+    transition: background-color 0.3s ease;
 }
 
-.custom-button-info:hover {
-    background-color: #3e8e41;
-  }
-  
-  /* Add a border */
+    .custom-button-info:hover {
+        background-color: #3e8e41;
+    }
+
+/* Add a border */
 .custom-button-info {
     border: none;
     border-radius: 20px;
     margin-left: 13%;
-
     width: 100%;
     font-weight: bold;
 }
 
 
-.help-info1, 
+.help-info1,
 .help-info2,
 .help-info3,
 .help-info4,
-.help-info5{
+.help-info5 {
     display: none;
     /* visibility: hidden; */
     margin-top: -50px;
     background-color: white;
     font-size: 13px;
-    border-radius:25px 25px ;
-
+    border-radius: 25px 25px;
     margin-left: 13%;
-    padding: 10% 40px;
-
-}
-
-.help-info1{
-    
-    height: 30%;
-    width: 78%;
+    /*padding: 10% 10%;*/ /* modificar segundo valor para 1%?*/
+    padding-top:10%;
    
+
+    width: 100%;
 }
 
-.help-info2{
+.help-info1 {
+    height: 0%;
+
+}
+
+.help-info2 {
     height: 25%;
-    width: 78%;
+
 }
 
 
-.help-info3{
+.help-info3 {
     height: 25%;
-    width: 78%;
+
 }
 
 
-.help-info4{
+.help-info4 {
     height: 26%;
-    width: 78%;
+
 }
 
 
-.help-info5{
-    
+.help-info5 {
     height: 29%;
-    width: 78%;
+
 }
 
-.p-information{
+.p-information {
     padding: 10px 10px;
 }
 
-.container-help-info{
+.container-help-info {
+    padding-top:50%; /** ADICIONADO */
     height: auto;
     width: 80%;
     display: block;

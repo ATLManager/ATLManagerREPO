@@ -34,21 +34,21 @@
             <img src="~/images/question.png" class="image-question" alt="Button Image">
         </button>
     </div>
-
-
-    <!-- <img src="images/question1.png" -->
     <!-- / Botão de ajuda  -->
+
     <!-- Menu Lateral de Ajuda -->
     <nav class="menu">
+
         <div class="first-container">
-            <div class="custom-h1">
-                <h1> @language.GetKey("help") </h1>
-            </div>
+            <div class="container-top">
+                <div class="custom-h1">
+                    <h1> @language.GetKey("help") </h1>
+                </div>
 
-            <div class="search-container">
-                <input type="text" id="search" placeholder="@language.GetKey("txtSearchHelpArticles")">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="@language.GetKey("txtSearchHelpArticles")">
+                </div>
             </div>
-
 
 
             <div class="container-help-info">
@@ -104,12 +104,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="second-container">
-            <a href="#">Menu Item 1</a>
-            <a href="#">Menu Item 2</a>
-            <a href="#">Menu Item 3</a>
-        </div>
     </nav>
     <!-- / Menu Lateral de Ajuda -->
 
@@ -123,18 +117,19 @@
 
             <form id="account" method="post">
 
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="div-email">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
+                        <input asp-for="Input.Email" class="input-text inputLabel" autocomplete="username" aria-required="true" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
 
-                <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
-                    <input asp-for="Input.Email" class="input-text inputLabel" autocomplete="username" aria-required="true" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-               
-                <br />
-                <br /> @* se necessario fazer div na pw <comentario>*@
-                <label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
-                <input asp-for="Input.Password" class="input-text" autocomplete="current-password" aria-required="true" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-                <br /><br />
+
+                <div class="div-password">
+                    <label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
+                    <input asp-for="Input.Password" class="input-text" autocomplete="current-password" aria-required="true" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
                 
                 <div class="checkbox">
                     <label asp-for="Input.RememberMe" class="form-label">
@@ -189,7 +184,7 @@
                         }
                         else
                         {
-                            <form target="_blank" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                                     <div class="icons-special-div">
                            
                                         @foreach (var provider in Model.ExternalLogins)
@@ -245,7 +240,9 @@
 
 
             </div>
-        
+        </div>
+    </div>
+
  
 @* ------------------------------------- *@
 
