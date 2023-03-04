@@ -26,8 +26,8 @@ public class ATLManagerUser : IdentityUser
     [ProtectedPersonalData]
     override public string Email { get; set; }
 
-    public ATLManagerUserRole Role { get; set; }
+    //public ATLManagerUserRole Role { get; set; }
 
-    public ATLManagerUserStatus Status { get; set; }
+    //public ATLManagerUserStatus Status { get; set; }
 }
 
