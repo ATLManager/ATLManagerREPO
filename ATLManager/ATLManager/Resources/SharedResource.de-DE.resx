@@ -507,6 +507,12 @@
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>Wenn Sie diese Daten löschen, wird Ihr Konto dauerhaft gelöscht und kann nicht wiederhergestellt werden</value>
   </data>
+  <data name="txtEmailRequired" xml:space="preserve">
+    <value>Das Feld E-Mail ist erforderlich</value>
+  </data>
+  <data name="txtErrorConfirmEmail" xml:space="preserve">
+    <value>Fehler beim Bestätigen Ihrer E-Mail</value>
+  </data>
   <data name="txtForgotPasswordConfirmation" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden, überprüfen Sie Ihren E-Mail-SPAM</value>
   </data>
@@ -581,6 +587,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Portugiesisch</value>
+  </data>
+  <data name="txtPasswordRequired" xml:space="preserve">
+    <value>Das Feld Passwort ist erforderlich</value>
   </data>
   <data name="txtPhoneNumber" xml:space="preserve">
     <value>Rufnummer</value>

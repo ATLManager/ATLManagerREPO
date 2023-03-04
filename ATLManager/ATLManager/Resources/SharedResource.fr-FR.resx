@@ -507,6 +507,12 @@
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>La suppression de ces données entraîne la suppression définitive de votre compte, qui ne peut être récupéré</value>
   </data>
+  <data name="txtEmailRequired" xml:space="preserve">
+    <value>Le champ Email est obligatoire</value>
+  </data>
+  <data name="txtErrorConfirmEmail" xml:space="preserve">
+    <value>Erreur de confirmation de votre e-mail</value>
+  </data>
   <data name="txtForgotPasswordConfirmation" xml:space="preserve">
     <value>Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe, si vous ne trouvez pas le message dans votre boîte de réception, vérifiez votre e-mail SPAM</value>
   </data>
@@ -581,6 +587,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Portugais</value>
+  </data>
+  <data name="txtPasswordRequired" xml:space="preserve">
+    <value>Le champ "Mot de passe" est obligatoire</value>
   </data>
   <data name="txtPhoneNumber" xml:space="preserve">
     <value>Numéro de téléphone</value>

@@ -1,5 +1,4 @@
 ﻿using ATLManager.Data;
-using ATLManager.Models.DAL;
 
 namespace ATLManager.Models.BLL
 {

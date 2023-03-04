@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using ATLManager.Models;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -23,11 +24,13 @@ namespace ATLManager.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ATLManagerUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private LanguageService _language;
 
-        public LoginModel(SignInManager<ATLManagerUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ATLManagerUser> signInManager, ILogger<LoginModel> logger, LanguageService language)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _language = language;
         }
 
         /// <summary>
@@ -62,6 +65,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -108,6 +112,16 @@ namespace ATLManager.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
+            if (string.IsNullOrEmpty(Input.Email))
+            {
+                ModelState.AddModelError(string.Empty, _language.GetKey("txtEmailRequired"));
+                
+            }
+            if (string.IsNullOrEmpty(Input.Password))
+            {
+                ModelState.AddModelError(string.Empty, _language.GetKey("txtPasswordRequired"));
+            }
 
             if (ModelState.IsValid)
             {
@@ -125,14 +139,14 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-					_logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
-                }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return Page();
+            }
             }
 
             // If we got this far, something failed, redisplay form

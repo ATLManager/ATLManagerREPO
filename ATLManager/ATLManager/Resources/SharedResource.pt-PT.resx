@@ -507,6 +507,12 @@
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>A eliminação destes dados irá remover permanentemente a sua conta, e esta não pode ser recuperada</value>
   </data>
+  <data name="txtEmailRequired" xml:space="preserve">
+    <value>O campo Email é obrigatório</value>
+  </data>
+  <data name="txtErrorConfirmEmail" xml:space="preserve">
+    <value>Erro ao confirmar o seu e-mail</value>
+  </data>
   <data name="txtForgotPasswordConfirmation" xml:space="preserve">
     <value>Por favor, verifique o seu email para dar reset á password, caso não encontre a mensagem na caixa de entrada, verifique no SPAM do seu email</value>
   </data>
@@ -581,6 +587,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Português</value>
+  </data>
+  <data name="txtPasswordRequired" xml:space="preserve">
+    <value>O campo Palavra-Passe é obrigatório</value>
   </data>
   <data name="txtPhoneNumber" xml:space="preserve">
     <value>Número de telefone</value>

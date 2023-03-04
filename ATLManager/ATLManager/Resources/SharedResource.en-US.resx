@@ -507,6 +507,12 @@
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>Deleting this data will permanently remove your account, and this cannot be recovered</value>
   </data>
+  <data name="txtEmailRequired" xml:space="preserve">
+    <value>The Email field is required</value>
+  </data>
+  <data name="txtErrorConfirmEmail" xml:space="preserve">
+    <value>Error confirming your email</value>
+  </data>
   <data name="txtForgotPasswordConfirmation" xml:space="preserve">
     <value>Please check your email to reset your password, if you don't find the message in your inbox, check your email SPAM</value>
   </data>
@@ -581,6 +587,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Portuguese</value>
+  </data>
+  <data name="txtPasswordRequired" xml:space="preserve">
+    <value>The Password field is required</value>
   </data>
   <data name="txtPhoneNumber" xml:space="preserve">
     <value>Phone number</value>
