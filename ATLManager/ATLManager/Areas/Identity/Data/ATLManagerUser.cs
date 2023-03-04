@@ -26,12 +26,8 @@ public class ATLManagerUser : IdentityUser
     [ProtectedPersonalData]
     override public string Email { get; set; }
 
-    [ProtectedPersonalData]
-    [Column(TypeName = "nvarchar(15)")]
-    public string CC { get; set; } = string.Empty;
+    //public ATLManagerUserRole Role { get; set; }
 
-    public ATLManagerUserRole Role { get; set; }
-
-    public ATLManagerUserStatus Status { get; set; }
+    //public ATLManagerUserStatus Status { get; set; }
 }
 

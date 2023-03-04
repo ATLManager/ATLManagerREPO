@@ -4,6 +4,7 @@ using ATLManager.Data;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ATLManager.Services;
+using ATLManager;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection") 
@@ -12,7 +13,7 @@ var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuth
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
+builder.Services.AddIdentity<ATLManagerUser, IdentityRole>(options => {
 	options.SignIn.RequireConfirmedAccount = true;
 	options.Password.RequireDigit = true;
 	options.Password.RequireLowercase = true;
@@ -55,6 +56,9 @@ builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 });
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+await Configurations.CreateRoles(scope.ServiceProvider);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
