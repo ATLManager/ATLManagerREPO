@@ -6,7 +6,7 @@
 trigger:
 - master
 
-pool: MyPool
+pool: ATLManagerVM
 
 variables:
   solution: '**/*.sln'
