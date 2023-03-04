@@ -6,13 +6,6 @@
 trigger:
 - master
 
-pool:
-  name: Default
-  demands:
-  - msbuild
-  - visualstudio
-  - vstest
-  - Agent.Version -gtVersion 2.163.1
 
 variables:
   solution: '**/*.sln'
