@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ATLManager.Models;
 
 namespace ATLManager.Data;
 
@@ -16,4 +17,6 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
     {
         base.OnModelCreating(builder);
 	}
+
+    public DbSet<ATLManager.Models.Agrupamento> Agrupamento { get; set; }
 }

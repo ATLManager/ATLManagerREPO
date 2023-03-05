@@ -30,10 +30,14 @@ namespace ATLManager.Models
         [RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
         public string CertidaoPermanente { get; set; }
 
-        public Administrador(string firstName, string LastName, DateTime dateOfBirth, int cc, string certidaoPermanente)
+        public Administrador() { 
+            AdministradorID = Guid.NewGuid();
+        }
+
+        public Administrador(string firstName, string lastName, DateTime dateOfBirth, int cc, string certidaoPermanente) : this ()
         {
             FirstName = firstName;
-            this.LastName = LastName;
+            LastName = lastName;
             DateOfBirth = dateOfBirth;
             CC = cc;
             CertidaoPermanente = certidaoPermanente;
