@@ -504,6 +504,9 @@
   <data name="txtConfirmEmail" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden können, überprüfen Sie bitte SPAM in Ihrer E-Mail.</value>
   </data>
+  <data name="txtConfirmPasswordRequired" xml:space="preserve">
+    <value>Das Feld Confirm Password ist erforderlich</value>
+  </data>
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>Wenn Sie diese Daten löschen, wird Ihr Konto dauerhaft gelöscht und kann nicht wiederhergestellt werden</value>
   </data>
@@ -570,6 +573,9 @@
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Um ein Konto über Twitter zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Twitter". Daraufhin werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre grundlegenden Informationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto besitzen.</value>
   </data>
+  <data name="txtLastNameRequired" xml:space="preserve">
+    <value>Das Feld Nachname ist erforderlich</value>
+  </data>
   <data name="txtLogoutSuccess" xml:space="preserve">
     <value>Sie haben sich erfolgreich von der Anwendung abgemeldet</value>
   </data>
@@ -587,6 +593,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Portugiesisch</value>
+  </data>
+  <data name="txtNameRequired" xml:space="preserve">
+    <value>Das Feld Name ist erforderlich</value>
   </data>
   <data name="txtPasswordRequired" xml:space="preserve">
     <value>Das Feld Passwort ist erforderlich</value>

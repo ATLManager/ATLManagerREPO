@@ -286,7 +286,7 @@
     <value>Registo</value>
   </data>
   <data name="rememberMe" xml:space="preserve">
-    <value>Lembrem-se de mim?</value>
+    <value>Manter sessão iniciada</value>
   </data>
   <data name="reSentEmailConfirmation" xml:space="preserve">
     <value>Reenvie email de confirmação</value>
@@ -504,6 +504,9 @@
   <data name="txtConfirmEmail" xml:space="preserve">
     <value>Por favor, verifique o seu email para confirmar a sua conta, caso não encontre a mensagem na caixa de entrada, verifique no SPAM do seu email.</value>
   </data>
+  <data name="txtConfirmPasswordRequired" xml:space="preserve">
+    <value>O campo Confirmar Palavra-Passe é obrigatório</value>
+  </data>
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>A eliminação destes dados irá remover permanentemente a sua conta, e esta não pode ser recuperada</value>
   </data>
@@ -570,6 +573,9 @@
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Para criar uma conta via Twitter, clique no botão "Twitter" na página de criação de conta. Isto irá redireccioná-lo para a página de login do Twitter. Introduza as suas credenciais de início de sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta para a nossa página e a sua conta será criada automaticamente. Note que esta opção só está disponível se tiver uma conta no Twitter.</value>
   </data>
+  <data name="txtLastNameRequired" xml:space="preserve">
+    <value>O campo Apelido é obrigatório</value>
+  </data>
   <data name="txtLogoutSuccess" xml:space="preserve">
     <value>Você saiu do aplicativo com sucesso</value>
   </data>
@@ -587,6 +593,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Português</value>
+  </data>
+  <data name="txtNameRequired" xml:space="preserve">
+    <value>O campo Nome é obrigatório</value>
   </data>
   <data name="txtPasswordRequired" xml:space="preserve">
     <value>O campo Palavra-Passe é obrigatório</value>

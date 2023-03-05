@@ -504,6 +504,9 @@
   <data name="txtConfirmEmail" xml:space="preserve">
     <value>Veuillez vérifier votre e-mail pour confirmer votre compte, si vous ne trouvez pas le message dans votre boîte de réception, veuillez vérifier le SPAM dans votre e-mail.</value>
   </data>
+  <data name="txtConfirmPasswordRequired" xml:space="preserve">
+    <value>Le champ Confirmer le mot de passe est obligatoire</value>
+  </data>
   <data name="txtDeletePersonalData" xml:space="preserve">
     <value>La suppression de ces données entraîne la suppression définitive de votre compte, qui ne peut être récupéré</value>
   </data>
@@ -570,6 +573,9 @@
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Pour créer un compte via Twitter, cliquez sur le bouton "Twitter" sur la page de création de compte. Vous serez alors redirigé vers la page de connexion de Twitter. Saisissez vos identifiants de connexion et autorisez l'accès à vos informations de base. Vous serez ensuite redirigé vers notre page et votre compte sera créé automatiquement. Notez que cette option n'est disponible que si vous avez un compte Twitter.</value>
   </data>
+  <data name="txtLastNameRequired" xml:space="preserve">
+    <value>Le champ Nom de famille est obligatoire</value>
+  </data>
   <data name="txtLogoutSuccess" xml:space="preserve">
     <value>Vous vous êtes déconnecté avec succès de l'application</value>
   </data>
@@ -587,6 +593,9 @@
   </data>
   <data name="txtMenuPortugues" xml:space="preserve">
     <value>Portugais</value>
+  </data>
+  <data name="txtNameRequired" xml:space="preserve">
+    <value>Le champ Nom est obligatoire</value>
   </data>
   <data name="txtPasswordRequired" xml:space="preserve">
     <value>Le champ "Mot de passe" est obligatoire</value>

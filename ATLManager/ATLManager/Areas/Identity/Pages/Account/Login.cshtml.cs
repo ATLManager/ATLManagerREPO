@@ -88,6 +88,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
             /// </summary>
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -116,7 +117,6 @@ namespace ATLManager.Areas.Identity.Pages.Account
             if (string.IsNullOrEmpty(Input.Email))
             {
                 ModelState.AddModelError(string.Empty, _language.GetKey("txtEmailRequired"));
-                
             }
             if (string.IsNullOrEmpty(Input.Password))
             {
