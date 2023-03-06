@@ -30,7 +30,11 @@ namespace ATLManager
 
             var createPowerUser = await userManager.CreateAsync(admin, "Password_123");
             if (createPowerUser.Succeeded)
+            {
                 await userManager.AddToRoleAsync(admin, "Administrador");
+                var code = await userManager.GenerateEmailConfirmationTokenAsync(admin);
+                await userManager.ConfirmEmailAsync(admin, code);
+            }
         }
     }
 }
