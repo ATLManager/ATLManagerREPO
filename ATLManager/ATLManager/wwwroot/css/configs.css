@@ -4,9 +4,8 @@
     src: url('font/Poppins-Regular.ttf');
 }
 
-
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'MyFont', sans-serif;
 }
 /*  */
 .nav-link.active {
