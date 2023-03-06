@@ -294,6 +294,9 @@
   <data name="siteMap" xml:space="preserve">
     <value>Site Map</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
   <data name="support" xml:space="preserve">
     <value>Support</value>
   </data>
@@ -572,6 +575,9 @@
   </data>
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>To create an account via Twitter, click the "Twitter" button on the account creation page. This will redirect you to the Twitter login page. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and your account will be created automatically. Note that this option is only available if you have a Twitter account.</value>
+  </data>
+  <data name="txtInvalidLogin" xml:space="preserve">
+    <value>Invalid login attempt</value>
   </data>
   <data name="txtLastNameRequired" xml:space="preserve">
     <value>The Last Name field is required</value>

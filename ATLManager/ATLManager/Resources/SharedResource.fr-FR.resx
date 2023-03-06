@@ -573,6 +573,9 @@
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Pour créer un compte via Twitter, cliquez sur le bouton "Twitter" sur la page de création de compte. Vous serez alors redirigé vers la page de connexion de Twitter. Saisissez vos identifiants de connexion et autorisez l'accès à vos informations de base. Vous serez ensuite redirigé vers notre page et votre compte sera créé automatiquement. Notez que cette option n'est disponible que si vous avez un compte Twitter.</value>
   </data>
+  <data name="txtInvalidLogin" xml:space="preserve">
+    <value>Tentative de connexion invalide</value>
+  </data>
   <data name="txtLastNameRequired" xml:space="preserve">
     <value>Le champ Nom de famille est obligatoire</value>
   </data>

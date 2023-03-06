@@ -573,6 +573,9 @@
   <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>Um ein Konto über Twitter zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Twitter". Daraufhin werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre grundlegenden Informationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto besitzen.</value>
   </data>
+  <data name="txtInvalidLogin" xml:space="preserve">
+    <value>Ungültiger Anmeldeversuch</value>
+  </data>
   <data name="txtLastNameRequired" xml:space="preserve">
     <value>Das Feld Nachname ist erforderlich</value>
   </data>
