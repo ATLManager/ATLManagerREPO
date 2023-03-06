@@ -1,33 +1,19 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = @language.GetKey("titlePrivacyPolicy");
 }
+@inject LanguageService language
 
 <head>
     <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
-
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/footer.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/menu.css'>
-
 </head>
 
 <body>
-
-
     <div class="text-center">
-        <h1 class="display-4">Bem Vindo á página @ViewData["Title"]</h1>
-        <p>Esta página será usada para explicar as políticas da aplicação (to be continued)</p>
-    </div>
-
-   
-
-    <div class="footer">
-        <!-- Footer content goes here -->
-        <p id="f1">Contactos</p>
-        <p id="f2">Suporte</p>
-        <p id="f3">Mapa do site</p>
-        <p id="f4">COPYRIGHT 2023, by ATLMANAGER, IPS</p>
-    </div>
-
+        <h1 class="display-4">@language.GetKey("txt1PrivacyPolicy") @ViewData["Title"]</h1>
+        <p class="pClass">@language.GetKey("txt2PrivacyPolicy")</p>
+    </div>  
 </body>
 
 

@@ -1,29 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/*1366 x 768 Alta Definição (HD) - pedro*/
+
+* {
+    box-sizing: border-box; /* input boxes for same size */
+    font-family: 'Poppins', sans-serif;
+    /*position:relative;*/
+}
+
+/* login form */
+.div-email-register {
+    padding-top: 3%;
+}
+
+/* login form */
+.div-password {
+    padding-top:3%;
+}
+/* login form*/
+.checkbox {
+    padding-top: 3%;
+}
+
 .body {
     background-color: #EFEFEF;
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
     height: auto;
     margin: 0px;
     padding: 0px;
-
-    font-family: 'lovelo';
-    font-size: 17px;
-
+    /*font-size: 17px;*/
     /* position: absolute; */
     /* text-transform: uppercase; */
     /* font-style: normal;
     font-weight: 900;
     font-size: 25px;
-    line-height: 25px;
-
-    
-
+    line-height: 25px
     color: #000000; */
 }
 
 .row-p {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.row-p1 {
+    padding-top: 3%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Link Labels*/
+.pClass {
+    padding:1%;
+    font-size: 13px;
 }
 
 .pClass1 {
@@ -34,6 +64,11 @@
     font-size: 19px;
 }
 
+/**/
+.form-label {
+    font-size: 15px;
+}
+
 
 .fundo {
     /* position: relative; */
@@ -41,34 +76,29 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-
 }
 
 .question {
     height: 100%;
     width: 100%;
     background-image: url(../images/question.png);
-
+    background-image: url(../images/question.png);
     background-size: cover;
 }
 
 .container-image {
-    position: absolute;
-    
+    position: relative;
     top: 7%;
     left: 42%;
     /* padding: ; */
-    width: 600px;
-    height: 404px;
-
+    height: 150px;
+    width: 200px;
     /* background-color: #000000; */
-
     /* background-color: black; */
-
 }
 
 .container-image-recover-password {
-    position: absolute;
+    /*position: absolute;*/
     top: 10%;
     left: 42%;
     /* padding: ; */
@@ -78,44 +108,38 @@
     /* background-color: black; */
 }
 
-
-
 .image {
-    height: 150px;
-    width: 200px;
-  
+    height: 100%;
+    width: 100%;
     /* background-repeat: no-repeat; */
     /* padding-top: 10px; */
     /* object-fit: contain; */
 }
 
-
 /* register */
 .box {
-    margin-top: 10%;
+    margin-top: 0%;
     margin-left: 28%;
-
-
     /* margin-left: 35%;  */
     /* margin: 25% 175%; */
     background-color: white;
     /* position: relative; */
     width: 602px;
-    height: 525px;
-
+    height: 480px;
     border-radius: 45px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+/* form box login*/
 .box-login {
-    margin-top: 12%;
+    margin-top: 0%;
     margin-left: 28%;
     /* margin-left: 35%;  */
     /* margin: 25% 175%; */
     background-color: white;
     /* position: relative; */
     width: 602px;
-    height: 500px;
+    height: 492px;
     border-radius: 45px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
@@ -133,13 +157,16 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+.div-pw-esquerdo {
+    /*padding-top: 3%;*/
+}
 
-
-
-.div-apelido{
-    padding-left: 10px;
-    width: 100%;
-    height: 100%;
+.div-apelido {
+    /*padding-top: 3%;*/
+    /*  width: 100%;
+    height: 100%;*/
+    padding-left:4%;
+    /*background-color: yellow;*/
 }
 
 .input-text {
@@ -148,20 +175,18 @@
     height: 40px;
     padding: 12px 20px;
     box-sizing: border-box;
-
-    font-size: 18px;
-
+    font-size: 13px;
     background: #F4F4F4;
     border: 1px solid #B5B5B5;
     border-radius: 8px;
+
 }
 
-.input-text-row{
+.input-text-row {
     width: 90%;
     height: 40px;
     padding-left: 50%;
     font-size: 18px;
-
     background: #F4F4F4;
     border: 1px solid #B5B5B5;
     border-radius: 8px;
@@ -173,8 +198,7 @@
     justify-content: center;
     /*align-items: center;*/
     /*justify-content: space-between;*/
-    padding-left:20px;
-
+    padding-right: 2%;
 }
 
 .custom_namev1 {
@@ -221,7 +245,6 @@ line-height: 16px; */
 input[type=submit] {
     /* identical to box height */
     color: #FFFFFF;
-
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -229,7 +252,6 @@ input[type=submit] {
     padding: 16px 48px;
     width: 166px;
     height: 48px;
-
     /* secondary */
     background: #1A83E4;
     border: 1px solid #1A83E4;
@@ -242,11 +264,13 @@ input[type=submit] {
 
 .form {
     /* background-color: blue; */
-    padding: 50px 52px;
+    padding: 40px 42px;
 }
 
 .form-registo {
     padding: 40px 42px;
+    height:88%;
+    /*background-color:yellow;*/
 }
 
 .button-box {
@@ -259,22 +283,48 @@ input[type=submit] {
     /* grid-template-columns: repeat(2,1fr); */
 }
 
+/* box for button to submit data*/
 .button-box-login {
-    padding-top: 3%;
-    display: flex;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* grid-template-columns: repeat(2,1fr); */
+    width:100%;
+    padding-top:5%;
+    /*background-color:black;*/
+
+  
+     display: flex; 
+     justify-content: center; 
+     /*grid-template-columns: repeat(1,1fr);*/ 
 }
 
-.login-option {
-    /* background-color: black; */
-    height: 50px;
-
+/* login button */
+.custom-submit {
+/*    padding-top:10%;
+    margin-top:10%;*/
+    /* identical to box height */
+    color: #FFFFFF;
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    /*padding: 16px 48px;*/
+    width: 166px;
+    height: 48px;
+    /* secondary */
+    background: #1A83E4;
+    border: 1px solid #1A83E4;
+    border-radius: 24px;
+    /*padding: 0px;*/
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+
+/* presents the label option for ther user to login in*/
+.login-option {
+    /*background-color: yellow; */
+    height: 5%;
+    text-align:center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    font-size:14px;
 }
 
 .container-login-option {
@@ -293,7 +343,7 @@ input[type=submit] {
 #outlook,
 #twitter,
 #google {
-    height:40px;
+    height: 40px;
     width: 40px;
 }
 
@@ -301,19 +351,22 @@ input[type=submit] {
 #f2,
 #f3,
 #f4 {
-    padding-left: 150px;
+    padding-top: 0.5% 0.5%;
+    width:35%;
+    text-align:center;
     color: #929FB7;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     line-height: 20px;
+    font-size:16px;
 }
 
 
 
 /*  */
 .container-btnHelp {
-    position: absolute;
+    /*position: absolute;*/
     margin-top: -3%;
-    margin-left: 65%;
+    margin-left: 68%;
 }
 
 .image-question {
@@ -321,10 +374,9 @@ input[type=submit] {
     height: 100%;
 }
 
+/* Botões de redes sociais*/
 .bg-facebook {
     background-image: url(~/images/facebook.png);
-   
-
 }
 
 .bg-google {
@@ -337,26 +389,6 @@ input[type=submit] {
 
 .bg-outlook {
     background-image: url(~/images/outlook.png);
-}
-
-
-
-.custom-submit {
-    /* identical to box height */
-    color: #FFFFFF;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 16px 48px;
-    width: 166px;
-    height: 48px;
-    /* secondary */
-    background: #1A83E4;
-    border: 1px solid #1A83E4;
-    border-radius: 24px;
-    padding: 0px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 
@@ -373,7 +405,104 @@ input[type=submit] {
 }
 
 
-.custom-button:hover {
-    transform: scale(1.2);
-    transition: transform 0.2s ease-in-out;
+    .custom-button:hover {
+        transform: scale(1.2);
+        transition: transform 0.2s ease-in-out;
+    }
+
+
+
+
+
+
+/***************************/
+
+/*@media screen and (max-width: 768px) {*/
+/* responsive styles for screens up to 768px */
+/*.body {
+        font-size: 15px;
+    }
+
+    .row-p {
+        grid-template-columns: 1fr;
+    }
+
+    .container-image,
+    .container-image-recover-password {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: auto;
+    }
+
+    .box,
+    .box-login,
+    .box-recover-password {
+        margin-top: 20%;
+        margin-left: 5%;
+        width: 90%;
+        height: auto;
+    }
+
+    .input-text-row {
+        padding-left: 0%;
+        margin-bottom: 20px;
+    }
 }
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {*/
+/* responsive styles for screens between 769px and 1024px */
+/*.body {
+        font-size: 16px;
+    }
+
+    .row-p {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .container-image,
+    .container-image-recover-password {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: auto;
+    }
+
+    .box,
+    .box-login,
+    .box-recover-password {
+        margin-top: 20%;
+        margin-left: 10%;
+        width: 80%;
+        height: auto;
+    }
+}
+
+
+@media screen and (min-width: 1025px) {*/
+/* responsive styles for screens larger than 1025px */
+/*.body {
+        font-size: 17px;
+    }
+
+    .row-p {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container-image,
+    .container-image-recover-password {
+        left: 42%;
+        transform: translateX(-50%, 50%);
+        width: 15%;
+        height: 25%;
+    }
+
+    .box,
+    .box-login,
+    .box-recover-password {
+        margin-top: 10%;
+        margin-left: 28%;
+        width: 602px;
+        height: 525px;
+    }
+}*/
