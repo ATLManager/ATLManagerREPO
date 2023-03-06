@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject LanguageService language
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -84,10 +86,10 @@
 
     <div class="footer">
         <!-- Footer content goes here -->
-        <p id="f1">Contactos</p>
-        <p id="f2">Suporte</p>
-        <p id="f3">Mapa do site</p>
-        <p id="f4">COPYRIGHT 2023, by ATLMANAGER, IPS</p>
+        <p id="f1">@language.GetKey("contacts")</p>
+        <p id="f2">@language.GetKey("support")</p>
+        <p id="f3">@language.GetKey("siteMap")</p>
+        <p id="f4">@language.GetKey("copyright")</p>
     </div>
 
 
