@@ -13,16 +13,22 @@ var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuth
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddIdentity<ATLManagerUser, IdentityRole>(options => {
-	options.SignIn.RequireConfirmedAccount = true;
-	options.Password.RequireDigit = true;
+builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
+	// Sign in
+    options.SignIn.RequireConfirmedAccount = true;
+	
+    // Password
+    options.Password.RequireDigit = true;
 	options.Password.RequireLowercase = true;
 	options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = true;
+    
+    // Lockout
     options.Lockout.AllowedForNewUsers = true;
     options.Lockout.DefaultLockoutTimeSpan= TimeSpan.FromMinutes(1);
     options.Lockout.MaxFailedAccessAttempts = 5;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ATLManagerAuthContext>()
     .AddDefaultTokenProviders();
 
