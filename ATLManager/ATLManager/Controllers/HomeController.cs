@@ -18,7 +18,15 @@ namespace ATLManager.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult Services()
+        {
+            return View();
+        }
+        public IActionResult Contacts()
         {
             return View();
         }
