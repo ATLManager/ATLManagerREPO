@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using ATLManager.Models;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -20,12 +19,9 @@ namespace ATLManager.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ATLManagerUser> _userManager;
 
-        private LanguageService Language;
-
-        public ConfirmEmailModel(UserManager<ATLManagerUser> userManager, LanguageService language)
+        public ConfirmEmailModel(UserManager<ATLManagerUser> userManager)
         {
             _userManager = userManager;
-            Language = language;  
         }
 
         /// <summary>
@@ -49,7 +45,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? Language.GetKey("txtThankYouConfirmEmail") : Language.GetKey("txtErrorConfirmEmail");
+            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
             return Page();
         }
     }

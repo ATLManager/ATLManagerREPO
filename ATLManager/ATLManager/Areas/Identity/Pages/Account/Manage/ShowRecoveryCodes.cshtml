@@ -1,20 +1,18 @@
 ﻿@page
-@using ATLManager.Models;
 @model ShowRecoveryCodesModel
 @{
-    ViewData["Title"] = @language.GetKey("titleShowRecoveryCodes");
+    ViewData["Title"] = "Recovery codes";
     ViewData["ActivePage"] = "TwoFactorAuthentication";
 }
-@inject LanguageService language
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
 <div class="alert alert-warning" role="alert">
     <p>
-        <strong>@language.GetKey("txt1GenerateRecoveryCodes")</strong>
+        <strong>Put these codes in a safe place.</strong>
     </p>
     <p>
-        @language.GetKey("txt2GenerateRecoveryCodes")
+        If you lose your device and don't have the recovery codes you will lose access to your account.
     </p>
 </div>
 <div class="row">

@@ -1,10 +1,8 @@
 ﻿@page
-@using ATLManager.Models;
 @model ConfirmEmailChangeModel
 @{
-    ViewData["Title"] = language.GetKey("titleConfirmEmailChange");
+    ViewData["Title"] = "Confirm email change";
 }
-@inject LanguageService language
 
 <h1>@ViewData["Title"]</h1>
 <partial name="_StatusMessage" model="Model.StatusMessage" />

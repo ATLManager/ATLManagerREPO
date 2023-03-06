@@ -1,11 +1,9 @@
 ﻿@page
-@using ATLManager.Models;
 @model ResendEmailConfirmationModel
 @{
-    ViewData["Title"] = @language.GetKey("titleResendEmailConfirmation");
+    ViewData["Title"] = "Reenvie confirmação de email";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-@inject LanguageService language
 
 <body class="body">
     <!-- Image -->
@@ -32,7 +30,7 @@
             <br>
 
             <div class="button-box-login">
-                    <button type="submit" class="custom-submit">@language.GetKey("btnClickResendEmail")</button>
+                    <button type="submit" class="custom-submit">Reenviar</button>
             </div>
 
             <div>

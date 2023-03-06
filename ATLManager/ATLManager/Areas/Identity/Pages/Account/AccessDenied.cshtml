@@ -1,12 +1,10 @@
 ﻿@page
-@using ATLManager.Models;
 @model AccessDeniedModel
 @{
-    ViewData["Title"] = language.GetKey("titleAccessDenied");
+    ViewData["Title"] = "Access denied";
 }
-@inject LanguageService language
 
 <header>
     <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">@language.GetKey("txtAccessDenied")</p>
+    <p class="text-danger">You do not have access to this resource.</p>
 </header>

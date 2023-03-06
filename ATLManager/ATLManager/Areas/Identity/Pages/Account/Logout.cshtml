@@ -1,10 +1,8 @@
 ﻿@page
-@using ATLManager.Models;
 @model LogoutModel
 @{
-    ViewData["Title"] = @language.GetKey("titleLogout");
+    ViewData["Title"] = "Log out";
 }
-@inject LanguageService language
 
 <header>
     <h1>@ViewData["Title"]</h1>
@@ -12,12 +10,12 @@
         if (User.Identity.IsAuthenticated)
         {
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">@language.GetKey("btnClickLogout")</button>
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
             </form>
         }
         else
         {
-            <p>@language.GetKey("txtLogoutSuccess")</p>
+            <p>You have successfully logged out of the application.</p>
         }
     }
 </header>

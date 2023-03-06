@@ -1,11 +1,9 @@
 ﻿@page
-@using ATLManager.Models;
 @model DownloadPersonalDataModel
 @{
-    ViewData["Title"] = @language.GetKey("titleDownloadData");
+    ViewData["Title"] = "Download Your Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
-@inject LanguageService language
 
 <h3>@ViewData["Title"]</h3>
 

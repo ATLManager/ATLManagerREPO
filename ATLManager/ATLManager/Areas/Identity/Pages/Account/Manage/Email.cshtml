@@ -1,11 +1,9 @@
 ﻿@page
-@using ATLManager.Models;
 @model EmailModel
 @{
-    ViewData["Title"] = @language.GetKey("titleManageEmail");
+    ViewData["Title"] = "Manage Email";
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
-@inject LanguageService language
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
@@ -20,23 +18,23 @@
                         <div class="input-group-append">
                             <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                         </div>
-                    <label asp-for="Email" class="form-label">@language.GetKey("email")</label>
+                    <label asp-for="Email" class="form-label"></label>
                 </div>
             }
             else
             {
                 <div class="form-floating">
                     <input asp-for="Email" class="form-control" disabled />
-                    <label asp-for="Email" class="form-label">@language.GetKey("email")</label>
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">@language.GetKey("btnSendVerificationEmail")</button>
+                    <label asp-for="Email" class="form-label"></label>
+                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
                 </div>
             }
             <div class="form-floating">
                 <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" />
-                <label asp-for="Input.NewEmail" class="form-label">@language.GetKey("newEmail")</label>
+                <label asp-for="Input.NewEmail" class="form-label"></label>
                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">@language.GetKey("btnChangeEmail")</button>
+            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Change email</button>
         </form>
     </div>
 </div>

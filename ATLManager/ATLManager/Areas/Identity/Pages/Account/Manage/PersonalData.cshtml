@@ -1,25 +1,23 @@
 ﻿@page
-@using ATLManager.Models;
 @model PersonalDataModel
 @{
-    ViewData["Title"] = @language.GetKey("personalData");
+    ViewData["Title"] = "Personal Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
-@inject LanguageService language
 
 <h3>@ViewData["Title"]</h3>
 
 <div class="row">
     <div class="col-md-6">
-        <p>@language.GetKey("txt1PersonalData")</p>
+        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
         <p>
-            <strong>@language.GetKey("txt2PersonalData")</strong>
+            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
         </p>
         <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">@language.GetKey("btnDownloadPersonalData")</button>
+            <button class="btn btn-primary" type="submit">Download</button>
         </form>
         <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">@language.GetKey("hrefDeletePersonalData")</a>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
         </p>
     </div>
 </div>

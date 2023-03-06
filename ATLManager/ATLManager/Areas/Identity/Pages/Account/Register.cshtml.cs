@@ -19,8 +19,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using ATLManager.Models;
-
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -32,15 +30,13 @@ namespace ATLManager.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private LanguageService _language;
-
 
         public RegisterModel(
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
             SignInManager<ATLManagerUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender, LanguageService language)
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,7 +44,6 @@ namespace ATLManager.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _language = language;
         }
 
         /// <summary>
@@ -129,28 +124,6 @@ namespace ATLManager.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-            if (string.IsNullOrEmpty(Input.FirstName))
-            {
-                ModelState.AddModelError(string.Empty, _language.GetKey("txtNameRequired"));
-            }
-            if (string.IsNullOrEmpty(Input.LastName))
-            {
-                ModelState.AddModelError(string.Empty, _language.GetKey("txtLastNameRequired"));
-            }
-            if (string.IsNullOrEmpty(Input.Email))
-            {
-                ModelState.AddModelError(string.Empty, _language.GetKey("txtEmailRequired"));
-            }
-            if (string.IsNullOrEmpty(Input.Password))
-            {
-                ModelState.AddModelError(string.Empty, _language.GetKey("txtPasswordRequired"));
-            }
-            if (string.IsNullOrEmpty(Input.ConfirmPassword))
-            {
-                ModelState.AddModelError(string.Empty, _language.GetKey("txtConfirmPasswordRequired"));
-            }
-
             if (ModelState.IsValid)
             {
                 var user = CreateUser();

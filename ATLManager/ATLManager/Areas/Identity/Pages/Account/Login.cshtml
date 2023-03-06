@@ -1,12 +1,10 @@
 ﻿@page
-@using ATLManager.Models;
 @model LoginModel
 
 @{
-    ViewData["Title"] = @language.GetKey("login");
+    ViewData["Title"] = "Log in";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-@inject LanguageService language
 
 <head>
     <meta charset="utf-8" />
@@ -22,7 +20,6 @@
 
 <body class="body">
 
-
     <!-- Image -->
     <div class="container-image">
         <!-- <div class="image"></div> -->
@@ -35,75 +32,108 @@
             <img src="~/images/question.png" class="image-question" alt="Button Image">
         </button>
     </div>
-    <!-- / Botão de ajuda  -->
 
+
+    <!-- <img src="images/question1.png" -->
+    <!-- / Botão de ajuda  -->
     <!-- Menu Lateral de Ajuda -->
     <nav class="menu">
-
         <div class="first-container">
-            <div class="container-top">
-                <div class="custom-h1">
-                    <h1> @language.GetKey("help") </h1>
-                </div>
-
-                <div class="search-container">
-                    <input type="text" id="search" placeholder="@language.GetKey("txtSearchHelpArticles")">
-                </div>
+            <div class="custom-h1">
+                <h1> Ajuda </h1>
             </div>
+
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Procure artigos que o ajude">
+            </div>
+
 
 
             <div class="container-help-info">
 
                 <div>
-                    <button class="custom-button-info" id="info-button1">@language.GetKey("howToLoginOnApp")</button>
+                    <button class="custom-button-info" id="info-button1">Como fazer login na aplicação</button>
 
                     <div id="info1" class="help-info1">
                         <p class="p-information">
-                            @language.GetKey("txtHowToLoginOnApp")
+                            Para iniciar sessão na sua conta, introduza o endereço de correio electrónico e a palavra-passe
+                            associada à sua conta. Clique em "Iniciar Sessão" para aceder à sua conta. Se se esqueceu da sua
+                            palavra-passe, clique em "Esqueceu-se da sua palavra-passe?" para a recuperar. Lembre-se de manter
+                            a sua conta segura, não partilhando a sua palavra-passe com ninguém e saia da sua conta quando utilizar
+                            um dispositivo partilhado.
                         </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button2">@language.GetKey("howToLoginViaFacebook")</button>
+                    <button class="custom-button-info" id="info-button2">Como fazer login via facebook</button>
 
                     <div id="info2" class="help-info2">
                         <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaFacebook")
+                            Para entrar na sua conta via Facebook, clique no botão "Facebook" na página de início de sessão.
+                            Isto irá redireccioná-lo para a página de início de sessão do Facebook. Introduza as suas credenciais
+                            de início de sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta
+                            para a nossa página e terá acesso à sua conta. Note que esta opção só estará disponível se tiver uma
+                            conta no Facebook e a tiver utilizado para se registar anteriormente.
                         </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button3">@language.GetKey("howToLoginViaOutlook")</button>
+                    <button class="custom-button-info" id="info-button3">Como fazer login via outlook </button>
 
                     <div id="info3" class="help-info3">
                         <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaOutlook")
+                            Para iniciar sessão na sua conta via Outlook, clique no botão "Outlook" na página de início de sessão.
+                            Isto irá redireccioná-lo para a página de login com Outlook. Introduza as suas credenciais de início de
+                            sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta para a nossa
+                            página e terá acesso à sua conta. Tenha em mente que esta opção só estará disponível se tiver uma conta
+                            Outlook e a tiver utilizado para se registar anteriormente.
                         </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button4">@language.GetKey("howToLoginViaTwitter")</button>
+                    <button class="custom-button-info" id="info-button4">Como fazer login via twitter</button>
 
                     <div id="info4" class="help-info4">
                         <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaTwitter")
+                            Para entrar na sua conta via Twitter, clique no botão "Twitter"
+                            na página de início de sessão. Isto irá redireccioná-lo para a página de início de
+                            sessão do Twitter. Introduza as suas credenciais de início de sessão e autorize a
+                            permissão para aceder às suas informações básicas. Será então redireccionado de volta
+                            para a nossa página e terá acesso à sua conta. Tenha em mente que esta opção só estará
+                            disponível se tiver uma conta no Twitter e a tiver utilizado para se registar
+                            anteriormente.
+                        </p>
+
                         </p>
                     </div>
                 </div>
+                
                 <br>
+
                 <div>
-                    <button class="custom-button-info" id="info-button5">@language.GetKey("howToLoginViaGoogle")</button>
+                    <button class="custom-button-info" id="info-button5">Como fazer login via google</button>
 
                     <div id="info5" class="help-info5">
                         <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaGoogle")
-                        </p>
+                            Para iniciar sessão na sua conta via Google,
+                            clique no botão "Google" na página de início de sessão.
+                            Isto irá redireccioná-lo para a página de início de sessão do Google.
+                            Introduza as suas credenciais de início de sessão e autorize a permissão de
+                            acesso às suas informações básicas. Será então redireccionado de volta para a
+                            nossa página e terá acesso à sua conta. Tenha em mente que esta opção só estará
+                            disponível se tiver uma conta Google e a tiver utilizado para se registar anteriormente.
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="second-container">
+            <a href="#">Menu Item 1</a>
+            <a href="#">Menu Item 2</a>
+            <a href="#">Menu Item 3</a>
         </div>
     </nav>
     <!-- / Menu Lateral de Ajuda -->
@@ -118,52 +148,51 @@
 
             <form id="account" method="post">
 
-                <div class="div-email">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
-                    <input asp-for="Input.Email" class="input-text inputLabel" autocomplete="username" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-
-                <div class="div-password">
-                    <label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
-                    <input asp-for="Input.Password" class="input-text" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
+                <label asp-for="Input.Email" class="form-label"></label>
+                <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+               
+                <br />
+                <br /> @* se necessario fazer div na pw <comentario>*@
+                <label asp-for="Input.Password" class="form-label"></label>
+                <input asp-for="Input.Password" class="input-text" autocomplete="current-password" aria-required="true" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <br /><br />
                 
                 <div class="checkbox">
                     <label asp-for="Input.RememberMe" class="form-label">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @* @Html.DisplayNameFor(m => m.Input.RememberMe) *@
-                            @language.GetKey("rememberMe")
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
                 </div>
 
                 <div>
-                        <a id="forgot-password" asp-page="./ForgotPassword" style="float: left;" class="pClass">@language.GetKey("forgetPassword")</a>
+                    <a id="forgot-password" asp-page="./ForgotPassword" style="float: left;">Esqueceu-se da password?</a>
                 </div>
 
                 <div>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="float: right;" class="pClass">@language.GetKey("createAccount")</a>
-                    </div>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="float: right;">Criar Conta</a> 
+                </div>
 
                 <br>
              
                 <div class="button-box-login">
-                    <button id="login-submit" type="submit" class="custom-submit">@language.GetKey("login")</button>
+                    <button id="login-submit" type="submit" class="custom-submit">Log in</button>
                 </div>
 
                 <div>
+                   
                     <p style="text-align:center">
-                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="pClass">@language.GetKey("reSentEmailConfirmation")</a>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Reenvie email de confirmação</a>
                     </p>
                 </div>
 
 
 
                 <div class="login-option">
-                    <p>@language.GetKey("doLoginBy")</p>
+                    <p> Fazer o login via:</p>
                 </div>
 
                  </form>
@@ -194,7 +223,7 @@
                                             @if (provider.Name.Equals("Facebook"))
                                             {
 
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginFacebook")">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                     <img src="~/images/facebook.png" style="width:40px;height:40px;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -202,7 +231,7 @@
 
                                             @if (provider.Name.Equals("Microsoft"))
                                             {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginMicrosoft")">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                     <img src="~/images/outlook.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -210,7 +239,7 @@
 
                                             @if (provider.Name.Equals("Twitter"))
                                             {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginTwitter")">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                     <img src="~/images/twitter.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -218,7 +247,7 @@
 
                                             @if (provider.Name.Equals("Google"))
                                             {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginGoogle")">
+                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                     <img src="~/images/google.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                                 </button>
 
@@ -241,9 +270,7 @@
 
 
             </div>
-        </div>
-    </div>
-
+        
  
 @* ------------------------------------- *@
 

@@ -1,11 +1,9 @@
 ﻿@page
-@using ATLManager.Models;
 @model RegisterModel
 @{
-    ViewData["Title"] = @language.GetKey("register");
+    ViewData["Title"] = "Registo";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-@inject LanguageService language
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +15,10 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
     *@
-
     <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/slide-help.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/footer.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/menu.css'>
-    <link rel="stylesheet" type='text/css' media='screen' href="~/css/site.css" asp-append-version="true" />
 
 </head>
 <body class="body">
@@ -56,72 +52,82 @@
     <!-- Menu Lateral de Ajuda -->
     <nav class="menu">
         <div class="first-container">
-            <div class="container-top">
-                <div class="custom-h1">
-                    <h1> Ajuda </h1>
-                </div>
+            <div class="custom-h1">
+                <h1> Ajuda </h1>
+            </div>
 
-                <div class="search-container">
-                    <input type="text" id="search" placeholder="@language.GetKey("txtSearchHelpArticles")">
-                </div>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Procure artigos que o ajude">
             </div>
 
             <div class="container-help-info">
 
                 <div>
-                    <button class="custom-button-info" id="info-button1">@language.GetKey("howToRegisterOnApp")</button>
+                    <button class="custom-button-info" id="info-button1">Como criar uma conta na aplicação</button>
 
                     <div id="info1" class="help-info1">
                         <p class="p-information">
-                            @language.GetKey("txtHowToRegisterOnApp")
-                         </p>
+                            Para criar uma conta, preencher o e-mail, palavra-passe, confirmação de palavra-passe, primeiro nome e último nome. Certifique-se de que o email é válido, as palavras-passe introduzidas são as mesmas, e cumprem os requisitos de segurança (tais como ter pelo menos 6 caracteres). Certifique-se de que o campo do primeiro e último nome é preenchido. Clique em "Registar" para completar o processo. Lembre-se de manter a sua conta segura, não partilhando a sua palavra-passe com ninguém.
+                        </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button2">@language.GetKey("howToRegisterViaFacebook")</button>
+                    <button class="custom-button-info" id="info-button2">Como fazer o registo via facebook</button>
 
                     <div id="info2" class="help-info2">
                         <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaFacebook")
+                            Para criar uma conta via Facebook, clique no botão "Facebook" na página de criação de conta. 
+                            Isto irá redireccioná-lo para a página de início de sessão do Facebook. Introduza as suas credenciais
+                            de início de sessão e autorize o acesso às suas informações básicas. Será então redireccionado de
+                            volta para a nossa página e a sua conta será criada automaticamente. Note que esta opção só está 
+                            disponível se tiver uma conta no Facebook.
                         </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button3">@language.GetKey("howToRegisterViaOutlook")</button>
+                    <button class="custom-button-info" id="info-button3">Como fazer o registo via outlook</button>
 
                     <div id="info3" class="help-info3">
                         <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaOutlook")
+                            Para criar uma conta via Outlook, clique no botão "Outlook" na página de criação de conta. 
+                            Isto irá redireccioná-lo para a página de login com Outlook. 
+                            Introduza as suas credenciais de início de sessão e autorize o acesso às suas informações básicas. 
+                            Será então redireccionado de volta para a nossa página e a sua conta será criada automaticamente.
+                            Note que esta opção só está disponível se tiver uma conta Outlook.
                         </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button4">@language.GetKey("howToRegisterViaTwitter")</button>
+                    <button class="custom-button-info" id="info-button4">Como fazer o registo via twitter</button>
 
                     <div id="info4" class="help-info4">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaTwitter")
+                        <p class="p-information">  Para criar uma conta via Twitter, clique no botão "Twitter" na página de criação de conta. Isto irá redireccioná-lo para a página de login do Twitter. Introduza as suas credenciais de início de sessão e autorize o acesso às suas informações básicas. Será então redireccionado de volta para a nossa página e a sua conta será criada automaticamente. Note que esta opção só está disponível se tiver uma conta no Twitter.  </p>
+
                         </p>
                     </div>
                 </div>
                 <br>
                 <div>
-                    <button class="custom-button-info" id="info-button5">@language.GetKey("howToRegisterViaGoogle")</button>
+                    <button class="custom-button-info" id="info-button5">Como fazer o registo via google</button>
 
                     <div id="info5" class="help-info5">
-                        <p class="p-information"> 
-                            @language.GetKey("txtHowToRegisterViaGoogle")
-                        </p>
+                        <p class="p-information"> Para criar uma conta via Google, clique no botão "Google" na página de criação de conta. Isto irá redireccioná-lo para a página de início de sessão do Google. Introduza as suas credenciais de início de sessão e autorize a permissão para aceder às suas informações básicas. Será então redireccionado de volta para a nossa página e a sua conta será criada automaticamente. Por favor note que esta opção só está disponível se tiver uma conta Google.
+
                     </div>
                 </div>
             </div>
         </div>
-    </nav>
-    <!-- / Menu Lateral de Ajuda -->
 
+        <div class="second-container">
+            <a href="#">Menu Item 1</a>
+            <a href="#">Menu Item 2</a>
+            <a href="#">Menu Item 3</a>
+        </div>
+    </nav>
+   
 
     <div class="container-box">
         <!-- <div class="image"></div> -->
@@ -129,55 +135,49 @@
              
             <form class="form-registo" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                
                 <div class="row-p">
                     <div>
-                        <label asp-for="Input.FirstName">@language.GetKey("nameAccount")</label>
-                        <input class="input-text" class="input-text-row" asp-for="Input.FirstName" autocomplete="username" aria-required="true">
+                        <label asp-for="Input.FirstName">Nome:</label>
+                        <input class="input-text" class="input-text-row" asp-for="Input.FirstName" autocomplete="username" aria-required="true"><br><br>
                         <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                     </div>
                     <div class="div-apelido">
-                        <label asp-for="Input.LastName">@language.GetKey("lastNameAccount")</label>
+                        <label asp-for="Input.LastName">Apelido</label>
                         <input asp-for="Input.LastName" class="input-text" autocomplete="username" aria-required="true" />
                         <span asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div>
                 </div>
-     
-                <div class="div-email-register">
-                    <label asp-for="Input.Email">@language.GetKey("email")</label>
+                <br>
+                <div>
+                    <label asp-for="Input.Email"></label>
                     <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
 
                 </div>
-               
-                <div class="row-p1">
-                
-                    <div class="div-pw-esquerdo">
-                        <label asp-for="Input.Password">@language.GetKey("password")</label>
-                        <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                
-                    <div class="div-apelido">
-                        <label asp-for="Input.ConfirmPassword">@language.GetKey("confirmPassword")</label>
-                        <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                    </div>
+                <br />
+                <div class="row-p">
+                <div>
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
+                @*<div style="padding:5px;">*@
+                <div class="div-apelido">
+                    <label asp-for="Input.ConfirmPassword">Confirme a password</label>
+                    <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+         </div>
                 <div style="padding: 5px">
-                    <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;" class="pClass">@language.GetKey("haveAccount")</a> <!-- acrescentar-->
+                    <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;">Já tem uma conta?</a> <!-- acrescentar-->
                 </div>
-                <br>
                 <div class="button-box">
-                    <button id="registerSubmit" type="submit" class="custom-submit">@language.GetKey("register")</button>
+                    <button id="registerSubmit" type="submit" class="custom-submit">Register</button>
                 </div>
-           
-                <div class="login-option">
-                    <p>@language.GetKey("doRegisterBy")</p>
-                </div>
-
-             </form>
-                
+            <div class="login-option">
+                <p> Fazer o registo via:</p>
+            </div>
+        </form>
                 <div>
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -201,28 +201,28 @@
                                         @if (provider.Name.Equals("Facebook"))
                                         {
 
-                                        <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterFacebook")">
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/facebook.png" style="width:40px;height:40px;" alt="Button Image" class="image-question">
                                             </button>
                                         }
 
                                         @if (provider.Name.Equals("Microsoft"))
                                         {
-                                        <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterMicrosoft")">
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/outlook.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                             </button>
                                         }
 
                                         @if (provider.Name.Equals("Twitter"))
                                         {
-                                        <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterTwitter")">
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/twitter.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                             </button>
                                         }
 
                                         @if (provider.Name.Equals("Google"))
                                         {
-                                        <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterGoogle")">
+                                            <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                 <img src="~/images/google.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
                                             </button>
                                         }
@@ -234,7 +234,6 @@
                 </div>
             </div>
         </div>
-    </div>
            
    
 

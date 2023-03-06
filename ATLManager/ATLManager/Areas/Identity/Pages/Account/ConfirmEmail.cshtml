@@ -1,11 +1,9 @@
 ﻿@page
-@using ATLManager.Models;
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = language.GetKey("titleConfirmEmail");
+    ViewData["Title"] = "Confirmar email";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-@inject LanguageService language
 
 <body class="body">
     <!-- Image -->
@@ -23,7 +21,7 @@
                 <br />
 
                 <h1>@ViewData["Title"]</h1>
-                <partial name="_StatusMessage" model="Model.StatusMessage" />
+                <p>Obrigado por confirmar o seu email.</p>
             </form>
         </div>
     </div>
