@@ -10,10 +10,19 @@ using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Reflection;
 using Microsoft.Extensions.Options;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection")
     ?? throw new InvalidOperationException("Connection string 'ATLManagerAuthContextConnection' not found.");
+
+var keyVaultUrl = builder.Configuration["KeyVault:Vault"];
+var keyVaultCredential = new DefaultAzureCredential();
+
+var client = new SecretClient(new Uri(keyVaultUrl), keyVaultCredential);
+builder.Services.AddSingleton(client);
+
 
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
@@ -79,26 +88,42 @@ builder.Services.Configure<RequestLocalizationOptions>(
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
+
+var facebookAppIdSecret = client.GetSecret("FacebookAppId");
+var facebookAppSecretSecret = client.GetSecret("FacebookAppSecret");
+
 builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
 {
-    facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
-    facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+    facebookOptions.AppId = facebookAppIdSecret.Value.Value;
+    facebookOptions.AppSecret = facebookAppSecretSecret.Value.Value;
 });
+
+var googleClientIdSecret = client.GetSecret("GoogleClienteId");
+var googleClientSecretSecret = client.GetSecret("GoogleClientSecret");
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = googleClientIdSecret.Value.Value;
+    googleOptions.ClientSecret = googleClientSecretSecret.Value.Value;
 });
+
+var twitterConsumerAPIKeySecret = client.GetSecret("TwitterConsumerApiKey");
+var twitterConsumerSecretSecret = client.GetSecret("TwitterConsumerSecret");
+
 builder.Services.AddAuthentication().AddTwitter(twitterOptions =>
 {
-    twitterOptions.ConsumerKey = builder.Configuration["Authentication:Twitter:ConsumerAPIKey"];
-    twitterOptions.ConsumerSecret = builder.Configuration["Authentication:Twitter:ConsumerSecret"];
+    twitterOptions.ConsumerKey = twitterConsumerAPIKeySecret.Value.Value;
+    twitterOptions.ConsumerSecret = twitterConsumerSecretSecret.Value.Value;
 });
+
+var microsoftClientId = client.GetSecret("MicrosoftClientId");
+var microsoftClientSecret = client.GetSecret("MicrosoftClientSecret");
+
 builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 {
-    microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
-    microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
+
+    microsoftOptions.ClientId = microsoftClientId.Value.Value;
+    microsoftOptions.ClientSecret = microsoftClientSecret.Value.Value;
 });
 
 var app = builder.Build();
