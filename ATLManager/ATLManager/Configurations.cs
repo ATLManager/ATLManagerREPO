@@ -9,12 +9,11 @@ namespace ATLManager
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ATLManagerUser>>();
-            string[] roleNames = { "Administrador", "Coordenador", "Funcionário", "EE", "Default" };
 
-            foreach (var roleName in roleNames)
+            foreach (var roleName in Enum.GetValues(typeof(ATLManagerUserRole)))
             {
-                var roleExist = await roleManager.RoleExistsAsync(roleName);
-                if (!roleExist) await roleManager.CreateAsync(new IdentityRole(roleName));
+                var roleExist = await roleManager.RoleExistsAsync(roleName.ToString());
+                if (!roleExist) await roleManager.CreateAsync(new IdentityRole(roleName.ToString()));
             }
 
             var admin = new ATLManagerUser
