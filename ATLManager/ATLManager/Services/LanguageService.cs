@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Localization;
 using System.Reflection;
 
-namespace ATLManager.Models
+namespace ATLManager.Services
 {
     public class LanguageService
     {

@@ -19,8 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using ATLManager.Models;
-
+using ATLManager.Services;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {

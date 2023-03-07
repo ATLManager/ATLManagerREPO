@@ -1,4 +1,8 @@
 ﻿@page
+@using ATLManager.Services;
+
+@inject LanguageService language
+
 @model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
 @{
 	ViewData["Title"] = @language.GetKey("register");

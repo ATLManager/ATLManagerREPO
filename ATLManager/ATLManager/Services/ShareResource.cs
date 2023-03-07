@@ -1,4 +1,4 @@
-﻿namespace ATLManager.Models
+﻿namespace ATLManager.Services
 {
     public class ShareResource
     {

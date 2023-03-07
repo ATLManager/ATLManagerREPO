@@ -9,14 +9,18 @@ namespace ATLManager.Services
 	{
 		private readonly ILogger _logger;
 
-		public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
-						   ILogger<EmailSender> logger)
-		{
-			Options = optionsAccessor.Value;
-			_logger = logger;
-		}
+        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor, ILogger<EmailSender> logger, IConfiguration configuration)
+        {
+            Options = optionsAccessor.Value;
+            _logger = logger;
 
-		public AuthMessageSenderOptions Options { get; } //Set with Secret Manager.
+            if (string.IsNullOrEmpty(Options.SendGridKey))
+            {
+                Options.SendGridKey = configuration["SendGridKey"];
+            }
+        }
+
+        public AuthMessageSenderOptions Options { get; } //Set with Secret Manager.
 
 		public async Task SendEmailAsync(string toEmail, string subject, string message)
 		{
