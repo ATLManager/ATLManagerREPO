@@ -1,0 +1,48 @@
+﻿/* CSS "Site" da aplicação */
+@font-face {
+    font-family: 'MyFont';
+    src: url('font/Poppins-Regular.ttf');
+}
+
+* {
+    font-family: 'MyFont', sans-serif;
+}
+/*  */
+.nav-link.active {
+    border-bottom: 2px solid blue;
+}
+
+.custom-button {
+    border-radius: 2em;
+}
+
+.custom-box {
+    border-radius: 3em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: white;
+}
+
+.custom-link {
+    font-size: 0.85em;
+}
+
+.footer-p {
+    color: #929FB7;
+}
+
+/* Define a cor de fundo da box */
+.box {
+    /* background-color: #fff; */
+    padding: 20px;
+    /* border-radius: 23px; */
+}
+
+/* Define a cor do fundo do menu e o espaçamento entre os links */
+.navbar {
+    background-color: #fff;
+    padding: 20px 0;
+}
+
+.nav-link {
+    margin-right: 20px;
+}

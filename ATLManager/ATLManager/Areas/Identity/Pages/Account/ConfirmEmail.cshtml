@@ -7,30 +7,22 @@
 }
 @inject LanguageService language
 
-<body class="body">
-    <!-- Image -->
-    <div class="container-image-recover-password">
-        <!-- <div class="image"></div> -->
-        <img src="~/images/logo1.png" class="image" salt="ATLMANAGER">
-    </div>
-    <!-- / Image -->
 
-    <div class="container-box">
-        <!-- <div class="image"></div> -->
-        <div class="box-recover-password">
-
-            <form class="form">
-                <br />
-
+<!-- Container -->
+<div class="container h-auto mt-auto">
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row box border-5">
+                <form method="post" class="form">
                 <h1>@ViewData["Title"]</h1>
                 <partial name="_StatusMessage" model="Model.StatusMessage" />
-            </form>
+                </form>
+            </div>
         </div>
+        <!-- // Box -->
     </div>
-</body>
-
-
-
-
+</div>
+<!-- // Container -->
 
 @*<partial name="_StatusMessage" model="Model.StatusMessage" />*@

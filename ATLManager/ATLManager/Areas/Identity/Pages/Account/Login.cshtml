@@ -8,17 +8,8 @@
 }
 @inject LanguageService language
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ATLManager</title>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
-    *@
-    <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
-    <link rel='stylesheet' type='text/css' media='screen' href='~/css/slide-help.css'>
-</head>
+    <!-- Container -->
+    <div class="container h-auto mt-auto">
 
 <body class="body">
 
@@ -38,7 +29,7 @@
     <!-- / Botão de ajuda  -->
 
     <!-- Menu Lateral de Ajuda -->
-    <nav class="menu">
+    @* <nav class="menu">
 
         <div class="first-container">
             <div class="container-top">
@@ -105,72 +96,65 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> *@
     <!-- / Menu Lateral de Ajuda -->
+        <!-- Botão de Ajuda -->
+        <div class="row" style="padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-5"></div>
+            <div class="col-4 text-right pb-2">
+                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+        </div>
+        <!-- // Botão de Ajuda -->
 
 
-    <div class="container-box">
-        <!-- <div class="image"></div> -->
-        <div class="box-login">
-            <div class="form">
+        <div class="d-flex justify-content-center">
+            <!-- Box  -->
+            <div class="row col-6 justify-content-center custom-box">
+                <div class="row box border-5">
+                <form id="account" method="post">
+                        <div class="mb-3">
 
-            
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <label asp-for="Input.Email" class="form-label" autocomplete="username" aria-required="true">@language.GetKey("email")</label>
+                            <input asp-for="Input.Email" class="form-control" id="email">
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.Password" class="form-label" autocomplete="current-password" aria-required="true">@language.GetKey("password")</label>
+                            <input asp-for="Input.Password" class="form-control" id="password">
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            <div class="checkbox"> <!-- sem classe -->
+                                <label asp-for="Input.RememberMe" class="form-label">
+                                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                                    @* @Html.DisplayNameFor(m => m.Input.RememberMe) *@
+                                    @language.GetKey("rememberMe")
+                                </label>
+                            </div>
 
-            <form id="account" method="post">
+                            <div class="d-flex justify-content-between mt-2">
+                                <a id="forgot-password" asp-page="./ForgotPassword" class="custom-link">@language.GetKey("forgetPassword")</a>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="custom-link">@language.GetKey("createAccount")</a>
+                            </div>
+                        </div>
 
-                <div class="div-email">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
-                    <input asp-for="Input.Email" class="input-text inputLabel" autocomplete="username" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
+                        <div class="text-center">
+                            <button id="login-submit" type="submit" class="btn btn-primary btn-block mx-auto custom-button"
+                                    style="width: 20%;">
+                               @language.GetKey("login")
+                            </button>
+                        </div>
+                        <div class="text-center mt-3 p-1">
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="custom-link">@language.GetKey("reSentEmailConfirmation")</a>
+                        </div>
+                        </form>
+                        <div class="text-center mt-3 fw-bolder p-1">@language.GetKey("doLoginBy")</div>
 
-
-                <div class="div-password">
-                    <label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
-                    <input asp-for="Input.Password" class="input-text" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                
-                <div class="checkbox">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @* @Html.DisplayNameFor(m => m.Input.RememberMe) *@
-                            @language.GetKey("rememberMe")
-                    </label>
-                </div>
-
-                <div>
-                        <a id="forgot-password" asp-page="./ForgotPassword" style="float: left;" class="pClass">@language.GetKey("forgetPassword")</a>
-                </div>
-
-                <div>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="float: right;" class="pClass">@language.GetKey("createAccount")</a>
-                    </div>
-
-                <br>
-             
-                <div class="button-box-login">
-                    <button id="login-submit" type="submit" class="custom-submit">@language.GetKey("login")</button>
-                </div>
-
-                <div>
-                    <p style="text-align:center">
-                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="pClass">@language.GetKey("reSentEmailConfirmation")</a>
-                    </p>
-                </div>
-
-
-
-                <div class="login-option">
-                    <p>@language.GetKey("doLoginBy")</p>
-                </div>
-
-                 </form>
-
-
-                <div>
-                    <div>
+                        <div class="d-flex mt-3 justify-content-center">
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
                         {
@@ -186,147 +170,73 @@
                         else
                         {
                             <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                    <div class="icons-special-div">
-                           
-                                        @foreach (var provider in Model.ExternalLogins)
+
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+
+                                        @if (provider.Name.Equals("Facebook"))
                                         {
 
-                                            @if (provider.Name.Equals("Facebook"))
-                                            {
-
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginFacebook")">
-                                                    <img src="~/images/facebook.png" style="width:40px;height:40px;" alt="Button Image" class="image-question">
-                                                </button>
-
-                                            }
-
-                                            @if (provider.Name.Equals("Microsoft"))
-                                            {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginMicrosoft")">
-                                                    <img src="~/images/outlook.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
-                                                </button>
-
-                                            }
-
-                                            @if (provider.Name.Equals("Twitter"))
-                                            {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginTwitter")">
-                                                    <img src="~/images/twitter.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
-                                                </button>
-
-                                            }
-
-                                            @if (provider.Name.Equals("Google"))
-                                            {
-                                                <button type="submit" class="custom_namev1" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginGoogle")">
-                                                    <img src="~/images/google.png" style="width:40px;height:40px;display:flex;" alt="Button Image" class="image-question">
-                                                </button>
-
-                                            }
+                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginFacebook")">
+                                                    <img src="~/images/social/facebook.png" class="ms-3" width="30" height="30">
+                                            </button>
 
                                         }
-                             
-                                </div>
+
+                                        @if (provider.Name.Equals("Microsoft"))
+                                        {
+                                            <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginMicrosoft")">
+                                                <img src="~/images/social/outlook.png" class="ms-3" width="30" height="30">
+                                            </button>
+
+                                        }
+
+                                        @if (provider.Name.Equals("Twitter"))
+                                        {
+                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginTwitter")">
+                                                <img src="~/images/social/twitter.png" class="ms-3" width="30" height="30">
+                                            </button>
+
+                                        }
+
+                                        @if (provider.Name.Equals("Google"))
+                                        {
+                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginGoogle")">
+                                                <img src="~/images/social/google.png" class="ms-3" width="30" height="30">
+                                            </button>
+
+                                        }
+
+                                    }
                             </form>
                         }
                     }
-
-
+                        </div>
                     </div>
-                </div>
-
-           
-
-         
-
-
             </div>
+            <!-- // Box -->
         </div>
     </div>
+    <!-- // Container -->
 
- 
-@* ------------------------------------- *@
+    <!-- Slide Left (Help) -->
+    <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px"
+         tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">@language.GetKey("help") </h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- canvas body  -->
+            <!-- // canvas body  -->
+        </div>
+    </div>
+    <!-- // Slide Left (Help) -->
 
-    
+          
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 
-        <script>
-            let menuToggle = document.querySelector(".custom-button");
-            let menu = document.querySelector(".menu");
-
-            menuToggle.addEventListener("click", function () {
-                menu.classList.toggle("open");
-            });
-        </script>
-
-
-
-        <script>
-            const instructionsButton = document.querySelector('.instructions-button');
-            const instructionsList = document.querySelector('.instructions-list');
-
-            instructionsButton.addEventListener('click', () => {
-                instructionsList.classList.toggle('visible');
-            });
-
-        </script>
-
-        <script>
-            document.getElementById("info-button1").addEventListener("click", function () {
-                var info = document.getElementById("info1");
-                if (info.style.display === "none") {
-                    info.style.display = "block";
-                } else {
-                    info.style.display = "none";
-                }
-            });
-
-            document.getElementById("info-button2").addEventListener("click", function () {
-                var info = document.getElementById("info2");
-                if (info.style.display === "none") {
-                    info.style.display = "block";
-                } else {
-                    info.style.display = "none";
-                }
-            });
-
-            document.getElementById("info-button3").addEventListener("click", function () {
-                var info = document.getElementById("info3");
-                if (info.style.display === "none") {
-                    info.style.display = "block";
-                } else {
-                    info.style.display = "none";
-                }
-            });
-
-            document.getElementById("info-button4").addEventListener("click", function () {
-                var info = document.getElementById("info4");
-                if (info.style.display === "none") {
-                    info.style.display = "block";
-                } else {
-                    info.style.display = "none";
-                }
-            });
-
-            document.getElementById("info-button5").addEventListener("click", function () {
-                var info = document.getElementById("info5");
-                if (info.style.display === "none") {
-                    info.style.display = "block";
-                } else {
-                    info.style.display = "none";
-                }
-            });
-
-            document.getElementById("info-button6").addEventListener("click", function () {
-                var info = document.getElementById("info6");
-                if (info.style.display === "none") {
-                    info.style.display = "block";
-                } else {
-                    info.style.display = "none";
-                }
-            });
-        </script>
-        </body>
+  
