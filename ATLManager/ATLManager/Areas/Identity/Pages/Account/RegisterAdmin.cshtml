@@ -1,53 +1,49 @@
 ﻿@page
 @using ATLManager.Models;
-@model RegisterModel
+@model AdminRegisterModel
 @{
-    ViewData["Title"] = @language.GetKey("register");
-    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+	ViewData["Title"] = @language.GetKey("register");
+	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 @inject LanguageService language
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ATLManager</title>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
-    *@
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - ATLManager</title>
+	@* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
+	*@
 </head>
 
 
-    <!-- Menu -->
-   @* <ul>
+<!-- Menu -->
+@* <ul>
         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
         <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
         <li style="float:right"><a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
         <li style="float:right"><a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
     </ul>*@
-    <!-- / Menu -->
-    
-    
-    <!-- Image -->
-    @*<div class="container-image">*@
-        <!-- <div class="image"></div> -->
-   @*     <img src="~/images/logo1.png" class="image" alt="ATLMANAGER">
+<!-- / Menu -->
+<!-- Image -->
+@*<div class="container-image">*@
+<!-- <div class="image"></div> -->
+@*     <img src="~/images/logo1.png" class="image" alt="ATLMANAGER">
     </div>*@
 
-    <!-- / Image -->
-    <!-- Botão de ajuda  -->
-
+<!-- / Image -->
+<!-- Botão de ajuda  -->
 @*   <div class="container-btnHelp">
         <button class="custom-button">
             <img src="~/images/question.png" class="image-question" alt="Button Image">
         </button>
     </div>*@
-    <!-- / Botão de ajuda  -->
-
-    <!-- Menu Lateral de Ajuda -->
-    @* <nav class="menu">
+<!-- / Botão de ajuda  -->
+<!-- Menu Lateral de Ajuda -->
+@* <nav class="menu">
         <div class="first-container">
             <div class="container-top">
                 <div class="custom-h1">
@@ -105,7 +101,7 @@
                     <button class="custom-button-info" id="info-button5">@language.GetKey("howToRegisterViaGoogle")</button>
 
                     <div id="info5" class="help-info5">
-                        <p class="p-information"> 
+                        <p class="p-information">
                             @language.GetKey("txtHowToRegisterViaGoogle")
                         </p>
                     </div>
@@ -113,159 +109,164 @@
             </div>
         </div>
     </nav> *@
-    <!-- / Menu Lateral de Ajuda -->
-
+<!-- / Menu Lateral de Ajuda -->
 <!-- Container -->
 <div class="container h-auto mt-auto">
 
-    <!-- Botão de Ajuda -->
-    <div class="row" style="padding-left: 6em;">
-        <div class="col-3"></div>
-        <div class="col-5"></div>
-        <div class="col-4 text-right pb-2">
-            <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-            </button>
-        </div>
-    </div>
-    <!-- // Botão de Ajuda -->
+	<!-- Botão de Ajuda -->
+	<div class="row" style="padding-left: 6em;">
+		<div class="col-3"></div>
+		<div class="col-5"></div>
+		<div class="col-4 text-right pb-2">
+			<button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+				<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+			</button>
+		</div>
+	</div>
+	<!-- // Botão de Ajuda -->
 
 
-    <div class="d-flex justify-content-center">
-        <!-- Box  -->
-        <div class="row col-6 justify-content-center custom-box">
-            <div class="row box border-5">
-                <form class="form-registo" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="d-flex justify-content-center">
+		<!-- Box  -->
+		<div class="row col-6 justify-content-center custom-box">
+			<div class="row box border-5">
+				<form class="form-registo" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <div class="mb-3">
-                            <label asp-for="Input.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-                            <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true">
-                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                        </div>
+					<div class="mb-3">
+						<label asp-for="Input.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
+						<input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true">
+						<span asp-validation-for="Input.FirstName" class="text-danger"></span>
+					</div>
 
-                        <div class="mb-3">
-                            <label asp-for="Input.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-                            <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" />
-                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                        </div>
+					<div class="mb-3">
+						<label asp-for="Input.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
+						<input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" />
+						<span asp-validation-for="Input.LastName" class="text-danger"></span>
+					</div>
 
-                        <div class="mb-3">
-                            <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
-                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
-                        </div>
+					<div class="mb-3">
+						<label asp-for="Input.BirthDate" class="form-label">Data de Nascimento</label>
+						<input asp-for="Input.BirthDate" class="form-control" autocomplete="new-password" aria-required="true" />
+						<span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+					</div>
 
-                        <div class="mb-3">
-                            <label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
-                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                        </div>
-                   
-                        <div class="mb-3">
-                            <label asp-for="Input.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
-                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                        </div>
+					<div class="mb-3">
+						<label asp-for="Input.CC" class="form-label">CC</label>
+						<input asp-for="Input.CC" class="form-control" autocomplete="cc" aria-required="true" />
+						<span asp-validation-for="Input.CC" class="text-danger"></span>
+					</div>
 
-                        <div class="row">
-                            <a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;">@language.GetKey("haveAccount")</a>
-                        </div>
+					<div class="mb-3">
+						<label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
+						<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+						<span asp-validation-for="Input.Email" class="text-danger"></span>
+					</div>
 
-                        <div class="text-center">
-                            <button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button"
-                                    style="width: 20%;">
-                                @language.GetKey("register")
-                            </button>
-                        </div>
-                    </form>
-                    <div class="text-center mt-3 fw-bolder p-1"> @language.GetKey("doRegisterBy")</div>
+					<div class="mb-3">
+						<label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
+						<input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+						<span asp-validation-for="Input.Password" class="text-danger"></span>
+					</div>
 
-                    <div class="d-flex mt-3 justify-content-center">
-                    @{
-                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                        {
-                            <div>
-                                <p>
-                                    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                        article
-                                        about setting up this ASP.NET application to support logging in via external services
-                                    </a>.
-                                </p>
-                            </div>
-                        }
-                        else
-                        {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+					<div class="mb-3">
+						<label asp-for="Input.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
+						<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+						<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+					</div>
 
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    @if (provider.Name.Equals("Facebook"))
-                                    {
+					<div class="row">
+						<a id="login" asp-area="Identity" asp-page="/Account/Login" style="float: right;">@language.GetKey("haveAccount")</a>
+					</div>
 
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterFacebook")">
-                                            <img src="~/images/social/facebook.png" class="ms-3" width="30" height="30">
-                                        </button>
-                                    }
+					<div class="text-center">
+						<button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button"
+								style="width: 20%;">
+							@language.GetKey("register")
+						</button>
+					</div>
+				</form>
+				<div class="text-center mt-3 fw-bolder p-1"> @language.GetKey("doRegisterBy")</div>
 
-                                    @if (provider.Name.Equals("Microsoft"))
-                                    {
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterMicrosoft")">
-                                            <img src="~/images/social/outlook.png" class="ms-3" width="30" height="30">
-                                        </button>
-                                    }
+				<div class="d-flex mt-3 justify-content-center">
+					@{
+						if ((Model.ExternalLogins?.Count ?? 0) == 0)
+						{
+							<div>
+								<p>
+									There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+										article
+										about setting up this ASP.NET application to support logging in via external services
+									</a>.
+								</p>
+							</div>
+						}
+						else
+						{
+							<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
 
-                                    @if (provider.Name.Equals("Twitter"))
-                                    {
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterTwitter")">
-                                            <img src="~/images/social/twitter.png" class="ms-3" width="30" height="30">
-                                        </button>
-                                    }
+								@foreach (var provider in Model.ExternalLogins)
+								{
+									@if (provider.Name.Equals("Facebook"))
+									{
 
-                                    @if (provider.Name.Equals("Google"))
-                                    {
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterGoogle")">
-                                            <img src="~/images/social/google.png" class="ms-3" width="30" height="30">
-                                        </button>
-                                    }
-                                }
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterFacebook")">
+											<img src="~/images/social/facebook.png" class="ms-3" width="30" height="30">
+										</button>
+									}
 
-                            </form>
-                        }
-                    }
+									@if (provider.Name.Equals("Microsoft"))
+									{
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterMicrosoft")">
+											<img src="~/images/social/outlook.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+
+									@if (provider.Name.Equals("Twitter"))
+									{
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterTwitter")">
+											<img src="~/images/social/twitter.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+
+									@if (provider.Name.Equals("Google"))
+									{
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterGoogle")">
+											<img src="~/images/social/google.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+								}
+
+							</form>
+						}
+					}
 
 
-                    </div>
-               
-            </div>
-        </div>
-        <!-- // Box -->
-    </div>
+				</div>
+
+			</div>
+		</div>
+		<!-- // Box -->
+	</div>
 </div>
 <!-- // Container -->
-
 <!-- Slide Left (Help) -->
 <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px"
-     tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
-    <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel">Ajuda</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <!-- canvas body  -->
-        <!-- // canvas body  -->
-    </div>
+	 tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
+	<div class="offcanvas-header">
+		<h5 id="offcanvasRightLabel">Ajuda</h5>
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+		<!-- canvas body  -->
+		<!-- // canvas body  -->
+	</div>
 </div>
 <!-- // Slide Left (Help) -->
-           
-   
-
-        
-
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
     }
 
 
-       
+

@@ -1,11 +1,13 @@
 ﻿@page
+@using ATLManager.Models;
 @model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
+@inject LanguageService language
 @{
 	ViewData["Title"] = @language.GetKey("register");
 	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-<div class="container h-auto mt-auto">	
+<div class="container h-auto mt-auto">
 	<li class="nav-item">
 		<a asp-area="Identity" asp-page="/Account/RegisterAdmin" class="nav-link btn btn-primary border-0 shadow fw-bold px-4 pl-3 pr-3 custom-button">Admin</a>
     </li>

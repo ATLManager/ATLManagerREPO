@@ -24,22 +24,22 @@ using ATLManager.Models;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
-    public class AdminRegisterModel : PageModel
+    public class EERegisterModel : PageModel
     {
         private readonly SignInManager<ATLManagerUser> _signInManager;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
-        private readonly ILogger<AdminRegisterModel> _logger;
+        private readonly ILogger<EERegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private LanguageService _language;
 
 
-        public AdminRegisterModel(
+        public EERegisterModel(
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
             SignInManager<ATLManagerUser> signInManager,
-            ILogger<AdminRegisterModel> logger,
+            ILogger<EERegisterModel> logger,
             IEmailSender emailSender, LanguageService language)
         {
             _userManager = userManager;
@@ -56,7 +56,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         [BindProperty]
-        public AdminInputModel Input { get; set; }
+        public EEInputModel Input { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -74,30 +74,25 @@ namespace ATLManager.Areas.Identity.Pages.Account
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public class AdminInputModel
+        public class EEInputModel
         {
             [Required]
             [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
+            /// <summary>
+            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            ///     directly from your code. This API may change or be removed in future releases.
+            /// </summary>
             [Required]
-            [DataType(DataType.Date)]
-            public DateOnly BirthDate { get; set; }
-
-			[Required]
-			[DataType(DataType.Text)]
-			public string CC { get; set; }
-
-			/// <summary>
-			///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-			///     directly from your code. This API may change or be removed in future releases.
-			/// </summary>
-			[Required]
             [EmailAddress]
+            [Display(Name = "Email")]
             [DataType(DataType.EmailAddress)]
 			[RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?){1,2}$",
 		        ErrorMessage = "Email Inválido")]
@@ -169,9 +164,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-					var perfil = new ContaAdministrativa(user, Input.BirthDate, Convert.ToInt32(Input.CC));
-
-					_logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

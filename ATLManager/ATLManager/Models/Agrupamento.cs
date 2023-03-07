@@ -15,7 +15,13 @@ namespace ATLManager.Models
         [MaxLength(20)]
         public string Location { get; set; }
 
-        public Agrupamento()
+		[Required]
+		[StringLength(14, MinimumLength = 14, ErrorMessage = "Este campo deve conter 14 dígitos")]
+		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
+		[Display(Name = "Certidão Permanente")]
+		public string CertidaoPermanente { get; set; }
+
+		public Agrupamento()
         {
             AgrupamentoID = Guid.NewGuid();
         }
