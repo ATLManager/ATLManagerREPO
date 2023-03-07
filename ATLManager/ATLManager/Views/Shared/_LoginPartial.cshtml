@@ -7,16 +7,38 @@
 
 <link href="~/css/flag-tab.css" rel="stylesheet" />
 
-<ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
-    {
-        <!-- Menu -->
-        <ul>
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/menu.min.css" rel="stylesheet">
+}
 
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">@language.GetKey("home")</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">@language.GetKey("privacy")</a></li>
+<body id="page-top">
+    @if (!SignInManager.IsSignedIn(User)){
+        <!-- Menu Before Login -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
+            <a class="navbar-brand" href="#">
+                <img src="~/images/logo/logo.png" alt="Logo da aplicação" width="65" height="55">
+            </a>
 
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link" id="home">@language.GetKey("home")</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Home" asp-action="AboutUs" class="nav-link" id="about-us">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                    <a asp-area="" asp-controller="Home" asp-action="Services" class="nav-link" id="services">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                    <a asp-area="" asp-controller="Home" asp-action="Contacts" class="nav-link" id="contact-us">Contacta-nos</a>
+                    </li>
+      
             <li>
                 <div class="language-dropdown">
                     <a> @language.GetKey("language")</a>
@@ -44,63 +66,25 @@
                     </div>
                 </div>
             </li>
-       
 
-            <li class="nav-item" style="float:right">
-                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@language.GetKey("hello") @UserManager.GetUserAsync(User).Result.FirstName!</a>
-            </li>
+                </ul>
 
-            <li class="nav-item" style="float:right">
-                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button id="logout" type="submit" class="custom-submit">Logout</button>
-                </form>
-            </li>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <div class="d-grid gap-2 mx-auto">
+                    <li class="nav-item">
+                        <a asp-area="Identity" asp-page="/Account/Login" class="nav-link btn btn-primary border-0 shadow fw-bold px-4 pl-3 pr-3 custom-button">@language.GetKey("login")</a>
+                    </li>
+            </div>
+            <div class="d-grid gap-2">
+        <li class="nav-item">
+            <a id="register" asp-area="Identity" asp-page="/Account/Register" class="nav-link btn btn-secondary border-0 shadow fw-bold px-4 pl-3 pr-3 custom-button"
+               style="background: #EFEFEF;">@language.GetKey("register")</a>
+        </li>
+        </div>
     </ul>
-    }
-    else
-    {
-        <!-- Menu -->
-        <ul>
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">@language.GetKey("home")</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">@language.GetKey("privacy")</a></li>
-
-            <li>
-                <div class="language-dropdown">
-                    <a> @language.GetKey("language")</a>
-                    <div class="language-content" style="float:right">
-
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
-                            <img src="~/images/flags/en.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
-                        </a>
-
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
-                            <img src="~/images/flags/de.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuDeutsch")</span>
-                        </a>
-
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
-                            <img src="~/images/flags/pt.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
-                        </a>
-
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
-                            <img src="~/images/flags/fr.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuFrench")</span>
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-            <li style="float:right"><a id="register" asp-area="Identity" asp-page="/Account/Register">@language.GetKey("register")</a></li>
-            <li style="float:right"><a id="login" asp-area="Identity" asp-page="/Account/Login">@language.GetKey("login")</a></li>
-        </ul>
-        <!-- / Menu -->
-        @*<li class="nav-item">
-    <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>*@
-    }
-</ul>
+            </div>
+        </nav>
+    <!-- / Menu Before Login-->
+    
+}
+</body>

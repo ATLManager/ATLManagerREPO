@@ -1,10 +1,23 @@
-﻿@{
+﻿@inject LanguageService language
+
+@{
     ViewData["Title"] = "Home Page";
 }
-@inject LanguageService language
 
-    <div class="text-center">
+<div>
     <h1 class="display-4">@language.GetKey("welcome")</h1>
   
     <p class="pClass">@language.GetKey("txtWelcome")</p>
 </div>
+
+<!-- SCRIPT PARA CLICAR NO MENU E MUDAR LI SELECIONADO (ACTIVE)  -->
+<script>
+    $(document).ready(function () {
+        var activeId = "home"; // desired li element
+        $('#' + activeId).addClass('active'); // add the active class to the desired li element
+        $('.nav-link').click(function () {
+            $('.nav-link').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
