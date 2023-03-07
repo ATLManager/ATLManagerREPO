@@ -11,9 +11,6 @@ namespace ATLManager.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the ATLManagerUser class
 public class ATLManagerUser : IdentityUser
 {
-    [Key]
-    public Guid UserId { get; set; }
-
     [ProtectedPersonalData]
     [Column(TypeName = "nvarchar(100)")]
     [Required]
@@ -23,5 +20,10 @@ public class ATLManagerUser : IdentityUser
     [Column(TypeName = "nvarchar(100)")]
     [Required]
     public string LastName { get; set; }
+
+	[Required]
+	[EmailAddress]
+	[ProtectedPersonalData]
+	override public string Email { get; set; }
 }
 

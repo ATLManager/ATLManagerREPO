@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using ATLManager.Models;
-
+using ATLManager.Data;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -32,7 +32,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly ILogger<AdminRegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private LanguageService _language;
+		private readonly ATLManagerAuthContext _context;
+		private LanguageService _language;
 
 
         public AdminRegisterModel(
@@ -40,7 +41,9 @@ namespace ATLManager.Areas.Identity.Pages.Account
             IUserStore<ATLManagerUser> userStore,
             SignInManager<ATLManagerUser> signInManager,
             ILogger<AdminRegisterModel> logger,
-            IEmailSender emailSender, LanguageService language)
+            IEmailSender emailSender,
+            ATLManagerAuthContext context,
+            LanguageService language)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,6 +51,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
             _language = language;
         }
 
@@ -86,7 +90,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Date)]
-            public DateOnly BirthDate { get; set; }
+            public DateTime BirthDate { get; set; }
 
 			[Required]
 			[DataType(DataType.Text)]
@@ -170,6 +174,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
 					var perfil = new ContaAdministrativa(user, Input.BirthDate, Convert.ToInt32(Input.CC));
+					_context.Add(perfil);
+					await _context.SaveChangesAsync();
 
 					_logger.LogInformation("User created a new account with password.");
 

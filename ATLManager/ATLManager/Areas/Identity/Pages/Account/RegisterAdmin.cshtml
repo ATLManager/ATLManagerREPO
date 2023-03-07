@@ -148,7 +148,7 @@
 
 					<div class="mb-3">
 						<label asp-for="Input.BirthDate" class="form-label">Data de Nascimento</label>
-						<input asp-for="Input.BirthDate" class="form-control" autocomplete="new-password" aria-required="true" />
+						<input asp-for="Input.BirthDate" class="form-control" autocomplete="birthdate" aria-required="true" />
 						<span asp-validation-for="Input.BirthDate" class="text-danger"></span>
 					</div>
 
@@ -172,7 +172,7 @@
 
 					<div class="mb-3">
 						<label asp-for="Input.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
-						<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+						<input asp-for="Input.ConfirmPassword" class="form-control" aria-required="true" />
 						<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 					</div>
 

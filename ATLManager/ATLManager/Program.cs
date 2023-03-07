@@ -23,7 +23,6 @@ var keyVaultCredential = new DefaultAzureCredential();
 var client = new SecretClient(new Uri(keyVaultUrl), keyVaultCredential);
 builder.Services.AddSingleton(client);
 
-
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
 
