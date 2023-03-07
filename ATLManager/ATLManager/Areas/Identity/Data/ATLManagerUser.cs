@@ -20,14 +20,5 @@ public class ATLManagerUser : IdentityUser
     [Column(TypeName = "nvarchar(100)")]
     [Required]
     public string LastName { get; set; }
-
-    [Required]
-    [EmailAddress]
-    [ProtectedPersonalData]
-    override public string Email { get; set; }
-
-    //public ATLManagerUserRole Role { get; set; }
-
-    //public ATLManagerUserStatus Status { get; set; }
 }
 

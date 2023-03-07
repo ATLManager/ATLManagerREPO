@@ -845,3 +845,8 @@ C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLMana
 C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
 C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Twitter.dll
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.Resources.SharedResource.de-DE.resources
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.Resources.SharedResource.en-US.resources
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.Resources.SharedResource.fr-FR.resources
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.Resources.SharedResource.pt-PT.resources
+C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\obj\Debug\net6.0\ATLManager.csproj.GenerateResource.cache
