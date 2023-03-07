@@ -103,8 +103,12 @@ builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 
 var app = builder.Build();
 
+var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(locOptions.Value);
+
 using var scope = app.Services.CreateScope();
 await Configurations.CreateRoles(scope.ServiceProvider);
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
