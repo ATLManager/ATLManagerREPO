@@ -1,23 +1,29 @@
 ﻿@using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
 
-
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 @inject LanguageService language
+
 
 @{
     ViewData["Title"] = language.GetKey("titleServices");
 }
 
-<div>
-    <h1 class="display-4">@language.GetKey("txtWelcomeToPageServices")</h1>
-    <p>@language.GetKey("txt1Services")</p>
-    <p>@language.GetKey("txt2Services")</p>
-    <p>@language.GetKey("txt3Services")</p>
-    <p>@language.GetKey("txt4Services")</p>
-    <p>@language.GetKey("txt5Services")</p>
-    <p>@language.GetKey("txt6Services")</p>
-    <p>@language.GetKey("txt7Services")</p>
-</div>
-
+@if (!SignInManager.IsSignedIn(User))
+{
+    <div>
+        <h1 class="display-4">@language.GetKey("txtWelcomeToPageServices")</h1>
+        <p>@language.GetKey("txt1Services")</p>
+        <p>@language.GetKey("txt2Services")</p>
+        <p>@language.GetKey("txt3Services")</p>
+        <p>@language.GetKey("txt4Services")</p>
+        <p>@language.GetKey("txt5Services")</p>
+        <p>@language.GetKey("txt6Services")</p>
+        <p>@language.GetKey("txt7Services")</p>
+    </div>
+}
 
 <!-- SCRIPT PARA CLICAR NO MENU E MUDAR LI SELECIONADO (ACTIVE)  -->
 <script>

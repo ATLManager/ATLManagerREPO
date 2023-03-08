@@ -1,4 +1,9 @@
 ﻿@model ATLManager.Models.EncarregadoEducacao
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @{
     ViewData["Title"] = "Details";

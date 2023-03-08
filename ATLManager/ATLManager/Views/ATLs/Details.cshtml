@@ -1,9 +1,15 @@
 ﻿@model ATLManager.Models.ATL
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
 }
-
+@if (SignInManager.IsSignedIn(User))
+{
 <h1>Details</h1>
 
 <div>
@@ -46,3 +52,4 @@
     <a asp-action="Edit" asp-route-id="@Model?.AtlId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+}
