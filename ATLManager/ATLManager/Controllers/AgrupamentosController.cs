@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 
-namespace ATLManager
+namespace ATLManager.Controllers
 {
     public class AgrupamentosController : Controller
     {
@@ -22,7 +22,7 @@ namespace ATLManager
         // GET: Agrupamentos
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Agrupamento.ToListAsync());
+            return View(await _context.Agrupamento.ToListAsync());
         }
 
         // GET: Agrupamentos/Details/5
@@ -149,14 +149,14 @@ namespace ATLManager
             {
                 _context.Agrupamento.Remove(agrupamento);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AgrupamentoExists(Guid id)
         {
-          return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
+            return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
     }
 }

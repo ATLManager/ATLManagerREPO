@@ -200,6 +200,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdydXBhbWVudG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATLs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATLs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATLs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATLs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATLs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ContasAdministrativas/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFzQWRtaW5pc3RyYXRpdmFzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -218,6 +238,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ContasAdministrativas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFzQWRtaW5pc3RyYXRpdmFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EncarregadosEducacao/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jYXJyZWdhZG9zRWR1Y2FjYW9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EncarregadosEducacao/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jYXJyZWdhZG9zRWR1Y2FjYW9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EncarregadosEducacao/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jYXJyZWdhZG9zRWR1Y2FjYW9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EncarregadosEducacao/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jYXJyZWdhZG9zRWR1Y2FjYW9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EncarregadosEducacao/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jYXJyZWdhZG9zRWR1Y2FjYW9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/AboutUs.cshtml]
