@@ -18,7 +18,9 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
         base.OnModelCreating(builder);
 	}
 
-    public DbSet<ATLManager.Models.Agrupamento> Agrupamento { get; set; }
+    public DbSet<Agrupamento> Agrupamento { get; set; }
 
-    public DbSet<ATLManager.Models.ContaAdministrativa> ContaAdministrativa { get; set; }
+    public DbSet<ContaAdministrativa> ContaAdministrativa { get; set; }
+
+    public DbSet<EncarregadoEducacao> EncarregadoEducacao { get; set; }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 
-namespace ATLManager.Controllers
+namespace ATLManager
 {
     public class AgrupamentosController : Controller
     {
@@ -54,7 +54,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AgrupamentoID,Name,Location")] Agrupamento agrupamento)
+        public async Task<IActionResult> Create([Bind("AgrupamentoID,Name,Location,NIPC")] Agrupamento agrupamento)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AgrupamentoID,Name,Location")] Agrupamento agrupamento)
+        public async Task<IActionResult> Edit(Guid id, [Bind("AgrupamentoID,Name,Location,NIPC")] Agrupamento agrupamento)
         {
             if (id != agrupamento.AgrupamentoID)
             {

@@ -31,8 +31,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly ILogger<AdminRegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
 		private readonly ATLManagerAuthContext _context;
+        private readonly IEmailSender _emailSender;
 		private LanguageService _language;
 
 
@@ -41,8 +41,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
             IUserStore<ATLManagerUser> userStore,
             SignInManager<ATLManagerUser> signInManager,
             ILogger<AdminRegisterModel> logger,
-            IEmailSender emailSender,
             ATLManagerAuthContext context,
+            IEmailSender emailSender,
             LanguageService language)
         {
             _userManager = userManager;
@@ -50,8 +50,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
             _context = context;
+            _emailSender = emailSender;
             _language = language;
         }
 

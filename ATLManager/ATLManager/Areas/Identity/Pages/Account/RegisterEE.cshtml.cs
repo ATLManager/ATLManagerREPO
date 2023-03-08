@@ -20,7 +20,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using ATLManager.Models;
-
+using ATLManager.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -31,7 +32,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly ILogger<EERegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+		private readonly ATLManagerAuthContext _context;
+		private readonly IEmailSender _emailSender;
         private LanguageService _language;
 
 
@@ -40,14 +42,17 @@ namespace ATLManager.Areas.Identity.Pages.Account
             IUserStore<ATLManagerUser> userStore,
             SignInManager<ATLManagerUser> signInManager,
             ILogger<EERegisterModel> logger,
-            IEmailSender emailSender, LanguageService language)
+			ATLManagerAuthContext context,
+			IEmailSender emailSender, 
+            LanguageService language)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+			_context = context;
+			_emailSender = emailSender;
             _language = language;
         }
 
@@ -78,19 +83,41 @@ namespace ATLManager.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
+            [Phone]
+            public int Phone { get; set; }
+
+            [Required]
+            [StringLength(50, MinimumLength = 5)]
+            public string Address { get; set; }
+
+            [Required]
+            [MaxLength(20)]
+            public string City { get; set; }
+
+            [Required]
+            [RegularExpression(@"^\d{4}-\d{3}$", ErrorMessage = "Formato Incorreto - ex. 1234-123")]
+            public string PostalCode { get; set; }
+
+            [Required]
+            [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+            public string NIF { get; set; }
+
+			[Required]
+			[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+			public SelectList ATL { get; set; }
+
+			/// <summary>
+			///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+			///     directly from your code. This API may change or be removed in future releases.
+			/// </summary>
+			[Required]
             [EmailAddress]
             [Display(Name = "Email")]
             [DataType(DataType.EmailAddress)]
@@ -121,6 +148,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            //var dictionary = _context.ATL.ToDictionary<int, string>(k => k)
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -164,7 +192,16 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+					var perfil = new EncarregadoEducacao(user, 
+                        Input.Phone, 
+                        Input.Address, 
+                        Input.City, 
+                        Input.PostalCode, 
+                        Convert.ToInt32(Input.NIF));
+					_context.Add(perfil);
+					await _context.SaveChangesAsync();
+
+					_logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
