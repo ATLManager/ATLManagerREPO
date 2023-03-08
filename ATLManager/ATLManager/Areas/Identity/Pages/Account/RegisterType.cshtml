@@ -2,6 +2,11 @@
 
 @using ATLManager.Models;
 @using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 @inject LanguageService language
 @model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
 @inject LanguageService language
@@ -10,6 +15,8 @@
 	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
+@if (!SignInManager.IsSignedIn(User))
+{
 <!-- Container -->
 <div class="container h-auto mt-auto">
 
@@ -31,10 +38,8 @@
         <div class="row col-6 justify-content-center custom-box">
             <div class="row text-center box border-5">
                 <div class="row mb-2">
-          
                     <h2 class="fw-bold text-primary mb-5">Tipo de conta</h2>
                 </div>
-                <br />
 
                 <div class="row">
                     <div class="col-md">
@@ -83,3 +88,4 @@
     </div>
     <!-- // Slide Left (Help) -->
 </div>
+}

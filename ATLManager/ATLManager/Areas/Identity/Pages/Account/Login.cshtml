@@ -1,6 +1,10 @@
 ﻿@page
 @using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
 
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 @model LoginModel
 
 @{
@@ -9,25 +13,27 @@
 }
 @inject LanguageService language
 
+@if (!SignInManager.IsSignedIn(User))
+{
     <!-- Container -->
     <div class="container h-auto mt-auto">
 
-    <!-- Image -->
-    @*<div class="container-image">*@
+        <!-- Image -->
+        @*<div class="container-image">*@
         <!-- <div class="image"></div> -->
         @*<img src="~/images/logo1.png" class="image" salt="ATLMANAGER">*@
-    @*</div>*@
-    <!-- / Image -->
-    <!-- Botão de ajuda  -->
- @*   <div class="container-btnHelp">
+        @*</div>*@
+        <!-- / Image -->
+        <!-- Botão de ajuda  -->
+        @*   <div class="container-btnHelp">
         <button class="custom-button">
             <img src="~/images/question.png" class="image-question" alt="Button Image">
         </button>
     </div>*@
-    <!-- / Botão de ajuda  -->
+        <!-- / Botão de ajuda  -->
 
-    <!-- Menu Lateral de Ajuda -->
-    @* <nav class="menu">
+        <!-- Menu Lateral de Ajuda -->
+        @* <nav class="menu">
 
         <div class="first-container">
             <div class="container-top">
@@ -95,14 +101,15 @@
             </div>
         </div>
     </nav> *@
-    <!-- / Menu Lateral de Ajuda -->
+        <!-- / Menu Lateral de Ajuda -->
+
         <!-- Botão de Ajuda -->
         <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-5"></div>
             <div class="col-4 text-right pb-2">
                 <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
@@ -114,10 +121,10 @@
             <!-- Box  -->
             <div class="row col-6 justify-content-center custom-box">
                 <div class="row box border-5">
-                <form id="account" method="post">
+                    <form id="account" method="post">
                         <div class="mb-3">
 
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <label asp-for="Input.Email" class="form-label" autocomplete="username" aria-required="true">@language.GetKey("email")</label>
                             <input asp-for="Input.Email" class="form-control" id="email">
                             <span asp-validation-for="Input.Email" class="text-danger"></span>
@@ -142,32 +149,32 @@
 
                         <div class="text-center">
                             <button id="login-submit" type="submit" class="btn btn-primary btn-block mx-auto custom-button"
-                                    style="width: 20%;">
-                               @language.GetKey("login")
+                            style="width: 20%;">
+                                @language.GetKey("login")
                             </button>
                         </div>
                         <div class="text-center mt-3 p-1">
                             <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="custom-link">@language.GetKey("reSentEmailConfirmation")</a>
                         </div>
-                        </form>
-                        <div class="text-center mt-3 fw-bolder p-1">@language.GetKey("doLoginBy")</div>
+                    </form>
+                    <div class="text-center mt-3 fw-bolder p-1">@language.GetKey("doLoginBy")</div>
 
-                        <div class="d-flex mt-3 justify-content-center">
-                    @{
-                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                        {
-                            <div>
-                                <p>
-                                    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                        article
-                                        about setting up this ASP.NET application to support logging in via external services
-                                    </a>.
-                                </p>
-                            </div>
-                        }
-                        else
-                        {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div class="d-flex mt-3 justify-content-center">
+                        @{
+                            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                            {
+                                <div>
+                                    <p>
+                                        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                            article
+                                            about setting up this ASP.NET application to support logging in via external services
+                                        </a>.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
 
                                     @foreach (var provider in Model.ExternalLogins)
                                     {
@@ -175,8 +182,8 @@
                                         @if (provider.Name.Equals("Facebook"))
                                         {
 
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginFacebook")">
-                                                    <img src="~/images/social/facebook.png" class="ms-3" width="30" height="30">
+                                            <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginFacebook")">
+                                                <img src="~/images/social/facebook.png" class="ms-3" width="30" height="30">
                                             </button>
 
                                         }
@@ -191,7 +198,7 @@
 
                                         @if (provider.Name.Equals("Twitter"))
                                         {
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginTwitter")">
+                                            <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginTwitter")">
                                                 <img src="~/images/social/twitter.png" class="ms-3" width="30" height="30">
                                             </button>
 
@@ -199,18 +206,18 @@
 
                                         @if (provider.Name.Equals("Google"))
                                         {
-                                        <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginGoogle")">
+                                            <button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverLoginGoogle")">
                                                 <img src="~/images/social/google.png" class="ms-3" width="30" height="30">
                                             </button>
 
                                         }
 
                                     }
-                            </form>
+                                </form>
+                            }
                         }
-                    }
-                        </div>
                     </div>
+                </div>
             </div>
             <!-- // Box -->
         </div>
@@ -219,7 +226,7 @@
 
     <!-- Slide Left (Help) -->
     <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px"
-         tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
+    tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
         <div class="offcanvas-header">
             <h5 id="offcanvasRightLabel">@language.GetKey("help") </h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -233,8 +240,7 @@
 
           
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
-
-  
