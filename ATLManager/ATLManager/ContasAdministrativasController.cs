@@ -8,88 +8,88 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 
-namespace ATLManager.Controllers
+namespace ATLManager
 {
-    public class AgrupamentosController : Controller
+    public class ContasAdministrativasController : Controller
     {
         private readonly ATLManagerAuthContext _context;
 
-        public AgrupamentosController(ATLManagerAuthContext context)
+        public ContasAdministrativasController(ATLManagerAuthContext context)
         {
             _context = context;
         }
 
-        // GET: Agrupamentos
+        // GET: ContasAdministrativas
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Agrupamento.ToListAsync());
+              return View(await _context.ContaAdministrativa.ToListAsync());
         }
 
-        // GET: Agrupamentos/Details/5
+        // GET: ContasAdministrativas/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Agrupamento == null)
+            if (id == null || _context.ContaAdministrativa == null)
             {
                 return NotFound();
             }
 
-            var agrupamento = await _context.Agrupamento
-                .FirstOrDefaultAsync(m => m.AgrupamentoID == id);
-            if (agrupamento == null)
+            var contaAdministrativa = await _context.ContaAdministrativa
+                .FirstOrDefaultAsync(m => m.ContaId == id);
+            if (contaAdministrativa == null)
             {
                 return NotFound();
             }
 
-            return View(agrupamento);
+            return View(contaAdministrativa);
         }
 
-        // GET: Agrupamentos/Create
+        // GET: ContasAdministrativas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Agrupamentos/Create
+        // POST: ContasAdministrativas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AgrupamentoID,Name,Location")] Agrupamento agrupamento)
+        public async Task<IActionResult> Create([Bind("ContaId,DateOfBirth,CC")] ContaAdministrativa contaAdministrativa)
         {
             if (ModelState.IsValid)
             {
-                agrupamento.AgrupamentoID = Guid.NewGuid();
-                _context.Add(agrupamento);
+                contaAdministrativa.ContaId = Guid.NewGuid();
+                _context.Add(contaAdministrativa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(agrupamento);
+            return View(contaAdministrativa);
         }
 
-        // GET: Agrupamentos/Edit/5
+        // GET: ContasAdministrativas/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Agrupamento == null)
+            if (id == null || _context.ContaAdministrativa == null)
             {
                 return NotFound();
             }
 
-            var agrupamento = await _context.Agrupamento.FindAsync(id);
-            if (agrupamento == null)
+            var contaAdministrativa = await _context.ContaAdministrativa.FindAsync(id);
+            if (contaAdministrativa == null)
             {
                 return NotFound();
             }
-            return View(agrupamento);
+            return View(contaAdministrativa);
         }
 
-        // POST: Agrupamentos/Edit/5
+        // POST: ContasAdministrativas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AgrupamentoID,Name,Location")] Agrupamento agrupamento)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ContaId,DateOfBirth,CC")] ContaAdministrativa contaAdministrativa)
         {
-            if (id != agrupamento.AgrupamentoID)
+            if (id != contaAdministrativa.ContaId)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace ATLManager.Controllers
             {
                 try
                 {
-                    _context.Update(agrupamento);
+                    _context.Update(contaAdministrativa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AgrupamentoExists(agrupamento.AgrupamentoID))
+                    if (!ContaAdministrativaExists(contaAdministrativa.ContaId))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(agrupamento);
+            return View(contaAdministrativa);
         }
 
-        // GET: Agrupamentos/Delete/5
+        // GET: ContasAdministrativas/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Agrupamento == null)
+            if (id == null || _context.ContaAdministrativa == null)
             {
                 return NotFound();
             }
 
-            var agrupamento = await _context.Agrupamento
-                .FirstOrDefaultAsync(m => m.AgrupamentoID == id);
-            if (agrupamento == null)
+            var contaAdministrativa = await _context.ContaAdministrativa
+                .FirstOrDefaultAsync(m => m.ContaId == id);
+            if (contaAdministrativa == null)
             {
                 return NotFound();
             }
 
-            return View(agrupamento);
+            return View(contaAdministrativa);
         }
 
-        // POST: Agrupamentos/Delete/5
+        // POST: ContasAdministrativas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Agrupamento == null)
+            if (_context.ContaAdministrativa == null)
             {
-                return Problem("Entity set 'ATLManagerAuthContext.Agrupamento'  is null.");
+                return Problem("Entity set 'ATLManagerAuthContext.ContaAdministrativa'  is null.");
             }
-            var agrupamento = await _context.Agrupamento.FindAsync(id);
-            if (agrupamento != null)
+            var contaAdministrativa = await _context.ContaAdministrativa.FindAsync(id);
+            if (contaAdministrativa != null)
             {
-                _context.Agrupamento.Remove(agrupamento);
+                _context.ContaAdministrativa.Remove(contaAdministrativa);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AgrupamentoExists(Guid id)
+        private bool ContaAdministrativaExists(Guid id)
         {
-          return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
+          return _context.ContaAdministrativa.Any(e => e.ContaId == id);
         }
     }
 }

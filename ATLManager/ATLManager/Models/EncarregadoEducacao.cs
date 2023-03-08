@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ATLManager.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace ATLManager.Models
 {
@@ -7,13 +8,8 @@ namespace ATLManager.Models
         [Key]
         public Guid EncarregadoID { get; set; }
 
-        [Required]
-        [MaxLength(20)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(20)]
-        public string LastName { get; set; }
+		[Required]
+		public ATLManagerUser User { get; set; }
 
         [Required]
         [Phone]
@@ -35,15 +31,20 @@ namespace ATLManager.Models
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
         public int NIF { get; set; }
 
-        public EncarregadoEducacao(string firstName, string lastName, int phone, 
-            string address, string postalCode, string city, int nif)
+
+
+		public EncarregadoEducacao()
+		{
+			EncarregadoID = Guid.NewGuid();
+		}
+
+		public EncarregadoEducacao(ATLManagerUser user, int phone, string address, string city, string postalCode, int nif) : this ()
         {
-            FirstName = firstName;
-            LastName = lastName;
+            User = user;
             Phone = phone;
             Address = address;
-            PostalCode = postalCode;
             City = city;
+            PostalCode = postalCode;
             NIF = nif;
         }
     }

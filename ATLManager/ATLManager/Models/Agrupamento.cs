@@ -7,7 +7,7 @@ namespace ATLManager.Models
         [Key]
         public Guid AgrupamentoID { get; set; }
 
-        [Required]
+		[Required]
         [MaxLength(20)]
         public string Name { get; set; }
 
@@ -15,15 +15,21 @@ namespace ATLManager.Models
         [MaxLength(20)]
         public string Location { get; set; }
 
-        public Agrupamento()
+		[Required]
+		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
+		[Display(Name = "Certidão Permanente")]
+		public string NIPC { get; set; }
+
+		public Agrupamento()
         {
             AgrupamentoID = Guid.NewGuid();
         }
 
-        public Agrupamento(string Name, string Location) : this ()
+        public Agrupamento(string name, string location) : this ()
         {
-            this.Name = Name;
-            this.Location = Location;
+            Name = name;
+            Location = location;
         }
     }
 }

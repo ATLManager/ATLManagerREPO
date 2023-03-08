@@ -19,33 +19,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-
 using ATLManager.Models;
 using ATLManager.Data;
-using ATLManager.Services;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
-    public class AdminRegisterModel : PageModel
+    public class EERegisterModel : PageModel
     {
         private readonly SignInManager<ATLManagerUser> _signInManager;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
-        private readonly ILogger<AdminRegisterModel> _logger;
+        private readonly ILogger<EERegisterModel> _logger;
 		private readonly ATLManagerAuthContext _context;
-        private readonly IEmailSender _emailSender;
-		private LanguageService _language;
+		private readonly IEmailSender _emailSender;
+        private LanguageService _language;
 
 
-        public AdminRegisterModel(
+        public EERegisterModel(
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
             SignInManager<ATLManagerUser> signInManager,
-            ILogger<AdminRegisterModel> logger,
-            ATLManagerAuthContext context,
-            IEmailSender emailSender,
+            ILogger<EERegisterModel> logger,
+			ATLManagerAuthContext context,
+			IEmailSender emailSender, 
             LanguageService language)
         {
             _userManager = userManager;
@@ -53,8 +51,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _context = context;
-            _emailSender = emailSender;
+			_context = context;
+			_emailSender = emailSender;
             _language = language;
         }
 
@@ -63,7 +61,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         [BindProperty]
-        public AdminInputModel Input { get; set; }
+        public EEInputModel Input { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -81,7 +79,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public class AdminInputModel
+        public class EEInputModel
         {
             [Required]
             [DataType(DataType.Text)]
@@ -92,12 +90,28 @@ namespace ATLManager.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            [DataType(DataType.Date)]
-            public DateTime BirthDate { get; set; }
+            [Phone]
+            public int Phone { get; set; }
+
+            [Required]
+            [StringLength(50, MinimumLength = 5)]
+            public string Address { get; set; }
+
+            [Required]
+            [MaxLength(20)]
+            public string City { get; set; }
+
+            [Required]
+            [RegularExpression(@"^\d{4}-\d{3}$", ErrorMessage = "Formato Incorreto - ex. 1234-123")]
+            public string PostalCode { get; set; }
+
+            [Required]
+            [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+            public string NIF { get; set; }
 
 			[Required]
-			[DataType(DataType.Text)]
-			public string CC { get; set; }
+			[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+			public SelectList ATL { get; set; }
 
 			/// <summary>
 			///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -105,6 +119,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 			/// </summary>
 			[Required]
             [EmailAddress]
+            [Display(Name = "Email")]
             [DataType(DataType.EmailAddress)]
 			[RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?){1,2}$",
 		        ErrorMessage = "Email Inválido")]
@@ -133,6 +148,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            //var dictionary = _context.ATL.ToDictionary<int, string>(k => k)
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -176,7 +192,12 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-					var perfil = new ContaAdministrativa(user, Input.BirthDate, Convert.ToInt32(Input.CC));
+					var perfil = new EncarregadoEducacao(user, 
+                        Input.Phone, 
+                        Input.Address, 
+                        Input.City, 
+                        Input.PostalCode, 
+                        Convert.ToInt32(Input.NIF));
 					_context.Add(perfil);
 					await _context.SaveChangesAsync();
 
