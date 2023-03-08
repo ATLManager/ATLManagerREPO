@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
-using ATLManager.Models;
+using ATLManager.Services;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {

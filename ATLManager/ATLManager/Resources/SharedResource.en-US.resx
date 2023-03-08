@@ -294,14 +294,14 @@
   <data name="siteMap" xml:space="preserve">
     <value>Site Map</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="support" xml:space="preserve">
     <value>Support</value>
   </data>
   <data name="title2FactorAuth" xml:space="preserve">
     <value>Two-factor authentication (2FA)</value>
+  </data>
+  <data name="titleAboutUs" xml:space="preserve">
+    <value>About Us</value>
   </data>
   <data name="titleAccessDenied" xml:space="preserve">
     <value>Access denied</value>
@@ -317,6 +317,9 @@
   </data>
   <data name="titleConfirmEmailChange" xml:space="preserve">
     <value>Confirm email change</value>
+  </data>
+  <data name="titleContactUs" xml:space="preserve">
+    <value>Contact Us</value>
   </data>
   <data name="titleDeletePersonalData" xml:space="preserve">
     <value>Delete Personal Data</value>
@@ -363,6 +366,9 @@
   <data name="titleResetPasswordConfirmation" xml:space="preserve">
     <value>Reset password confirmation</value>
   </data>
+  <data name="titleServices" xml:space="preserve">
+    <value>Services</value>
+  </data>
   <data name="titleSetPassword" xml:space="preserve">
     <value>Set password</value>
   </data>
@@ -396,8 +402,14 @@
   <data name="txt18_2FactorAuth" xml:space="preserve">
     <value>You must accept the policy before you can enable two factor authentication</value>
   </data>
+  <data name="txt1AboutUs" xml:space="preserve">
+    <value>Welcome to ATLManager, a project designed to make your life easier. We are a group of highly experienced technology professionals who have worked together to create a complete solution for managing extracurricular activities. Our goal is to provide a simple and intuitive platform for parents, school administrators, coordinators, staff, and students to track and manage all extracurricular activities in one place.</value>
+  </data>
   <data name="txt1Configure2factorAuth" xml:space="preserve">
     <value>Download a two-factor authenticator app like Microsoft Authenticator for</value>
+  </data>
+  <data name="txt1ContactUs" xml:space="preserve">
+    <value>We are always available to answer your questions about ATLManager. To contact us, simply fill out the form below or send an email to our support team at support@atlmanager.com.</value>
   </data>
   <data name="txt1Disable2factorAuth" xml:space="preserve">
     <value>This action only disables 2FA</value>
@@ -417,14 +429,23 @@
   <data name="txt1ResetPasswordConfirmation" xml:space="preserve">
     <value>Your password has been reset. Please</value>
   </data>
+  <data name="txt1Services" xml:space="preserve">
+    <value>At ATLManager we are dedicated to offering complete solutions for the management of activities in ATL's. With our platform, you can simplify the administration of your activities, automating processes and making management more efficient.</value>
+  </data>
   <data name="txt1SetPassword" xml:space="preserve">
     <value>Set your password</value>
   </data>
   <data name="txt1_2FactorAuth" xml:space="preserve">
     <value>You must</value>
   </data>
+  <data name="txt2AboutUs" xml:space="preserve">
+    <value>We are committed to providing an exceptional user experience and are always working to improve and update our system. We value transparency, efficiency, and excellence in everything we do.</value>
+  </data>
   <data name="txt2Configure2factorAuth" xml:space="preserve">
     <value>Google Authenticator for</value>
+  </data>
+  <data name="txt2ContactUs" xml:space="preserve">
+    <value>Our support team is available Monday through Friday from 9am to 6pm. We will do our best to respond as quickly as possible. If you have urgent questions, you can call us at +XX XXX XXX XXX.</value>
   </data>
   <data name="txt2Disable2factorAuth" xml:space="preserve">
     <value>Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should</value>
@@ -444,14 +465,23 @@
   <data name="txt2ResetPasswordConfirmation" xml:space="preserve">
     <value>click here to log in</value>
   </data>
+  <data name="txt2Services" xml:space="preserve">
+    <value>Our services include:</value>
+  </data>
   <data name="txt2SetPassword" xml:space="preserve">
     <value>You do not have a local username/password for this site. Add a local account so you can log in without an external login</value>
   </data>
   <data name="txt2_2FactorAuth" xml:space="preserve">
     <value>generate a new set of recovery codes</value>
   </data>
+  <data name="txt3AboutUs" xml:space="preserve">
+    <value>We thank you for your confidence in our project. We hope you enjoy our platform and if you have any questions or suggestions, please do not hesitate to contact us.</value>
+  </data>
   <data name="txt3Configure2factorAuth" xml:space="preserve">
     <value>Scan the QR Code or enter this key</value>
+  </data>
+  <data name="txt3ContactUs" xml:space="preserve">
+    <value>You can also find us on social media. Follow us on Twitter, Facebook and Instagram to keep up with our product news and updates.</value>
   </data>
   <data name="txt3Disable2factorAuth" xml:space="preserve">
     <value>reset your authenticator keys.</value>
@@ -459,14 +489,23 @@
   <data name="txt3GenerateRecoveryCodes" xml:space="preserve">
     <value>Generating new recovery codes does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should</value>
   </data>
+  <data name="txt3Services" xml:space="preserve">
+    <value>Activity management: ATLManager allows you to record and manage all the activities offered by your institution in a single place, in an intuitive and easy-to-use way.</value>
+  </data>
   <data name="txt3_2FactorAuth" xml:space="preserve">
     <value>before you can log in with a recovery code.</value>
   </data>
   <data name="txt4Configure2factorAuth" xml:space="preserve">
     <value>into your two factor authenticator app. Spaces and casing do not matter.</value>
   </data>
+  <data name="txt4ContactUs" xml:space="preserve">
+    <value>Thank you for your interest in ATLManager and we look forward to hearing from you soon.</value>
+  </data>
   <data name="txt4GenerateRecoveryCodes" xml:space="preserve">
     <value>reset your authenticator keys.</value>
+  </data>
+  <data name="txt4Services" xml:space="preserve">
+    <value>Attendance control: Control attendance of students and tutors in each activity, automatically and integrated with student and staff records.</value>
   </data>
   <data name="txt4_2FactorAuth" xml:space="preserve">
     <value>You have no recovery codes left.</value>
@@ -474,17 +513,26 @@
   <data name="txt5Configure2factorAuth" xml:space="preserve">
     <value>Learn how to</value>
   </data>
+  <data name="txt5Services" xml:space="preserve">
+    <value>Communication with parents and guardians: Maintain clear and transparent communication with parents and guardians by sending information about activities, attendance and school performance.</value>
+  </data>
   <data name="txt5_2FactorAuth" xml:space="preserve">
     <value>You have 1 recovery code left.</value>
   </data>
   <data name="txt6Configure2factorAuth" xml:space="preserve">
     <value>enable QR code generation</value>
   </data>
+  <data name="txt6Services" xml:space="preserve">
+    <value>Reporting and analysis: with our platform, you can generate comprehensive reports on the performance of activities, student attendance and other relevant indicators for the management of your institution.</value>
+  </data>
   <data name="txt6_2FactorAuth" xml:space="preserve">
     <value>You can</value>
   </data>
   <data name="txt7Configure2factorAuth" xml:space="preserve">
     <value>Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below.</value>
+  </data>
+  <data name="txt7Services" xml:space="preserve">
+    <value>If you are looking for a complete and efficient solution to manage the activities of your institution, contact us and learn more about how ATLManager can help you!</value>
   </data>
   <data name="txt7_2FactorAuth" xml:space="preserve">
     <value>You should</value>
@@ -629,6 +677,15 @@
   </data>
   <data name="txtWelcome" xml:space="preserve">
     <value>Are you looking for the most efficient way to manage your ATL or ATL grouping ?</value>
+  </data>
+  <data name="txtWelcomeToPageAboutUs" xml:space="preserve">
+    <value>Welcome to the About Us page</value>
+  </data>
+  <data name="txtWelcomeToPageContactUs" xml:space="preserve">
+    <value>Welcome to the Contact Us page</value>
+  </data>
+  <data name="txtWelcomeToPageServices" xml:space="preserve">
+    <value>Welcome to the Services page</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Welcome</value>

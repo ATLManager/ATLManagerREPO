@@ -5,7 +5,6 @@ using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ATLManager.Services;
 using ATLManager;
-using ATLManager.Models;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Reflection;
@@ -14,6 +13,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection")
     ?? throw new InvalidOperationException("Connection string 'ATLManagerAuthContextConnection' not found.");
 
@@ -22,6 +22,8 @@ var keyVaultCredential = new DefaultAzureCredential();
 
 var client = new SecretClient(new Uri(keyVaultUrl), keyVaultCredential);
 builder.Services.AddSingleton(client);
+
+var sendGridKeySecret = client.GetSecret("SendGridKey");
 
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
@@ -82,11 +84,11 @@ builder.Services.Configure<RequestLocalizationOptions>(
         options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
     });
 
-
-
 builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
-
+builder.Services.Configure<AuthMessageSenderOptions>(options =>
+{
+    options.SendGridKey = sendGridKeySecret.Value.Value;
+});
 
 var facebookAppIdSecret = client.GetSecret("FacebookAppId");
 var facebookAppSecretSecret = client.GetSecret("FacebookAppSecret");

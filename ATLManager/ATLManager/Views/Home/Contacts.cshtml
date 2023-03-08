@@ -1,10 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Contact Us";
+﻿@using ATLManager.Services;
+
+
+@inject LanguageService language
+
+@{
+    ViewData["Title"] = language.GetKey("titleContactUs");
 }
 
 <div>
-    <h1 class="display-4">Bem Vindo á página @ViewData["Title"]</h1>
-    <p>Esta página será usada para nos contactar (to be continued)</p>
+    <h1 class="display-4">@language.GetKey("txtWelcomeToPageContactUs")</h1>
+    <p>@language.GetKey("txt1ContactUs")</p>
+    <p>@language.GetKey("txt2ContactUs")</p>
+    <p>@language.GetKey("txt3ContactUs")</p>
+    <p>@language.GetKey("txt4ContactUs")</p>
 </div>
 
 

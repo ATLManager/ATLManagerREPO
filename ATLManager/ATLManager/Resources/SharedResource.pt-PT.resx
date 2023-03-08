@@ -300,6 +300,9 @@
   <data name="title2FactorAuth" xml:space="preserve">
     <value>Authentification à deux facteurs (2FA)</value>
   </data>
+  <data name="titleAboutUs" xml:space="preserve">
+    <value>Sobre Nós</value>
+  </data>
   <data name="titleAccessDenied" xml:space="preserve">
     <value>Acesso negado</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="titleConfirmEmailChange" xml:space="preserve">
     <value>Confirmar alteração de e-mail</value>
+  </data>
+  <data name="titleContactUs" xml:space="preserve">
+    <value>Contacte-nos</value>
   </data>
   <data name="titleDeletePersonalData" xml:space="preserve">
     <value>Eliminar dados pessoais</value>
@@ -360,6 +366,9 @@
   <data name="titleResetPasswordConfirmation" xml:space="preserve">
     <value>Redefinir confirmação de palavra-passe</value>
   </data>
+  <data name="titleServices" xml:space="preserve">
+    <value>Serviços</value>
+  </data>
   <data name="titleSetPassword" xml:space="preserve">
     <value>Definir palavra-passe</value>
   </data>
@@ -393,8 +402,14 @@
   <data name="txt18_2FactorAuth" xml:space="preserve">
     <value>Deve aceitar a política antes de poder permitir a autenticação por dois factores.</value>
   </data>
+  <data name="txt1AboutUs" xml:space="preserve">
+    <value>Bem-vindo ao ATLManager, um projecto concebido para tornar a sua vida mais fácil. Somos um grupo de profissionais de tecnologia altamente experientes que trabalharam em conjunto para criar uma solução completa para a gestão de atividades extracurriculares. O nosso objetivo é fornecer uma plataforma simples e intuitiva para pais, administradores escolares, coordenadores, funcionários, e estudantes para acompanhar e gerir todas as atividades extracurriculares num único local.</value>
+  </data>
   <data name="txt1Configure2factorAuth" xml:space="preserve">
     <value>Descarregue uma aplicação de autenticador de dois factores como o Microsoft Authenticator para</value>
+  </data>
+  <data name="txt1ContactUs" xml:space="preserve">
+    <value>Estamos sempre disponíveis para responder às suas perguntas sobre o ATLManager. Para nos contactar, basta preencher o formulário abaixo ou enviar um e-mail para a nossa equipa de apoio em support@atlmanager.com.</value>
   </data>
   <data name="txt1Disable2factorAuth" xml:space="preserve">
     <value>Esta ação apenas desactiva 2FA</value>
@@ -414,14 +429,23 @@
   <data name="txt1ResetPasswordConfirmation" xml:space="preserve">
     <value>Sua palavra-passe foi redefinida. Por favor</value>
   </data>
+  <data name="txt1Services" xml:space="preserve">
+    <value>Na ATLManager dedicamo-nos a oferecer soluções completas para a gestão de atividades nos ATL's. Com a nossa plataforma, pode simplificar a administração das suas atividades, automatizando processos e tornando a gestão mais eficiente.</value>
+  </data>
   <data name="txt1SetPassword" xml:space="preserve">
     <value>Defina a sua palavra-passe</value>
   </data>
   <data name="txt1_2FactorAuth" xml:space="preserve">
     <value>Tem de</value>
   </data>
+  <data name="txt2AboutUs" xml:space="preserve">
+    <value>Estamos empenhados em proporcionar uma experiência excecional ao utilizador e estamos sempre a trabalhar para melhorar e atualizar o nosso sistema. Valorizamos a transparência, eficiência, e excelência em tudo o que fazemos.</value>
+  </data>
   <data name="txt2Configure2factorAuth" xml:space="preserve">
     <value>Google Authenticator para</value>
+  </data>
+  <data name="txt2ContactUs" xml:space="preserve">
+    <value>A nossa equipa de apoio está disponível de segunda a sexta-feira das 9h00 às 18h00. Faremos o nosso melhor para responder o mais rapidamente possível. Se tiver perguntas urgentes, pode telefonar-nos para +XX XXX XXX XXX.</value>
   </data>
   <data name="txt2Disable2factorAuth" xml:space="preserve">
     <value>A desativação do 2FA não altera as chaves utilizadas nas aplicações de autenticação. Se desejar alterar a chave utilizada numa aplicação de autenticador deve</value>
@@ -441,14 +465,23 @@
   <data name="txt2ResetPasswordConfirmation" xml:space="preserve">
     <value>clique aqui para iniciar sessão</value>
   </data>
+  <data name="txt2Services" xml:space="preserve">
+    <value>Os nossos serviços incluem:</value>
+  </data>
   <data name="txt2SetPassword" xml:space="preserve">
     <value>Não tem um nome de utilizador/palavra-passe local para esta aplicação. Adicione uma conta local para que possa iniciar sessão sem um login externo</value>
   </data>
   <data name="txt2_2FactorAuth" xml:space="preserve">
     <value>gerar um novo conjunto de códigos de recuperação</value>
   </data>
+  <data name="txt3AboutUs" xml:space="preserve">
+    <value>Agradecemos a vossa confiança no nosso projecto. Esperamos que aprecie a nossa plataforma e se tiver alguma dúvida ou sugestão, por favor não hesite em contactar-nos.</value>
+  </data>
   <data name="txt3Configure2factorAuth" xml:space="preserve">
     <value>Digitalize o Código QR ou introduza esta chave</value>
+  </data>
+  <data name="txt3ContactUs" xml:space="preserve">
+    <value>Pode também encontrar-nos nas redes sociais. Siga-nos no Twitter, Facebook e Instagram para se manter a par das novidades e actualizações dos nossos produtos.</value>
   </data>
   <data name="txt3Disable2factorAuth" xml:space="preserve">
     <value>reinicialize as chaves do seu autenticador.</value>
@@ -456,14 +489,23 @@
   <data name="txt3GenerateRecoveryCodes" xml:space="preserve">
     <value>A geração de novos códigos de recuperação não altera as chaves utilizadas nas aplicações de autenticação. Se desejar alterar a chave utilizada numa aplicação de autenticador deve</value>
   </data>
+  <data name="txt3Services" xml:space="preserve">
+    <value>Gestão de actividades: O ATLManager permite-lhe registar e gerir todas as actividades oferecidas pela sua instituição num único local, de forma intuitiva e fácil de usar.</value>
+  </data>
   <data name="txt3_2FactorAuth" xml:space="preserve">
     <value>antes de poder iniciar a sessão com um código de recuperação.</value>
   </data>
   <data name="txt4Configure2factorAuth" xml:space="preserve">
     <value>na sua aplicação autenticadora de dois factores. Os espaços e o invólucro não importam.</value>
   </data>
+  <data name="txt4ContactUs" xml:space="preserve">
+    <value>Obrigado pelo seu interesse no ATLManager e esperamos ouvir de si em breve.</value>
+  </data>
   <data name="txt4GenerateRecoveryCodes" xml:space="preserve">
     <value>reinicialize as chaves do seu autenticador.</value>
+  </data>
+  <data name="txt4Services" xml:space="preserve">
+    <value>Controlo de assiduidade: Controlo da frequência de estudantes e tutores em cada actividade, de forma automática e integrada com os registos de estudantes e funcionários.</value>
   </data>
   <data name="txt4_2FactorAuth" xml:space="preserve">
     <value>Não lhe restam códigos de recuperação.</value>
@@ -471,17 +513,26 @@
   <data name="txt5Configure2factorAuth" xml:space="preserve">
     <value>Aprenda como</value>
   </data>
+  <data name="txt5Services" xml:space="preserve">
+    <value>Comunicação com pais e tutores: mantenha uma comunicação clara e transparente com os pais e tutores, enviando informações sobre as actividades, assiduidade e desempenho escolar.</value>
+  </data>
   <data name="txt5_2FactorAuth" xml:space="preserve">
     <value>Ainda tem 1 código de recuperação.</value>
   </data>
   <data name="txt6Configure2factorAuth" xml:space="preserve">
     <value>permitir a geração de código QR</value>
   </data>
+  <data name="txt6Services" xml:space="preserve">
+    <value>Relatórios e análises: com a nossa plataforma, pode gerar relatórios completos sobre o desempenho das actividades, frequência dos alunos e outros indicadores relevantes para a gestão da sua instituição.</value>
+  </data>
   <data name="txt6_2FactorAuth" xml:space="preserve">
     <value>Pode</value>
   </data>
   <data name="txt7Configure2factorAuth" xml:space="preserve">
     <value>Depois de digitalizar o código QR ou inserir a chave acima, seu aplicativo de autenticação de dois fatores fornecerá a você com um código único. Digite o código na caixa de confirmação abaixo.</value>
+  </data>
+  <data name="txt7Services" xml:space="preserve">
+    <value>Se procura uma solução completa e eficiente para gerir as actividades da sua instituição, contacte-nos e saiba mais sobre como o ATLManager o pode ajudar!</value>
   </data>
   <data name="txt7_2FactorAuth" xml:space="preserve">
     <value>Deve</value>
@@ -626,6 +677,15 @@
   </data>
   <data name="txtWelcome" xml:space="preserve">
     <value>Está à procura da forma mais eficiente de gerir o seu ATL ou agrupamento de ATL's ?</value>
+  </data>
+  <data name="txtWelcomeToPageAboutUs" xml:space="preserve">
+    <value>Bem-vindo à página Sobre Nós</value>
+  </data>
+  <data name="txtWelcomeToPageContactUs" xml:space="preserve">
+    <value>Bem vindo à página Contacte-nos</value>
+  </data>
+  <data name="txtWelcomeToPageServices" xml:space="preserve">
+    <value>Bem-vindo à página Serviços</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Bem Vindo</value>

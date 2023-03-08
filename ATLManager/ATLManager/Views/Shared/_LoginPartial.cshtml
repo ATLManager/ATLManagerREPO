@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
+@using ATLManager.Services
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
@@ -30,13 +31,13 @@
                         <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link" id="home">@language.GetKey("home")</a>
                     </li> 
                     <li class="nav-item">
-                        <a asp-area="" asp-controller="Home" asp-action="AboutUs" class="nav-link" id="about-us">Sobre Nós</a>
+                        <a asp-area="" asp-controller="Home" asp-action="AboutUs" class="nav-link" id="about-us">@language.GetKey("titleAboutUs")</a>
                     </li>
                     <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="Services" class="nav-link" id="services">Serviços</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Services" class="nav-link" id="services">@language.GetKey("titleServices")</a>
                     </li>
                     <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="Contacts" class="nav-link" id="contact-us">Contacta-nos</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contacts" class="nav-link" id="contact-us">@language.GetKey("titleContactUs")</a>
                     </li>
       
             <li>

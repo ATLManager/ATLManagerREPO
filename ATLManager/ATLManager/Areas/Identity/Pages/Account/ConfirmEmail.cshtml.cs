@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using ATLManager.Models;
+using ATLManager.Services;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {

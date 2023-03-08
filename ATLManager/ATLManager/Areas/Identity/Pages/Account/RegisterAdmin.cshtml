@@ -1,6 +1,8 @@
 ﻿@page
-@using ATLManager.Models;
+
 @model AdminRegisterModel
+@using ATLManager.Services;
+
 @{
 	ViewData["Title"] = @language.GetKey("register");
 	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
