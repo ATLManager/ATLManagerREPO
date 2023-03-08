@@ -7,22 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using Microsoft.AspNetCore.Identity;
+using ATLManager.Areas.Identity.Data;
 
-namespace ATLManager
+namespace ATLManager.Controllers
 {
     public class ContasAdministrativasController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+		private readonly UserManager<ATLManagerUser> _userManager;
 
-        public ContasAdministrativasController(ATLManagerAuthContext context)
+		public ContasAdministrativasController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: ContasAdministrativas
         public async Task<IActionResult> Index()
         {
-              return View(await _context.ContaAdministrativa.ToListAsync());
+            return View(await _context.ContaAdministrativa.ToListAsync());
         }
 
         // GET: ContasAdministrativas/Details/5
@@ -147,16 +151,23 @@ namespace ATLManager
             var contaAdministrativa = await _context.ContaAdministrativa.FindAsync(id);
             if (contaAdministrativa != null)
             {
-                _context.ContaAdministrativa.Remove(contaAdministrativa);
+				var result = await _userManager.DeleteAsync(contaAdministrativa.User);
+
+				if (!result.Succeeded)
+				{
+					throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+				}
+
+				_context.ContaAdministrativa.Remove(contaAdministrativa);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContaAdministrativaExists(Guid id)
         {
-          return _context.ContaAdministrativa.Any(e => e.ContaId == id);
+            return _context.ContaAdministrativa.Any(e => e.ContaId == id);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ATLManager.Models
     public class EncarregadoEducacao
     {
         [Key]
-        public Guid EncarregadoID { get; set; }
+        public Guid EncarregadoId { get; set; }
 
 		[Required]
 		public ATLManagerUser User { get; set; }
@@ -35,7 +35,7 @@ namespace ATLManager.Models
 
 		public EncarregadoEducacao()
 		{
-			EncarregadoID = Guid.NewGuid();
+			EncarregadoId = Guid.NewGuid();
 		}
 
 		public EncarregadoEducacao(ATLManagerUser user, int phone, string address, string city, string postalCode, int nif) : this ()
