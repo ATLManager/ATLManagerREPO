@@ -171,9 +171,9 @@
 					</div>
 
 					<div class="mb-3">
-						<label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
-						<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-						<span asp-validation-for="Input.Email" class="text-danger"></span>
+						<label asp-for="@Model.Options" class="form-label">ATL</label>
+						<select asp-for="@Model.Options" asp-items="@Model.Options" class="form-control"> </select>/>
+						<span asp-validation-for="@Model.Options" class="text-danger"></span>
 					</div>
 					
 					<div class="mb-3">

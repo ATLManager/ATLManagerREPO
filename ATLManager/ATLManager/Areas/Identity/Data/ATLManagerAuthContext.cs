@@ -24,5 +24,5 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
 
     public DbSet<EncarregadoEducacao> EncarregadoEducacao { get; set; }
 
-    public DbSet<ATLManager.Models.ATL> ATL { get; set; }
+    public DbSet<ATL> ATL { get; set; }
 }

@@ -8,24 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 
-namespace ATLManager
+namespace ATLManager.Controllers
 {
-    public class ATLsController : Controller
+    public class ATLController : Controller
     {
         private readonly ATLManagerAuthContext _context;
 
-        public ATLsController(ATLManagerAuthContext context)
+        public ATLController(ATLManagerAuthContext context)
         {
             _context = context;
         }
 
-        // GET: ATLs
+        // GET: ATL
         public async Task<IActionResult> Index()
         {
-              return View(await _context.ATL.ToListAsync());
+            var aTLManagerAuthContext = _context.ATL.Include(a => a.Agrupamento);
+            return View(await aTLManagerAuthContext.ToListAsync());
         }
 
-        // GET: ATLs/Details/5
+        // GET: ATL/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -33,40 +34,43 @@ namespace ATLManager
                 return NotFound();
             }
 
-            var aTL = await _context.ATL
+            var atl = await _context.ATL
+                .Include(a => a.Agrupamento)
                 .FirstOrDefaultAsync(m => m.AtlId == id);
-            if (aTL == null)
+            if (atl == null)
             {
                 return NotFound();
             }
 
-            return View(aTL);
+            return View(atl);
         }
 
-        // GET: ATLs/Create
+        // GET: ATL/Create
         public IActionResult Create()
         {
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name");
             return View();
         }
 
-        // POST: ATLs/Create
+        // POST: ATL/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,NIPC")] ATL aTL)
+        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoId,NIPC")] ATL atl)
         {
             if (ModelState.IsValid)
             {
-                aTL.AtlId = Guid.NewGuid();
-                _context.Add(aTL);
+                atl.AtlId = Guid.NewGuid();
+                _context.Add(atl);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(aTL);
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
+            return View(atl);
         }
 
-        // GET: ATLs/Edit/5
+        // GET: ATL/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -74,22 +78,23 @@ namespace ATLManager
                 return NotFound();
             }
 
-            var aTL = await _context.ATL.FindAsync(id);
-            if (aTL == null)
+            var atl = await _context.ATL.FindAsync(id);
+            if (atl == null)
             {
                 return NotFound();
             }
-            return View(aTL);
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
+            return View(atl);
         }
 
-        // POST: ATLs/Edit/5
+        // POST: ATL/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,NIPC")] ATL aTL)
+        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoId,NIPC")] ATL atl)
         {
-            if (id != aTL.AtlId)
+            if (id != atl.AtlId)
             {
                 return NotFound();
             }
@@ -98,12 +103,12 @@ namespace ATLManager
             {
                 try
                 {
-                    _context.Update(aTL);
+                    _context.Update(atl);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ATLExists(aTL.AtlId))
+                    if (!ATLExists(atl.AtlId))
                     {
                         return NotFound();
                     }
@@ -114,10 +119,11 @@ namespace ATLManager
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(aTL);
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
+            return View(atl);
         }
 
-        // GET: ATLs/Delete/5
+        // GET: ATL/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -125,17 +131,18 @@ namespace ATLManager
                 return NotFound();
             }
 
-            var aTL = await _context.ATL
+            var atl = await _context.ATL
+                .Include(a => a.Agrupamento)
                 .FirstOrDefaultAsync(m => m.AtlId == id);
-            if (aTL == null)
+            if (atl == null)
             {
                 return NotFound();
             }
 
-            return View(aTL);
+            return View(atl);
         }
 
-        // POST: ATLs/Delete/5
+        // POST: ATL/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -144,10 +151,10 @@ namespace ATLManager
             {
                 return Problem("Entity set 'ATLManagerAuthContext.ATL'  is null.");
             }
-            var aTL = await _context.ATL.FindAsync(id);
-            if (aTL != null)
+            var atl = await _context.ATL.FindAsync(id);
+            if (atl != null)
             {
-                _context.ATL.Remove(aTL);
+                _context.ATL.Remove(atl);
             }
             
             await _context.SaveChangesAsync();

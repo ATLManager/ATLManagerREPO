@@ -10,13 +10,16 @@ namespace ATLManager.Models
 		[Key]
 		public Guid ContaId { get; set; }
 
-		[Required]
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+
 		public ATLManagerUser User { get; set; }
 
 		[Required]
 		[DataType(DataType.Date)]
 		[Display(Name = "Data de nascimento")]
-		public DateTime DateOfBirth { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateOfBirth { get; set; }
 
 		[Required]
 		[Column(TypeName = "nvarchar(9)")]
@@ -31,6 +34,7 @@ namespace ATLManager.Models
 		public ContaAdministrativa(ATLManagerUser user, DateTime dateOfBirth, int cc) : this ()
 		{
 			User = user;
+			UserId = User.Id;
 			DateOfBirth = dateOfBirth;
 			CC = cc;
 		}
