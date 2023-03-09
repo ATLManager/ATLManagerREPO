@@ -1,11 +1,21 @@
 ﻿@page
 @using ATLManager.Services;
 
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
 @model ExternalLoginModel
+
 @{
     ViewData["Title"] = language.GetKey("register");
 }
 @inject LanguageService language
+
+@if (!SignInManager.IsSignedIn(User))
+{
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +35,7 @@
     <link rel="stylesheet" type='text/css' media='screen' href="~/css/site.css" asp-append-version="true" />
 
 </head>
-@if (!SignInManager.IsSignedIn(User))
-{
+
 <body class="body">
 
     <!-- Menu -->
@@ -260,6 +269,6 @@
             }
         });
     </script>
-    }
 </body>
 </html>
+}
