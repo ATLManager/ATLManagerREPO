@@ -29,8 +29,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 		private readonly ATLManagerAuthContext _context;
         private readonly IEmailSender _emailSender;
 		private readonly LanguageService _language;
-
-
+        
         public AdminRegisterModel(
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,

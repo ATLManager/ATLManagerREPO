@@ -27,11 +27,14 @@ namespace ATLManager.Models
         [RegularExpression(@"^\d{4}-\d{3}$", ErrorMessage = "Formato Incorreto - ex. 1234-123")]
         public string PostalCode { get; set; }
 
-		public Agrupamento AgrupamentoPai { get; set; }
+        [ForeignKey("Agrupamento")]
+        public Guid? AgrupamentoId { get; set; }
+
+		public Agrupamento? Agrupamento { get; set; }
 
 		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
 		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
-		public string NIPC { get; set; }
+		public string? NIPC { get; set; }
 
 		public ATL()
 		{

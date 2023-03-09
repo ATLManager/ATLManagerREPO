@@ -10,23 +10,23 @@ using ATLManager.Models;
 
 namespace ATLManager.Controllers
 {
-    public class ATLsController : Controller
+    public class ATLController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-        public List<SelectListItem> AgrupamentoOptions { get; set; }
 
-        public ATLsController(ATLManagerAuthContext context)
+        public ATLController(ATLManagerAuthContext context)
         {
             _context = context;
         }
 
-        // GET: ATLs
+        // GET: ATL
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ATL.ToListAsync());
+            var aTLManagerAuthContext = _context.ATL.Include(a => a.Agrupamento);
+            return View(await aTLManagerAuthContext.ToListAsync());
         }
 
-        // GET: ATLs/Details/5
+        // GET: ATL/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -35,6 +35,7 @@ namespace ATLManager.Controllers
             }
 
             var atl = await _context.ATL
+                .Include(a => a.Agrupamento)
                 .FirstOrDefaultAsync(m => m.AtlId == id);
             if (atl == null)
             {
@@ -44,36 +45,34 @@ namespace ATLManager.Controllers
             return View(atl);
         }
 
-        // GET: ATLs/Create
+        // GET: ATL/Create
         public IActionResult Create()
         {
-            PopulateAgrupamentoOptions();
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name");
             return View();
         }
 
-        // POST: ATLs/Create
+        // POST: ATL/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoPai,NIPC")] ATL atl)
+        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoId,NIPC")] ATL atl)
         {
             if (ModelState.IsValid)
             {
                 atl.AtlId = Guid.NewGuid();
                 _context.Add(atl);
                 await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
             return View(atl);
         }
 
-        // GET: ATLs/Edit/5
+        // GET: ATL/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            PopulateAgrupamentoOptions();
-
             if (id == null || _context.ATL == null)
             {
                 return NotFound();
@@ -84,15 +83,16 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
             return View(atl);
         }
 
-        // POST: ATLs/Edit/5
+        // POST: ATL/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,NIPC")] ATL atl)
+        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoId,NIPC")] ATL atl)
         {
             if (id != atl.AtlId)
             {
@@ -119,10 +119,11 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
             return View(atl);
         }
 
-        // GET: ATLs/Delete/5
+        // GET: ATL/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -131,6 +132,7 @@ namespace ATLManager.Controllers
             }
 
             var atl = await _context.ATL
+                .Include(a => a.Agrupamento)
                 .FirstOrDefaultAsync(m => m.AtlId == id);
             if (atl == null)
             {
@@ -140,7 +142,7 @@ namespace ATLManager.Controllers
             return View(atl);
         }
 
-        // POST: ATLs/Delete/5
+        // POST: ATL/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -154,23 +156,14 @@ namespace ATLManager.Controllers
             {
                 _context.ATL.Remove(atl);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ATLExists(Guid id)
         {
-            return _context.ATL.Any(e => e.AtlId == id);
-        }
-
-        private void PopulateAgrupamentoOptions () {
-            ViewBag.Agrupamentos = _context.Agrupamento.Select(a =>
-            new SelectListItem
-            {
-                Value = a.AgrupamentoID.ToString(),
-                Text = a.Name
-            }).ToList();
+          return _context.ATL.Any(e => e.AtlId == id);
         }
     }
 }

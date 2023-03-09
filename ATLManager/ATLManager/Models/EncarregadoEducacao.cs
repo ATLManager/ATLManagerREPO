@@ -31,8 +31,6 @@ namespace ATLManager.Models
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
         public int NIF { get; set; }
 
-
-
 		public EncarregadoEducacao()
 		{
 			EncarregadoId = Guid.NewGuid();

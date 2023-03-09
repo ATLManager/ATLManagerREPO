@@ -133,7 +133,7 @@ namespace ATLManager.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("AgrupamentoPaiAgrupamentoID")
+                    b.Property<Guid?>("AgrupamentoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
@@ -142,7 +142,6 @@ namespace ATLManager.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("NIPC")
-                        .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
@@ -156,7 +155,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("AtlId");
 
-                    b.HasIndex("AgrupamentoPaiAgrupamentoID");
+                    b.HasIndex("AgrupamentoId");
 
                     b.ToTable("ATL");
                 });
@@ -362,13 +361,11 @@ namespace ATLManager.Migrations
 
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
                 {
-                    b.HasOne("ATLManager.Models.Agrupamento", "AgrupamentoPai")
+                    b.HasOne("ATLManager.Models.Agrupamento", "Agrupamento")
                         .WithMany()
-                        .HasForeignKey("AgrupamentoPaiAgrupamentoID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AgrupamentoId");
 
-                    b.Navigation("AgrupamentoPai");
+                    b.Navigation("Agrupamento");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ContaAdministrativa", b =>
