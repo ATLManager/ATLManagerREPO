@@ -25,6 +25,8 @@
     <link rel="stylesheet" type='text/css' media='screen' href="~/css/site.css" asp-append-version="true" />
 
 </head>
+@if (!SignInManager.IsSignedIn(User))
+{
 <body class="body">
 
     <!-- Menu -->
@@ -258,5 +260,6 @@
             }
         });
     </script>
+    }
 </body>
 </html>

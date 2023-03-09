@@ -1,6 +1,10 @@
 ﻿@page
 @using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
 
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 @model ConfirmEmailModel
 @{
     ViewData["Title"] = language.GetKey("titleConfirmEmail");
@@ -8,8 +12,9 @@
 }
 @inject LanguageService language
 
-
-<!-- Container -->
+@if (!SignInManager.IsSignedIn(User))
+{
+    <!-- Container -->
 <div class="container h-auto mt-auto">
     <div class="d-flex justify-content-center">
         <!-- Box  -->
@@ -25,5 +30,5 @@
     </div>
 </div>
 <!-- // Container -->
-
+}
 @*<partial name="_StatusMessage" model="Model.StatusMessage" />*@
