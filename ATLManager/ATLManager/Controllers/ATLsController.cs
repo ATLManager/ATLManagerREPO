@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 
-namespace ATLManager
+namespace ATLManager.Controllers
 {
     public class ATLsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        public List<SelectListItem> AgrupamentoOptions { get; set; }
 
         public ATLsController(ATLManagerAuthContext context)
         {
@@ -22,7 +23,7 @@ namespace ATLManager
         // GET: ATLs
         public async Task<IActionResult> Index()
         {
-              return View(await _context.ATL.ToListAsync());
+            return View(await _context.ATL.ToListAsync());
         }
 
         // GET: ATLs/Details/5
@@ -33,19 +34,20 @@ namespace ATLManager
                 return NotFound();
             }
 
-            var aTL = await _context.ATL
+            var atl = await _context.ATL
                 .FirstOrDefaultAsync(m => m.AtlId == id);
-            if (aTL == null)
+            if (atl == null)
             {
                 return NotFound();
             }
 
-            return View(aTL);
+            return View(atl);
         }
 
         // GET: ATLs/Create
         public IActionResult Create()
         {
+            PopulateAgrupamentoOptions();
             return View();
         }
 
@@ -54,32 +56,35 @@ namespace ATLManager
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,NIPC")] ATL aTL)
+        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoPai,NIPC")] ATL atl)
         {
             if (ModelState.IsValid)
             {
-                aTL.AtlId = Guid.NewGuid();
-                _context.Add(aTL);
+                atl.AtlId = Guid.NewGuid();
+                _context.Add(atl);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(aTL);
+            return View(atl);
         }
 
         // GET: ATLs/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
+            PopulateAgrupamentoOptions();
+
             if (id == null || _context.ATL == null)
             {
                 return NotFound();
             }
 
-            var aTL = await _context.ATL.FindAsync(id);
-            if (aTL == null)
+            var atl = await _context.ATL.FindAsync(id);
+            if (atl == null)
             {
                 return NotFound();
             }
-            return View(aTL);
+            return View(atl);
         }
 
         // POST: ATLs/Edit/5
@@ -87,9 +92,9 @@ namespace ATLManager
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,NIPC")] ATL aTL)
+        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,NIPC")] ATL atl)
         {
-            if (id != aTL.AtlId)
+            if (id != atl.AtlId)
             {
                 return NotFound();
             }
@@ -98,12 +103,12 @@ namespace ATLManager
             {
                 try
                 {
-                    _context.Update(aTL);
+                    _context.Update(atl);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ATLExists(aTL.AtlId))
+                    if (!ATLExists(atl.AtlId))
                     {
                         return NotFound();
                     }
@@ -114,7 +119,7 @@ namespace ATLManager
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(aTL);
+            return View(atl);
         }
 
         // GET: ATLs/Delete/5
@@ -125,14 +130,14 @@ namespace ATLManager
                 return NotFound();
             }
 
-            var aTL = await _context.ATL
+            var atl = await _context.ATL
                 .FirstOrDefaultAsync(m => m.AtlId == id);
-            if (aTL == null)
+            if (atl == null)
             {
                 return NotFound();
             }
 
-            return View(aTL);
+            return View(atl);
         }
 
         // POST: ATLs/Delete/5
@@ -144,19 +149,28 @@ namespace ATLManager
             {
                 return Problem("Entity set 'ATLManagerAuthContext.ATL'  is null.");
             }
-            var aTL = await _context.ATL.FindAsync(id);
-            if (aTL != null)
+            var atl = await _context.ATL.FindAsync(id);
+            if (atl != null)
             {
-                _context.ATL.Remove(aTL);
+                _context.ATL.Remove(atl);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ATLExists(Guid id)
         {
-          return _context.ATL.Any(e => e.AtlId == id);
+            return _context.ATL.Any(e => e.AtlId == id);
+        }
+
+        private void PopulateAgrupamentoOptions () {
+            ViewBag.Agrupamentos = _context.Agrupamento.Select(a =>
+            new SelectListItem
+            {
+                Value = a.AgrupamentoID.ToString(),
+                Text = a.Name
+            }).ToList();
         }
     }
 }

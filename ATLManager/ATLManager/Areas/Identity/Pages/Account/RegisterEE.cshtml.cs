@@ -16,6 +16,7 @@ using ATLManager.Models;
 using ATLManager.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ATLManager.Services;
+using System.Linq;
 
 namespace ATLManager.Areas.Identity.Pages.Account
 {
@@ -69,6 +70,9 @@ namespace ATLManager.Areas.Identity.Pages.Account
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        [BindProperty]
+        public List<SelectListItem> Options { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -103,10 +107,6 @@ namespace ATLManager.Areas.Identity.Pages.Account
             [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
             public string NIF { get; set; }
 
-			[Required]
-			[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
-			public SelectList ATL { get; set; }
-
 			/// <summary>
 			///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
 			///     directly from your code. This API may change or be removed in future releases.
@@ -139,12 +139,17 @@ namespace ATLManager.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
         public async Task OnGetAsync(string returnUrl = null)
         {
-            //var dictionary = _context.ATL.ToDictionary<int, string>(k => k)
-            ReturnUrl = returnUrl;
+			ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
+            Options = _context.ATL.Select(x => 
+                new SelectListItem 
+                { 
+                    Value = x.AtlId.ToString(),
+                    Text = x.Name
+                }).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
