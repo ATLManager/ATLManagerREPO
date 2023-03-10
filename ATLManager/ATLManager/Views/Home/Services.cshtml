@@ -31,6 +31,11 @@
         var activeId = "services"; // desired li element
         $('#' + activeId).addClass('active'); // add the active class to the desired li element
         $('.nav-link').click(function () {
+            // check if the clicked nav-link has an id of "language"
+            if ($(this).attr('id') === 'language') {
+                // do nothing
+                return;
+            }
             $('.nav-link').removeClass('active');
             $(this).addClass('active');
         });

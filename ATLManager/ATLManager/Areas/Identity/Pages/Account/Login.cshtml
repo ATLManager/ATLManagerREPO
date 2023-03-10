@@ -37,8 +37,9 @@
             <div class="row col-6 justify-content-center custom-box">
                 <div class="row box border-5">
                     <form id="account" method="post">
-                        <div class="mb-3">
 
+
+                        <div class="mb-3">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <label asp-for="Input.Email" class="form-label" autocomplete="username" aria-required="true">@language.GetKey("email")</label>
                             <input asp-for="Input.Email" class="form-control" id="email">

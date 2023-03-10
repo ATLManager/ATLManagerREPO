@@ -14,7 +14,7 @@
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="~/css/menu.min.css" rel="stylesheet">
-}
+}   
 
 <body id="page-top">
     @if (!SignInManager.IsSignedIn(User)){
@@ -39,34 +39,34 @@
                     <li class="nav-item">
                         <a asp-area="" asp-controller="Home" asp-action="Contacts" class="nav-link" id="contact-us">@language.GetKey("titleContactUs")</a>
                     </li>
-      
-            <li>
-                <div class="language-dropdown">
-                    <a> @language.GetKey("language")</a>
-                    <div class="language-content" style="float:right">
+
+                    <li class="nav-item">
+                        <div class="language-dropdown">
+                            <a class="nav-link" id="language"> @language.GetKey("language")</a>
+                            <div class="language-content" style="float:right">
                         
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
-                            <img src="~/images/flags/en.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
-                        </a>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
+                                    <img src="~/images/flags/en.png" class="flag-logo" />
+                                    <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
+                                </a>
 
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
-                            <img src="~/images/flags/de.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuDeutsch")</span>
-                        </a>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" class="nav-link">
+                                    <img src="~/images/flags/de.png" class="flag-logo" />
+                                    <span class="language-label">@language.GetKey("txtMenuDeutsch")</span>
+                                </a>
 
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
-                            <img src="~/images/flags/pt.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
-                        </a>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" class="nav-link">
+                                    <img src="~/images/flags/pt.png" class="flag-logo" />
+                                    <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
+                                </a>
 
-                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
-                            <img src="~/images/flags/fr.png" class="flag-logo" />
-                            <span class="language-label">@language.GetKey("txtMenuFrench")</span>
-                        </a>
-                    </div>
-                </div>
-            </li>
+                                <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
+                                    <img src="~/images/flags/fr.png" class="flag-logo" />
+                                    <span class="language-label">@language.GetKey("txtMenuFrench")</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
 
                 </ul>
 
@@ -83,8 +83,8 @@
         </li>
         </div>
     </ul>
-            </div>
-        </nav>
+  </div>
+</nav>
     <!-- / Menu Before Login-->
     
 }
