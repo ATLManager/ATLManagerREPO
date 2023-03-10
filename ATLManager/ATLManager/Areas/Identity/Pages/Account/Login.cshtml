@@ -18,91 +18,6 @@
     <!-- Container -->
     <div class="container h-auto mt-auto">
 
-        <!-- Image -->
-        @*<div class="container-image">*@
-        <!-- <div class="image"></div> -->
-        @*<img src="~/images/logo1.png" class="image" salt="ATLMANAGER">*@
-        @*</div>*@
-        <!-- / Image -->
-        <!-- Botão de ajuda  -->
-        @*   <div class="container-btnHelp">
-        <button class="custom-button">
-            <img src="~/images/question.png" class="image-question" alt="Button Image">
-        </button>
-    </div>*@
-        <!-- / Botão de ajuda  -->
-
-        <!-- Menu Lateral de Ajuda -->
-        @* <nav class="menu">
-
-        <div class="first-container">
-            <div class="container-top">
-                <div class="custom-h1">
-                    <h1> @language.GetKey("help") </h1>
-                </div>
-
-                <div class="search-container">
-                    <input type="text" id="search" placeholder="@language.GetKey("txtSearchHelpArticles")">
-                </div>
-            </div>
-
-
-            <div class="container-help-info">
-
-                <div>
-                    <button class="custom-button-info" id="info-button1">@language.GetKey("howToLoginOnApp")</button>
-
-                    <div id="info1" class="help-info1">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToLoginOnApp")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button2">@language.GetKey("howToLoginViaFacebook")</button>
-
-                    <div id="info2" class="help-info2">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaFacebook")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button3">@language.GetKey("howToLoginViaOutlook")</button>
-
-                    <div id="info3" class="help-info3">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaOutlook")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button4">@language.GetKey("howToLoginViaTwitter")</button>
-
-                    <div id="info4" class="help-info4">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaTwitter")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button5">@language.GetKey("howToLoginViaGoogle")</button>
-
-                    <div id="info5" class="help-info5">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToLoginViaGoogle")
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav> *@
-        <!-- / Menu Lateral de Ajuda -->
-
         <!-- Botão de Ajuda -->
         <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
@@ -143,7 +58,7 @@
 
                             <div class="d-flex justify-content-between mt-2">
                                 <a id="forgot-password" asp-page="./ForgotPassword" class="custom-link">@language.GetKey("forgetPassword")</a>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="custom-link">@language.GetKey("createAccount")</a>
+                                <a asp-page="./RegisterType" asp-route-returnUrl="@Model.ReturnUrl" class="custom-link">@language.GetKey("createAccount")</a>
                             </div>
                         </div>
 
