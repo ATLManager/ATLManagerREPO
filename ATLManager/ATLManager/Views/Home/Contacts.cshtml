@@ -1,19 +1,26 @@
 ﻿@using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
 
-
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 @inject LanguageService language
+
 
 @{
     ViewData["Title"] = language.GetKey("titleContactUs");
 }
 
-<div>
-    <h1 class="display-4">@language.GetKey("txtWelcomeToPageContactUs")</h1>
-    <p>@language.GetKey("txt1ContactUs")</p>
-    <p>@language.GetKey("txt2ContactUs")</p>
-    <p>@language.GetKey("txt3ContactUs")</p>
-    <p>@language.GetKey("txt4ContactUs")</p>
-</div>
+@if (!SignInManager.IsSignedIn(User))
+{
+    <div>
+        <h1 class="display-4">@language.GetKey("txtWelcomeToPageContactUs")</h1>
+        <p>@language.GetKey("txt1ContactUs")</p>
+        <p>@language.GetKey("txt2ContactUs")</p>
+        <p>@language.GetKey("txt3ContactUs")</p>
+        <p>@language.GetKey("txt4ContactUs")</p>
+    </div>
+}
 
 
 <!-- SCRIPT PARA CLICAR NO MENU E MUDAR LI SELECIONADO (ACTIVE)  -->
@@ -22,6 +29,11 @@
         var activeId = "contact-us"; // desired li element
         $('#' + activeId).addClass('active'); // add the active class to the desired li element
         $('.nav-link').click(function () {
+            // check if the clicked nav-link has an id of "language"
+            if ($(this).attr('id') === 'language') {
+                // do nothing
+                return;
+            }
             $('.nav-link').removeClass('active');
             $(this).addClass('active');
         });

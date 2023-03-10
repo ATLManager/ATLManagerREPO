@@ -1,9 +1,15 @@
 ﻿@model ATLManager.Models.ATL
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @{
     ViewData["Title"] = "Delete";
 }
-
+@if (SignInManager.IsSignedIn(User))
+{
 <h1>Delete</h1>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -55,3 +61,4 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+}

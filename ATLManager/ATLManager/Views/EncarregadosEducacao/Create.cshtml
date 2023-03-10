@@ -1,9 +1,16 @@
 ﻿@model ATLManager.Models.EncarregadoEducacao
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @{
     ViewData["Title"] = "Create";
 }
 
+@if (SignInManager.IsSignedIn(User))
+{
 <h1>Create</h1>
 
 <h4>EncarregadoEducacao</h4>
@@ -50,4 +57,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
 }

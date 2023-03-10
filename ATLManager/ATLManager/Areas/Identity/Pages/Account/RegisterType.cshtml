@@ -2,6 +2,11 @@
 
 @using ATLManager.Models;
 @using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 @inject LanguageService language
 @model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
 @inject LanguageService language
@@ -10,11 +15,77 @@
 	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
+@if (!SignInManager.IsSignedIn(User))
+{
+<!-- Container -->
 <div class="container h-auto mt-auto">
-	<li class="nav-item">
-		<a asp-area="Identity" asp-page="/Account/RegisterAdmin" class="nav-link btn btn-primary border-0 shadow fw-bold px-4 pl-3 pr-3 custom-button">Admin</a>
-    </li>
-	<li class="nav-item">
-		<a asp-area="Identity" asp-page="/Account/RegisterEE" class="nav-link btn btn-primary border-0 shadow fw-bold px-4 pl-3 pr-3 custom-button">Encarregado de Educação</a>
-    </li>
+
+    <!-- Botão de Ajuda -->
+        <div class="row" style="padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-5"></div>
+            <div class="col-4 text-right pb-2">
+                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+        </div>
+        <!-- // Botão de Ajuda -->
+
+    <!-- Container-Form -->
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row text-center box border-5">
+                <div class="row mb-2">
+                    <h2 class="fw-bold text-primary mb-5">Tipo de conta</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <h5 class="fw-bold">Registar como administrador</h5>
+                    </div>
+                    <div class="col-md">
+                        <h5 class="fw-bold">Registar como encarregado</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md p-3">
+                        <img src="~/images/registo/img1.png" alt="Imagem 1" class="img-fluid rounded-pill">
+                    </div>
+
+                    <div class="col-md p-3">
+                        <img src="~/images/registo/img2.png" alt="Imagem 2" class="img-fluid rounded-pill">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md p-3">
+                        <a asp-area="Identity" asp-page="/Account/RegisterAdmin"><button class="btn btn-primary px-4 pl-3 pr-3 custom-button">Registar</button></a>
+                    </div>
+
+                    <div class="col-md p-3">
+                        <a asp-area="Identity" asp-page="/Account/RegisterEE"><button class="btn btn-primary px-4 pl-3 pr-3 custom-button">Registar</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // Box -->
+    </div>
+    <!-- // Container-Form -->
+
+    <!-- Slide Left (Help) -->
+    <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Ajuda</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- canvas body  -->
+            <!-- // canvas body  -->
+        </div>
+    </div>
+    <!-- // Slide Left (Help) -->
 </div>
+}
