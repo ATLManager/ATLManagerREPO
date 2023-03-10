@@ -98,6 +98,16 @@
 							<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
 							<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 						</div>
+
+							<div class="mb-3">
+								<label for="exampleFormControlSelect1" class="form-label">Select Example</label>
+								<select class="form-select" id="exampleFormControlSelect1">
+									<option selected>Open this select menu</option>
+									<option value="1">Option 1</option>
+									<option value="2">Option 2</option>
+									<option value="3">Option 3</option>
+								</select>
+							</div>
 					</div>
 					<div class="row">
 						<a id="login" asp-area="Identity" asp-page="/Account/Login" class="custom-link" style="float: right;">@language.GetKey("haveAccount")</a>
