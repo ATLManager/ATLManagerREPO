@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230311162830_Refeicao_Update")]
+    partial class Refeicao_Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,9 +168,6 @@ namespace ATLManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AtlId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("CC")
                         .IsRequired()
                         .HasColumnType("nvarchar(9)");
@@ -181,8 +180,6 @@ namespace ATLManager.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ContaId");
-
-                    b.HasIndex("AtlId");
 
                     b.HasIndex("UserId");
 
@@ -436,17 +433,11 @@ namespace ATLManager.Migrations
 
             modelBuilder.Entity("ATLManager.Models.ContaAdministrativa", b =>
                 {
-                    b.HasOne("ATLManager.Models.ATL", "Atl")
-                        .WithMany()
-                        .HasForeignKey("AtlId");
-
                     b.HasOne("ATLManager.Areas.Identity.Data.ATLManagerUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Atl");
 
                     b.Navigation("User");
                 });
