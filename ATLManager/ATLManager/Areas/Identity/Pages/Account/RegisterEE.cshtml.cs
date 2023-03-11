@@ -70,9 +70,6 @@ namespace ATLManager.Areas.Identity.Pages.Account
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        [BindProperty]
-        public List<SelectListItem> Options { get; set; }
-
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -143,7 +140,6 @@ namespace ATLManager.Areas.Identity.Pages.Account
         {
 			ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -185,6 +181,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+					await _userManager.AddToRoleAsync(user, "EncarregadoEducacao");
+
 					var perfil = new EncarregadoEducacao(user, 
                         Input.Phone, 
                         Input.Address, 
