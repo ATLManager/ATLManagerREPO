@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,14 +12,16 @@ namespace ATLManager.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the ATLManagerUser class
 public class ATLManagerUser : IdentityUser
 {
+    [Required]
     [ProtectedPersonalData]
     [Column(TypeName = "nvarchar(100)")]
-    [Required]
+    [DisplayName("Nome")]
     public string FirstName { get; set; }
     
+    [Required]
     [ProtectedPersonalData]
     [Column(TypeName = "nvarchar(100)")]
-    [Required]
+    [DisplayName("Apelido")]
     public string LastName { get; set; }
 
 	[Required]
