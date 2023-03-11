@@ -171,6 +171,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("CC")
                         .IsRequired()
+                        .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
                     b.Property<DateTime>("DateOfBirth")

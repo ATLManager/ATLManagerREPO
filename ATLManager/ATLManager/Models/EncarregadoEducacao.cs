@@ -11,8 +11,9 @@ namespace ATLManager.Models
 		[Required]
 		public ATLManagerUser User { get; set; }
 
-        [Required]
         [Phone]
+        [Required]
+        [RegularExpression("^9[0-9]{8}$")]
         public int Phone { get; set; }
 
         [Required]
@@ -28,8 +29,9 @@ namespace ATLManager.Models
         public string City { get; set; }
 
         [Required]
-        [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
-        public int NIF { get; set; }
+		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
+		public int NIF { get; set; }
 
 		public EncarregadoEducacao()
 		{
