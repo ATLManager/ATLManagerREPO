@@ -93,9 +93,9 @@
                                                         @Html.DisplayFor(modelItem => item.NIPC)
                                                     </td>
                                                     <td class="text-center">
-                                                        <a asp-action="Details" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-primary custom-button"> Details</button></a> 
-                                                        <a asp-action="Edit" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-success custom-button w-25"> Edit </button></a> 
-                                                        <a asp-action="Delete" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-danger custom-button w-25"> Delete</button></a>
+                                                        <a asp-action="Details" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> Details</button></a>
+                                                        <a asp-action="Edit" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-success custom-button w-25" style="border-radius:6em"> Edit </button></a>
+                                                        <a asp-action="Delete" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em; width: 30%;"> Delete</button></a>
                                                     </td>
                                                 </tr>
                                             }
@@ -106,18 +106,6 @@
 
                                 </div>
                             </div>
-
-                           @* <div class="d-flex text-center mt-5">
-                                <div class="col">
-                                    <a href="#"><button type="button"
-                                            class="btn btn-secondary custom-button w-50">Voltar</button></a>
-                                </div>
-
-                                <div class="col">
-                                    <button type="submit" id="fase1Submit" class="btn btn-primary custom-button w-75"
-                                        data-bs-toggle="modal" data-bs-target="#modelShowDetails">Confirmar</button>
-                                </div>
-                            </div>*@
                         </form>
                     </div>
                 </div>
