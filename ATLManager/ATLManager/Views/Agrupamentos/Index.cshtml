@@ -56,7 +56,7 @@
 
                                         <div class="col">
                                             <p class="text-end">
-                                                <a asp-action="Create"><button type="button" class="btn btn-primary custom-button rounded-circle"> + </button></a>
+                                                <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Agrupamento </button></a>
                                             </p>
                                         </div>
                                     </div>
@@ -116,17 +116,107 @@
         </div>
 
     <!-- Slide Left (Help) -->
-    <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Ajuda</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   <div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel">
+
+        <div class="offcanvas-header helpCustomMargin">
+            <div class="col col-11 text-center">
+                <h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
+                    style="color:white;">Ajuda</h5>
+            </div>
+            <div class="col" text-right>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
         </div>
-        <div class="offcanvas-body">
-            <!-- canvas body  -->
-            <!-- // canvas body  -->
+
+        <input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
+            aria-label="Search" style="border-radius: 10px;">
+        
+        <div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
+            <div class="offcanvas-body box overflow-auto">
+
+                <div class=" row p-3 " style=" background-color: #F8F8F8">
+                    <button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+                            id="showText">
+                        <span>Como procurar um agrupamento</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </button>
+
+                    <br><br><br><br>
+                    <span class="myText p-3 helpShadowButton" id="displayText"
+                        style="display: none; position: relative;">
+                        Here's some more textHere's some more textHere's some more textHere's some
+                        more textHe
+                        re's some more textHere's some more text...</span>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/terms.png" class="me-4">
+                            <span>Leia artigos de ajuda</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/comunity.png" class="me-4">
+                            <span>Pergunte à comunidade</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/new.png" class="me-4">
+                            <span>Novas Atualizações</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/feedback.png" class="me-4">
+                            <span>Dê Feedback</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+            </div>
         </div>
     </div>
+
     <!-- // Slide Left (Help) -->
+
+
+         <!-- JS Button help 1 -->
+    <script>
+        document.getElementById('showText').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText');
+            var showTextBtn = document.getElementById('showText');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('custom-button');
+                showTextBtn.classList.add('myButton');
+
+                // myButton
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('custom-button');
+            }
+        });
+    </script>
+    <!-- JS Button help 1 -->
 
     <!-- Search on table (Fase1) -->
     <script>
@@ -157,5 +247,6 @@
             }
         });
     </script>
+
 
 }

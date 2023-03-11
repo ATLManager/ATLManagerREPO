@@ -29,6 +29,7 @@
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="~/css/menu.min.css" rel="stylesheet">
+        <link href="~/css/slide-help.css" rel="stylesheet">
     }
 
 
@@ -53,7 +54,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -63,12 +64,13 @@
                     Features
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#agrupamentos"
-                       aria-expanded="true" aria-controls="agrupamentos">
+                    <a id="manage" class="nav-link collapsed" asp-action="Index" asp-controller="Agrupamentos" 
+                       aria-expanded="false" aria-controls="agrupamentos">
+
                         <i class="far fa-fw fa-window-maximize"></i>
                         <span>Agrupamentos</span>
                     </a>
-                    <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                   @* <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <!-- <h6 class="collapse-header">Bootstrap UI</h6> -->
                             
@@ -77,7 +79,7 @@
                             <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Edit">Editar</a>
                             <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Delete">Remover</a>
                         </div>
-                    </div>
+                    </div>*@
                 </li>
 
                 <li class="nav-item">
