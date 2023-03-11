@@ -122,10 +122,10 @@
                     <div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <!-- <h6 class="collapse-header">Tables</h6> -->
-                            <a class="collapse-item" href="#">Consultar</a>
-                            <a class="collapse-item" href="#">Criar</a>
-                            <a class="collapse-item" href="#">Editar</a>
-                            <a class="collapse-item" href="#">Remover</a>
+                            <a id="manage" class="collapse-item" asp-controller="Funcionarios" asp-action="Index">Consultar</a>
+                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Create">Criar</a>
+                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Edit">Editar</a>
+                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Delete">Remover</a>
                         </div>
                     </div>
                 </li>

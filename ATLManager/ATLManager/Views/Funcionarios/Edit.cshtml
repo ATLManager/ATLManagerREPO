@@ -1,0 +1,60 @@
+﻿@model ATLManager.ViewModels.LowerAccountEditViewModel
+@using ATLManager.Services;
+@inject LanguageService language
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Funcionario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.ContaId" />
+            <div class="form-group">
+                <label asp-for="@Model.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
+                <input asp-for="@Model.FirstName" class="form-control" autocomplete="username" aria-required="true">
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
+                <input asp-for="@Model.LastName" class="form-control" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.AtlId" class="control-label"></label>
+                <select asp-for="@Model.AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.DateOfBirth" class="control-label"></label>
+                <input asp-for="@Model.DateOfBirth" class="form-control" />
+                <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.CC" class="control-label"></label>
+                <input asp-for="@Model.CC" class="form-control" />
+                <span asp-validation-for="@Model.CC" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Email" class="form-label">@language.GetKey("email")</label>
+                <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

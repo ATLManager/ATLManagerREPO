@@ -39,7 +39,7 @@ namespace ATLManager.Controllers
             var usersFuncionarios = from user in _context.Users
                                      join userRole in _context.UserRoles on user.Id equals userRole.UserId
                                      join role in _context.Roles on userRole.RoleId equals role.Id
-                                     where role.Name == "Coordenador"
+                                     where role.Name == "Funcionario"
                                      select user;
 
 			var funcionarios = from user in usersFuncionarios
@@ -110,7 +110,7 @@ namespace ATLManager.Controllers
                 await _userManager.AddToRoleAsync(user, "Funcionario");
 
                 // Aceder ao ATL pelo Id
-                var atl = await _context.ATL.Where(a => a.AgrupamentoId == viewModel.AtlId).FirstAsync();
+                var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
 
                 // Criar o perfil
                 var funcionario = new ContaAdministrativa(user, atl, viewModel.Coordenador.DateOfBirth, viewModel.Coordenador.CC);
@@ -169,9 +169,9 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ContaId,UserId,DateOfBirth,CC")] ContaAdministrativa funcionario)
+        public async Task<IActionResult> Edit(Guid id, LowerAccountEditViewModel viewModel)
         {
-            if (id != funcionario.ContaId)
+            if (id != viewModel.ContaId)
             {
                 return NotFound();
             }
@@ -180,12 +180,30 @@ namespace ATLManager.Controllers
             {
                 try
                 {
-                    _context.Update(funcionario);
-                    await _context.SaveChangesAsync();
+                    var funcionario = await _context.ContaAdministrativa.FindAsync(id);
+                    
+                    if (funcionario != null)
+                    {
+                        funcionario.DateOfBirth = viewModel.DateOfBirth;
+                        funcionario.CC = viewModel.CC;
+                        funcionario.AtlId = viewModel.AtlId;
+
+                        _context.Update(funcionario);
+                        await _context.SaveChangesAsync();
+
+                        var user = await _userManager.FindByIdAsync(funcionario.UserId);
+
+                        user.FirstName = viewModel.FirstName;
+                        user.LastName = viewModel.LastName;
+
+                        await _userStore.SetUserNameAsync(user, viewModel.Email, CancellationToken.None);
+                        await _emailStore.SetEmailAsync(user, viewModel.Email, CancellationToken.None);
+                        await _userManager.UpdateAsync(user);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ContaAdministrativaExists(funcionario.ContaId))
+                    if (!ContaAdministrativaExists(viewModel.ContaId))
                     {
                         return NotFound();
                     }
@@ -196,7 +214,8 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(funcionario);
+            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name", viewModel.AtlId);
+            return View(viewModel);
         }
 
         // GET: Coordenador/Delete/5

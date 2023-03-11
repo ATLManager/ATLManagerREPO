@@ -110,7 +110,7 @@ namespace ATLManager.Controllers
                 await _userManager.AddToRoleAsync(user, "Coordenador");
 
                 // Aceder ao ATL pelo Id
-                var atl = await _context.ATL.Where(a => a.AgrupamentoId == viewModel.AtlId).FirstAsync();
+                var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
 
                 // Criar o perfil
                 var coordenador = new ContaAdministrativa(user, atl, viewModel.Coordenador.DateOfBirth, viewModel.Coordenador.CC);
