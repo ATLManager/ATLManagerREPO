@@ -143,13 +143,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         {
 			ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            
-            Options = _context.ATL.Select(x => 
-                new SelectListItem 
-                { 
-                    Value = x.AtlId.ToString(),
-                    Text = x.Name
-                }).ToList();
+            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
