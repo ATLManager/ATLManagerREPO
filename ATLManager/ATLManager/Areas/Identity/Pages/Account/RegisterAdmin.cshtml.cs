@@ -167,7 +167,9 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-					var perfil = new ContaAdministrativa(user, Input.BirthDate, Convert.ToInt32(Input.CC));
+                    await _userManager.AddToRoleAsync(user, "Administrador");
+
+                    var perfil = new ContaAdministrativa(user, Input.BirthDate, Input.CC);
 					_context.Add(perfil);
 					await _context.SaveChangesAsync();
 

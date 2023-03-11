@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using ATLManager.Areas.Identity.Data;
+using System.ComponentModel;
 
 namespace ATLManager.Models
 {
@@ -17,26 +18,42 @@ namespace ATLManager.Models
 
 		[Required]
 		[DataType(DataType.Date)]
-		[Display(Name = "Data de nascimento")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+		[DisplayName("Data de nascimento")]
         public DateTime DateOfBirth { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(9)")]
-		[Display(Name = "Cartão de Cidadão")]
-		public int CC { get; set; }
+        [DisplayName("Cartão de cidadão")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
+        public string CC { get; set; }
+
+		[ForeignKey("Atl")]
+		public Guid? AtlId { get; set; }
+
+		public ATL? Atl { get; set; }
 
 		public ContaAdministrativa()
 		{
 			ContaId = Guid.NewGuid();
 		}
 
-		public ContaAdministrativa(ATLManagerUser user, DateTime dateOfBirth, int cc) : this ()
+		public ContaAdministrativa(ATLManagerUser user, DateTime dateOfBirth, string cc) : this ()
 		{
 			User = user;
 			UserId = User.Id;
 			DateOfBirth = dateOfBirth;
 			CC = cc;
 		}
-	}
+
+        public ContaAdministrativa(ATLManagerUser user, ATL atl, DateTime dateOfBirth, string cc) : this()
+        {
+            User = user;
+            UserId = User.Id;
+			Atl = atl;
+			AtlId = atl.AtlId;
+            DateOfBirth = dateOfBirth;
+            CC = cc;
+        }
+    }
 }

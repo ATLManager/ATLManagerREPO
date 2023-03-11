@@ -172,7 +172,7 @@
 
 					<div class="mb-3">
 						<label asp-for="@Model.Options" class="form-label">ATL</label>
-						<select asp-for="@Model.Options" asp-items="@Model.Options" class="form-control"> </select>/>
+						<select asp-for="@Model.Options" asp-items="ViewBag.AtlId" class="form-control"> </select>/>
 						<span asp-validation-for="@Model.Options" class="text-danger"></span>
 					</div>
 					
