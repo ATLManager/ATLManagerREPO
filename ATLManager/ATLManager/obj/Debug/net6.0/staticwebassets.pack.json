@@ -57,12 +57,52 @@
       "PackagePath": "staticwebassets\\images\\logo\\logo.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\logo\\logo1.png",
+      "PackagePath": "staticwebassets\\images\\logo\\logo1.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\man.png",
       "PackagePath": "staticwebassets\\images\\man.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\badge1.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\badge1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\chart1.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\chart1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\custo_benificio.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\custo_benificio.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\eficacia.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\eficacia.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\eficiencia.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\eficiencia.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\handshake1.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\handshake1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\non-login-pages\\people1.png",
+      "PackagePath": "staticwebassets\\images\\non-login-pages\\people1.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\question.png",
       "PackagePath": "staticwebassets\\images\\question.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\registo\\img1.png",
+      "PackagePath": "staticwebassets\\images\\registo\\img1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\registo\\img2.png",
+      "PackagePath": "staticwebassets\\images\\registo\\img2.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\social\\facebook.png",
