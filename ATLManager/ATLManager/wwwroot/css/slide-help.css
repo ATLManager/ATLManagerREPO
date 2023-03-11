@@ -1,0 +1,28 @@
+﻿.helpButton {
+    background-color: #DCECFF;
+    text-color: #000000;
+}
+
+.helpShadowButton {
+    background-color: #F8F8F8;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.helpCustomMargin {
+    margin-left: -1.25em;
+    margin-right: -1.3em;
+}
+
+.helpButton img {
+    vertical-align: middle;
+}
+
+.myButton {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.myText {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

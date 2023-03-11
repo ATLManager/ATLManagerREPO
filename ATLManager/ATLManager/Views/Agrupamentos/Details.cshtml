@@ -10,34 +10,90 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<h1>Details</h1>
 
-<div>
-    <h4>Agrupamento</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NIPC)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NIPC)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.AgrupamentoID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <!-- Fase 1  -->
+    <!-- d-flex -->
+    <div class="d-flex justify-content-center mt-5 pt-5">
+            <!-- Box  -->
+            <div class="row col-6 justify-content-center custom-box w-50">
+                <div class="row box border-5 p-5">
+
+                    <div class="container">
+                        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+                            <h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+                            <img src="~/images/icons/search-group.png" width="50" height="50">
+                        </div>
+                            <div class="row mt-3">
+                                <div class="mb-3">
+
+                                    <dl class="row text-end">
+                                        
+                                        <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </dt>
+                                       
+                                        
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.Name)
+                                        </dd>
+                                </div>
+                                <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.Location)
+                                        </dt>
+                                
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.Location)
+                                        </dd>
+                                        </div>
+
+                                <div class="row">
+                                <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.NIPC)
+                                        </dt>
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.NIPC)
+                                        </dd>
+                                        </div>
+                                    </dl>
+                                    <hr />
+                                    <div class="d-flex text-center mt-4">
+                                        <div class="col">
+                                            <a asp-action="Index">
+                                                <button type="button"
+                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                                    Voltar
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        @*<a asp-action="Edit" asp-route-id="@Model?.AgrupamentoID">Edit</a> |*@
+                                  
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            <!-- // Box -->
+            </div>
+        <!-- // Fase 1 -->
+        </div>
+    <!-- Slide Left (Help) -->
+   @* <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Ajuda</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- canvas body  -->
+            <!-- // canvas body  -->
+        </div>
+    </div>*@
+    <!-- // Slide Left (Help) -->
+
+    
 }
