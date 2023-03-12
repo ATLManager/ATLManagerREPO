@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    [Migration("20230312141208_Educando_Context")]
-    partial class Educando_Context
+    [Migration("20230312175621_refeicao-fix")]
+    partial class refeicaofix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -198,18 +198,14 @@ namespace ATLManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ATLId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ATLPertencente")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Apelido")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid?>("EncarregadoId")
+                    b.Property<Guid>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EncarregadoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Genero")
@@ -225,6 +221,10 @@ namespace ATLManager.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("EducandoId");
+
+                    b.HasIndex("AtlId");
+
+                    b.HasIndex("EncarregadoId");
 
                     b.ToTable("Educando");
                 });
@@ -265,6 +265,67 @@ namespace ATLManager.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("EncarregadoEducacao");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
+                {
+                    b.Property<Guid>("RefeicaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AGSat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Acucar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("HidratosCarbono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lipidos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Proteina")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValorEnergetico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RefeicaoId");
+
+                    b.ToTable("Refeicao");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -428,6 +489,25 @@ namespace ATLManager.Migrations
                     b.Navigation("Atl");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Educando", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ATLManager.Models.EncarregadoEducacao", "Encarregado")
+                        .WithMany()
+                        .HasForeignKey("EncarregadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Atl");
+
+                    b.Navigation("Encarregado");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>
