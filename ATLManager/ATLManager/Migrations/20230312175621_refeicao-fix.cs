@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ATLManager.Migrations
 {
-    public partial class Db_Update : Migration
+    public partial class refeicaofix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,6 +62,29 @@ namespace ATLManager.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Refeicao",
+                columns: table => new
+                {
+                    RefeicaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Categoria = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Proteina = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HidratosCarbono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VR = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Acucar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lipidos = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ValorEnergetico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AGSat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sal = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Refeicao", x => x.RefeicaoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,26 +216,6 @@ namespace ATLManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ContaAdministrativa",
-                columns: table => new
-                {
-                    ContaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CC = table.Column<string>(type: "nvarchar(9)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ContaAdministrativa", x => x.ContaId);
-                    table.ForeignKey(
-                        name: "FK_ContaAdministrativa_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "EncarregadoEducacao",
                 columns: table => new
                 {
@@ -232,6 +235,61 @@ namespace ATLManager.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContaAdministrativa",
+                columns: table => new
+                {
+                    ContaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContaAdministrativa", x => x.ContaId);
+                    table.ForeignKey(
+                        name: "FK_ContaAdministrativa_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContaAdministrativa_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Educando",
+                columns: table => new
+                {
+                    EducandoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Apelido = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    NIF = table.Column<int>(type: "int", maxLength: 9, nullable: false),
+                    Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EncarregadoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Educando", x => x.EducandoId);
+                    table.ForeignKey(
+                        name: "FK_Educando_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Educando_EncarregadoEducacao_EncarregadoId",
+                        column: x => x.EncarregadoId,
+                        principalTable: "EncarregadoEducacao",
+                        principalColumn: "EncarregadoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -280,9 +338,24 @@ namespace ATLManager.Migrations
                 column: "AgrupamentoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ContaAdministrativa_AtlId",
+                table: "ContaAdministrativa",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ContaAdministrativa_UserId",
                 table: "ContaAdministrativa",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Educando_AtlId",
+                table: "Educando",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Educando_EncarregadoId",
+                table: "Educando",
+                column: "EncarregadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EncarregadoEducacao_UserId",
@@ -308,16 +381,22 @@ namespace ATLManager.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ATL");
-
-            migrationBuilder.DropTable(
                 name: "ContaAdministrativa");
 
             migrationBuilder.DropTable(
-                name: "EncarregadoEducacao");
+                name: "Educando");
+
+            migrationBuilder.DropTable(
+                name: "Refeicao");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "ATL");
+
+            migrationBuilder.DropTable(
+                name: "EncarregadoEducacao");
 
             migrationBuilder.DropTable(
                 name: "Agrupamento");

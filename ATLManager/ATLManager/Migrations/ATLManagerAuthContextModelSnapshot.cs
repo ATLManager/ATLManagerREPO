@@ -196,18 +196,14 @@ namespace ATLManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ATLId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ATLPertencente")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Apelido")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid?>("EncarregadoId")
+                    b.Property<Guid>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EncarregadoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Genero")
@@ -223,6 +219,10 @@ namespace ATLManager.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("EducandoId");
+
+                    b.HasIndex("AtlId");
+
+                    b.HasIndex("EncarregadoId");
 
                     b.ToTable("Educando");
                 });
@@ -487,6 +487,25 @@ namespace ATLManager.Migrations
                     b.Navigation("Atl");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Educando", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ATLManager.Models.EncarregadoEducacao", "Encarregado")
+                        .WithMany()
+                        .HasForeignKey("EncarregadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Atl");
+
+                    b.Navigation("Encarregado");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>
