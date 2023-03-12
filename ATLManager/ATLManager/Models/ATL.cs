@@ -41,7 +41,7 @@ namespace ATLManager.Models
 			AtlId = Guid.NewGuid();
 		}
 
-		public ATL(string name, int phone, string address, string city, string postalCode, string nipc) : this ()
+		public ATL(string name, string address, string city, string postalCode, string nipc) : this ()
         {
             Name = name;
             Address = address;
