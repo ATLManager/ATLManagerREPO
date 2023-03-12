@@ -99,12 +99,12 @@
                     </div>*@
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#coordenadores" aria-expanded="true"
-                       aria-controls="coordenadores">
+                    <a class="nav-link collapsed" asp-controller="Coordenadores" asp-action="Index"
+                    aria-expanded="true" aria-controls="coordenadores">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Coordenadores</span>
                     </a>
-                    <div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+                    @*<div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <!-- <h6 class="collapse-header">Tables</h6> -->
                             <a id="manage" class="collapse-item" asp-controller="Coordenadores" asp-action="Index">Consultar</a>
@@ -112,7 +112,7 @@
                             <a class="collapse-item" asp-controller="Coordenadores" asp-action="Edit">Editar</a>
                             <a class="collapse-item" asp-controller="Coordenadores" asp-action="Delete">Remover</a>
                         </div>
-                    </div>
+                    </div>*@
                 </li>
 
                 <li class="nav-item">
