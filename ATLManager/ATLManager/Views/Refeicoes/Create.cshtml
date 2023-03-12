@@ -24,109 +24,105 @@
 
         <div class="row pt-5" style="padding-left: 6em;">
             <div class="col-3"></div>
-            <div class="col-7"></div>
-            <div class="col-2 pb-2">
+            <div class="col-7 text-right">
                 <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
+            <div class="col-2 pb-2">
+                
+            </div>
         </div>
         <div class="d-flex justify-content-center">
             <!-- Box  -->
-            <div class="row col-10 justify-content-center custom-box">
+            <div class="row col-8 justify-content-center custom-box">
                 <div class="row box border-5">
                     <!--text-center  -->
 
                     <div class="container">
-                        <form>
-
+                        <form asp-action="Create">
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label for="inputNome" class="form-label">Nome da ementa</label>
-                                    <input type="text" class="form-control" id="inputNome" required>
+                                    <label asp-for="Name" class="form-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
-                                <div class="col-6">
-                                    <label for="image" class="form-label">Choose an image:</label>
-                                    <input class="form-control" type="file" id="image" name="image">
-                                </div>
-
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label for="exampleFormControlSelect1" class="form-label">
-                                        Categoria da
-                                        ementa
-                                    </label>
-                                    <select class="form-select" id="exampleFormControlSelect1">
-                                        <option selected></option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-6 position-relative mt-2">
-                                    <div class="row">
-                                        <div class="h-100 position-absolute top-0 end-0">
-                                            <!-- extended box content -->
-                                            <div class="row mb-2">
-                                                <div class="d-flex justify-content-center ms-2 pb-1">
-                                                    <img src="~/images/icons/info_ementa.png" width="30" height="30">
-                                                    <div style="margin-left: 1%;">
-                                                        <h4 class="fw-bold text-center">Informação Nutricional</h4>
+  
+                                    <div class="col-6 position-relative mt-2">
+                                        <div class="row">
+                                            <div class="h-100 position-absolute top-0 end-0">
+                                                <!-- extended box content -->
+                                                <div class="row mb-2">
+                                                    <div class="d-flex justify-content-center ms-2 pb-1">
+                                                        <img src="~/images/icons/info_ementa.png" width="30" height="30">
+                                                        <div style="margin-left: 1%;">
+                                                            <h4 class="fw-bold text-center">Informação Nutricional</h4>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">Proteína (g)</label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <label asp-for="Proteina" class="form-label"></label>
+                                                        <input asp-for="Proteina" class="form-control" />
+                                                        <span asp-validation-for="Proteina" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label asp-for="HidratosCarbono" class="form-label"></label>
+                                                        <input asp-for="HidratosCarbono" class="form-control" />
+                                                        <span asp-validation-for="HidratosCarbono" class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">
-                                                        Hidratos de carbono
-                                                        (g)
-                                                    </label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <label asp-for="VR" class="form-label"></label>
+                                                        <input asp-for="VR" class="form-control" />
+                                                        <span asp-validation-for="VR" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label asp-for="Acucar" class="form-label"></label>
+                                                        <input asp-for="Acucar" class="form-control" />
+                                                        <span asp-validation-for="Acucar" class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">Vr (kcal)</label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <label asp-for="Lipidos" class="form-label"></label>
+                                                        <input asp-for="Lipidos" class="form-control" />
+                                                        <span asp-validation-for="Lipidos" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label asp-for="ValorEnergetico" class="form-label"></label>
+                                                        <input asp-for="ValorEnergetico" class="form-control" />
+                                                        <span asp-validation-for="ValorEnergetico" class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">Açúcar (g)</label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">Lípidos (g) </label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">
-                                                        Valor energético
-                                                        (kj)
-                                                    </label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">Ag.Sat. (g)</label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="inputNome" class="form-label">Sal (g)</label>
-                                                    <input type="text" class="form-control" id="inputNome" required>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <label asp-for="AGSat" class="form-label"></label>
+                                                        <input asp-for="AGSat" class="form-control" />
+                                                        <span asp-validation-for="AGSat" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label asp-for="Sal" class="form-label"></label>
+                                                        <input asp-for="Sal" class="form-control" />
+                                                        <span asp-validation-for="Sal" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                         
+
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Categoria" class="form-label"></label>
+                                    <input asp-for="Categoria" class="form-control" />
+                                    <span asp-validation-for="Categoria" class="text-danger"></span>
                                 </div>
+
+                                
                             </div>
 
 
@@ -134,8 +130,9 @@
 
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label for="inputNome" class="form-label">Data </label>
-                                    <input type="date" class="form-control" id="birthDate" required>
+                                    <label asp-for="Data" class="form-label"></label>
+                                    <input asp-for="Data" class="form-control" />
+                                    <span asp-validation-for="Data" class="text-danger"></span>
                                 </div>
 
 
@@ -143,8 +140,9 @@
 
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label for="inputNome" class="form-label">Descrição </label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <label asp-for="Descricao" class="form-label"></label>
+                                    <input asp-for="Descricao" class="form-control" />
+                                    <span asp-validation-for="Descricao" class="text-danger"></span>
                                 </div>
 
 
@@ -152,13 +150,8 @@
 
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label for="exampleFormControlSelect1" class="form-label">Nome do Atl</label>
-                                    <select class="form-select" id="exampleFormControlSelect1">
-                                        <option selected></option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                    </select>
+                                    <label for="image" class="form-label">Choose an image:</label>
+                                    <input class="form-control" type="file" id="image" name="image">
                                 </div>
 
                             </div>
