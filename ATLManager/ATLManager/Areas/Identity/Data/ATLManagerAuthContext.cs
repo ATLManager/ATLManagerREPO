@@ -26,5 +26,7 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
 
     public DbSet<ATL> ATL { get; set; }
 
-    public DbSet<ATLManager.Models.Refeicao> Refeicao { get; set; }
+    public DbSet<Refeicao> Refeicao { get; set; }
+
+    public DbSet<Educando> Educando { get; set; }
 }
