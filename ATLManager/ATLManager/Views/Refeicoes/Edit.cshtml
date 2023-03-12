@@ -118,15 +118,18 @@
 
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label asp-for="Categoria" class="form-label"></label>
-                                    <input asp-for="Categoria" class="form-control" />
+                                    <div class="form-group">
+                                        <label asp-for="Categoria" class="form-label"></label>
+                                        <select asp-for="Categoria" class="form-control" id="exampleFormControlSelect1">
+                                            <option value=""></option>
+                                            <option value="Carne">Carne</option>
+                                            <option value="Peixe">Peixe</option>
+                                            <option value="Vegetariano">Vegertariano</option>
+                                        </select>
+                                    </div>
                                     <span asp-validation-for="Categoria" class="text-danger"></span>
                                 </div>
-
-
                             </div>
-
-
 
 
                             <div class="row mb-3">
