@@ -44,30 +44,47 @@
                                         <form asp-action="Edit">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                             <input type="hidden" asp-for="@Model.ContaId" />
-                                            <div class="form-group">
-                                                <label asp-for="@Model.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-                                                <input asp-for="@Model.FirstName" class="form-control" autocomplete="username" aria-required="true">
-                                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
+                                                        <input asp-for="@Model.FirstName" class="form-control" autocomplete="username" aria-required="true">
+                                                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label asp-for="@Model.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
+                                                    <input asp-for="@Model.LastName" class="form-control" autocomplete="username" aria-required="true" />
+                                                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-                                                <input asp-for="@Model.LastName" class="form-control" autocomplete="username" aria-required="true" />
-                                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                                             </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.AtlId" class="control-label"></label>
-                                                <select asp-for="@Model.AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
+
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.CC" class="control-label"></label>
+                                                        <input asp-for="@Model.CC" class="form-control" />
+                                                        <span asp-validation-for="@Model.CC" class="text-danger"></span>
+                                                    </div>     
+                                                </div>
+                                            
+                                                <div class="col-6">
+                                                     <div class="form-group">
+                                                        <label asp-for="@Model.AtlId" class="control-label"></label>
+                                                        <select asp-for="@Model.AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
+                                                     </div>
+                                                </div> 
                                             </div>
+
                                             <div class="form-group">
                                                 <label asp-for="@Model.DateOfBirth" class="control-label"></label>
                                                 <input asp-for="@Model.DateOfBirth" class="form-control" />
                                                 <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
                                             </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.CC" class="control-label"></label>
-                                                <input asp-for="@Model.CC" class="form-control" />
-                                                <span asp-validation-for="@Model.CC" class="text-danger"></span>
-                                            </div>
+
                                             <div class="mb-3">
                                                 <label asp-for="@Model.Email" class="form-label">@language.GetKey("email")</label>
                                                 <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
@@ -133,7 +150,7 @@
                 <div class=" row p-3 " style=" background-color: #F8F8F8">
                     <button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
                             id="showText">
-                        <span>Como alterar o perfil de um funcionário</span>
+                        <span>Como alterar um funcionário</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </button>
 

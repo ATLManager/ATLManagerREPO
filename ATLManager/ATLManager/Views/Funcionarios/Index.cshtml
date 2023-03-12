@@ -73,9 +73,11 @@
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.User.LastName)
                                                 </th>
+
                                                 <th>
-                                                    @*@Html.DisplayNameFor(model => model.AtlName)*@
+                                                    @Html.DisplayNameFor(model => model.AtlName)
                                                 </th>
+                                         
                                                 <th class="text-center"> Acções </th>
                                             </tr>
                                         </thead>
@@ -90,7 +92,7 @@
                                                         @Html.DisplayFor(modelItem => item.User.LastName)
                                                     </td>
                                                     <td>
-                                                        @*@Html.DisplayFor(modelItem => item.AtlName)*@
+                                                        @Html.DisplayFor(modelItem => item.AtlName)
                                                     </td>
                                                     <td class="text-center">
                                                         <a asp-action="Details" asp-route-id="@item.Profile.ContaId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> Details</button></a>

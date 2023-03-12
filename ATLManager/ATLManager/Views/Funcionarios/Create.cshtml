@@ -42,46 +42,67 @@
                                     <div class="col-md">
                                         <form asp-action="Create">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-                                                <input asp-for="@Model.FirstName" class="form-control" autocomplete="username" aria-required="true">
-                                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-                                                <input asp-for="@Model.LastName" class="form-control" autocomplete="username" aria-required="true" />
-                                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.AtlId" class="control-label"></label>
-                                                <select asp-for="@Model.AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.Coordenador.DateOfBirth" class="control-label"></label>
-                                                <input asp-for="@Model.Coordenador.DateOfBirth" class="form-control" />
-                                                <span asp-validation-for="@Model.Coordenador.DateOfBirth" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@Model.Coordenador.CC" class="control-label"></label>
-                                                <input asp-for="@Model.Coordenador.CC" class="form-control" />
-                                                <span asp-validation-for="@Model.Coordenador.CC" class="text-danger"></span>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label asp-for="@Model.Email" class="form-label">@language.GetKey("email")</label>
-                                                <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
-                                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
+                                                        <input asp-for="@Model.FirstName" class="form-control" autocomplete="username" aria-required="true">
+                                                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                    <div class="col-6">
+                                                        <label asp-for="@Model.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
+                                                        <input asp-for="@Model.LastName" class="form-control" autocomplete="username" aria-required="true" />
+                                                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                                    </div>
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label asp-for="@Model.Password" class="form-label">@language.GetKey("password")</label>
-                                                <input asp-for="@Model.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                                                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.Coordenador.CC" class="control-label"></label>
+                                                        <input asp-for="@Model.Coordenador.CC" class="form-control" />
+                                                        <span asp-validation-for="@Model.Coordenador.CC" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <label asp-for="@Model.AtlId" class="control-label"></label>
+                                                    <select asp-for="@Model.AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
+                                                </div>
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label asp-for="@Model.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
-                                                <input asp-for="@Model.ConfirmPassword" class="form-control" aria-required="true" />
-                                                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.Email" class="form-label">@language.GetKey("email")</label>
+                                                        <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
+                                                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <label asp-for="@Model.Coordenador.DateOfBirth" class="control-label"></label>
+                                                    <input asp-for="@Model.Coordenador.DateOfBirth" class="form-control" />
+                                                    <span asp-validation-for="@Model.Coordenador.DateOfBirth" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.Password" class="form-label">@language.GetKey("password")</label>
+                                                        <input asp-for="@Model.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                                                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <label asp-for="@Model.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
+                                                    <input asp-for="@Model.ConfirmPassword" class="form-control" aria-required="true" />
+                                                    <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                                                </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="control-label">Imagem</label>
