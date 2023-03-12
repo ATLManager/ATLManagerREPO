@@ -1,5 +1,6 @@
 ﻿using ATLManager.Areas.Identity.Data;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ATLManager.Models
 {
@@ -8,7 +9,9 @@ namespace ATLManager.Models
         [Key]
         public Guid EncarregadoId { get; set; }
 
-		[Required]
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+
 		public ATLManagerUser User { get; set; }
 
         [Phone]
@@ -41,6 +44,7 @@ namespace ATLManager.Models
 		public EncarregadoEducacao(ATLManagerUser user, int phone, string address, string city, string postalCode, int nif) : this ()
         {
             User = user;
+            UserId = user.Id;
             Phone = phone;
             Address = address;
             City = city;

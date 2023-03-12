@@ -1,199 +1,211 @@
-﻿@model ATLManager.Models.Agrupamento
+﻿@model ATLManager.ViewModels.AgrupamentoCreateViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 @if (SignInManager.IsSignedIn(User))
 {
- <!-- Fase 1  -->
-    <!-- d-flex -->
-    <!-- Container -->
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-                            <h1 class="me-3 fw-bold text-center mb-4">Criar Agrupamento</h1>
-                            <img src="~/images/icons/add-group.png" width="50" height="50">
-                        </div>
+	<!-- Fase 1  -->
+	<!-- d-flex -->
+	<!-- Container -->
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+			<h1 class="me-3 fw-bold text-center mb-4">Criar Agrupamento</h1>
+			<img src="~/images/icons/add-group.png" width="50" height="50">
+		</div>
 
-    <div class="row pt-5" style="padding-left: 6em;">
-        <div class="col-3"></div>
-        <div class="col-5"></div>
-        <div class="col-4  pb-2">
-            <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-            </button>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center">
-            <!-- Box  -->
-            <div class="row col-6 justify-content-center custom-box w-50">
-                <div class="row box border-5 p-5">
+		<div class="row pt-5" style="padding-left: 6em;">
+			<div class="col-3"></div>
+			<div class="col-5"></div>
+			<div class="col-4  pb-2">
+				<button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+				</button>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<!-- Box  -->
+			<div class="row col-8 justify-content-center custom-box w-50">
+				<div class="row box border-5 p-5">
 
-                    <div class="container">
-                            <div class="row mt-3">
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-md">
-                                            <form asp-action="Create">
-                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                <div class="form-group">
-                                                    <label asp-for="Name" class="control-label"></label>
-                                                    <input asp-for="Name" class="form-control" />
-                                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Location" class="control-label"></label>
-                                                    <input asp-for="Location" class="form-control" />
-                                                    <span asp-validation-for="Location" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="NIPC" class="control-label"></label>
-                                                    <input asp-for="NIPC" class="form-control" />
-                                                    <span asp-validation-for="NIPC" class="text-danger"></span>
-                                                </div>
-                                            <div class="form-group mb-3">
-                                                <label class="control-label">Imagem</label>
-                                                <input type="file" class="form-control" id="inputGroupFile01">
-                                            </div>
-                                                <hr />
-                                                <div class="d-flex text-center mt-4">
-                                                    <div class="col text-right">
-                                                        <a asp-action="Index">
-                                                            <button type="button"
-                                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-                                                                Voltar
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col text-left">
-                                                        <div class="form-group">
-                                                        <input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                       
-                                            </form>
-                                        </div>
-                                    </div>
-                        </div>
-                    </div>
+					<div class="container">
+						<div class="row mt-3">
+							<div class="mb-3">
+								<div class="row">
+									<div class="col-md">
+										<form enctype="multipart/form-data" asp-action="Create">
+											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											<div class="form-group">
+												<label asp-for="Name" class="control-label"></label>
+												<input asp-for="Name" class="form-control" />
+												<span asp-validation-for="Name" class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label asp-for="Location" class="control-label"></label>
+												<input asp-for="Location" class="form-control" />
+												<span asp-validation-for="Location" class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label asp-for="NIPC" class="control-label"></label>
+												<input asp-for="NIPC" class="form-control" />
+												<span asp-validation-for="NIPC" class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label asp-for="LogoPicture" class="control-label"></label>
+												<div class="custom-file">
+													<input asp-for="LogoPicture" class="custom-file-input" id="customFile">
+													<label class="custom-file-label" for="customFile">Choose file</label>
+												</div>
+												<span asp-validation-for="LogoPicture" class="text-danger"></span>
+											</div>
+											<hr />
+											<div class="d-flex text-center mt-4">
+												<div class="col text-right">
+													<a asp-action="Index">
+														<button type="button"
+																class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+															Voltar
+														</button>
+													</a>
+												</div>
+												<div class="col text-left">
+													<div class="form-group">
+														<input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
+													</div>
+												</div>
+											</div>
 
-                </div>
-                <!-- // Box -->
-            </div>
-            <!-- // Fase 1 -->
-        </div>
-    </div>
-    </div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 
-    <!-- Slide Left (Help) -->
-    <div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
-         aria-labelledby="offcanvasRightLabel">
+					</div>
+					<!-- // Box -->
+				</div>
+				<!-- // Fase 1 -->
+			</div>
+		</div>
+	</div>
 
-        <div class="offcanvas-header helpCustomMargin">
-            <div class="col col-11 text-center">
-                <h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
-                    style="color:white;">
-                    Ajuda
-                </h5>
-            </div>
-            <div class="col" text-right>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-        </div>
+	<!-- Slide Left (Help) -->
+	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
+		 aria-labelledby="offcanvasRightLabel">
 
-        <input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
-               aria-label="Search" style="border-radius: 10px;">
+		<div class="offcanvas-header helpCustomMargin">
+			<div class="col col-11 text-center">
+				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
+					style="color:white;">
+					Ajuda
+				</h5>
+			</div>
+			<div class="col" text-right>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+			</div>
+		</div>
 
-        <div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
-            <div class="offcanvas-body box overflow-auto">
+		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
+			   aria-label="Search" style="border-radius: 10px;">
 
-                <div class=" row p-3 " style=" background-color: #F8F8F8">
-                    <button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-                            id="showText">
-                        <span>Como criar um agrupamento</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </button>
+		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
+			<div class="offcanvas-body box overflow-auto">
 
-                    <br><br><br><br>
-                    <span class="myText p-3 helpShadowButton" id="displayText"
-                          style="display: none; position: relative;">
-                        Here's some more textHere's some more textHere's some more textHere's some
-                        more textHe
-                        re's some more textHere's some more text...
-                    </span>
-                </div>
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText">
+						<span>Como criar um agrupamento</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
 
-                <div class="row p-3">
-                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img src="~/images/guide/terms.png" class="me-4">
-                            <span>Leia artigos de ajuda</span>
-                        </div>
-                    </button>
-                    <br><br><br><br>
-                </div>
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText"
+						  style="display: none; position: relative;">
+						Here's some more textHere's some more textHere's some more textHere's some
+						more textHe
+						re's some more textHere's some more text...
+					</span>
+				</div>
 
-                <div class="row p-3">
-                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img src="~/images/guide/comunity.png" class="me-4">
-                            <span>Pergunte à comunidade</span>
-                        </div>
-                    </button>
-                    <br><br><br><br>
-                </div>
+				<div class="row p-3">
+					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+						<div class="d-flex align-items-center justify-content-center">
+							<img src="~/images/guide/terms.png" class="me-4">
+							<span>Leia artigos de ajuda</span>
+						</div>
+					</button>
+					<br><br><br><br>
+				</div>
 
-                <div class="row p-3">
-                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img src="~/images/guide/new.png" class="me-4">
-                            <span>Novas Atualizações</span>
-                        </div>
-                    </button>
-                    <br><br><br><br>
-                </div>
+				<div class="row p-3">
+					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+						<div class="d-flex align-items-center justify-content-center">
+							<img src="~/images/guide/comunity.png" class="me-4">
+							<span>Pergunte à comunidade</span>
+						</div>
+					</button>
+					<br><br><br><br>
+				</div>
 
-                <div class="row p-3">
-                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img src="~/images/guide/feedback.png" class="me-4">
-                            <span>Dê Feedback</span>
-                        </div>
-                    </button>
-                    <br><br><br><br>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="row p-3">
+					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+						<div class="d-flex align-items-center justify-content-center">
+							<img src="~/images/guide/new.png" class="me-4">
+							<span>Novas Atualizações</span>
+						</div>
+					</button>
+					<br><br><br><br>
+				</div>
 
-    <!-- // Slide Left (Help) -->
-    <!-- JS Button help 1 -->
-    <script>
-        document.getElementById('showText').addEventListener('click', function () {
-            var displayText = document.getElementById('displayText');
-            var showTextBtn = document.getElementById('showText');
+				<div class="row p-3">
+					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+						<div class="d-flex align-items-center justify-content-center">
+							<img src="~/images/guide/feedback.png" class="me-4">
+							<span>Dê Feedback</span>
+						</div>
+					</button>
+					<br><br><br><br>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            if (displayText.style.display === 'none') {
-                displayText.style.display = 'block';
-                showTextBtn.classList.remove('custom-button');
-                showTextBtn.classList.add('myButton');
+	<!-- // Slide Left (Help) -->
+	<!-- JS Button help 1 -->
+	<script>
+		document.getElementById('showText').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText');
+			var showTextBtn = document.getElementById('showText');
 
-                // myButton
-            } else {
-                displayText.style.display = 'none';
-                showTextBtn.classList.remove('myButton');
-                showTextBtn.classList.add('custom-button');
-            }
-        });
-    </script>
-    <!-- JS Button help 1 -->
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 1 -->
+	@section Scripts {
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+	@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
+	}
 }
