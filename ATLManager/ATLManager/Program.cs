@@ -11,6 +11,7 @@ using System.Reflection;
 using Microsoft.Extensions.Options;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,11 @@ var keyVaultCredential = new DefaultAzureCredential();
 
 var client = new SecretClient(new Uri(keyVaultUrl), keyVaultCredential);
 builder.Services.AddSingleton(client);
+/*
+builder.Services.AddSingleton<IFileManager, FileManager>();
+builder.Services.AddSingleton<IFileProvider>(
+    new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"))); */
 
 var sendGridKeySecret = client.GetSecret("SendGridKey");
 

@@ -11019,19 +11019,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bruno Resende\\.nuget\\packages\\": {}
+    "C:\\Users\\Filipe\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+      "projectUniqueName": "C:\\Users\\Filipe\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
       "projectName": "ATLManager",
-      "projectPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
-      "packagesPath": "C:\\Users\\Bruno Resende\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
+      "projectPath": "C:\\Users\\Filipe\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+      "packagesPath": "C:\\Users\\Filipe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Filipe\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Bruno Resende\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Filipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11039,6 +11044,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11131,7 +11137,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
