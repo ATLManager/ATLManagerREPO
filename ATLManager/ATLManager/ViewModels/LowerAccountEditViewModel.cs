@@ -24,5 +24,9 @@ namespace ATLManager.ViewModels
         [RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
         public string CC { get; set; }
         public string Email { get; set; }
+
+        [Required]
+        [DisplayName("Imagem de perfil")]
+        public IFormFile ProfilePicture { get; set; }
     }
 }

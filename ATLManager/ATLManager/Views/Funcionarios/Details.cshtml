@@ -29,18 +29,15 @@
                         <div class="mb-3">
 
                             <dl class="row text-end">
-
+                                <img src="~/images/@Model.Profile.ProfilePicture" class="rounded-circle" height="40" width="40" asp-append-version="true" />
                                 <div class="row">
                                     <dt class="col mr-2">
                                         @Html.DisplayNameFor(model => model.User.FirstName)
                                     </dt>
-
-
                                     <dd class="col text-left">
                                         @Html.DisplayFor(model => model.User.FirstName)
                                     </dd>
                                 </div>
-
                                 <div class="row">
                                     <dt class="col mr-2">
                                         @Html.DisplayNameFor(model => model.User.LastName)

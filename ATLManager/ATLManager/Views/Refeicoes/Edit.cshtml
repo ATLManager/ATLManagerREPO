@@ -1,4 +1,4 @@
-﻿@model ATLManager.Models.Refeicao
+﻿@model ATLManager.ViewModels.RefeicaoEditViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -39,7 +39,7 @@
                     <!--text-center  -->
 
                     <div class="container">
-                        <form asp-action="Edit">
+                        <form enctype="multipart/form-data" asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="RefeicaoId" />
                             <div class="row mb-3">
@@ -130,38 +130,28 @@
                                     <span asp-validation-for="Categoria" class="text-danger"></span>
                                 </div>
                             </div>
-
-
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label asp-for="Data" class="form-label"></label>
                                     <input asp-for="Data" class="form-control" />
                                     <span asp-validation-for="Data" class="text-danger"></span>
                                 </div>
-
-
                             </div>
-
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label asp-for="Descricao" class="form-label"></label>
                                     <input asp-for="Descricao" class="form-control" />
                                     <span asp-validation-for="Descricao" class="text-danger"></span>
                                 </div>
-
-
                             </div>
-
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label for="image" class="form-label">Choose an image:</label>
-                                    <input class="form-control" type="file" id="image" name="image">
+                            <div class="form-group">
+                                <label asp-for="Picture" class="control-label"></label>
+                                <div class="custom-file">
+                                    <input asp-for="Picture" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
-
+                                <span asp-validation-for="Picture" class="text-danger"></span>
                             </div>
-
-
-
                             <div class="d-flex text-center mt-4">
                                 <div class="col text-right">
                                     <a asp-action="Index">
@@ -266,6 +256,14 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 
     <!-- // Slide Left (Help) -->
     <!-- JS Button help 1 -->

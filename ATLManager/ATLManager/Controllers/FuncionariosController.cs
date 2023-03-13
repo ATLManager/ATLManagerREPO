@@ -22,15 +22,18 @@ namespace ATLManager.Controllers
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public FuncionariosController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
-            IUserStore<ATLManagerUser> userStore)
+            IUserStore<ATLManagerUser> userStore,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Coordenador
@@ -96,36 +99,42 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LowerAccountCreateViewModel viewModel)
         {
-            // Criar user
-            var user = CreateUser();
-            user.FirstName = viewModel.FirstName;
-            user.LastName = viewModel.LastName;
-            await _userStore.SetUserNameAsync(user, viewModel.Email, CancellationToken.None);
-            await _emailStore.SetEmailAsync(user, viewModel.Email, CancellationToken.None);
-            var result = await _userManager.CreateAsync(user, viewModel.Password);
-
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                // Dar role de funcionario à conta
-                await _userManager.AddToRoleAsync(user, "Funcionario");
+                // Criar user
+                var user = CreateUser();
+                user.FirstName = viewModel.FirstName;
+                user.LastName = viewModel.LastName;
+                await _userStore.SetUserNameAsync(user, viewModel.Email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, viewModel.Email, CancellationToken.None);
+                var result = await _userManager.CreateAsync(user, viewModel.Password);
 
-                // Aceder ao ATL pelo Id
-                var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
+                if (result.Succeeded)
+                {
+                    string fileName = UploadedFile(viewModel.ProfilePicture);
 
-                // Criar o perfil
-                var funcionario = new ContaAdministrativa(user, atl, viewModel.Coordenador.DateOfBirth, viewModel.Coordenador.CC);
-                _context.Add(funcionario);
-                await _context.SaveChangesAsync();
+                    // Dar role de funcionario à conta
+                    await _userManager.AddToRoleAsync(user, "Funcionario");
+
+                    // Aceder ao ATL pelo Id
+                    var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
+
+                    // Criar o perfil
+                    var funcionario = new ContaAdministrativa(user, atl, viewModel.Coordenador.DateOfBirth, viewModel.Coordenador.CC);
+                    funcionario.ProfilePicture = fileName;
+                    _context.Add(funcionario);
+                    await _context.SaveChangesAsync();
                 
-                // Ativar a conta
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                await _userManager.ConfirmEmailAsync(user, code);
+                    // Ativar a conta
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    await _userManager.ConfirmEmailAsync(user, code);
 
-                return RedirectToAction(nameof(Index));
-            }
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
+                    return RedirectToAction(nameof(Index));
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
 
             ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name", viewModel.AtlId);
@@ -187,6 +196,9 @@ namespace ATLManager.Controllers
                         funcionario.DateOfBirth = viewModel.DateOfBirth;
                         funcionario.CC = viewModel.CC;
                         funcionario.AtlId = viewModel.AtlId;
+
+                        string fileName = UploadedFile(viewModel.ProfilePicture);
+                        funcionario.ProfilePicture = fileName;
 
                         _context.Update(funcionario);
                         await _context.SaveChangesAsync();
@@ -291,6 +303,23 @@ namespace ATLManager.Controllers
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
+        }
+
+        private string UploadedFile(IFormFile logoPicture)
+        {
+            string uniqueFileName = null;
+
+            if (logoPicture != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    logoPicture.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }

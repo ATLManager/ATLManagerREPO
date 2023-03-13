@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using ATLManager.ViewModels;
+using NuGet.ContentModel;
 
 namespace ATLManager.Controllers
 {
     public class RefeicoesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public RefeicoesController(ATLManagerAuthContext context)
+        public RefeicoesController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Refeicoes
@@ -46,7 +50,7 @@ namespace ATLManager.Controllers
         // GET: Refeicoes/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new RefeicaoCreateViewModel());
         }
 
         // POST: Refeicoes/Create
@@ -54,16 +58,31 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RefeicaoId,Name,Categoria,Data,Descricao,Proteina,HidratosCarbono,VR,Acucar,Lipidos,ValorEnergetico,AGSat,Sal")] Refeicao refeicao)
+        public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            string fileName = UploadedFile(viewModel.Picture);
+
+            var refeicao = new Refeicao
             {
-                refeicao.RefeicaoId = Guid.NewGuid();
-                _context.Add(refeicao);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(refeicao);
+                RefeicaoId = Guid.NewGuid(),
+                Name = viewModel.Name,
+                Categoria = viewModel.Categoria,
+                Data = viewModel.Data,
+                Descricao = viewModel.Descricao,
+                Proteina = viewModel.Proteina,
+                HidratosCarbono = viewModel.HidratosCarbono,
+                VR = viewModel.VR,
+                Acucar = viewModel.Acucar,
+                Lipidos = viewModel.Lipidos\,
+                ValorEnergetico = viewModel.ValorEnergetico,
+                AGSat = viewModel.AGSat,
+                Sal = viewModel.Sal,
+                Picture = fileName
+            };
+
+            _context.Add(refeicao);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Refeicoes/Edit/5
@@ -79,7 +98,7 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            return View(refeicao);
+            return View(new RefeicaoEditViewModel(refeicao));
         }
 
         // POST: Refeicoes/Edit/5
@@ -87,9 +106,9 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("RefeicaoId,Name,Categoria,Data,Descricao,Proteina,HidratosCarbono,VR,Acucar,Lipidos,ValorEnergetico,AGSat,Sal")] Refeicao refeicao)
+        public async Task<IActionResult> Edit(Guid id, RefeicaoEditViewModel viewModel)
         {
-            if (id != refeicao.RefeicaoId)
+            if (id != viewModel.RefeicaoId)
             {
                 return NotFound();
             }
@@ -98,12 +117,34 @@ namespace ATLManager.Controllers
             {
                 try
                 {
-                    _context.Update(refeicao);
-                    await _context.SaveChangesAsync();
+                    var refeicao = await _context.Refeicao.FindAsync(id);
+
+                    if (refeicao != null)
+                    {
+                        refeicao.Name = viewModel.Name;
+                        refeicao.Categoria = viewModel.Categoria;
+                        refeicao.Data = viewModel.Data;
+                        refeicao.Descricao = viewModel.Descricao;
+                        refeicao.Proteina = viewModel.Proteina;
+                        refeicao.HidratosCarbono = viewModel.HidratosCarbono;
+                        refeicao.VR = viewModel.VR;
+                        refeicao.Acucar = viewModel.Acucar;
+                        refeicao.Lipidos = viewModel.Lipidos;
+                        refeicao.ValorEnergetico = viewModel.ValorEnergetico;
+                        refeicao.AGSat = viewModel.AGSat;
+                        refeicao.Sal = viewModel.Sal;
+
+
+                        string fileName = UploadedFile(viewModel.Picture);
+                        refeicao.Picture = fileName;
+
+                        _context.Update(refeicao);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RefeicaoExists(refeicao.RefeicaoId))
+                    if (!RefeicaoExists(viewModel.RefeicaoId))
                     {
                         return NotFound();
                     }
@@ -114,7 +155,7 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(refeicao);
+            return View(viewModel);
         }
 
         // GET: Refeicoes/Delete/5
@@ -157,6 +198,23 @@ namespace ATLManager.Controllers
         private bool RefeicaoExists(Guid id)
         {
           return _context.Refeicao.Any(e => e.RefeicaoId == id);
+        }
+
+        private string UploadedFile(IFormFile logoPicture)
+        {
+            string uniqueFileName = null;
+
+            if (logoPicture != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    logoPicture.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }
