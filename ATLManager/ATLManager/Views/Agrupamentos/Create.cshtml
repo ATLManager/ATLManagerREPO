@@ -197,6 +197,9 @@
 	</script>
 	<!-- JS Button help 1 -->
 	@section Scripts {
+	@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
 	<script type="text/javascript">
 		// Add the following code if you want the name of the file appear on select
 		$(".custom-file-input").on("change", function () {
@@ -204,8 +207,5 @@
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	</script>
-	@{
-			await Html.RenderPartialAsync("_ValidationScriptsPartial");
-		}
 	}
 }

@@ -2,37 +2,37 @@
 using ATLManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ATLManager.ViewModels
 {
-    public class AgrupamentoEditViewModel
+    public class ATLCreateViewModel
     {
-		public Guid AgrupamentoId { get; set; }
-
 		[Required]
 		[DisplayName("Nome")]
 		public string Name { get; set; }
 
 		[Required]
-		[MaxLength(20)]
-		[DisplayName("Localização")]
-		public string Location { get; set; }
+		[StringLength(50, MinimumLength = 5)]
+		public string Address { get; set; }
 
 		[Required]
+		[StringLength(20, MinimumLength = 5)]
+		public string City { get; set; }
+
+		[Required]
+		[RegularExpression(@"^\d{4}-\d{3}$", ErrorMessage = "Formato Incorreto - ex. 1234-123")]
+		public string PostalCode { get; set; }
+
+		[ForeignKey("Agrupamento")]
+		public Guid? AgrupamentoId { get; set; }
+
 		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
 		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
-		public string NIPC { get; set; }
+		public string? NIPC { get; set; }
 
 		[Required]
-		[DataType(DataType.Upload)]
 		[DisplayName("Logo do Agrupamento")]
 		public IFormFile LogoPicture { get; set; }
-
-		public AgrupamentoEditViewModel(Agrupamento agrupamento) {
-			AgrupamentoId = agrupamento.AgrupamentoID;
-			Name = agrupamento.Name;
-			Location = agrupamento.Location;
-			NIPC = agrupamento.NIPC;
-		}
 	}
 }

@@ -11,6 +11,7 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            <img src="~/images/@Model.ProfilePicture" class="rounded-circle" height="40" width="40" asp-append-version="true" />
             @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
@@ -23,10 +24,10 @@
             @Html.DisplayFor(model => model.Apelido)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NIF)
+            @Html.DisplayNameFor(model => model.CC)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NIF)
+            @Html.DisplayFor(model => model.CC)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Genero)

@@ -22,7 +22,6 @@ namespace ATLManager.ViewModels
 		public string NIPC { get; set; }
 
 		[Required]
-		[FileExtensions(Extensions = ".png,.jpeg,.jpeg")]
 		[DisplayName("Logo do Agrupamento")]
 		public IFormFile LogoPicture { get; set; }
 	}

@@ -85,7 +85,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            [Phone]
+            [RegularExpression("^9[0-9]{8}$")]
             public int Phone { get; set; }
 
             [Required]
@@ -183,7 +183,9 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 {
 					await _userManager.AddToRoleAsync(user, "EncarregadoEducacao");
 
-					var perfil = new EncarregadoEducacao(user, 
+					var perfil = new EncarregadoEducacao(user,
+                        Input.FirstName,
+                        Input.LastName,
                         Input.Phone, 
                         Input.Address, 
                         Input.City, 

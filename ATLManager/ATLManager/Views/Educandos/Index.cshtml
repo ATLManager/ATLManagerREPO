@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Apelido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NIF)
+                @Html.DisplayNameFor(model => model.CC)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Genero)
@@ -37,22 +37,23 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                <img src="~/images/@item.ProfilePicture" class="rounded-circle" height="40" width="40" asp-append-version="true" />
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Apelido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NIF)
+                @Html.DisplayFor(modelItem => item.CC)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Genero)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Atl.Address)
+                @Html.DisplayFor(modelItem => item.Atl.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Encarregado.Address)
+                @Html.DisplayFor(modelItem => item.Encarregado.FullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EducandoId">Edit</a> |

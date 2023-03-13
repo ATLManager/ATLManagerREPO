@@ -1,4 +1,4 @@
-﻿@model ATLManager.Models.Educando
+﻿@model ATLManager.ViewModels.EducandoEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form enctype="multipart/form-data" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EducandoId" />
             <div class="form-group">
@@ -24,9 +24,9 @@
                 <span asp-validation-for="Apelido" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NIF" class="control-label"></label>
-                <input asp-for="NIF" class="form-control" />
-                <span asp-validation-for="NIF" class="text-danger"></span>
+                <label asp-for="CC" class="control-label"></label>
+                <input asp-for="CC" class="form-control" />
+                <span asp-validation-for="CC" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Genero" class="control-label"></label>
@@ -44,6 +44,14 @@
                 <span asp-validation-for="EncarregadoId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ProfilePicture" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -53,6 +61,14 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script type="text/javascript">
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

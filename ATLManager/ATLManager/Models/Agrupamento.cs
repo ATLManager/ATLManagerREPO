@@ -16,6 +16,7 @@ namespace ATLManager.Models
         [MaxLength(20)]
         public string Location { get; set; }
 
+        [Required]
 		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
 		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
 		public string NIPC { get; set; }

@@ -120,12 +120,8 @@ namespace ATLManager.Controllers
                         agrupamento.Location = viewModel.Location;
                         agrupamento.NIPC = viewModel.NIPC;
 
-                        if (viewModel.LogoPicture != null)
-                        {
-							string fileName = UploadedFile(viewModel.LogoPicture);
-
-                            agrupamento.LogoPicture = fileName;
-						}
+					    string fileName = UploadedFile(viewModel.LogoPicture);
+                        agrupamento.LogoPicture = fileName;
 
 					    _context.Update(agrupamento);
                         await _context.SaveChangesAsync();
@@ -189,21 +185,21 @@ namespace ATLManager.Controllers
             return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
 
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
+		private string UploadedFile(IFormFile logoPicture)
+		{
+			string uniqueFileName = null;
 
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
-    }
+			if (logoPicture != null)
+			{
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					logoPicture.CopyTo(fileStream);
+				}
+			}
+			return uniqueFileName;
+		}
+	}
 }

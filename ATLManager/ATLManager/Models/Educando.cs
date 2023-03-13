@@ -22,24 +22,26 @@ namespace ATLManager.Models
 
         [Required]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
-        public int NIF { get; set; }
+        public string CC { get; set; }
 
         [Required]
         public string Genero { get; set; }
-
         
         [ForeignKey("ATL")]
         public Guid AtlId { get; set; }
 
         public ATL Atl{ get; set; }
 
-
         [ForeignKey("Encarregado de Educação")]
         public Guid EncarregadoId { get; set; }
 
         public EncarregadoEducacao Encarregado { get; set; }
 
-        /*
+		[Required]
+		[DisplayName("Fotografia do educando")]
+		public string ProfilePicture { get; set; }
+
+		/*
         [Display(Name = "Caminho do ficheiro PDF")]
         public string DeclaracaoMedicaPath { get; set; }
 
@@ -64,19 +66,18 @@ namespace ATLManager.Models
         [NotMapped]
         [DisplayName("Carregamento de Imagem")]
         public IFormFile ImagemArquivo { get; set; }
-
         */
 
-        public Educando()
+		public Educando()
 		{
 			EducandoId = Guid.NewGuid();
 		}
 
-        public Educando(string name, string apelido, int nIF, string genero, Guid atlID, Guid encarregadoID)
+        public Educando(string name, string apelido, string cc, string genero, Guid atlID, Guid encarregadoID)
         {
             Name = name;
             Apelido = apelido;
-            NIF = nIF;
+            CC = cc;
             Genero = genero;
             AtlId = atlID;
             EncarregadoId = encarregadoID;
