@@ -302,9 +302,13 @@
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                                 </div>
                             </li>
+
+
                         <li class="nav-item">
-                            <div class="language-dropdown">
-                                <a class="nav-link" id="language"> @language.GetKey("language")</a>
+                                <div class="language-dropdown" style="cursor:pointer">
+                                <a class="nav-link" id="language">
+                                        <i class="fas fa-language fa-fw"></i>
+                                    @*<img src="~/images/icons/language.png">*@ @*@language.GetKey("language")*@</a>
                                 <div class="language-content" style="float:right">
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language">
@@ -768,15 +772,7 @@
             </a>
         </div>
 
-        <li class="nav-item" style="float:right">
-    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserAsync(User).Result.FirstName!</a>
-    </li>
-
-    <li class="nav-item" style="float:right">
-    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-    <button id="logout" type="submit" class="custom-submit">Logout</button>
-    </form>
-    </li>
+      
     }
 else
 {
@@ -791,7 +787,7 @@ else
 }
 
     <!-- Footer -->
-    <footer class="bg-light text-center mt-auto">
+    <footer class="bg-light text-center mt-auto fixed-bottom">
         <!-- Copyright -->
         <div class="text-center p-3 shadow">
             <div class="row">
