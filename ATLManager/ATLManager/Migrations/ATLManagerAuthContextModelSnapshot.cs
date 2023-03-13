@@ -210,7 +210,7 @@ namespace ATLManager.Migrations
 
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
-                        
+
                     b.Property<string>("CC")
                         .IsRequired()
                         .HasMaxLength(9)

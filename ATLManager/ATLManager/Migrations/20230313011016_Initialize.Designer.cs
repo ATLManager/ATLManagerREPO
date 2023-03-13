@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    [Migration("20230312175621_refeicao-fix")]
-    partial class refeicaofix
+    [Migration("20230313011016_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,6 +109,10 @@ namespace ATLManager.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("LogoPicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NIPC")
                         .IsRequired()
                         .HasMaxLength(9)
@@ -142,6 +146,10 @@ namespace ATLManager.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LogoPicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NIPC")
                         .HasMaxLength(9)
@@ -205,6 +213,11 @@ namespace ATLManager.Migrations
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CC")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
                     b.Property<Guid>("EncarregadoId")
                         .HasColumnType("uniqueidentifier");
 
@@ -212,13 +225,13 @@ namespace ATLManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NIF")
-                        .HasMaxLength(9)
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EducandoId");
 
@@ -244,6 +257,10 @@ namespace ATLManager.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NIF")
                         .HasMaxLength(9)

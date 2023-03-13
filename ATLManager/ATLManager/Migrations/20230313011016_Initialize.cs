@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ATLManager.Migrations
 {
-    public partial class refeicaofix : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace ATLManager.Migrations
                     AgrupamentoID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Location = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    NIPC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false)
+                    NIPC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    LogoPicture = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,7 +98,8 @@ namespace ATLManager.Migrations
                     City = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AgrupamentoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    NIPC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true)
+                    NIPC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true),
+                    LogoPicture = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,6 +223,7 @@ namespace ATLManager.Migrations
                 {
                     EncarregadoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -271,10 +274,11 @@ namespace ATLManager.Migrations
                     EducandoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Apelido = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    NIF = table.Column<int>(type: "int", maxLength: 9, nullable: false),
+                    CC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EncarregadoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    EncarregadoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
