@@ -133,20 +133,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#refeicoes" aria-expanded="true"
-                       aria-controls="collapseTable">
+                    <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
+                    aria-expanded="true" aria-controls="collapseTable">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Refeições</span>
                     </a>
-                    <div id="refeicoes" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Tables</h6> -->
-                            <a class="collapse-item" href="#">Consultar</a>
-                            <a class="collapse-item" href="#">Criar</a>
-                            <a class="collapse-item" href="#">Editar</a>
-                            <a class="collapse-item" href="#">Remover</a>
-                        </div>
-                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
+                       aria-expanded="true" aria-controls="funcionarios">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Educandos</span>
+                    </a>
                 </li>
 
 
