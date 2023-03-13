@@ -76,6 +76,21 @@ namespace ATLManager.Controllers
                 ModelState.AddModelError("AtlId", validationMessage);
             }
 
+            if (!string.IsNullOrEmpty(viewModel.NIPC))
+            {
+                if (!viewModel.NIPC[0].Equals("6"))
+                {
+                    var validationMessage = "NIPC requer que o primeiro dígito seja 6";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+
+                if (_context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
+                {
+                    var validationMessage = "Outro ATL/Agrupamento já contém este NIPC";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+            }
+
             if (ModelState.IsValid)
             {
 				var atl = new ATL
@@ -148,6 +163,22 @@ namespace ATLManager.Controllers
                 var validationMessage = "Apenas permitido introduzir um NIPC ou um ATLId";
                 ModelState.AddModelError("NIPC", validationMessage);
                 ModelState.AddModelError("AtlId", validationMessage);
+            }
+
+            if (!string.IsNullOrEmpty(viewModel.NIPC))
+            {
+                if (!viewModel.NIPC[0].Equals("6"))
+                {
+                    var validationMessage = "NIPC requer que o primeiro dígito seja 6";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+
+                if (_context.ATL.Any(a => a.NIPC == viewModel.NIPC)
+                    || _context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
+                {
+                    var validationMessage = "Outro ATL/Agrupamento já contém este NIPC";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
             }
 
             if (ModelState.IsValid)

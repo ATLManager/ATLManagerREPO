@@ -116,6 +116,21 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            if (!string.IsNullOrEmpty(viewModel.NIPC))
+            {
+                if (!viewModel.NIPC[0].Equals("6"))
+                {
+                    var validationMessage = "NIPC requer que o primeiro dígito seja 6";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+
+                if (_context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
+                {
+                    var validationMessage = "Outro Agrupamento já contém este NIPC";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 try

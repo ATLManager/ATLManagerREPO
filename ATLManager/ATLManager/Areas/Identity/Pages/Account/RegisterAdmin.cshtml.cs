@@ -154,6 +154,16 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, _language.GetKey("txtConfirmPasswordRequired"));
             }
 
+            if (!string.IsNullOrEmpty(Input.CC))
+            {
+                if (_context.ContaAdministrativa.Any(c => c.CC == Input.CC)
+                    || _context.Educando.Any(e => e.CC == Input.CC))
+                {
+                    var validationMessage = "Outra conta já contém este CC";
+                    ModelState.AddModelError("CC", validationMessage);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();

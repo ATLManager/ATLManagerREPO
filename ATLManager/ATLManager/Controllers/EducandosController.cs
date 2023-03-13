@@ -64,6 +64,16 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EducandoCreateViewModel viewModel)
         {
+            if (!string.IsNullOrEmpty(viewModel.CC))
+            {
+                if (_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
+                    || _context.Educando.Any(e => e.CC == viewModel.CC))
+                {
+                    var validationMessage = "Outro Educando já contém este CC";
+                    ModelState.AddModelError("CC", validationMessage);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var educando = new Educando

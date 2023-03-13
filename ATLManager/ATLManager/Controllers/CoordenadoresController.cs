@@ -99,6 +99,16 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LowerAccountCreateViewModel viewModel)
         {
+            if (!string.IsNullOrEmpty(viewModel.CC))
+            {
+                if (_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC) 
+                    || _context.Educando.Any(e => e.CC == viewModel.CC))
+                {
+                    var validationMessage = "Outro Agrupamento já contém este NIPC";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 // Criar user
@@ -190,6 +200,16 @@ namespace ATLManager.Controllers
             if (id != viewModel.ContaId)
             {
                 return NotFound();
+            }
+
+            if (!string.IsNullOrEmpty(viewModel.CC))
+            {
+                if (_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
+                    || _context.Educando.Any(e => e.CC == viewModel.CC))
+                {
+                    var validationMessage = "Outra conta já contém este CC";
+                    ModelState.AddModelError("CC", validationMessage);
+                }
             }
 
             if (ModelState.IsValid)

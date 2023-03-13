@@ -171,6 +171,15 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, _language.GetKey("txtConfirmPasswordRequired"));
             }
 
+            if (!string.IsNullOrEmpty(Input.NIF))
+            {
+                if (_context.EncarregadoEducacao.Any(e => e.NIF == Convert.ToInt32(Input.NIF)))
+                {
+                    var validationMessage = "Outro Encarregado já contém este NIF";
+                    ModelState.AddModelError("NIF", validationMessage);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
