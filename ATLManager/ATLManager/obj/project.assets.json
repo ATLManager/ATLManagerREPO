@@ -11019,19 +11019,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Pedro\\.nuget\\packages\\": {}
+    "C:\\Users\\bruno\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+      "projectUniqueName": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
       "projectName": "ATLManager",
-      "projectPath": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
-      "packagesPath": "C:\\Users\\Pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pedro\\Desktop\\Universidade\\Licenciatura\\2022-2023\\ESA\\Projeto\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
+      "projectPath": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+      "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11131,7 +11136,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

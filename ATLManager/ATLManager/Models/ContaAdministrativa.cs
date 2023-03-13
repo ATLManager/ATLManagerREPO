@@ -33,7 +33,11 @@ namespace ATLManager.Models
 
 		public ATL? Atl { get; set; }
 
-		public ContaAdministrativa()
+        [Required]
+        [DisplayName("Fotografia de perfil")]
+        public string ProfilePicture { get; set; }
+
+        public ContaAdministrativa()
 		{
 			ContaId = Guid.NewGuid();
 		}

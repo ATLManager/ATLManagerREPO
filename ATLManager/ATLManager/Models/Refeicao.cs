@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.Net;
@@ -52,6 +53,10 @@ namespace ATLManager.Models
 
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Sal { get; set; }
+
+        [Required]
+        [DisplayName("Fotografia do menu")]
+        public string Picture { get; set; }
 
         public Refeicao(string name, string categoria, DateTime data, string descricao,
                         string proteina, string hidratosCarbono, string vR, string acucar, string lipidos,
