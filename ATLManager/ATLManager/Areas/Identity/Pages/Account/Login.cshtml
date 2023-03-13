@@ -139,7 +139,11 @@
         </div>
     </div>
     <!-- // Container -->
+	<!-- Slide Left (Help) -->
+	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
+		 aria-labelledby="offcanvasRightLabel">
 
+<<<<<<< Updated upstream
     <!-- Slide Left (Help) -->
     <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px"
     tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
@@ -153,7 +157,211 @@
         </div>
     </div>
     <!-- // Slide Left (Help) -->
+=======
+		<div class="offcanvas-header helpCustomMargin">
+			<div class="col col-11 text-center">
+				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
+					style="color:white;">
+					Ajuda
+				</h5>
+			</div>
+			<div class="col" text-right>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+			</div>
+		</div>
+>>>>>>> Stashed changes
 
+		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
+			   aria-label="Search" style="border-radius: 10px;">
+
+		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
+			<div class="offcanvas-body box overflow-auto">
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText1">
+						<span>@language.GetKey("howToLoginOnApp")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText1"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToLoginViaOnApp");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText2">
+						<span>@language.GetKey("howToLoginViaFacebook")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText2"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToLoginViaFacebook");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText3">
+						<span>@language.GetKey("howToLoginViaGoogle")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText3"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToLoginViaGoogle");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText4">
+						<span>@language.GetKey("howToLoginViaOutlook")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText4"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToLoginViaOutlook")
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText5">
+						<span>@language.GetKey("howToLoginViaTwitter")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText5"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToLoginViaTwitter")
+					</span>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+
+	<!-- // Slide Left (Help) -->
+	<!-- JS Button help 1 -->
+	<script>
+		document.getElementById('showText1').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText1');
+			var showTextBtn = document.getElementById('showText1');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 1 -->
+	<!-- JS Button help 2 -->
+	<script>
+		document.getElementById('showText2').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText2');
+			var showTextBtn = document.getElementById('showText2');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 2 -->
+	<!-- JS Button help 3 -->
+	<script>
+		document.getElementById('showText3').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText3');
+			var showTextBtn = document.getElementById('showText3');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 3 -->
+	<!-- JS Button help 4 -->
+	<script>
+		document.getElementById('showText4').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText4');
+			var showTextBtn = document.getElementById('showText4');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 4 -->
+	<!-- JS Button help 5 -->
+	<script>
+		document.getElementById('showText5').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText5');
+			var showTextBtn = document.getElementById('showText5');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 5 -->
           
 
     @section Scripts {
