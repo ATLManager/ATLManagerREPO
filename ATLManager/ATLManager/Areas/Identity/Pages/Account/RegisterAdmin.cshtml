@@ -1,0 +1,379 @@
+﻿@page
+
+@model AdminRegisterModel
+@using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
+@{
+	ViewData["Title"] = @language.GetKey("register");
+	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+@inject LanguageService language
+
+@if (!SignInManager.IsSignedIn(User))
+{
+
+<div class="container h-auto mt-auto">
+
+	<!-- Botão de Ajuda -->
+	<div class="row" style="padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-5"><h4 class="fw-bold text-primary text-center">Registo de administração</h4></div>
+            <div class="col-4 text-right pb-2">
+                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+        </div>
+	<!-- // Botão de Ajuda -->
+
+
+	<div class="d-flex justify-content-center">
+		<!-- Box  -->
+		<div class="row col-6 justify-content-center custom-box">
+			<div class="row box border-5">
+				<form class="form-registo" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="row">
+						<div class="col-md-6 mb">
+							<label asp-for="Input.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
+							<input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true">
+							<span asp-validation-for="Input.FirstName" class="text-danger"></span>
+						</div>
+
+						<div class="col-md-6 mb-3">
+							<label asp-for="Input.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
+							<input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" />
+							<span asp-validation-for="Input.LastName" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label asp-for="Input.BirthDate" class="form-label">Data de Nascimento</label>
+							<input asp-for="Input.BirthDate" class="form-control" autocomplete="birthdate" aria-required="true" />
+							<span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+						</div>
+
+						<div class="col-md-6 mb-3">
+							<label asp-for="Input.CC" class="form-label">CC</label>
+							<input asp-for="Input.CC" class="form-control" autocomplete="cc" aria-required="true" />
+							<span asp-validation-for="Input.CC" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
+						<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+						<span asp-validation-for="Input.Email" class="text-danger"></span>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
+							<input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+							<span asp-validation-for="Input.Password" class="text-danger"></span>
+						</div>
+
+						<div class="col-md-6 mb-3">
+							<label asp-for="Input.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
+							<input asp-for="Input.ConfirmPassword" class="form-control" aria-required="true" />
+							<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row">
+							<a id="login" asp-area="Identity" asp-page="/Account/Login" class="custom-link" style="float: right;">@language.GetKey("haveAccount")</a>
+					</div>
+
+					<div class="text-center">
+						<button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button"
+								style="width: 20%;">
+							@language.GetKey("register")
+						</button>
+					</div>
+				</form>
+				<div class="text-center mt-3 fw-bolder p-1"> @language.GetKey("doRegisterBy")</div>
+
+				<div class="d-flex mt-3 justify-content-center">
+					@{
+						if ((Model.ExternalLogins?.Count ?? 0) == 0)
+						{
+							<div>
+								<p>
+									There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+										article
+										about setting up this ASP.NET application to support logging in via external services
+									</a>.
+								</p>
+							</div>
+						}
+						else
+						{
+							<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+
+								@foreach (var provider in Model.ExternalLogins)
+								{
+									@if (provider.Name.Equals("Facebook"))
+									{
+
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterFacebook")">
+											<img src="~/images/social/facebook.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+
+									@if (provider.Name.Equals("Microsoft"))
+									{
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterMicrosoft")">
+											<img src="~/images/social/outlook.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+
+									@if (provider.Name.Equals("Twitter"))
+									{
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterTwitter")">
+											<img src="~/images/social/twitter.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+
+									@if (provider.Name.Equals("Google"))
+									{
+										<button type="submit" class="text-center border-0" style="background-color:white" name="provider" value="@provider.Name" title="@language.GetKey("txtHoverRegisterGoogle")">
+											<img src="~/images/social/google.png" class="ms-3" width="30" height="30">
+										</button>
+									}
+								}
+
+							</form>
+						}
+					}
+
+
+				</div>
+
+			</div>
+		</div>
+		<!-- // Box -->
+	</div>
+</div>
+<!-- // Container -->
+	<!-- Slide Left (Help) -->
+	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
+		 aria-labelledby="offcanvasRightLabel">
+
+		<div class="offcanvas-header helpCustomMargin">
+			<div class="col col-11 text-center">
+				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
+					style="color:white;">
+					Ajuda
+				</h5>
+			</div>
+			<div class="col" text-right>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+			</div>
+		</div>
+
+		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
+			   aria-label="Search" style="border-radius: 10px;">
+
+		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
+			<div class="offcanvas-body box overflow-auto">
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText1">
+						<span>@language.GetKey("howToRegisterOnApp")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText1"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToRegisterOnApp");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText2">
+						<span>@language.GetKey("howToRegisterViaFacebook")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText2"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToRegisterViaFacebook");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText3">
+						<span>@language.GetKey("howToRegisterViaGoogle")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText3"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToRegisterViaGoogle");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText4">
+						<span>@language.GetKey("howToRegisterViaOutlook")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText4"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToRegisterViaOutlook");
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText5">
+						<span>@language.GetKey("howToRegisterViaTwitter")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText5"
+						  style="display: none; position: relative;">
+						@language.GetKey("txtHowToRegisterViaTwitter");
+					</span>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+
+	<!-- // Slide Left (Help) -->
+	<!-- JS Button help 1 -->
+	<script>
+		document.getElementById('showText1').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText1');
+			var showTextBtn = document.getElementById('showText1');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 1 -->
+	<!-- JS Button help 2 -->
+	<script>
+		document.getElementById('showText2').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText2');
+			var showTextBtn = document.getElementById('showText2');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 2 -->
+	<!-- JS Button help 3 -->
+	<script>
+		document.getElementById('showText3').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText3');
+			var showTextBtn = document.getElementById('showText3');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 3 -->
+	<!-- JS Button help 4 -->
+	<script>
+		document.getElementById('showText4').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText4');
+			var showTextBtn = document.getElementById('showText4');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 4 -->
+	<!-- JS Button help 5 -->
+	<script>
+		document.getElementById('showText5').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText5');
+			var showTextBtn = document.getElementById('showText5');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 5 -->
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+    }
+
+
+	}
