@@ -73,7 +73,7 @@ namespace ATLManager.Controllers
                 HidratosCarbono = viewModel.HidratosCarbono,
                 VR = viewModel.VR,
                 Acucar = viewModel.Acucar,
-                Lipidos = viewModel.Lipidos\,
+                Lipidos = viewModel.Lipidos,
                 ValorEnergetico = viewModel.ValorEnergetico,
                 AGSat = viewModel.AGSat,
                 Sal = viewModel.Sal,
