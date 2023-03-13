@@ -27,7 +27,7 @@ namespace ATLManager.ViewModels
 		public Guid EncarregadoId { get; set; }
 
 		[Required]
-		[DisplayName("Imagem da criança")]
+		[DisplayName("Imagem da educando")]
 		public IFormFile ProfilePicture { get; set; }
 	}
 }

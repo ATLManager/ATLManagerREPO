@@ -1,5 +1,6 @@
 ﻿using ATLManager.Areas.Identity.Data;
 using ATLManager.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ATLManager.ViewModels
@@ -37,5 +38,9 @@ namespace ATLManager.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DisplayName("Imagem de perfil")]
+        public IFormFile ProfilePicture { get; set; }
     }
 }
