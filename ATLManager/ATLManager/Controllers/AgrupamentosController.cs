@@ -62,17 +62,25 @@ namespace ATLManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                string fileName = UploadedFile(viewModel.LogoPicture);
-
                 var agrupamento = new Agrupamento
                 {
                     AgrupamentoID = Guid.NewGuid(),
                     Name = viewModel.Name,
                     Location = viewModel.Location,
-                    NIPC = viewModel.NIPC,
-                    LogoPicture = fileName
+                    NIPC = viewModel.NIPC
                 };
-                
+
+                string fileName = UploadedFile(viewModel.LogoPicture);
+
+                if (fileName != null)
+                {
+                    agrupamento.LogoPicture = fileName;
+                } 
+                else
+                {
+                    agrupamento.LogoPicture = "logo.png";
+                }
+
                 _context.Add(agrupamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -121,7 +129,10 @@ namespace ATLManager.Controllers
                         agrupamento.NIPC = viewModel.NIPC;
 
 					    string fileName = UploadedFile(viewModel.LogoPicture);
-                        agrupamento.LogoPicture = fileName;
+                        if (fileName != null)
+                        {
+                            agrupamento.LogoPicture = fileName;
+                        }
 
 					    _context.Update(agrupamento);
                         await _context.SaveChangesAsync();
@@ -191,7 +202,7 @@ namespace ATLManager.Controllers
 
 			if (logoPicture != null)
 			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/agrupamentos");
 				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
 				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 				using (var fileStream = new FileStream(filePath, FileMode.Create))

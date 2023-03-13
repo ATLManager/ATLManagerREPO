@@ -41,32 +41,11 @@ namespace ATLManager.Models
 		[DisplayName("Fotografia do educando")]
 		public string ProfilePicture { get; set; }
 
-		/*
         [Display(Name = "Caminho do ficheiro PDF")]
-        public string DeclaracaoMedicaPath { get; set; }
-
-        [NotMapped]
-        [Display(Name = "Carregamento Ficheiro PDF")]
-        public IFormFile DeclaracaoMedicaPDF { get; set; }
-
+        public string? DeclaracaoMedica { get; set; }
 
         [Display(Name = "Caminho do ficheiro PDF")]
-        public string BoletimVacinasPath { get; set; }
-
-        [NotMapped]
-        [Display(Name = "Carregamento  Ficheiro PDF")]
-        public IFormFile BoletimVacinasPDF { get; set; }
-
-        [Display(Name = "Imagem")]
-        public byte[] ImagemDados { get; set; }
-
-        [Display(Name = "Nome da Imagem")]
-        public string ImagemNome { get; set; }
-
-        [NotMapped]
-        [DisplayName("Carregamento de Imagem")]
-        public IFormFile ImagemArquivo { get; set; }
-        */
+        public string? BoletimVacinas { get; set; }
 
 		public Educando()
 		{

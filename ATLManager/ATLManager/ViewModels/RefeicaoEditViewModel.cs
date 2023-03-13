@@ -51,9 +51,13 @@ namespace ATLManager.ViewModels
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Sal { get; set; }
 
-        [Required]
+        [DataType(DataType.Upload)]
         [DisplayName("Fotografia do menu")]
-        public IFormFile Picture { get; set; }
+        public IFormFile? Picture { get; set; }
+
+        public RefeicaoEditViewModel()
+        {
+        }
 
         public RefeicaoEditViewModel(Refeicao refeicao)
         {

@@ -26,8 +26,15 @@ namespace ATLManager.ViewModels
 		public Guid AtlId { get; set; }
 		public Guid EncarregadoId { get; set; }
 
-		[Required]
 		[DisplayName("Imagem da educando")]
-		public IFormFile ProfilePicture { get; set; }
-	}
+		public IFormFile? ProfilePicture { get; set; }
+
+		[FileExtensions(Extensions = "pdf")]
+        [Display(Name = "Caminho do ficheiro PDF")]
+        public IFormFile? DeclaracaoMedica { get; set; }
+
+        [FileExtensions(Extensions = "pdf")]
+        [Display(Name = "Caminho do ficheiro PDF")]
+        public IFormFile? BoletimVacinas { get; set; }
+    }
 }

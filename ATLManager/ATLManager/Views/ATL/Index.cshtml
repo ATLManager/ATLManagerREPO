@@ -85,7 +85,7 @@
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.NIPC)
                                                 </th>
-                                                <th class="text-center"> Acções </th>
+                                                <th class="text-center"> Ações </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,7 +93,10 @@
                                             {
                                                 <tr>
                                                     <td>
-                                                        <img src="~/images/@item.LogoPicture" class="rounded-circle" height="40" width="40" asp-append-version="true" />
+                                                        <img src="~/images/uploads/atls/@item.LogoPicture"
+                                                        class="rounded-circle"
+                                                        height="40" width="40"
+                                                        asp-append-version="true" />
                                                         @Html.DisplayFor(modelItem => item.Name)
                                                     </td>
                                                     <td>

@@ -23,10 +23,13 @@ namespace ATLManager.ViewModels
 		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
 		public string NIPC { get; set; }
 
-		[Required]
 		[DataType(DataType.Upload)]
 		[DisplayName("Logo do Agrupamento")]
-		public IFormFile LogoPicture { get; set; }
+		public IFormFile? LogoPicture { get; set; }
+
+		public AgrupamentoEditViewModel ()
+		{
+		}
 
 		public AgrupamentoEditViewModel(Agrupamento agrupamento) {
 			AgrupamentoId = agrupamento.AgrupamentoID;

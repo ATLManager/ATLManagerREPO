@@ -60,8 +60,6 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
         {
-            string fileName = UploadedFile(viewModel.Picture);
-
             var refeicao = new Refeicao
             {
                 RefeicaoId = Guid.NewGuid(),
@@ -76,9 +74,19 @@ namespace ATLManager.Controllers
                 Lipidos = viewModel.Lipidos,
                 ValorEnergetico = viewModel.ValorEnergetico,
                 AGSat = viewModel.AGSat,
-                Sal = viewModel.Sal,
-                Picture = fileName
+                Sal = viewModel.Sal
             };
+
+            string fileName = UploadedFile(viewModel.Picture);
+
+            if (fileName != null)
+            {
+                refeicao.Picture = fileName;
+            }
+            else
+            {
+                refeicao.Picture = "logo.png";
+            }
 
             _context.Add(refeicao);
             await _context.SaveChangesAsync();
@@ -136,7 +144,11 @@ namespace ATLManager.Controllers
 
 
                         string fileName = UploadedFile(viewModel.Picture);
-                        refeicao.Picture = fileName;
+
+                        if (fileName != null)
+                        {
+                            refeicao.Picture = fileName;
+                        }
 
                         _context.Update(refeicao);
                         await _context.SaveChangesAsync();
@@ -206,7 +218,7 @@ namespace ATLManager.Controllers
 
             if (logoPicture != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/refeicoes");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

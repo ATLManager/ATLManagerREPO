@@ -111,8 +111,6 @@ namespace ATLManager.Controllers
 
                 if (result.Succeeded)
                 {
-                    string fileName = UploadedFile(viewModel.ProfilePicture);
-
                     // Dar role de funcionario à conta
                     await _userManager.AddToRoleAsync(user, "Funcionario");
 
@@ -120,9 +118,18 @@ namespace ATLManager.Controllers
                     var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
 
                     // Criar o perfil
-                    var funcionario = new ContaAdministrativa(user, atl, viewModel.Coordenador.DateOfBirth, viewModel.Coordenador.CC);
-                    funcionario.ProfilePicture = fileName;
-                    _context.Add(funcionario);
+                    var funcionario = new ContaAdministrativa(user, atl, viewModel.DateOfBirth, viewModel.CC);
+
+                    string fileName = UploadedFile(viewModel.ProfilePicture);
+					if (fileName != null)
+					{
+						funcionario.ProfilePicture = fileName;
+					}
+					else
+					{
+						funcionario.ProfilePicture = "logo.png";
+					}
+					_context.Add(funcionario);
                     await _context.SaveChangesAsync();
                 
                     // Ativar a conta
@@ -198,9 +205,12 @@ namespace ATLManager.Controllers
                         funcionario.AtlId = viewModel.AtlId;
 
                         string fileName = UploadedFile(viewModel.ProfilePicture);
-                        funcionario.ProfilePicture = fileName;
+						if (fileName != null)
+						{
+							funcionario.ProfilePicture = fileName;
+						}
 
-                        _context.Update(funcionario);
+						_context.Update(funcionario);
                         await _context.SaveChangesAsync();
 
                         var user = await _userManager.FindByIdAsync(funcionario.UserId);
@@ -311,7 +321,7 @@ namespace ATLManager.Controllers
 
             if (logoPicture != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/funcionarios");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

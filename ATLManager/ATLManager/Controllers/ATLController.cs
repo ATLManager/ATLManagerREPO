@@ -62,10 +62,22 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ATLCreateViewModel viewModel)
         {
+            if (string.IsNullOrEmpty(viewModel.NIPC) && string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
+            {
+                var validationMessage = "É necessário introduzir um NIPC ou ATLId";
+                ModelState.AddModelError("NIPC", validationMessage);
+                ModelState.AddModelError("AtlId", validationMessage);
+            }
+
+            if (!string.IsNullOrEmpty(viewModel.NIPC) && !string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
+            {
+                var validationMessage = "Apenas permitido introduzir um NIPC ou um ATLId";
+                ModelState.AddModelError("NIPC", validationMessage);
+                ModelState.AddModelError("AtlId", validationMessage);
+            }
+
             if (ModelState.IsValid)
             {
-				string fileName = UploadedFile(viewModel.LogoPicture);
-
 				var atl = new ATL
 				{
 					AtlId = Guid.NewGuid(),
@@ -74,9 +86,18 @@ namespace ATLManager.Controllers
                     City = viewModel.City,
                     PostalCode = viewModel.PostalCode,
 					AgrupamentoId = viewModel.AgrupamentoId,
-                    NIPC = viewModel.NIPC,
-					LogoPicture = fileName
+                    NIPC = viewModel.NIPC
 				};
+
+                string fileName = UploadedFile(viewModel.LogoPicture);
+                if (fileName != null)
+                {
+                    atl.LogoPicture = fileName;
+                }
+                else
+                {
+                    atl.LogoPicture = "logo.png";
+                }
 
                 _context.Add(atl);
                 await _context.SaveChangesAsync();
@@ -115,6 +136,20 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            if (string.IsNullOrEmpty(viewModel.NIPC) && string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
+            {
+                var validationMessage = "É necessário introduzir um NIPC ou ATLId";
+                ModelState.AddModelError("NIPC", validationMessage);             
+                ModelState.AddModelError("AtlId", validationMessage);
+            }
+            
+            if (!string.IsNullOrEmpty(viewModel.NIPC) && !string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
+            {
+                var validationMessage = "Apenas permitido introduzir um NIPC ou um ATLId";
+                ModelState.AddModelError("NIPC", validationMessage);
+                ModelState.AddModelError("AtlId", validationMessage);
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -131,7 +166,10 @@ namespace ATLManager.Controllers
                         atl.NIPC = viewModel.NIPC;
 
                         string fileName = UploadedFile(viewModel.LogoPicture);
-                        atl.LogoPicture = fileName;
+                        if (fileName != null)
+                        {
+                            atl.LogoPicture = fileName;
+                        }
 
                         _context.Update(atl);
                         await _context.SaveChangesAsync();
@@ -203,7 +241,7 @@ namespace ATLManager.Controllers
 
 			if (logoPicture != null)
 			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atls");
 				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
 				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 				using (var fileStream = new FileStream(filePath, FileMode.Create))
