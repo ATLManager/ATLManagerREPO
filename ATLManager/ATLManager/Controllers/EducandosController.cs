@@ -25,8 +25,8 @@ namespace ATLManager.Controllers
         // GET: Educandos
         public async Task<IActionResult> Index()
         {
-            var aTLManagerAuthContext = _context.Educando.Include(e => e.Atl).Include(e => e.Encarregado);
-            return View(await aTLManagerAuthContext.ToListAsync());
+            var atlManagerAuthContext = _context.Educando.Include(e => e.Atl).Include(e => e.Encarregado);
+            return View(await atlManagerAuthContext.ToListAsync());
         }
 
         // GET: Educandos/Details/5
@@ -66,8 +66,6 @@ namespace ATLManager.Controllers
         {
             if (ModelState.IsValid)
             {
-				string fileName = UploadedFile(viewModel.ProfilePicture);
-
                 var educando = new Educando
                 {
                     EducandoId = Guid.NewGuid(),
@@ -76,9 +74,33 @@ namespace ATLManager.Controllers
                     CC = viewModel.CC,
                     Genero = viewModel.Genero,
                     AtlId = viewModel.AtlId,
-                    EncarregadoId = viewModel.EncarregadoId,
-                    ProfilePicture = fileName
+                    EncarregadoId = viewModel.EncarregadoId
                 };
+
+				string photoFileName = UploadedFile(viewModel.ProfilePicture);
+
+				if (photoFileName != null)
+				{
+					educando.ProfilePicture = photoFileName;
+				}
+				else
+				{
+					educando.ProfilePicture = "logo.png";
+				}
+
+                string boletinFileName = UploadedFile(viewModel.ProfilePicture);
+
+                if (photoFileName != null)
+                {
+                    educando.ProfilePicture = boletinFileName;
+                }
+
+                string declaracaoFileName = UploadedFile(viewModel.ProfilePicture);
+
+                if (photoFileName != null)
+                {
+                    educando.ProfilePicture = declaracaoFileName;
+                }
 
                 _context.Add(educando);
                 await _context.SaveChangesAsync();
@@ -134,8 +156,25 @@ namespace ATLManager.Controllers
                         educando.AtlId = viewModel.AtlId;
                         educando.EncarregadoId = viewModel.EncarregadoId;
 
-                        string fileName = UploadedFile(viewModel.ProfilePicture);
-                        educando.ProfilePicture = fileName;
+						string photoFileName = UploadedFile(viewModel.ProfilePicture);
+						if (photoFileName != null)
+						{
+							educando.ProfilePicture = photoFileName;
+						}
+
+                        string boletinFileName = UploadedFile(viewModel.ProfilePicture);
+
+                        if (photoFileName != null)
+                        {
+                            educando.ProfilePicture = boletinFileName;
+                        }
+
+                        string declaracaoFileName = UploadedFile(viewModel.ProfilePicture);
+
+                        if (photoFileName != null)
+                        {
+                            educando.ProfilePicture = declaracaoFileName;
+                        }
 
                         _context.Update(educando);
                         await _context.SaveChangesAsync();
@@ -209,7 +248,7 @@ namespace ATLManager.Controllers
 
 			if (logoPicture != null)
 			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/educandos");
 				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
 				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 				using (var fileStream = new FileStream(filePath, FileMode.Create))

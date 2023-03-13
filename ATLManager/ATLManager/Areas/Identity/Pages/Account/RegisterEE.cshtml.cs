@@ -30,6 +30,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 		private readonly ATLManagerAuthContext _context;
 		private readonly IEmailSender _emailSender;
         private readonly LanguageService _language;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
 
         public EERegisterModel(
@@ -39,7 +40,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
             ILogger<EERegisterModel> logger,
 			ATLManagerAuthContext context,
 			IEmailSender emailSender, 
-            LanguageService language)
+            LanguageService language,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -49,6 +51,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 			_context = context;
 			_emailSender = emailSender;
             _language = language;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -191,7 +194,10 @@ namespace ATLManager.Areas.Identity.Pages.Account
                         Input.City, 
                         Input.PostalCode, 
                         Convert.ToInt32(Input.NIF));
-					_context.Add(perfil);
+
+                    perfil.ProfilePicture = Path.Combine(_webHostEnvironment.WebRootPath, "images\\logo\\logo.png");
+
+                    _context.Add(perfil);
 					await _context.SaveChangesAsync();
 
 					_logger.LogInformation("User created a new account with password.");

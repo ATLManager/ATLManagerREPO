@@ -8,15 +8,24 @@ namespace ATLManager.ViewModels
     public class LowerAccountCreateViewModel
     {
         [Required]
-        public ContaAdministrativa Coordenador { get; set; }
-        
-        [Required]
         [DataType(DataType.Text)]
         public string FirstName { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         public string LastName { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Data de nascimento")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required]
+        [DisplayName("Cartão de cidadão")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
+        public string CC { get; set; }
 
         [Required]
         public Guid AtlId { get; set; }
@@ -39,8 +48,7 @@ namespace ATLManager.ViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         [DisplayName("Imagem de perfil")]
-        public IFormFile ProfilePicture { get; set; }
+        public IFormFile? ProfilePicture { get; set; }
     }
 }

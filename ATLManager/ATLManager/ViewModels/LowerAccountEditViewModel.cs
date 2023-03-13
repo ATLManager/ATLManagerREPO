@@ -25,8 +25,8 @@ namespace ATLManager.ViewModels
         public string CC { get; set; }
         public string Email { get; set; }
 
-        [Required]
+        [DataType(DataType.Upload)]
         [DisplayName("Imagem de perfil")]
-        public IFormFile ProfilePicture { get; set; }
+        public IFormFile? ProfilePicture { get; set; }
     }
 }

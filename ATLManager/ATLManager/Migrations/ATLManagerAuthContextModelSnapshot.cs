@@ -215,10 +215,16 @@ namespace ATLManager.Migrations
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("BoletimVacinas")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CC")
                         .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("DeclaracaoMedica")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EncarregadoId")
                         .HasColumnType("uniqueidentifier");

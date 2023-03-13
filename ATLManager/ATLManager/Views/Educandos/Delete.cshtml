@@ -11,8 +11,11 @@
     <h4>Educando</h4>
     <hr />
     <dl class="row">
+        <img src="~/images/uploads/educandos/@Model.ProfilePicture"
+        class="rounded-circle"
+        height="40" width="40"
+        asp-append-version="true" />
         <dt class = "col-sm-2">
-            <img src="~/images/@Model.ProfilePicture" class="rounded-circle" height="40" width="40" asp-append-version="true" />
             @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">

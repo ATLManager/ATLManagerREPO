@@ -30,7 +30,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Genero" class="control-label"></label>
-                <input asp-for="Genero" class="form-control" />
+                <select asp-for="Genero" class="form-control">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
                 <span asp-validation-for="Genero" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,6 +53,22 @@
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
                 <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeclaracaoMedica" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="DeclaracaoMedica" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="DeclaracaoMedica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoletimVacinas" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="BoletimVacinas" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="BoletimVacinas" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
