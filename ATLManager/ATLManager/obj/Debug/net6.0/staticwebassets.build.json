@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+WCPkLt4Geh1fJ3RLImIBdnOKEKky5TQNi8aovSw7aw=",
+  "Hash": "CyfWMn2g6is6W/8UGduqJs6knphV9JOoURG2QcNZXLU=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -1885,6 +1885,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\uploads\\funcionarios\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\refeicoes\\4649f11b-0f1d-4b2a-8904-427f4f2f2e61_cringe ass nae nae baby.png",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "images/uploads/refeicoes/4649f11b-0f1d-4b2a-8904-427f4f2f2e61_cringe ass nae nae baby.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\uploads\\refeicoes\\4649f11b-0f1d-4b2a-8904-427f4f2f2e61_cringe ass nae nae baby.png"
     },
     {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\refeicoes\\logo.png",

@@ -195,7 +195,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
                         Input.PostalCode, 
                         Convert.ToInt32(Input.NIF));
 
-                    perfil.ProfilePicture = Path.Combine(_webHostEnvironment.WebRootPath, "images\\logo\\logo.png");
+                    perfil.ProfilePicture = "images\\logo\\logo.png";
 
                     _context.Add(perfil);
 					await _context.SaveChangesAsync();

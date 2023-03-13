@@ -170,7 +170,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
                     await _userManager.AddToRoleAsync(user, "Administrador");
 
                     var perfil = new ContaAdministrativa(user, Input.BirthDate, Input.CC);
-					_context.Add(perfil);
+                    perfil.ProfilePicture = "images\\logo\\logo.png";
+                    _context.Add(perfil);
 					await _context.SaveChangesAsync();
 
 					_logger.LogInformation("User created a new account with password.");
