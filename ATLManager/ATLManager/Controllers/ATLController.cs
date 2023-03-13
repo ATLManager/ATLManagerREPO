@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using ATLManager.ViewModels;
 
 namespace ATLManager.Controllers
 {
     public class ATLController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+		private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ATLController(ATLManagerAuthContext context)
+		public ATLController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: ATL
@@ -49,7 +52,7 @@ namespace ATLManager.Controllers
         public IActionResult Create()
         {
             ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name");
-            return View();
+            return View(new ATLCreateViewModel());
         }
 
         // POST: ATL/Create
@@ -57,17 +60,30 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoId,NIPC")] ATL atl)
+        public async Task<IActionResult> Create(ATLCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                atl.AtlId = Guid.NewGuid();
+				string fileName = UploadedFile(viewModel.LogoPicture);
+
+				var atl = new ATL
+				{
+					AtlId = Guid.NewGuid(),
+					Name = viewModel.Name,
+					Address = viewModel.Address,
+                    City = viewModel.City,
+                    PostalCode = viewModel.PostalCode,
+					AgrupamentoId = viewModel.AgrupamentoId,
+                    NIPC = viewModel.NIPC,
+					LogoPicture = fileName
+				};
+
                 _context.Add(atl);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
-            return View(atl);
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", viewModel.AgrupamentoId);
+            return View(viewModel);
         }
 
         // GET: ATL/Edit/5
@@ -84,7 +100,7 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
             ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
-            return View(atl);
+            return View(new ATLEditViewModel(atl));
         }
 
         // POST: ATL/Edit/5
@@ -92,9 +108,9 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AtlId,Name,Address,City,PostalCode,AgrupamentoId,NIPC")] ATL atl)
+        public async Task<IActionResult> Edit(Guid id, ATLEditViewModel viewModel)
         {
-            if (id != atl.AtlId)
+            if (id != viewModel.AtlId)
             {
                 return NotFound();
             }
@@ -103,12 +119,27 @@ namespace ATLManager.Controllers
             {
                 try
                 {
-                    _context.Update(atl);
-                    await _context.SaveChangesAsync();
+                    var atl = await _context.ATL.FindAsync(id);
+
+                    if (atl != null)
+                    {
+                        atl.Name = viewModel.Name;
+                        atl.Address = viewModel.Address;
+                        atl.City = viewModel.City;
+                        atl.PostalCode = viewModel.PostalCode;
+                        atl.AgrupamentoId = viewModel.AgrupamentoId;
+                        atl.NIPC = viewModel.NIPC;
+
+                        string fileName = UploadedFile(viewModel.LogoPicture);
+                        atl.LogoPicture = fileName;
+
+                        _context.Update(atl);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ATLExists(atl.AtlId))
+                    if (!ATLExists(viewModel.AtlId))
                     {
                         return NotFound();
                     }
@@ -119,8 +150,8 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
-            return View(atl);
+            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", viewModel.AgrupamentoId);
+            return View(viewModel);
         }
 
         // GET: ATL/Delete/5
@@ -165,5 +196,22 @@ namespace ATLManager.Controllers
         {
           return _context.ATL.Any(e => e.AtlId == id);
         }
-    }
+
+		private string UploadedFile(IFormFile logoPicture)
+		{
+			string uniqueFileName = null;
+
+			if (logoPicture != null)
+			{
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					logoPicture.CopyTo(fileStream);
+				}
+			}
+			return uniqueFileName;
+		}
+	}
 }

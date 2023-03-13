@@ -36,6 +36,10 @@ namespace ATLManager.Models
 		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
 		public string? NIPC { get; set; }
 
+		[Required]
+		[DisplayName("Logo do Agrupamento")]
+		public string LogoPicture { get; set; }
+
 		public ATL()
 		{
 			AtlId = Guid.NewGuid();

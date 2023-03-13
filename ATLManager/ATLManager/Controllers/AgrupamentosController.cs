@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using ATLManager.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ATLManager.Controllers
 {
     public class AgrupamentosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AgrupamentosController(ATLManagerAuthContext context)
+        public AgrupamentosController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Agrupamentos
@@ -46,7 +50,7 @@ namespace ATLManager.Controllers
         // GET: Agrupamentos/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new AgrupamentoCreateViewModel());
         }
 
         // POST: Agrupamentos/Create
@@ -54,16 +58,26 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AgrupamentoID,Name,Location,NIPC")] Agrupamento agrupamento)
+        public async Task<IActionResult> Create(AgrupamentoCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                agrupamento.AgrupamentoID = Guid.NewGuid();
+                string fileName = UploadedFile(viewModel.LogoPicture);
+
+                var agrupamento = new Agrupamento
+                {
+                    AgrupamentoID = Guid.NewGuid(),
+                    Name = viewModel.Name,
+                    Location = viewModel.Location,
+                    NIPC = viewModel.NIPC,
+                    LogoPicture = fileName
+                };
+                
                 _context.Add(agrupamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(agrupamento);
+            return View(viewModel);
         }
 
         // GET: Agrupamentos/Edit/5
@@ -79,7 +93,7 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            return View(agrupamento);
+            return View(new AgrupamentoEditViewModel(agrupamento));
         }
 
         // POST: Agrupamentos/Edit/5
@@ -87,9 +101,9 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AgrupamentoID,Name,Location,NIPC")] Agrupamento agrupamento)
+        public async Task<IActionResult> Edit(Guid id, AgrupamentoEditViewModel viewModel)
         {
-            if (id != agrupamento.AgrupamentoID)
+            if (id != viewModel.AgrupamentoId)
             {
                 return NotFound();
             }
@@ -98,12 +112,24 @@ namespace ATLManager.Controllers
             {
                 try
                 {
-                    _context.Update(agrupamento);
-                    await _context.SaveChangesAsync();
+                    var agrupamento = await _context.Agrupamento.FindAsync(id);
+
+                    if (agrupamento != null)
+                    {
+                        agrupamento.Name = viewModel.Name;
+                        agrupamento.Location = viewModel.Location;
+                        agrupamento.NIPC = viewModel.NIPC;
+
+					    string fileName = UploadedFile(viewModel.LogoPicture);
+                        agrupamento.LogoPicture = fileName;
+
+					    _context.Update(agrupamento);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AgrupamentoExists(agrupamento.AgrupamentoID))
+                    if (!AgrupamentoExists(viewModel.AgrupamentoId))
                     {
                         return NotFound();
                     }
@@ -114,7 +140,7 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(agrupamento);
+            return View(viewModel);
         }
 
         // GET: Agrupamentos/Delete/5
@@ -158,5 +184,22 @@ namespace ATLManager.Controllers
         {
             return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
-    }
+
+		private string UploadedFile(IFormFile logoPicture)
+		{
+			string uniqueFileName = null;
+
+			if (logoPicture != null)
+			{
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					logoPicture.CopyTo(fileStream);
+				}
+			}
+			return uniqueFileName;
+		}
+	}
 }

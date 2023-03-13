@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230312234451_EE_FullName")]
+    partial class EE_FullName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,11 +212,6 @@ namespace ATLManager.Migrations
 
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
-                        
-                    b.Property<string>("CC")
-                        .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
 
                     b.Property<Guid>("EncarregadoId")
                         .HasColumnType("uniqueidentifier");
@@ -222,6 +219,10 @@ namespace ATLManager.Migrations
                     b.Property<string>("Genero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NIF")
+                        .HasMaxLength(9)
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

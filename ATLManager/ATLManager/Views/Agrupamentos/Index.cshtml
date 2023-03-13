@@ -32,7 +32,7 @@
         <!-- d-flex -->
         <div class="d-flex justify-content-center" id="divFase1">
             <!-- Box  -->
-            <div class="row col-6 justify-content-center custom-box w-50">
+            <div class="row col-8 justify-content-center custom-box w-50">
                 <div class="row box border-5 p-5">
 
                     <div class="container">
@@ -84,6 +84,10 @@
                                             {
                                                 <tr>
                                                     <td>
+                                                        <img src="~/images/@item.LogoPicture" 
+                                                        class="rounded-circle"
+                                                        height="40" width="40"
+                                                        asp-append-version="true" />
                                                         @Html.DisplayFor(modelItem => item.Name)
                                                     </td>
                                                     <td>
