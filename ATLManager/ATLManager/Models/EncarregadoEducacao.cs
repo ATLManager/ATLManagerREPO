@@ -1,4 +1,5 @@
 ﻿using ATLManager.Areas.Identity.Data;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -38,7 +39,11 @@ namespace ATLManager.Models
 		[RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
 		public int NIF { get; set; }
 
-		public EncarregadoEducacao()
+        [Required]
+        [DisplayName("Fotografia de perfil")]
+        public string ProfilePicture { get; set; }
+
+        public EncarregadoEducacao()
 		{
 			EncarregadoId = Guid.NewGuid();
 		}
