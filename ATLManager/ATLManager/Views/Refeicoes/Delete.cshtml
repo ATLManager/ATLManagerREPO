@@ -19,7 +19,7 @@
             <img src="~/images/icons/delete-group.png" width="50" height="50">
         </div>
 
-        <div class="row pt-5" style="padding-left: 6em;">
+        <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-5"></div>
             <div class="col-4  pb-2">
@@ -39,10 +39,12 @@
                         <h3>Tens a certeza que queres remover esta refeição?</h3>
                     </div>
                     <div class="container">
-                        <img src="~/images/uploads/refeicoes/@Model.Picture"
-                             class="rounded-circle"
-                             height="40" width="40"
-                         asp-append-version="true" />
+                        <div class="row justify-content-center">
+                            <img src="~/images/uploads/refeicoes/@Model.Picture"
+                                 class="rounded-circle mb-3"
+                                 style="width:15%"
+                             asp-append-version="true" />
+                        </div>
                         <dl class="row text-end">
                             <div class="row">
                                 <dt class="col mr-2">

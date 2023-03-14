@@ -22,19 +22,19 @@
         </div>
 
         <div class="row" style="padding-left: 6em;">
-            <div class="col-3"></div>
-            <div class="col-7 text-right">
+            <div class="col"></div>
+            <div class="col-5 text-right">
                 <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
-            <div class="col-2 pb-2">
+            <div class="col pb-2 mb-3">
                 
             </div>
         </div>
         <div class="d-flex justify-content-center">
             <!-- Box  -->
-            <div class="row col-8 justify-content-center custom-box">
+            <div class="row col-6 justify-content-center custom-box">
                 <div class="row box border-5">
                     <!--text-center  -->
 
@@ -43,7 +43,7 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label asp-for="Name" class="form-label"></label>
-                                    <input asp-for="Name" class="form-control" />
+                                    <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
                                     <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
   
@@ -62,77 +62,73 @@
                                                 <div class="row mb-2">
                                                     <div class="col-6">
                                                         <label asp-for="Proteina" class="form-label"></label>
-                                                        <input asp-for="Proteina" class="form-control" />
+                                                        <input asp-for="Proteina" class="form-control" placeholder="Quantidade de proteina"/>
                                                         <span asp-validation-for="Proteina" class="text-danger"></span>
                                                     </div>
                                                     <div class="col-6">
                                                         <label asp-for="HidratosCarbono" class="form-label"></label>
-                                                        <input asp-for="HidratosCarbono" class="form-control" />
+                                                    <input asp-for="HidratosCarbono" class="form-control" placeholder="Quantidade de hidratos" />
                                                         <span asp-validation-for="HidratosCarbono" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-6">
                                                         <label asp-for="VR" class="form-label"></label>
-                                                        <input asp-for="VR" class="form-control" />
+                                                    <input asp-for="VR" class="form-control" placeholder="Quantidade de vr" />
                                                         <span asp-validation-for="VR" class="text-danger"></span>
                                                     </div>
                                                     <div class="col-6">
                                                         <label asp-for="Acucar" class="form-label"></label>
-                                                        <input asp-for="Acucar" class="form-control" />
+                                                    <input asp-for="Acucar" class="form-control" placeholder="Quantidade de acucar" />
                                                         <span asp-validation-for="Acucar" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-6">
                                                         <label asp-for="Lipidos" class="form-label"></label>
-                                                        <input asp-for="Lipidos" class="form-control" />
+                                                    <input asp-for="Lipidos" class="form-control" placeholder="Quantidade de lipidos" />
                                                         <span asp-validation-for="Lipidos" class="text-danger"></span>
                                                     </div>
                                                     <div class="col-6">
                                                         <label asp-for="ValorEnergetico" class="form-label"></label>
-                                                        <input asp-for="ValorEnergetico" class="form-control" />
+                                                    <input asp-for="ValorEnergetico" class="form-control" placeholder="Quantidade de valor energetico" />
                                                         <span asp-validation-for="ValorEnergetico" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-6">
                                                         <label asp-for="AGSat" class="form-label"></label>
-                                                        <input asp-for="AGSat" class="form-control" />
+                                                    <input asp-for="AGSat" class="form-control" placeholder="Quantidade de ag.sat" />
                                                         <span asp-validation-for="AGSat" class="text-danger"></span>
                                                     </div>
                                                     <div class="col-6">
                                                         <label asp-for="Sal" class="form-label"></label>
-                                                        <input asp-for="Sal" class="form-control" />
+                                                    <input asp-for="Sal" class="form-control" placeholder="Quantidade de sal" />
                                                         <span asp-validation-for="Sal" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                         
-
                             </div>
+
+                           
 
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label asp-for="Categoria" class="form-label"></label>
-                                        <select asp-for="Categoria" class="form-control" id="exampleFormControlSelect1">
-                                            <option value="" selected></option>
+
+                                        <label asp-for="Categoria" class="control-label"></label>
+                                        <select asp-for="Categoria" class="form-control">
+                                            <option value=null>Selecione uma opção</option>
                                             <option value="Carne">Carne</option>
                                             <option value="Peixe">Peixe</option>
                                             <option value="Vegetariano">Vegertariano</option>
                                         </select>
+                                        <span asp-validation-for="Categoria" class="text-danger"></span>
+         
                                     </div>
-                                    <span asp-validation-for="Categoria" class="text-danger"></span>
-
-                                 @*   <label asp-for="Categoria" class="form-label"></label>
-                                    <input asp-for="Categoria" class="form-control" />
-                                    <span asp-validation-for="Categoria" class="text-danger"></span>*@
-                                </div>
-
-                                
+                                </div>            
                             </div>
 
                             <div class="row mb-3">
@@ -148,7 +144,7 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label asp-for="Descricao" class="form-label"></label>
-                                    <input asp-for="Descricao" class="form-control" />
+                                    <input asp-for="Descricao" class="form-control" placeholder="Insira uma descrição" />
                                     <span asp-validation-for="Descricao" class="text-danger"></span>
                                 </div>
 
