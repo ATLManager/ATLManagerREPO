@@ -67,6 +67,7 @@
                                     <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.Name)
                                                 </th>
@@ -83,23 +84,25 @@
                                             @foreach (var item in Model)
                                             {
                                                 <tr>
-                                                    <td>
-                                                        <img src="~/images/uploads/agrupamentos/@item.LogoPicture" 
-                                                        class="rounded-circle"
-                                                        height="40" width="40"
-                                                        asp-append-version="true" />
+                                                    <td class="align-middle">
+                                                        <img src="~/images/uploads/agrupamentos/@item.LogoPicture"
+                                                             class="rounded-circle"
+                                                             height="40" width="40"
+                                                     asp-append-version="true" />
+                                                    </td>
+                                                    <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.Name)
                                                     </td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.Location)
                                                     </td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.NIPC)
                                                     </td>
                                                     <td class="text-center">
                                                         <a asp-action="Details" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> Details</button></a>
-                                                        <a asp-action="Edit" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-success custom-button w-25" style="border-radius:6em"> Edit </button></a>
-                                                        <a asp-action="Delete" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em; width: 30%;"> Delete</button></a>
+                                                        <a asp-action="Edit" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em"> Update </button></a>
+                                                        <a asp-action="Delete" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;"> Delete</button></a>
                                                     </td>
                                                 </tr>
                                             }
