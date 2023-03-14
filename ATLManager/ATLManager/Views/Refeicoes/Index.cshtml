@@ -19,7 +19,7 @@
             <img src="~/images/icons/search-group.png" width="50" height="50">
         </div>
 
-        <div class="row pt-5" style="padding-left: 6em;">
+        <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-6"></div>
             <div class="col-3  pb-2">
@@ -33,7 +33,7 @@
         <!-- d-flex -->
         <div class="d-flex justify-content-center" id="divFase1">
             <!-- Box  -->
-            <div class="row col-8 justify-content-center custom-box w-50">
+            <div class="row col-6 justify-content-center custom-box w-50">
                 <div class="row box border-5 p-5">
 
                     <div class="container">
@@ -68,6 +68,7 @@
                                     <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.Name)
                                                 </th>
@@ -84,23 +85,26 @@
                                             @foreach (var item in Model)
                                             {
                                                 <tr>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <img src="~/images/uploads/refeicoes/@item.Picture"
                                                              class="rounded-circle"
                                                              height="40" width="40"
-                                                        asp-append-version="true" />
+                                                     asp-append-version="true" />
+                                                    </td>
+                                                    <td class="align-middle">
+                                                       
                                                         @Html.DisplayFor(modelItem => item.Name)
                                                     </td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.Categoria)
                                                     </td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.Data)
                                                     </td>
                                                     <td class="text-center">
-                                                        <a asp-action="Details" asp-route-id="@item.RefeicaoId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> Details</button></a>
-                                                        <a asp-action="Edit" asp-route-id="@item.RefeicaoId"> <button type="button" class="btn btn-success custom-button w-25" style="border-radius:6em"> Edit </button></a>
-                                                        <a asp-action="Delete" asp-route-id="@item.RefeicaoId"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em; width: 30%;"> Delete</button></a>
+                                                        <a asp-action="Details" asp-route-id="@item.RefeicaoId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
+                                                        <a asp-action="Edit" asp-route-id="@item.RefeicaoId"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em"> <img src="~/images/icons/edit-icon1.png" height="20" width="20"> </button></a>
+                                                        <a asp-action="Delete" asp-route-id="@item.RefeicaoId"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;"> <img src="~/images/icons/delete-icon1.png" height="20" width="20"></button></a>
                                                     </td>
                                                 </tr>
                                             }

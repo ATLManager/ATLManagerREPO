@@ -16,12 +16,12 @@
 	<!-- Fase 1  -->
 	<!-- d-flex -->
 	<div class="container-fluid">
-		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%;">
 			<h1 class="me-3 fw-bold text-center mb-4">Editar Coordenador</h1>
 			<img src="~/images/icons/add-group.png" width="50" height="50">
 		</div>
 
-		<div class="row pt-5" style="padding-left: 6em;">
+		<div class="row" style="padding-left: 6em;">
 			<div class="col-3"></div>
 			<div class="col-5"></div>
 			<div class="col-4  pb-2">
@@ -49,14 +49,14 @@
 
 													<div class="form-group">
 														<label asp-for="FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-														<input asp-for="FirstName" class="form-control" autocomplete="username" aria-required="true">
+														<input asp-for="FirstName" class="form-control" placeholder="Insira o primeiro nome" aria-required="true">
 														<span asp-validation-for="FirstName" class="text-danger"></span>
 													</div>
 												</div>
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-														<input asp-for="LastName" class="form-control" autocomplete="username" aria-required="true" />
+														<input asp-for="LastName" class="form-control" placeholder="Insira o ultimo nome" aria-required="true" />
 														<span asp-validation-for="LastName" class="text-danger"></span>
 													</div>
 												</div>
@@ -66,14 +66,14 @@
 												<div class="col-6">
 
 													<div class="form-group">
-														<label asp-for="AtlId" class="control-label"></label>
+														<label asp-for="AtlId" class="control-label">Atl</label>
 														<select asp-for="AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
 													</div>
 												</div>
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="CC" class="control-label"></label>
-														<input asp-for="CC" class="form-control" />
+														<input asp-for="CC" class="form-control" placeholder="Insira o cc" />
 														<span asp-validation-for="CC" class="text-danger"></span>
 													</div>
 												</div>
@@ -84,7 +84,7 @@
 
 													<div class="form-group">
 														<label asp-for="Email" class="form-label">@language.GetKey("email")</label>
-														<input asp-for="Email" class="form-control" autocomplete="email" aria-required="true" />
+														<input asp-for="Email" class="form-control" placeholder="Insira o email" aria-required="true" />
 														<span asp-validation-for="Email" class="text-danger"></span>
 													</div>
 												</div>

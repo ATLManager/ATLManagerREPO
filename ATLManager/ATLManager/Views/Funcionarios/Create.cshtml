@@ -21,7 +21,7 @@
             <img src="~/images/icons/add-group.png" width="50" height="50">
         </div>
 
-        <div class="row pt-5" style="padding-left: 6em;">
+        <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-5"></div>
             <div class="col-4  pb-2">
@@ -45,13 +45,13 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label asp-for="FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-                                                        <input asp-for="FirstName" class="form-control" autocomplete="username" aria-required="true">
+                                                        <input asp-for="FirstName" class="form-control" placeholder="Insira o primeiro nome" aria-required="true">
                                                         <span asp-validation-for="FirstName" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                     <div class="col-6">
                                                         <label asp-for="LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-                                                        <input asp-for="LastName" class="form-control" autocomplete="username" aria-required="true" />
+                                                    <input asp-for="LastName" class="form-control" placeholder="Insira o ultimo nome" aria-required="true" />
                                                         <span asp-validation-for="LastName" class="text-danger"></span>
                                                     </div>
                                             </div>
@@ -60,7 +60,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label asp-for="CC" class="control-label"></label>
-                                                        <input asp-for="CC" class="form-control" />
+                                                        <input asp-for="CC" class="form-control" placeholder="Insira o cc" />
                                                         <span asp-validation-for="CC" class="text-danger"></span>
                                                     </div>
                                                 </div>
@@ -75,7 +75,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label asp-for="Email" class="form-label">@language.GetKey("email")</label>
-                                                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+                                                        <input asp-for="Email" class="form-control" placeholder="Insira o email" aria-required="true" />
                                                         <span asp-validation-for="Email" class="text-danger"></span>
                                                     </div>
                                                 </div>
@@ -91,20 +91,24 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label asp-for="Password" class="form-label">@language.GetKey("password")</label>
-                                                        <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                                                        <input asp-for="Password" class="form-control" placeholder="Insira a password" aria-required="true" />
                                                         <span asp-validation-for="Password" class="text-danger"></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-6">
                                                     <label asp-for="ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
-                                                    <input asp-for="ConfirmPassword" class="form-control" aria-required="true" />
+                                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirme a password" aria-required="true" />
                                                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="control-label">Imagem</label>
-                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                                <label asp-for="ProfilePicture" class="control-label"></label>
+                                                <div class="custom-file">
+                                                    <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
+                                                    <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
+                                                </div>
+                                                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
                                             </div>
                                             <hr />
                                             <div class="d-flex text-center mt-4">
