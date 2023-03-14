@@ -22,8 +22,8 @@
 
 		<div class="row" style="padding-left: 6em;">
 			<div class="col-3"></div>
-			<div class="col-3"></div>
-			<div class="col-6  pb-2">
+			<div class="col-5"></div>
+			<div class="col-4  pb-2">
 				<button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
 				</button>
@@ -32,7 +32,7 @@
 		<div class="d-flex justify-content-center">
 			<!-- Box  -->
 			<div class="row col-6 justify-content-center custom-box w-50">
-				<div class="row box border-5 p-5">
+				<div class="row box border-5">
 					<div class="container">
 						<div class="row mt-3">
 							<div class="mb-3">
@@ -40,15 +40,21 @@
 									<div class="col-md">
 										<form enctype="multipart/form-data" asp-action="Create">
 											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-											<div class="form-group">
-												<label asp-for="Name" class="control-label"></label>
-												<input asp-for="Name" class="form-control" />
-												<span asp-validation-for="Name" class="text-danger"></span>
+											<div class="row mb-3">
+												<div class="col-6">
+													<div class="form-group">
+														<label asp-for="Name" class="control-label"></label>
+														<input asp-for="Name" class="form-control" />
+														<span asp-validation-for="Name" class="text-danger"></span>
+													</div>
 											</div>
-											<div class="form-group">
-												<label asp-for="Address" class="control-label"></label>
-												<input asp-for="Address" class="form-control" />
-												<span asp-validation-for="Address" class="text-danger"></span>
+												<div class="col-6">
+													<div class="form-group">
+														<label asp-for="Address" class="control-label"></label>
+														<input asp-for="Address" class="form-control" />
+														<span asp-validation-for="Address" class="text-danger"></span>
+													</div>
+											</div>
 											</div>
 											<div class="row mb-3">
 												<div class="col-6">
@@ -67,7 +73,7 @@
 													<span asp-validation-for="City" class="text-danger"></span>
 												</div>
 											</div>
-											<div class="form-switch row text-center mb-3">
+											<div class="form-switch row text-center mb-2 pt-3">
 												<div class="col-8">Pertence a um agrupamento?</div>
 												<div class="col-2">
 													<input class="form-check-input" style="float:left" type="checkbox" id="toggleSwitch">
@@ -80,12 +86,16 @@
 													<span asp-validation-for="NIPC" class="text-danger"></span>
 												</div>
 											</div>
+											
 											<div class="row mb-3" id="divAgrupamento" style="display: none;">
-												<label asp-for="AgrupamentoId" class="form-label"></label>
-												<select asp-for="AgrupamentoId" class="form-control" asp-items="ViewBag.AgrupamentoId"> 
-													<option value="">Escolha um Agrupamento</option>
-												</select>
+												<div class="col-12">
+													<label asp-for="AgrupamentoId" class="form-label"></label>
+													<select asp-for="AgrupamentoId" class="form-control" asp-items="ViewBag.AgrupamentoId"> 
+														<option value="">Escolha um Agrupamento</option>
+													</select>
+												</div>
 											</div>
+											
 											<div class="form-group">
 												<label asp-for="LogoPicture" class="control-label"></label>
 												<div class="custom-file">

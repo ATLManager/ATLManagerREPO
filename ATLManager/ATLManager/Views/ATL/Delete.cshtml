@@ -16,7 +16,7 @@
 			<img src="~/images/icons/delete-group.png" width="50" height="50">
 		</div>
 
-		<div class="row pt-5" style="padding-left: 6em;">
+		<div class="row " style="padding-left: 6em;">
 			<div class="col-3"></div>
 			<div class="col-5"></div>
 			<div class="col-4  pb-2">
@@ -31,15 +31,18 @@
 		<div class="d-flex justify-content-center" id="divFase1">
 			<!-- Box  -->
 			<div class="row col-6 justify-content-center custom-box w-50">
-				<div class="row box border-5 p-5">
+				<div class="row box border-5">
 					<div class="row mb-3 text-center">
 						<h3>Tens a certeza que queres remover este atl?</h3>
 					</div>
 					<div class="container">
-						<img src="~/images/uploads/atls/@Model.LogoPicture"
-						class="rounded-circle"
-						height="40" width="40"
-						asp-append-version="true" />
+						<div class="row justify-content-center">
+							<img src="~/images/uploads/atls/@Model.LogoPicture"
+								class="rounded-circle"
+								style="width:15%"
+							 asp-append-version="true" />
+						</div>
+						
 						<dl class="row text-end">
 							<div class="row">
 								<dt class="col mr-2">
@@ -80,7 +83,15 @@
 									@Html.DisplayNameFor(model => model.Agrupamento)
 								</dt>
 								<dd class="col text-left">
-									@Html.DisplayFor(model => model.Agrupamento.Name)
+
+									@if (Model.Agrupamento != null)
+									{
+										@Html.DisplayFor(modelItem => Model.Agrupamento.Name)
+									}
+									else
+									{
+										<span class="text-center"> - </span>
+									}
 								</dd>
 							</div>
 
