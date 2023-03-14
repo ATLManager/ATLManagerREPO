@@ -15,6 +15,7 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
 		private readonly IWebHostEnvironment _webHostEnvironment;
+		List<string> allowedPrefixesNIPC = new List<string> { "5", "6", "7", "8", "9" };
 
 		public ATLController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
         {
@@ -78,13 +79,14 @@ namespace ATLManager.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.NIPC))
             {
-                if (!viewModel.NIPC[0].Equals("6"))
-                {
-                    var validationMessage = "NIPC requer que o primeiro dígito seja 6";
-                    ModelState.AddModelError("NIPC", validationMessage);
-                }
+				if (!allowedPrefixesNIPC.Contains(viewModel.NIPC.Trim().Substring(0, 1)))
+				{
+					var validationMessage = "NIPC requer que o primeiro dígito seja 5, 6, 7, 8 ou 9.";
+					ModelState.AddModelError("NIPC", validationMessage);
+				}
 
-                if (_context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
+				if (_context.ATL.Any(a => a.NIPC == viewModel.NIPC)
+                    || _context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
                 {
                     var validationMessage = "Outro ATL/Agrupamento já contém este NIPC";
                     ModelState.AddModelError("NIPC", validationMessage);
@@ -167,19 +169,22 @@ namespace ATLManager.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.NIPC))
             {
-                if (!viewModel.NIPC[0].Equals("6"))
-                {
-                    var validationMessage = "NIPC requer que o primeiro dígito seja 6";
-                    ModelState.AddModelError("NIPC", validationMessage);
-                }
+				if (!allowedPrefixesNIPC.Contains(viewModel.NIPC.Trim().Substring(0, 1)))
+				{
+					var validationMessage = "NIPC requer que o primeiro dígito seja 5, 6, 7, 8 ou 9.";
+					ModelState.AddModelError("NIPC", validationMessage);
+				}
 
-                if (_context.ATL.Any(a => a.NIPC == viewModel.NIPC)
+				var ATL = _context.ATL.Find(viewModel.AtlId);
+                
+				if (ATL.NIPC != viewModel.NIPC &&
+					_context.ATL.Any(a => a.NIPC == viewModel.NIPC)
                     || _context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
                 {
                     var validationMessage = "Outro ATL/Agrupamento já contém este NIPC";
                     ModelState.AddModelError("NIPC", validationMessage);
                 }
-            }
+			}
 
             if (ModelState.IsValid)
             {

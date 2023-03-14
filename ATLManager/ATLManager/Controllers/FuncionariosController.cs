@@ -104,8 +104,8 @@ namespace ATLManager.Controllers
                 if (_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
                     || _context.Educando.Any(e => e.CC == viewModel.CC))
                 {
-                    var validationMessage = "Outro Agrupamento já contém este NIPC";
-                    ModelState.AddModelError("NIPC", validationMessage);
+                    var validationMessage = "Outro Agrupamento já contém este CC";
+                    ModelState.AddModelError("CC", validationMessage);
                 }
             }
 
@@ -204,7 +204,10 @@ namespace ATLManager.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
-                if (_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
+				var funcionario = _context.ContaAdministrativa.Find(viewModel.ContaId);
+
+				if (funcionario.CC != viewModel.CC &&
+					_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
                     || _context.Educando.Any(e => e.CC == viewModel.CC))
                 {
                     var validationMessage = "Outra conta já contém este CC";

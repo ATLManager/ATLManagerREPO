@@ -151,7 +151,21 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+			if (!string.IsNullOrEmpty(viewModel.CC))
+			{
+				var educando = _context.Educando.Find(viewModel.EducandoId);
+
+				if (educando.CC != viewModel.CC &&
+                    _context.Educando.Any(e => e.CC == viewModel.CC) ||
+					_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
+)
+				{
+					var validationMessage = "Outra conta já contém este CC";
+					ModelState.AddModelError("CC", validationMessage);
+				}
+			}
+
+			if (ModelState.IsValid)
             {
                 try
                 {

@@ -9,6 +9,7 @@ using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using System.Diagnostics;
 
 namespace ATLManager.Controllers
 {
@@ -17,7 +18,9 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AgrupamentosController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+		List<string> allowedPrefixesNIPC = new List<string> { "5", "6", "7", "8", "9" };
+
+		public AgrupamentosController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
@@ -60,7 +63,22 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AgrupamentoCreateViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(viewModel.NIPC))
+            {
+                if (!allowedPrefixesNIPC.Contains(viewModel.NIPC.Trim().Substring(0, 1)))
+                {
+                    var validationMessage = "NIPC requer que o primeiro dígito seja 5, 6, 7, 8 ou 9.";
+                    ModelState.AddModelError("NIPC", validationMessage);
+                }
+
+				if (_context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
+				{
+					var validationMessage = "Outro Agrupamento já contém este NIPC";
+					ModelState.AddModelError("NIPC", validationMessage);
+				}
+			}
+
+			if (ModelState.IsValid)
             {
                 var agrupamento = new Agrupamento
                 {
@@ -118,18 +136,20 @@ namespace ATLManager.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.NIPC))
             {
-                if (!viewModel.NIPC[0].Equals("6"))
-                {
-                    var validationMessage = "NIPC requer que o primeiro dígito seja 6";
-                    ModelState.AddModelError("NIPC", validationMessage);
-                }
+				if (!allowedPrefixesNIPC.Contains(viewModel.NIPC.Trim().Substring(0, 1)))
+				{
+					var validationMessage = "NIPC requer que o primeiro dígito seja 5, 6, 7, 8 ou 9.";
+					ModelState.AddModelError("NIPC", validationMessage);
+				}
 
-                if (_context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
-                {
-                    var validationMessage = "Outro Agrupamento já contém este NIPC";
-                    ModelState.AddModelError("NIPC", validationMessage);
-                }
-            }
+				var agrupamento = _context.Agrupamento.Find(viewModel.AgrupamentoId);
+				if (agrupamento.NIPC != viewModel.NIPC &&
+					_context.Agrupamento.Any(a => a.NIPC == viewModel.NIPC))
+				{
+					var validationMessage = "Outro Agrupamento já contém este NIPC";
+					ModelState.AddModelError("NIPC", validationMessage);
+				}
+			}
 
             if (ModelState.IsValid)
             {
