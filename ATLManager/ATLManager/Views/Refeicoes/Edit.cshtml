@@ -1,0 +1,312 @@
+﻿@model ATLManager.ViewModels.RefeicaoEditViewModel
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <!-- Fase 1  -->
+    <!-- d-flex -->
+    <!-- Container -->
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+            <h1 class="me-3 fw-bold text-center mb-4">Editar Refeição</h1>
+            <img src="~/images/icons/add-group.png" width="50" height="50">
+        </div>
+
+        <div class="row pt-5" style="padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-7 text-right">
+                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+            <div class="col-2 pb-2">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <!-- Box  -->
+            <div class="row col-8 justify-content-center custom-box">
+                <div class="row box border-5">
+                    <!--text-center  -->
+
+                    <div class="container">
+                        <form enctype="multipart/form-data" asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="RefeicaoId" />
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Name" class="form-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-6 position-relative mt-2">
+                                    <div class="row">
+                                        <div class="h-100 position-absolute top-0 end-0">
+                                            <!-- extended box content -->
+                                            <div class="row mb-2">
+                                                <div class="d-flex justify-content-center ms-2 pb-1">
+                                                    <img src="~/images/icons/info_ementa.png" width="30" height="30">
+                                                    <div style="margin-left: 1%;">
+                                                        <h4 class="fw-bold text-center">Informação Nutricional</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-6">
+                                                    <label asp-for="Proteina" class="form-label"></label>
+                                                    <input asp-for="Proteina" class="form-control" />
+                                                    <span asp-validation-for="Proteina" class="text-danger"></span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label asp-for="HidratosCarbono" class="form-label"></label>
+                                                    <input asp-for="HidratosCarbono" class="form-control" />
+                                                    <span asp-validation-for="HidratosCarbono" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-6">
+                                                    <label asp-for="VR" class="form-label"></label>
+                                                    <input asp-for="VR" class="form-control" />
+                                                    <span asp-validation-for="VR" class="text-danger"></span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label asp-for="Acucar" class="form-label"></label>
+                                                    <input asp-for="Acucar" class="form-control" />
+                                                    <span asp-validation-for="Acucar" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-6">
+                                                    <label asp-for="Lipidos" class="form-label"></label>
+                                                    <input asp-for="Lipidos" class="form-control" />
+                                                    <span asp-validation-for="Lipidos" class="text-danger"></span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label asp-for="ValorEnergetico" class="form-label"></label>
+                                                    <input asp-for="ValorEnergetico" class="form-control" />
+                                                    <span asp-validation-for="ValorEnergetico" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-6">
+                                                    <label asp-for="AGSat" class="form-label"></label>
+                                                    <input asp-for="AGSat" class="form-control" />
+                                                    <span asp-validation-for="AGSat" class="text-danger"></span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label asp-for="Sal" class="form-label"></label>
+                                                    <input asp-for="Sal" class="form-control" />
+                                                    <span asp-validation-for="Sal" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="Categoria" class="form-label"></label>
+                                        <select asp-for="Categoria" class="form-control" id="exampleFormControlSelect1">
+                                            <option value=""></option>
+                                            <option value="Carne">Carne</option>
+                                            <option value="Peixe">Peixe</option>
+                                            <option value="Vegetariano">Vegertariano</option>
+                                        </select>
+                                    </div>
+                                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Data" class="form-label"></label>
+                                    <input asp-for="Data" class="form-control" />
+                                    <span asp-validation-for="Data" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Descricao" class="form-label"></label>
+                                    <input asp-for="Descricao" class="form-control" />
+                                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Picture" class="control-label"></label>
+                                <div class="custom-file">
+                                    <input asp-for="Picture" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <span asp-validation-for="Picture" class="text-danger"></span>
+                            </div>
+                            <div class="d-flex text-center mt-4">
+                                <div class="col text-right">
+                                    <a asp-action="Index">
+                                        <button type="button"
+                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                            Voltar
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col text-left">
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary w-50" style="border-radius:6em" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- // Box -->
+        </div>
+    </div>
+
+    <!-- Slide Left (Help) -->
+    <div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
+         aria-labelledby="offcanvasRightLabel">
+
+        <div class="offcanvas-header helpCustomMargin">
+            <div class="col col-11 text-center">
+                <h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
+                    style="color:white;">
+                    Ajuda
+                </h5>
+            </div>
+            <div class="col" text-right>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+        </div>
+
+        <input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
+               aria-label="Search" style="border-radius: 10px;">
+
+        <div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
+            <div class="offcanvas-body box overflow-auto">
+
+                <div class=" row p-3 " style=" background-color: #F8F8F8">
+                    <button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+                            id="showText">
+                        <span>Como alterar uma refeição</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </button>
+
+                    <br><br><br><br>
+                    <span class="myText p-3 helpShadowButton" id="displayText"
+                          style="display: none; position: relative;">
+                        Here's some more textHere's some more textHere's some more textHere's some
+                        more textHe
+                        re's some more textHere's some more text...
+                    </span>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/terms.png" class="me-4">
+                            <span>Leia artigos de ajuda</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/comunity.png" class="me-4">
+                            <span>Pergunte à comunidade</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/new.png" class="me-4">
+                            <span>Novas Atualizações</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+
+                <div class="row p-3">
+                    <button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="~/images/guide/feedback.png" class="me-4">
+                            <span>Dê Feedback</span>
+                        </div>
+                    </button>
+                    <br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+    <!-- // Slide Left (Help) -->
+    <!-- JS Button help 1 -->
+    <script>
+        document.getElementById('showText').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText');
+            var showTextBtn = document.getElementById('showText');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('custom-button');
+                showTextBtn.classList.add('myButton');
+
+                // myButton
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('custom-button');
+            }
+        });
+    </script>
+    <!-- JS Button help 1 -->
+    <!--  Options Script -->
+    <script>
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const divAgrupamento = document.getElementById('divAgrupamento');
+        const divCertidao = document.getElementById('divCertidao');
+
+
+        toggleSwitch.addEventListener('change', function () {
+            if (toggleSwitch.checked) {
+                divAgrupamento.style.display = 'block';
+                divCertidao.style.display = 'none';
+            } else {
+                divAgrupamento.style.display = 'none';
+                divCertidao.style.display = 'block';
+            }
+        });
+    </script>
+    <!--  // Options Script -->
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}

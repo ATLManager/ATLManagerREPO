@@ -1,0 +1,120 @@
+﻿@model ATLManager.ViewModels.LowerAccountViewModel
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+        <h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+        <img src="~/images/icons/search-group.png" width="50" height="50">
+    </div>
+    <!-- Fase 1  -->
+    <!-- d-flex -->
+    <div class="d-flex justify-content-center mt-5">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box w-50">
+            <div class="row box border-5 p-5">
+
+                <div class="container">
+                   
+                    <div class="row mt-3 text-center">
+                        <div class="mb-3">
+                            <img src="~/images/uploads/funcionarios/@Model.Profile.ProfilePicture"
+                            class="rounded-circle mb-3"
+                                 style="width:15%"
+                            asp-append-version="true" />
+                            <dl class="row text-end">
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.User.FirstName)
+                                    </dt>
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.User.FirstName)
+                                    </dd>
+                                </div>
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.User.LastName)
+                                    </dt>
+
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.User.LastName)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.User.Email)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.User.Email)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.AtlName)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.AtlName)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.Profile.DateOfBirth)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Profile.DateOfBirth)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.Profile.CC)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Profile.CC)
+                                    </dd>
+                                </div>
+                            </dl>
+                            <hr />
+                            <div class="d-flex text-center mt-4">
+                                <div class="col">
+                                    <a asp-action="Index">
+                                        <button type="button"
+                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                            Voltar
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                @*<a asp-action="Edit" asp-route-id="@Model.Profile.ContaId">Edit</a> |*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // Box -->
+        </div>
+        <!-- // Fase 1 -->
+    </div>
+}
+

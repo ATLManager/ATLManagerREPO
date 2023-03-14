@@ -1,0 +1,184 @@
+﻿@page
+
+@using ATLManager.Models;
+@using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
+@model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
+@inject LanguageService language
+@{
+	ViewData["Title"] = @language.GetKey("register");
+	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+@if (!SignInManager.IsSignedIn(User))
+{
+<!-- Container -->
+<div class="container h-auto mt-auto">
+
+    <!-- Botão de Ajuda -->
+			<div class="row" style="padding-top: 6em;padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-5"></div>
+            <div class="col-4 text-right pb-2">
+                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+        </div>
+        <!-- // Botão de Ajuda -->
+
+    <!-- Container-Form -->
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row text-center box border-5">
+                <div class="row mb-2">
+                    <h2 class="fw-bold text-primary mb-5">Tipo de conta</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <h5 class="fw-bold">Registar como administrador</h5>
+                    </div>
+                    <div class="col-md">
+                        <h5 class="fw-bold">Registar como encarregado</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md p-3">
+                        <img src="~/images/registo/img1.png" alt="Imagem 1" class="img-fluid rounded-pill">
+                    </div>
+
+                    <div class="col-md p-3">
+                        <img src="~/images/registo/img2.png" alt="Imagem 2" class="img-fluid rounded-pill">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md p-3">
+                        <a asp-area="Identity" asp-page="/Account/RegisterAdmin"><button class="btn btn-primary px-4 pl-3 pr-3 custom-button">Registar</button></a>
+                    </div>
+
+                    <div class="col-md p-3">
+                        <a asp-area="Identity" asp-page="/Account/RegisterEE"><button class="btn btn-primary px-4 pl-3 pr-3 custom-button">Registar</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // Box -->
+    </div>
+    <!-- // Container-Form -->
+
+</div>
+	<!-- Slide Left (Help) -->
+	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:11%" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
+		 aria-labelledby="offcanvasRightLabel">
+
+		<div class="offcanvas-header helpCustomMargin">
+			<div class="col col-11 text-center">
+				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
+					style="color:white;">
+					Ajuda
+				</h5>
+			</div>
+			<div class="col" text-right>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+			</div>
+		</div>
+
+		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
+			   aria-label="Search" style="border-radius: 10px;">
+
+		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
+			<div class="offcanvas-body box overflow-auto">
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText1">
+						<span>Como registar como administrador</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText1"
+						  style="display: none; position: relative;">
+						Deverá selecionar a opção de registo como administrador
+					</span>
+				</div>
+
+				<div class=" row p-3 " style=" background-color: #F8F8F8">
+					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
+							id="showText2">
+						<span>Como registar como administrador</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</button>
+
+					<br><br><br><br>
+					<span class="myText p-3 helpShadowButton" id="displayText2"
+						  style="display: none; position: relative;">
+						Deverá selecionar a opção de registo como administrador
+					</span>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+
+	<!-- // Slide Left (Help) -->
+	<!-- JS Button help 1 -->
+	<script>
+		document.getElementById('showText1').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText1');
+			var showTextBtn = document.getElementById('showText1');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 1 -->
+	<!-- JS Button help 2 -->
+	<script>
+		document.getElementById('showText2').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText2');
+			var showTextBtn = document.getElementById('showText2');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+				// myButton
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 2 -->
+
+}

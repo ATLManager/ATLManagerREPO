@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ATLManager.Services;
+
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
@@ -8,11 +10,12 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
+@inject LanguageService language
 
-<h1>Manage your account</h1>
+<h1>@language.GetKey("titleManageAccount")</h1>
 
 <div>
-    <h2>Change your account settings</h2>
+    <h2>@language.GetKey("txtManageAccount")</h2>
     <hr />
     <div class="row">
         <div class="col-md-3">

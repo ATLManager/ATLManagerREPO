@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="2factorAuth" xml:space="preserve">
+    <value>Zwei-Faktor-Authentifizierung</value>
+  </data>
+  <data name="and" xml:space="preserve">
+    <value>und</value>
+  </data>
+  <data name="btnChangeEmail" xml:space="preserve">
+    <value>E-Mail ändern</value>
+  </data>
+  <data name="btnClickLogout" xml:space="preserve">
+    <value>Klicken Sie hier, um sich abzumelden</value>
+  </data>
+  <data name="btnClickResendEmail" xml:space="preserve">
+    <value>Erneut senden</value>
+  </data>
+  <data name="btnDeletePersonalData" xml:space="preserve">
+    <value>Daten löschen und mein Konto schließen</value>
+  </data>
+  <data name="btnDisable2factorAuth" xml:space="preserve">
+    <value>2FA deaktivieren</value>
+  </data>
+  <data name="btnDownloadPersonalData" xml:space="preserve">
+    <value>Herunterladen</value>
+  </data>
+  <data name="btnGenerateRecoveryCodes" xml:space="preserve">
+    <value>Wiederherstellungscodes generieren</value>
+  </data>
+  <data name="btnLoginExternalLogin" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem</value>
+  </data>
+  <data name="btnRemoveLogin" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="btnRemoveLogintxt1" xml:space="preserve">
+    <value>Dies entfernen</value>
+  </data>
+  <data name="btnRemoveLogintxt2" xml:space="preserve">
+    <value>Login von Ihrem Konto</value>
+  </data>
+  <data name="btnResetAuthKey" xml:space="preserve">
+    <value>Authentifikatorschlüssel zurücksetzen</value>
+  </data>
+  <data name="btnResetPassword" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Speichern Sie</value>
+  </data>
+  <data name="btnSendVerificationEmail" xml:space="preserve">
+    <value>Bestätigungs-E-Mail senden</value>
+  </data>
+  <data name="btnSetPassword" xml:space="preserve">
+    <value>Ihr Passwort festlegen</value>
+  </data>
+  <data name="btnUpdatePassword" xml:space="preserve">
+    <value>Passwort aktualisieren</value>
+  </data>
+  <data name="btnVerify" xml:space="preserve">
+    <value>Überprüfen Sie</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Passwort bestätigen</value>
+  </data>
+  <data name="contacts" xml:space="preserve">
+    <value>Kontakte</value>
+  </data>
+  <data name="copyright" xml:space="preserve">
+    <value>Urheberrecht - IPS 2023</value>
+  </data>
+  <data name="createAccount" xml:space="preserve">
+    <value>Konto erstellen</value>
+  </data>
+  <data name="doLoginBy" xml:space="preserve">
+    <value>Login über:</value>
+  </data>
+  <data name="doRegisterBy" xml:space="preserve">
+    <value>Registrierung über:</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="externalLogins" xml:space="preserve">
+    <value>Externe Anmeldungen</value>
+  </data>
+  <data name="forgetPassword" xml:space="preserve">
+    <value>Haben Sie Ihr Passwort vergessen?</value>
+  </data>
+  <data name="haveAccount" xml:space="preserve">
+    <value>Sie haben bereits ein Konto?</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Hallo</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Startseite</value>
+  </data>
+  <data name="howToLoginOnApp" xml:space="preserve">
+    <value>Wie man sich bei der Anwendung anmeldet</value>
+  </data>
+  <data name="howToLoginViaFacebook" xml:space="preserve">
+    <value>Wie man sich über Facebook anmeldet</value>
+  </data>
+  <data name="howToLoginViaGoogle" xml:space="preserve">
+    <value>Wie man sich über Google anmeldet</value>
+  </data>
+  <data name="howToLoginViaOutlook" xml:space="preserve">
+    <value>Wie man sich über Outlook anmeldet</value>
+  </data>
+  <data name="howToLoginViaTwitter" xml:space="preserve">
+    <value>Wie man sich über Twitter anmeldet</value>
+  </data>
+  <data name="howToRegisterOnApp" xml:space="preserve">
+    <value>So registrieren Sie sich für die Anwendung</value>
+  </data>
+  <data name="howToRegisterViaFacebook" xml:space="preserve">
+    <value>Wie man sich über Facebook registriert</value>
+  </data>
+  <data name="howToRegisterViaGoogle" xml:space="preserve">
+    <value>Wie man sich über Google registriert</value>
+  </data>
+  <data name="howToRegisterViaOutlook" xml:space="preserve">
+    <value>Wie man sich über Outlook anmeldet</value>
+  </data>
+  <data name="howToRegisterViaTwitter" xml:space="preserve">
+    <value>Wie man sich über Twitter registriert</value>
+  </data>
+  <data name="hrefDeletePersonalData" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="lastNameAccount" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="nameAccount" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="newEmail" xml:space="preserve">
+    <value>Neue E-Mail</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Neues Passwort</value>
+  </data>
+  <data name="oldPassword" xml:space="preserve">
+    <value>Altes Passwort</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>oder</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="personalData" xml:space="preserve">
+    <value>Persönliche Daten</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>Datenschutz</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Erinnern Sie sich an mich?</value>
+  </data>
+  <data name="reSentEmailConfirmation" xml:space="preserve">
+    <value>Bestätigungs-E-Mail erneut senden</value>
+  </data>
+  <data name="siteMap" xml:space="preserve">
+    <value>Website-Karte</value>
+  </data>
+  <data name="support" xml:space="preserve">
+    <value>Unterstützung</value>
+  </data>
+  <data name="title2FactorAuth" xml:space="preserve">
+    <value>Zwei-Faktor-Authentifizierung (2FA)</value>
+  </data>
+  <data name="titleAboutUs" xml:space="preserve">
+    <value>Über Uns</value>
+  </data>
+  <data name="titleAccessDenied" xml:space="preserve">
+    <value>Zugriff abgelehnt</value>
+  </data>
+  <data name="titleChangePassword" xml:space="preserve">
+    <value>Passwort ändern</value>
+  </data>
+  <data name="titleConfigure2factorAuth" xml:space="preserve">
+    <value>Authenticator-Anwendung konfigurieren</value>
+  </data>
+  <data name="titleConfirmEmail" xml:space="preserve">
+    <value>E-Mail bestätigen</value>
+  </data>
+  <data name="titleConfirmEmailChange" xml:space="preserve">
+    <value>E-Mail-Änderung bestätigen</value>
+  </data>
+  <data name="titleContactUs" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="titleDeletePersonalData" xml:space="preserve">
+    <value>Persönliche Daten löschen</value>
+  </data>
+  <data name="titleDisable2factorAuth" xml:space="preserve">
+    <value>Deaktivieren der Zwei-Faktor-Authentifizierung (2FA)</value>
+  </data>
+  <data name="titleDownloadData" xml:space="preserve">
+    <value>Laden Sie Ihre Daten herunter</value>
+  </data>
+  <data name="titleForgotPasswordConfirmation" xml:space="preserve">
+    <value>Bestätigungsmeldung</value>
+  </data>
+  <data name="titleGenerateRecoveryCodes" xml:space="preserve">
+    <value>Erzeugen von Wiederherstellungscodes für die Zwei-Faktor-Authentifizierung (2FA)</value>
+  </data>
+  <data name="titleLogout" xml:space="preserve">
+    <value>Ausloggen</value>
+  </data>
+  <data name="titleManageAccount" xml:space="preserve">
+    <value>Verwalten Sie Ihr Konto</value>
+  </data>
+  <data name="titleManageEmail" xml:space="preserve">
+    <value>E-Mail verwalten</value>
+  </data>
+  <data name="titleManageExternalLogins" xml:space="preserve">
+    <value>Verwalten Sie Ihre externen Logins</value>
+  </data>
+  <data name="titlePrivacyPolicy" xml:space="preserve">
+    <value>Datenschutzbestimmungen</value>
+  </data>
+  <data name="titleProfileIndex" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="titleResendEmailConfirmation" xml:space="preserve">
+    <value>E-Mail-Bestätigung erneut senden</value>
+  </data>
+  <data name="titleResetAuthKey" xml:space="preserve">
+    <value>Authentifikatorschlüssel zurücksetzen</value>
+  </data>
+  <data name="titleResetPassword" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="titleResetPasswordConfirmation" xml:space="preserve">
+    <value>Kennwortbestätigung zurücksetzen</value>
+  </data>
+  <data name="titleServices" xml:space="preserve">
+    <value>Dienstleistungen</value>
+  </data>
+  <data name="titleSetPassword" xml:space="preserve">
+    <value>Passwort festlegen</value>
+  </data>
+  <data name="titleShowRecoveryCodes" xml:space="preserve">
+    <value>Einziehungscodes</value>
+  </data>
+  <data name="txt10_2FactorAuth" xml:space="preserve">
+    <value>Vergessen Sie diesen Browser</value>
+  </data>
+  <data name="txt11_2FactorAuth" xml:space="preserve">
+    <value>2FA deaktivieren</value>
+  </data>
+  <data name="txt12_2FactorAuth" xml:space="preserve">
+    <value>Wiederherstellungscodes zurücksetzen</value>
+  </data>
+  <data name="txt13_2FactorAuth" xml:space="preserve">
+    <value>Authenticator-Anwendung</value>
+  </data>
+  <data name="txt14_2FactorAuth" xml:space="preserve">
+    <value>Hinzufügen einer Authentifizierungsanwendung</value>
+  </data>
+  <data name="txt15_2FactorAuth" xml:space="preserve">
+    <value>Authenticator-App einrichten</value>
+  </data>
+  <data name="txt16_2FactorAuth" xml:space="preserve">
+    <value>Authenticator-App zurücksetzen</value>
+  </data>
+  <data name="txt17_2FactorAuth" xml:space="preserve">
+    <value>Die Datenschutz- und Cookie-Richtlinien wurden nicht akzeptiert.</value>
+  </data>
+  <data name="txt18_2FactorAuth" xml:space="preserve">
+    <value>Sie müssen die Richtlinie akzeptieren, bevor Sie die Zwei-Faktor-Authentifizierung aktivieren können.</value>
+  </data>
+  <data name="txt1AboutUs" xml:space="preserve">
+    <value>Willkommen bei ATLManager, einem Projekt, das Ihnen das Leben leichter machen soll. Wir sind eine Gruppe sehr erfahrener Technologieexperten, die zusammen gearbeitet haben, um eine vollständige Lösung für die Verwaltung außerschulischer Aktivitäten zu schaffen. Unser Ziel ist es, eine einfache und intuitive Plattform für Eltern, Schulverwalter, Koordinatoren, Mitarbeiter und Schüler bereitzustellen, um alle außerschulischen Aktivitäten an einem Ort zu verfolgen und zu verwalten.</value>
+  </data>
+  <data name="txt1Configure2factorAuth" xml:space="preserve">
+    <value>Laden Sie eine Zwei-Faktor-Authentifizierungs-App wie Microsoft Authenticator für</value>
+  </data>
+  <data name="txt1ContactUs" xml:space="preserve">
+    <value>Wir stehen Ihnen jederzeit zur Verfügung, um Ihre Fragen zum ATLManager zu beantworten. Um uns zu kontaktieren, füllen Sie einfach das untenstehende Formular aus oder senden Sie eine E-Mail an unser Support-Team unter support@atlmanager.com.</value>
+  </data>
+  <data name="txt1Disable2factorAuth" xml:space="preserve">
+    <value>Diese Aktion deaktiviert nur die 2FA</value>
+  </data>
+  <data name="txt1GenerateRecoveryCodes" xml:space="preserve">
+    <value>Bewahren Sie diese Codes an einem sicheren Ort auf</value>
+  </data>
+  <data name="txt1PersonalData" xml:space="preserve">
+    <value>Ihr Konto enthält persönliche Daten, die Sie uns mitgeteilt haben. Auf dieser Seite können Sie diese Daten herunterladen oder löschen</value>
+  </data>
+  <data name="txt1PrivacyPolicy" xml:space="preserve">
+    <value>Willkommen auf der Seite</value>
+  </data>
+  <data name="txt1ResetAuthKey" xml:space="preserve">
+    <value>Wenn Sie Ihren Authenticator-Schlüssel zurücksetzen, funktioniert Ihre Authenticator-App nicht, bis Sie sie neu konfiguriert haben</value>
+  </data>
+  <data name="txt1ResetPasswordConfirmation" xml:space="preserve">
+    <value>Ihr Passwort wurde zurückgesetzt. Bitte</value>
+  </data>
+  <data name="txt1Services" xml:space="preserve">
+    <value>Wir von ATLManager haben es uns zur Aufgabe gemacht, Komplettlösungen für die Verwaltung von Aktivitäten in ATL's anzubieten. Mit unserer Plattform können Sie die Verwaltung Ihrer Aktivitäten vereinfachen, Prozesse automatisieren und die Verwaltung effizienter gestalten.</value>
+  </data>
+  <data name="txt1SetPassword" xml:space="preserve">
+    <value>Ihr Passwort festlegen</value>
+  </data>
+  <data name="txt1_2FactorAuth" xml:space="preserve">
+    <value>Sie müssen</value>
+  </data>
+  <data name="txt2AboutUs" xml:space="preserve">
+    <value>Wir sind bestrebt, den Nutzern ein außergewöhnliches Erlebnis zu bieten und arbeiten ständig an der Verbesserung und Aktualisierung unseres Systems. Wir legen bei allem, was wir tun, Wert auf Transparenz, Effizienz und hervorragende Leistungen.</value>
+  </data>
+  <data name="txt2Configure2factorAuth" xml:space="preserve">
+    <value>Google Authenticator für</value>
+  </data>
+  <data name="txt2ContactUs" xml:space="preserve">
+    <value>Unser Support-Team ist von Montag bis Freitag von 9 bis 18 Uhr erreichbar. Wir werden unser Bestes tun, um so schnell wie möglich zu antworten. Wenn Sie dringende Fragen haben, können Sie uns unter +XX XXX XXX XXX XXX anrufen.</value>
+  </data>
+  <data name="txt2Disable2factorAuth" xml:space="preserve">
+    <value>Durch die Deaktivierung von 2FA werden die in den Authentifizierungsanwendungen verwendeten Schlüssel nicht geändert. Wenn Sie den in einer Authentifikator-App verwendeten Schlüssel ändern möchten, sollten Sie</value>
+  </data>
+  <data name="txt2GenerateRecoveryCodes" xml:space="preserve">
+    <value>Wenn Sie Ihr Gerät verlieren und die Wiederherstellungscodes nicht haben, verlieren Sie den Zugang zu Ihrem Konto</value>
+  </data>
+  <data name="txt2PersonalData" xml:space="preserve">
+    <value>Wenn Sie diese Daten löschen, wird Ihr Konto dauerhaft gelöscht und kann nicht wiederhergestellt werden</value>
+  </data>
+  <data name="txt2PrivacyPolicy" xml:space="preserve">
+    <value>Diese Seite dient zur Erläuterung der Bewerbungspolitik (Fortsetzung folgt)</value>
+  </data>
+  <data name="txt2ResetAuthKey" xml:space="preserve">
+    <value>Durch diesen Vorgang wird 2FA deaktiviert, bis Sie Ihre Authenticator-App verifiziert haben. Wenn Sie die Konfiguration Ihrer Authenticator-App nicht abschließen, können Sie den Zugriff auf Ihr Konto verlieren</value>
+  </data>
+  <data name="txt2ResetPasswordConfirmation" xml:space="preserve">
+    <value>hier klicken, um sich anzumelden</value>
+  </data>
+  <data name="txt2Services" xml:space="preserve">
+    <value>Unsere Dienstleistungen umfassen:</value>
+  </data>
+  <data name="txt2SetPassword" xml:space="preserve">
+    <value>Sie haben keinen lokalen Benutzernamen/Passwort für diese Website. Fügen Sie ein lokales Konto hinzu, damit Sie sich ohne externe Anmeldung anmelden können</value>
+  </data>
+  <data name="txt2_2FactorAuth" xml:space="preserve">
+    <value>einen neuen Satz von Wiederherstellungscodes erzeugen</value>
+  </data>
+  <data name="txt3AboutUs" xml:space="preserve">
+    <value>Wir danken Ihnen für Ihr Vertrauen in unser Projekt. Wir hoffen, dass Ihnen unsere Plattform gefällt, und wenn Sie Fragen oder Anregungen haben, zögern Sie bitte nicht, uns zu kontaktieren.</value>
+  </data>
+  <data name="txt3Configure2factorAuth" xml:space="preserve">
+    <value>Scannen Sie den QR-Code oder geben Sie diesen Schlüssel ein</value>
+  </data>
+  <data name="txt3ContactUs" xml:space="preserve">
+    <value>Sie können uns auch in den sozialen Medien finden. Folgen Sie uns auf Twitter, Facebook und Instagram, um über unsere Produktneuheiten und Updates auf dem Laufenden zu bleiben.</value>
+  </data>
+  <data name="txt3Disable2factorAuth" xml:space="preserve">
+    <value>Ihre Authentifikatorschlüssel zurücksetzen.</value>
+  </data>
+  <data name="txt3GenerateRecoveryCodes" xml:space="preserve">
+    <value>Durch die Generierung neuer Wiederherstellungscodes werden die in Authentifizierungsanwendungen verwendeten Schlüssel nicht geändert. Wenn Sie den in einer Authenticator-App verwendeten Schlüssel ändern möchten, sollten Sie</value>
+  </data>
+  <data name="txt3Services" xml:space="preserve">
+    <value>Aktivitätsmanagement: ATLManager ermöglicht es Ihnen, alle von Ihrer Einrichtung angebotenen Aktivitäten an einem einzigen Ort zu erfassen und zu verwalten, und zwar auf intuitive und leicht zu bedienende Weise.</value>
+  </data>
+  <data name="txt3_2FactorAuth" xml:space="preserve">
+    <value>bevor Sie sich mit einem Wiederherstellungscode anmelden können.</value>
+  </data>
+  <data name="txt4Configure2factorAuth" xml:space="preserve">
+    <value>in Ihre Zwei-Faktor-Authentifizierungs-App ein. Leerzeichen und Gehäuse spielen keine Rolle.</value>
+  </data>
+  <data name="txt4ContactUs" xml:space="preserve">
+    <value>Wir danken Ihnen für Ihr Interesse an ATLManager und freuen uns darauf, bald von Ihnen zu hören.</value>
+  </data>
+  <data name="txt4GenerateRecoveryCodes" xml:space="preserve">
+    <value>Ihre Authentifikatorschlüssel zurücksetzen.</value>
+  </data>
+  <data name="txt4Services" xml:space="preserve">
+    <value>Anwesenheitskontrolle: Kontrollieren Sie die Anwesenheit von Studenten und Tutoren bei jeder Aktivität, automatisch und integriert mit Studenten- und Personalakten.</value>
+  </data>
+  <data name="txt4_2FactorAuth" xml:space="preserve">
+    <value>Sie haben keine Wiederherstellungscodes mehr.</value>
+  </data>
+  <data name="txt5Configure2factorAuth" xml:space="preserve">
+    <value>Erfahren Sie, wie Sie</value>
+  </data>
+  <data name="txt5Services" xml:space="preserve">
+    <value>Kommunikation mit Eltern und Erziehungsberechtigten: Pflegen Sie eine klare und transparente Kommunikation mit Eltern und Erziehungsberechtigten, indem Sie Informationen über Aktivitäten, Anwesenheit und schulische Leistungen versenden.</value>
+  </data>
+  <data name="txt5_2FactorAuth" xml:space="preserve">
+    <value>Sie haben noch 1 Wiederherstellungscode übrig.</value>
+  </data>
+  <data name="txt6Configure2factorAuth" xml:space="preserve">
+    <value>QR-Code-Generierung aktivieren</value>
+  </data>
+  <data name="txt6Services" xml:space="preserve">
+    <value>Berichte und Analysen: Mit unserer Plattform können Sie vollständige Berichte über die Leistung der Aktivitäten, die Anwesenheit der Schüler und andere relevante Indikatoren für das Management Ihrer Einrichtung erstellen.</value>
+  </data>
+  <data name="txt6_2FactorAuth" xml:space="preserve">
+    <value>Sie können</value>
+  </data>
+  <data name="txt7Configure2factorAuth" xml:space="preserve">
+    <value>Sobald Sie den QR-Code gescannt oder den Schlüssel oben eingegeben haben, erhalten Sie von Ihrer Zwei-Faktor-Authentifizierungs-App einen eindeutigen Code. Geben Sie den Code in das Bestätigungsfeld unten ein.</value>
+  </data>
+  <data name="txt7Services" xml:space="preserve">
+    <value>Wenn Sie auf der Suche nach einer vollständigen und effizienten Lösung für die Verwaltung der Aktivitäten Ihrer Einrichtung sind, kontaktieren Sie uns und erfahren Sie mehr darüber, wie ATLManager Ihnen helfen kann!</value>
+  </data>
+  <data name="txt7_2FactorAuth" xml:space="preserve">
+    <value>Sie sollten</value>
+  </data>
+  <data name="txt8_2FactorAuth" xml:space="preserve">
+    <value>Sie haben</value>
+  </data>
+  <data name="txt9_2FactorAuth" xml:space="preserve">
+    <value>Wiederherstellungscodes übrig.</value>
+  </data>
+  <data name="txtAccessDenied" xml:space="preserve">
+    <value>Sie haben keinen Zugriff auf diese Ressource</value>
+  </data>
+  <data name="txtAddAnotherServiceLogin" xml:space="preserve">
+    <value>Einen weiteren Dienst zur Anmeldung hinzufügen</value>
+  </data>
+  <data name="txtConfigure2factorAuth" xml:space="preserve">
+    <value>Um eine Authentifizierungs-App zu verwenden, führen Sie die folgenden Schritte aus:</value>
+  </data>
+  <data name="txtConfirmEmail" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden können, überprüfen Sie bitte SPAM in Ihrer E-Mail.</value>
+  </data>
+  <data name="txtConfirmPasswordRequired" xml:space="preserve">
+    <value>Das Feld Confirm Password ist erforderlich</value>
+  </data>
+  <data name="txtDeletePersonalData" xml:space="preserve">
+    <value>Wenn Sie diese Daten löschen, wird Ihr Konto dauerhaft gelöscht und kann nicht wiederhergestellt werden</value>
+  </data>
+  <data name="txtEmailRequired" xml:space="preserve">
+    <value>Das Feld E-Mail ist erforderlich</value>
+  </data>
+  <data name="txtErrorConfirmEmail" xml:space="preserve">
+    <value>Fehler beim Bestätigen Ihrer E-Mail</value>
+  </data>
+  <data name="txtForgotPasswordConfirmation" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen. Wenn Sie die Nachricht nicht in Ihrem Posteingang finden, überprüfen Sie Ihren E-Mail-SPAM</value>
+  </data>
+  <data name="txtHoverLoginFacebook" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Facebook-Konto an</value>
+  </data>
+  <data name="txtHoverLoginGoogle" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Google-Konto an</value>
+  </data>
+  <data name="txtHoverLoginMicrosoft" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Microsoft-Konto an</value>
+  </data>
+  <data name="txtHoverLoginTwitter" xml:space="preserve">
+    <value>Melden Sie sich mit Ihrem Twitter-Konto an</value>
+  </data>
+  <data name="txtHoverRegisterFacebook" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Facebook-Konto</value>
+  </data>
+  <data name="txtHoverRegisterGoogle" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Google-Konto</value>
+  </data>
+  <data name="txtHoverRegisterMicrosoft" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Microsoft-Konto</value>
+  </data>
+  <data name="txtHoverRegisterTwitter" xml:space="preserve">
+    <value>Registrieren Sie sich mit Ihrem Twitter-Konto</value>
+  </data>
+  <data name="txtHowToLoginOnApp" xml:space="preserve">
+    <value>Um sich bei Ihrem Konto anzumelden, geben Sie bitte die E-Mail-Adresse und das Passwort ein, die mit Ihrem Konto verbunden sind. Klicken Sie auf "Anmelden", um auf Ihr Konto zuzugreifen. Wenn Sie Ihr Passwort vergessen haben, klicken Sie auf "Passwort vergessen", um es abzurufen. Denken Sie daran, Ihr Konto sicher zu halten, indem Sie Ihr Passwort nicht weitergeben und sich von Ihrem Konto abmelden, wenn Sie ein gemeinsames Gerät benutzen.</value>
+  </data>
+  <data name="txtHowToLoginViaFacebook" xml:space="preserve">
+    <value>Um sich über Facebook bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Facebook". Dadurch werden Sie auf die Facebook-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und haben Zugang zu Ihrem Konto. Bitte beachten Sie, dass diese Option nur zur Verfügung steht, wenn Sie ein Facebook-Konto besitzen und dieses bereits für die Anmeldung verwendet haben.</value>
+  </data>
+  <data name="txtHowToLoginViaGoogle" xml:space="preserve">
+    <value>Um sich über Google bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Google". Dadurch werden Sie auf die Google-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und genehmigen Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann wieder auf unsere Seite weitergeleitet und haben Zugang zu Ihrem Konto. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Google-Konto besitzen und sich zuvor damit angemeldet haben.</value>
+  </data>
+  <data name="txtHowToLoginViaOutlook" xml:space="preserve">
+    <value>Um sich über Outlook bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Outlook". Dadurch werden Sie zur Outlook-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann auf unsere Seite zurückgeleitet und haben Zugang zu Ihrem Konto. Denken Sie daran, dass diese Option nur verfügbar ist, wenn Sie ein Outlook-Konto haben und sich zuvor über dieses Konto angemeldet haben.</value>
+  </data>
+  <data name="txtHowToLoginViaTwitter" xml:space="preserve">
+    <value>Um sich über Twitter bei Ihrem Konto anzumelden, klicken Sie auf der Anmeldeseite auf die Schaltfläche "Twitter". Dadurch werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und genehmigen Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann wieder auf unsere Seite weitergeleitet und haben Zugriff auf Ihr Konto. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto haben und sich zuvor damit angemeldet haben.</value>
+  </data>
+  <data name="txtHowToRegisterOnApp" xml:space="preserve">
+    <value>Um ein Konto zu erstellen, geben Sie die E-Mail, das Passwort, die Passwortbestätigung, den Vor- und Nachnamen ein. Vergewissern Sie sich, dass die E-Mail gültig ist, dass die eingegebenen Passwörter gleich sind und den Sicherheitsanforderungen entsprechen (z. B. mindestens 6 Zeichen). Vergewissern Sie sich, dass das Feld für den Vor- und Nachnamen ausgefüllt ist. Klicken Sie auf "Registrieren", um den Vorgang abzuschließen. Denken Sie daran, Ihr Konto sicher zu halten, indem Sie Ihr Passwort nicht an Dritte weitergeben.</value>
+  </data>
+  <data name="txtHowToRegisterViaFacebook" xml:space="preserve">
+    <value>Um ein Konto über Facebook zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Facebook". Daraufhin werden Sie zur Facebook-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Facebook-Konto haben.</value>
+  </data>
+  <data name="txtHowToRegisterViaGoogle" xml:space="preserve">
+    <value>Um ein Konto über Google zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Google". Dadurch werden Sie auf die Google-Anmeldeseite weitergeleitet. Geben Sie Ihre Anmeldedaten ein und erteilen Sie die Genehmigung für den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Google-Konto haben.</value>
+  </data>
+  <data name="txtHowToRegisterViaOutlook" xml:space="preserve">
+    <value>Um ein Konto über Outlook zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Outlook". Dadurch werden Sie auf die Anmeldeseite von Outlook weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre Basisinformationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Bitte beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Outlook-Konto haben.</value>
+  </data>
+  <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
+    <value>Um ein Konto über Twitter zu erstellen, klicken Sie auf der Seite zur Erstellung eines Kontos auf die Schaltfläche "Twitter". Daraufhin werden Sie auf die Anmeldeseite von Twitter weitergeleitet. Geben Sie Ihre Anmeldedaten ein und autorisieren Sie den Zugriff auf Ihre grundlegenden Informationen. Sie werden dann zu unserer Seite zurückgeleitet und Ihr Konto wird automatisch erstellt. Beachten Sie, dass diese Option nur verfügbar ist, wenn Sie ein Twitter-Konto besitzen.</value>
+  </data>
+  <data name="txtInvalidLogin" xml:space="preserve">
+    <value>Ungültiger Anmeldeversuch</value>
+  </data>
+  <data name="txtLastNameRequired" xml:space="preserve">
+    <value>Das Feld Nachname ist erforderlich</value>
+  </data>
+  <data name="txtLogoutSuccess" xml:space="preserve">
+    <value>Sie haben sich erfolgreich von der Anwendung abgemeldet</value>
+  </data>
+  <data name="txtManageAccount" xml:space="preserve">
+    <value>Ändern Sie Ihre Kontoeinstellungen</value>
+  </data>
+  <data name="txtMenuDeutsch" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="txtMenuEnglish" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="txtMenuFrench" xml:space="preserve">
+    <value>Französisch</value>
+  </data>
+  <data name="txtMenuPortugues" xml:space="preserve">
+    <value>Portugiesisch</value>
+  </data>
+  <data name="txtNameRequired" xml:space="preserve">
+    <value>Das Feld Name ist erforderlich</value>
+  </data>
+  <data name="txtPasswordRequired" xml:space="preserve">
+    <value>Das Feld Passwort ist erforderlich</value>
+  </data>
+  <data name="txtPhoneNumber" xml:space="preserve">
+    <value>Rufnummer</value>
+  </data>
+  <data name="txtRegisterConfirmation" xml:space="preserve">
+    <value>Register Confirmation</value>
+  </data>
+  <data name="txtRegisteredLogins" xml:space="preserve">
+    <value>Registrierte Anmeldungen</value>
+  </data>
+  <data name="txtResetPassword" xml:space="preserve">
+    <value>Setze dein Passwort zurück</value>
+  </data>
+  <data name="txtSearchHelpArticles" xml:space="preserve">
+    <value>Suchen Sie nach Artikeln, die Ihnen helfen</value>
+  </data>
+  <data name="txtThankYouConfirmEmail" xml:space="preserve">
+    <value>Vielen Dank für die Bestätigung Ihrer E-Mail</value>
+  </data>
+  <data name="txtVerificationCode" xml:space="preserve">
+    <value>Verifizierungscode</value>
+  </data>
+  <data name="txtWelcome" xml:space="preserve">
+    <value>Suchen Sie nach dem effizientesten Weg, Ihre ATL oder ATL-Gruppierung zu verwalten?</value>
+  </data>
+  <data name="txtWelcomeToPageAboutUs" xml:space="preserve">
+    <value>Willkommen auf der Seite Über Uns</value>
+  </data>
+  <data name="txtWelcomeToPageContactUs" xml:space="preserve">
+    <value>Willkommen auf der Seite Kontakt</value>
+  </data>
+  <data name="txtWelcomeToPageServices" xml:space="preserve">
+    <value>Willkommen auf der Seite Dienstleistungen</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Willkommen</value>
+  </data>
+</root>

@@ -1,45 +1,45 @@
 ﻿@page
+@using ATLManager.Services;
+
 @model ResendEmailConfirmationModel
 @{
-    ViewData["Title"] = "Reenvie confirmação de email";
+    ViewData["Title"] = @language.GetKey("titleResendEmailConfirmation");
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
+@inject LanguageService language
 
-<body class="body">
-    <!-- Image -->
-    <div class="container-image-recover-password">
-    <!-- <div class="image"></div> -->
-        <img src="~/images/logo1.png" class="image" salt="ATLMANAGER">
-    </div>
-    <!-- / Image -->
-
-<div class="container-box">
-    <!-- <div class="image"></div> -->
-    <div class="box-recover-password">
-            
-            <form method="post" class="form">
-                @*<div asp-validation-summary="All" class="text-danger"></div>*@
-                <h1>@ViewData["Title"]</h1>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<!-- Container -->
+<div class="container h-auto mt-auto" style="padding-top:6em">
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row box border-5">
+                <form method="post" class="form">
+                    <div class="text-center p-3">
+                        <h3 class="fw-bold">@ViewData["Title"]</h3>
+                    </div>
+                    <div class="mb-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 
-                <label asp-for="Input.Email" class="form-label"></label>
-                <input asp-for="Input.Email" class="input-text" aria-required="true" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <input asp-for="Input.Email" class="form-control" aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
 
-
-            <br>
-
-            <div class="button-box-login">
-                    <button type="submit" class="custom-submit">Reenviar</button>
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn btn-primary btn-block mx-auto custom-button" style="width: 20%;">@language.GetKey("btnClickResendEmail")</button>
+                    </div>
+                </form>
             </div>
-
-            <div>
-            </div>
-        </form>
+        </div>
+        <!-- // Box -->
     </div>
 </div>
+<!-- // Container -->
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-</body>
+
+
