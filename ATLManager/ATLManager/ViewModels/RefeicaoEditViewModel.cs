@@ -63,7 +63,7 @@ namespace ATLManager.ViewModels
             RefeicaoId = refeicao.RefeicaoId;
             Name = refeicao.Name;
             Categoria = refeicao.Categoria;
-            Data = refeicao.Data;
+            Data = refeicao.Data.ToShortDateString();
             Descricao = refeicao.Descricao;
             Proteina = refeicao.Proteina;
             HidratosCarbono = refeicao.HidratosCarbono;
