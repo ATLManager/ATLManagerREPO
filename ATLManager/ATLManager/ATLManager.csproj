@@ -35,7 +35,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
-    <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="7.0.4" />
+    <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
       <PrivateAssets>all</PrivateAssets>
