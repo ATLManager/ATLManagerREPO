@@ -176,7 +176,7 @@ namespace ATLManager.Controllers
                                   FirstName = user.FirstName,
                                   LastName = user.LastName,
                                   AtlId = profile.AtlId.Value,
-                                  DateOfBirth = profile.DateOfBirth,
+                                  DateOfBirth = profile.DateOfBirth.ToShortDateString(),
                                   CC = profile.CC,
                                   Email = user.Email
                               };
@@ -223,7 +223,10 @@ namespace ATLManager.Controllers
                     
                     if (funcionario != null)
                     {
-                        funcionario.DateOfBirth = viewModel.DateOfBirth;
+                        if (viewModel.DateOfBirth != null)
+                        {
+                            funcionario.DateOfBirth = DateTime.Parse(viewModel.DateOfBirth);
+                        }
                         funcionario.CC = viewModel.CC;
                         funcionario.AtlId = viewModel.AtlId;
 

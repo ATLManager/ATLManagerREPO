@@ -17,11 +17,10 @@ namespace ATLManager.ViewModels
         [MaxLength(20)]
         public string Categoria { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Data { get; set; }
+        public string? Data { get; set; }
 
         [Required]
         [MaxLength(255)]

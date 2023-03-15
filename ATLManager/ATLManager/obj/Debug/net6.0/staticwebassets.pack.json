@@ -85,16 +85,44 @@
       "PackagePath": "staticwebassets\\images\\icons\\delete-group.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\delete-icon1.png",
+      "PackagePath": "staticwebassets\\images\\icons\\delete-icon1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\delete-icon2.png",
+      "PackagePath": "staticwebassets\\images\\icons\\delete-icon2.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit-group.png",
       "PackagePath": "staticwebassets\\images\\icons\\edit-group.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit-icon1.png",
+      "PackagePath": "staticwebassets\\images\\icons\\edit-icon1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit-icon2.png",
+      "PackagePath": "staticwebassets\\images\\icons\\edit-icon2.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\info_ementa.png",
       "PackagePath": "staticwebassets\\images\\icons\\info_ementa.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\language.png",
+      "PackagePath": "staticwebassets\\images\\icons\\language.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\search-group.png",
       "PackagePath": "staticwebassets\\images\\icons\\search-group.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\search-icon1.png",
+      "PackagePath": "staticwebassets\\images\\icons\\search-icon1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\search-icon2.png",
+      "PackagePath": "staticwebassets\\images\\icons\\search-icon2.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\logo\\logo.png",
@@ -193,12 +221,24 @@
       "PackagePath": "staticwebassets\\images\\uploads\\educandos\\logo.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\funcionarios\\eada3dcd-8cab-43f4-830f-8096e87edc19_tresh3.jpg",
+      "PackagePath": "staticwebassets\\images\\uploads\\funcionarios\\eada3dcd-8cab-43f4-830f-8096e87edc19_tresh3.jpg"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\funcionarios\\logo.png",
       "PackagePath": "staticwebassets\\images\\uploads\\funcionarios\\logo.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\refeicoes\\4649f11b-0f1d-4b2a-8904-427f4f2f2e61_cringe ass nae nae baby.png",
       "PackagePath": "staticwebassets\\images\\uploads\\refeicoes\\4649f11b-0f1d-4b2a-8904-427f4f2f2e61_cringe ass nae nae baby.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\refeicoes\\4fe0904d-3659-48eb-8378-eecb5842ba85_4182a9dd330c6442c4a1fbc78274d838.png",
+      "PackagePath": "staticwebassets\\images\\uploads\\refeicoes\\4fe0904d-3659-48eb-8378-eecb5842ba85_4182a9dd330c6442c4a1fbc78274d838.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\refeicoes\\6d744049-b12a-4132-9c31-9db827558e72_tresh3.jpg",
+      "PackagePath": "staticwebassets\\images\\uploads\\refeicoes\\6d744049-b12a-4132-9c31-9db827558e72_tresh3.jpg"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\refeicoes\\logo.png",

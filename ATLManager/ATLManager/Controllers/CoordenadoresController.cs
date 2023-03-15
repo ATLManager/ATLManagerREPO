@@ -176,7 +176,7 @@ namespace ATLManager.Controllers
                                   FirstName = user.FirstName,
                                   LastName = user.LastName,
                                   AtlId = profile.AtlId.Value,
-                                  DateOfBirth = profile.DateOfBirth,
+                                  DateOfBirth = profile.DateOfBirth.ToShortDateString(),
                                   CC = profile.CC,
                                   Email = user.Email
                               };
@@ -204,11 +204,11 @@ namespace ATLManager.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
-				var coordenador = _context.ContaAdministrativa.Find(viewModel.ContaId);
+				var coordenador = _context.ContaAdministrativa.Find(id);
 
 				if (coordenador.CC != viewModel.CC &&
-					_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
-                    || _context.Educando.Any(e => e.CC == viewModel.CC))
+					(_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
+                    || _context.Educando.Any(e => e.CC == viewModel.CC)))
                 {
                     var validationMessage = "Outra conta já contém este CC";
                     ModelState.AddModelError("CC", validationMessage);
@@ -223,7 +223,10 @@ namespace ATLManager.Controllers
                     
                     if (coordenador != null)
                     {
-						coordenador.DateOfBirth = viewModel.DateOfBirth;
+                        if (viewModel.DateOfBirth != null)
+                        {
+						    coordenador.DateOfBirth = DateTime.Parse(viewModel.DateOfBirth);
+                        }
                         coordenador.CC = viewModel.CC;
                         coordenador.AtlId = viewModel.AtlId;
 

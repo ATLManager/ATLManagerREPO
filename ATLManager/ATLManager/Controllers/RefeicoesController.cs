@@ -131,7 +131,6 @@ namespace ATLManager.Controllers
                     {
                         refeicao.Name = viewModel.Name;
                         refeicao.Categoria = viewModel.Categoria;
-                        refeicao.Data = viewModel.Data;
                         refeicao.Descricao = viewModel.Descricao;
                         refeicao.Proteina = viewModel.Proteina;
                         refeicao.HidratosCarbono = viewModel.HidratosCarbono;
@@ -142,6 +141,10 @@ namespace ATLManager.Controllers
                         refeicao.AGSat = viewModel.AGSat;
                         refeicao.Sal = viewModel.Sal;
 
+                        if (viewModel.Data != null)
+                        {
+                            refeicao.Data = DateTime.Parse(viewModel.Data);
+                        }
 
                         string fileName = UploadedFile(viewModel.Picture);
 

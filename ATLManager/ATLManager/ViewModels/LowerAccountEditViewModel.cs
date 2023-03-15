@@ -17,7 +17,7 @@ namespace ATLManager.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Data de nascimento")]
-        public DateTime DateOfBirth { get; set; }
+        public string? DateOfBirth { get; set; }
 
         [Required]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
