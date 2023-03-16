@@ -36,18 +36,6 @@ namespace ATLManager.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public CoordenadoresController(ATLManagerAuthContext context,
-            UserManager<ATLManagerUser> userManager,
-            IUserStore<ATLManagerUser> userStore,
-            IUserEmailStore<ATLManagerUser> emailStore,
-            IWebHostEnvironment webHostEnvironment)
-        {
-            _context = context;
-            _userManager = userManager;
-            _userStore = userStore;
-            _emailStore = emailStore;
-            _webHostEnvironment = webHostEnvironment;
-        }
 
         // GET: Coordenador
         public IActionResult Index()
