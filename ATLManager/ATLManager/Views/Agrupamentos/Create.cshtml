@@ -21,8 +21,7 @@
 		<div class="row" style="padding-left: 6em;">
 			<div class="col-3"></div>
 			<div class="col-5"></div>
-			<div class="col-1"></div>
-			<div class="col-3  pb-2" id="divQuestion">
+			<div class="col-4  pb-2" id="divQuestion">
 				<button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
 				</button>
@@ -214,13 +213,15 @@
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")
+			var divQuestion = document.getElementById("divQuestion")
 
 			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
 				// Large screen
 				divBox.classList.remove("col-6");
 				divBox.classList.add("col-8");
 
-
+				divQuestion.classList.add("text-right");
+				divQuestion.style.paddingRight("2em");
 			}
 		}
 	</script>
