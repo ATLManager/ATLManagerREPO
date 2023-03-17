@@ -34,7 +34,7 @@
         </div>
         <div class="d-flex justify-content-center">
             <!-- Box  -->
-            <div class="row col-8 justify-content-center custom-box">
+            <div class="row col-8 justify-content-center custom-box" id="myBox">
                 <div class="row box border-5">
                     <!--text-center  -->
 
@@ -309,4 +309,16 @@
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
     }
+
+    <script>
+        window.onload = function () {
+            var divBox = document.getElementById("myBox")
+
+            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+                // Large screen
+                divBox.classList.remove("col-6");
+                divBox.classList.add("col-8");
+            }
+        }
+    </script>
 }

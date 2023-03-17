@@ -19,7 +19,8 @@
 		<div class="row " style="padding-left: 6em;">
 			<div class="col-3"></div>
 			<div class="col-5"></div>
-			<div class="col-4  pb-2">
+			<div class="col-1"></div>
+			<div class="col-3  pb-2">
 				<button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
 				</button>
@@ -30,12 +31,12 @@
 		<!-- d-flex -->
 		<div class="d-flex justify-content-center" id="divFase1">
 			<!-- Box  -->
-			<div class="row col-6 justify-content-center custom-box w-50">
+			<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
 				<div class="row box border-5">
 					<div class="row mb-3 text-center">
 						<h3>Tens a certeza que queres remover este atl?</h3>
 					</div>
-					<div class="container">
+					<div class="container text-center">
 						<div class="row justify-content-center">
 							<img src="~/images/uploads/atls/@Model.LogoPicture"
 								class="rounded-circle"
@@ -230,4 +231,16 @@
 		});
 	</script>
 	<!-- JS Button help 1 -->
+
+	<script>
+		window.onload = function () {
+			var divBox = document.getElementById("myBox")
+
+			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+				// Large screen
+				divBox.classList.remove("col-6");
+				divBox.classList.add("col-8");
+			}
+		}
+	</script>
 }
