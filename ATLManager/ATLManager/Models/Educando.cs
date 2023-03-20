@@ -32,7 +32,7 @@ namespace ATLManager.Models
 
         public ATL Atl{ get; set; }
 
-        [ForeignKey("Encarregado de Educação")]
+        [ForeignKey("EncarregadoEducacao")]
         public Guid EncarregadoId { get; set; }
 
         public EncarregadoEducacao Encarregado { get; set; }
