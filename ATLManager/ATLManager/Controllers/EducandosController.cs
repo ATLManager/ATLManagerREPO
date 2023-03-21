@@ -29,6 +29,26 @@ namespace ATLManager.Controllers
             return View(await atlManagerAuthContext.ToListAsync());
         }
 
+        // GET: Educandos/Details/5
+        public async Task<IActionResult> Details(Guid? id)
+        {
+            if (id == null || _context.Educando == null)
+            {
+                return NotFound();
+            }
+
+            var educando = await _context.Educando
+                .Include(e => e.Atl)
+                .Include(e => e.Encarregado)
+                .FirstOrDefaultAsync(m => m.EducandoId == id);
+            if (educando == null)
+            {
+                return NotFound();
+            }
+
+            return View(educando);
+        }
+
         // GET: Educandos/Create
         public IActionResult Create()
         {
@@ -92,10 +112,7 @@ namespace ATLManager.Controllers
                     educando.ProfilePicture = declaracaoFileName;
                 }
 
-                var educandoSaude = new EducandoSaude(educando.EducandoId);
-
                 _context.Add(educando);
-                _context.Add(educandoSaude);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
