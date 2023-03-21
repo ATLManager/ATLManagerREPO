@@ -18,11 +18,18 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ATLManagerAuthContextConnection")
     ?? throw new InvalidOperationException("Connection string 'ATLManagerAuthContextConnection' not found.");
 
-//var keyVaultUrl = builder.Configuration["KeyVault:Vault"];
+var keyVaultUrl = builder.Configuration["KeyVault:Vault"];
 //var keyVaultCredential = new DefaultAzureCredential();
 
-//var client = new SecretClient(new Uri(keyVaultUrl), keyVaultCredential);
-//builder.Services.AddSingleton(client);
+var clientId = builder.Configuration["KeyVault:ClientId"];
+var clientSecret = builder.Configuration["KeyVault:ClientSecret"];
+var tenantId = builder.Configuration["KeyVault:TenantId"];
+var keyVaultCredential = new ClientSecretCredential(tenantId, clientId, clientSecret);
+
+
+
+var client = new SecretClient(new Uri(keyVaultUrl), keyVaultCredential);
+builder.Services.AddSingleton(client);
 
 /*
 builder.Services.AddSingleton<IFileManager, FileManager>();
@@ -30,7 +37,7 @@ builder.Services.AddSingleton<IFileProvider>(
     new PhysicalFileProvider(
         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"))); */
 
-//var sendGridKeySecret = client.GetSecret("SendGridKey");
+var sendGridKeySecret = client.GetSecret("SendGridKey");
 
 builder.Services.AddDbContext<ATLManagerAuthContext>(options =>
     options.UseSqlServer(connectionString));
@@ -93,55 +100,54 @@ builder.Services.Configure<RequestLocalizationOptions>(
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
-//builder.Services.Configure<AuthMessageSenderOptions>(options =>
-//{
-//    options.SendGridKey = sendGridKeySecret.Value.Value;
-//});
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.Configure<AuthMessageSenderOptions>(options =>
+{
+    options.SendGridKey = sendGridKeySecret.Value.Value;
+});
+//builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
-//var facebookAppIdSecret = client.GetSecret("FacebookAppId");
-//var facebookAppSecretSecret = client.GetSecret("FacebookAppSecret");
+var facebookAppIdSecret = client.GetSecret("FacebookAppId");
+var facebookAppSecretSecret = client.GetSecret("FacebookAppSecret");
 
 builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
 {
-    //facebookOptions.AppId = facebookAppIdSecret.Value.Value;
-    //facebookOptions.AppSecret = facebookAppSecretSecret.Value.Value;
-    facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
-    facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+    facebookOptions.AppId = facebookAppIdSecret.Value.Value;
+    facebookOptions.AppSecret = facebookAppSecretSecret.Value.Value;
+    //facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+    //facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
 });
 
-//var googleClientIdSecret = client.GetSecret("GoogleClienteId");
-//var googleClientSecretSecret = client.GetSecret("GoogleClientSecret");
+var googleClientIdSecret = client.GetSecret("GoogleClienteId");
+var googleClientSecretSecret = client.GetSecret("GoogleClientSecret");
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    //googleOptions.ClientId = googleClientIdSecret.Value.Value;
-    //googleOptions.ClientSecret = googleClientSecretSecret.Value.Value;
-    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = googleClientIdSecret.Value.Value;
+    googleOptions.ClientSecret = googleClientSecretSecret.Value.Value;
+    //googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    //googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 });
 
-//var twitterConsumerAPIKeySecret = client.GetSecret("TwitterConsumerApiKey");
-//var twitterConsumerSecretSecret = client.GetSecret("TwitterConsumerSecret");
+var twitterConsumerAPIKeySecret = client.GetSecret("TwitterConsumerApiKey");
+var twitterConsumerSecretSecret = client.GetSecret("TwitterConsumerSecret");
 
 builder.Services.AddAuthentication().AddTwitter(twitterOptions =>
 {
-    //twitterOptions.ConsumerKey = twitterConsumerAPIKeySecret.Value.Value;
-    //twitterOptions.ConsumerSecret = twitterConsumerSecretSecret.Value.Value;
-    twitterOptions.ConsumerKey = builder.Configuration["Authentication:Twitter:ConsumerAPIKey"];
-    twitterOptions.ConsumerSecret = builder.Configuration["Authentication:Twitter:ConsumerSecret"];
+    twitterOptions.ConsumerKey = twitterConsumerAPIKeySecret.Value.Value;
+    twitterOptions.ConsumerSecret = twitterConsumerSecretSecret.Value.Value;
+    //twitterOptions.ConsumerKey = builder.Configuration["Authentication:Twitter:ConsumerAPIKey"];
+    //twitterOptions.ConsumerSecret = builder.Configuration["Authentication:Twitter:ConsumerSecret"];
 });
 
-//var microsoftClientId = client.GetSecret("MicrosoftClientId");
-//var microsoftClientSecret = client.GetSecret("MicrosoftClientSecret");
+var microsoftClientId = client.GetSecret("MicrosoftClientId");
+var microsoftClientSecret = client.GetSecret("MicrosoftClientSecret");
 
 builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 {
-
-    //microsoftOptions.ClientId = microsoftClientId.Value.Value;
-    //microsoftOptions.ClientSecret = microsoftClientSecret.Value.Value;
-    microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
-    microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
+    microsoftOptions.ClientId = microsoftClientId.Value.Value;
+    microsoftOptions.ClientSecret = microsoftClientSecret.Value.Value;
+    //microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
+    //microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
 });
 
 var app = builder.Build();
