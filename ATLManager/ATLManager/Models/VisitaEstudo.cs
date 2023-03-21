@@ -47,10 +47,5 @@ namespace ATLManager.Models
             Descripton = descripton;
             Date = date;
         }
-
-        public VisitaEstudo(string name, string location, string descripton, DateTime date, string picture) : this(name, location, descripton, date)
-        {
-            Picture = picture;
-        }
     }
 }

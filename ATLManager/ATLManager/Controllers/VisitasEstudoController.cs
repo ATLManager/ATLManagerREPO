@@ -209,7 +209,7 @@ namespace ATLManager.Controllers
 
         private string UploadedFile(IFormFile logoPicture)
         {
-            string uniqueFileName = null;
+            string uniqueFileName = "";
 
             if (logoPicture != null)
             {
