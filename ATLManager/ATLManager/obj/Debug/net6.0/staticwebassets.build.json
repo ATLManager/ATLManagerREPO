@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PJNPJ0P8f6AMopCMGj6HTRJA4/EUypIwe8rxJtA0Ymo=",
+  "Hash": "B7E+CcufNmP9lZYYSt538L3btGK0Vq+xn6spxWzrahY=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -2174,6 +2174,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\menu.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\monitor_adapt.js",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "js/monitor_adapt.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\monitor_adapt.js"
     },
     {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

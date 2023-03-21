@@ -1,4 +1,7 @@
-﻿@model ATLManager.ViewModels.LowerAccountViewModel
+﻿@page
+@model ATLManager.Models.Educando
+
+@using ATLManager.Views.EducandoDetails;
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -6,90 +9,100 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Details";
+    //ViewData["Title"] = "Details";
+	//ViewData["ActivePage"] = ManageDetailNavPages.EducandoDetails;
 }
-
 
 @if (SignInManager.IsSignedIn(User))
 {
-
-	<!-- Fase 1  -->
-	<!-- d-flex -->
 	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
 		<h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
+	<!-- Fase 1  -->
+	<!-- d-flex -->
 	<div class="d-flex justify-content-center mt-5">
 		<!-- Box  -->
 		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
 			<div class="row box border-5 p-5">
 
 				<div class="container">
+					
 					<div class="row mt-3 text-center">
 						<div class="mb-3">
-							<img src="~/images/uploads/coordenadores/@Model.Profile.ProfilePicture"
-							class="rounded-circle mb-3"
-							style="width:15%"
-							asp-append-version="true" />
+
+							@if (!string.IsNullOrEmpty(Model.ProfilePicture))
+							{
+								<div class="row justify-content-center">
+									<img src="~/images/uploads/educandos/@Model.ProfilePicture"
+									class="rounded-circle mb-3" style="width:15%"
+									asp-append-version="true" />
+								</div>
+							}
+							else
+							{
+								<div class="row">
+									<img src="~/images/uploads/educandos/logo.png"
+									class="rounded-circle mb-3"
+									style="width:15%"
+									asp-append-version="true" />
+								</div>
+							}
+
+
 							<dl class="row text-end">
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.User.FirstName)
+										@Html.DisplayNameFor(model => model.Name)
 									</dt>
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.User.FirstName)
-									</dd>
-								</div>
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.User.LastName)
-									</dt>
-
-									<dd class="col text-left">
-										@Html.DisplayFor(model => model.User.LastName)
+										@Html.DisplayFor(model => model.Name)
 									</dd>
 								</div>
 
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Profile.CC)
+										@Html.DisplayNameFor(model => model.Apelido)
 									</dt>
-
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Profile.CC)
-									</dd>
-								</div>
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.AtlName)
-									</dt>
-
-									<dd class="col text-left">
-										@Html.DisplayFor(model => model.AtlName)
+										@Html.DisplayFor(model => model.Apelido)
 									</dd>
 								</div>
 
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.User.Email)
+										@Html.DisplayNameFor(model => model.CC)
 									</dt>
-
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.User.Email)
+										@Html.DisplayFor(model => model.CC)
 									</dd>
 								</div>
-
 
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Profile.DateOfBirth)
+										@Html.DisplayNameFor(model => model.Genero)
 									</dt>
-
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Profile.DateOfBirth)
+										@Html.DisplayFor(model => model.Genero)
 									</dd>
 								</div>
 
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.Atl)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.Atl.Name)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.Encarregado)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.Encarregado.FullName)
+									</dd>
+								</div>
 							</dl>
 							<hr />
 							<div class="d-flex text-center mt-4">

@@ -37,8 +37,13 @@ namespace ATLManager.Models
 			EducandoId = Guid.NewGuid();
 		}
 
+        public EducandoSaude(Guid educandoId) : this()
+        {
+            EducandoId = educandoId;
+        }
+
         public EducandoSaude(Guid educandoId, string bloodType, string emergencyContact, string insuranceName, 
-            string insuranceNumber, string allergies, string diseases, string medication, string medicalHistory)
+            string insuranceNumber, string allergies, string diseases, string medication, string medicalHistory) : this ()
         {
             EducandoId = educandoId;
             BloodType = bloodType;

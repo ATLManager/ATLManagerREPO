@@ -265,6 +265,10 @@
       "PackagePath": "staticwebassets\\js\\menu.min.js"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\monitor_adapt.js",
+      "PackagePath": "staticwebassets\\js\\monitor_adapt.js"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
