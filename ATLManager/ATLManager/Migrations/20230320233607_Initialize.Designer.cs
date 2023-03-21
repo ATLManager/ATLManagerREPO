@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    [Migration("20230313011016_Initialize")]
+    [Migration("20230320233607_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.14")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -187,6 +187,10 @@ namespace ATLManager.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -213,10 +217,16 @@ namespace ATLManager.Migrations
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("BoletimVacinas")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CC")
                         .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("DeclaracaoMedica")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EncarregadoId")
                         .HasColumnType("uniqueidentifier");
@@ -273,6 +283,10 @@ namespace ATLManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -324,6 +338,10 @@ namespace ATLManager.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Proteina")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -343,6 +361,38 @@ namespace ATLManager.Migrations
                     b.HasKey("RefeicaoId");
 
                     b.ToTable("Refeicao");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.VisitaEstudo", b =>
+                {
+                    b.Property<Guid>("VisitaEstudoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descripton")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("VisitaEstudoID");
+
+                    b.ToTable("VisitaEstudo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
