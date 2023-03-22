@@ -1,11 +1,11 @@
 ﻿@model ATLManager.ViewModels.VisitaEstudoEditViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
-
+@using ATLManager.Services;
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
-
+@inject LanguageService language
 
 
 @{
@@ -23,42 +23,72 @@
             <img src="~/images/icons/add-group.png" width="50" height="50">
         </div>
 
-        <div class="row pt-5" style="padding-left: 6em;">
+        <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
-            <div class="col-7 text-right" style="padding-right: 2em;">
+            <div class="col-5"></div>
+            <div class="col-4  pb-2" id="divQuestion">
                 <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
-            <div class="col-2 pb-2">
-            </div>
         </div>
         <div class="d-flex justify-content-center">
             <!-- Box  -->
-            <div class="row col-8 justify-content-center custom-box" id="myBox">
-                <div class="row box border-5">
+            <div class="row col-6 justify-content-center custom-box" id="myBox">
+                <div class="row box border-5 p-5">
                     <!--text-center  -->
 
                     <div class="container">
-                        <form enctype="multipart/form-data" asp-action="Create">
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label asp-for="Name" class="form-label"></label>
-                                    <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </div>
-
-                                <div class="col-6 position-relative mt-2">
-                                    <div class="row">
-                                        <div class="h-100 position-absolute top-0 end-0">
+                        <div class="row mt-3">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <form enctype="multipart/form-data" asp-action="Create">
                                             <div class="row mb-2">
                                                 <div class="col-6">
-                                                    <label asp-for="Descripton" class="form-label"></label>
-                                                    <input asp-for="Descripton" class="form-control" />
-                                                    <span asp-validation-for="Descripton" class="text-danger"></span>
+                                                    <label asp-for="Name" class="form-label"></label>
+                                                    <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
+                                                    <span asp-validation-for="Name" class="text-danger"></span>
                                                 </div>
+
+
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="Picture" class="control-label">Imagem da Visita de Estudo</label>
+                                                        <div class="custom-file">
+                                                            <input asp-for="Picture" class="custom-file-input" id="customFile">
+                                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                                        </div>
+                                                        <span asp-validation-for="Picture" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
                                             </div>
 
+                                            <div class="row mb-2">
+                                                <div class="col-6">
+                                                    <label asp-for="Location" class="form-label"></label>
+                                                    <input asp-for="Location" class="form-control" />
+                                                    <span asp-validation-for="Location" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="col-6 position-relative">
+                                                    <div class="row">
+                                                        <div class="h-100 position-absolute top-0 end-0">
+                                                            <!-- extended box content -->
+                                                            <div class="row mb-2">
+                                                                <div class="col">
+                                                                    <label asp-for="Descripton" class="form-label"> Descrição</label>
+                                                                    <textarea asp-for="Descripton" class="form-control" style="height:8em;resize:none"></textarea>
+
+                                                                    @*<input asp-for="Descripton" class="form-control" style="height:8em" />*@
+                                                                    <span asp-validation-for="Descripton" class="text-danger"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="row mb-2">
                                                 <div class="col-6">
@@ -67,52 +97,35 @@
                                                     <span asp-validation-for="Date" class="text-danger"></span>
                                                 </div>
                                             </div>
-                                        </div>
+
+
+
+                                            <div class="row justify-content-center mt-4">
+                                                <div class="col-md-auto mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <a asp-action="Index">
+                                                                <button type="button"
+                                                                        class="btn btn-secondary custom-button">
+                                                                    Voltar
+                                                                </button>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col-md-6 mb-3">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary custom-button">
+                                                                Alterar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-
-
-
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label asp-for="Location" class="form-label"></label>
-                                    <input asp-for="Location" class="form-control" />
-                                    <span asp-validation-for="Location" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label asp-for="Picture" class="control-label"></label>
-                                <div class="custom-file">
-                                    <input asp-for="Picture" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                                <span asp-validation-for="Picture" class="text-danger"></span>
-                            </div>
-
-
-
-                            <div class="row justify-content-center mt-4">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <a asp-action="Index">
-                                            <button type="button"
-                                                    class="btn btn-secondary custom-button">
-                                                Voltar
-                                            </button>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <button type="submit"
-                                                class="btn btn-primary custom-button">
-                                            Registar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
