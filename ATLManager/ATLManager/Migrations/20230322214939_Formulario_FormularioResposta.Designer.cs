@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230322214939_Formulario_FormularioResposta")]
+    partial class Formulario_FormularioResposta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -338,7 +340,7 @@ namespace ATLManager.Migrations
 
             modelBuilder.Entity("ATLManager.Models.Formulario", b =>
                 {
-                    b.Property<Guid>("FormularioId")
+                    b.Property<Guid>("FormularioID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -358,13 +360,7 @@ namespace ATLManager.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("VisitaEstudoId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FormularioId");
-
-                    b.HasIndex("VisitaEstudoId");
+                    b.HasKey("FormularioID");
 
                     b.ToTable("Formulario");
                 });
@@ -696,17 +692,6 @@ namespace ATLManager.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ATLManager.Models.Formulario", b =>
-                {
-                    b.HasOne("ATLManager.Models.VisitaEstudo", "VisitaEstudo")
-                        .WithMany()
-                        .HasForeignKey("VisitaEstudoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("VisitaEstudo");
                 });
 
             modelBuilder.Entity("ATLManager.Models.FormularioResposta", b =>
