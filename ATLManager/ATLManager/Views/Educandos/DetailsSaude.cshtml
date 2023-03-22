@@ -73,7 +73,18 @@
                                                         @Html.DisplayNameFor(model => model.BloodType)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="BloodType" class="form-control" value="@Model.BloodType" />
+                                                        <select asp-for="BloodType" class="form-control">
+                                                            <option value=null>Blood type</option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                        </select>
+                                                        @*<input type="text" asp-for="BloodType" class="form-control" value="@Model.BloodType" />*@
                                                     </dd>      
                                                 </div>
                                             </div>
