@@ -94,7 +94,7 @@ namespace ATLManager.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Details));
+                return RedirectToAction(nameof(Index));
             }
             return View(educandoSaude);
         }
