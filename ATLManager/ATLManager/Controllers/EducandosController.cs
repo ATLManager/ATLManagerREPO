@@ -49,6 +49,56 @@ namespace ATLManager.Controllers
             return View(educando);
         }
 
+		// GET: EducandoSaude/Details/5
+		public async Task<IActionResult> DetailsSaude(Guid? id)
+		{
+			if (id == null || _context.EducandoSaude == null)
+			{
+				return NotFound();
+			}
+
+			var educandoSaude = await _context.EducandoSaude
+				.Include(e => e.Educando)
+				.FirstOrDefaultAsync(m => m.EducandoId == id);
+			if (educandoSaude == null)
+			{
+				return NotFound();
+			}
+
+			return View(educandoSaude);
+		}
+
+        [HttpPost]
+        public async Task<IActionResult> DetailsSaude(Guid id, [Bind("EducandoSaudeId,BloodType,EmergencyContact,InsuranceName,InsuranceNumber,Allergies,Diseases,Medication,MedicalHistory,EducandoId")] EducandoSaude educandoSaude)
+        {
+            if (id != educandoSaude.EducandoId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(educandoSaude);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EducandoSaudeExists(educandoSaude.EducandoSaudeId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Details));
+            }
+            return View(educandoSaude);
+        }
+
         // GET: Educandos/Create
         public IActionResult Create()
         {
@@ -112,7 +162,10 @@ namespace ATLManager.Controllers
                     educando.ProfilePicture = declaracaoFileName;
                 }
 
+                var educandoSaude = new EducandoSaude(educando.EducandoId);
+
                 _context.Add(educando);
+                _context.Add(educandoSaude);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -264,6 +317,11 @@ namespace ATLManager.Controllers
         private bool EducandoExists(Guid id)
         {
           return _context.Educando.Any(e => e.EducandoId == id);
+        }
+        
+        private bool EducandoSaudeExists(Guid id)
+        {
+          return _context.EducandoSaude.Any(e => e.EducandoId == id);
         }
 
 		private string UploadedFile(IFormFile logoPicture)

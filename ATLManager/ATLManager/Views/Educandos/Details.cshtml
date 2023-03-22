@@ -10,6 +10,14 @@
     ViewData["Title"] = "Details";
 }
 
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">Educando</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="@Url.Action("DetailsSaude", new { id = Model.EducandoId })">Saúde</a>
+	</li>
+</ul>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -23,12 +31,9 @@
 		<!-- Box  -->
 		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
 			<div class="row box border-5 p-5">
-
 				<div class="container">
-					
 					<div class="row mt-3 text-center">
 						<div class="mb-3">
-
 							@if (!string.IsNullOrEmpty(Model.ProfilePicture))
 							{
 								<div class="row justify-content-center">
@@ -46,8 +51,6 @@
 									asp-append-version="true" />
 								</div>
 							}
-
-
 							<dl class="row text-end">
 								<div class="row">
 									<dt class="col mr-2">
@@ -57,7 +60,6 @@
 										@Html.DisplayFor(model => model.Name)
 									</dd>
 								</div>
-
 								<div class="row">
 									<dt class="col mr-2">
 										@Html.DisplayNameFor(model => model.Apelido)
@@ -66,7 +68,6 @@
 										@Html.DisplayFor(model => model.Apelido)
 									</dd>
 								</div>
-
 								<div class="row">
 									<dt class="col mr-2">
 										@Html.DisplayNameFor(model => model.CC)
@@ -75,7 +76,6 @@
 										@Html.DisplayFor(model => model.CC)
 									</dd>
 								</div>
-
 								<div class="row">
 									<dt class="col mr-2">
 										@Html.DisplayNameFor(model => model.Genero)
@@ -84,7 +84,6 @@
 										@Html.DisplayFor(model => model.Genero)
 									</dd>
 								</div>
-
 								<div class="row">
 									<dt class="col mr-2">
 										@Html.DisplayNameFor(model => model.Atl)

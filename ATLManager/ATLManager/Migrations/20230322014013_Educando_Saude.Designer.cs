@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230322014013_Educando_Saude")]
+    partial class Educando_Saude
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,7 +125,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("AgrupamentoID");
 
-                    b.ToTable("Agrupamento", (string)null);
+                    b.ToTable("Agrupamento");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
@@ -165,7 +167,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AgrupamentoId");
 
-                    b.ToTable("ATL", (string)null);
+                    b.ToTable("ATL");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ContaAdministrativa", b =>
@@ -199,7 +201,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ContaAdministrativa", (string)null);
+                    b.ToTable("ContaAdministrativa");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
@@ -247,7 +249,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EncarregadoId");
 
-                    b.ToTable("Educando", (string)null);
+                    b.ToTable("Educando");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EducandoSaude", b =>
@@ -257,37 +259,45 @@ namespace ATLManager.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Allergies")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BloodType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("Diseases")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EducandoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmergencyContact")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InsuranceName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InsuranceNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MedicalHistory")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Medication")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EducandoSaudeId");
 
                     b.HasIndex("EducandoId");
 
-                    b.ToTable("EducandoSaude", (string)null);
+                    b.ToTable("EducandoSaude");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>
@@ -333,7 +343,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EncarregadoEducacao", (string)null);
+                    b.ToTable("EncarregadoEducacao");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
@@ -398,7 +408,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("RefeicaoId");
 
-                    b.ToTable("Refeicao", (string)null);
+                    b.ToTable("Refeicao");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
