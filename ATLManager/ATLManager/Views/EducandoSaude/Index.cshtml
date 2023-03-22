@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ATLManager.Models.EducandoSaude>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Educando)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmergencyContact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Allergies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diseases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Educando.Apelido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmergencyContact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuranceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuranceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allergies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diseases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalHistory)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EducandoSaudeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EducandoSaudeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EducandoSaudeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

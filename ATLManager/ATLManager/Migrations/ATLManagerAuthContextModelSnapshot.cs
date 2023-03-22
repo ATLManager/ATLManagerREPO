@@ -123,7 +123,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("AgrupamentoID");
 
-                    b.ToTable("Agrupamento");
+                    b.ToTable("Agrupamento", (string)null);
                 });
 
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
@@ -165,7 +165,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AgrupamentoId");
 
-                    b.ToTable("ATL");
+                    b.ToTable("ATL", (string)null);
                 });
 
             modelBuilder.Entity("ATLManager.Models.ContaAdministrativa", b =>
@@ -199,7 +199,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ContaAdministrativa");
+                    b.ToTable("ContaAdministrativa", (string)null);
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
@@ -247,7 +247,47 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EncarregadoId");
 
-                    b.ToTable("Educando");
+                    b.ToTable("Educando", (string)null);
+                });
+
+            modelBuilder.Entity("ATLManager.Models.EducandoSaude", b =>
+                {
+                    b.Property<Guid>("EducandoSaudeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Allergies")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BloodType")
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<string>("Diseases")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("EducandoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("EmergencyContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InsuranceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InsuranceNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MedicalHistory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Medication")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EducandoSaudeId");
+
+                    b.HasIndex("EducandoId");
+
+                    b.ToTable("EducandoSaude", (string)null);
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>
@@ -293,7 +333,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EncarregadoEducacao");
+                    b.ToTable("EncarregadoEducacao", (string)null);
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
@@ -358,7 +398,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("RefeicaoId");
 
-                    b.ToTable("Refeicao");
+                    b.ToTable("Refeicao", (string)null);
                 });
 
             modelBuilder.Entity("ATLManager.Models.VisitaEstudo", b =>
@@ -573,6 +613,17 @@ namespace ATLManager.Migrations
                     b.Navigation("Atl");
 
                     b.Navigation("Encarregado");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.EducandoSaude", b =>
+                {
+                    b.HasOne("ATLManager.Models.Educando", "Educando")
+                        .WithMany()
+                        .HasForeignKey("EducandoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Educando");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>

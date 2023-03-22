@@ -244,6 +244,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRlbmFkb3Jlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EducandoSaude/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9TYXVkZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EducandoSaude/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9TYXVkZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EducandoSaude/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9TYXVkZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/EducandoSaude/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9TYXVkZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -254,6 +270,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/DetailsSaude.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXERldGFpbHNTYXVkZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Edit.cshtml]

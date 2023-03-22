@@ -32,7 +32,7 @@ namespace ATLManager.Models
 
         public ATL Atl{ get; set; }
 
-        [ForeignKey("Encarregado de Educação")]
+        [ForeignKey("EncarregadoEducacao")]
         public Guid EncarregadoId { get; set; }
 
         public EncarregadoEducacao Encarregado { get; set; }
@@ -61,16 +61,5 @@ namespace ATLManager.Models
             AtlId = atlID;
             EncarregadoId = encarregadoID;
         }
-
-        /*
-        public Educando(string name, string apelido, int nIF, string genero,
-                string aTLPertencente, string declaracaoMedicaPath,
-                string boletimVacinasPath, byte[] imagemDados) : this(name, apelido, nIF, genero, aTLPertencente)
-        {
-            DeclaracaoMedicaPath = declaracaoMedicaPath;
-            BoletimVacinasPath = boletimVacinasPath;
-            ImagemDados = imagemDados;
-        } */
-
     }
 }

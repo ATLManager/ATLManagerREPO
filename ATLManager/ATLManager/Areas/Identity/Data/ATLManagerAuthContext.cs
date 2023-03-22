@@ -30,5 +30,7 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
 
     public DbSet<Educando> Educando { get; set; }
 
+    public DbSet<EducandoSaude> EducandoSaude { get; set; }
+
     public DbSet<ATLManager.Models.VisitaEstudo>? VisitaEstudo { get; set; }
 }

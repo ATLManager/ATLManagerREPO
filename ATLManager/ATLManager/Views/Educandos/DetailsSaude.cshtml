@@ -1,0 +1,90 @@
+﻿@model ATLManager.Models.EducandoSaude
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("Details", new { id = Model.EducandoId })">Educando</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Saúde</a>
+    </li>
+</ul>
+
+<h1>Details</h1>
+
+<form asp-action="DetailsSaude" >
+    <div>
+        <input type="hidden" asp-for="EducandoId" value="@Model.EducandoId"/>
+        <input type="hidden" asp-for="EducandoSaudeId" value="@Model.EducandoSaudeId"/>
+        <h4>EducandoSaude</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Educando)
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.Educando.Name)
+                @Html.DisplayFor(model => model.Educando.Apelido)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BloodType)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="BloodType" class="form-control" value="@Model.BloodType" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EmergencyContact)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="EmergencyContact" class="form-control" value="@Model.EmergencyContact" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InsuranceName)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="InsuranceName" class="form-control" value="@Model.InsuranceName" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InsuranceNumber)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="InsuranceNumber" class="form-control" value="@Model.InsuranceNumber" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Allergies)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="Allergies" class="form-control" value="@Model.Allergies" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Diseases)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="Diseases" class="form-control" value="@Model.Diseases" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Medication)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="Medication" class="form-control" value="@Model.Medication" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MedicalHistory)
+            </dt>
+            <dd class="col-sm-4">
+                <input type="text" asp-for="MedicalHistory" class="form-control" value="@Model.MedicalHistory" />
+            </dd>
+
+            <div class="col-md-6 mb-3">
+                <button type="submit" class="btn btn-primary custom-button">Save</button>
+            </div>
+        </dl>
+    </div>
+</form>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.EducandoSaudeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
