@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ATLManager.Controllers
 {
@@ -45,10 +47,11 @@ namespace ATLManager.Controllers
             }
 
             return View(formularioResposta);
-        }
+		}
 
-        // GET: FormularioRespostas/Edit/5
-        public async Task<IActionResult> Responder(Guid? id)
+		// GET: FormularioRespostas/Edit/5
+		[Authorize(Roles = "EncarregadoEducacao")]
+		public async Task<IActionResult> Responder(Guid? id)
         {
             if (id == null || _context.FormularioResposta == null)
             {
