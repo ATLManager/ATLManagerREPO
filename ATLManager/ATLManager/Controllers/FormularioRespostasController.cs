@@ -79,14 +79,18 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Responder(Guid id, [Bind("FormularioRespostaId,Authorized")]FormularioResponderViewModel viewModel)
+        public async Task<IActionResult> Responder(Guid id, FormularioResponderViewModel viewModel)
         {
             if (id != viewModel.FormularioRespostaId)
             {
                 return NotFound();
             }
 
-			if (ModelState.IsValid)
+            ModelState.Remove("Name");
+            ModelState.Remove("Description");
+            ModelState.Remove("DateLimit");
+
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -109,7 +113,7 @@ namespace ATLManager.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Obrigado));
             }
             return View(viewModel);
         }
