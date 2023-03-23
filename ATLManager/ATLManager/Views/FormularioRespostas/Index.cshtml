@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ATLManager.Models.FormularioResposta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Formulario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Educando)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Authorized)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Formulario.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Educando.Apelido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorized)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResponseDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FormularioRespostaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FormularioRespostaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FormularioRespostaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -7,16 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography.Pkcs;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text.Encodings.Web;
+using System.Text;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ATLManager.Controllers
 {
+    [Authorize(Roles = "Administrador, Coordenador")]
     public class FormulariosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly UserManager<ATLManagerUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-        public FormulariosController(ATLManagerAuthContext context)
+        public FormulariosController(ATLManagerAuthContext context, 
+            UserManager<ATLManagerUser> userManager,
+            IEmailSender emailSender)
         {
             _context = context;
+            _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         // GET: Formularios
@@ -46,6 +61,7 @@ namespace ATLManager.Controllers
         }
 
         // GET: Formularios/Create
+        [Authorize(Roles = "Coordenador")]
         public IActionResult Create()
         {
             ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Descripton");
@@ -63,6 +79,36 @@ namespace ATLManager.Controllers
             {
                 formulario.FormularioId = Guid.NewGuid();
                 _context.Add(formulario);
+
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var userAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == user.Id);
+                var educandos = _context.Educando
+                    .Include(c => c.Atl)
+                    .Where(g => g.AtlId == userAccount.AtlId);
+
+                foreach(var educando in educandos)
+                {
+                    var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId);
+
+                    // Obter Encarregado do Educando e a sua conta
+                    var encarregado = await _context.EncarregadoEducacao
+                        .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+                    var encarregadoAccount = await _context.Users
+                        .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+
+                    var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
+                    var code = resposta.FormularioRespostaId.ToString();
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var callbackUrl = Url.Action("Responder", "FormularioRespostas", new { id = resposta.FormularioRespostaId }, Request.Scheme);
+
+                    await _emailSender.SendEmailAsync(userEmail, "Novo formulário por responder",
+                        $"Por favor responda ao formulário <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
+
+                    _context.Add(resposta);
+                }
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

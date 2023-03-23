@@ -21,7 +21,6 @@ namespace ATLManager.Models
         
         public bool Authorized { get; set; } = false;
 
-        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Data de início do formulário")]
@@ -30,6 +29,12 @@ namespace ATLManager.Models
         public FormularioResposta ()
         {
             FormularioRespostaId = Guid.NewGuid();
+        }
+
+        public FormularioResposta(Guid formularioId, Guid educandoId) : this ()
+        {
+            FormularioId = formularioId;
+            EducandoId = educandoId;
         }
     }
 }
