@@ -51,14 +51,21 @@
                                 <div class="mb-3">
 
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-4">
                                             <label for="lista-formularios" class="form-label">Lista de Formulário(s):</label>
                                         </div>
 
-                                        <div class="col">
-                                            <p class="text-end">
-                                                <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Formulário </button></a>
-                                            </p>
+                                        <div class="col-8">
+                                            @*http://localhost:56970/FormularioRespostas/Obrigado*@
+
+                                            <div class="d-flex">
+                                                <div class="col text-right">
+                                                <a asp-controller="FormularioRespostas" asp-action="Index"><button type="button" class="btn btn-secondary custom-button style=" border-radius:6em""> Respostas aos formulários</button></a>
+                                                </div> <div class="col-5">
+                                                <a asp-action="Create">
+                                                    <button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Formulário </button></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

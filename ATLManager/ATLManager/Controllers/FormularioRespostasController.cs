@@ -22,6 +22,7 @@ namespace ATLManager.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Coordenador")]
         // GET: FormularioRespostas
         public async Task<IActionResult> Index()
         {

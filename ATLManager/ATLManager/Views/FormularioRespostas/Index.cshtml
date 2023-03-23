@@ -11,7 +11,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-        <h1 class="me-3 fw-bold text-center mb-4">Consultar Formulário</h1>
+        <h1 class="me-3 fw-bold text-center mb-4">Consulta de respostas</h1>
         <img src="~/images/icons/search-group.png" width="50" height="50">
     </div>
 
@@ -103,7 +103,10 @@
                                         </tbody>
                                     </table>
 
-
+                                    <div class="d-flex row text-center">
+                                
+                                            <a asp-controller="Formularios" asp-action="Index"><button type="button" class="btn btn-secondary custom-button w-25" style=" border-radius:6em"> Voltar </button></a>
+                                  
 
                                 </div>
                             </div>
