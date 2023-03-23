@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using ATLManager.ViewModels;
 
 namespace ATLManager.Controllers
 {
@@ -59,9 +60,18 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            ViewData["EducandoId"] = new SelectList(_context.Educando, "EducandoId", "Apelido", formularioResposta.EducandoId);
-            ViewData["FormularioId"] = new SelectList(_context.Formulario, "FormularioId", "Description", formularioResposta.FormularioId);
-            return View(formularioResposta);
+
+            var formulario = await _context.Formulario.FindAsync(formularioResposta.FormularioId);
+            var viewModel = new FormularioResponderViewModel
+            {
+                FormularioRespostaId = formularioResposta.FormularioRespostaId,
+                Name = formulario.Name,
+                Description = formulario.Description,
+                DateLimit = formulario.DateLimit.ToShortDateString(),
+                Authorized = formularioResposta.Authorized
+            };
+
+            return View(viewModel);
         }
 
         // POST: FormularioRespostas/Edit/5
@@ -69,23 +79,28 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Responder(Guid id, [Bind("FormularioRespostaId,FormularioId,EducandoId,Authorized,ResponseDate")] FormularioResposta formularioResposta)
+        public async Task<IActionResult> Responder(Guid id, [Bind("FormularioRespostaId,Authorized")]FormularioResponderViewModel viewModel)
         {
-            if (id != formularioResposta.FormularioRespostaId)
+            if (id != viewModel.FormularioRespostaId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(formularioResposta);
+                    var formularioResposta = await _context.FormularioResposta.FindAsync(id);
+
+                    formularioResposta.Authorized = viewModel.Authorized;
+                    formularioResposta.ResponseDate = DateTime.UtcNow;
+
+					_context.Update(formularioResposta);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FormularioRespostaExists(formularioResposta.FormularioRespostaId))
+                    if (!FormularioRespostaExists(viewModel.FormularioRespostaId))
                     {
                         return NotFound();
                     }
@@ -96,12 +111,15 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EducandoId"] = new SelectList(_context.Educando, "EducandoId", "Apelido", formularioResposta.EducandoId);
-            ViewData["FormularioId"] = new SelectList(_context.Formulario, "FormularioId", "Description", formularioResposta.FormularioId);
-            return View(formularioResposta);
+            return View(viewModel);
         }
 
-        private bool FormularioRespostaExists(Guid id)
+		public IActionResult Obrigado()
+		{
+			return View();
+		}
+
+		private bool FormularioRespostaExists(Guid id)
         {
           return (_context.FormularioResposta?.Any(e => e.FormularioRespostaId == id)).GetValueOrDefault();
         }

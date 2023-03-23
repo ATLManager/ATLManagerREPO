@@ -64,7 +64,7 @@ namespace ATLManager.Controllers
         [Authorize(Roles = "Coordenador")]
         public IActionResult Create()
         {
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Descripton");
+            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name");
             return View();
         }
 
@@ -91,6 +91,7 @@ namespace ATLManager.Controllers
                 foreach(var educando in educandos)
                 {
                     var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId);
+                    resposta.DateLimit = formulario.DateLimit;
 
                     // Obter Encarregado do Educando e a sua conta
                     var encarregado = await _context.EncarregadoEducacao
@@ -112,7 +113,7 @@ namespace ATLManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Descripton", formulario.VisitaEstudoId);
+            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
             return View(formulario);
         }
 
@@ -129,7 +130,7 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Descripton", formulario.VisitaEstudoId);
+            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
             return View(formulario);
         }
 
@@ -165,7 +166,7 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Descripton", formulario.VisitaEstudoId);
+            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
             return View(formulario);
         }
 

@@ -848,6 +848,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\0c042715-4237-4f09-a36a-001f267f8e82_Chimpanzee_C.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\19061d6d-95ea-43e8-abdf-d699135f54c7_cringe.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>ATLManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ATLManager</BasePath>
+      <RelativePath>images/uploads/educandos/19061d6d-95ea-43e8-abdf-d699135f54c7_cringe.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\19061d6d-95ea-43e8-abdf-d699135f54c7_cringe.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\2898c77d-25e1-4b1a-b96a-cc7a0c72aa96_cat.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>ATLManager</SourceId>
@@ -896,6 +912,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\4041e42e-7f68-4256-8c0b-3f77b6c6d946_cat.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\45bb2fdb-3494-40ea-b92a-76ad8218f882_cringe.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>ATLManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ATLManager</BasePath>
+      <RelativePath>images/uploads/educandos/45bb2fdb-3494-40ea-b92a-76ad8218f882_cringe.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\45bb2fdb-3494-40ea-b92a-76ad8218f882_cringe.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\507fc6ef-4af9-43e7-b017-2cee51d47d6d_Chimpanzee_C.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>ATLManager</SourceId>
@@ -927,6 +959,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\9a6bf9b7-b3eb-4a40-b0fa-d8ed145ffecc_cringe ass nae nae baby.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\ab64603f-7336-4bd9-ab61-deb74e1adfa8_cringe.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>ATLManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ATLManager</BasePath>
+      <RelativePath>images/uploads/educandos/ab64603f-7336-4bd9-ab61-deb74e1adfa8_cringe.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\ab64603f-7336-4bd9-ab61-deb74e1adfa8_cringe.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\uploads\educandos\bbf4a06e-85e7-4805-beb6-d6930fefc23b_Chimpanzee_C.jpg))">
       <SourceType>Package</SourceType>

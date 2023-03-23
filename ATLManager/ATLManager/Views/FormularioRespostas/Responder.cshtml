@@ -1,16 +1,16 @@
 ﻿@model ATLManager.ViewModels.FormularioResponderViewModel
 
 @{
-	ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Responder";
 }
 
-<h1>Edit</h1>
+<h1>Responder</h1>
 
-<h4>FormularioResposta</h4>
+<h4>Resposta</h4>
 <hr />
 <div class="row">
 	<div class="col-md-4">
-		<form asp-action="Edit">
+		<form asp-action="Responder">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input type="hidden" asp-for="FormularioRespostaId" />
 		<dt class="col-sm-2">
@@ -24,6 +24,12 @@
 		</dt>
 		<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Description)
+		</dd>
+		<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.DateLimit)
+		</dt>
+		<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.DateLimit)
 		</dd>
 		<div class="form-group form-check">
 			<label class="form-check-label">

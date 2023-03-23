@@ -23,6 +23,11 @@ namespace ATLManager.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+		[DisplayName("Data limite de resposta")]
+		public DateTime? DateLimit { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Data de início do formulário")]
         public DateTime? ResponseDate { get; set; }
 
