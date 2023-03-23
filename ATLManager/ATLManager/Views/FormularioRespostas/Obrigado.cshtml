@@ -1,8 +1,34 @@
-﻿@*
+﻿@using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+@if (SignInManager.IsSignedIn(User))
+{
 
-<h1>Obrigado por responder!</h1>
-<h2>Pode retornar ao Dashboard</h2>
+<!-- Container -->
+<div class="container h-auto mt-auto">
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row box border-5">
+                <form class="form p-3">
+                    <br />
+                        <h3>Obrigado por responder!</h3>
+                        <h5>Pode retornar ao Dashboard</h5>
+                </form>
+            </div>
+        </div>
+        <!-- // Box -->
+    </div>
+</div>
+<!-- // Container -->
+}
