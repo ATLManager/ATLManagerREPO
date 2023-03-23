@@ -43,7 +43,9 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md">
-                                        <form enctype="multipart/form-data" asp-action="Create">
+                                        <form enctype="multipart/form-data" asp-action="Edit">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="VisitaEstudoID" />
                                             <div class="row mb-2">
                                                 <div class="col-6">
                                                     <label asp-for="Name" class="form-label"></label>
@@ -159,7 +161,7 @@
                 <div class=" row p-3 " style=" background-color: #F8F8F8">
                     <button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
                             id="showText">
-                        <span>Como alterar uma refeição</span>
+                        <span>Como alterar uma visita de estudo</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </button>
 

@@ -19,18 +19,13 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
 	}
 
     public DbSet<Agrupamento> Agrupamento { get; set; }
-
     public DbSet<ContaAdministrativa> ContaAdministrativa { get; set; }
-
     public DbSet<EncarregadoEducacao> EncarregadoEducacao { get; set; }
-
     public DbSet<ATL> ATL { get; set; }
-
     public DbSet<Refeicao> Refeicao { get; set; }
-
     public DbSet<Educando> Educando { get; set; }
-
     public DbSet<EducandoSaude> EducandoSaude { get; set; }
-
-    public DbSet<ATLManager.Models.VisitaEstudo>? VisitaEstudo { get; set; }
+    public DbSet<VisitaEstudo> VisitaEstudo { get; set; }
+    public DbSet<Formulario> Formulario { get; set; }
+    public DbSet<FormularioResposta> FormularioResposta { get; set; }
 }

@@ -1,0 +1,109 @@
+﻿@model ATLManager.Models.FormularioResposta
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+    <h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+    <img src="~/images/icons/search-group.png" width="50" height="50">
+</div>
+<!-- Fase 1  -->
+<!-- d-flex -->
+<div class="d-flex justify-content-center mt-5">
+    <!-- Box  -->
+    <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+        <div class="row box border-5 p-5">
+
+            <div class="container">
+
+                <div class="row mt-3">
+                    <div class="mb-3">
+                        
+                        <dl class="row">
+                            <div class="row">
+                                <dt class="col mr-2">
+                                    @Html.DisplayNameFor(model => model.Formulario)
+                                </dt>
+                                <dd class="col text-left">
+                                    @Html.DisplayFor(model => model.Formulario.Description)
+                                </dd>
+                            </div>
+                            <div class="row">
+                                <dt class="col mr-2">
+                                    @Html.DisplayNameFor(model => model.Educando)
+                                </dt>
+
+
+                                <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Educando.Name)
+                                    @Html.DisplayFor(model => model.Educando.Apelido)
+                                </dd>
+                            </div>
+
+                            <div class="row">
+                                <dt class="col mr-2">
+                                    @Html.DisplayNameFor(model => model.Authorized)
+                                </dt>
+
+                                <dd class="col text-left">
+                                    @Html.DisplayFor(model => model.Authorized)
+                                </dd>
+                            </div>
+
+                            <div class="row">
+                                <dt class="col mr-2">
+                                    @Html.DisplayNameFor(model => model.ResponseDate)
+                                </dt>
+
+                                <dd class="col text-left">
+                                    @Html.DisplayFor(model => model.ResponseDate)
+                                </dd>
+                            </div>
+                        </dl>
+                        <hr />
+                        <div class="d-flex text-center mt-4">
+                            <div class="col">
+                                <a asp-action="Index">
+                                    <button type="button"
+                                            class="btn btn-secondary custom-button" style="border-radius:6em">
+                                        Voltar
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            @*<a asp-action="Edit" asp-route-id="@Model.Profile.ContaId">Edit</a> |*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // Box -->
+    </div>
+    <!-- // Fase 1 -->
+</div>
+
+<script>
+    window.onload = function () {
+        var divBox = document.getElementById("myBox")
+
+        if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+            // Large screen
+            divBox.classList.remove("col-6");
+            divBox.classList.add("col-8");
+        }
+    }
+</script>
+
+}

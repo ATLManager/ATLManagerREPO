@@ -123,7 +123,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("AgrupamentoID");
 
-                    b.ToTable("Agrupamento", (string)null);
+                    b.ToTable("Agrupamento");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
@@ -165,7 +165,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AgrupamentoId");
 
-                    b.ToTable("ATL", (string)null);
+                    b.ToTable("ATL");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ContaAdministrativa", b =>
@@ -199,7 +199,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ContaAdministrativa", (string)null);
+                    b.ToTable("ContaAdministrativa");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
@@ -247,7 +247,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EncarregadoId");
 
-                    b.ToTable("Educando", (string)null);
+                    b.ToTable("Educando");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EducandoSaude", b =>
@@ -287,7 +287,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EducandoId");
 
-                    b.ToTable("EducandoSaude", (string)null);
+                    b.ToTable("EducandoSaude");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>
@@ -333,7 +333,70 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EncarregadoEducacao", (string)null);
+                    b.ToTable("EncarregadoEducacao");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Formulario", b =>
+                {
+                    b.Property<Guid>("FormularioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("VisitaEstudoId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FormularioId");
+
+                    b.HasIndex("VisitaEstudoId");
+
+                    b.ToTable("Formulario");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.FormularioResposta", b =>
+                {
+                    b.Property<Guid>("FormularioRespostaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Authorized")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EducandoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FormularioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("FormularioRespostaId");
+
+                    b.HasIndex("EducandoId");
+
+                    b.HasIndex("FormularioId");
+
+                    b.ToTable("FormularioResposta");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
@@ -398,7 +461,7 @@ namespace ATLManager.Migrations
 
                     b.HasKey("RefeicaoId");
 
-                    b.ToTable("Refeicao", (string)null);
+                    b.ToTable("Refeicao");
                 });
 
             modelBuilder.Entity("ATLManager.Models.VisitaEstudo", b =>
@@ -635,6 +698,36 @@ namespace ATLManager.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Formulario", b =>
+                {
+                    b.HasOne("ATLManager.Models.VisitaEstudo", "VisitaEstudo")
+                        .WithMany()
+                        .HasForeignKey("VisitaEstudoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VisitaEstudo");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.FormularioResposta", b =>
+                {
+                    b.HasOne("ATLManager.Models.Educando", "Educando")
+                        .WithMany()
+                        .HasForeignKey("EducandoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ATLManager.Models.Formulario", "Formulario")
+                        .WithMany()
+                        .HasForeignKey("FormularioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Educando");
+
+                    b.Navigation("Formulario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
