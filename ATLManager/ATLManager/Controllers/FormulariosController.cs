@@ -84,11 +84,13 @@ namespace ATLManager.Controllers
                 var userAccount = await _context.ContaAdministrativa
                     .Include(f => f.User)
                     .FirstOrDefaultAsync(m => m.UserId == user.Id);
-                var educandos = _context.Educando
+                
+                var educandos = await _context.Educando
                     .Include(c => c.Atl)
-                    .Where(g => g.AtlId == userAccount.AtlId);
+                    .Where(g => g.AtlId == userAccount.AtlId)
+                    .ToListAsync(); // Carregue os dados antes de entrar no loop
 
-                foreach(var educando in educandos)
+                foreach (var educando in educandos)
                 {
                     var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId);
                     resposta.DateLimit = formulario.DateLimit;
