@@ -16,23 +16,11 @@
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
 
-	<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-		<a class="nav-link" href="@Url.Action("Details", new { id = formId })">
-			<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-					type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
-				Detalhes do Formulário
-			</button>
-		</a>
-		<button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-				type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-			Respostas ao formulário
-		</button>
-	</div>
 
 	<!-- Container -->
 	<div class="container-fluid">
 
-		<div class="row" style="padding-left: 6em;">
+		@*<div class="row" style="padding-left: 6em;">
 			<div class="col-3"></div>
 			<div class="col-5"></div>
 			<div class="col-4  pb-2" id="divQuestion">
@@ -41,87 +29,105 @@
 				</button>
 			</div>
 		</div>
-
+*@
 		<!-- Fase 1  -->
 		<!-- d-flex -->
 		<div class="d-flex justify-content-center" id="divFase1">
 			<!-- Box  -->
 			<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
 				<div class="row box border-5 p-5">
-
 					<div class="container">
-						<form>
-							<div class="row">
+						<div class="d-flex align-items-start">
 
-								<div class="mb-5">
-									<label for="nome" class="form-label">Procure formulário:</label>
-									<input type="text" class="form-control" id="nome"
-										   placeholder="Digite o nome do formulário">
-								</div>
+							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+								<a class="nav-link" href="@Url.Action("Details", new { id = formId })">
+									<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+											type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+										Detalhes do Formulário
+									</button>
+								</a>
+								<button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+									Respostas ao formulário
+								</button>
 							</div>
-
-							<div class="row mt-3">
+							<div class="row pl-5">
 								<div class="mb-3">
 
-									<div class="row">
-										<div class="col">
-											<label for="lista-formularios" class="form-label">Lista de Formulario(s):</label>
+									<form>
+										@*<div class="row">
+
+											<div class="mb-5">
+												<label for="nome" class="form-label">Procure formulário:</label>
+												<input type="text" class="form-control" id="nome"
+													   placeholder="Digite o nome do formulário">
+											</div>
+										</div>*@
+
+										<div class="row mt-3">
+											<div class="mb-3">
+
+												<div class="row ">
+													<div class="col">
+														<label for="lista-formularios" class="form-label">Lista de respostas:</label>
+													</div>
+
+												</div>
+
+												<p class="rounded-circle"></p>
+
+
+												<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
+													<thead>
+														<tr>
+														
+															<th>
+																@Html.DisplayNameFor(model => model.Educando)
+															</th>
+															<th>
+																@Html.DisplayNameFor(model => model.Authorized)
+															</th>
+															<th>
+																@Html.DisplayNameFor(model => model.ResponseDate)
+															</th>
+
+															<th class="text-center"> Acções </th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach (var item in Model)
+														{
+															<tr>
+																
+																<td>
+																	@Html.DisplayFor(modelItem => item.Educando.Name)
+																</td>
+																<td>
+																	@Html.DisplayFor(modelItem => item.Authorized)
+																</td>
+																<td>
+																	@Html.DisplayFor(modelItem => item.ResponseDate)
+																</td>
+																<td class="text-center w-25">
+																	<a asp-action="Details" asp-controller="FormularioRespostas" asp-route-id="@item.FormularioRespostaId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
+																</td>
+															</tr>
+														}
+													</tbody>
+												</table>
+												<div class="d-flex row text-center">
+													<a asp-controller="Formularios" asp-action="Index"><button type="button" class="btn btn-secondary custom-button w-25" style=" border-radius:6em"> Voltar </button></a>
+												</div>
+											</div>
 										</div>
-
-									</div>
-
-									<p class="rounded-circle"></p>
-
-
-									<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
-										<thead>
-											<tr>
-												<th>
-													@Html.DisplayNameFor(model => model.Formulario)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.Educando)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.Authorized)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.ResponseDate)
-												</th>
-
-												<th class="text-center"> Acções </th>
-											</tr>
-										</thead>
-										<tbody>
-											@foreach (var item in Model)
-											{
-												<tr>
-													<td>
-														@Html.DisplayFor(modelItem => item.Formulario.Description)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.Educando.Name)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.Authorized)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.ResponseDate)
-													</td>
-													<td class="text-center w-25">
-														<a asp-action="Details" asp-controller="FormularioRespostas" asp-route-id="@item.FormularioRespostaId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
-													</td>
-												</tr>
-											}
-										</tbody>
-									</table>
-									<div class="d-flex row text-center">
-										<a asp-controller="Formularios" asp-action="Index"><button type="button" class="btn btn-secondary custom-button w-25" style=" border-radius:6em"> Voltar </button></a>
-									</div>
+									</form>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
+					
+						
+				
 				</div>
 			</div>
 			<!-- // Box -->

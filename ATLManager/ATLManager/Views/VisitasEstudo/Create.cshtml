@@ -66,7 +66,7 @@
                                             <div class="row mb-2">
                                                 <div class="col-6">
                                                     <label asp-for="Location" class="form-label"></label>
-                                                    <input asp-for="Location" class="form-control" />
+                                                    <input asp-for="Location" class="form-control" placeholder="Insira uma localização" />
                                                     <span asp-validation-for="Location" class="text-danger"></span>
                                                 </div>
 
@@ -77,7 +77,7 @@
                                                             <div class="row mb-2">
                                                                 <div class="col">
                                                                     <label asp-for="Descripton" class="form-label"> Descrição</label>
-                                                                    <textarea asp-for="Descripton" class="form-control" style="height:8em;resize:none"></textarea>
+                                                                    <textarea asp-for="Descripton" class="form-control" style="height:8em;resize:none" placeholder="Insira uma descrição"></textarea>
 
                                                                     @*<input asp-for="Descripton" class="form-control" style="height:8em" />*@
                                                                     <span asp-validation-for="Descripton" class="text-danger"></span>  
