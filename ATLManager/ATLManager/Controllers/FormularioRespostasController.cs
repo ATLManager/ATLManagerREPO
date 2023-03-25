@@ -22,14 +22,6 @@ namespace ATLManager.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Coordenador")]
-        // GET: FormularioRespostas
-        public async Task<IActionResult> Index()
-        {
-            var aTLManagerAuthContext = _context.FormularioResposta.Include(f => f.Educando).Include(f => f.Formulario);
-            return View(await aTLManagerAuthContext.ToListAsync());
-        }
-
         // GET: FormularioRespostas/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {

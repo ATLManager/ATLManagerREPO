@@ -31,14 +31,10 @@
                                     Educando
                                 </button>
                             </a>
-
-
-
                             <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                             type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                 Saúde
                             </button>
-
                         </div>
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -48,7 +44,6 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-
                                 <form asp-action="DetailsSaude" >
                                     <div>
                                         <input type="hidden" asp-for="EducandoId" value="@Model.EducandoId"/>
@@ -56,7 +51,6 @@
                                       @*  <h4>EducandoSaude</h4>
                                         <hr />*@
                                         <dl class="row">
-
                                             <div class="row mb-3">
                                                 <div class="col-6">
                                                     <dt>
@@ -67,7 +61,6 @@
                                                         @Html.DisplayFor(model => model.Educando.Apelido)
                                                     </dd>
                                                 </div>
-
                                                 <div class="col-6">     
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.BloodType)
@@ -88,19 +81,15 @@
                                                     </dd>      
                                                 </div>
                                             </div>
-
                                             <div class="row mb-3">
                                                 <div class="col-6">
-
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.EmergencyContact)
                                                     </dt>
                                                     <dd>
                                                         <input type="text" asp-for="EmergencyContact" class="form-control" value="@Model.EmergencyContact" />
                                                     </dd>
-
                                                 </div>
-
                                                 <div class="col-6">
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.InsuranceName)
@@ -110,7 +99,6 @@
                                                     </dd>
                                                 </div>
                                             </div>
-
                                             <div class="row mb-3">
                                                 <div class="col-6">
                                                     <dt>
@@ -128,46 +116,42 @@
                                                         <input type="text" asp-for="Allergies" class="form-control" value="@Model.Allergies" />
                                                     </dd>
                                                 </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-6">
-                                                        <dt>
-                                                            @Html.DisplayNameFor(model => model.Diseases)
-                                                        </dt>
-                                                        <dd>
-                                                            <input type="text" asp-for="Diseases" class="form-control" value="@Model.Diseases" />
-                                                        </dd>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <dt>
-                                                            @Html.DisplayNameFor(model => model.Medication)
-                                                        </dt>
-                                                        <dd>
-                                                            <input type="text" asp-for="Medication" class="form-control" value="@Model.Medication" />
-                                                        </dd>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-6">
                                                     <dt>
-                                                        @Html.DisplayNameFor(model => model.MedicalHistory)
+                                                        @Html.DisplayNameFor(model => model.Diseases)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="MedicalHistory" class="form-control" value="@Model.MedicalHistory" />
+                                                        <input type="text" asp-for="Diseases" class="form-control" value="@Model.Diseases" />
                                                     </dd>
                                                 </div>
-
-                                                <div class="mb-3 text-center">
-                                                    <button type="submit" class="btn btn-primary custom-button">Save</button>
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.Medication)
+                                                    </dt>
+                                                    <dd>
+                                                        <input type="text" asp-for="Medication" class="form-control" value="@Model.Medication" />
+                                                    </dd>
                                                 </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <dt>
+                                                    @Html.DisplayNameFor(model => model.MedicalHistory)
+                                                </dt>
+                                                <dd>
+                                                    <input type="text" asp-for="MedicalHistory" class="form-control" value="@Model.MedicalHistory" />
+                                                </dd>
+                                            </div>
+                                            <div class="mb-3 text-center">
+                                                <button type="submit" class="btn btn-primary custom-button">Save</button>
+                                            </div>
                                         </dl>
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <!-- // Box -->

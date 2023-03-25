@@ -40,29 +40,23 @@
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Educando)
                                 </dt>
-
-
                                 <dd class="col text-left">
                                         @Html.DisplayFor(model => model.Educando.Name)
                                     @Html.DisplayFor(model => model.Educando.Apelido)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Authorized)
                                 </dt>
-
                                 <dd class="col text-left">
                                     @Html.DisplayFor(model => model.Authorized)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.ResponseDate)
                                 </dt>
-
                                 <dd class="col text-left">
                                     @Html.DisplayFor(model => model.ResponseDate)
                                 </dd>
@@ -71,7 +65,7 @@
                         <hr />
                         <div class="d-flex text-center mt-4">
                             <div class="col">
-                                <a asp-action="Index">
+                                <a asp-controller="Formularios" asp-action="Respostas" asp-route-id="@Model.FormularioId">
                                     <button type="button"
                                             class="btn btn-secondary custom-button" style="border-radius:6em">
                                         Voltar
@@ -79,11 +73,8 @@
                                 </a>
                             </div>
                         </div>
-
-
                         <div>
                             @*<a asp-action="Edit" asp-route-id="@Model.Profile.ContaId">Edit</a> |*@
-
                         </div>
                     </div>
                 </div>
