@@ -19,7 +19,7 @@ namespace ATLManager.ViewModels
 
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public string? Data { get; set; }
 
         [Required]

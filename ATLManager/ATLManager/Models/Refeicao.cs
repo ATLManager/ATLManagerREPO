@@ -23,7 +23,7 @@ namespace ATLManager.Models
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
 
         [Required]
@@ -58,36 +58,9 @@ namespace ATLManager.Models
         [DisplayName("Fotografia do menu")]
         public string Picture { get; set; }
 
-        public Refeicao(string name, string categoria, DateTime data, string descricao,
-                        string proteina, string hidratosCarbono, string vR, string acucar, string lipidos,
-                        string valorEnergetico, string aGSat, string sal) : this(name, categoria, data, descricao)
-        {
-            Descricao = descricao;
-            Proteina = proteina;
-            HidratosCarbono = hidratosCarbono;
-            VR = vR;
-            Acucar = acucar;
-            Lipidos = lipidos;
-            ValorEnergetico = valorEnergetico;
-            AGSat = aGSat;
-            Sal = sal;
-        }
-
         public Refeicao()
         {
             RefeicaoId = Guid.NewGuid();
         }
-
-
-        public Refeicao(string name, string categoria, DateTime data, string descricao) : this()
-        {
-            Name = name;
-            Data = data;
-            Categoria = categoria;
-            Descricao = descricao;
-
-        }
-
-        
     }
 }

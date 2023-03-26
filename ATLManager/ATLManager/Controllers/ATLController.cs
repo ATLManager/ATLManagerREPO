@@ -15,7 +15,7 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
 		private readonly IWebHostEnvironment _webHostEnvironment;
-		List<string> allowedPrefixesNIPC = new List<string> { "5", "6", "7", "8", "9" };
+		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public ATLController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
         {
