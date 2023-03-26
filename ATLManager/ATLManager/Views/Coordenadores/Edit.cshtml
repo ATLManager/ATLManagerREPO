@@ -91,6 +91,7 @@
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="DateOfBirth" class="control-label"></label>
+															<p class="form-control-static">@Html.DisplayFor(model => model.DateOfBirth)</p>
 														<input asp-for="DateOfBirth" class="form-control" />
 														<span asp-validation-for="DateOfBirth" class="text-danger"></span>
 													</div>
