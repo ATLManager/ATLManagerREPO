@@ -60,6 +60,26 @@ namespace ATLManager.Controllers
             return View(formulario);
         }
 
+        // GET: Formularios/Respostas/5
+        public async Task<IActionResult> Respostas(Guid? id)
+        {
+            if (id == null || _context.Formulario == null)
+            {
+                return NotFound();
+            }
+
+            var respostas = await _context.FormularioResposta
+                .Include(f => f.Formulario)
+                .Where(f => f.FormularioId == id)
+                .ToListAsync();
+            if (respostas == null)
+            {
+                return NotFound();
+            }
+
+            return View(respostas);
+        }
+
         // GET: Formularios/Create
         [Authorize(Roles = "Coordenador")]
         public IActionResult Create()

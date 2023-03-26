@@ -49,7 +49,7 @@ namespace ATLManager.Controllers
             return View(educando);
         }
 
-		// GET: EducandoSaude/Details/5
+		// GET: EducandoSaude/DetailsSaude/5
 		public async Task<IActionResult> DetailsSaude(Guid? id)
 		{
 			if (id == null || _context.EducandoSaude == null)
