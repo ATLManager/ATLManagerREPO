@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ATLManager.Models.FormularioResposta>
+﻿@model IEnumerable<ATLManager.ViewModels.FormularioRespostasViewModel>
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -82,7 +82,7 @@
 														<tr>
 														
 															<th>
-																@Html.DisplayNameFor(model => model.Educando)
+																@Html.DisplayNameFor(model => model.EducandoName)
 															</th>
 															<th>
 																@Html.DisplayNameFor(model => model.Authorized)
@@ -100,7 +100,7 @@
 															<tr>
 																
 																<td>
-																	@Html.DisplayFor(modelItem => item.Educando.Name)
+																	@Html.DisplayFor(modelItem => item.EducandoName)
 																</td>
 																<td>
 																	@Html.DisplayFor(modelItem => item.Authorized)
@@ -109,7 +109,7 @@
 																	@Html.DisplayFor(modelItem => item.ResponseDate)
 																</td>
 																<td class="text-center w-25">
-																	<a asp-action="Details" asp-controller="FormularioRespostas" asp-route-id="@item.FormularioRespostaId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
+																	<a asp-action="Details" asp-controller="FormularioRespostas" asp-route-id="@item.RespostaId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
 																</td>
 															</tr>
 														}
