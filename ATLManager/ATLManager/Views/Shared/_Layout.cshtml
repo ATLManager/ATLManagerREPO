@@ -65,104 +65,131 @@
                 <div class="sidebar-heading">
                     Features
                 </div>
-                <li class="nav-item">
-                    <a id="manage" class="nav-link collapsed" asp-action="Index" asp-controller="Agrupamentos" 
-                       aria-expanded="false" aria-controls="agrupamentos">
+                @if(User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a id="manage" class="nav-link collapsed" asp-action="Index" asp-controller="Agrupamentos" 
+                           aria-expanded="false" aria-controls="agrupamentos">
 
-                        <i class="far fa-fw fa-window-maximize"></i>
-                        <span>Agrupamentos</span>
-                    </a>
-                   @* <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Bootstrap UI</h6> -->
+                            <i class="far fa-fw fa-window-maximize"></i>
+                            <span>Agrupamentos</span>
+                        </a>
+                       @* <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Bootstrap UI</h6> -->
                             
-                            <a id="manage" class="collapse-item" asp-controller="Agrupamentos" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
+                                <a id="manage" class="collapse-item" asp-controller="Agrupamentos" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-action="Index" asp-controller="Atl" 
-                    aria-expanded="false" aria-controls="atl">
-                        <i class="fab fa-fw fa-wpforms"></i>
-                        <span>ATL</span>
-                    </a>
-                    @*<div id="atl" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Forms</h6> -->
-                            <a id="manage" class="collapse-item" asp-controller="ATL" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="ATL" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="ATL" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="ATL" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Coordenadores" asp-action="Index"
-                    aria-expanded="true" aria-controls="coordenadores">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Coordenadores</span>
-                    </a>
-                    @*<div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Tables</h6> -->
-                            <a id="manage" class="collapse-item" asp-controller="Coordenadores" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="Coordenadores" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="Coordenadores" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="Coordenadores" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-action="Index" asp-controller="Atl" 
+                        aria-expanded="false" aria-controls="atl">
+                            <i class="fab fa-fw fa-wpforms"></i>
+                            <span>ATL</span>
+                        </a>
+                        @*<div id="atl" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Forms</h6> -->
+                                <a id="manage" class="collapse-item" asp-controller="ATL" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="ATL" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="ATL" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="ATL" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Funcionarios" asp-action="Index"
-                    aria-expanded="true" aria-controls="funcionarios">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Funcionários</span>
-                    </a>
-                    @*<div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Tables</h6> -->
-                            <a id="manage" class="collapse-item" asp-controller="Funcionarios" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Coordenadores" asp-action="Index"
+                        aria-expanded="true" aria-controls="coordenadores">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Coordenadores</span>
+                        </a>
+                        @*<div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Tables</h6> -->
+                                <a id="manage" class="collapse-item" asp-controller="Coordenadores" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="Coordenadores" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="Coordenadores" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="Coordenadores" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
-                    aria-expanded="true" aria-controls="collapseTable">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Refeições</span>
-                    </a>
-                </li>
+                @if (User.IsInRole("Coordenador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Funcionarios" asp-action="Index"
+                        aria-expanded="true" aria-controls="funcionarios">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Funcionários</span>
+                        </a>
+                        @*<div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Tables</h6> -->
+                                <a id="manage" class="collapse-item" asp-controller="Funcionarios" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="Funcionarios" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="Funcionarios" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="Funcionarios" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
-                       aria-expanded="true" aria-controls="funcionarios">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Educandos</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="VisitasEstudo" asp-action="Index"
-                       aria-expanded="true" aria-controls="visitasestudo">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Visitas de Estudo</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Formularios" asp-action="Index"
-                       aria-expanded="true" aria-controls="formularios">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Formulários</span>
-                    </a>
-                </li>
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
+                        aria-expanded="true" aria-controls="collapseTable">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Refeições</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
+                           aria-expanded="true" aria-controls="funcionarios">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Educandos</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="VisitasEstudo" asp-action="Index"
+                           aria-expanded="true" aria-controls="visitasestudo">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Visitas de Estudo</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Formularios" asp-action="Index"
+                           aria-expanded="true" aria-controls="formularios">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Formulários</span>
+                        </a>
+                    </li>
+                }
 
                 <!-- Agrupamento, Atl, Coordenadores, Funcionários, Refeições  -->
                 <!--
