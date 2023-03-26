@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using ATLManager.ViewModels;
 
 namespace ATLManager.Controllers
 {
@@ -139,31 +140,42 @@ namespace ATLManager.Controllers
             return View(formulario);
         }
 
-        // GET: Formularios/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null || _context.Formulario == null)
-            {
-                return NotFound();
-            }
+		// GET: Formularios/Edit/5
+		public async Task<IActionResult> Edit(Guid? id)
+		{
+			if (id == null || _context.Formulario == null)
+			{
+				return NotFound();
+			}
 
-            var formulario = await _context.Formulario.FindAsync(id);
-            if (formulario == null)
-            {
-                return NotFound();
-            }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
-            return View(formulario);
-        }
+			var formulario = await _context.Formulario.FindAsync(id);
+			if (formulario == null)
+			{
+				return NotFound();
+			}
 
-        // POST: Formularios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+			var viewModel = new FormularioEditViewModel
+			{
+				FormularioId = formulario.FormularioId,
+				Name = formulario.Name,
+				VisitaEstudoId = formulario.VisitaEstudoId,
+				Description = formulario.Description,
+				StartDate = formulario.StartDate.ToShortDateString(),
+				DateLimit = formulario.DateLimit.ToShortDateString(),
+			};
+
+			ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
+			return View(viewModel);
+		}
+
+		// POST: Formularios/Edit/5
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("FormularioId,Name,Description,VisitaEstudoId,StartDate,DateLimit")] Formulario formulario)
+        public async Task<IActionResult> Edit(Guid id, FormularioEditViewModel viewModel)
         {
-            if (id != formulario.FormularioId)
+            if (id != viewModel.FormularioId)
             {
                 return NotFound();
             }
@@ -172,12 +184,25 @@ namespace ATLManager.Controllers
             {
                 try
                 {
-                    _context.Update(formulario);
-                    await _context.SaveChangesAsync();
+					var formulario = await _context.Formulario.FindAsync(viewModel.FormularioId);
+
+					if (formulario != null)
+					{
+						formulario.Name = viewModel.Name;
+						formulario.Description = viewModel.Description;
+
+						if (viewModel.StartDate != null)
+							formulario.StartDate = DateTime.Parse(viewModel.StartDate);
+						if (viewModel.DateLimit != null)
+							formulario.DateLimit = DateTime.Parse(viewModel.DateLimit);
+
+						_context.Update(formulario);
+						await _context.SaveChangesAsync();
+					}
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FormularioExists(formulario.FormularioId))
+                    if (!FormularioExists(viewModel.FormularioId))
                     {
                         return NotFound();
                     }
@@ -188,8 +213,8 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
-            return View(formulario);
+            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", viewModel.VisitaEstudoId);
+            return View(viewModel);
         }
 
         // GET: Formularios/Delete/5
