@@ -96,7 +96,7 @@ namespace ATLManager.Controllers
                 ValorEnergetico = viewModel.ValorEnergetico,
                 AGSat = viewModel.AGSat,
                 Sal = viewModel.Sal,
-                AtlId = currentUserAccount.AtlId
+                AtlId = (Guid)currentUserAccount.AtlId
             };
 
             string fileName = UploadedFile(viewModel.Picture);
