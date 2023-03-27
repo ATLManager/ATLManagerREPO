@@ -58,6 +58,10 @@ namespace ATLManager.Models
         [DisplayName("Fotografia do menu")]
         public string Picture { get; set; }
 
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+        public ATL? Atl { get; set; }
+
         public Refeicao()
         {
             RefeicaoId = Guid.NewGuid();

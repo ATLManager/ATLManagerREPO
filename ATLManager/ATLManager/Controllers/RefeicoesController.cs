@@ -9,24 +9,40 @@ using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
 using NuGet.ContentModel;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class RefeicoesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public RefeicoesController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+        public RefeicoesController(ATLManagerAuthContext context,
+            UserManager<ATLManagerUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Refeicoes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Refeicao.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var refeicoes = await _context.Refeicao
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return View(refeicoes);
         }
 
         // GET: Refeicoes/Details/5
@@ -60,6 +76,11 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
             var refeicao = new Refeicao
             {
                 RefeicaoId = Guid.NewGuid(),
@@ -74,7 +95,8 @@ namespace ATLManager.Controllers
                 Lipidos = viewModel.Lipidos,
                 ValorEnergetico = viewModel.ValorEnergetico,
                 AGSat = viewModel.AGSat,
-                Sal = viewModel.Sal
+                Sal = viewModel.Sal,
+                AtlId = currentUserAccount.AtlId
             };
 
             string fileName = UploadedFile(viewModel.Picture);
