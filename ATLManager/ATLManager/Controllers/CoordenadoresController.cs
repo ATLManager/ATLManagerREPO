@@ -36,10 +36,14 @@ namespace ATLManager.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-
         // GET: Coordenador
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
             var usersCoordenadores = from user in _context.Users
                                      join userRole in _context.UserRoles on user.Id equals userRole.UserId
                                      join role in _context.Roles on userRole.RoleId equals role.Id
@@ -49,6 +53,8 @@ namespace ATLManager.Controllers
 			var coordenadores = from user in usersCoordenadores
 								join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
                                 join atl in _context.ATL on profile.AtlId equals atl.AtlId
+                                join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                                where atlAdmin.ContaId == userAccount.ContaId
 								select new LowerAccountViewModel
 								{
                                     User = user,
@@ -140,6 +146,7 @@ namespace ATLManager.Controllers
                     {
                         coordenador.ProfilePicture = "logo.png";
                     }
+
                     _context.Add(coordenador);
                     await _context.SaveChangesAsync();
                 

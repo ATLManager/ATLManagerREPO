@@ -8,26 +8,42 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class ATLController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly UserManager<ATLManagerUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
-		public ATLController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+		public ATLController(ATLManagerAuthContext context,
+            UserManager<ATLManagerUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: ATL
         public async Task<IActionResult> Index()
         {
-            var aTLManagerAuthContext = _context.ATL.Include(a => a.Agrupamento);
-            return View(await aTLManagerAuthContext.ToListAsync());
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+            var atls = (from atl in _context.ATL
+                       join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                       join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                       where admin.ContaId == userAccount.ContaId
+                       select atl).Include(a => a.Agrupamento);
+
+            return View(await atls.ToListAsync());
         }
 
         // GET: ATL/Details/5
@@ -41,6 +57,7 @@ namespace ATLManager.Controllers
             var atl = await _context.ATL
                 .Include(a => a.Agrupamento)
                 .FirstOrDefaultAsync(m => m.AtlId == id);
+
             if (atl == null)
             {
                 return NotFound();
@@ -116,7 +133,19 @@ namespace ATLManager.Controllers
                     atl.LogoPicture = "logo.png";
                 }
 
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var userAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+                var atlAdmin = new ATLAdmin
+                {
+                    AtlId = atl.AtlId,
+                    ContaId = userAccount.ContaId
+                };
+
                 _context.Add(atl);
+                _context.Add(atlAdmin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

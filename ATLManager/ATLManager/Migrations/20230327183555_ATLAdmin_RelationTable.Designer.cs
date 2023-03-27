@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230327183555_ATLAdmin_RelationTable")]
+    partial class ATLAdmin_RelationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,27 +228,6 @@ namespace ATLManager.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ContaAdministrativa");
-                });
-
-            modelBuilder.Entity("ATLManager.Models.CoordATL", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AtlId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ContaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AtlId");
-
-                    b.HasIndex("ContaId");
-
-                    b.ToTable("CoordATL");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
@@ -747,25 +728,6 @@ namespace ATLManager.Migrations
                     b.Navigation("Atl");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ATLManager.Models.CoordATL", b =>
-                {
-                    b.HasOne("ATLManager.Models.ATL", "Atl")
-                        .WithMany()
-                        .HasForeignKey("AtlId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ATLManager.Models.ContaAdministrativa", "ContaAdministrativa")
-                        .WithMany()
-                        .HasForeignKey("ContaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Atl");
-
-                    b.Navigation("ContaAdministrativa");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
