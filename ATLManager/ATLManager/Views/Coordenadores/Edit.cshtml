@@ -90,8 +90,7 @@
 												</div>
 												<div class="col-6">
 													<div class="form-group">
-														<label asp-for="DateOfBirth" class="control-label"></label>
-															<p class="form-control-static">@Html.DisplayFor(model => model.DateOfBirth)</p>
+														<label asp-for="DateOfBirth" class="control-label">Data nascimento atual - @Html.DisplayFor(model => model.DateOfBirth)</label>
 														<input asp-for="DateOfBirth" class="form-control" />
 														<span asp-validation-for="DateOfBirth" class="text-danger"></span>
 													</div>
