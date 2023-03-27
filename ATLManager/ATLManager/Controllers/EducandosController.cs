@@ -8,25 +8,41 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class EducandosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly UserManager<ATLManagerUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-		public EducandosController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+		public EducandosController(ATLManagerAuthContext context,
+            UserManager<ATLManagerUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Educandos
         public async Task<IActionResult> Index()
         {
-            var atlManagerAuthContext = _context.Educando.Include(e => e.Atl).Include(e => e.Encarregado);
-            return View(await atlManagerAuthContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Include(e => e.Encarregado)
+                .Where(e => e.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return View(educandos);
         }
 
         // GET: Educandos/Details/5

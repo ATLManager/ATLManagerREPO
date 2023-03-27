@@ -29,16 +29,17 @@ namespace ATLManager.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
-
         [DisplayName("Fotografia da Visita de Estudo")]
         public string Picture { get; set; }
 
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+        public ATL? Atl { get; set; }
 
         public VisitaEstudo()
         {
             VisitaEstudoID = Guid.NewGuid();
         }
-
 
         public VisitaEstudo(string name, string location, string descripton, DateTime date) : this()
         {

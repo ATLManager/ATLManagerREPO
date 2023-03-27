@@ -29,12 +29,10 @@ namespace ATLManager.Models
         
         [ForeignKey("ATL")]
         public Guid AtlId { get; set; }
-
         public ATL Atl{ get; set; }
 
         [ForeignKey("EncarregadoEducacao")]
         public Guid EncarregadoId { get; set; }
-
         public EncarregadoEducacao Encarregado { get; set; }
 
 		[Required]

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
@@ -10,9 +6,6 @@ using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text.Encodings.Web;
-using System.Text;
 
 namespace ATLManager.Controllers
 {
@@ -37,8 +30,13 @@ namespace ATLManager.Controllers
         }
 
         // GET: Coordenador
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
             var usersFuncionarios = from user in _context.Users
                                      join userRole in _context.UserRoles on user.Id equals userRole.UserId
                                      join role in _context.Roles on userRole.RoleId equals role.Id
@@ -46,14 +44,15 @@ namespace ATLManager.Controllers
                                      select user;
 
 			var funcionarios = from user in usersFuncionarios
-								join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
-                                join atl in _context.ATL on profile.AtlId equals atl.AtlId
-								select new LowerAccountViewModel
-								{
-                                    User = user,
-                                    Profile = profile,
-                                    AtlName = atl.Name
-								};
+							   join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
+                               join atl in _context.ATL on profile.AtlId equals atl.AtlId
+                               where atl.AtlId == currentUserAccount.AtlId
+							   select new LowerAccountViewModel
+							   {
+                                   User = user,
+                                   Profile = profile,
+                                   AtlName = atl.Name
+							   };
 
 			return View(funcionarios);
         }

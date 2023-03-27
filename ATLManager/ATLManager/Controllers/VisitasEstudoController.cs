@@ -9,26 +9,40 @@ using ATLManager.Data;
 using ATLManager.Models;
 using Microsoft.AspNetCore.Hosting;
 using ATLManager.ViewModels;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class VisitasEstudoController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public VisitasEstudoController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+        public VisitasEstudoController(ATLManagerAuthContext context,
+            UserManager<ATLManagerUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: VisitasEstudo
         public async Task<IActionResult> Index()
         {
-              return _context.VisitaEstudo != null ? 
-                          View(await _context.VisitaEstudo.ToListAsync()) :
-                          Problem("Entity set 'ATLManagerAuthContext.VisitaEstudo'  is null.");
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var visitas = await _context.VisitaEstudo
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return View(visitas);
         }
 
         // GET: VisitasEstudo/Details/5
@@ -64,13 +78,19 @@ namespace ATLManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                var currentUserAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
                 var visitaEstudo = new VisitaEstudo
                 {
                     VisitaEstudoID = Guid.NewGuid(),
                     Name = viewModel.Name,
                     Date = viewModel.Date,
                     Descripton = viewModel.Descripton,
-                    Location = viewModel.Location
+                    Location = viewModel.Location,
+                    AtlId = currentUserAccount.AtlId
                 };
 
                 string fileName = UploadedFile(viewModel.Picture);

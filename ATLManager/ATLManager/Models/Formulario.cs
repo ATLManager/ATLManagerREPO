@@ -32,6 +32,10 @@ namespace ATLManager.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateLimit { get; set; }
 
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+        public ATL? Atl { get; set; }
+
         public Formulario()
         {
             FormularioId = Guid.NewGuid();

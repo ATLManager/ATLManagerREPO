@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
@@ -10,7 +6,6 @@ using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Cryptography.Pkcs;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
@@ -38,8 +33,17 @@ namespace ATLManager.Controllers
         // GET: Formularios
         public async Task<IActionResult> Index()
         {
-            var aTLManagerAuthContext = _context.Formulario.Include(f => f.VisitaEstudo);
-			return View(await aTLManagerAuthContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var formularios = await _context.Formulario
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+			return View(formularios);
         }
 
         // GET: Formularios/Details/5
@@ -105,14 +109,15 @@ namespace ATLManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                formulario.FormularioId = Guid.NewGuid();
-                _context.Add(formulario);
-
                 var user = await _userManager.GetUserAsync(HttpContext.User);
                 var userAccount = await _context.ContaAdministrativa
                     .Include(f => f.User)
                     .FirstOrDefaultAsync(m => m.UserId == user.Id);
                 
+                formulario.FormularioId = Guid.NewGuid();
+                formulario.AtlId = userAccount?.AtlId;
+                _context.Add(formulario);
+
                 var educandos = await _context.Educando
                     .Include(c => c.Atl)
                     .Where(g => g.AtlId == userAccount.AtlId)
