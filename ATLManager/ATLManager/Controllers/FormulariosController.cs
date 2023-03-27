@@ -39,7 +39,7 @@ namespace ATLManager.Controllers
         public async Task<IActionResult> Index()
         {
             var aTLManagerAuthContext = _context.Formulario.Include(f => f.VisitaEstudo);
-            return View(await aTLManagerAuthContext.ToListAsync());
+			return View(await aTLManagerAuthContext.ToListAsync());
         }
 
         // GET: Formularios/Details/5
@@ -69,11 +69,18 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var respostas = await _context.FormularioResposta
-                .Include(f => f.Formulario)
-                .Where(f => f.FormularioId == id)
-                .ToListAsync();
-            if (respostas == null)
+			var respostas = from resposta in _context.FormularioResposta
+							join educando in _context.Educando on resposta.EducandoId equals educando.EducandoId
+							select new FormularioRespostasViewModel
+							{
+								RespostaId = resposta.FormularioRespostaId,
+                                FormularioId = resposta.FormularioId,
+								EducandoName = educando.Name + " " + educando.Apelido,
+                                Authorized = resposta.Authorized,
+                                ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
+							};
+
+			if (respostas == null)
             {
                 return NotFound();
             }

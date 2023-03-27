@@ -93,7 +93,7 @@ namespace ATLManager.Controllers
                     var formularioResposta = await _context.FormularioResposta.FindAsync(id);
 
                     formularioResposta.Authorized = viewModel.Authorized;
-                    formularioResposta.ResponseDate = DateTime.UtcNow;
+                    formularioResposta.ResponseDate = DateTime.UtcNow.Date;
 
 					_context.Update(formularioResposta);
                     await _context.SaveChangesAsync();
