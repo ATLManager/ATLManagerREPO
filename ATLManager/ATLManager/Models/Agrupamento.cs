@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ATLManager.Models
 {
@@ -24,6 +25,10 @@ namespace ATLManager.Models
 		[Required]
 		[DisplayName("Logo do Agrupamento")]
 		public string LogoPicture { get; set; }
+
+        [ForeignKey("ContaAdministrativa")]
+        public Guid? ContaId { get; set; }
+        public ContaAdministrativa? ContaAdministrativa { get; set; }
 
 		public Agrupamento()
         {
