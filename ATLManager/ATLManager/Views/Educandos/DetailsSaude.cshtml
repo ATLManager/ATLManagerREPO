@@ -17,7 +17,7 @@
     </div>
     <!-- Fase 1  -->
     <!-- d-flex -->
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-3">
         <!-- Box  -->
         <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
             <div class="row box border-5 p-5">
@@ -84,66 +84,79 @@
                                             <div class="row mb-3">
                                                 <div class="col-6">
                                                     <dt>
-                                                        @Html.DisplayNameFor(model => model.EmergencyContact)
-                                                    </dt>
-                                                    <dd>
-                                                        <input type="text" asp-for="EmergencyContact" class="form-control" value="@Model.EmergencyContact" />
-                                                    </dd>
-                                                </div>
-                                                <div class="col-6">
-                                                    <dt>
                                                         @Html.DisplayNameFor(model => model.InsuranceName)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="InsuranceName" class="form-control" value="@Model.InsuranceName" />
+                                                        <input type="text" asp-for="InsuranceName" class="form-control" value="@Model.InsuranceName" placeholder="Insira um nome de seguro" />
                                                     </dd>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-3">
                                                 <div class="col-6">
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.InsuranceNumber)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="InsuranceNumber" class="form-control" value="@Model.InsuranceNumber" />
+                                                        <input type="text" asp-for="InsuranceNumber" class="form-control" value="@Model.InsuranceNumber" placeholder="Insira o numero de seguro" />
                                                     </dd>
                                                 </div>
+                                                     
+                                            </div>
+                                            <div class="row mb-3">
                                                 <div class="col-6">
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.Allergies)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="Allergies" class="form-control" value="@Model.Allergies" />
+                                                        <textarea class="form-control" style="height:6em;resize:none" asp-for="Allergies" value="@Model.Allergies" placeholder="Insira alergias"></textarea>
                                                     </dd>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-3">
+
                                                 <div class="col-6">
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.Diseases)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="Diseases" class="form-control" value="@Model.Diseases" />
+                                                        <textarea class="form-control" style="height:6em;resize:none" asp-for="Diseases" value="@Model.Diseases" placeholder="Insira doenças"></textarea>
                                                     </dd>
                                                 </div>
+                                                
+                                               
+                                            </div>
+                                            <div class="row mb-3">
+                                               
                                                 <div class="col-6">
                                                     <dt>
                                                         @Html.DisplayNameFor(model => model.Medication)
                                                     </dt>
                                                     <dd>
-                                                        <input type="text" asp-for="Medication" class="form-control" value="@Model.Medication" />
+                                                        <textarea class="form-control" style="height:6em;resize:none" asp-for="Medication" value="@Model.Medication" placeholder="Insira a medicação"></textarea>
                                                     </dd>
                                                 </div>
+
+                                                <div class="col-6">
+                                                   
+                                                        <dt>
+                                                            @Html.DisplayNameFor(model => model.MedicalHistory)
+                                                        </dt>
+                                                        <dd>
+                                                            <textarea class="form-control" style="height:6em;resize:none" asp-for="MedicalHistory" value="@Model.MedicalHistory" placeholder="Insira o historico médico"></textarea>
+                                                        </dd>
+                                                </div>                                            
                                             </div>
-                                            <div class="row mb-3">
+                                            <div class="col-3"></div>
+                                            <div class="col">
+                                            <div class="row">
                                                 <dt>
-                                                    @Html.DisplayNameFor(model => model.MedicalHistory)
+                                                    @Html.DisplayNameFor(model => model.EmergencyContact)
                                                 </dt>
                                                 <dd>
-                                                    <input type="text" asp-for="MedicalHistory" class="form-control" value="@Model.MedicalHistory" />
+                                                    @*<textarea class="form-control" style="height:6em;resize:none" asp-for="Medication" value="@Model.Medication" placeholder="Insira a medicação"></textarea>*@
+
+                                                    <input type="text" asp-for="EmergencyContact" class="form-control" value="@Model.EmergencyContact" placeholder="Insira um contacto de emergencia" />
                                                 </dd>
+                                                </div>
                                             </div>
-                                            <div class="mb-3 text-center">
+                                            <div class="col-3"></div>
+                                            <div class="mb-3 mt-3 text-center">
                                                 <button type="submit" class="btn btn-primary custom-button">Save</button>
                                             </div>
                                         </dl>
@@ -165,7 +178,7 @@
             if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
                 // Large screen
                 divBox.classList.remove("col-6");
-                divBox.classList.add("col-8");
+                divBox.classList.add("col-12");
             }
         }
     </script>
