@@ -73,18 +73,19 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-			var respostas = from resposta in _context.FormularioResposta
-							join educando in _context.Educando on resposta.EducandoId equals educando.EducandoId
-							select new FormularioRespostasViewModel
-							{
-								RespostaId = resposta.FormularioRespostaId,
-                                FormularioId = resposta.FormularioId,
-								EducandoName = educando.Name + " " + educando.Apelido,
-                                Authorized = resposta.Authorized,
-                                ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
-							};
+			var respostas = await (from resposta in _context.FormularioResposta
+                                   join educando in _context.Educando on resposta.EducandoId equals educando.EducandoId
+                                   where resposta.FormularioId == id
+                                   select new FormularioRespostasViewModel
+                                   {
+                                       RespostaId = resposta.FormularioRespostaId,
+                                       FormularioId = resposta.FormularioId,
+                                       EducandoName = educando.Name + " " + educando.Apelido,
+                                       Authorized = resposta.Authorized,
+                                       ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
+                                   }).ToListAsync();
 
-			if (respostas == null)
+            if (respostas == null)
             {
                 return NotFound();
             }
@@ -94,9 +95,24 @@ namespace ATLManager.Controllers
 
         // GET: Formularios/Create
         [Authorize(Roles = "Coordenador")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name");
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var visitas = await _context.VisitaEstudo
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == userAccount.AtlId)
+                .ToListAsync();
+
+            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name");
             return View();
         }
 
@@ -107,12 +123,13 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,StartDate,DateLimit")] Formulario formulario)
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
             if (ModelState.IsValid)
             {
-                var user = await _userManager.GetUserAsync(HttpContext.User);
-                var userAccount = await _context.ContaAdministrativa
-                    .Include(f => f.User)
-                    .FirstOrDefaultAsync(m => m.UserId == user.Id);
                 
                 formulario.FormularioId = Guid.NewGuid();
                 formulario.AtlId = userAccount?.AtlId;
@@ -148,7 +165,13 @@ namespace ATLManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
+
+            var visitas = await _context.VisitaEstudo
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == userAccount.AtlId)
+                .ToListAsync();
+
+            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
             return View(formulario);
         }
 
@@ -176,7 +199,22 @@ namespace ATLManager.Controllers
 				DateLimit = formulario.DateLimit.ToShortDateString(),
 			};
 
-			ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var visitas = await _context.VisitaEstudo
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == userAccount.AtlId)
+                .ToListAsync();
+
+            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
 			return View(viewModel);
 		}
 
@@ -225,7 +263,23 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VisitaEstudoId"] = new SelectList(_context.VisitaEstudo, "VisitaEstudoID", "Name", viewModel.VisitaEstudoId);
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var visitas = await _context.VisitaEstudo
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == userAccount.AtlId)
+                .ToListAsync();
+
+            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", viewModel.VisitaEstudoId);
             return View(viewModel);
         }
 

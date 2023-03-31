@@ -116,9 +116,25 @@ namespace ATLManager.Controllers
         }
 
         // GET: Educandos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "FullName");
             return View(new EducandoCreateViewModel());
         }
@@ -185,7 +201,24 @@ namespace ATLManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Address", viewModel.AtlId);
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", viewModel.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
             return View(viewModel);
         }
@@ -199,11 +232,29 @@ namespace ATLManager.Controllers
             }
 
             var educando = await _context.Educando.FindAsync(id);
+
             if (educando == null)
             {
                 return NotFound();
             }
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Address", educando.AtlId);
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", educando.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", educando.EncarregadoId);
             return View(new EducandoEditViewModel(educando));
         }
@@ -286,7 +337,24 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Address", viewModel.AtlId);
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", viewModel.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
             return View(viewModel);
         }
