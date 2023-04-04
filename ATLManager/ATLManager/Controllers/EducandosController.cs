@@ -128,11 +128,7 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
+            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
 
             ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "FullName");
@@ -212,11 +208,7 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
+            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
 
             ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", viewModel.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
@@ -248,11 +240,7 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
+            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
 
             ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", educando.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", educando.EncarregadoId);
@@ -348,11 +336,7 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
+            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
 
             ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", viewModel.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
