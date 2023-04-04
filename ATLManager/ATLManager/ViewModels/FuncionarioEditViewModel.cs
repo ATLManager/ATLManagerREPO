@@ -7,12 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ATLManager.ViewModels
 {
-    public class LowerAccountEditViewModel
+    public class FuncionarioEditViewModel
     {
         public Guid ContaId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Guid AtlId { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

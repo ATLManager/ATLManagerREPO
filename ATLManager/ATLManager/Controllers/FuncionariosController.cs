@@ -100,7 +100,8 @@ namespace ATLManager.Controllers
             var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
 
             ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
-			return View(new LowerAccountCreateViewModel());
+
+			return View(new FuncionarioCreateViewModel());
         }
 
         // POST: Coordenador/Create
@@ -108,7 +109,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LowerAccountCreateViewModel viewModel)
+        public async Task<IActionResult> Create(FuncionarioCreateViewModel viewModel)
         {
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
@@ -118,6 +119,16 @@ namespace ATLManager.Controllers
                     var validationMessage = "Outro Agrupamento já contém este CC";
                     ModelState.AddModelError("CC", validationMessage);
                 }
+            }
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
             }
 
             if (ModelState.IsValid)
@@ -135,11 +146,8 @@ namespace ATLManager.Controllers
                     // Dar role de funcionario à conta
                     await _userManager.AddToRoleAsync(user, "Funcionario");
 
-                    // Aceder ao ATL pelo Id
-                    var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
-
                     // Criar o perfil
-                    var funcionario = new ContaAdministrativa(user, atl, viewModel.DateOfBirth, viewModel.CC);
+                    var funcionario = new ContaAdministrativa(user, atlId: (Guid)userAccount.AtlId, viewModel.DateOfBirth, viewModel.CC);
 
                     string fileName = UploadedFile(viewModel.ProfilePicture);
 					if (fileName != null)
@@ -164,24 +172,6 @@ namespace ATLManager.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name", viewModel.AtlId);
             return View(viewModel);
         }
 
@@ -197,12 +187,11 @@ namespace ATLManager.Controllers
                               join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
                               join atl in _context.ATL on profile.AtlId equals atl.AtlId
                               where profile.ContaId == id
-                              select new LowerAccountEditViewModel
+                              select new FuncionarioEditViewModel
                               {
                                   ContaId = profile.ContaId,
                                   FirstName = user.FirstName,
                                   LastName = user.LastName,
-                                  AtlId = profile.AtlId.Value,
                                   DateOfBirth = profile.DateOfBirth.ToShortDateString(),
                                   CC = profile.CC,
                                   Email = user.Email
@@ -213,23 +202,6 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
             return View(await funcionario.FirstAsync());
         }
 
@@ -238,7 +210,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, LowerAccountEditViewModel viewModel)
+        public async Task<IActionResult> Edit(Guid id, CoordenadorEditViewModel viewModel)
         {
             if (id != viewModel.ContaId)
             {
@@ -271,7 +243,6 @@ namespace ATLManager.Controllers
                             funcionario.DateOfBirth = DateTime.Parse(viewModel.DateOfBirth);
                         }
                         funcionario.CC = viewModel.CC;
-                        funcionario.AtlId = viewModel.AtlId;
 
                         string fileName = UploadedFile(viewModel.ProfilePicture);
 						if (fileName != null)
@@ -305,24 +276,6 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await (from atl in _context.ATL
-                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
-                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
-                              where admin.ContaId == userAccount.ContaId
-                              select atl).Include(a => a.Agrupamento).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name", viewModel.AtlId);
             return View(viewModel);
         }
 

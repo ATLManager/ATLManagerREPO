@@ -23,7 +23,6 @@ namespace ATLManager.ViewModels
 
 		[Required]
 		public string Genero { get; set; }
-		public Guid AtlId { get; set; }
 		public Guid EncarregadoId { get; set; }
 
 		[DisplayName("Imagem da educando")]

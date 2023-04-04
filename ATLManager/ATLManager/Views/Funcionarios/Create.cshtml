@@ -1,4 +1,4 @@
-﻿@model ATLManager.ViewModels.LowerAccountCreateViewModel
+﻿@model ATLManager.ViewModels.FuncionarioCreateViewModel
 @using ATLManager.Services;
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
@@ -63,11 +63,6 @@
                                                         <input asp-for="CC" class="form-control" placeholder="Insira o cc" />
                                                         <span asp-validation-for="CC" class="text-danger"></span>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-6">
-                                                    <label asp-for="AtlId" class="control-label"></label>
-                                                    <select asp-for="AtlId" class="form-control" asp-items="ViewBag.AtlId"> </select>
                                                 </div>
                                             </div>
 

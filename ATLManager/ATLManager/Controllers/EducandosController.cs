@@ -118,19 +118,6 @@ namespace ATLManager.Controllers
         // GET: Educandos/Create
         public async Task<IActionResult> Create()
         {
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "FullName");
             return View(new EducandoCreateViewModel());
         }
@@ -152,6 +139,16 @@ namespace ATLManager.Controllers
                 }
             }
 
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 var educando = new Educando
@@ -161,7 +158,7 @@ namespace ATLManager.Controllers
                     Apelido = viewModel.Apelido,
                     CC = viewModel.CC,
                     Genero = viewModel.Genero,
-                    AtlId = viewModel.AtlId,
+                    AtlId = (Guid)userAccount.AtlId,
                     EncarregadoId = viewModel.EncarregadoId
                 };
 
@@ -197,20 +194,6 @@ namespace ATLManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", viewModel.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
             return View(viewModel);
         }
@@ -229,20 +212,7 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", educando.AtlId);
+            
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", educando.EncarregadoId);
             return View(new EducandoEditViewModel(educando));
         }
@@ -273,7 +243,7 @@ namespace ATLManager.Controllers
 				}
 			}
 
-			if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -285,7 +255,6 @@ namespace ATLManager.Controllers
                         educando.Apelido = viewModel.Apelido;
                         educando.CC = viewModel.CC;
                         educando.Genero = viewModel.Genero;
-                        educando.AtlId = viewModel.AtlId;
                         educando.EncarregadoId = viewModel.EncarregadoId;
 
 						string photoFileName = UploadedFile(viewModel.ProfilePicture);
@@ -325,20 +294,6 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
-
-            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Address", viewModel.AtlId);
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
             return View(viewModel);
         }

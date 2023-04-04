@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ATLManager.ViewModels
 {
-    public class LowerAccountCreateViewModel
+    public class FuncionarioCreateViewModel
     {
         [Required]
         [DataType(DataType.Text)]
@@ -26,9 +26,6 @@ namespace ATLManager.ViewModels
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Este campo deve conter apenas dígitos")]
         public string CC { get; set; }
-
-        [Required]
-        public Guid AtlId { get; set; }
 
         [Required]
         [EmailAddress]

@@ -112,7 +112,7 @@ namespace ATLManager.Controllers
                               select atl).Include(a => a.Agrupamento).ToListAsync();
 
             ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
-			return View(new LowerAccountCreateViewModel());
+			return View(new CoordenadorCreateViewModel());
         }
 
         // POST: Coordenador/Create
@@ -120,7 +120,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LowerAccountCreateViewModel viewModel)
+        public async Task<IActionResult> Create(CoordenadorCreateViewModel viewModel)
         {
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
@@ -210,7 +210,7 @@ namespace ATLManager.Controllers
                               join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
                               join atl in _context.ATL on profile.AtlId equals atl.AtlId
                               where profile.ContaId == id
-                              select new LowerAccountEditViewModel
+                              select new CoordenadorEditViewModel
                               {
                                   ContaId = profile.ContaId,
                                   FirstName = user.FirstName,
@@ -251,7 +251,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, LowerAccountEditViewModel viewModel)
+        public async Task<IActionResult> Edit(Guid id, CoordenadorEditViewModel viewModel)
         {
             if (id != viewModel.ContaId)
             {
