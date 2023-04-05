@@ -53,9 +53,18 @@ namespace ATLManager.Models
         public ContaAdministrativa(ATLManagerUser user, ATL atl, DateTime dateOfBirth, string cc) : this()
         {
             User = user;
-            UserId = User.Id;
+            UserId = user.Id;
 			Atl = atl;
 			AtlId = atl.AtlId;
+            DateOfBirth = dateOfBirth;
+            CC = cc;
+        }
+        
+        public ContaAdministrativa(ATLManagerUser user, Guid atlId, DateTime dateOfBirth, string cc) : this()
+        {
+            User = user;
+            UserId = User.Id;
+			AtlId = atlId;
             DateOfBirth = dateOfBirth;
             CC = cc;
         }
