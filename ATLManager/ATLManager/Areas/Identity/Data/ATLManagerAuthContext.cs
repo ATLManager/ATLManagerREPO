@@ -30,4 +30,5 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
     public DbSet<FormularioResposta> FormularioResposta { get; set; }
     public DbSet<ATLAdmin> ATLAdmin { get; set; }
     public DbSet<CoordATL> CoordATL { get; set; }
+    public DbSet<Atividade>? Atividade { get; set; }
 }

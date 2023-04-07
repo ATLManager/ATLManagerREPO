@@ -187,6 +187,17 @@
                     </li>
                 }
 
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Atividades" asp-action="Index"
+                           aria-expanded="true" aria-controls="formularios">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Atividades</span>
+                        </a>
+                    </li>
+                }
+
                 <!-- Agrupamento, Atl, Coordenadores, Funcionários, Refeições  -->
                 <!--
                              <li class="nav-item">
