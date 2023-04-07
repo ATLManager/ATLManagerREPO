@@ -16,37 +16,72 @@
 
 @if (!SignInManager.IsSignedIn(User))
 {
+    <h1>@ViewData["Title"]</h1>
+    <h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ATLManager</title>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ATLManager.styles.css" asp-append-version="true" />
-    *@
 
-    <link rel="stylesheet" type='text/css' media='screen' href="~/css/style.css">
-    <link rel='stylesheet' type='text/css' media='screen' href='~/css/slide-help.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='~/css/footer.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='~/css/menu.css'>
-    <link rel="stylesheet" type='text/css' media='screen' href="~/css/site.css" asp-append-version="true" />
+        <!-- Container -->
+        <div class="container h-auto mt-auto">
 
-</head>
 
-<body class="body">
+        <div class="d-flex justify-content-center">
+            <!-- Box  -->
+            <div class="row col-6 justify-content-center custom-box p-3">
+                <div class="row box border-5">
 
-    <!-- Menu -->
-    @* <ul>
-    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-    <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-    <li style="float:right"><a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-    <li style="float:right"><a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    </ul>*@
-    <!-- / Menu -->
-    <!-- Image -->
+                    <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-registo">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <div>
+                                <label asp-for="Input.FirstName">@language.GetKey("nameAccount")</label>
+                                <input class="input-text" class="input-text-row" asp-for="Input.FirstName" autocomplete="username" aria-required="true"><br><br>
+                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Input.LastName">@language.GetKey("lastNameAccount")</label>
+                                <input asp-for="Input.LastName" class="input-text" autocomplete="username" aria-required="true" />
+                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label asp-for="Input.Email">@language.GetKey("email")</label>
+                            <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                        </div>
+                        <br />
+                        <div class="mb-3">
+                            <div>
+                                <label asp-for="Input.Password">@language.GetKey("password")</label>
+                                <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            @*<div style="padding:5px;">*@
+                            <div class="div-apelido">
+                                <label asp-for="Input.ConfirmPassword">@language.GetKey("confirmPassword")</label>
+                                <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                            <p id="external-login-description" class="text-info">
+                                You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+                                Please enter an email address for this site below and click the Register button to finish
+                                logging in.
+                            </p>
+
+                        <div class="text-center">
+                            <button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button" style="width: 20%;">
+                                @language.GetKey("register")</button>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container-image">
         <!-- <div class="image"></div> -->
         <img src="~/images/logo1.png" class="image" alt="ATLMANAGER">
@@ -125,70 +160,13 @@
                 </div>
             </div>
         </div>
-
     </nav>
-
-
-    <h1>@ViewData["Title"]</h1>
-<h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
-
-<div class="container-box">
-    <!-- <div class="image"></div> -->
-    <div class="box">
-        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-registo">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row-p">
-                <div>
-                    <label asp-for="Input.FirstName">@language.GetKey("nameAccount")</label>
-                    <input class="input-text" class="input-text-row" asp-for="Input.FirstName" autocomplete="username" aria-required="true"><br><br>
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                </div>
-                <div class="div-apelido">
-                    <label asp-for="Input.LastName">@language.GetKey("lastNameAccount")</label>
-                    <input asp-for="Input.LastName" class="input-text" autocomplete="username" aria-required="true" />
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                </div>
-            </div>
-            <br>
-            <div>
-                <label asp-for="Input.Email">@language.GetKey("email")</label>
-                <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-
-            </div>
-            <br />
-            <div class="row-p">
-                <div>
-                    <label asp-for="Input.Password">@language.GetKey("password")</label>
-                    <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                @*<div style="padding:5px;">*@
-                <div class="div-apelido">
-                    <label asp-for="Input.ConfirmPassword">@language.GetKey("confirmPassword")</label>
-                    <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
-            </div>
-
-                <p id="external-login-description" class="text-info">
-                    You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
-                    Please enter an email address for this site below and click the Register button to finish
-                    logging in.
-                </p>
-
-            <div class="button-box">
-                <button id="registerSubmit" type="submit" class="custom-submit">@language.GetKey("register")</button>
-            </div>
-        </form>
-    </div>
-</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 
-    <script>
+@*    <script>
         let menuToggle = document.querySelector(".custom-button");
         let menu = document.querySelector(".menu");
 
@@ -263,7 +241,9 @@
                 info.style.display = "none";
             }
         });
-    </script>
-</body>
-</html>
+    </script>*@
+
 }
+
+
+               
