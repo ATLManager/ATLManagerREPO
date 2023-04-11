@@ -13,7 +13,7 @@ namespace ATLManager.ViewModels
         public string Name { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5)]
         public string Location { get; set; }
 
         [Required]

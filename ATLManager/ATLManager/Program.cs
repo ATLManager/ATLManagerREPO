@@ -146,8 +146,8 @@ builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 {
     microsoftOptions.ClientId = microsoftClientId.Value.Value;
     microsoftOptions.ClientSecret = microsoftClientSecret.Value.Value;
-    //microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
-    //microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
+	//microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
+	//microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
 });
 
 var app = builder.Build();
@@ -171,7 +171,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication();
 
 app.UseAuthorization();
 
