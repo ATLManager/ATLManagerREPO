@@ -4,12 +4,145 @@
     ViewData["Title"] = "Index";
 }
 
+@section Scripts {
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+    <script>
+
+        function applyModalStyles() {
+            var css = `
+                        .modal-backdrop {
+                            z-index: 1040 !important;
+                        }
+
+                        .modal-content {
+                            margin: 5px;
+                        }
+
+                        .close-button {
+                            color: #aaa;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+
+                        .close-button:hover,
+                        .close-button:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+
+                        body {
+                            height: auto !important;
+                        }
+
+                        `;
+
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.appendChild(document.createTextNode(css));
+            document.head.appendChild(style);
+        }
+
+
+        function getEventById(id, events) {
+            return events.find(function (event) {
+                return event.id === id;
+            });
+        }
+
+
+        $(document).ready(function () {
+
+            //function getRandomColor() {
+            //    var letters = '0123456789ABCDEF';
+            //    var color = '#';
+            //    for (var i = 0; i < 6; i++) {
+            //        color += letters[Math.floor(Math.random() * 16)];
+            //    }
+            //    return color;
+            //}
+            
+            applyModalStyles();
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: @Html.Raw(Json.Serialize(Model.Select(a => new {
+                id = a.AtividadeId,
+                title = a.Name,
+                start = a.StartDate,
+                end = a.EndDate.AddDays(1),
+                description = a.Descripton
+                }))),
+
+                eventClick: function (info) {
+                    var clickedEvent = getEventById(info.event.id, calendar.getEvents());
+
+                    // Exibir a janela modal com os detalhes do evento
+                    showModal(clickedEvent.title, clickedEvent.start, clickedEvent.end, clickedEvent.extendedProps.description, clickedEvent.id);
+                }
+            });
+
+            calendar.render();
+        });
+
+
+
+
+        function showModal(title, start, end, description, id) {
+            // Seleciona o elemento modal
+            var modal = $('#myModal');
+
+            // Preenche os elementos da modal com as informações do evento clicado
+            modal.find('.modal-title').text(title);
+            modal.find('.modal-body').html('<p><strong>Data inicial:</strong> ' + start.toLocaleDateString() + '</p>' +
+                '<p><strong>Data final:</strong> ' + end.toLocaleDateString() + '</p>' +
+                '<p><strong>Descrição:</strong> ' + description + '</p>' +
+                '<p><a href="' + '@Url.Action("Edit", "Atividades")' + '/' + id + '">Editar</a>' +
+                ' | <a href="' + '@Url.Action("Details", "Atividades")' + '/' + id + '">Consultar</a>' +
+                ' | <a href="' + '@Url.Action("Delete", "Atividades")' + '/' + id + '">Excluir</a></p>');
+
+            // Exibe a modal
+            modal.modal('show');
+        }
+
+    </script>
+}
+
+
+
+
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<div id="calendar"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+        <table class="table">
     <thead>
         <tr>
             <th>
