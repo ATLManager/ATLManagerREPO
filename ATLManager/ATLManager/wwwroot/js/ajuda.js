@@ -70,6 +70,25 @@ document.getElementById('showText4').addEventListener('click', function () {
 });
 //
 
+// Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+document.getElementById('showText5').addEventListener('click', function () {
+    var displayText = document.getElementById('displayText5');
+    var showTextBtn = document.getElementById('showText5');
+
+    if (displayText.style.display === 'none') {
+        displayText.style.display = 'block';
+        showTextBtn.classList.remove('btn-help', 'btn');
+        showTextBtn.classList.add('myButton');
+
+    } else {
+        displayText.style.display = 'none';
+        showTextBtn.classList.remove('myButton');
+        showTextBtn.classList.add('btn-help');
+    }
+});
+//
+
+
 var btnAjuda = document.getElementById('btn-ajuda');
 var menuAjuda = document.getElementById('menu-ajuda');
 
