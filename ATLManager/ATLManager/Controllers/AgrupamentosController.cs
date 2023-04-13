@@ -274,5 +274,41 @@ namespace ATLManager.Controllers
 			}
 			return uniqueFileName;
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetATLsByAgrupamento(Guid agrupamentoId)
+		{
+			var atls = await _context.ATL
+				.Where(a => a.AgrupamentoId == agrupamentoId)
+				.Select(a => new
+				{
+					a.AtlId,
+					a.Name,
+					a.Address,
+					a.City,
+					a.PostalCode
+				})
+				.ToListAsync();
+
+			return Json(atls);
+		}
+        
+		[HttpGet]
+		public async Task<IActionResult> GetCoordenadoresByATL(Guid atlId)
+		{
+			var coordenadores = await _context.ContaAdministrativa
+				.Include(ca => ca.User)
+				.Where(ca => ca.AtlId == atlId)
+				.Select(ca => new {
+					FirstName = ca.User.FirstName,
+					LastName = ca.User.LastName
+				})
+				.ToListAsync();
+
+			return Json(new { Coordenadores = coordenadores });
+		}
+
+
+
 	}
 }
