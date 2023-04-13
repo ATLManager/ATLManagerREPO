@@ -93,8 +93,9 @@
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-6">
+                                                    <p class="form-control-static">
                                                     <label asp-for="Date" class="form-label"></label>
-                                                    <p class="form-control-static">@Html.DisplayFor(model => model.Date)</p>
+                                                    @Html.DisplayFor(model => model.Date)</p>
                                                     <input asp-for="Date" class="form-control" />
                                                     <span asp-validation-for="Date" class="text-danger"></span>
                                                 </div>
