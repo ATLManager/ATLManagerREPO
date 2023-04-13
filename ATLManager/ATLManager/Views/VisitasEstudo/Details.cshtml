@@ -69,15 +69,17 @@
                                     <dd class="col text-left">
                                         @Html.DisplayFor(model => model.Descripton)
                                     </dd>
-
-                                    <div id="map" style="width: 100%; height: 250px; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
-                                        <div id="mapError" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                                            <h4>Localização não encontrada</h4>
-                                        </div>
-                                    </div>
-
                                 </div>
 
+                                <div class="row">
+                                    <dt class="col text-center mt-4">
+                                        <div id="map" style="width: 100%; height: 250px; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); margin: 0 auto;">
+                                            <div id="mapError" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin: 0 auto;">
+                                                <h4>Localização não encontrada</h4>
+                                            </div>
+                                        </div>
+                                    </dt>
+                                </div>
                             </dl>
                             <hr />
                             <div class="d-flex text-center mt-4">
@@ -119,50 +121,69 @@
 
     <script>
         // Função para inicializar o mapa
-        function initMap() {
-            var map = L.map('map').setView([0, 0], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+        function initMap(lat, lng) {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: lat, lng: lng },
+                zoom: 13
+            });
 
             return map;
         }
 
-        // Função para buscar as coordenadas de um endereço usando a API Nominatim do OpenStreetMap
-        async function getLocation(address) {
-            const encodedAddress = encodeURIComponent(address);
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodedAddress}`);
-            const data = await response.json();
 
-            if (data.length > 0) {
-                return {
-                    lat: parseFloat(data[0].lat),
-                    lng: parseFloat(data[0].lon)
-                };
+        // Função para inicializar o mapa e executar a função principal
+        async function init() {
+            const location = '@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.Location))';
+            try {
+                const coordinates = await getLocation(location);
+                window.map = initMap(coordinates.lat, coordinates.lng);
+                main(location, coordinates);
+            } catch (error) {
+                console.error(error);
+                document.getElementById('mapError').style.display = 'block';
             }
+        }
 
-            return null;
+        // Função para buscar as coordenadas de um endereço usando a API Geocoding do Google Maps
+        async function getLocation(address) {
+            return new Promise((resolve, reject) => {
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ address: address }, (results, status) => {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        const coordinates = {
+                            lat: results[0].geometry.location.lat(),
+                            lng: results[0].geometry.location.lng()
+                        };
+                        resolve(coordinates);
+                    } else {
+                        reject(new Error('Localização não encontrada'));
+                    }
+                });
+            });
         }
 
         // Função principal
-        async function main(location) {
-            const coordinates = await getLocation(location);
+        async function main(location, coordinates) {
+            const marker = new google.maps.Marker({
+                position: coordinates,
+                map: window.map
+            });
 
-            if (coordinates) {
-                const map = initMap();
-                map.setView([coordinates.lat, coordinates.lng], 13);
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<b>${location}</b>`
+            });
 
-                L.marker([coordinates.lat, coordinates.lng]).addTo(map)
-                    .bindPopup(`<b>${location}</b>`)
-                    .openPopup();
-            } else {
-                document.getElementById("mapError").style.display = "block";
-            }
+            marker.addListener('click', () => {
+                infoWindow.open(window.map, marker);
+            });
+
+            document.getElementById('map').style.display = 'block';
         }
 
 
-        main('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.Location))');
+        //main('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.Location))');
+
+
     </script>
 
 }
