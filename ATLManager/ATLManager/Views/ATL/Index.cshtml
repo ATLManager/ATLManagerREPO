@@ -108,14 +108,16 @@
                                                         @Html.DisplayFor(modelItem => item.NIPC)
                                                     </td>
                                                     <td class="text-center w-25">
-                                                        <a asp-action="Details" asp-route-id="@item.AtlId"><button type="button" class="btn btn-primary custom-button" style="border-radius:6em">
+                                                        <a asp-action="Details" asp-route-id="@item.AtlId">
+                                                            <button type="button" class="btn btn-primary custom-button" style="border-radius:6em">
                                                                 <img src="~/images/icons/search-icon1.png" height="20" width="20">
-                                                             </button>
+                                                            </button>
                                                         </a>
-
-                                                        <a asp-action="Edit" asp-route-id="@item.AtlId"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em">
+                                                        <a asp-action="Edit" asp-route-id="@item.AtlId"> 
+                                                            <button type="button" class="btn btn-success custom-button" style="border-radius:6em">
                                                                 <img src="~/images/icons/edit-icon1.png" height="20" width="20">
-                                                               </button></a>
+                                                            </button>
+                                                        </a>
                                                         <a asp-action="Delete" asp-route-id="@item.AtlId"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;">
                                                                 <img src="~/images/icons/delete-icon1.png" height="20" width="20">
                                                                 </button></a>

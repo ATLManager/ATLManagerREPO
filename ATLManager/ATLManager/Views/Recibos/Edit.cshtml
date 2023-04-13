@@ -1,0 +1,61 @@
+﻿@model ATLManager.Models.Recibo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Recibo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ReciboId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NIB" class="control-label"></label>
+                <input asp-for="NIB" class="form-control" />
+                <span asp-validation-for="NIB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionDate" class="control-label"></label>
+                <input asp-for="EmissionDate" class="form-control" />
+                <span asp-validation-for="EmissionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateLimit" class="control-label"></label>
+                <input asp-for="DateLimit" class="form-control" />
+                <span asp-validation-for="DateLimit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ComprovativoPath" class="control-label"></label>
+                <input asp-for="ComprovativoPath" class="form-control" />
+                <span asp-validation-for="ComprovativoPath" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Confirmed" /> @Html.DisplayNameFor(model => model.Confirmed)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

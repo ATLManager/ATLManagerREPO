@@ -130,7 +130,6 @@ namespace ATLManager.Controllers
 
             if (ModelState.IsValid)
             {
-                
                 formulario.FormularioId = Guid.NewGuid();
                 formulario.AtlId = userAccount?.AtlId;
                 _context.Add(formulario);
