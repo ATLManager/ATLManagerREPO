@@ -23,8 +23,7 @@
             <div class="col-3"></div>
             <div class="col-5"></div>
             <div class="col-4 text-right pb-2">
-                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
@@ -139,115 +138,107 @@
         </div>
     </div>
     <!-- // Container -->
-	<!-- Slide Left (Help) -->
-	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
-		 aria-labelledby="offcanvasRightLabel">
+	
 
-    <!-- Slide Left (Help) -->
-    <div class="offcanvas offcanvas-end h-100" data-bs-backdrop="false" style="margin-top: 10%; border-radius: 15px"
-    tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel h">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">@language.GetKey("help") </h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    
+		    <!-- Slide de Ajuda  -->
+    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+
+        <div class="row text-center mt-2">
+            <div class="col-10 ">
+                <h2 class="text-white ms-5">Ajuda</h2>
+            </div>
+
+            <div class="col-2">
+                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+            </div>
         </div>
-        <div class="offcanvas-body">
-            <!-- canvas body  -->
-            <!-- // canvas body  -->
+        <div class="">
+            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
         </div>
+        <!-- -->
+        <ul class="row justify-content-center p-4 bg-white mt-4 "
+            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginOnApp")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+                  @language.GetKey("txtHowToLoginOnApp");
+
+                </span>
+            </li>
+
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText2">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaFacebook")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText2" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaFacebook")
+                </span>
+            </li>
+
+			<li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText3">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaGoogle")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText3" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaGoogle")
+                </span>
+            </li>
+
+
+			<li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText4">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaFacebook")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText4" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaFacebook")
+                </span>
+            </li>
+
+			<li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText5">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaTwitter")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText5" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaTwitter")
+                </span>
+            </li>           
+        </ul>
     </div>
-    <!-- // Slide Left (Help) -->
-		<div class="offcanvas-header helpCustomMargin">
-			<div class="col col-11 text-center">
-				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
-					style="color:white;">
-					Ajuda
-				</h5>
-			</div>
-			<div class="col" text-right>
-				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-						aria-label="Close"></button>
-			</div>
-		</div>
-		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
-			   aria-label="Search" style="border-radius: 10px;">
-
-		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
-			<div class="offcanvas-body box overflow-auto">
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText1">
-						<span>@language.GetKey("howToLoginOnApp")</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText1"
-						  style="display: none; position: relative;">
-						@language.GetKey("txtHowToLoginOnApp");
-					</span>
-				</div>
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText2">
-						<span>@language.GetKey("howToLoginViaFacebook")</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText2"
-						  style="display: none; position: relative;">
-						@language.GetKey("txtHowToLoginViaFacebook");
-					</span>
-				</div>
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText3">
-						<span>@language.GetKey("howToLoginViaGoogle")</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText3"
-						  style="display: none; position: relative;">
-						@language.GetKey("txtHowToLoginViaGoogle");
-					</span>
-				</div>
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText4">
-						<span>@language.GetKey("howToLoginViaOutlook")</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText4"
-						  style="display: none; position: relative;">
-						@language.GetKey("txtHowToLoginViaOutlook")
-					</span>
-				</div>
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText5">
-						<span>@language.GetKey("howToLoginViaTwitter")</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText5"
-						  style="display: none; position: relative;">
-						@language.GetKey("txtHowToLoginViaTwitter")
-					</span>
-				</div>
-
-
-			</div>
-		</div>
-	</div>
+    <!-- // Slide de Ajuda  -->
 
 	<script type="text/javascript">
 		// Add the following code if you want the name of the file appear on select
@@ -255,110 +246,7 @@
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
-	</script>
-
-	<!-- // Slide Left (Help) -->
-	<!-- JS Button help 1 -->
-	<script>
-		document.getElementById('showText1').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText1');
-			var showTextBtn = document.getElementById('showText1');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 1 -->
-	<!-- JS Button help 2 -->
-	<script>
-		document.getElementById('showText2').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText2');
-			var showTextBtn = document.getElementById('showText2');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 2 -->
-	<!-- JS Button help 3 -->
-	<script>
-		document.getElementById('showText3').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText3');
-			var showTextBtn = document.getElementById('showText3');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 3 -->
-	<!-- JS Button help 4 -->
-	<script>
-		document.getElementById('showText4').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText4');
-			var showTextBtn = document.getElementById('showText4');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 4 -->
-	<!-- JS Button help 5 -->
-	<script>
-		document.getElementById('showText5').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText5');
-			var showTextBtn = document.getElementById('showText5');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 5 -->
-          
+	</script>         
 
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />

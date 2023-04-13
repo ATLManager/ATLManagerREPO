@@ -20,9 +20,17 @@
     <h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
 
 
-        <!-- Container -->
-        <div class="container h-auto mt-auto">
-
+  <!-- Botão de Ajuda -->
+        <div class="row" style="padding-top: 6em;padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-5"></div>
+            <div class="col-4 text-right pb-2">
+                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+        </div>
+        <!-- // Botão de Ajuda -->
 
         <div class="d-flex justify-content-center">
             <!-- Box  -->
@@ -82,166 +90,112 @@
     </div>
 
 
-    <div class="container-image">
-        <!-- <div class="image"></div> -->
-        <img src="~/images/logo1.png" class="image" alt="ATLMANAGER">
-    </div>
 
-    <!-- / Image -->
-    <!-- Botão de ajuda  -->
+  
+		    <!-- Slide de Ajuda  -->
+    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
-    <div class="container-btnHelp">
-        <button class="custom-button">
-            <img src="~/images/question.png" class="image-question" alt="Button Image">
-        </button>
-    </div>
-    <!-- / Botão de ajuda  -->
-    <!-- Menu Lateral de Ajuda -->
-    <nav class="menu">
-        <div class="first-container">
-            <div class="custom-h1">
-                <h1> Ajuda </h1>
+        <div class="row text-center mt-2">
+            <div class="col-10 ">
+                <h2 class="text-white ms-5">Ajuda</h2>
             </div>
 
-            <div class="search-container">
-                <input type="text" id="search" placeholder="@language.GetKey("txtSearchHelpArticles")">
-            </div>
-
-            <div class="container-help-info">
-
-                <div>
-                    <button class="custom-button-info" id="info-button1">@language.GetKey("howToRegisterOnApp")</button>
-
-                    <div id="info1" class="help-info1">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToRegisterOnApp")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button2">@language.GetKey("howToRegisterViaFacebook")</button>
-
-                    <div id="info2" class="help-info2">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaFacebook")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button3">@language.GetKey("howToRegisterViaOutlook")</button>
-
-                    <div id="info3" class="help-info3">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaOutlook")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button4">@language.GetKey("howToRegisterViaTwitter")</button>
-
-                    <div id="info4" class="help-info4">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaTwitter")
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <button class="custom-button-info" id="info-button5">@language.GetKey("howToRegisterViaGoogle")</button>
-
-                    <div id="info5" class="help-info5">
-                        <p class="p-information">
-                            @language.GetKey("txtHowToRegisterViaGoogle")
-                        </p>
-                    </div>
-                </div>
+            <div class="col-2">
+                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
             </div>
         </div>
-    </nav>
+        <div class="">
+            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+        </div>
+        <!-- -->
+        <ul class="row justify-content-center p-4 bg-white mt-4 "
+            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginOnApp")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+                  @language.GetKey("txtHowToLoginOnApp");
+
+                </span>
+            </li>
+
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText2">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaFacebook")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText2" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaFacebook")
+                </span>
+            </li>
+
+			<li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText3">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaGoogle")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText3" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaGoogle")
+                </span>
+            </li>
+
+
+			<li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText4">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaFacebook")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText4" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaFacebook")
+                </span>
+            </li>
+
+			<li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText5">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>@language.GetKey("howToLoginViaTwitter")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText5" style="display: none; position: relative;">
+                   @language.GetKey("txtHowToLoginViaTwitter")
+                </span>
+            </li>           
+        </ul>
+    </div>
+    <!-- // Slide de Ajuda  -->
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 
-@*    <script>
-        let menuToggle = document.querySelector(".custom-button");
-        let menu = document.querySelector(".menu");
-
-        menuToggle.addEventListener("click", function () {
-            menu.classList.toggle("open");
-        });
-    </script>
-
-
-
-    <script>
-        const instructionsButton = document.querySelector('.instructions-button');
-        const instructionsList = document.querySelector('.instructions-list');
-
-        instructionsButton.addEventListener('click', () => {
-            instructionsList.classList.toggle('visible');
-        });
-
-    </script>
-
-    <script>
-        document.getElementById("info-button1").addEventListener("click", function () {
-            var info = document.getElementById("info1");
-            if (info.style.display === "none") {
-                info.style.display = "block";
-            } else {
-                info.style.display = "none";
-            }
-        });
-
-        document.getElementById("info-button2").addEventListener("click", function () {
-            var info = document.getElementById("info2");
-            if (info.style.display === "none") {
-                info.style.display = "block";
-            } else {
-                info.style.display = "none";
-            }
-        });
-
-        document.getElementById("info-button3").addEventListener("click", function () {
-            var info = document.getElementById("info3");
-            if (info.style.display === "none") {
-                info.style.display = "block";
-            } else {
-                info.style.display = "none";
-            }
-        });
-
-        document.getElementById("info-button4").addEventListener("click", function () {
-            var info = document.getElementById("info4");
-            if (info.style.display === "none") {
-                info.style.display = "block";
-            } else {
-                info.style.display = "none";
-            }
-        });
-
-        document.getElementById("info-button5").addEventListener("click", function () {
-            var info = document.getElementById("info5");
-            if (info.style.display === "none") {
-                info.style.display = "block";
-            } else {
-                info.style.display = "none";
-            }
-        });
-
-        document.getElementById("info-button6").addEventListener("click", function () {
-            var info = document.getElementById("info6");
-            if (info.style.display === "none") {
-                info.style.display = "block";
-            } else {
-                info.style.display = "none";
-            }
-        });
-    </script>*@
 
 }
 

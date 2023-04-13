@@ -27,14 +27,17 @@
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-
+    
+    <!-- Menu de ajuda -->
+    <script src="~/js/ajuda.js"></script> 
+    <link href="~/css/ajuda.css" rel="stylesheet">
+    
     @if (SignInManager.IsSignedIn(User))
     {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="~/css/menu.min.css" rel="stylesheet">
-        <link href="~/css/slide-help.css" rel="stylesheet">
     }
  </head>
 
