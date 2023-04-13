@@ -7,13 +7,14 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
-@inject LanguageService language
 @model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
-@inject LanguageService language
+
+
 @{
 	ViewData["Title"] = @language.GetKey("register");
 	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
+@inject LanguageService language
 
 @if (!SignInManager.IsSignedIn(User))
 {
@@ -75,7 +76,6 @@
     </div>
     <!-- // Container-Form -->
 
-</div>
 
 
 		    <!-- Slide de Ajuda  -->
@@ -182,14 +182,91 @@
         </ul>
     </div>
     <!-- // Slide de Ajuda  -->
+</div>
 
+  
 
 	<script type="text/javascript">
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText2').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText2');
+            var showTextBtn = document.getElementById('showText2');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText3').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText3');
+            var showTextBtn = document.getElementById('showText3');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText4').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText4');
+            var showTextBtn = document.getElementById('showText4');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText5').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText5');
+            var showTextBtn = document.getElementById('showText5');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
 		// Add the following code if you want the name of the file appear on select
 		$(".custom-file-input").on("change", function () {
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	</script>
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
 
 }

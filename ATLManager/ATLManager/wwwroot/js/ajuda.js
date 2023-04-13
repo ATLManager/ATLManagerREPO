@@ -16,77 +16,7 @@ document.getElementById('showText1').addEventListener('click', function () {
 });
 //
 
-// Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
-document.getElementById('showText2').addEventListener('click', function () {
-    var displayText = document.getElementById('displayText2');
-    var showTextBtn = document.getElementById('showText2');
 
-    if (displayText.style.display === 'none') {
-        displayText.style.display = 'block';
-        showTextBtn.classList.remove('btn-help', 'btn');
-        showTextBtn.classList.add('myButton');
-
-    } else {
-        displayText.style.display = 'none';
-        showTextBtn.classList.remove('myButton');
-        showTextBtn.classList.add('btn-help');
-    }
-});
-//
-
-// Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
-document.getElementById('showText3').addEventListener('click', function () {
-    var displayText = document.getElementById('displayText3');
-    var showTextBtn = document.getElementById('showText3');
-
-    if (displayText.style.display === 'none') {
-        displayText.style.display = 'block';
-        showTextBtn.classList.remove('btn-help', 'btn');
-        showTextBtn.classList.add('myButton');
-
-    } else {
-        displayText.style.display = 'none';
-        showTextBtn.classList.remove('myButton');
-        showTextBtn.classList.add('btn-help');
-    }
-});
-//
-
-// Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
-document.getElementById('showText4').addEventListener('click', function () {
-    var displayText = document.getElementById('displayText4');
-    var showTextBtn = document.getElementById('showText4');
-
-    if (displayText.style.display === 'none') {
-        displayText.style.display = 'block';
-        showTextBtn.classList.remove('btn-help', 'btn');
-        showTextBtn.classList.add('myButton');
-
-    } else {
-        displayText.style.display = 'none';
-        showTextBtn.classList.remove('myButton');
-        showTextBtn.classList.add('btn-help');
-    }
-});
-//
-
-// Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
-document.getElementById('showText5').addEventListener('click', function () {
-    var displayText = document.getElementById('displayText5');
-    var showTextBtn = document.getElementById('showText5');
-
-    if (displayText.style.display === 'none') {
-        displayText.style.display = 'block';
-        showTextBtn.classList.remove('btn-help', 'btn');
-        showTextBtn.classList.add('myButton');
-
-    } else {
-        displayText.style.display = 'none';
-        showTextBtn.classList.remove('myButton');
-        showTextBtn.classList.add('btn-help');
-    }
-});
-//
 
 
 var btnAjuda = document.getElementById('btn-ajuda');
