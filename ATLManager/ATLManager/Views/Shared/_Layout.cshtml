@@ -13,6 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ATLManager</title>
     
+
+
+    <!-- JS do Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init"></script>
+
     <!-- Ligação ao bootstrap localmente -->
     <link rel='stylesheet' type='text/css' media='screen' href='~/lib/bootstrap/dist/css/bootstrap.min.css'>
 
@@ -789,7 +794,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                                            <h5 class="modal-title" id="exampleModalLabelLogout">Logout!</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -801,7 +806,7 @@
                                             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
 
                                             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                                <button id="logout" type="submit" class="custom-submit">Logout</button>
+                                                <button id="logout" type="submit" class="btn btn-outline-danger custom-submit">Logout</button>
                                             </form>
                                            
                                         </div>

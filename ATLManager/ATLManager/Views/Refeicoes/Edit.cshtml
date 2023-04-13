@@ -111,10 +111,89 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div
+                            </div>
+                          @*  @
+                            <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.Proteina)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Proteina)
+                                    </dd>
                                 </div>
 
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.HidratosCarbono)
+                                    </dt>
 
-                            </div>
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.HidratosCarbono)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.VR)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.VR)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.Acucar)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Acucar)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.Lipidos)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Lipidos)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.ValorEnergetico)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.ValorEnergetico)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.AGSat)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.AGSat)
+                                    </dd>
+                                </div>
+
+                                <div class="row">
+                                    <dt class="col mr-2">
+                                        @Html.DisplayNameFor(model => model.Sal)
+                                    </dt>
+
+                                    <dd class="col text-left">
+                                        @Html.DisplayFor(model => model.Sal)
+                                    </dd>
+                                </div>
+                            @*@
 
                             <div class="row mb-3">
                                 <div class="col-6">
@@ -316,8 +395,8 @@
 
             if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
                 // Large screen
-                divBox.classList.remove("col-6");
-                divBox.classList.add("col-8");
+                divBox.classList.remove("col-8");
+                divBox.classList.add("col-10");
             }
         }
     </script>
