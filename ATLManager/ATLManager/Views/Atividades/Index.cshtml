@@ -102,9 +102,9 @@
             modal.find('.modal-body').html('<p><strong>Data inicial:</strong> ' + start.toLocaleDateString() + '</p>' +
                 '<p><strong>Data final:</strong> ' + end.toLocaleDateString() + '</p>' +
                 '<p><strong>Descrição:</strong> ' + description + '</p>' +
-                '<p><a href="' + '@Url.Action("Edit", "Atividades")' + '/' + id + '">Editar</a>' +
-                ' | <a href="' + '@Url.Action("Details", "Atividades")' + '/' + id + '">Consultar</a>' +
-                ' | <a href="' + '@Url.Action("Delete", "Atividades")' + '/' + id + '">Excluir</a></p>');
+                '<p class="text-center"><a href="' + '@Url.Action("Details", "Atividades")' + '/' + id + '"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"><img src="@Url.Content("~/images/icons/search-icon1.png")"" height="20" width="20"></button> </a>' +
+                '  <a href="' + '@Url.Action("Edit", "Atividades")' + '/' + id + '"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em"><img src="@Url.Content("~/images/icons/edit-icon1.png")"" height="20" width="20"></button> </a > ' +
+                '  <a href="' + '@Url.Action("Delete", "Atividades")' + '/' + id + '">  <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;"><img src="@Url.Content("~/images/icons/delete-icon1.png")"" height="20" width="20"></button></a > </p>');
 
             // Exibe a modal
             modal.modal('show');
@@ -115,12 +115,20 @@
 
 
 
-
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+<div class="row">
+    <div class="col-6">
+     
+    </div>
+
+    <div class="col-6">
+        <p class="text-end">
+            <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Atividade </button></a>
+        </p>
+    </div>
+</div>
 
 <div id="calendar"></div>
 
@@ -135,7 +143,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body"></div>
+                <div class="modal-body text-center"></div>
             </div>
         </div>
     </div>
