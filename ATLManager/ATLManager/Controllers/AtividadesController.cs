@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
+using Microsoft.AspNetCore.Hosting;
+using ATLManager.ViewModels;
 
 namespace ATLManager.Controllers
 {
     public class AtividadesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+		private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AtividadesController(ATLManagerAuthContext context)
-        {
-            _context = context;
-        }
+		public AtividadesController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+		{
+			_context = context;
+			_webHostEnvironment = webHostEnvironment;
+		}
 
-        // GET: Atividades
-        public async Task<IActionResult> Index()
+		// GET: Atividades
+		public async Task<IActionResult> Index()
         {
               return _context.Atividade != null ? 
                           View(await _context.Atividade.ToListAsync()) :
@@ -48,7 +52,7 @@ namespace ATLManager.Controllers
         // GET: Atividades/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new AtividadeCreateViewModel());
         }
 
         // POST: Atividades/Create
@@ -56,16 +60,35 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AtividadeId,Name,StartDate,EndDate,Descripton,Picture")] Atividade atividade)
+        public async Task<IActionResult> Create(AtividadeCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                atividade.AtividadeId = Guid.NewGuid();
+				string fileName = UploadedFile(viewModel.Picture);
+
+                var atividade = new Atividade
+                {
+                    AtividadeId = Guid.NewGuid(),
+                    Name = viewModel.Name,
+                    StartDate = viewModel.StartDate,
+                    EndDate = viewModel.EndDate,
+                    Description = viewModel.Description
+                };
+
+				if (fileName != null)
+				{
+					atividade.Picture = fileName;
+				}
+				else
+				{
+					atividade.Picture = "logo.png";
+				}
+                
                 _context.Add(atividade);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(atividade);
+            return View(viewModel);
         }
 
         // GET: Atividades/Edit/5
@@ -81,7 +104,17 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            return View(atividade);
+
+            var viewModel = new AtividadeEditViewModel
+            {
+                AtividadeId = atividade.AtividadeId,
+                Name = atividade.Name,
+                StartDate = atividade.StartDate,
+                EndDate = atividade.EndDate,
+                Description = atividade.Description
+            };
+
+            return View(viewModel);
         }
 
         // POST: Atividades/Edit/5
@@ -89,15 +122,36 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AtividadeId,Name,StartDate,EndDate,Descripton,Picture")] Atividade atividade)
+        public async Task<IActionResult> Edit(Guid id, [Bind("AtividadeId,Name,StartDate,EndDate,Description,Picture")] AtividadeEditViewModel viewModel)
         {
-            if (id != atividade.AtividadeId)
+            if (id != viewModel.AtividadeId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var atividade = await _context.Atividade.FindAsync(id);
+
+                if (atividade == null) return NotFound();
+                    
+                atividade.Name = viewModel.Name;
+                atividade.Description = viewModel.Description;
+
+                if (viewModel.StartDate != null)
+                    atividade.StartDate = (DateTime)viewModel.StartDate;
+
+                if (viewModel.EndDate != null)
+                    atividade.EndDate = (DateTime)viewModel.EndDate;
+
+
+                string fileName = UploadedFile(viewModel.Picture);
+
+                if (fileName != null)
+                {
+                    atividade.Picture = fileName;
+                }
+
                 try
                 {
                     _context.Update(atividade);
@@ -105,7 +159,7 @@ namespace ATLManager.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AtividadeExists(atividade.AtividadeId))
+                    if (!AtividadeExists(viewModel.AtividadeId))
                     {
                         return NotFound();
                     }
@@ -116,7 +170,7 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(atividade);
+            return View(viewModel);
         }
 
         // GET: Atividades/Delete/5
@@ -160,5 +214,22 @@ namespace ATLManager.Controllers
         {
           return (_context.Atividade?.Any(e => e.AtividadeId == id)).GetValueOrDefault();
         }
-    }
+
+		private string UploadedFile(IFormFile comprovativo)
+		{
+			string uniqueFileName = null;
+
+			if (comprovativo != null)
+			{
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atividades");
+				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					comprovativo.CopyTo(fileStream);
+				}
+			}
+			return uniqueFileName;
+		}
+	}
 }

@@ -1,4 +1,4 @@
-﻿@model ATLManager.Models.Atividade
+﻿@model ATLManager.ViewModels.AtividadeEditViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -40,7 +40,7 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md">
-                                        <form asp-action="Edit">
+                                        <form enctype="multipart/form-data" asp-action="Edit">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                             <input type="hidden" asp-for="AtividadeId" />
                                             <div class="row mb-2">
@@ -77,9 +77,9 @@
                                                             <!-- extended box content -->
                                                             <div class="row mb-2">
                                                                 <div class="col">
-                                                                    <label asp-for="Descripton" class="control-label">Descrição</label>
-                                                                    <textarea asp-for="Descripton" class="form-control" style="height:8em;resize:none" placeholder="Insira uma descrição"></textarea>
-                                                                    <span asp-validation-for="Descripton" class="text-danger"></span>
+                                                                    <label asp-for="Description" class="control-label">Descrição</label>
+                                                                    <textarea asp-for="Description" class="form-control" style="height:8em;resize:none" placeholder="Insira uma descrição"></textarea>
+                                                                    <span asp-validation-for="Description" class="text-danger"></span>
                                                                 </div>
                                                             </div>
                                                         </div>

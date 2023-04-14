@@ -12,16 +12,19 @@ namespace ATLManager.Models
         public Guid VisitaEstudoID { get; set; }
 
         [Required]
+        [Display(Name = "Nome")]
         [Column(TypeName = "nvarchar(100)")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Localização")]
         [StringLength(50, MinimumLength = 5)]
         public string Location { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string Descripton { get; set; }
+        [Display(Name = "Descrição")]
+        public string Description { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -45,7 +48,7 @@ namespace ATLManager.Models
         {
             Name = name;
             Location = location;
-            Descripton = descripton;
+            Description = descripton;
             Date = date;
         }
     }

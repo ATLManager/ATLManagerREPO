@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ATLManager.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\ajuda.css",
+      "PackagePath": "staticwebassets\\css\\ajuda.css"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\configs.css",
       "PackagePath": "staticwebassets\\css\\configs.css"
     },
@@ -23,10 +27,6 @@
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\menu.min.css",
       "PackagePath": "staticwebassets\\css\\menu.min.css"
-    },
-    {
-      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\slide-help.css",
-      "PackagePath": "staticwebassets\\css\\slide-help.css"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\favicon.ico",
@@ -197,6 +197,14 @@
       "PackagePath": "staticwebassets\\images\\uploads\\agrupamentos\\logo.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\atividades\\aa9e0bbe-85a5-4289-89d3-688b394a206d_id_cat.jpg",
+      "PackagePath": "staticwebassets\\images\\uploads\\atividades\\aa9e0bbe-85a5-4289-89d3-688b394a206d_id_cat.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\atividades\\logo.png",
+      "PackagePath": "staticwebassets\\images\\uploads\\atividades\\logo.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\atls\\logo.png",
       "PackagePath": "staticwebassets\\images\\uploads\\atls\\logo.png"
     },
@@ -265,8 +273,16 @@
       "PackagePath": "staticwebassets\\images\\uploads\\refeicoes\\logo.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitasEstudo\\3c70f6c5-4a45-4405-a8d9-11f5c9e69d59_cringe ass nae nae baby.png",
+      "PackagePath": "staticwebassets\\images\\uploads\\visitasEstudo\\3c70f6c5-4a45-4405-a8d9-11f5c9e69d59_cringe ass nae nae baby.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitasEstudo\\logo.png",
       "PackagePath": "staticwebassets\\images\\uploads\\visitasEstudo\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\ajuda.js",
+      "PackagePath": "staticwebassets\\js\\ajuda.js"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\demo\\chart-area-demo.js",
