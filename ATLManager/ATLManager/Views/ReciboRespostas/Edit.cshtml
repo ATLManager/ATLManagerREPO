@@ -27,10 +27,10 @@
 							<dl class="row">
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Recibo)
+										@Html.DisplayNameFor(model => model.Name)
 									</dt>
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Recibo.Name)
+										@Html.DisplayFor(model => model.Name)
 									</dd>
 								</div>
 								<div class="row">
@@ -47,6 +47,14 @@
 										@Html.DisplayNameFor(model => model.ResponseDate)
 									</dt>
 									<dd class="col text-left">
+										@if (Model.ResponseDate != null)
+										{
+											@Html.DisplayFor(model => model.ResponseDate)
+										}
+										else
+										{
+											<span class="text-center"> - </span>
+										}
 										@Html.DisplayFor(model => model.ResponseDate)
 									</dd>
 								</div>

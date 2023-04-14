@@ -27,16 +27,16 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var formularioResposta = await _context.ReciboResposta
+            var resposta = await _context.ReciboResposta
                 .Include(f => f.Educando)
                 .Include(f => f.Recibo)
                 .FirstOrDefaultAsync(m => m.ReciboRespostaId == id);
-            if (formularioResposta == null)
+            if (resposta == null)
             {
                 return NotFound();
             }
 
-            return View(formularioResposta);
+            return View(resposta);
 		}
 
 		// GET: RecibosRespostas/Edit/5
@@ -47,12 +47,15 @@ namespace ATLManager.Controllers
 				return NotFound();
 			}
 
-			var recibo = await _context.ReciboResposta.FindAsync(id);
-			if (recibo == null)
+			var resposta = await _context.ReciboResposta
+				.Include(f => f.Educando)
+				.Include(f => f.Recibo)
+				.FirstOrDefaultAsync(m => m.ReciboRespostaId == id);
+			if (resposta == null)
 			{
 				return NotFound();
 			}
-			return View(recibo);
+			return View(resposta);
 		}
 
 		[HttpPost]

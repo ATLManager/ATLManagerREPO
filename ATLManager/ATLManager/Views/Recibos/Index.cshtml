@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.NIB)
             </th>
             <th>
@@ -27,9 +30,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateLimit)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Confirmed)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -38,6 +38,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NIB)
@@ -50,9 +53,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateLimit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Confirmed)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReciboId">Edit</a> |

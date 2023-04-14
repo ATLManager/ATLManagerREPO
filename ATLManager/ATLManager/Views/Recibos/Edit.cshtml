@@ -24,6 +24,11 @@
                 <span asp-validation-for="NIB" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
@@ -37,16 +42,6 @@
                 <label asp-for="DateLimit" class="control-label"></label>
                 <input asp-for="DateLimit" class="form-control" />
                 <span asp-validation-for="DateLimit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ComprovativoPath" class="control-label"></label>
-                <input asp-for="ComprovativoPath" class="form-control" />
-                <span asp-validation-for="ComprovativoPath" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Confirmed" /> @Html.DisplayNameFor(model => model.Confirmed)
-                </label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

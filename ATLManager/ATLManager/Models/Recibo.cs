@@ -11,7 +11,12 @@ namespace ATLManager.Models
 
 		[Required]
         [MaxLength(50)]
+        [DisplayName("Nome")]
         public string Name { get; set; }
+
+        [Required]
+        [DisplayName("Preço")]
+        public decimal Price { get; set; }
 
         [Required]
 		[StringLength(21, MinimumLength = 21, ErrorMessage = "Este campo deve conter 21 dígitos")]
@@ -20,6 +25,7 @@ namespace ATLManager.Models
 
         [Required]
         [MaxLength(500)]
+        [DisplayName("Descrição")]
         public string Description { get; set; }
 
         [Required]
@@ -33,13 +39,6 @@ namespace ATLManager.Models
         [DisplayName("Data Limite")]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateLimit { get; set; }
-
-		[DisplayName("Logo do Agrupamento")]
-		public string? ComprovativoPath { get; set; }
-
-        [Required]
-        [DisplayName("Confirmado por Coordenador")]
-        public bool Confirmed { get; set; } = false;
 
 		public Recibo()
         {

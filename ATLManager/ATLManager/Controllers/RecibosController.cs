@@ -97,7 +97,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,NIB,Description,DateLimit")] ReciboCreateViewModel viewModel)
+        public async Task<IActionResult> Create([Bind("Name,Price,NIB,Description,DateLimit")] Recibo recibo)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var userAccount = await _context.ContaAdministrativa
@@ -106,15 +106,16 @@ namespace ATLManager.Controllers
 
             if (ModelState.IsValid)
             {
-                var recibo = new Recibo
-                {
-                    ReciboId = Guid.NewGuid(),
-                    Name = viewModel.Name,
-                    NIB = viewModel.NIB,
-                    Description = viewModel.Description,
-                    EmissionDate = DateTime.UtcNow.Date,
-                    DateLimit = viewModel.DateLimit
-                };
+                recibo.EmissionDate = DateTime.UtcNow.Date;
+                //var recibo = new Recibo
+                //{
+                //    ReciboId = Guid.NewGuid(),
+                //    Name = viewModel.Name,
+                //    NIB = viewModel.NIB,
+                //    Description = viewModel.Description,
+                //    EmissionDate = DateTime.UtcNow.Date,
+                //    DateLimit = viewModel.DateLimit
+                //};
 
                 _context.Add(recibo);
 
@@ -125,8 +126,14 @@ namespace ATLManager.Controllers
 
                 foreach (var educando in educandos)
                 {
-                    var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId);
-                    resposta.DateLimit = recibo.DateLimit;
+                    var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+                    {
+                        Name = recibo.Name,
+                        Price = recibo.Price,
+                        NIB = recibo.NIB,
+                        Description = recibo.Description,
+                        DateLimit = recibo.DateLimit
+                    };
 
                     // Obter Encarregado do Educando e a sua conta
                     var encarregado = await _context.EncarregadoEducacao
@@ -148,7 +155,7 @@ namespace ATLManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(viewModel);
+            return View(recibo);
         }
 
         // GET: Recibos/Edit/5
