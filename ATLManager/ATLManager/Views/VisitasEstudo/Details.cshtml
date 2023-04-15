@@ -63,11 +63,11 @@
 
                                 <div class="row">
                                     <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Descripton)
+                                        @Html.DisplayNameFor(model => model.Description)
                                     </dt>
 
                                     <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Descripton)
+                                        @Html.DisplayFor(model => model.Description)
                                     </dd>
                                 </div>
 
@@ -106,6 +106,10 @@
         </div>
         <!-- // Fase 1 -->
     </div>
+    
+    
+    <!-- JS do Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init"></script>
 
     <script>
         window.onload = function () {
@@ -179,9 +183,6 @@
 
             document.getElementById('map').style.display = 'block';
         }
-
-
-        //main('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.Location))');
 
 
     </script>

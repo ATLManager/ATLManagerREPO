@@ -1,9 +1,34 @@
-﻿@model IEnumerable<ATLManager.Models.Atividade>
+@model IEnumerable<ATLManager.Models.Atividade>
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
 }
 
+
+@functions {
+    // Function to generate a unique color based on a Guid ID
+    string GenerateColor(Guid id)
+    {
+        // Convert the Guid to a byte array
+        var bytes = id.ToByteArray();
+
+        // Calculate the red (r), green (g), and blue (b) components based on the bytes of the Guid
+        // We sum two adjacent bytes and take the modulo 256 to ensure the result is in the range of 0 to 255
+        int r = (bytes[0] + bytes[1]) % 256;
+        int g = (bytes[2] + bytes[3]) % 256;
+        int b = (bytes[4] + bytes[5]) % 256;
+
+        // Return the color in hexadecimal format
+        // We use string interpolation syntax to create a string in the #RRGGBB format
+        return $"#{r:X2}{g:X2}{b:X2}";
+    }
+}
 @section Scripts {
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
     <script>
@@ -14,18 +39,33 @@
                             z-index: 1040 !important;
                         }
 
+                        .modal-header .modal-title {
+                            text-align: center;
+                        }
+
+                        .modal-header {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        .hr-separator {
+                            border-top: 1px solid #dee2e6;
+                            margin: 1em 0;
+                        }
+                        
                         .modal-content {
                             margin: 5px;
                         }
 
-                        .close-button {
+                        .close {
                             color: #aaa;
                             font-size: 28px;
                             font-weight: bold;
                         }
 
-                        .close-button:hover,
-                        .close-button:focus {
+                        .close:hover,
+                        .close:focus {
                             color: black;
                             text-decoration: none;
                             cursor: pointer;
@@ -33,6 +73,30 @@
 
                         body {
                             height: auto !important;
+                        }
+
+                        .fc-theme-standard th {
+                            background-color: #007BFF;
+                            color: white;
+                            border: none;
+                        }
+
+                        .table thead th {
+                            background-color: #007BFF;
+                            color: white;
+                            border: none;
+                        }
+
+                        .modal-buttons {
+                            display: flex;
+                            justify-content: center;
+                            gap: 100px;
+                            margin-top: 1em;
+                        }
+
+                        .calendar {
+                            width: 90%;
+                            margin: 0 auto;
                         }
 
                         `;
@@ -53,17 +117,29 @@
 
         $(document).ready(function () {
 
-            //function getRandomColor() {
-            //    var letters = '0123456789ABCDEF';
-            //    var color = '#';
-            //    for (var i = 0; i < 6; i++) {
-            //        color += letters[Math.floor(Math.random() * 16)];
-            //    }
-            //    return color;
-            //}
-            
             applyModalStyles();
             var calendarEl = document.getElementById('calendar');
+
+            // Criar a matriz de eventos
+            var events = [
+        @foreach (var item in Model)
+        {
+            <text>
+                    {
+                        id: "@item.AtividadeId",
+                        title: @Html.Raw(Json.Serialize(item.Name)),
+                        start: "@item.StartDate.ToString("yyyy-MM-ddTHH:mm")",
+                        end: "@(item.StartDate == item.EndDate ? item.EndDate.ToString("yyyy-MM-ddTHH:mm") : item.EndDate.ToString("yyyy-MM-ddTHH:mm"))",
+                        description: @Html.Raw(Json.Serialize(item.Description)),
+                        color: "@GenerateColor(item.AtividadeId)",
+                        className: "event-with-shadow",
+                        picture: "@(Url.Content($"~/images/uploads/atividades/{item.Picture}") ?? Url.Content("~/images/uploads/atividades/logo.png"))"
+
+                    },
+            </text>
+        }
+        ];
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 headerToolbar: {
@@ -71,122 +147,146 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                events: @Html.Raw(Json.Serialize(Model.Select(a => new {
-                id = a.AtividadeId,
-                title = a.Name,
-                start = a.StartDate,
-                end = a.EndDate.AddDays(1),
-                description = a.Descripton
-                }))),
+                themeSystem: 'bootstrap5',
+                height: '700px',
+                displayEventTime: false,
+                events: events,
 
                 eventClick: function (info) {
                     var clickedEvent = getEventById(info.event.id, calendar.getEvents());
 
                     // Exibir a janela modal com os detalhes do evento
-                    showModal(clickedEvent.title, clickedEvent.start, clickedEvent.end, clickedEvent.extendedProps.description, clickedEvent.id);
-                }
+                    showModal(clickedEvent.title, clickedEvent.start, clickedEvent.end, clickedEvent.extendedProps.description, clickedEvent.id, clickedEvent.extendedProps.picture);
+                },
+
+                 eventDidMount: function (info) {
+                    // Adicionar sombra à borda do evento
+                    var eventEl = info.el;
+                    $(eventEl).css('box-shadow', '2px 2px 6px rgba(0, 0, 0, 0.5)');
+                },
             });
 
             calendar.render();
+
+            $('#myModal').on('click', '.close', function () {
+                $('#myModal').modal('hide');
+            });
         });
 
 
 
 
-        function showModal(title, start, end, description, id) {
+
+        function showModal(title, start, end, description, id, picture) {
             // Seleciona o elemento modal
             var modal = $('#myModal');
 
+            // Verifica se start e end não são nulos antes de chamar toLocaleDateString
+            var startString = start ? start.toLocaleString() : '';
+            var endString = end ? end.toLocaleString() : '';
+
+            // Verifica se a data final é nula e, se for, define a data final como a mesma data de início
+            if (!end) end = start;
+
+
+            // Calcula a diferença de tempo em milissegundos entre as datas de início e término
+            var timeDifference = end - start;
+
+            // Convertae a diferença de tempo em dias, horas e minutos
+            var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Atualiza a string durationString para incluir dias, horas e minutos com as devidas verificações
+            var durationString = (days > 0 ? (days === 1 ? days + " dia" : days + " dias") : "") +
+                (days > 0 && (hours > 0 || minutes > 0) ? ", " : "") +
+                (hours > 0 ? (hours === 1 ? hours + " hora" : hours + " horas") : "") +
+                ((days > 0 || hours > 0) && minutes > 0 ? " e " : "") +
+                (minutes > 0 ? (minutes === 1 ? minutes + " minuto" : minutes + " minutos") : "");
+
+            // Caso todos os campos sejam zero
+            if (days === 0 && hours === 0 && minutes === 0) {
+                durationString = "0 minutos";
+            }
+
             // Preenche os elementos da modal com as informações do evento clicado
             modal.find('.modal-title').text(title);
-            modal.find('.modal-body').html('<p><strong>Data inicial:</strong> ' + start.toLocaleDateString() + '</p>' +
-                '<p><strong>Data final:</strong> ' + end.toLocaleDateString() + '</p>' +
+            modal.find('.modal-body').html('<img id="picture" src="' + picture + '" alt="Atividade" class="img-fluid rounded-circle mb-3" style="width: 15%;" />' +
+                '<p><strong>Data e hora de início:</strong> ' + startString + '</p>' +
+                '<p><strong>Data e hora de término:</strong> ' + endString + '</p>' +
+                '<p><strong>Duração:</strong> ' + durationString + '</p>' +
                 '<p><strong>Descrição:</strong> ' + description + '</p>' +
-                '<p><a href="' + '@Url.Action("Edit", "Atividades")' + '/' + id + '">Editar</a>' +
-                ' | <a href="' + '@Url.Action("Details", "Atividades")' + '/' + id + '">Consultar</a>' +
-                ' | <a href="' + '@Url.Action("Delete", "Atividades")' + '/' + id + '">Excluir</a></p>');
+                '<hr class="hr-separator">' + // Adiciona uma linha horizontal para separar a descrição e os botões
+                '<div class="modal-buttons">' +
+                '<a href="' + '@Url.Action("Edit", "Atividades")' + '/' + id + '"><button class="btn btn-primary custom-button" style="border-radius:6em"> <img src="/images/icons/edit-icon1.png" height="20" width="20"> </button></a>' +
+                '<a href="' + '@Url.Action("Delete", "Atividades")' + '/' + id + '"><button class="btn btn-danger custom-button" style="border-radius:6em;"> <img src="/images/icons/delete-icon1.png" height="20" width="20"></button></a>' +
+                '</div>');
 
             // Exibe a modal
             modal.modal('show');
         }
 
+
+
     </script>
 }
 
 
+@if (SignInManager.IsSignedIn(User))
+{
 
+<h1>Lista de Atividades</h1>
 
-<h1>Index</h1>
+<div class="row">
+    <div class="col">
+        <p class="text-end">
+            <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Atividade </button></a>
+        </p>
+    </div>
+</div>
+<style>
+        .fc-event {
+            cursor: pointer;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+        .fc-event:hover {
+            opacity: 0.8;
+        }
+</style>
 
-<div id="calendar"></div>
+<div id="calendar" class="row mb-4"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                    <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body"></div>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title text-center" style="text-align: center;"></h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body text-center">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img id="picture" src="" alt="Atividade" class="img-fluid" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Data inicial:</strong> <span id="start"></span></p>
+                            <p><strong>Data final:</strong> <span id="end"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Descrição:</strong></p>
+                            <p id="description"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
-   
-
-        <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripton)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Picture)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripton)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Picture)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AtividadeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AtividadeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AtividadeId">Delete</a>
-            </td>
-        </tr>
 }
-    </tbody>
-</table>
