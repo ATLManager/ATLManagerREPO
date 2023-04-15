@@ -111,7 +111,7 @@
                         title: @Html.Raw(Json.Serialize(item.Name)),
                         start: "@item.StartDate.ToString("yyyy-MM-dd")",
                         end: "@(item.StartDate == item.EndDate ? item.StartDate.ToString("yyyy-MM-dd") : item.EndDate.ToString("yyyy-MM-dd"))",
-                        description: @Html.Raw(Json.Serialize(item.Descripton)),
+                        description: @Html.Raw(Json.Serialize(item.Description)),
                         color: "@GenerateColor(item.AtividadeId)",
                         className: "event-with-shadow"
                     },
@@ -194,7 +194,7 @@
 <div class="row">
     <div class="col">
         <p class="text-end">
-            <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Atividades </button></a>
+            <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Atividade </button></a>
         </p>
     </div>
 </div>
