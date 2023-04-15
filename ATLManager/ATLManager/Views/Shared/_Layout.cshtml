@@ -20,9 +20,14 @@
     <!-- Configs-->
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/configs.css'>
 
+     <!-- Menu de ajuda -->
+    <link href="~/css/ajuda.css" rel="stylesheet">
+
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+   
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -30,7 +35,6 @@
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="~/css/menu.min.css" rel="stylesheet">
-        <link href="~/css/slide-help.css" rel="stylesheet">
     }
  </head>
 
@@ -779,7 +783,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                                            <h5 class="modal-title" id="exampleModalLabelLogout">Logout!</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -791,7 +795,7 @@
                                             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
 
                                             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                                <button id="logout" type="submit" class="custom-submit">Logout</button>
+                                                <button id="logout" type="submit" class="btn btn-outline-danger custom-submit">Logout</button>
                                             </form>
                                            
                                         </div>
@@ -861,6 +865,7 @@ else
     <script src="~/js/menu.min.js"></script>
     <script src="~/vendor/chart.js/Chart.min.js"></script>
     <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/ajuda.js"></script>
 
     @*<script src="~/js/monitor_adapt.js"></script>*@
 </body>

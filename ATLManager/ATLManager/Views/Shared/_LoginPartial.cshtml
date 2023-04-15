@@ -6,7 +6,10 @@
 @inject UserManager<ATLManagerUser> UserManager
 @inject LanguageService language
 
-<link href="~/css/flag-tab.css" rel="stylesheet" />
+    <link href="~/css/flag-tab.css" rel="stylesheet" />
+
+    <link href="~/css/ajuda.css" rel="stylesheet">
+ 
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -89,4 +92,7 @@
     <!-- / Menu Before Login-->
         @*<script src="~/js/monitor_adapt.js"></script>*@
 }
+
 </body>
+
+<script src="~/js/ajuda.js"></script>

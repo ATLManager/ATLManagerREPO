@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230414175118_Atividade_Description_Kekw")]
+    partial class Atividade_Description_Kekw
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -481,6 +483,77 @@ namespace ATLManager.Migrations
                     b.ToTable("FormularioResposta");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.Recibo", b =>
+                {
+                    b.Property<Guid>("ReciboId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ComprovativoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("EmissionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NIB")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ReciboId");
+
+                    b.ToTable("Recibo");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>
+                {
+                    b.Property<Guid>("ReciboRespostaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Authorized")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ComprovativoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EducandoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ReciboId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ReciboRespostaId");
+
+                    b.HasIndex("EducandoId");
+
+                    b.HasIndex("ReciboId");
+
+                    b.ToTable("ReciboResposta");
+                });
+
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
                 {
                     b.Property<Guid>("RefeicaoId")
@@ -873,6 +946,25 @@ namespace ATLManager.Migrations
                     b.Navigation("Educando");
 
                     b.Navigation("Formulario");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>
+                {
+                    b.HasOne("ATLManager.Models.Educando", "Educando")
+                        .WithMany()
+                        .HasForeignKey("EducandoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ATLManager.Models.Recibo", "Recibo")
+                        .WithMany()
+                        .HasForeignKey("ReciboId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Educando");
+
+                    b.Navigation("Recibo");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>

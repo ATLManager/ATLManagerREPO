@@ -88,7 +88,7 @@ namespace ATLManager.Controllers
                     VisitaEstudoID = Guid.NewGuid(),
                     Name = viewModel.Name,
                     Date = viewModel.Date,
-                    Descripton = viewModel.Descripton,
+                    Description = viewModel.Descripton,
                     Location = viewModel.Location,
                     AtlId = currentUserAccount.AtlId
                 };
@@ -150,7 +150,7 @@ namespace ATLManager.Controllers
                     {
                         visitaEstudo.Name = viewModel.Name;
                         visitaEstudo.Location = viewModel.Location;
-                        visitaEstudo.Descripton = viewModel.Descripton;
+                        visitaEstudo.Description = viewModel.Descripton;
 
 
                         if (viewModel.Date != null)

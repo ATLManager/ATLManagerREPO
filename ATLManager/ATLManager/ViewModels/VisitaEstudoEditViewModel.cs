@@ -41,7 +41,7 @@ namespace ATLManager.ViewModels
             VisitaEstudoID = visitaEstudo.VisitaEstudoID;
             Name = visitaEstudo.Name;
             Location = visitaEstudo.Location;
-            Descripton = visitaEstudo.Descripton;
+            Descripton = visitaEstudo.Description;
             Date = visitaEstudo.Date.ToShortDateString();
         }
     }

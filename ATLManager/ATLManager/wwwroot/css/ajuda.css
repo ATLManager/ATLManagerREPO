@@ -1,0 +1,158 @@
+﻿.helpButton {
+    background-color: #DCECFF;
+    text-color: #000000;
+}
+
+.helpShadowButton {
+    /* background-color: #F8F8F8; */
+    background-color: #DCECFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.helpCustomMargin {
+    margin-left: -1.25em;
+    margin-right: -1.3em;
+}
+
+.helpButton img {
+    vertical-align: middle;
+}
+
+.myButton {
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+    padding-top: 1em;
+}
+
+.myText {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.btn-help {
+    border-radius: 2em;
+}
+
+#menu-ajuda h2 {
+    margin-top: 0;
+}
+
+#menu-ajuda ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: auto;
+    height: 100%;
+    /* Exemplo de altura */
+}
+
+    #menu-ajuda ul li a {
+        display: block;
+        padding: 5px;
+        text-decoration: none;
+        color: #333;
+    }
+
+        #menu-ajuda ul li a:hover {
+            background-color: #f4f4f4;
+        }
+
+/* CSS ACIMA CUSTOM DA APP */
+
+/* Media Queries referente ao ecrã do Pedro */
+@media only screen and (max-width: 1366px) {
+    #menu-ajuda {
+        display: none;
+        border-top-left-radius: 2em;
+        border-top-right-radius: 2em;
+        /* position: absolute; */
+        top: 50px;
+        right: 10px;
+        height: 90%;
+        width: 25%;
+        background-color: #fff;
+        padding: 1.8em;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 2px #ccc;
+    }
+}
+
+/* Media Queries referente ao ecrã do Bruno */
+@media (min-width: 1367px) and (max-width: 1920px) {
+    #menu-ajuda {
+        display: none;
+        border-top-left-radius: 2em;
+        border-top-right-radius: 2em;
+        position: absolute;
+        top: 8em;
+        right: 10px;
+        height: 76%;
+        width: 18%;
+        background-color: #fff;
+        padding: 1.8em;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 2px #ccc;
+    }
+}
+
+/* Media Queries referente ao ecrã do António(EU) */
+@media only screen and (min-width: 1921px) and (max-width: 3000px) {
+
+    #menu-ajuda {
+        display: none;
+        border-top-left-radius: 2em;
+        border-top-right-radius: 2em;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        height: 89%;
+        width: 18%;
+        background-color: #fff;
+        padding: 1.8em;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 2px #ccc;
+    }
+}
+
+/*  MENU AJUDA */
+
+/* CSS Movimento */
+@keyframes slideInFromRight {
+    0% {
+        right: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+#menu-ajuda {
+    animation-duration: 1s;
+    animation-name: slideInFromRight;
+    opacity: 0;
+}
+
+    #menu-ajuda.show {
+        opacity: 1;
+    }
+
+#menu-ajuda {
+    position: fixed;
+    /* top: 0; 
+    right: -100%;
+    width: 100%;
+    height: 100%; */
+    background-color: #fff;
+    z-index: 99999;
+    animation-duration: 1s;
+    animation-name: slideInFromRight;
+    opacity: 0;
+}
+
+    #menu-ajuda.show {
+        opacity: 1;
+        right: 0;
+    }
