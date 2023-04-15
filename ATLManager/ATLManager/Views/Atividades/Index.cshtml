@@ -129,7 +129,7 @@
                         id: "@item.AtividadeId",
                         title: @Html.Raw(Json.Serialize(item.Name)),
                         start: "@item.StartDate.ToString("yyyy-MM-ddTHH:mm")",
-                        end: "@(item.StartDate == item.EndDate ? item.StartDate.ToString("yyyy-MM-ddTHH:mm") : item.EndDate.AddDays(1).ToString("yyyy-MM-ddTHH:mm"))",
+                        end: "@(item.StartDate == item.EndDate ? item.EndDate.ToString("yyyy-MM-ddTHH:mm") : item.EndDate.ToString("yyyy-MM-ddTHH:mm"))",
                         description: @Html.Raw(Json.Serialize(item.Description)),
                         color: "@GenerateColor(item.AtividadeId)",
                         className: "event-with-shadow",
@@ -188,14 +188,6 @@
             // Verifica se a data final é nula e, se for, define a data final como a mesma data de início
             if (!end) end = start;
 
-            // Retira um dia da data final para exibir corretamente no modal
-            if (end) {
-                end = new Date(end);
-                if (end.getTime() !== start.getTime()) {
-                    end.setDate(end.getDate() - 1);
-                }
-                endString = end.toLocaleString();
-            }
 
             // Calcula a diferença de tempo em milissegundos entre as datas de início e término
             var timeDifference = end - start;
@@ -262,7 +254,7 @@
         }
 </style>
 
-<div id="calendar" class="mb-4"></div>
+<div id="calendar" class="row mb-4"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
