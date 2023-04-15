@@ -1,13 +1,15 @@
 @model IEnumerable<ATLManager.Models.Atividade>
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
-    
+
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
 @{
     ViewData["Title"] = "Index";
 }
 
-@inject SignInManager<ATLManagerUser> SignInManager
-@inject UserManager<ATLManagerUser> UserManager
 
 @functions {
     // Function to generate a unique color based on a Guid ID

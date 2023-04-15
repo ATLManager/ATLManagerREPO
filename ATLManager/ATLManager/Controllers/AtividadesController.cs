@@ -9,26 +9,37 @@ using ATLManager.Data;
 using ATLManager.Models;
 using Microsoft.AspNetCore.Hosting;
 using ATLManager.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using ATLManager.Areas.Identity.Data;
 
 namespace ATLManager.Controllers
 {
     public class AtividadesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly UserManager<ATLManagerUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-		public AtividadesController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
-		{
-			_context = context;
-			_webHostEnvironment = webHostEnvironment;
-		}
-
-		// GET: Atividades
-		public async Task<IActionResult> Index()
+        public AtividadesController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager, IWebHostEnvironment webHostEnvironment)
         {
-              return _context.Atividade != null ? 
-                          View(await _context.Atividade.ToListAsync()) :
-                          Problem("Entity set 'ATLManagerAuthContext.Atividade'  is null.");
+            _context = context;
+            _userManager = userManager;
+            _webHostEnvironment = webHostEnvironment;
+        }
+
+        // GET: Atividades
+        public async Task<IActionResult> Index()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var atividades = await _context.Atividade
+                .Where(a => a.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return View(atividades);
         }
 
         // GET: Atividades/Details/5
@@ -62,9 +73,14 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AtividadeCreateViewModel viewModel)
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
             if (ModelState.IsValid)
             {
-				string fileName = UploadedFile(viewModel.Picture);
+                string fileName = UploadedFile(viewModel.Picture);
 
                 var atividade = new Atividade
                 {
@@ -72,18 +88,19 @@ namespace ATLManager.Controllers
                     Name = viewModel.Name,
                     StartDate = viewModel.StartDate,
                     EndDate = viewModel.EndDate,
-                    Description = viewModel.Description
+                    Description = viewModel.Description,
+                    AtlId = (Guid)currentUserAccount.AtlId 
                 };
 
-				if (fileName != null)
-				{
-					atividade.Picture = fileName;
-				}
-				else
-				{
-					atividade.Picture = "logo.png";
-				}
-                
+                if (fileName != null)
+                {
+                    atividade.Picture = fileName;
+                }
+                else
+                {
+                    atividade.Picture = "logo.png";
+                }
+
                 _context.Add(atividade);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

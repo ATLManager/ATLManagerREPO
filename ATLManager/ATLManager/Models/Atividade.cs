@@ -36,6 +36,9 @@ namespace ATLManager.Models
         [DisplayName("Fotografia")]
         public string Picture { get; set; }
 
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+
         public Atividade()
         {
             AtividadeId = Guid.NewGuid();
