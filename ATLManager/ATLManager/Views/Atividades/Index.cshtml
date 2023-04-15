@@ -121,8 +121,8 @@
                     {
                         id: "@item.AtividadeId",
                         title: @Html.Raw(Json.Serialize(item.Name)),
-                        start: "@item.StartDate.ToString("yyyy-MM-dd")",
-                        end: "@(item.StartDate == item.EndDate ? item.StartDate.ToString("yyyy-MM-dd") : item.EndDate.AddDays(1).ToString("yyyy-MM-dd"))",
+                        start: "@item.StartDate.ToString("yyyy-MM-ddTHH:mm")",
+                        end: "@(item.StartDate == item.EndDate ? item.StartDate.ToString("yyyy-MM-ddTHH:mm") : item.EndDate.AddDays(1).ToString("yyyy-MM-ddTHH:mm"))",
                         description: @Html.Raw(Json.Serialize(item.Description)),
                         color: "@GenerateColor(item.AtividadeId)",
                         className: "event-with-shadow",
@@ -142,6 +142,7 @@
                 },
                 themeSystem: 'bootstrap5',
                 height: '700px',
+                displayEventTime: false,
                 events: events,
 
                 eventClick: function (info) {
@@ -174,8 +175,8 @@
             var modal = $('#myModal');
 
             // Verifica se start e end não são nulos antes de chamar toLocaleDateString
-            var startString = start ? start.toLocaleDateString() : '';
-            var endString = end ? end.toLocaleDateString() : '';
+            var startString = start ? start.toLocaleString() : '';
+            var endString = end ? end.toLocaleString() : '';
 
             // Verifica se a data final é nula e, se for, define a data final como a mesma data de início
             if (!end) end = start;
@@ -186,14 +187,35 @@
                 if (end.getTime() !== start.getTime()) {
                     end.setDate(end.getDate() - 1);
                 }
-                endString = end.toLocaleDateString();
+                endString = end.toLocaleString();
+            }
+
+            // Calcula a diferença de tempo em milissegundos entre as datas de início e término
+            var timeDifference = end - start;
+
+            // Convertae a diferença de tempo em dias, horas e minutos
+            var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Atualiza a string durationString para incluir dias, horas e minutos com as devidas verificações
+            var durationString = (days > 0 ? (days === 1 ? days + " dia" : days + " dias") : "") +
+                (days > 0 && (hours > 0 || minutes > 0) ? ", " : "") +
+                (hours > 0 ? (hours === 1 ? hours + " hora" : hours + " horas") : "") +
+                ((days > 0 || hours > 0) && minutes > 0 ? " e " : "") +
+                (minutes > 0 ? (minutes === 1 ? minutes + " minuto" : minutes + " minutos") : "");
+
+            // Caso todos os campos sejam zero
+            if (days === 0 && hours === 0 && minutes === 0) {
+                durationString = "0 minutos";
             }
 
             // Preenche os elementos da modal com as informações do evento clicado
             modal.find('.modal-title').text(title);
             modal.find('.modal-body').html('<img id="picture" src="' + picture + '" alt="Atividade" class="img-fluid rounded-circle mb-3" style="width: 15%;" />' +
-                '<p><strong>Data inicial:</strong> ' + startString + '</p>' +
-                '<p><strong>Data final:</strong> ' + endString + '</p>' +
+                '<p><strong>Data e hora de início:</strong> ' + startString + '</p>' +
+                '<p><strong>Data e hora de término:</strong> ' + endString + '</p>' +
+                '<p><strong>Duração:</strong> ' + durationString + '</p>' +
                 '<p><strong>Descrição:</strong> ' + description + '</p>' +
                 '<hr class="hr-separator">' + // Adiciona uma linha horizontal para separar a descrição e os botões
                 '<div class="modal-buttons">' +
@@ -223,9 +245,13 @@
     </div>
 </div>
 <style>
-    .fc-event {
-        cursor: pointer;
-    }
+        .fc-event {
+            cursor: pointer;
+        }
+
+        .fc-event:hover {
+            opacity: 0.8;
+        }
 </style>
 
 <div id="calendar" class="mb-4"></div>
