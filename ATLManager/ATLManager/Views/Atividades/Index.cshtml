@@ -1,8 +1,13 @@
 @model IEnumerable<ATLManager.Models.Atividade>
-
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+    
 @{
     ViewData["Title"] = "Index";
 }
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @functions {
     // Function to generate a unique color based on a Guid ID
@@ -233,7 +238,8 @@
 }
 
 
-
+@if (SignInManager.IsSignedIn(User))
+{
 
 <h1>Lista de Atividades</h1>
 
@@ -289,3 +295,4 @@
         </div>
     </div>
 </div>
+}
