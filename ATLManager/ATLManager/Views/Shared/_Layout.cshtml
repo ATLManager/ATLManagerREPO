@@ -196,9 +196,19 @@
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Atividades" asp-action="Index"
-                           aria-expanded="true" aria-controls="formularios">
+                           aria-expanded="true" aria-controls="atividades">
                             <i class="fas fa-fw fa-user"></i>
                             <span>Atividades</span>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Estatisticas" asp-action="Index"
+                           aria-expanded="true" aria-controls="estatisticas">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Estatisticas</span>
                         </a>
                     </li>
                 }
