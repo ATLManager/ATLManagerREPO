@@ -52,6 +52,13 @@ namespace ATLManager.Models
         [DisplayName("Comprovativo")]
         public string? ComprovativoPath { get; set; }
 
+        [DisplayName("Recibo")]
+        public string? ReceiptPath { get; set; }
+
+        [MaxLength(500)]
+        [DisplayName("Notas")]
+        public string? Notes { get; set; }
+
         public ReciboResposta()
         {
             ReciboRespostaId = Guid.NewGuid();

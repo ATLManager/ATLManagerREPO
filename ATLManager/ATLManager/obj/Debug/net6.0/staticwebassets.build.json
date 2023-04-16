@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "94AV4tT601h4m/xR9tTjE476LkCqAiZ4fZEIFjVfYqw=",
+  "Hash": "X8bAU2qJAgCd3QAw/rkEYcPgVL+sP8bBLZGB6zbkukc=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -1190,6 +1190,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\3a1a5bfe-26a5-4fcd-aa0c-59261258d65b_id_04_DarkCloud.pdf",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "files/users/recibos/3a1a5bfe-26a5-4fcd-aa0c-59261258d65b_id_04_DarkCloud.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\3a1a5bfe-26a5-4fcd-aa0c-59261258d65b_id_04_DarkCloud.pdf"
+    },
+    {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\6cd2e591-08b8-4d12-9bab-0b1e9089f8e3_id_04_DarkCloud.pdf",
       "SourceId": "ATLManager",
       "SourceType": "Discovered",
@@ -1207,12 +1224,12 @@
       "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\6cd2e591-08b8-4d12-9bab-0b1e9089f8e3_id_04_DarkCloud.pdf"
     },
     {
-      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\8edc1e80-9184-41f1-b74c-22f89cc4fbc6_id_04_DarkCloud.pdf",
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\883db2b7-f1c8-4537-9bf8-3421ebf4d8f3_id_04_DarkCloud.pdf",
       "SourceId": "ATLManager",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
       "BasePath": "_content/ATLManager",
-      "RelativePath": "files/users/recibos/8edc1e80-9184-41f1-b74c-22f89cc4fbc6_id_04_DarkCloud.pdf",
+      "RelativePath": "files/users/recibos/883db2b7-f1c8-4537-9bf8-3421ebf4d8f3_id_04_DarkCloud.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1221,7 +1238,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\8edc1e80-9184-41f1-b74c-22f89cc4fbc6_id_04_DarkCloud.pdf"
+      "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\883db2b7-f1c8-4537-9bf8-3421ebf4d8f3_id_04_DarkCloud.pdf"
     },
     {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\boy.png",

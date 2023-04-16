@@ -1,4 +1,4 @@
-﻿@model ATLManager.Models.ReciboResposta
+﻿@model ATLManager.ViewModels.ReciboRespostaEditViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -44,6 +44,30 @@
 								</div>
 								<div class="row">
 									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.Price)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.Price)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.NIB)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.NIB)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.Description)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.Description)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
 										@Html.DisplayNameFor(model => model.ResponseDate)
 									</dt>
 									<dd class="col text-left">
@@ -55,7 +79,14 @@
 										{
 											<span class="text-center"> - </span>
 										}
-										@Html.DisplayFor(model => model.ResponseDate)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.DateLimit)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.DateLimit)
 									</dd>
 								</div>
 								<div class="row">
@@ -73,20 +104,29 @@
 										}
 									</dd>
 								</div>
-								<form asp-action="Edit">
-									<input type="hidden" asp-for="ReciboRespostaId" />
+								<form asp-action="Edit" enctype="multipart/form-data">
+									<input type="hidden" asp-for="RespostaId" />
 									<input type="hidden" asp-for="ReciboId" />
+
 									<div class="form-group form-check mt-2 text-center">
 										<label class="form-check-label">
 											<input class="form-check-input" asp-for="Authorized" /> @Html.DisplayNameFor(model => model.Authorized)
 										</label>
 									</div>
+									<div>
+										<label asp-for="Receipt" class="control-label"></label>
+										<input asp-for="Receipt" class="file-input" type="file">
+										<span asp-validation-for="Receipt" class="text-danger"></span>
+									</div>
+									<div class="form-group">
+										<label asp-for="Notes" class="control-label"></label>
+										<input asp-for="Notes" class="form-control" />
+										<span asp-validation-for="Notes" class="text-danger"></span>
+									</div>
 									<hr/>
 									<div class="d-flex text-center mt-4">
 										<div class="form-group">
 											<input type="submit" value="Save" class="btn btn-primary" />
-										</div>
-										<div class="col">
 											<a asp-controller="Recibos" asp-action="Respostas" asp-route-id="@Model.ReciboId">
 												<button type="button"
 														class="btn btn-secondary custom-button" style="border-radius:6em">

@@ -17,6 +17,9 @@ namespace ATLManager.ViewModels
 		[DisplayName("NIB")]
 		public string NIB { get; set; }
 
+		[DisplayName("Preço")]
+		public decimal Price { get; set; }
+
 		[DisplayName("Descrição")]
 		public string Description { get; set; }
 

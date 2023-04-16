@@ -55,35 +55,49 @@ namespace ATLManager.Controllers
 			{
 				return NotFound();
 			}
-			return View(resposta);
+
+            var viewModel = new ReciboRespostaEditViewModel(resposta);
+
+			return View(viewModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(Guid id, [Bind("ReciboRespostaId,ReciboId,Authorized")] ReciboResposta resposta)
+		public async Task<IActionResult> Edit(Guid id, ReciboRespostaEditViewModel viewModel)
 		{
-			if (id != resposta.ReciboRespostaId)
+			if (id != viewModel.RespostaId)
 			{
 				return NotFound();
 			}
 
             ModelState.Remove("Recibo");
             ModelState.Remove("Educando");
+            ModelState.Remove("Name");
+            ModelState.Remove("NIB");
+            ModelState.Remove("Description");
+            ModelState.Remove("ComprovativoPath");
+            ModelState.Remove("ResponseDate");
 
-			if (ModelState.IsValid)
+            if (ModelState.IsValid)
 			{
 				try
 				{
-                    var ogResposta = await _context.ReciboResposta.FindAsync(id);
+                    var resposta = await _context.ReciboResposta.FindAsync(id);
 
-                    ogResposta.Authorized = resposta.Authorized;
+                    if (resposta == null) return NotFound();
 
-					_context.Update(ogResposta);
+                    resposta.Authorized = viewModel.Authorized;
+                    resposta.Notes = viewModel.Notes;
+                    
+                    if (viewModel.Receipt != null)
+					    resposta.ReceiptPath = UploadedFile(viewModel.Receipt);
+
+					_context.Update(resposta);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!ReciboRespostaExists(resposta.ReciboRespostaId))
+					if (!ReciboRespostaExists(viewModel.RespostaId))
 					{
 						return NotFound();
 					}
@@ -92,9 +106,9 @@ namespace ATLManager.Controllers
 						throw;
 					}
 				}
-				return RedirectToAction("Respostas", "Recibos", new { id = resposta.ReciboId });
+				return RedirectToAction("Respostas", "Recibos", new { id = viewModel.ReciboId });
 			}
-			return View(resposta);
+			return View(viewModel);
 		}
 
 		// GET: RecibosRespostas/Edit/5
@@ -117,6 +131,8 @@ namespace ATLManager.Controllers
             {
                 ReciboRespostaId = reciboResposta.ReciboRespostaId,
                 Name = recibo.Name,
+                NIB = recibo.NIB,
+                Price = recibo.Price,
                 Description = recibo.Description,
                 DateLimit = recibo.DateLimit.ToShortDateString()
             };

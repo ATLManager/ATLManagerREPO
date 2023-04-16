@@ -71,7 +71,6 @@
 										{
 											<span class="text-center"> - </span>
 										}
-										@Html.DisplayFor(model => model.ResponseDate)
 									</dd>
 								</div>
 								<div class="row">
@@ -95,6 +94,29 @@
 									</dt>
 									<dd class="col text-left">
 										@Html.DisplayFor(model => model.Authorized)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.ReceiptPath)
+									</dt>
+									<dd class="col text-left">
+										@if (Model.ReceiptPath != null)
+									{
+											<a asp-action="Download" asp-route-fileName="@Model.ReceiptPath">Descarregar ficheiro</a>
+									}
+									else
+									{
+										<span class="text-center"> - </span>
+									}
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.Notes)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.Notes)
 									</dd>
 								</div>
 							</dl>
