@@ -26,7 +26,8 @@ namespace ATLManager.Models
 
         [Required]
         [DisplayName("Preço")]
-        public decimal Price { get; set; }
+		[RegularExpression("[1-9][0-9]*?[,.][0-9]{0,2}")]
+		public string Price { get; set; }
 
         [Required]
         [StringLength(21, MinimumLength = 21, ErrorMessage = "Este campo deve conter 21 dígitos")]

@@ -107,16 +107,6 @@ namespace ATLManager.Controllers
             if (ModelState.IsValid)
             {
                 recibo.EmissionDate = DateTime.UtcNow.Date;
-                //var recibo = new Recibo
-                //{
-                //    ReciboId = Guid.NewGuid(),
-                //    Name = viewModel.Name,
-                //    NIB = viewModel.NIB,
-                //    Description = viewModel.Description,
-                //    EmissionDate = DateTime.UtcNow.Date,
-                //    DateLimit = viewModel.DateLimit
-                //};
-
                 _context.Add(recibo);
 
                 var educandos = await _context.Educando
@@ -174,12 +164,12 @@ namespace ATLManager.Controllers
             return View(recibo);
         }
 
-        // POST: Reciboes/Edit/5
+        // POST: Recibos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ReciboId,Name,NIB,Description,EmissionDate,DateLimit,ComprovativoPath,Confirmed")] Recibo recibo)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ReciboId,Name,Price,NIB,Description,DateLimit")] Recibo recibo)
         {
             if (id != recibo.ReciboId)
             {

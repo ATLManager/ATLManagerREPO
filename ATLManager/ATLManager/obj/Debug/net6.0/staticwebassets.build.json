@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IzxYDOU12VOeagj052xIZFfo6kojXB+mlvRRcbEmj2Q=",
+  "Hash": "tt6BA2G6v4s9fo7WAmdpImNw8FQkfFa7c30NRzplUt4=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -1224,6 +1224,23 @@
       "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\6cd2e591-08b8-4d12-9bab-0b1e9089f8e3_id_04_DarkCloud.pdf"
     },
     {
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\7c3d2230-0121-4a80-a4fb-8a81430a4a69_id_04_DarkCloud.pdf",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "files/users/recibos/7c3d2230-0121-4a80-a4fb-8a81430a4a69_id_04_DarkCloud.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\7c3d2230-0121-4a80-a4fb-8a81430a4a69_id_04_DarkCloud.pdf"
+    },
+    {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\883db2b7-f1c8-4537-9bf8-3421ebf4d8f3_id_04_DarkCloud.pdf",
       "SourceId": "ATLManager",
       "SourceType": "Discovered",
@@ -2259,23 +2276,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\uploads\\refeicoes\\logo.png"
-    },
-    {
-      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitasEstudo\\3c70f6c5-4a45-4405-a8d9-11f5c9e69d59_cringe ass nae nae baby.png",
-      "SourceId": "ATLManager",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
-      "BasePath": "_content/ATLManager",
-      "RelativePath": "images/uploads/visitasEstudo/3c70f6c5-4a45-4405-a8d9-11f5c9e69d59_cringe ass nae nae baby.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\uploads\\visitasEstudo\\3c70f6c5-4a45-4405-a8d9-11f5c9e69d59_cringe ass nae nae baby.png"
     },
     {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitasEstudo\\logo.png",

@@ -13,17 +13,23 @@ namespace ATLManager.ViewModels
 
 		[DisplayName("Nome do formulário")]
 		public string Name { get; set; }
+
+		[DisplayName("Educando")]
+		public string Educando { get; set; }
 		
 		[DisplayName("NIB")]
 		public string NIB { get; set; }
 
 		[DisplayName("Preço")]
-		public decimal Price { get; set; }
+		[RegularExpression("[1-9][0-9]*?[,.][0-9]{0,2}")]
+		public string Price { get; set; }
 
 		[DisplayName("Descrição")]
 		public string Description { get; set; }
 
+		[DataType(DataType.Date)]
 		[DisplayName("Data Limite")]
+		[DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
 		public string DateLimit { get; set; }
 
         [DisplayName("Comprovativo")]
