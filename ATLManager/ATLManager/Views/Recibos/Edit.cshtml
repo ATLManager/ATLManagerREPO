@@ -1,56 +1,287 @@
 ﻿@model ATLManager.Models.Recibo
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
 
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Edit";
 }
+@if (SignInManager.IsSignedIn(User))
+{
+	<!-- Fase 1  -->
+	<!-- d-flex -->
+	<!-- Container -->
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+			<h1 class="me-3 fw-bold text-center mb-2">Editar Recibo</h1>
+			<img src="~/images/icons/edit-group.png" width="50" height="50">
+		</div>
 
-<h1>Edit</h1>
+		<div class="row" style="padding-left: 6em;">
+			<div class="col-3"></div>
+			<div class="col-5"></div>
+			<div class="col-4  pb-2" id="divQuestion">
+				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
+					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+				</button>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<!-- Box  -->
+			<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+				<div class="row box border-5">
+					<div class="container">
+						<div class="row mt-3">
+							<div class="mb-0">
+								<div class="row">
+									<div class="col-md">
+										<form asp-action="Edit">
+											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											<input type="hidden" asp-for="ReciboId" />
 
-<h4>Recibo</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ReciboId" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NIB" class="control-label"></label>
-                <input asp-for="NIB" class="form-control" />
-                <span asp-validation-for="NIB" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmissionDate" class="control-label"></label>
-                <input asp-for="EmissionDate" class="form-control" />
-                <span asp-validation-for="EmissionDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateLimit" class="control-label"></label>
-                <input asp-for="DateLimit" class="form-control" />
-                <span asp-validation-for="DateLimit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+											<div class="row mb-2">
+												<div class="col">
+													<label asp-for="Name" class="form-label"></label>
+													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
+													<span asp-validation-for="Name" class="text-danger"></span>
+												</div>
+											</div>
 
+										
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="Price" class="form-label"></label>
+													<input asp-for="Price" class="form-control" placeholder="Insira o preço" />
+													<span asp-validation-for="Price" class="text-danger"></span>
+												</div>												
+
+												<div class="col-6 position-relative">
+													<div class="row">
+														<div class="h-100 position-absolute top-0 end-0">
+															<!-- extended box content -->
+															<div class="row mb-2">
+																<div class="col">
+																	<label asp-for="Description" class="control-label">Descrição</label>
+																	<textarea asp-for="Description" class="form-control" style="height:8em;resize:none"></textarea>
+																	<span asp-validation-for="Description" class="text-danger"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="NIB" class="control-label"></label>
+													<input asp-for="NIB" class="form-control" placeholder="Insira o nib" />
+													<span asp-validation-for="NIB" class="text-danger"></span>
+												</div>
+											</div>
+
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="EmissionDate" class="control-label"> Start Date Atual - @Html.DisplayFor(model => model.EmissionDate)</label>
+													<input asp-for="EmissionDate" class="form-control" />
+													<span asp-validation-for="EmissionDate" class="text-danger"></span>
+												</div>
+
+
+												<div class="col-6">
+													<label asp-for="DateLimit" class="control-label"> Start Date Atual - @Html.DisplayFor(model => model.DateLimit)</label>
+													<input asp-for="DateLimit" class="form-control" />
+													<span asp-validation-for="DateLimit" class="text-danger"></span>
+												</div>
+											</div>
+
+
+											<div class="row justify-content-center mt-4">
+												<div class="col-md-auto mt-4">
+													<div class="row">
+														<div class="col mb-3">
+															<a asp-action="Index">
+																<button type="button"
+																		class="btn btn-secondary custom-button" style="border-radius:6em">
+																	Voltar
+																</button>
+															</a>
+														</div>
+														<div class="col mb-3">
+															<input type="submit" value="Alterar" class="btn btn-primary" style="border-radius:6em" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- // Box -->
+				</div>
+				<!-- // Fase 1 -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">Ajuda</h2>
+			</div>
+
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
+
+						<span>Como alterar uma visita de estudo</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
+
+
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					Here's some more textHere's some more textHere's some more textHere's some
+					more textHe
+
+				</span>
+			</li>
+
+
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>Leia artigos de ajuda</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>Pergunte à comunidade</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>Novas Atualizações</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>Dê Feedback</span>
+						</div>
+					</div>
+
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- // Slide de Ajuda  -->
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+
+	<!-- // Slide Left (Help) -->
+	<!-- JS Button help 1 -->
+	<script>
+		document.getElementById('showText').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText');
+			var showTextBtn = document.getElementById('showText');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 1 -->
+	<!--  Options Script -->
+	<script>
+		const toggleSwitch = document.getElementById('toggleSwitch');
+		const divAgrupamento = document.getElementById('divAgrupamento');
+		const divCertidao = document.getElementById('divCertidao');
+
+
+		toggleSwitch.addEventListener('change', function () {
+			if (toggleSwitch.checked) {
+				divAgrupamento.style.display = 'block';
+				divCertidao.style.display = 'none';
+			} else {
+				divAgrupamento.style.display = 'none';
+				divCertidao.style.display = 'block';
+			}
+		});
+	</script>
+	<!--  // Options Script -->
+	@section Scripts {
+	@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
+    }
+	<script>
+		window.onload = function () {
+			var divBox = document.getElementById("myBox")
+			//var divQuestion = document.getElementById("divQuestion")
+
+			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+				// Large screen
+				divBox.classList.remove("col-6");
+				divBox.classList.add("col-8");
+
+				//divQuestion.classList.add("text-right");
+				//divQuestion.style.paddingRight("2em");
+			}
+		}
+	</script>
+}
