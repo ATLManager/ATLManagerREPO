@@ -10,30 +10,32 @@
     ViewData["Title"] = "Create";
 }
 
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+
 @if (SignInManager.IsSignedIn(User))
-{
+{   
     <!-- Fase 1  -->
     <!-- d-flex -->
     <!-- Container -->
     <div class="container-fluid">
-        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-            <h1 class="me-3 fw-bold text-center mb-4">Criar Funcionário</h1>
-            <img src="~/images/icons/add-group.png" width="50" height="50">
-        </div>
-
-        <div class="row" style="padding-left: 6em;">
-            <div class="col-3"></div>
-            <div class="col-5"></div>
-            <div class="col-4  pb-2" id="divQuestion">
+        <div class="row" style="padding-left: 6em;">  
+            <div class="col">
+                <div class="d-flex justify-content-center ms-2" style="padding-left: 2%; padding-top: 0%;">
+                    <h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("tituloCriarFuncionario")</h1>
+                    <img src="~/images/icons/add-group.png" width="50" height="50">
+                </div>
+            </div>
+            <div class="col-1  pb-2" id="divQuestion">
                 <button class="btn btn-primary rounded-circle" id="btn-ajuda">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
         </div>
+
         <div class="d-flex justify-content-center">
             <!-- Box  -->
-            <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
-                <div class="row box border-5 p-5">
+            <div class="row col-6 justify-content-center custom-box" id="myBox">
+                <div class="row box border-5 p-3">
                     <div class="container">
                         <div class="row mt-3">
                             <div class="mb-3">
@@ -41,36 +43,36 @@
                                     <div class="col-md">
                                         <form enctype="multipart/form-data" asp-action="Create">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <div class="row mb-3">
+                                            <div class="row mb-2">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label asp-for="FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-                                                        <input asp-for="FirstName" class="form-control" placeholder="Insira o primeiro nome" aria-required="true">
+                                                        <label asp-for="FirstName" class="form-label">@language.GetKey("txtFirstName")</label>
+                                                        <input asp-for="FirstName" class="form-control" placeholder="@language.GetKey("placeholderFirstName")" aria-required="true">
                                                         <span asp-validation-for="FirstName" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                     <div class="col-6">
-                                                        <label asp-for="LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-                                                    <input asp-for="LastName" class="form-control" placeholder="Insira o ultimo nome" aria-required="true" />
+                                                    <label asp-for="LastName" class="form-label">@language.GetKey("txtSurnameName")</label>
+                                                    <input asp-for="LastName" class="form-control" placeholder="@language.GetKey("placeholderSurnameName")" aria-required="true" />
                                                         <span asp-validation-for="LastName" class="text-danger"></span>
                                                     </div>
                                             </div>
 
-                                            <div class="row mb-3">
+                                            <div class="row mb-2">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label asp-for="CC" class="control-label"></label>
-                                                        <input asp-for="CC" class="form-control" placeholder="Insira o cc" />
+                                                        <label asp-for="CC" class="control-label">@language.GetKey("txtCC")</label>
+                                                        <input asp-for="CC" class="form-control" placeholder="@language.GetKey("placeholderCC")" />
                                                         <span asp-validation-for="CC" class="text-danger"></span>
                                                     </div>
                                                 </div>
 
                                              <div class="col-6">
-                                                <div class="form-group mb-3">
-                                                    <label asp-for="ProfilePicture" class="control-label"></label>
+                                                <div class="form-group mb-2">
+                                                        <label asp-for="ProfilePicture" class="control-label">@language.GetKey("txtProfile")</label>
                                                     <div class="custom-file">
                                                         <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
-                                                        <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
+                                                            <label class="custom-file-label" for="customFile">@language.GetKey("placeholderProfile")</label>
                                                     </div>
                                                     <span asp-validation-for="ProfilePicture" class="text-danger"></span>
                                                 </div>
@@ -78,38 +80,37 @@
                                            
                                            </div>
 
-                                            <div class="row mb-3">
+                                            <div class="row mb-2">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label asp-for="Email" class="form-label">@language.GetKey("email")</label>
-                                                        <input asp-for="Email" class="form-control" placeholder="Insira o email" aria-required="true" />
+                                                        <label asp-for="Email" class="form-label">@language.GetKey("txtEmail")</label>
+                                                        <input asp-for="Email" class="form-control" placeholder="@language.GetKey("placeholderEmail")" aria-required="true" />
                                                         <span asp-validation-for="Email" class="text-danger"></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-6">
-                                                    <label asp-for="DateOfBirth" class="control-label"></label>
+                                                    <label asp-for="DateOfBirth" class="control-label">@language.GetKey("txtDataNascimento")</label>
                                                     <input asp-for="DateOfBirth" class="form-control" />
                                                     <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                                                 </div>
                                             </div>
 
-                                            <div class="row mb-3">
+                                            <div class="row mb-2">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label asp-for="Password" class="form-label">@language.GetKey("password")</label>
-                                                        <input asp-for="Password" class="form-control" placeholder="Insira a password" aria-required="true" />
+                                                        <label asp-for="Password" class="form-label">@language.GetKey("txtPassword")</label>
+                                                        <input asp-for="Password" class="form-control" placeholder="@language.GetKey("placeholderPassword")" aria-required="true" />
                                                         <span asp-validation-for="Password" class="text-danger"></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-6">
-                                                    <label asp-for="ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
-                                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirme a password" aria-required="true" />
+                                                    <label asp-for="ConfirmPassword" class="form-label">@language.GetKey("txtConfirmPassword")</label>
+                                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="@language.GetKey("placeholderConfirmPassword")" aria-required="true" />
                                                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                                 </div>
                                             </div>
-                                            <hr />
                                             <div class="d-flex text-center mt-4">
                                                 <div class="col text-right">
                                                     <a asp-action="Index">
@@ -163,15 +164,14 @@
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
 
-                        <span>Como alterar uma visita de estudo</span>
+                        <span>@language.GetKey("btnComoCriarFuncionario")</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
 
 
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
+                    @language.GetKey("txtComoCriarFuncionario")
 
                 </span>
             </li>
@@ -244,7 +244,7 @@
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
     }
-    <script>
+@*    <script>
         window.onload = function () {
             var divBox = document.getElementById("myBox")
 
@@ -254,5 +254,5 @@
                 divBox.classList.add("col-8");
             }
         }
-    </script>
+    </script>*@
 }

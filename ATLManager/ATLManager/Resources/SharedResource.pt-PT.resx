@@ -22,8 +22,10 @@
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing"
+  mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework
+  object]</value>
         <comment>This is a comment</comment>
     </data>
                 
@@ -59,7 +61,8 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -112,10 +115,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
+      Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
+      Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="2factorAuth" xml:space="preserve">
     <value>Autenticação de dois factores</value>
@@ -690,4 +695,110 @@
   <data name="welcome" xml:space="preserve">
     <value>Bem Vindo</value>
   </data>
+  <data name="txtFirstName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="placeholderFirstName" xml:space="preserve">
+    <value>Insira o primeiro nome</value>
+  </data>
+
+  <data name="txtSurnameName" xml:space="preserve">
+    <value>Apelido</value>
+  </data>
+  <data name="placeholderSurnameName" xml:space="preserve">
+    <value>Insira o apelido</value>
+  </data>
+
+  <data name="txtCC" xml:space="preserve">
+    <value>Cartão de Cidadão</value>
+  </data>
+  <data name="placeholderCC" xml:space="preserve">
+    <value>Insira o numero de cc</value>
+  </data>
+
+  <data name="txtProfile" xml:space="preserve">
+    <value>Imagens de perfil</value>
+  </data>
+  <data name="placeholderProfile" xml:space="preserve">
+    <value>Escolha um ficheiro</value>
+  </data>
+
+  <data name="txtEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="placeholderEmail" xml:space="preserve">
+    <value>Insira o email</value>
+  </data>
+
+  <data name="txtDataNascimento" xml:space="preserve">
+    <value>Data de nascimento</value>
+  </data>
+
+  <data name="txtPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="placeholderPassword" xml:space="preserve">
+    <value>Insira a password</value>
+  </data>
+
+  <data name="txtConfirmPassword" xml:space="preserve">
+    <value>Confirme a password</value>
+  </data>
+  <data name="placeholderConfirmPassword" xml:space="preserve">
+    <value>Confirme a password</value>
+  </data>
+
+  <data name="txtProcureFuncionario" xml:space="preserve">
+    <value>Procure Funcionário:</value>
+  </data>
+  <data name="placeholderProcureFuncionario" xml:space="preserve">
+    <value>Digite o nome do funcionário</value>
+  </data>
+
+  <data name="txtListaFuncionario" xml:space="preserve">
+    <value>Lista de Funcionário(s):</value>
+  </data>
+
+  <data name="btnAdicionarFuncionario" xml:space="preserve">
+    <value>Adicionar Funcionário</value>
+  </data>
+
+  <data name="colNome" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+
+  <data name="colApelido" xml:space="preserve">
+    <value>Apelido</value>
+  </data>
+
+  <data name="colNomeAtl" xml:space="preserve">
+    <value>Nome ATL</value>
+  </data>
+
+  <data name="colAções" xml:space="preserve">
+    <value>Ações</value>
+  </data>
+
+
+  <!-- Ajuda -->
+  <data name="btnComoCriarFuncionario" xml:space="preserve">
+    <value>Como Criar Funcionario</value>
+  </data>
+
+  <data name="txtComoCriarFuncionario" xml:space="preserve">
+    <value>Deverá preencher todos os campos apresentes, embora o campo da imagem seja opcional.
+      A password deverá conter um minimo de 8 caracteres, 1 letra maiuscula e um caracter especial.
+    </value>
+  </data>
+
+  <!-- Titulos -->
+  <data name="tituloCriarFuncionario" xml:space="preserve">
+    <value>Criar Funcionário</value>
+  </data>
+
+  <data name="tituloConsultarFuncionario" xml:space="preserve">
+    <value>Consultar Funcionario</value>
+  </data>
+
+
 </root>
