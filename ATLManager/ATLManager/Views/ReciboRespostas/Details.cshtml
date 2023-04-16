@@ -101,9 +101,9 @@
 										@Html.DisplayNameFor(model => model.ReceiptPath)
 									</dt>
 									<dd class="col text-left">
-										@if (Model.ReceiptPath != null)
+									@if (Model.ReceiptPath != null)
 									{
-											<a asp-action="Download" asp-route-fileName="@Model.ReceiptPath">Descarregar ficheiro</a>
+										<a asp-action="Download" asp-route-fileName="@Model.ReceiptPath">Descarregar ficheiro</a>
 									}
 									else
 									{
@@ -116,7 +116,14 @@
 										@Html.DisplayNameFor(model => model.Notes)
 									</dt>
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Notes)
+										@if (Model.ReceiptPath != null)
+										{
+											@Html.DisplayFor(model => model.Notes)
+										}
+										else
+										{
+											<span class="text-center"> - </span>
+										}
 									</dd>
 								</div>
 							</dl>
