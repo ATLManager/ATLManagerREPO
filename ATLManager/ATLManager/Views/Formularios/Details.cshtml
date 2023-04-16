@@ -11,110 +11,106 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <!-- Fase 1  -->
-	<!-- d-flex -->
-	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-		<h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
-		<img src="~/images/icons/search-group.png" width="50" height="50">
-	</div>
-	<div class="d-flex justify-content-center mt-5 ">
-		<!-- Box  -->
-		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
-			<div class="row box border-5 p-5">
+    <!-- d-flex -->
+    <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+        <h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+        <img src="~/images/icons/search-group.png" width="50" height="50">
+    </div>
+    <div class="d-flex justify-content-center mt-5 ">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+            <div class="row box border-5 p-5">
+                <div class="container">
+                    <div class="d-flex align-items-start">
+                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                                    type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                Detalhes do Formulário
+                            </button>
 
-				<div class="container">
-					<div class="d-flex align-items-start">
+                            <a class="nav-link" href="@Url.Action("Respostas", new { id = Model.FormularioId })">
+                                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                                        type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                    Respostas ao formulário
+                                </button>
+                            </a>
+                        </div>
+                        <div class="row text-center">
+                            <div class="mb-3">
 
-					<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-								type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
-							Detalhes do Formulário
-						</button>
+                                <dl class="row text-end">
+                                    <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </dt>
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.Name)
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.Description)
+                                        </dt>
 
-						<a class="nav-link" href="@Url.Action("Respostas", new { id = Model.FormularioId })">
-							<button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-									type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-								Respostas ao formulário
-							</button>
-						</a>
-					</div>
-					<div class="row text-center">
-						<div class="mb-3">
-							
-							<dl class="row text-end">
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Name)
-									</dt>
-									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Name)
-									</dd>
-								</div>
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Description)
-									</dt>
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.Description)
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.VisitaEstudo)
+                                        </dt>
+                                        <dd class="col text-left">
+                                            @if (Model.VisitaEstudo != null)
+                                            {
+                                                @Html.DisplayFor(model => model.VisitaEstudo.Name)
+                                            }
+                                            else
+                                            {
+                                                <span class="text-center"> - </span>
+                                            }
+                                            
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.StartDate)
+                                        </dt>
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.StartDate)
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col mr-2">
+                                            @Html.DisplayNameFor(model => model.DateLimit)
+                                        </dt>
+                                        <dd class="col text-left">
+                                            @Html.DisplayFor(model => model.DateLimit)
+                                        </dd>
+                                    </div>
 
-									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Description)
-									</dd>
-								</div>
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.VisitaEstudo)
-									</dt>
-									<dd class="col text-left">
-										@if (Model.VisitaEstudo != null)
-										{
-											@Html.DisplayFor(model => model.VisitaEstudo.Name)
-										}
-										else
-										{
-											<span class="text-center"> - </span>
-										}
-										
-									</dd>
-								</div>
-
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.StartDate)
-									</dt>
-									<dd class="col text-left">
-										@Html.DisplayFor(model => model.StartDate)
-									</dd>
-								</div>
-
-								<div class="row">
-									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.DateLimit)
-									</dt>
-									<dd class="col text-left">
-										@Html.DisplayFor(model => model.DateLimit)
-									</dd>
-								</div>
-
-							</dl>
-							<hr />
-							<div class="d-flex text-center mt-4">
-								<div class="col">
-									<a asp-action="Index">
-										<button type="button"
-												class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-											Voltar
-										</button>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					</div>
-				</div>
-			</div>
-			<!-- // Box -->
-		</div>
-		<!-- // Fase 1 -->
-	</div>
-
+                                </dl>
+                                <hr />
+                                <div class="d-flex text-center mt-4">
+                                    <div class="col">
+                                        <a asp-action="Index">
+                                            <button type="button"
+                                                    class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                                Voltar
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // Box -->
+        </div>
+        <!-- // Fase 1 -->
+    </div>
+    
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")
