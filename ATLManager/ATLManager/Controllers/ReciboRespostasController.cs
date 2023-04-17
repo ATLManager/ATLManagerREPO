@@ -5,19 +5,30 @@ using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using ATLManager.Models;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class ReciboRespostasController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+		private readonly UserManager<ATLManagerUser> _userManager;
+		private readonly RoleManager<IdentityRole> _roleManager;
+		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly INotificacoesController _notificacoesController;
 
-        public ReciboRespostasController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
-        {
-            _context = context;
-            _webHostEnvironment = webHostEnvironment;
-        }
+
+        public ReciboRespostasController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment, 
+											INotificacoesController notificacoesController, UserManager<ATLManagerUser> userManager,
+											RoleManager<IdentityRole> roleManager)
+		{
+			_context = context;
+			_webHostEnvironment = webHostEnvironment;
+			_notificacoesController = notificacoesController;
+			_userManager = userManager;
+			_roleManager = roleManager;
+		}
 
 		// GET: RecibosRespostas/Details/5
 		public async Task<IActionResult> Details(Guid? id)
@@ -94,6 +105,28 @@ namespace ATLManager.Controllers
 
 					_context.Update(resposta);
 					await _context.SaveChangesAsync();
+
+					// Enviar notificações para os usuários relevantes (Coordenadores, Funcionários) do ATL específico
+					var roleNames = new[] { "Coordenador", "Funcionario" };
+
+					var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+					var currentUserAccount = await _context.ContaAdministrativa
+						.Include(f => f.User)
+						.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+					Guid specificATLId = (Guid)currentUserAccount.AtlId;
+
+					var usersToNotify = await (from user in _context.Users
+											   join userRole in _context.UserRoles on user.Id equals userRole.UserId
+											   join role in _context.Roles on userRole.RoleId equals role.Id
+											   join account in _context.ContaAdministrativa on user.Id equals account.UserId
+											   where roleNames.Contains(role.Name) && account.AtlId == specificATLId
+											   select user).ToListAsync();
+
+					foreach (var user in usersToNotify)
+					{
+						await _notificacoesController.CreateNotification(user.Id, "Novo Recibo", "Uma resposta ao recibo foi adicionada ou atualizada.");
+					}
 				}
 				catch (DbUpdateConcurrencyException)
 				{
@@ -171,7 +204,31 @@ namespace ATLManager.Controllers
 
 					_context.Update(reciboResposta);
                     await _context.SaveChangesAsync();
-                }
+
+					// Enviar notificações para os usuários relevantes (Coordenadores, Funcionários) do ATL específico
+					var roleNames = new[] { "Coordenador", "Funcionario" };
+
+                    // Enviar notificação aos coordenadores e funcionários
+                    var educando = await _context.Educando.FirstOrDefaultAsync(e => e.EducandoId == reciboResposta.EducandoId);
+
+
+                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+
+					Guid specificATLId = (Guid)educando.AtlId;
+
+                    var usersToNotify = await (from user in _context.Users
+											   join userRole in _context.UserRoles on user.Id equals userRole.UserId
+											   join role in _context.Roles on userRole.RoleId equals role.Id
+											   join account in _context.ContaAdministrativa on user.Id equals account.UserId
+											   where roleNames.Contains(role.Name) && account.AtlId == specificATLId
+											   select user).ToListAsync();
+
+					foreach (var user in usersToNotify)
+					{
+						await _notificacoesController.CreateNotification(user.Id, "Nova Resposta Recibo","Uma resposta ao recibo foi adicionada ou atualizada.");
+					}
+				}
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ReciboRespostaExists(viewModel.ReciboRespostaId))

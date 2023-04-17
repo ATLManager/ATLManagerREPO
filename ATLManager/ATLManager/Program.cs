@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.Extensions.FileProviders;
+using ATLManager.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -149,6 +150,10 @@ builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 	//microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
 	//microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
 });
+
+builder.Services.AddScoped<INotificacoesController, NotificacoesController>();
+
+
 
 var app = builder.Build();
 

@@ -33,4 +33,5 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
     public DbSet<Atividade> Atividade { get; set; }
     public DbSet<Recibo> Recibo { get; set; }
     public DbSet<ReciboResposta> ReciboResposta { get; set; }
+	public DbSet<Notificacao> Notificacoes { get; set; }
 }

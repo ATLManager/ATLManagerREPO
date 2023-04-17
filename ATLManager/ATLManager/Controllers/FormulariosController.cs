@@ -20,14 +20,17 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly INotificacoesController _notificacoesController;
 
-        public FormulariosController(ATLManagerAuthContext context, 
+
+        public FormulariosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender, INotificacoesController notificacoesController)
         {
             _context = context;
             _userManager = userManager;
             _emailSender = emailSender;
+            _notificacoesController = notificacoesController;
         }
 
         // GET: Formularios
@@ -158,6 +161,9 @@ namespace ATLManager.Controllers
                     await _emailSender.SendEmailAsync(userEmail, "Novo formulário por responder",
                         $"Por favor responda ao formulário <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
 
+                    // Enviar notificação para o Encarregado de Educação
+                    await _notificacoesController.CreateNotification(encarregado.UserId, "Novo Formulário", "Há um novo formulário disponível para o seu educando. Por favor, responda o mais rápido possível.");
+
                     _context.Add(resposta);
                 }
 
@@ -244,8 +250,8 @@ namespace ATLManager.Controllers
 							formulario.StartDate = DateTime.Parse(viewModel.StartDate);
 						if (viewModel.DateLimit != null)
 							formulario.DateLimit = DateTime.Parse(viewModel.DateLimit);
-
-						_context.Update(formulario);
+                        
+                        _context.Update(formulario);
 						await _context.SaveChangesAsync();
 					}
                 }

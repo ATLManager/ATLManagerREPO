@@ -62,10 +62,6 @@ namespace ATLManager.Controllers
                 .Where(fr => fr.Formulario.AtlId == currentUserAccount.AtlId && (!id.HasValue || fr.Formulario.FormularioId == id))
                 .ToListAsync();
             
-            // Implemente a lógica para calcular as estatísticas de visitas de estudo aqui.
-            // Por exemplo, você pode calcular a porcentagem de autorizações concedidas e negadas.
-
-            // Exemplo de implementação:
             var totalFormularios = respostas.Count;
             var totalAutorizados = respostas.Count(fr => fr.Authorized);
             var percentualAutorizados = totalFormularios != 0 ? (decimal)totalAutorizados / totalFormularios * 100 : 0;
@@ -103,10 +99,7 @@ namespace ATLManager.Controllers
                 .Where(a => a.AtlId == currentUserAccount.AtlId)
                 .ToListAsync();
 
-            // Implemente a lógica para calcular as estatísticas de atividades por mês aqui.
-            // Por exemplo, você pode contar o número de atividades para cada mês do ano atual.
 
-            // Exemplo de implementação:
             var anoAtual = DateTime.Now.Year;
             var estatisticas = new Dictionary<string, int>();
 

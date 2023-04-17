@@ -3,20 +3,29 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class FormularioRespostasController : Controller
     {
-        private readonly ATLManagerAuthContext _context;
+		private readonly ATLManagerAuthContext _context;
+		private readonly UserManager<ATLManagerUser> _userManager;
+		private readonly INotificacoesController _notificacoesController;
 
-        public FormularioRespostasController(ATLManagerAuthContext context)
-        {
-            _context = context;
-        }
 
-        // GET: FormularioRespostas/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+		public FormularioRespostasController(ATLManagerAuthContext context,
+			UserManager<ATLManagerUser> userManager,
+            INotificacoesController notificacoesController)
+		{
+			_context = context;
+			_userManager = userManager;
+			_notificacoesController = notificacoesController;
+		}
+
+		// GET: FormularioRespostas/Details/5
+		public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.FormularioResposta == null)
             {
@@ -90,7 +99,33 @@ namespace ATLManager.Controllers
 
 					_context.Update(formularioResposta);
                     await _context.SaveChangesAsync();
-                }
+
+					// Enviar notificações para os usuários relevantes (Coordenadores, Funcionários) do ATL específico
+					var roleNames = new[] { "Coordenador", "Funcionario" };
+
+                    // Enviar notificação aos coordenadores e funcionários
+                    var educando = await _context.Educando.FirstOrDefaultAsync(e => e.EducandoId == formularioResposta.EducandoId);
+                    
+                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+					Guid specificATLId = (Guid)educando.AtlId;
+
+                    
+
+					var usersToNotify = await (from user in _context.Users
+											   join userRole in _context.UserRoles on user.Id equals userRole.UserId
+											   join role in _context.Roles on userRole.RoleId equals role.Id
+											   join account in _context.ContaAdministrativa on user.Id equals account.UserId
+											   where roleNames.Contains(role.Name) && account.AtlId == specificATLId
+											   select user).ToListAsync();
+
+
+					foreach (var user in usersToNotify)
+					{
+						await _notificacoesController.CreateNotification(user.Id, "Nova Resposta ao Formulário", "Uma resposta ao formulário foi adicionada ou atualizada.");
+					}
+
+				}
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!FormularioRespostaExists(viewModel.FormularioRespostaId))
