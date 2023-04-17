@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\NovaPasta\**" />
+    <Content Remove="wwwroot\images\NovaPasta\**" />
+    <EmbeddedResource Remove="wwwroot\images\NovaPasta\**" />
+    <None Remove="wwwroot\images\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\images\instagram.png" />
     <Content Remove="wwwroot\images\question1.png" />
     <Content Remove="wwwroot\images\question2.png" />
