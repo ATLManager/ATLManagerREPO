@@ -80,17 +80,17 @@
                            
                             <div class="row mt-5">
                                 <div class="col">
-                                        <label asp-for="DeclaracaoMedica" class="control-label"></label>
+                                    <label asp-for="DeclaracaoMedica" class="control-label"> Declaração Médica (PDF)</label>
                                         <div class="custom-file">
-                                            <input asp-for="DeclaracaoMedica" class="custom-file-input" id="customFile">
+                                            <input asp-for="DeclaracaoMedica" class="custom-file-input" id="customFile" type="file">
                                             <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                         </div>
                                         <span asp-validation-for="DeclaracaoMedica" class="text-danger"></span>
                                 </div>
                                 <div class="col">
-                                        <label asp-for="BoletimVacinas" class="control-label"></label>
+                                    <label asp-for="BoletimVacinas" class="control-label"> Boletim de Vacinas (PDF)</label>
                                         <div class="custom-file">
-                                            <input asp-for="BoletimVacinas" class="custom-file-input" id="customFile">
+                                            <input asp-for="BoletimVacinas" class="custom-file-input" id="customFile" type="file">
 										<label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                         </div>
                                         <span asp-validation-for="BoletimVacinas" class="text-danger"></span>
@@ -99,7 +99,7 @@
                                 <div class="col">
                                         <label asp-for="ProfilePicture" class="control-label"></label>
                                         <div class="custom-file">
-                                            <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
+                                            <input asp-for="ProfilePicture" class="custom-file-input" id="customFile" type="file">
 										<label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                         </div>
                                         <span asp-validation-for="ProfilePicture" class="text-danger"></span>
@@ -229,6 +229,7 @@
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
+
 
 	@section Scripts {
 	@{

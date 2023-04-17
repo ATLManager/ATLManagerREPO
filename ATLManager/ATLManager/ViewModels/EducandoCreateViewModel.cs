@@ -5,6 +5,9 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
 namespace ATLManager.ViewModels
 {
     public class EducandoCreateViewModel
@@ -28,11 +31,11 @@ namespace ATLManager.ViewModels
 		[DisplayName("Imagem da educando")]
 		public IFormFile? ProfilePicture { get; set; }
 
-		[FileExtensions(Extensions = "pdf")]
+		//[FileExtensions(Extensions = ".pdf")]
         [Display(Name = "Caminho do ficheiro PDF")]
         public IFormFile? DeclaracaoMedica { get; set; }
 
-        [FileExtensions(Extensions = "pdf")]
+        //[FileExtensions(Extensions = ".pdf")]
         [Display(Name = "Caminho do ficheiro PDF")]
         public IFormFile? BoletimVacinas { get; set; }
     }

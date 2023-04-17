@@ -205,12 +205,13 @@
                     </li>
                 }
 
-                <hr class="sidebar-divider">
-                <div class="sidebar-heading">
-                    Recursos
-                </div>
+               
                 @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
                 {
+                    <hr class="sidebar-divider">
+                    <div class="sidebar-heading">
+                        Recursos
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Estatisticas" asp-action="Index"
                            aria-expanded="true" aria-controls="estatisticas">
