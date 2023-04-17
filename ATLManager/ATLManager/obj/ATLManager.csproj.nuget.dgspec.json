@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {}
+    "C:\\Users\\anton\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {
+    "C:\\Users\\anton\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+        "projectUniqueName": "C:\\Users\\anton\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
         "projectName": "ATLManager",
-        "projectPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
-        "packagesPath": "C:\\Users\\Bruno Resende\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
+        "projectPath": "C:\\Users\\anton\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\ATLManager.csproj",
+        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anton\\Documents\\GitHub\\ATLManagerREPO\\ATLManager\\ATLManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruno Resende\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -122,7 +122,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
