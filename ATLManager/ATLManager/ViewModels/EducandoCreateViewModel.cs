@@ -31,11 +31,9 @@ namespace ATLManager.ViewModels
 		[DisplayName("Imagem da educando")]
 		public IFormFile? ProfilePicture { get; set; }
 
-		//[FileExtensions(Extensions = ".pdf")]
         [Display(Name = "Caminho do ficheiro PDF")]
         public IFormFile? DeclaracaoMedica { get; set; }
 
-        //[FileExtensions(Extensions = ".pdf")]
         [Display(Name = "Caminho do ficheiro PDF")]
         public IFormFile? BoletimVacinas { get; set; }
     }

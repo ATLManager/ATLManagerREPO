@@ -173,18 +173,18 @@ namespace ATLManager.Controllers
 					educando.ProfilePicture = "logo.png";
 				}
 
-                string boletinFileName = UploadedFile(viewModel.ProfilePicture);
+                string boletinFileName = UploadedFile(viewModel.BoletimVacinas);
 
                 if (photoFileName != null)
                 {
-                    educando.ProfilePicture = boletinFileName;
+                    educando.BoletimVacinas = boletinFileName;
                 }
 
-                string declaracaoFileName = UploadedFile(viewModel.ProfilePicture);
+                string declaracaoFileName = UploadedFile(viewModel.DeclaracaoMedica);
 
                 if (photoFileName != null)
                 {
-                    educando.ProfilePicture = declaracaoFileName;
+                    educando.DeclaracaoMedica = declaracaoFileName;
                 }
 
                 var educandoSaude = new EducandoSaude(educando.EducandoId);
