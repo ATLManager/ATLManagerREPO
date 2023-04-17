@@ -177,7 +177,8 @@ namespace ATLManager.Controllers
             ModelState.Remove("Name");
             ModelState.Remove("Price");
             ModelState.Remove("NIB");
-            ModelState.Remove("Description");
+			ModelState.Remove("Educando");
+			ModelState.Remove("Description");
             ModelState.Remove("DateLimit");
 
             if (ModelState.IsValid)

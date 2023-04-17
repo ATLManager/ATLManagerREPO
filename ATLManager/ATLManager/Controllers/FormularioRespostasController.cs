@@ -81,7 +81,8 @@ namespace ATLManager.Controllers
 
             ModelState.Remove("Name");
             ModelState.Remove("Description");
-            ModelState.Remove("DateLimit");
+			ModelState.Remove("Educando");
+			ModelState.Remove("DateLimit");
 
             if (ModelState.IsValid)
             {
