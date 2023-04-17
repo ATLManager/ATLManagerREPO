@@ -33,16 +33,47 @@ namespace ATLManager.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var currentUserAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+            
+            if (HttpContext.User.IsInRole("Coordenador") || HttpContext.User.IsInRole("Funcionario"))
+            { 
+                var currentUserAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            var visitas = await _context.VisitaEstudo
-                .Include(a => a.Atl)
-                .Where(r => r.AtlId == currentUserAccount.AtlId)
-                .ToListAsync();
+                var visitas = await _context.VisitaEstudo
+                    .Include(a => a.Atl)
+                    .Where(r => r.AtlId == currentUserAccount.AtlId)
+                    .ToListAsync();
 
-            return View(visitas);
+                return View(visitas);
+            }
+            else
+            {
+                var currentUserAccount = await _context.EncarregadoEducacao
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+                var educandos = await _context.Educando
+                    .Include(e => e.Atl)
+                    .Include(e => e.Encarregado)
+                    .Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+                    .ToListAsync();
+
+                var visitas = new List<VisitaEstudo>();
+
+                foreach (var educando in educandos)
+                {
+				    var tempVisitas = await _context.VisitaEstudo
+					    .Include(a => a.Atl)
+					    .Where(r => r.AtlId == educando.AtlId)
+					    .ToListAsync();
+
+                    visitas = visitas.Union(tempVisitas).ToList();
+                }
+
+				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
+				return View(visitas);
+            }
         }
 
         // GET: VisitasEstudo/Details/5

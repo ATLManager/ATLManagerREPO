@@ -55,13 +55,15 @@
                                         <div class="col">
                                             <label for="lista-atls" class="form-label">Lista de Educando(s):</label>
                                         </div>
-
-                                        <div class="col">
-                                            <p class="text-end">
-                                                <a asp-action="Create">
-                                                    <button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Educando </button></a>
-                                            </p>
-                                        </div>
+                                        @if (User.IsInRole("Coordenador"))
+                                        {
+                                            <div class="col">
+                                                <p class="text-end">
+                                                    <a asp-action="Create">
+                                                        <button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Educando </button></a>
+                                                </p>
+                                            </div>
+                                        }
                                     </div>
 
                                     <p class="rounded-circle"></p>

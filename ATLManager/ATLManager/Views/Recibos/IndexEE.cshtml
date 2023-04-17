@@ -39,18 +39,6 @@
 				<div class="row box border-5 p-5">
 					<div class="container">
 						<div class="d-flex align-items-start">
-							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-								<a class="nav-link" asp-action="Details" asp-route-id="@formId">
-									<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-											type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
-										Detalhes do Recibo
-									</button>
-								</a>
-								<button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-									Respostas ao Recibo
-								</button>
-							</div>
 							<div class="row pl-5">
 								<div class="mb-3">
 									<form>
@@ -96,19 +84,11 @@
 																			<img src="~/images/icons/search-icon1.png" height="20" width="20">
 																		</button>
 																	</a>
-																	<a asp-action="Edit" asp-controller="ReciboRespostas" asp-route-id="@item.RespostaId">
-																		<button type="button" class="btn btn-success custom-button" style="border-radius:6em">
-																			<img src="~/images/icons/edit-icon1.png" height="20" width="20">
-																		</button>
-																	</a>
 																</td>
 															</tr>
 														}
 													</tbody>
 												</table>
-												<div class="d-flex row text-center">
-													<a asp-controller="Formularios" asp-action="Index"><button type="button" class="btn btn-secondary custom-button w-25" style=" border-radius:6em"> Voltar </button></a>
-												</div>
 											</div>
 										</div>
 									</form>

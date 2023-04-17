@@ -54,12 +54,14 @@
                                         <div class="col">
                                             <label for="lista-atls" class="form-label">Lista de Visitas de Estudo:</label>
                                         </div>
-
-                                        <div class="col">
-                                            <p class="text-end">
-                                                <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Visita de Estudo </button></a>
-                                            </p>
-                                        </div>
+                                        @if (User.IsInRole("Coordenador"))
+                                        {
+                                            <div class="col">
+                                                <p class="text-end">
+                                                    <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Visita de Estudo </button></a>
+                                                </p>
+                                            </div>
+                                        }
                                     </div>
 
                                     <p class="rounded-circle"></p>
@@ -103,8 +105,14 @@
                                                     </td>
                                                     <td class="text-center w-25">
                                                         <a asp-action="Details" asp-route-id="@item.VisitaEstudoID"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
-                                                        <a asp-action="Edit" asp-route-id="@item.VisitaEstudoID"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em"> <img src="~/images/icons/edit-icon1.png" height="20" width="20"> </button></a>
-                                                        <a asp-action="Delete" asp-route-id="@item.VisitaEstudoID"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;"> <img src="~/images/icons/delete-icon1.png" height="20" width="20"></button></a>
+                                                        @if (User.IsInRole("Coordenador"))
+                                                        {
+                                                            <a asp-action="Edit" asp-route-id="@item.VisitaEstudoID"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em"> <img src="~/images/icons/edit-icon1.png" height="20" width="20"> </button></a>
+                                                        }
+                                                        @if (User.IsInRole("Coordenador"))
+                                                        {
+                                                            <a asp-action="Delete" asp-route-id="@item.VisitaEstudoID"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;"> <img src="~/images/icons/delete-icon1.png" height="20" width="20"></button></a>
+                                                        }
                                                     </td>
                                                 </tr>
                                             }

@@ -27,8 +27,7 @@
                                     type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
                                 Detalhes do Recibo
                             </button>
-
-                            <a class="nav-link" href="@Url.Action("Respostas", new { id = Model.ReciboId })">
+                            <a class="nav-link" asp-action="Respostas" asp-route-id="@Model.ReciboId">
                                 <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                                         type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                     Respostas ao Recibo

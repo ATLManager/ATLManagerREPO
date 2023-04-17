@@ -38,8 +38,9 @@ namespace ATLManager.Models
 
         [ForeignKey("Atl")]
         public Guid? AtlId { get; set; }
+		public ATL? Atl { get; set; }
 
-        public Atividade()
+		public Atividade()
         {
             AtividadeId = Guid.NewGuid();
         }

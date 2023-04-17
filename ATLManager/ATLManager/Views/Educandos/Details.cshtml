@@ -30,7 +30,7 @@
 									Educando
 							</button>
 
-							<a class="nav-link text-center" href="@Url.Action("DetailsSaude", new { id = Model.EducandoId })">
+							<a class="nav-link text-center" asp-action="DetailsSaude" asp-route-id="@Model.EducandoId">
 								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
 										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
 									Info. Saúde
@@ -48,20 +48,6 @@
 								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
 										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
 									Encarregado de Educação
-								</button>
-							</a>
-
-							<a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
-								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-									Recibos de Pagamento
-								</button>
-							</a>
-
-							<a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
-								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-									Visitas de Estudo
 								</button>
 							</a>
 						</div>

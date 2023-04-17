@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230417215037_Recibos_ATL_FK")]
+    partial class Recibos_ATL_FK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,8 +162,6 @@ namespace ATLManager.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("AtividadeId");
-
-                    b.HasIndex("AtlId");
 
                     b.ToTable("Atividade");
                 });
@@ -837,15 +837,6 @@ namespace ATLManager.Migrations
                         .HasForeignKey("ContaId");
 
                     b.Navigation("ContaAdministrativa");
-                });
-
-            modelBuilder.Entity("ATLManager.Models.Atividade", b =>
-                {
-                    b.HasOne("ATLManager.Models.ATL", "Atl")
-                        .WithMany()
-                        .HasForeignKey("AtlId");
-
-                    b.Navigation("Atl");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
