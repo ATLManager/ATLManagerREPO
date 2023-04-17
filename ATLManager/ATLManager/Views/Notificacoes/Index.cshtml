@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="MarkAllAsRead" method="post">
+    <input type="submit" value="Mark All as Read" class="btn btn-primary" />
+    @Html.AntiForgeryToken()
+</form>
+
 <table class="table">
     <thead>
         <tr>

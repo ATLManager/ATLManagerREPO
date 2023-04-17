@@ -199,5 +199,26 @@ namespace ATLManager.Controllers
                 .Where(n => n.UserId == userId && !n.Lida)
                 .ToListAsync();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MarkAllAsRead()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userId = currentUser.Id;
+
+            var unreadNotifications = await _context.Notificacoes
+                .Where(n => n.UserId == userId && !n.Lida)
+                .ToListAsync();
+
+            foreach (var notification in unreadNotifications)
+            {
+                notification.Lida = true;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
