@@ -8,25 +8,148 @@
 }
 @inject LanguageService language
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label">@language.GetKey("email")</label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label">@language.GetKey("txtPhoneNumber")</label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">@language.GetKey("btnSave")</button>
-        </form>
-    </div>
+<!-- Fase 1  -->
+<!-- d-flex -->
+<!-- Container -->
+<div class="container-fluid">
+	
+
+@*	<div class="row" style="padding-left: 6em;">
+		<div class="col-3"></div>
+		<div class="col-6"></div>
+		<div class="col-3" pb-2" id="divQuestion">
+			<button class="btn btn-primary rounded-circle mb-3" id="btn-ajuda">
+				<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+			</button>
+		</div>
+	</div>*@
+	<div class="d-flex justify-content-center" id="divFase1">
+		<!-- Box  -->
+		<div class="row col-12 justify-content-center custom-box mt-5" id="myBox">
+			<div class="row box border-5 p-5">
+				<!--text-center  -->
+				<div class="container">
+					<div class="row mt-3">
+						<div class="mb-3">
+							<partial name="_StatusMessage" for="StatusMessage" />
+							<div class="row">
+
+								<div class="col-md-3"></div>
+
+								<div class="col-md-6">
+									<form id="profile-form" method="post">
+										<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+										<div class="row form-floating mb-3">
+											<input asp-for="Username" class="form-control" disabled />
+											<label asp-for="Username" class="form-label">@language.GetKey("email")</label>
+										</div>
+										<div class="row form-floating mb-3">
+											<input asp-for="Input.PhoneNumber" class="form-control" />
+											<label asp-for="Input.PhoneNumber" class="form-label">@language.GetKey("txtPhoneNumber")</label>
+											<span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+										</div>
+										<div class="row justify-content-center">
+											<button id="update-profile-button" type="submit" class="w-50 btn btn-lg btn-primary">@language.GetKey("btnSave")</button>
+										</div>
+									</form>
+								</div>
+
+								<div class="col-md-3"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
 </div>
+
+<!-- Slide de Ajuda  -->
+<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+
+	<div class="row text-center mt-2">
+		<div class="col-10 ">
+			<h2 class="text-white ms-5">Ajuda</h2>
+		</div>
+
+		<div class="col-2">
+			<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+		</div>
+	</div>
+	<div class="">
+		<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+			   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+	</div>
+	<!-- -->
+	<ul class="row justify-content-center p-4 bg-white mt-4 "
+		style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+		<li class="row">
+			<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+				<div class="d-flex align-items-center justify-content-center">
+
+					<span>Como alterar uma visita de estudo</span>
+					<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+				</div>
+			</button>
+			<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+				Here's some more textHere's some more textHere's some more textHere's some
+				more textHe
+
+			</span>
+		</li>
+		<li class="row">
+			<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+				<div class="d-flex align-items-center justify-content-center">
+					<div class="col-3">
+						<img src="~/images/guide/terms.png" class="">
+					</div>
+					<div class="col">
+						<span>Leia artigos de ajuda</span>
+					</div>
+				</div>
+			</button>
+		</li>
+		<li class="row">
+			<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+				<div class="d-flex align-items-center">
+					<div class="col-3">
+						<img src="~/images/guide/comunity.png" class="">
+					</div>
+					<div class="col">
+						<span>Pergunte à comunidade</span>
+					</div>
+				</div>
+			</button>
+		</li>
+		<li class="row">
+			<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+				<div class="d-flex align-items-center justify-content-center">
+					<div class="col-3">
+						<img src="~/images/guide/new.png" class="">
+					</div>
+					<div class="col">
+						<span>Novas Atualizações</span>
+					</div>
+				</div>
+			</button>
+		</li>
+		<li class="row">
+			<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+				<div class="d-flex align-items-center justify-content-center">
+					<div class="col-3">
+						<img src="~/images/guide/feedback.png" class="">
+					</div>
+					<div class="col">
+						<span>Dê Feedback</span>
+					</div>
+				</div>
+			</button>
+		</li>
+	</ul>
+</div>
+<!-- // Slide de Ajuda  -->
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
