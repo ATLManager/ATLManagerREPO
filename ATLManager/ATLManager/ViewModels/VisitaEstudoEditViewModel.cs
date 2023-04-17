@@ -22,7 +22,6 @@ namespace ATLManager.ViewModels
         [StringLength(255)]
         public string Descripton { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

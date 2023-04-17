@@ -32,17 +32,35 @@ namespace ATLManager.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var currentUserAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            var educandos = await _context.Educando
-                .Include(e => e.Atl)
-                .Include(e => e.Encarregado)
-                .Where(e => e.AtlId == currentUserAccount.AtlId)
-                .ToListAsync();
+            if (HttpContext.User.IsInRole("Coordenador") || HttpContext.User.IsInRole("Funcionario"))
+            {
+                var currentUserAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            return View(educandos);
+                var educandos = await _context.Educando
+                    .Include(e => e.Atl)
+                    .Include(e => e.Encarregado)
+                    .Where(e => e.AtlId == currentUserAccount.AtlId)
+                    .ToListAsync();
+
+                return View(educandos);
+            }
+            else
+            {
+                var currentUserAccount = await _context.EncarregadoEducacao
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+                var educandos = await _context.Educando
+                    .Include(e => e.Atl)
+                    .Include(e => e.Encarregado)
+                    .Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+                    .ToListAsync();
+
+                return View(educandos);
+            }
         }
 
         // GET: Educandos/Details/5

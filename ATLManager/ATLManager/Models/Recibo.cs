@@ -41,7 +41,11 @@ namespace ATLManager.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateLimit { get; set; }
 
-		public Recibo()
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+        public ATL? Atl { get; set; }
+
+        public Recibo()
         {
             ReciboId = Guid.NewGuid();
         }

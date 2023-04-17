@@ -33,17 +33,47 @@ namespace ATLManager.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var currentUserAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            var refeicoes = await _context.Refeicao
-                .Include(a => a.Atl)
-                .Where(r => r.AtlId == currentUserAccount.AtlId)
-                .ToListAsync();
+			if (HttpContext.User.IsInRole("Coordenador") || HttpContext.User.IsInRole("Funcionario"))
+			{
+				var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            return View(refeicoes);
-        }
+				var refeicoes = await _context.Refeicao
+					.Include(a => a.Atl)
+					.Where(r => r.AtlId == currentUserAccount.AtlId)
+					.ToListAsync();
+
+				return View(refeicoes);
+			}
+			else
+			{
+				var currentUserAccount = await _context.EncarregadoEducacao
+					.Include(f => f.User)
+					.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+				var educandos = await _context.Educando
+					.Include(e => e.Atl)
+					.Include(e => e.Encarregado)
+					.Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+					.ToListAsync();
+
+				var refeicoes = new List<Refeicao>();
+
+				foreach (var educando in educandos)
+				{
+					var tempRefeicoes = await _context.Refeicao
+						.Include(a => a.Atl)
+						.Where(r => r.AtlId == educando.AtlId)
+						.ToListAsync();
+
+					refeicoes = refeicoes.Union(tempRefeicoes).ToList();
+				}
+				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
+				return View(refeicoes);
+			}
+		}
 
         // GET: Refeicoes/Details/5
         public async Task<IActionResult> Details(Guid? id)

@@ -9,461 +9,469 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ATLManager
 build_property.RootNamespace = ATLManager
-build_property.ProjectDir = C:\Users\anton\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager\
+build_property.ProjectDir = C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\anton\Documents\GitHub\ATLManagerREPO\ATLManager\ATLManager
+build_property.MSBuildProjectDirectory = C:\Users\Bruno Resende\Desktop\My Stuff\Uni shit\Ano 3\PV\ATLManagerREPO\ATLManager\ATLManager
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/AccessDenied.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWxDaGFuZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGgyZmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGVsZXRlUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGlzYWJsZTJmYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRG93bmxvYWRQZXJzb25hbERhdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/Email.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRXh0ZXJuYWxMb2dpbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcR2VuZXJhdGVSZWNvdmVyeUNvZGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUmVzZXRBdXRoZW50aWNhdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2V0UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2hvd1JlY292ZXJ5Q29kZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcVHdvRmFjdG9yQXV0aGVudGljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1N0YXR1c01lc3NhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterAdmin.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterEE.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterEE.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckVFLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterType.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/RegisterType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlclR5cGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_AuthLayout.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_AuthLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0F1dGhMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdydXBhbWVudG9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdydXBhbWVudG9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdydXBhbWVudG9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdydXBhbWVudG9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Agrupamentos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdydXBhbWVudG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRpdmlkYWRlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRpdmlkYWRlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRpdmlkYWRlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRpdmlkYWRlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Atividades/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRpdmlkYWRlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ATL/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVRMXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRlbmFkb3Jlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRlbmFkb3Jlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRlbmFkb3Jlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRlbmFkb3Jlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Coordenadores/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRlbmFkb3Jlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/DetailsSaude.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/DetailsSaude.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXERldGFpbHNTYXVkZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Educandos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Estatisticas/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Estatisticas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXN0YXRpc3RpY2FzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb1Jlc3Bvc3Rhc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Obrigado.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Obrigado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb1Jlc3Bvc3Rhc1xPYnJpZ2Fkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Responder.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Responder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb1Jlc3Bvc3Rhc1xSZXNwb25kZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Respostas.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/IndexEE.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcSW5kZXhFRS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Respostas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcUmVzcG9zdGFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Funcionarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Home/AboutUs.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/AboutUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dFVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Contacts.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Contacts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Services.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Home/Services.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2aWNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvUmVzcG9zdGFzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvUmVzcG9zdGFzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Obrigado.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Obrigado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvUmVzcG9zdGFzXE9icmlnYWRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Responder.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/ReciboRespostas/Responder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvUmVzcG9zdGFzXFJlc3BvbmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Respostas.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/IndexEE.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xJbmRleEVFLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Respostas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xSZXNwb3N0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZWljb2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZWljb2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZWljb2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZWljb2VzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Refeicoes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVmZWljb2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/Error.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Create.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRhc0VzdHVkb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Delete.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRhc0VzdHVkb1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Details.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRhc0VzdHVkb1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Edit.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRhc0VzdHVkb1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Index.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/VisitasEstudo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRhc0VzdHVkb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewImports.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewStart.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anton/Documents/GitHub/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_Layout.cshtml]
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-qkiz1whal5

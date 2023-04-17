@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ATLManager.Controllers
 {
@@ -33,11 +34,60 @@ namespace ATLManager.Controllers
         }
 
         // GET: Reciboes
+        [Authorize(Roles = "Coordenador,Funcionario")]
         public async Task<IActionResult> Index()
         {
-              return _context.Recibo != null ? 
-                          View(await _context.Recibo.ToListAsync()) :
-                          Problem("Entity set 'ATLManagerAuthContext.Recibo'  is null.");
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var recibos = await _context.Recibo
+                .Include(e => e.Atl)
+                .Where(e => e.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return View(recibos);
+        }
+
+        [Authorize(Roles = "EncarregadoEducacao")]
+        public async Task<IActionResult> IndexEE()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            var currentUserAccount = await _context.EncarregadoEducacao
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Include(e => e.Encarregado)
+                .Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+                .ToListAsync();
+
+            var recibos = new List<ReciboRespostasViewModel>();
+
+            foreach (var educando in educandos)
+            {
+                var respostas = await (from resposta in _context.ReciboResposta
+                                       join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
+                                       where resposta.EducandoId == educando.EducandoId
+                                       select new ReciboRespostasViewModel
+                                       {
+                                           RespostaId = resposta.ReciboRespostaId,
+                                           ReciboId = resposta.ReciboId,
+                                           EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
+                                           Authorized = resposta.Authorized,
+                                           ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString(),
+                                           ComprovativoPath = resposta.ComprovativoPath
+                                       }).ToListAsync();
+
+                recibos = recibos.Union(respostas).ToList();
+            }
+
+            ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
+            return View(recibos);
         }
 
         // GET: Reciboes/Details/5
@@ -107,6 +157,7 @@ namespace ATLManager.Controllers
             if (ModelState.IsValid)
             {
                 recibo.EmissionDate = DateTime.UtcNow.Date;
+                recibo.AtlId = userAccount.AtlId;
                 _context.Add(recibo);
 
                 var educandos = await _context.Educando
