@@ -9,6 +9,7 @@ using ATLManager.Data;
 using ATLManager.Models;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ATLManager.Controllers
 {
@@ -53,7 +54,12 @@ namespace ATLManager.Controllers
 				return NotFound();
 			}
 
-			return View(notificacao);
+            // Marcar notificação como lida
+            notificacao.Lida = true;
+            _context.Update(notificacao);
+            await _context.SaveChangesAsync();
+            
+            return View(notificacao);
 		}
 
 		// GET: Notificacao/Create
@@ -68,9 +74,12 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NotificacaoId,UserId,Mensagem,Lida,DataNotificacao")] Notificacao notificacao)
+        public async Task<IActionResult> Create([Bind("NotificacaoId,UserId,Titulo,Mensagem")] Notificacao notificacao)
         {
-            if (ModelState.IsValid)
+            var modelStateWithoutUser = new ModelStateDictionary(ModelState);
+            modelStateWithoutUser.Remove("User");
+
+            if (modelStateWithoutUser.IsValid)
             {
                 notificacao.NotificacaoId = Guid.NewGuid();
                 _context.Add(notificacao);
@@ -103,7 +112,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("NotificacaoId,UserId,Mensagem,Lida,DataNotificacao")] Notificacao notificacao)
+        public async Task<IActionResult> Edit(Guid id, [Bind("NotificacaoId,UserId,Titulo,Mensagem,Lida,DataNotificacao")] Notificacao notificacao)
         {
             if (id != notificacao.NotificacaoId)
             {
@@ -186,7 +195,9 @@ namespace ATLManager.Controllers
 
         public async Task<List<Notificacao>> GetUserNotifications(string userId)
         {
-            return await _context.Notificacoes.Where(n => n.UserId == userId).ToListAsync();
+            return await _context.Notificacoes
+                .Where(n => n.UserId == userId && !n.Lida)
+                .ToListAsync();
         }
     }
 }

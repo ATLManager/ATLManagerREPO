@@ -14,7 +14,7 @@ namespace ATLManager.Models
 		public string UserId { get; set; }
 
 		[ForeignKey("UserId")]
-		public virtual ATLManagerUser User { get; set; }
+        public virtual ATLManagerUser User { get; set; }
 
         [Required]
         public string Titulo { get; set; }
@@ -28,7 +28,7 @@ namespace ATLManager.Models
 
 		public Notificacao() { }
 
-		public Notificacao(string userId, string titulo, string mensagem)
+        public Notificacao(string userId, string titulo, string mensagem)
 		{
 			UserId = userId;
             Titulo = titulo;
