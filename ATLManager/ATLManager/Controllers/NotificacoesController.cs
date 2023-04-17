@@ -10,19 +10,23 @@ using ATLManager.Models;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ATLManager.Controllers
 {
     public class NotificacoesController : Controller, INotificacoesController
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly UserManager<ATLManagerUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ATLManagerUser> _userManager;
 
-		public NotificacoesController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager)
-		{
+		public NotificacoesController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager,
+            RoleManager<IdentityRole> roleManager)
+        {
 			_context = context;
 			_userManager = userManager;
-		}
+            _roleManager = roleManager;
+        }
 
 		// GET: Notificacao
 		public async Task<IActionResult> Index()
@@ -62,10 +66,66 @@ namespace ATLManager.Controllers
             return View(notificacao);
 		}
 
-		// GET: Notificacao/Create
-		public IActionResult Create()
+        // GET: Notificacao/Create
+        [Authorize]
+        public async Task<IActionResult> Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserRoles = await _userManager.GetRolesAsync(currentUser);
+            var userAccount = await _context.ContaAdministrativa.FirstOrDefaultAsync(a => a.UserId == currentUser.Id);
+
+            List<ATLManagerUser> targetUsers;
+
+            if (currentUserRoles.Contains("Coordenador") || currentUserRoles.Contains("Funcionario"))
+            {
+                // Get Encarregados de Educação users
+                var educandos = await _context.Educando
+                    .Include(c => c.Atl)
+                    .Where(g => g.AtlId == userAccount.AtlId)
+                    .ToListAsync();
+
+                var encarregadoUsers = new List<ATLManagerUser>();
+
+                foreach (var educando in educandos)
+                {
+                    var encarregado = await _context.EncarregadoEducacao
+                        .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+                    var encarregadoAccount = await _context.Users
+                        .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+
+                    if (encarregadoAccount != null && !encarregadoUsers.Any(u => u.Id == encarregadoAccount.Id))
+                    {
+                        encarregadoUsers.Add(encarregadoAccount);
+                    }
+                }
+
+                targetUsers = encarregadoUsers;
+            }
+            else if (currentUserRoles.Contains("EncarregadoEducacao"))
+            {
+
+                // Get Coordenador and Funcionario users
+                var roleNames = new[] { "Coordenador", "Funcionario" };
+
+                var encarregado = await _context.EncarregadoEducacao.FirstOrDefaultAsync(ee => ee.UserId == currentUser.Id);
+                var educando = await _context.Educando.FirstOrDefaultAsync(e => e.EncarregadoId == encarregado.EncarregadoId);
+
+                Guid specificATLId = (Guid)educando.AtlId;
+
+                targetUsers = await (from user in _context.Users
+                                     join userRole in _context.UserRoles on user.Id equals userRole.UserId
+                                     join role in _context.Roles on userRole.RoleId equals role.Id
+                                     join account in _context.ContaAdministrativa on user.Id equals account.UserId
+                                     where roleNames.Contains(role.Name) && account.AtlId == specificATLId
+                                     select user).ToListAsync();
+            }
+            else
+            {
+                // If the user doesn't have any of the expected roles, return an empty list
+                targetUsers = new List<ATLManagerUser>();
+            }
+
+            ViewData["UserId"] = new SelectList(targetUsers, "Id", "UserName");
             return View();
         }
 
