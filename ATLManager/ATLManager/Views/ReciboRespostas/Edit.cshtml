@@ -117,7 +117,7 @@
 									</div>
 									<div class="row mb-3">
 										<div class="col">
-											<label asp-for="Receipt" class="control-label"></label>
+											<label asp-for="Receipt" class="control-label">Comprovativo de Pagamento</label>
 											<div class="custom-file">
 												<input asp-for="Receipt" class="custom-file-input" type="customFile">
 												<label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
@@ -165,6 +165,13 @@
 		<!-- // Fase 1 -->
 	</div>
 
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")
