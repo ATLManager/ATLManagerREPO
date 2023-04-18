@@ -11,13 +11,13 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-		<h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+	<div class="d-flex justify-content-center ms-2" style="padding-left: 2%; padding-top: 0%;">
+		<h1 class="me-3 fw-bold text-center mb-0">Editar Recibo</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
 	<!-- Fase 1  -->
 	<!-- d-flex -->
-	<div class="d-flex justify-content-center mt-5">
+	<div class="d-flex justify-content-center mt-0">
 		<!-- Box  -->
 		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
 			<div class="row box border-5 p-5">
@@ -38,8 +38,7 @@
 										@Html.DisplayNameFor(model => model.Educando)
 									</dt>
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.Educando.Name)
-										@Html.DisplayFor(model => model.Educando.Apelido)
+										@Html.DisplayFor(model => model.Educando)
 									</dd>
 								</div>
 								<div class="row">
@@ -108,37 +107,54 @@
 									<input type="hidden" asp-for="RespostaId" />
 									<input type="hidden" asp-for="ReciboId" />
 
-									<div class="form-group form-check mt-2 text-center">
-										<label class="form-check-label">
-											<input class="form-check-input" asp-for="Authorized" /> @Html.DisplayNameFor(model => model.Authorized)
-										</label>
+									<div class="row">
+										<div class="col"></div>
+										<div class="col ml-4">
+											<label class="form-check-label">
+												<input class="form-check-input" asp-for="Authorized" /> @Html.DisplayNameFor(model => model.Authorized)
+											</label>
+										</div>
 									</div>
-									<div>
-										<label asp-for="Receipt" class="control-label"></label>
-										<input asp-for="Receipt" class="file-input" type="file">
-										<span asp-validation-for="Receipt" class="text-danger"></span>
+									<div class="row mb-3">
+										<div class="col">
+											<label asp-for="Receipt" class="control-label"></label>
+											<div class="custom-file">
+												<input asp-for="Receipt" class="custom-file-input" type="customFile">
+												<label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
+											</div>
+											<span asp-validation-for="Receipt" class="text-danger"></span>
+										</div>								
 									</div>
-									<div class="form-group">
-										<label asp-for="Notes" class="control-label"></label>
-										<input asp-for="Notes" class="form-control" />
-										<span asp-validation-for="Notes" class="text-danger"></span>
+
+									<div class="row mb-3">
+										<div class="col">
+											<label asp-for="Notes" class="control-label"></label>
+											<input asp-for="Notes" class="form-control" />
+											<span asp-validation-for="Notes" class="text-danger"></span>
+										</div>
 									</div>
-									<hr/>
-									<div class="d-flex text-center mt-4">
-										<div class="form-group">
-											<input type="submit" value="Save" class="btn btn-primary" />
-											<a asp-controller="Recibos" asp-action="Respostas" asp-route-id="@Model.ReciboId">
-												<button type="button"
-														class="btn btn-secondary custom-button" style="border-radius:6em">
-													Voltar
-												</button>
-											</a>
+
+									<div class="row justify-content-center mt-4">
+										<div class="col-md-auto mt-4">
+											<div class="row">
+												<div class="col mb-3">
+													<a asp-controller="Recibos" asp-action="Respostas" asp-route-id="@Model.ReciboId">
+														<button type="button"
+																class="btn btn-secondary custom-button" style="border-radius:6em">
+															Voltar
+														</button>
+													</a>
+												</div>
+												<div class="col mb-3">
+													<input type="submit" value="Alterar" class="btn btn-primary" style="border-radius:6em" />
+												</div>
+											</div>
 										</div>
 									</div>
 								</form> 
 							</dl>
 							<div>
-								@*<a asp-action="Edit" asp-route-id="@Model.Profile.ContaId">Edit</a> |*@
+							
 							</div>
 						</div>
 					</div>

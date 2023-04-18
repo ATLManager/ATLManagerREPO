@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.ViewModels;
@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Migrations;
+using MessagePack;
+using NuGet.Configuration;
 
 namespace ATLManager.Controllers
 {
@@ -67,7 +70,21 @@ namespace ATLManager.Controllers
 				return NotFound();
 			}
 
-            var viewModel = new ReciboRespostaEditViewModel(resposta);
+            var viewModel = new ReciboRespostaEditViewModel()
+            {
+				RespostaId = resposta.ReciboRespostaId,
+			    ReciboId = resposta.ReciboId,
+			    Educando = resposta.Educando.Name + " " + resposta.Educando.Apelido,
+			    Name = resposta.Name,
+			    Price = resposta.Price,
+			    NIB = resposta.NIB,
+			    Description = resposta.Description,
+			    ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString(),
+			    DateLimit = resposta.DateLimit.ToShortDateString(),
+			    ComprovativoPath = resposta.ComprovativoPath,
+			    Authorized = resposta.Authorized,
+			    Notes = resposta.Notes
+		    };
 
 			return View(viewModel);
 		}
@@ -84,6 +101,7 @@ namespace ATLManager.Controllers
             ModelState.Remove("Recibo");
             ModelState.Remove("Educando");
             ModelState.Remove("Name");
+            ModelState.Remove("Price");
             ModelState.Remove("NIB");
             ModelState.Remove("Description");
             ModelState.Remove("ComprovativoPath");
@@ -153,18 +171,22 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var reciboResposta = await _context.ReciboResposta.FindAsync(id);
-            if (reciboResposta == null)
+			var resposta = await _context.ReciboResposta
+				.Include(f => f.Educando)
+				.Include(f => f.Recibo)
+				.FirstOrDefaultAsync(m => m.ReciboRespostaId == id);
+			if (resposta == null)
             {
                 return NotFound();
             }
 
-            var recibo = await _context.Recibo.FindAsync(reciboResposta.ReciboId);
+            var recibo = await _context.Recibo.FindAsync(resposta.ReciboId);
             var viewModel = new ReciboResponderViewModel
             {
-                ReciboRespostaId = reciboResposta.ReciboRespostaId,
+                ReciboRespostaId = resposta.ReciboRespostaId,
                 Name = recibo.Name,
-                NIB = recibo.NIB,
+                Educando = resposta.Educando.Name + " " + resposta.Educando.Apelido,
+				NIB = recibo.NIB,
                 Price = recibo.Price,
                 Description = recibo.Description,
                 DateLimit = recibo.DateLimit.ToShortDateString()
@@ -186,8 +208,10 @@ namespace ATLManager.Controllers
             }
 
             ModelState.Remove("Name");
+            ModelState.Remove("Price");
             ModelState.Remove("NIB");
-            ModelState.Remove("Description");
+			ModelState.Remove("Educando");
+			ModelState.Remove("Description");
             ModelState.Remove("DateLimit");
 
             if (ModelState.IsValid)
@@ -257,7 +281,6 @@ namespace ATLManager.Controllers
 		{
 			return View();
 		}
-
 
         public IActionResult Download(string fileName)
         {

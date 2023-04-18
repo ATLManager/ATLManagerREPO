@@ -20,11 +20,12 @@
 	<!-- Container -->
 	<div class="container-fluid">
 
-		@*<div class="row" style="padding-left: 6em;">
+		@*
+	<div class="row" style="padding-left: 6em;">
 	<div class="col-3"></div>
 	<div class="col-5"></div>
 	<div class="col-4  pb-2" id="divQuestion">
-	<button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+	<button class="btn btn-primary rounded-circle" id="btn-ajuda">
 	<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
 	</button>
 	</div>
@@ -39,7 +40,7 @@
 					<div class="container">
 						<div class="d-flex align-items-start">
 							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-								<a class="nav-link" href="@Url.Action("Details", new { id = formId })">
+								<a class="nav-link" asp-action="Details" asp-route-id="@formId">
 									<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
 											type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
 										Detalhes do Recibo
@@ -53,14 +54,6 @@
 							<div class="row pl-5">
 								<div class="mb-3">
 									<form>
-										@*<div class="row">
-
-									<div class="mb-5">
-									<label for="nome" class="form-label">Procure formulário:</label>
-									<input type="text" class="form-control" id="nome"
-									placeholder="Digite o nome do formulário">
-									</div>
-									</div>*@
 										<div class="row mt-3">
 											<div class="mb-3">
 												<div class="row ">
@@ -130,90 +123,104 @@
 		<!-- // Fase 1 -->
 	</div>
 
-	<!-- Slide Left (Help) -->
-	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:auto" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
-		 aria-labelledby="offcanvasRightLabel">
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
-		<div class="offcanvas-header helpCustomMargin">
-			<div class="col col-11 text-center">
-				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
-					style="color:white;">
-					Ajuda
-				</h5>
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">Ajuda</h2>
 			</div>
-			<div class="col" text-right>
-				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-						aria-label="Close"></button>
+
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
 			</div>
 		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
 
-		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
-			   aria-label="Search" style="border-radius: 10px;">
-
-		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
-			<div class="offcanvas-body box overflow-auto">
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText">
-						<span>Como procurar um formulario</span>
+						<span>Como alterar uma visita de estudo</span>
 						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
+					</div>
+				</button>
 
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText"
-						  style="display: none; position: relative;">
-						Here's some more textHere's some more textHere's some more textHere's some
-						more textHe
-						re's some more textHere's some more text...
-					</span>
-				</div>
 
-				<div class="row p-3">
-					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-						<div class="d-flex align-items-center justify-content-center">
-							<img src="~/images/guide/terms.png" class="me-4">
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					Here's some more textHere's some more textHere's some more textHere's some
+					more textHe
+
+				</span>
+			</li>
+
+
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
 							<span>Leia artigos de ajuda</span>
 						</div>
-					</button>
-					<br><br><br><br>
-				</div>
-
-				<div class="row p-3">
-					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-						<div class="d-flex align-items-center justify-content-center">
-							<img src="~/images/guide/comunity.png" class="me-4">
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
 							<span>Pergunte à comunidade</span>
 						</div>
-					</button>
-					<br><br><br><br>
-				</div>
-
-				<div class="row p-3">
-					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-						<div class="d-flex align-items-center justify-content-center">
-							<img src="~/images/guide/new.png" class="me-4">
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
 							<span>Novas Atualizações</span>
 						</div>
-					</button>
-					<br><br><br><br>
-				</div>
-
-				<div class="row p-3">
-					<button type="button" class="helpButton helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-						<div class="d-flex align-items-center justify-content-center">
-							<img src="~/images/guide/feedback.png" class="me-4">
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
 							<span>Dê Feedback</span>
 						</div>
-					</button>
-					<br><br><br><br>
-				</div>
-			</div>
-		</div>
-	</div>
+					</div>
 
-	<!-- // Slide Left (Help) -->
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- // Slide de Ajuda  -->
+
 	<!-- JS Button help 1 -->
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
 	<script>
 		document.getElementById('showText').addEventListener('click', function () {
 			var displayText = document.getElementById('displayText');

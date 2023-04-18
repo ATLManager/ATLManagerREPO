@@ -67,10 +67,10 @@ namespace ATLManager.Controllers
             var percentualAutorizados = totalFormularios != 0 ? (decimal)totalAutorizados / totalFormularios * 100 : 0;
 
             var estatisticas = new Dictionary<string, decimal>
-    {
-        { "PercentualAutorizados", percentualAutorizados },
-        { "PercentualNaoAutorizados", 100 - percentualAutorizados }
-    };
+            {
+                { "PercentualAutorizados", percentualAutorizados },
+                { "PercentualNaoAutorizados", 100 - percentualAutorizados }
+            };
 
             return estatisticas;
         }
@@ -81,8 +81,6 @@ namespace ATLManager.Controllers
             var estatisticas = await GetVisitasDeEstudoEstatisticas(formularioId);
             return Json(estatisticas);
         }
-
-
 
         private async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticas()
         {

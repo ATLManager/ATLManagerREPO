@@ -14,6 +14,10 @@ namespace ATLManager.ViewModels
 		[BindNever]
 		[DisplayName("Nome do formulário")]
 		public string Name { get; set; }
+		
+		[BindNever]
+		[DisplayName("Educando")]
+		public string Educando { get; set; }
 
 		[BindNever]
 		[DisplayName("Descrição")]

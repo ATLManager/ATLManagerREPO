@@ -2,531 +2,523 @@
 @using ATLManager.Areas.Identity.Data
 
 @{
-    ViewData["Title"] = "Estatísticas";
+	ViewData["Title"] = "Estatísticas";
 }
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-    string[] meses = new string[]
-    {
-        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-    };
+	string[] meses = new string[]
+	{
+		"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+		"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+	};
 }
 
 @if (SignInManager.IsSignedIn(User))
 {
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
 
-    <style>
+	<style>
 
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
+		* {
+			font-family: 'Poppins', sans-serif;
+		}
 
-        h3 {
-            text-align: center;
-            color: #3F51B5;
-            margin-bottom: 20px;
-        }
+		h3 {
+			text-align: center;
+			color: #3F51B5;
+			margin-bottom: 20px;
+		}
 
-        h1 {
-            text-align: center;
-        }
+		h1 {
+			text-align: center;
+		}
 
-        .chart-container {
-            position: relative;
-            height: 400px;
-            width: 100%;
-        }
+		.chart-container {
+			position: relative;
+			height: 400px;
+			width: 100%;
+		}
 
-            .chart-container canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-            }
+			.chart-container canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+			}
 
-        .table-container {
-            margin-bottom: 100px;
-            overflow-x: auto;
-        }
+		.table-container {
+			margin-bottom: 100px;
+			overflow-x: auto;
+		}
 
-        .col-md-6 {
-            margin-bottom: 30px;
-        }
+		.col-md-6 {
+			margin-bottom: 30px;
+		}
 
-        .d-flex {
-            margin-bottom: 10px;
-        }
+		.d-flex {
+			margin-bottom: 10px;
+		}
 
-        .table {
-            width: 100%;
-        }
+		.table {
+			width: 100%;
+		}
 
-        /* Customização de cores, espaçamento e ícones */
-        .container {
-            border-radius: 5px;
-            padding: 20px;
-        }
+		/* Customização de cores, espaçamento e ícones */
+		.container {
+			border-radius: 5px;
+			padding: 20px;
+		}
 
-        .row {
-            margin-top: 20px;
-        }
+		.row {
+			margin-top: 20px;
+		}
 
-        .form-control {
-            margin-left: 10px;
-        }
-
-
-        select {
-              appearance: none;
-            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%23333" d="M2 0L0 2h4zm0 5L0 3h4z"/%3E%3C/svg%3E');
-            background-repeat: no-repeat;
-              background-position: right center;
-              background-size: 16px 16px;
-              padding-right: 24px; 
-              font-family: 'Poppins', sans-serif;
-        }
-
-        .no-formulario-msg h4 {
-            color: red;
-            font-weight: bold;
-        }
-
-    </style>
-
-        <!-- Container -->
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-            <h1 class="me-3 fw-bold text-center mb-4">@ViewData["Title"]</h1>
-            <img src="~/images/icons/search-group.png" width="50" height="50">
-        </div>
-
-        <div class="row" style="padding-left: 6em;">
-            <div class="col-3"></div>
-            <div class="col-5"></div>
-            <div class="col-3  pb-2" id="divQuestion">
-                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
-                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-                </button>
-            </div>
-        </div>
+		.form-control {
+			margin-left: 10px;
+		}
 
 
-        <!-- Fase 1  -->
-        <!-- d-flex -->
-        <div class="d-flex justify-content-center" id="divFase1">
-            <!-- Box  -->
-            <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
-                <div class="row box border-5">
+		select {
+			appearance: none;
+			background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%23333" d="M2 0L0 2h4zm0 5L0 3h4z"/%3E%3C/svg%3E');
+			background-repeat: no-repeat;
+			background-position: right center;
+			background-size: 16px 16px;
+			padding-right: 24px;
+			font-family: 'Poppins', sans-serif;
+		}
 
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Gráfico de Visitas de Estudo</h3>
-                                <div class="d-flex align-items-center">
-                                    <h5 class="mb-0 mr-2">Selecione o formulário:</h5>
-                                    <select id="selectFormulario" class="form-control">
-                                        @if (ViewBag.Formularios.Count == 0)
-                                        {
-                                            <option value="">Formulários não criados</option>
-                                        }
-                                        else
-                                        {
-                                            @foreach (var formulario in ViewBag.Formularios)
-                                            {
-                                                <option value="@formulario.FormularioId">@formulario.Name</option>
-                                            }
-                                        }
-                                    </select>
-                                </div>
-                                @if (ViewBag.Formularios.Count == 0)
-                                {
-                                    <div id="noFormulariosMessage" class="text-center no-formulario-msg">
-                                        <h4>Formulário não criado</h4>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="chart-container">
-                                        <canvas id="visitasDeEstudoChart"></canvas>
-                                    </div>
-                                }
-                            </div>
-                            <div class="col-md-6">
-                                <h3>Gráfico de Atividades por Mês</h3>
-                                <div class="chart-container">
-                                    <canvas id="atividadesPorMesChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
+		.no-formulario-msg h4 {
+			color: red;
+			font-weight: bold;
+		}
 
-                        <div class="row mt-5">
-                            <div class="col-md-6">
-                                <h3>Visitas de Estudo</h3>
-                                <div class="table-container">
-                                    <table class="table table-bordered table-striped table-hover align-middle">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Autorizados</th>
-                                                <th>Não Autorizados</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td id="percentualAutorizados">@Model.VisitasDeEstudoEstatisticas["PercentualAutorizados"] %</td>
-                                                <td id="percentualNaoAutorizados">@Model.VisitasDeEstudoEstatisticas["PercentualNaoAutorizados"] %</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3>Atividades por Mês</h3>
-                                <div class="table-container">
-                                    <table class="table table-bordered table-striped table-hover align-middle">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                @for (int i = 0; i < 12; i++)
-                                                {
-                                                    <th>@meses[i]</th>
-                                                }
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                @for (int i = 0; i < 12; i++)
-                                                {
-                                                    <td>@Model.AtividadesPorMesEstatisticas[$"AtividadesMes{i + 1}"]</td>
-                                                }
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-            </div>
-        </div>
-    </div>
+	</style>
 
-    <!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+	<!-- Container -->
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+			<h1 class="me-3 fw-bold text-center mb-4">@ViewData["Title"]</h1>
+			<img src="~/images/icons/search-group.png" width="50" height="50">
+		</div>
 
-        <div class="row text-center mt-2">
-            <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
-            </div>
-
-            <div class="col-2">
-                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
-            </div>
-        </div>
-        <div class="">
-            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
-        </div>
-        <!-- -->
-        <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>Como alterar uma visita de estudo</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
+		<div class="row" style="padding-left: 6em;">
+			<div class="col-3"></div>
+			<div class="col-5"></div>
+			<div class="col-3  pb-2" id="divQuestion">
+				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
+					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+				</button>
+			</div>
+		</div>
 
 
-                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
+		<!-- Fase 1  -->
+		<!-- d-flex -->
+		<div class="d-flex justify-content-center" id="divFase1">
+			<!-- Box  -->
+			<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+				<div class="row box border-5">
 
-                </span>
-            </li>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<h3>Gráfico de Visitas de Estudo</h3>
+								<div class="d-flex align-items-center">
+									<h5 class="mb-0 mr-2">Selecione o formulário:</h5>
+									<select id="selectFormulario" class="form-control">
+										@if (ViewBag.Formularios.Count == 0)
+										{
+											<option value="">Formulários não criados</option>
+										}
+										else
+										{
+											@foreach (var formulario in ViewBag.Formularios)
+											{
+												<option value="@formulario.FormularioId">@formulario.Name</option>
+											}
+										}
+									</select>
+								</div>
+								@if (ViewBag.Formularios.Count == 0)
+								{
+									<div id="noFormulariosMessage" class="text-center no-formulario-msg">
+										<h4>Formulário não criado</h4>
+									</div>
+								}
+								else
+								{
+									<div class="chart-container">
+										<canvas id="visitasDeEstudoChart"></canvas>
+									</div>
+								}
+							</div>
+							<div class="col-md-6">
+								<h3>Gráfico de Atividades por Mês</h3>
+								<div class="chart-container">
+									<canvas id="atividadesPorMesChart"></canvas>
+								</div>
+							</div>
+						</div>
 
+						<div class="row mt-5">
+							<div class="col-md-6">
+								<h3>Visitas de Estudo</h3>
+								<div class="table-container">
+									<table class="table table-bordered table-striped table-hover align-middle">
+										<thead class="thead-dark">
+											<tr>
+												<th>Autorizados</th>
+												<th>Não Autorizados</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td id="percentualAutorizados">@Model.VisitasDeEstudoEstatisticas["PercentualAutorizados"] %</td>
+												<td id="percentualNaoAutorizados">@Model.VisitasDeEstudoEstatisticas["PercentualNaoAutorizados"] %</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<h3>Atividades por Mês</h3>
+								<div class="table-container">
+									<table class="table table-bordered table-striped table-hover align-middle">
+										<thead class="thead-dark">
+											<tr>
+												@for (int i = 0; i < 12; i++)
+												{
+													<th>@meses[i]</th>
+												}
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												@for (int i = 0; i < 12; i++)
+												{
+													<td>@Model.AtividadesPorMesEstatisticas[$"AtividadesMes{i + 1}"]</td>
+												}
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/terms.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Leia artigos de ajuda</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/comunity.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Pergunte à comunidade</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/new.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Novas Atualizações</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/feedback.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Dê Feedback</span>
-                        </div>
-                    </div>
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
-                </button>
-            </li>
-        </ul>
-    </div>
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">Ajuda</h2>
+			</div>
 
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-
-        function atualizarEstatisticas(formularioId) {
-            $.ajax({
-                type: 'GET',
-                url: '@Url.Action("GetVisitasDeEstudoEstatisticasAjax", "Estatisticas")',
-                data: { formularioId: formularioId },
-                success: function (data) {
-                    if (data == null) {
-                        // Não há formulários criados
-                        $('#visitasDeEstudoChart').hide();
-                        $('#noFormulariosMessage').removeClass('d-none');
-                        $('#percentualAutorizados').text('');
-                        $('#percentualNaoAutorizados').text('');
-                        $('#selectFormulario').append('<option disabled selected value>Formulários não criados</option>');
-                    } else {
-                        // Há formulários criados
-                        $('#visitasDeEstudoChart').show();
-                        $('#noFormulariosMessage').addClass('d-none');
-                        $('#percentualAutorizados').text(data.PercentualAutorizados.toFixed(2) + ' %');
-                        $('#percentualNaoAutorizados').text(data.PercentualNaoAutorizados.toFixed(2) + ' %');
-                        visitasDeEstudoChart.data.labels = ['Autorizados', 'Não Autorizados'];
-                        visitasDeEstudoChart.data.datasets[0].data = [data.PercentualAutorizados, data.PercentualNaoAutorizados];
-                        visitasDeEstudoChart.update();
-                    }
-                }
-            });
-        }
-
-
-
-
-        // Inicializa o gráfico de visitas de estudo
-        const visitasDeEstudoData = {
-            labels: ['Autorizados', 'Não Autorizados'],
-            datasets: [{
-                data: [],
-                backgroundColor: ['#4CAF50', '#F44336']
-            }]
-        };
-
-        function legendColor(context) {
-            const index = context.dataIndex;
-            const colors = ['#4CAF50', '#F44336'];
-            return colors[index];
-        }
-
-        const visitasDeEstudoConfig = {
-            type: 'pie',
-            data: visitasDeEstudoData,
-            options: {
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            font: {
-                                size: 14,
-                                family: 'Poppins'
-                            },
-                            color: legendColor
-                        }
-                    }
-                },
-                cutoutPercentage: 50,
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        };
+						<span>Como alterar uma visita de estudo</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
 
 
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					Here's some more textHere's some more textHere's some more textHere's some
+					more textHe
+
+				</span>
+			</li>
 
 
-        const visitasDeEstudoChart = new Chart(
-            document.getElementById('visitasDeEstudoChart'),
-            visitasDeEstudoConfig
-        );
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>Leia artigos de ajuda</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>Pergunte à comunidade</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>Novas Atualizações</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>Dê Feedback</span>
+						</div>
+					</div>
 
-        // Adiciona um listener de evento no elemento selectFormulario
-        $('#selectFormulario').on('change', function () {
-            const formularioId = $(this).val();
-            atualizarEstatisticas(formularioId);
-        });
+				</button>
+			</li>
+		</ul>
+	</div>
 
 
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
 
-        // Gráfico de barras para as estatísticas de atividades por mês
-        const atividadesPorMesData = {
-            labels: [
-                'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-            ],
-            datasets: [{
-                label: 'Atividades por Mês',
-                data: [
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes1"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes2"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes3"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes4"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes5"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes6"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes7"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes8"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes9"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes10"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes11"],
-                    @Model.AtividadesPorMesEstatisticas["AtividadesMes12"]
-                        ],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        };
+		function atualizarEstatisticas(formularioId) {
+			$.ajax({
+				type: 'GET',
+				url: '@Url.Action("GetVisitasDeEstudoEstatisticasAjax", "Estatisticas")',
+				data: { formularioId: formularioId },
+				success: function (data) {
+					if (data == null) {
+						// Não há formulários criados
+						$('#visitasDeEstudoChart').hide();
+						$('#noFormulariosMessage').removeClass('d-none');
+						$('#percentualAutorizados').text('');
+						$('#percentualNaoAutorizados').text('');
+						$('#selectFormulario').append('<option disabled selected value>Formulários não criados</option>');
+					} else {
+						// Há formulários criados
+						$('#visitasDeEstudoChart').show();
+						$('#noFormulariosMessage').addClass('d-none');
+						$('#percentualAutorizados').text(data.PercentualAutorizados.toFixed(2) + ' %');
+						$('#percentualNaoAutorizados').text(data.PercentualNaoAutorizados.toFixed(2) + ' %');
+						visitasDeEstudoChart.data.labels = ['Autorizados', 'Não Autorizados'];
+						visitasDeEstudoChart.data.datasets[0].data = [data.PercentualAutorizados, data.PercentualNaoAutorizados];
+						visitasDeEstudoChart.update();
+					}
+				}
+			});
+		}
 
-        const atividadesPorMesConfig = {
-            type: 'bar',
-            data: atividadesPorMesData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1,
-                            font: {
-                                size: 14,
-                                family: 'Poppins'
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 14,
-                                family: 'Poppins'
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 10,
-                        top: 10,
-                        bottom: 10
-                    }
-                }
-            }
-        };
+		// Inicializa o gráfico de visitas de estudo
+		const visitasDeEstudoData = {
+			labels: ['Autorizados', 'Não Autorizados'],
+			datasets: [{
+				data: [],
+				backgroundColor: ['#4CAF50', '#F44336']
+			}]
+		};
 
-        const atividadesPorMesChart = new Chart(
-            document.getElementById('atividadesPorMesChart'),
-            atividadesPorMesConfig
-        );
+		function legendColor(context) {
+			const index = context.dataIndex;
+			const colors = ['#4CAF50', '#F44336'];
+			return colors[index];
+		}
 
-        $(document).ready(function () {
-            const formularioId = $('#selectFormulario').val();
-            if (formularioId) {
-                atualizarEstatisticas(formularioId);
-            } else {
-                $('#visitasDeEstudoChart').hide();
-                $('#percentualAutorizados').text('0%');
-                $('#percentualNaoAutorizados').text('0%');
-            }
-        });
-    </script>
+		const visitasDeEstudoConfig = {
+			type: 'pie',
+			data: visitasDeEstudoData,
+			options: {
+				plugins: {
+					legend: {
+						position: 'right',
+						labels: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							},
+							color: legendColor
+						}
+					}
+				},
+				cutoutPercentage: 50,
+				responsive: true,
+				maintainAspectRatio: false
+			}
+		};
 
-    <!-- // Slide de Ajuda  -->
-    <!-- Search on table (Fase1) -->
-    <script>
-        // Get the input element and add an event listener for input
-        const input = document.getElementById("nome");
-        if (input) {
-            input.addEventListener("input", function () {
+		const visitasDeEstudoChart = new Chart(
+			document.getElementById('visitasDeEstudoChart'),
+			visitasDeEstudoConfig
+		);
 
-                // Get the table and search for the input value
-                const table = document.getElementById("myTable");
-                const filter = input.value.toUpperCase();
-                const rows = table.getElementsByTagName("tr");
+		// Adiciona um listener de evento no elemento selectFormulario
+		$('#selectFormulario').on('change', function () {
+			const formularioId = $(this).val();
+			atualizarEstatisticas(formularioId);
+		});
 
-                // Loop through all table rows, and hide those that don't match the search query
-                for (let i = 0; i < rows.length; i++) {
-                    const cells = rows[i].getElementsByTagName("td");
-                    let match = false;
-                    for (let j = 0; j < cells.length; j++) {
-                        const cell = cells[j];
-                        if (cell) {
-                            const text = cell.textContent || cell.innerText;
-                            if (text.toUpperCase().indexOf(filter) > -1) {
-                                match = true;
-                                break;
-                            }
-                        }
-                    }
-                    rows[i].style.display = match ? "" : "none";
-                }
-            });
-        }
-    </script>
+		// Gráfico de barras para as estatísticas de atividades por mês
+		const atividadesPorMesData = {
+			labels: [
+				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+			],
+			datasets: [{
+				label: 'Atividades por Mês',
+				data: [
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes1"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes2"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes3"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes4"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes5"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes6"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes7"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes8"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes9"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes10"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes11"],
+		@Model.AtividadesPorMesEstatisticas["AtividadesMes12"]
+								],
+				backgroundColor: 'rgba(75, 192, 192, 0.2)',
+				borderColor: 'rgba(75, 192, 192, 1)',
+				borderWidth: 1
+			}]
+		};
 
-    <script>
-        window.onload = function () {
-            var divBox = document.getElementById("myBox")
-            var divQuestion = document.getElementById("divQuestion")
+		const atividadesPorMesConfig = {
+			type: 'bar',
+			data: atividadesPorMesData,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
 
-            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-                // Large screen
-                divBox.classList.remove("col-6");
-                divBox.classList.add("col-12");
+		const atividadesPorMesChart = new Chart(
+			document.getElementById('atividadesPorMesChart'),
+			atividadesPorMesConfig
+		);
 
-                divQuestion.classList.add("text-right");
-                divQuestion.style.paddingRight = "2em";
+		$(document).ready(function () {
+			const formularioId = $('#selectFormulario').val();
+			if (formularioId) {
+				atualizarEstatisticas(formularioId);
+			} else {
+				$('#visitasDeEstudoChart').hide();
+				$('#percentualAutorizados').text('0%');
+				$('#percentualNaoAutorizados').text('0%');
+			}
+		});
+	</script>
 
-            }
-        }
-    </script>
+	<!-- // Slide de Ajuda  -->
+	<!-- Search on table (Fase1) -->
+	<script>
+		// Get the input element and add an event listener for input
+		const input = document.getElementById("nome");
+		if (input) {
+			input.addEventListener("input", function () {
+
+				// Get the table and search for the input value
+				const table = document.getElementById("myTable");
+				const filter = input.value.toUpperCase();
+				const rows = table.getElementsByTagName("tr");
+
+				// Loop through all table rows, and hide those that don't match the search query
+				for (let i = 0; i < rows.length; i++) {
+					const cells = rows[i].getElementsByTagName("td");
+					let match = false;
+					for (let j = 0; j < cells.length; j++) {
+						const cell = cells[j];
+						if (cell) {
+							const text = cell.textContent || cell.innerText;
+							if (text.toUpperCase().indexOf(filter) > -1) {
+								match = true;
+								break;
+							}
+						}
+					}
+					rows[i].style.display = match ? "" : "none";
+				}
+			});
+		}
+	</script>
+
+	<script>
+		window.onload = function () {
+			var divBox = document.getElementById("myBox")
+			var divQuestion = document.getElementById("divQuestion")
+
+			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+				// Large screen
+				divBox.classList.remove("col-6");
+				divBox.classList.add("col-12");
+
+				divQuestion.classList.add("text-right");
+				divQuestion.style.paddingRight = "2em";
+
+			}
+		}
+	</script>
 
 }

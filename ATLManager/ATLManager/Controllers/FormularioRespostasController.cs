@@ -53,20 +53,24 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            var formularioResposta = await _context.FormularioResposta.FindAsync(id);
-            if (formularioResposta == null)
+			var resposta = await _context.FormularioResposta
+				.Include(f => f.Educando)
+				.Include(f => f.Formulario)
+				.FirstOrDefaultAsync(m => m.FormularioRespostaId == id);
+			if (resposta == null)
             {
                 return NotFound();
             }
 
-            var formulario = await _context.Formulario.FindAsync(formularioResposta.FormularioId);
+            var formulario = await _context.Formulario.FindAsync(resposta.FormularioId);
             var viewModel = new FormularioResponderViewModel
             {
-                FormularioRespostaId = formularioResposta.FormularioRespostaId,
+                FormularioRespostaId = resposta.FormularioRespostaId,
                 Name = formulario.Name,
-                Description = formulario.Description,
+                Educando = resposta.Educando.Name + " " + resposta.Educando.Apelido,
+				Description = formulario.Description,
                 DateLimit = formulario.DateLimit.ToShortDateString(),
-                Authorized = formularioResposta.Authorized
+                Authorized = resposta.Authorized
             };
 
             return View(viewModel);
@@ -86,7 +90,8 @@ namespace ATLManager.Controllers
 
             ModelState.Remove("Name");
             ModelState.Remove("Description");
-            ModelState.Remove("DateLimit");
+			ModelState.Remove("Educando");
+			ModelState.Remove("DateLimit");
 
             if (ModelState.IsValid)
             {

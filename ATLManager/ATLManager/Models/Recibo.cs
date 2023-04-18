@@ -16,7 +16,8 @@ namespace ATLManager.Models
 
         [Required]
         [DisplayName("Preço")]
-        public decimal Price { get; set; }
+        [RegularExpression("[1-9][0-9]*?[,.][0-9]{0,2}")]
+        public string Price { get; set; }
 
         [Required]
 		[StringLength(21, MinimumLength = 21, ErrorMessage = "Este campo deve conter 21 dígitos")]
@@ -40,7 +41,11 @@ namespace ATLManager.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateLimit { get; set; }
 
-		public Recibo()
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+        public ATL? Atl { get; set; }
+
+        public Recibo()
         {
             ReciboId = Guid.NewGuid();
         }

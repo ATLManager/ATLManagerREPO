@@ -31,15 +31,45 @@ namespace ATLManager.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var currentUserAccount = await _context.ContaAdministrativa
+
+            if (HttpContext.User.IsInRole("Coordenador") || HttpContext.User.IsInRole("Funcionario"))
+            {
+                var currentUserAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            var atividades = await _context.Atividade
-                .Where(a => a.AtlId == currentUserAccount.AtlId)
-                .ToListAsync();
+                var atividades = await _context.Atividade
+                    .Where(a => a.AtlId == currentUserAccount.AtlId)
+                    .ToListAsync();
 
-            return View(atividades);
+                return View(atividades);
+            }
+            else
+            {
+                var currentUserAccount = await _context.EncarregadoEducacao
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+                var educandos = await _context.Educando
+                    .Include(e => e.Atl)
+                    .Include(e => e.Encarregado)
+                    .Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+                    .ToListAsync();
+
+                var atividades = new List<Atividade>();
+
+                foreach (var educando in educandos)
+                {
+                    var tempAtividades = await _context.Atividade
+						.Include(a => a.Atl)
+                        .Where(r => r.AtlId == educando.AtlId)
+                        .ToListAsync();
+
+                    atividades = atividades.Union(tempAtividades).ToList();
+                }
+                ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
+                return View(atividades);
+            }
         }
 
         // GET: Atividades/Details/5

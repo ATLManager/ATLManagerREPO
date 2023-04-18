@@ -42,6 +42,22 @@
                                         <form asp-action="Create">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                             <div class="row mb-2">
+                                                <div class="col-3"></div>
+                                                    <div class="col-6 mb-3">
+													    <label class="form-label">Categoria</label>
+													    <select class="form-control" id="comboCategoria"> 
+														    <option value="">Escolha uma opção</option>
+                                                            <option value="1">Visita de estudo</option>
+                                                            <option value="2">Atividade</option>
+                                                            <option value="3">Geral</option>
+													    </select>
+												    </div>
+                                                <div class="col-3"></div>
+                                            </div>
+                                               
+                                           
+                                            
+                                            <div class="row mb-2">
                                                 <div class="col-6">
                                                     <label asp-for="Name" class="form-label"></label>
                                                     <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
@@ -50,16 +66,27 @@
 
 
                                                 <div class="col-6">
-                                                    <div class="form-group">
+                                                    <!-- Se for Visita de estudo apresenta lista de visitas de estudo -->
+                                                    <div class="form-group" id="divVisitaEstudo" style="display:none">
                                                         <label asp-for="VisitaEstudoId" class="control-label"></label>
                                                         <select asp-for="VisitaEstudoId" class="form-control" asp-items="ViewBag.VisitaEstudoId">
                                                             <option value="">Escolha uma Visita de Estudo</option>
                                                         </select>
                                                     </div>
+                                                    
+                                                    <!-- Se for Atividade apresenta lista de atividades -->
+                                                    <div class="form-group" id="divAtividade" style="display:none">
+                                                        d
+                                                    
+                                                        @* 
+                                                            <label asp-for="AtividadeId" class="control-label"></label>
+                                                            <select asp-for="AtividadeId" class="form-control" asp-items="ViewBag.AtividadeId">
+                                                                <option value="">Escolha uma Atividade</option>
+                                                            </select>
+                                                        *@
+                                                    </div>
                                                 </div>
-
                                             </div>
-
                                             <div class="row mb-2">
                                                 <div class="col-6">
                                                     <label asp-for="StartDate" class="control-label"></label>
@@ -69,12 +96,12 @@
 
                                                 <div class="col-6 position-relative">
                                                     <div class="row">
-                                                        <div class="h-100 position-absolute top-0 end-0">
+                                                        <div class="h-100 position-absolute" id="specialDivDescription">
                                                             <!-- extended box content -->
                                                             <div class="row mb-2">
                                                                 <div class="col">
                                                                     <label asp-for="Description" class="control-label">Descrição</label>
-                                                                    <textarea asp-for="Description" class="form-control" style="height:8em;resize:none" placeholder="Insira uma descrição"></textarea>
+                                                                    <textarea asp-for="Description" class="form-control" id="descricao" style="resize:none" placeholder="Insira uma descrição"></textarea>
                                                                     <span asp-validation-for="Description" class="text-danger"></span>
                                                                 </div>
                                                             </div>
@@ -82,7 +109,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="row mb-2">
                                                 <div class="col-6">
                                                     <label asp-for="DateLimit" class="control-label"></label>
@@ -90,8 +116,6 @@
                                                     <span asp-validation-for="DateLimit" class="text-danger"></span>
                                                 </div>
                                             </div>
-
-
 
                                             <div class="row justify-content-center mt-4">
                                                 <div class="col-md-auto mt-4">
@@ -114,7 +138,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                           
                                         </form>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +150,9 @@
             </div>
             <!-- // Box -->
         </div>
-    </div>
+
+
+
 	    <!-- Slide de Ajuda  -->
     <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
@@ -223,32 +251,17 @@
         });
     </script>
 
-    <!--  Options Script -->
-    <script>
-        const toggleSwitch = document.getElementById('toggleSwitch');
-        const divAgrupamento = document.getElementById('divAgrupamento');
-        const divCertidao = document.getElementById('divCertidao');
+    <!--JavaScript-->
 
-
-        toggleSwitch.addEventListener('change', function () {
-            if (toggleSwitch.checked) {
-                divAgrupamento.style.display = 'block';
-                divCertidao.style.display = 'none';
-            } else {
-                divAgrupamento.style.display = 'none';
-                divCertidao.style.display = 'block';
-            }
-        });
-    </script>
-    <!--  // Options Script -->
-    @section Scripts {
-    @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    }
 
     <script>
         window.onload = function () {
+            var combobox1 = document.getElementById("comboCategoria");
+            var combobox2 = document.getElementById("divVisitaEstudo");
+            var combobox3 = document.getElementById("divAtividade");
+            var descricao = document.getElementById("descricao");
+            var divDescription = document.getElementById("specialDivDescription");
+            
             var divBox = document.getElementById("myBox")
             var divQuestion = document.getElementById("divQuestion")
 
@@ -258,8 +271,59 @@
                 divBox.classList.add("col-12");
 
                 divQuestion.classList.add("text-right");
-                divQuestion.style.paddingRight("2em");
+                divQuestion.style.paddingRight = "2em";
+
+                combobox2.style.display = "none";
+                combobox3.style.display = "none";
+                divDescription.style.top = "-5.25em";
+                descricao.style.height = "13.1em";
+            }else{
+                combobox2.style.display = "none";
+                combobox3.style.display = "none";
+                divDescription.style.top = "-5.25em";
+                descricao.style.height = "13.1em";
             }
+            
         }
     </script>
+
+    <script>
+        //obtem as referências para as caixas de seleção
+        var combobox1 = document.getElementById("comboCategoria");
+        var combobox2 = document.getElementById("divVisitaEstudo");
+        var combobox3 = document.getElementById("divAtividade");
+        var descricao = document.getElementById("descricao");
+        var divDescription = document.getElementById("specialDivDescription");
+
+        //adiciona um ouvinte de evento "change" para a primeira caixa de seleção
+        combobox1.addEventListener("change", function () {
+            //verifica qual opção foi selecionada na primeira caixa de seleção
+            if (combobox1.value == "1") {
+                //mostra a segunda caixa de seleção e oculta a terceira caixa de seleção
+                combobox2.style.display = "block";
+                combobox3.style.display = "none";
+                divDescription.style.top = "";
+                descricao.style.height = "8em";
+            } else if (combobox1.value == "2") {
+                //mostra a terceira caixa de seleção e oculta a segunda caixa de seleção
+                combobox2.style.display = "none";
+                combobox3.style.display = "block";
+                divDescription.style.top = "";
+                descricao.style.height = "8em";
+            } else {
+                combobox2.style.display = "none";
+                combobox3.style.display = "none";
+                divDescription.style.top = "-5.25em";
+                descricao.style.height = "13.1em";
+            }
+        });
+    </script>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+
 }

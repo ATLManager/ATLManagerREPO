@@ -288,6 +288,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2FuZG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Estatisticas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXN0YXRpc3RpY2FzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/FormularioRespostas/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb1Jlc3Bvc3Rhc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -318,6 +322,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/IndexEE.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcSW5kZXhFRS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Formularios/Respostas.cshtml]
@@ -394,6 +402,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/IndexEE.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaWJvc1xJbmRleEVFLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Bruno Resende/Desktop/My Stuff/Uni shit/Ano 3/PV/ATLManagerREPO/ATLManager/ATLManager/Views/Recibos/Respostas.cshtml]

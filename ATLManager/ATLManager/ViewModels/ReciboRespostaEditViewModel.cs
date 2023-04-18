@@ -9,22 +9,32 @@ namespace ATLManager.ViewModels
     {
         public Guid RespostaId { get; set; }
         public Guid ReciboId { get; set; }
-
-        [ForeignKey("Educando")]
-        public Guid EducandoId { get; set; }
-        public Educando Educando { get; set; }
-
+		
 		[DisplayName("Nome")]
 		public string Name { get; set; }
+
+		[DisplayName("Educando")]
+		public string Educando { get; set; }
+
 		[DisplayName("Preço")]
-		public decimal Price { get; set; }
+		[RegularExpression("[1-9][0-9]*?[,.][0-9]{0,2}", ErrorMessage = "Formato Incorreto, inclua duas casas decimais (Ex. 200,00)")]
+		public string Price { get; set; }
+
 		public string NIB { get; set; }
+
 		[DisplayName("Descrição")]
 		public string Description { get; set; }
+
+		[DataType(DataType.Date)]
         [DisplayName("Data de resposta")]
+		[DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
 		public string ResponseDate { get; set; }
+
+		[DataType(DataType.Date)]
 		[DisplayName("Data limite de pagamento")]
-		public DateTime DateLimit { get; set; }
+		[DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+		public string DateLimit { get; set; }
+
 		[DisplayName("Comprovativo")]
         public string ComprovativoPath { get; set; }
 
@@ -39,21 +49,5 @@ namespace ATLManager.ViewModels
 		public string? Notes { get; set; }
 
 		public ReciboRespostaEditViewModel() { }
-
-		public ReciboRespostaEditViewModel(ReciboResposta resposta)
-		{
-			RespostaId = resposta.ReciboRespostaId;
-			ReciboId = resposta.ReciboId;
-			EducandoId = resposta.EducandoId;
-			Name = resposta.Name;
-			Price = resposta.Price;
-			NIB = resposta.NIB;
-			Description = resposta.Description;
-			ResponseDate = resposta.ResponseDate.ToString();
-			DateLimit = resposta.DateLimit;
-			ComprovativoPath = resposta.ComprovativoPath;
-			Authorized = resposta.Authorized;
-			Notes = resposta.Notes;
-		}
 	}
 }

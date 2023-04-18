@@ -30,7 +30,7 @@
 									Educando
 							</button>
 
-							<a class="nav-link text-center" href="@Url.Action("DetailsSaude", new { id = Model.EducandoId })">
+							<a class="nav-link text-center" asp-action="DetailsSaude" asp-route-id="@Model.EducandoId">
 								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
 										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
 									Info. Saúde
@@ -48,20 +48,6 @@
 								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
 										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
 									Encarregado de Educação
-								</button>
-							</a>
-
-							<a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
-								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-									Recibos de Pagamento
-								</button>
-							</a>
-
-							<a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
-								<button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-									Visitas de Estudo
 								</button>
 							</a>
 						</div>
@@ -137,6 +123,41 @@
 												</dd>
 											</div>
 										</dl>
+										<div class="row">
+											<dt class="col mr-2">
+												Declaracao Médica
+												@*@Html.DisplayNameFor(model => model.DeclaracaoMedica)*@
+											</dt>
+											<dd class="col text-left">
+												@if (Model.DeclaracaoMedica != null)
+												{
+													<a asp-action="Download" asp-route-fileName="@Model.DeclaracaoMedica">Descarregar ficheiro</a>
+												}
+												else
+												{
+													<span class="text-center"> - </span>
+												}
+											</dd>
+										</div>
+
+										<div class="row">
+											<dt class="col mr-2">
+												Boletim Vacinas
+												@*@Html.DisplayNameFor(model => model.BoletimVacinas)*@
+											</dt>
+											<dd class="col text-left">
+												@if (Model.BoletimVacinas != null)
+												{
+													<a asp-action="Download" asp-route-fileName="@Model.BoletimVacinas">Descarregar ficheiro</a>
+												}
+												else
+												{
+													<span class="text-center"> - </span>
+												}
+											</dd>
+										</div>
+
+
 										<hr />
 										<div class="d-flex text-center mt-4">
 											<div class="col">

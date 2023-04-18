@@ -116,7 +116,7 @@
 										@Html.DisplayNameFor(model => model.Notes)
 									</dt>
 									<dd class="col text-left">
-										@if (Model.ReceiptPath != null)
+										@if (Model.Notes != null)
 										{
 											@Html.DisplayFor(model => model.Notes)
 										}
@@ -130,12 +130,24 @@
 							<hr />
 							<div class="d-flex text-center mt-4">
 								<div class="col">
-									<a asp-controller="Recibos" asp-action="Respostas" asp-route-id="@Model.ReciboId">
-										<button type="button"
-												class="btn btn-secondary custom-button" style="border-radius:6em">
-											Voltar
-										</button>
-									</a>
+									@if (User.IsInRole("EncarregadoEducacao"))
+									{
+										<a asp-controller="Recibos" asp-action="IndexEE">
+											<button type="button"
+													class="btn btn-secondary custom-button" style="border-radius:6em">
+												Voltar
+											</button>
+										</a>
+									}
+									else
+									{
+										<a asp-controller="Recibos" asp-action="Respostas" asp-route-id="@Model.ReciboId">
+											<button type="button"
+													class="btn btn-secondary custom-button" style="border-radius:6em">
+												Voltar
+											</button>
+										</a>
+									}
 								</div>
 							</div>
 							<div>

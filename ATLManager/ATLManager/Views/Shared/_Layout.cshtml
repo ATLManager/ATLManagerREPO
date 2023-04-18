@@ -24,7 +24,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ATLManager</title>
 
-
     <!-- Ligação ao bootstrap localmente -->
     <link rel='stylesheet' type='text/css' media='screen' href='~/lib/bootstrap/dist/css/bootstrap.min.css'>
 
@@ -66,16 +65,18 @@
                     </div>
                     <div class="sidebar-brand-text mx-3">ATL Manager</div>
                 </a>
-                <hr class="sidebar-divider my-0">
-                <li class="nav-item active">
+                @*<hr class="sidebar-divider my-0">*@
+              @*  <li class="nav-item active">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
-                </li>
-                <hr class="sidebar-divider">
+                </li>*@
+                @*<hr class="sidebar-divider">*@
+                <br><br>
+                 <hr class="sidebar-divider">
                 <div class="sidebar-heading">
-                    Features
+                    Educação
                 </div>
                 @if(User.IsInRole("Administrador"))
                 {
@@ -144,7 +145,7 @@
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Funcionarios" asp-action="Index"
                         aria-expanded="true" aria-controls="funcionarios">
-                            <i class="fas fa-fw fa-user"></i>
+                             <img class="me-1" src="~/images/icons/menu-icons/funcionario.png" height="25" width="25" >
                             <span>Funcionários</span>
                         </a>
                         @*<div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
@@ -159,79 +160,107 @@
                     </li>
                 }
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
                         aria-expanded="true" aria-controls="collapseTable">
-                            <i class="fas fa-fw fa-table"></i>
+                            <img class="me-1" src="~/images/icons/menu-icons/refeicao.png" height="25" width="25" >
                             <span>Refeições</span>
                         </a>
                     </li>
                 }
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
                            aria-expanded="true" aria-controls="funcionarios">
-                            <i class="fas fa-fw fa-user"></i>
+                              <img class="me-1" src="~/images/icons/menu-icons/educando.png" height="25" width="25" >
                             <span>Educandos</span>
                         </a>
                     </li>
                 }
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="VisitasEstudo" asp-action="Index"
                            aria-expanded="true" aria-controls="visitasestudo">
-                            <i class="fas fa-fw fa-user"></i>
+                            <img class="me-1" src="~/images/icons/menu-icons/visita_estudo.png" height="25" width="25">
                             <span>Visitas de Estudo</span>
                         </a>
                     </li>
                 }
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link collapsed" asp-controller="Formularios" asp-action="Index"
-                           aria-expanded="true" aria-controls="formularios">
-                            <i class="fas fa-fw fa-user"></i>
-                            <span>Formulários</span>
-                        </a>
+                        @if (User.IsInRole("EncarregadoEducacao"))
+                        {
+                            <a class="nav-link collapsed" asp-controller="Formularios" asp-action="IndexEE"
+                               aria-expanded="true" aria-controls="recibos">
+                                <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
+                                <span>Formulários</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav-link collapsed" asp-controller="Formularios" asp-action="Index"
+                               aria-expanded="true" aria-controls="formularios">
+                                <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
+                                <span>Formulários</span>
+                            </a>
+                        }
                     </li>
                 }
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Atividades" asp-action="Index"
                            aria-expanded="true" aria-controls="atividades">
-                            <i class="fas fa-fw fa-user"></i>
+                             <img class="me-1" src="~/images/icons/menu-icons/atividade.png" height="25" width="25" >
                             <span>Atividades</span>
                         </a>
                     </li>
                 }
+
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    Recursos
+                </div>
+
                 @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Estatisticas" asp-action="Index"
                            aria-expanded="true" aria-controls="estatisticas">
-                            <i class="fas fa-fw fa-user"></i>
+                            <img class="me-1" src="~/images/icons/menu-icons/estatistica.png" height="25" width="25" >
                             <span>Estatisticas</span>
                         </a>
                     </li>
                 }
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link collapsed" asp-controller="Recibos" asp-action="Index"
-                           aria-expanded="true" aria-controls="recibos">
-                            <i class="fas fa-fw fa-user"></i>
-                            <span>Recibos</span>
-                        </a>
+                        @if (User.IsInRole("EncarregadoEducacao"))
+                        {
+                            <a class="nav-link collapsed" asp-controller="Recibos" asp-action="IndexEE"
+                               aria-expanded="true" aria-controls="recibos">
+                                 <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
+                                <span>Recibos</span>
+                            </a>                            
+                        }
+                        else
+                        {
+                            <a class="nav-link collapsed" asp-controller="Recibos" asp-action="Index"
+                               aria-expanded="true" aria-controls="recibos">
+                                 <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
+                                <span>Recibos</span>
+                            </a>
+                        }
                     </li>
                 }
 

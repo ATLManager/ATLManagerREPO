@@ -14,7 +14,6 @@ using ATLManager.ViewModels;
 
 namespace ATLManager.Controllers
 {
-    [Authorize(Roles = "Administrador, Coordenador")]
     public class FormulariosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -34,6 +33,7 @@ namespace ATLManager.Controllers
         }
 
         // GET: Formularios
+        [Authorize(Roles = "Coordenador,Funcionario")]
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -68,8 +68,51 @@ namespace ATLManager.Controllers
             return View(formulario);
         }
 
-        // GET: Formularios/Respostas/5
-        public async Task<IActionResult> Respostas(Guid? id)
+        [Authorize(Roles = "EncarregadoEducacao")]
+		public async Task<IActionResult> IndexEE()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+			var currentUserAccount = await _context.EncarregadoEducacao
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var educandos = await _context.Educando
+				.Include(e => e.Atl)
+				.Include(e => e.Encarregado)
+				.Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+				.ToListAsync();
+
+			var formularios = new List<FormularioRespostasViewModel>();
+
+			foreach (var educando in educandos)
+			{
+				var respostas = await (from resposta in _context.FormularioResposta
+									   join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
+									   where resposta.EducandoId == educando.EducandoId
+									   select new FormularioRespostasViewModel
+									   {
+										   RespostaId = resposta.FormularioRespostaId,
+										   FormularioId = resposta.FormularioId,
+										   EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
+										   Authorized = resposta.Authorized,
+										   ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
+									   }).ToListAsync();
+
+				formularios = formularios.Union(respostas).ToList();
+			}
+
+			if (formularios == null)
+			{
+				return NotFound();
+			}
+
+			ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
+			return View(formularios);
+		}
+
+		// GET: Formularios/Respostas/5
+		public async Task<IActionResult> Respostas(Guid? id)
         {
             if (id == null || _context.Formulario == null)
             {
