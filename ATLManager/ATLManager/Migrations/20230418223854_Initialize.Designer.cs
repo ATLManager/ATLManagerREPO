@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    [Migration("20230327183555_ATLAdmin_RelationTable")]
-    partial class ATLAdmin_RelationTable
+    [Migration("20230418223854_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -133,6 +133,41 @@ namespace ATLManager.Migrations
                     b.ToTable("Agrupamento");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.Atividade", b =>
+                {
+                    b.Property<Guid>("AtividadeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AtividadeId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("Atividade");
+                });
+
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
                 {
                     b.Property<Guid>("AtlId")
@@ -228,6 +263,27 @@ namespace ATLManager.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ContaAdministrativa");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.CoordATL", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ContaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AtlId");
+
+                    b.HasIndex("ContaId");
+
+                    b.ToTable("CoordATL");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
@@ -370,6 +426,9 @@ namespace ATLManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AtividadeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("AtlId")
                         .HasColumnType("uniqueidentifier");
 
@@ -383,17 +442,18 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("VisitaEstudoId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FormularioId");
+
+                    b.HasIndex("AtividadeId");
 
                     b.HasIndex("AtlId");
 
@@ -430,6 +490,137 @@ namespace ATLManager.Migrations
                     b.HasIndex("FormularioId");
 
                     b.ToTable("FormularioResposta");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Notificacao", b =>
+                {
+                    b.Property<Guid>("NotificacaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataNotificacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Lida")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mensagem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("NotificacaoId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notificacoes");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Recibo", b =>
+                {
+                    b.Property<Guid>("ReciboId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("EmissionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NIB")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReciboId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("Recibo");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>
+                {
+                    b.Property<Guid>("ReciboRespostaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Authorized")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ComprovativoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("EducandoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NIB")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiptPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ReciboId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ReciboRespostaId");
+
+                    b.HasIndex("EducandoId");
+
+                    b.HasIndex("ReciboId");
+
+                    b.ToTable("ReciboResposta");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
@@ -514,15 +705,15 @@ namespace ATLManager.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descripton")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -685,6 +876,15 @@ namespace ATLManager.Migrations
                     b.Navigation("ContaAdministrativa");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.Atividade", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
+                });
+
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
                 {
                     b.HasOne("ATLManager.Models.Agrupamento", "Agrupamento")
@@ -730,6 +930,25 @@ namespace ATLManager.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.CoordATL", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ATLManager.Models.ContaAdministrativa", "ContaAdministrativa")
+                        .WithMany()
+                        .HasForeignKey("ContaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Atl");
+
+                    b.Navigation("ContaAdministrativa");
+                });
+
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
                 {
                     b.HasOne("ATLManager.Models.ATL", "Atl")
@@ -773,15 +992,19 @@ namespace ATLManager.Migrations
 
             modelBuilder.Entity("ATLManager.Models.Formulario", b =>
                 {
+                    b.HasOne("ATLManager.Models.Atividade", "Atividade")
+                        .WithMany()
+                        .HasForeignKey("AtividadeId");
+
                     b.HasOne("ATLManager.Models.ATL", "Atl")
                         .WithMany()
                         .HasForeignKey("AtlId");
 
                     b.HasOne("ATLManager.Models.VisitaEstudo", "VisitaEstudo")
                         .WithMany()
-                        .HasForeignKey("VisitaEstudoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VisitaEstudoId");
+
+                    b.Navigation("Atividade");
 
                     b.Navigation("Atl");
 
@@ -805,6 +1028,45 @@ namespace ATLManager.Migrations
                     b.Navigation("Educando");
 
                     b.Navigation("Formulario");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Notificacao", b =>
+                {
+                    b.HasOne("ATLManager.Areas.Identity.Data.ATLManagerUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Recibo", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>
+                {
+                    b.HasOne("ATLManager.Models.Educando", "Educando")
+                        .WithMany()
+                        .HasForeignKey("EducandoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ATLManager.Models.Recibo", "Recibo")
+                        .WithMany()
+                        .HasForeignKey("ReciboId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Educando");
+
+                    b.Navigation("Recibo");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
