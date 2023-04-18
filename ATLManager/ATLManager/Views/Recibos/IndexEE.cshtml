@@ -31,6 +31,8 @@
 	</div>
 	</div>
 	*@
+
+
 		<!-- Fase 1  -->
 		<!-- d-flex -->
 		<div class="d-flex justify-content-center" id="divFase1">
@@ -44,13 +46,26 @@
 									<form>
 										<div class="row mt-3">
 											<div class="mb-3">
+												<div class="row">
+													<div class="col">
+														<label for="educando-select" class="form-label">Selecione o educando:</label>
+														<select class="form-select" id="educando-select">
+															<option value="">-- Selecione um educando --</option>
+															@foreach (var educando in ViewBag.Educandos)
+															{
+																<option value="@educando.EducandoId">@educando.Name @educando.Apelido</option>
+															}
+														</select>
+													</div>
+												</div>
+												
 												<div class="row ">
 													<div class="col">
 														<label for="lista-formularios" class="form-label">Lista de respostas:</label>
 													</div>
 												</div>
 												<p class="rounded-circle"></p>
-												<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
+												<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="recibos-table">
 													<thead>
 														<tr>
 															<th>
@@ -68,7 +83,8 @@
 													<tbody>
 														@foreach (var item in Model)
 														{
-															<tr>
+															Guid? educandoId = ((List<Educando>)ViewBag.Educandos).FirstOrDefault(e => (e.Name + " " + e.Apelido) == item.EducandoName)?.EducandoId;
+															<tr data-educando-id="@educandoId">
 																<td>
 																	@Html.DisplayFor(modelItem => item.EducandoName)
 																</td>
@@ -263,6 +279,26 @@
 				divQuestion.classList.add("text-right");
 				divQuestion.style.paddingRight("2em");
 			}
+		}
+	</script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			filterTableBySelectedEducando();
+		});
+
+		document.getElementById('educando-select').addEventListener('change', () => {
+			filterTableBySelectedEducando();
+		});
+
+		function filterTableBySelectedEducando() {
+			const selectedEducandoId = document.getElementById('educando-select').value;
+			const tableRows = document.querySelectorAll('#recibos-table tbody tr');
+
+			tableRows.forEach(row => {
+				const rowEducandoId = row.getAttribute('data-educando-id');
+				row.style.display = selectedEducandoId === '' || rowEducandoId !== selectedEducandoId ? 'none' : '';
+			});
 		}
 	</script>
 }

@@ -108,6 +108,7 @@ namespace ATLManager.Controllers
 			}
 
 			ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
+			ViewBag.Educandos = educandos;
 			return View(formularios);
 		}
 

@@ -89,7 +89,8 @@ namespace ATLManager.Controllers
             }
 
             ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
-            return View(recibos);
+			ViewBag.Educandos = educandos;
+			return View(recibos);
         }
 
         // GET: Reciboes/Details/5
