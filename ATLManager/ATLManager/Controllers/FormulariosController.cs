@@ -59,6 +59,7 @@ namespace ATLManager.Controllers
 
             var formulario = await _context.Formulario
                 .Include(f => f.VisitaEstudo)
+                .Include(v => v.Atividade)
                 .FirstOrDefaultAsync(m => m.FormularioId == id);
             if (formulario == null)
             {
@@ -260,28 +261,10 @@ namespace ATLManager.Controllers
 			{
 				FormularioId = formulario.FormularioId,
 				Name = formulario.Name,
-				VisitaEstudoId = formulario.VisitaEstudoId,
 				Description = formulario.Description,
-				StartDate = formulario.StartDate.ToShortDateString(),
 				DateLimit = formulario.DateLimit.ToShortDateString(),
 			};
 
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var visitas = await _context.VisitaEstudo
-                .Include(a => a.Atl)
-                .Where(r => r.AtlId == userAccount.AtlId)
-                .ToListAsync();
-
-            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
 			return View(viewModel);
 		}
 
@@ -308,8 +291,6 @@ namespace ATLManager.Controllers
 						formulario.Name = viewModel.Name;
 						formulario.Description = viewModel.Description;
 
-						if (viewModel.StartDate != null)
-							formulario.StartDate = DateTime.Parse(viewModel.StartDate);
 						if (viewModel.DateLimit != null)
 							formulario.DateLimit = DateTime.Parse(viewModel.DateLimit);
                         
@@ -331,22 +312,6 @@ namespace ATLManager.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var visitas = await _context.VisitaEstudo
-                .Include(a => a.Atl)
-                .Where(r => r.AtlId == userAccount.AtlId)
-                .ToListAsync();
-
-            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", viewModel.VisitaEstudoId);
             return View(viewModel);
         }
 

@@ -22,11 +22,13 @@ namespace ATLManager.Models
         [ForeignKey("VisitaEstudo")]
         [DisplayName("Visita de Estudo")]
         public Guid? VisitaEstudoId { get; set; }
+        [DisplayName("Visita de Estudo")]
         public VisitaEstudo? VisitaEstudo { get; set; }
 
         [ForeignKey("Atividade")]
         [DisplayName("Atividade")]
         public Guid? AtividadeId { get; set; }
+        [DisplayName("Atividade")]
         public Atividade? Atividade { get; set; }
 
         [Required]
