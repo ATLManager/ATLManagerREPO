@@ -119,12 +119,14 @@
 										<div class="col">
 											<label asp-for="Receipt" class="control-label">Comprovativo de Pagamento</label>
 											<div class="custom-file">
-												<input asp-for="Receipt" class="custom-file-input" type="customFile">
+												<input asp-for="Receipt" class="custom-file-input" id="customFile">
 												<label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
 											</div>
 											<span asp-validation-for="Receipt" class="text-danger"></span>
 										</div>								
 									</div>
+
+							
 
 									<div class="row mb-3">
 										<div class="col">
@@ -172,6 +174,7 @@
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	</script>
+
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")
