@@ -5,7 +5,8 @@
 }
 
 * {
-    font-family: 'MyFont', sans-serif;
+    /*font-family: 'MyFont', sans-serif;*/
+    font-family: 'Poppins', sans-serif;
 }
 /*  */
 .nav-link.active {
