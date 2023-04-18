@@ -295,17 +295,28 @@
                 combobox3.style.display = "none";
                 divDescription.style.top = "";
                 descricao.style.height = "8em";
+
+                document.getElementById("combobox3").disabled = true;
+                document.getElementById("combobox2").disabled = false;
+
+
             } else if (combobox1.value == "2") {
                 //mostra a terceira caixa de seleção e oculta a segunda caixa de seleção
                 combobox2.style.display = "none";
                 combobox3.style.display = "block";
                 divDescription.style.top = "";
                 descricao.style.height = "8em";
+
+                document.getElementById("combobox2").disabled = true;
+                document.getElementById("combobox3").disabled = false;
+
             } else {
                 combobox2.style.display = "none";
                 combobox3.style.display = "none";
                 divDescription.style.top = "-5.25em";
                 descricao.style.height = "13.1em";
+                document.getElementById("combobox2").disabled = true;
+                document.getElementById("combobox3").disabled = true;
             }
         });
     </script>
