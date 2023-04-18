@@ -147,12 +147,14 @@ namespace ATLManager.Controllers
                     var code = resposta.ReciboRespostaId.ToString();
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(userEmail, "Novo recibo por responder",
-                        $"Por favor responda ao recibo <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
-
+                    
                     // Enviar notificação para o Encarregado de Educação
-                    await _notificacoesController.CreateNotification(encarregado.UserId, "Novo Recibo", "Há um novo recibo disponível para o seu educando. Por favor, responda o mais rápido possível.");
+                    var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+                    var notificationTitle = $"Novo Recibo - {recibo.Name}";
+
+                    await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+
+                    await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
 
                     _context.Add(resposta);
                 }

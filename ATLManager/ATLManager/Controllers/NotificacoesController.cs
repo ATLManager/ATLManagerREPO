@@ -28,8 +28,9 @@ namespace ATLManager.Controllers
             _roleManager = roleManager;
         }
 
-		// GET: Notificacao
-		public async Task<IActionResult> Index()
+        // GET: Notificacao
+        [Route("Notificacoes/Index/{id?}")]
+        public async Task<IActionResult> Index(Guid? id)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             var userId = currentUser.Id;
@@ -59,12 +60,18 @@ namespace ATLManager.Controllers
 			}
 
             // Marcar notificação como lida
-            notificacao.Lida = true;
-            _context.Update(notificacao);
-            await _context.SaveChangesAsync();
-            
-            return View(notificacao);
-		}
+            try
+            {
+                notificacao.Lida = true;
+                _context.Update(notificacao);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, notificacao });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
 
         // GET: Notificacao/Create
         [Authorize]
@@ -222,21 +229,21 @@ namespace ATLManager.Controllers
 			return View(notificacao);
 		}
 
-		// POST: Notificacao/Delete/5
-		[HttpPost, ActionName("Delete")]
+        // POST: Notificacao/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid NotificacaoId)
         {
             if (_context.Notificacoes == null)
             {
                 return Problem("Entity set 'ATLManagerAuthContext.Notificacoes'  is null.");
             }
-            var notificacao = await _context.Notificacoes.FindAsync(id);
+            var notificacao = await _context.Notificacoes.FindAsync(NotificacaoId);
             if (notificacao != null)
             {
                 _context.Notificacoes.Remove(notificacao);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -276,6 +283,23 @@ namespace ATLManager.Controllers
                 notification.Lida = true;
             }
 
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAll()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userId = currentUser.Id;
+
+            var allNotifications = await _context.Notificacoes
+                .Where(n => n.UserId == userId)
+                .ToListAsync();
+
+            _context.Notificacoes.RemoveRange(allNotifications);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));

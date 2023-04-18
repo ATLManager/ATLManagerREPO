@@ -214,8 +214,16 @@ namespace ATLManager.Controllers
 
                     var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
-
 					Guid specificATLId = (Guid)educando.AtlId;
+
+                    // Get the Recibo Name
+                    var recibo = await _context.Recibo.FirstOrDefaultAsync(r => r.ReciboId == reciboResposta.ReciboId);
+                    string reciboName = recibo.Name;
+
+                    // Update the notification title and message
+                    string notificationTitle = $"Nova Resposta ao Recibo - {reciboName}";
+                    string notificationMessage = $"Uma resposta ao recibo foi adicionada ou atualizada. <a href='/ReciboRespostas/Details/{reciboResposta.ReciboRespostaId}'>Clique aqui</a> para ver";
+
 
                     var usersToNotify = await (from user in _context.Users
 											   join userRole in _context.UserRoles on user.Id equals userRole.UserId
@@ -226,9 +234,9 @@ namespace ATLManager.Controllers
 
 					foreach (var user in usersToNotify)
 					{
-						await _notificacoesController.CreateNotification(user.Id, "Nova Resposta Recibo","Uma resposta ao recibo foi adicionada ou atualizada.");
-					}
-				}
+                        await _notificacoesController.CreateNotification(user.Id, notificationTitle, notificationMessage);
+                    }
+                }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ReciboRespostaExists(viewModel.ReciboRespostaId))

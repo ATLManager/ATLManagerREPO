@@ -110,9 +110,16 @@ namespace ATLManager.Controllers
 
 					Guid specificATLId = (Guid)educando.AtlId;
 
-                    
+                    // Get the Formulario Name
+                    var formulario = await _context.Formulario.FirstOrDefaultAsync(f => f.FormularioId == formularioResposta.FormularioId);
+                    string formularioName = formulario.Name;
 
-					var usersToNotify = await (from user in _context.Users
+                    // Update the notification title and message
+                    string notificationTitle = $"Nova Resposta ao Formulário - {formularioName}";
+                    string notificationMessage = $"Uma resposta ao formulário foi adicionada ou atualizada. <a href='/FormularioRespostas/Details/{formularioResposta.FormularioRespostaId}'>Clique aqui</a> para ver";
+
+
+                    var usersToNotify = await (from user in _context.Users
 											   join userRole in _context.UserRoles on user.Id equals userRole.UserId
 											   join role in _context.Roles on userRole.RoleId equals role.Id
 											   join account in _context.ContaAdministrativa on user.Id equals account.UserId
@@ -122,10 +129,10 @@ namespace ATLManager.Controllers
 
 					foreach (var user in usersToNotify)
 					{
-						await _notificacoesController.CreateNotification(user.Id, "Nova Resposta ao Formulário", "Uma resposta ao formulário foi adicionada ou atualizada.");
-					}
+                        await _notificacoesController.CreateNotification(user.Id, notificationTitle, notificationMessage);
+                    }
 
-				}
+                }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!FormularioRespostaExists(viewModel.FormularioRespostaId))

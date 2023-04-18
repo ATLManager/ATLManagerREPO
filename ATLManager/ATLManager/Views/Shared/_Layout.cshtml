@@ -318,7 +318,10 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
-                                    <span class="badge badge-danger badge-counter">@userNotifications.Count</span>
+                                    @if (userNotifications.Count > 0)
+                                    {
+                                        <span class="badge badge-danger badge-counter">@userNotifications.Count</span>
+                                    }
                                 </a>
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 class="dropdown-header">
@@ -326,7 +329,7 @@
                                     </h6>
                                     @foreach (var notification in userNotifications.OrderByDescending(n => n.DataNotificacao).Take(3))
                                     {
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <a class="dropdown-item d-flex align-items-center" href="@Url.RouteUrl(new { controller = "Notificacoes", action = "Index", id = notification.NotificacaoId })" data-id="@notification.NotificacaoId">
                                             <div class="mr-3">
                                                 <div class="icon-circle bg-primary">
                                                     <i class="fas fa-file-alt text-white"></i>
@@ -338,7 +341,7 @@
                                             </div>
                                         </a>
                                     }
-                                    
+
                                     @if (userNotifications.Count == 0)
                                     {
                                         <a class="dropdown-item text-center small text-gray-500">No new notifications</a>
@@ -346,10 +349,10 @@
                                     else
                                     {
                                         <a class="dropdown-item text-center small text-gray-500" asp-controller="Notificacoes" asp-action="Index">Show All Alerts</a>
-
                                     }
                                 </div>
                             </li>
+
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">

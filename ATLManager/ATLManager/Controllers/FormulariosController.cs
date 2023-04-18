@@ -158,11 +158,14 @@ namespace ATLManager.Controllers
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Action("Responder", "FormularioRespostas", new { id = resposta.FormularioRespostaId }, Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(userEmail, "Novo formulário por responder",
-                        $"Por favor responda ao formulário <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
 
                     // Enviar notificação para o Encarregado de Educação
-                    await _notificacoesController.CreateNotification(encarregado.UserId, "Novo Formulário", "Há um novo formulário disponível para o seu educando. Por favor, responda o mais rápido possível.");
+                    var notificationMessage = $"Há um novo formulário disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+                    var notificationTitle = $"Novo Formulário - {formulario.Name}";
+
+                    await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+
+                    await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
 
                     _context.Add(resposta);
                 }
