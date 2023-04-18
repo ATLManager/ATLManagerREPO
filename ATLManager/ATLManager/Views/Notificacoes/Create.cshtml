@@ -1,0 +1,241 @@
+﻿@model ATLManager.Models.Notificacao
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+            <h1 class="me-3 fw-bold text-center mb-2">Criar Notificação</h1>
+            <img src="~/images/icons/edit-group.png" width="50" height="50">
+        </div>
+
+        <div class="row" style="padding-left: 6em;">
+            <div class="col-3"></div>
+            <div class="col-5"></div>
+            <div class="col-4 pb-2" id="divQuestion">
+                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
+                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+                </button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+                <div class="row box border-5">
+                    <div class="container">
+                        <div class="row mt-3">
+                            <div class="mb-0">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <form asp-action="Create">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="UserId" class="form-label">Utilizador</label>
+                                                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId" id="userSelect">
+                                                    <option value="">-- Selecione um utilizador --</option>
+                                                </select>
+                                                <span asp-validation-for="UserId" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Titulo" class="form-label">Título</label>
+                                                <input asp-for="Titulo" class="form-control" placeholder="Insira o título" />
+                                                <span asp-validation-for="Titulo" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Mensagem" class="form-label">Mensagem</label>
+                                                <textarea asp-for="Mensagem" class="form-control" style="height:8em;resize:none" placeholder="Insira a mensagem"></textarea>
+                                                <span asp-validation-for="Mensagem" class="text-danger"></span>
+                                            </div>
+                                            <div class="row justify-content-center mt-4">
+                                                <div class="col-md-auto mt-4">
+                                                    <div class="row">
+                                                        <div class="col mb-3">
+                                                            <a asp-action="Index">
+                                                                <button type="button" class="btn btn-secondary custom-button" style="border-radius:6em">
+                                                                    Voltar
+                                                                </button>
+                                                            </a>
+                                                        </div>
+														<div class="col mb-3">
+															<input type="submit" value="Criar" class="btn btn-primary" style="border-radius:6em" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- // Box -->
+				</div>
+				<!-- // Fase 1 -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">Ajuda</h2>
+			</div>
+
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
+
+						<span>Como alterar uma visita de estudo</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
+
+
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					Here's some more textHere's some more textHere's some more textHere's some
+					more textHe
+
+				</span>
+			</li>
+
+
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>Leia artigos de ajuda</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>Pergunte à comunidade</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>Novas Atualizações</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>Dê Feedback</span>
+						</div>
+					</div>
+
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- // Slide de Ajuda  -->
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+
+	<!-- // Slide Left (Help) -->
+	<!-- JS Button help 1 -->
+	<script>
+		document.getElementById('showText').addEventListener('click', function () {
+			var displayText = document.getElementById('displayText');
+			var showTextBtn = document.getElementById('showText');
+
+			if (displayText.style.display === 'none') {
+				displayText.style.display = 'block';
+				showTextBtn.classList.remove('custom-button');
+				showTextBtn.classList.add('myButton');
+
+			} else {
+				displayText.style.display = 'none';
+				showTextBtn.classList.remove('myButton');
+				showTextBtn.classList.add('custom-button');
+			}
+		});
+	</script>
+	<!-- JS Button help 1 -->
+	<!--  Options Script -->
+	<script>
+		const toggleSwitch = document.getElementById('toggleSwitch');
+		const divAgrupamento = document.getElementById('divAgrupamento');
+		const divCertidao = document.getElementById('divCertidao');
+
+
+		toggleSwitch.addEventListener('change', function () {
+			if (toggleSwitch.checked) {
+				divAgrupamento.style.display = 'block';
+				divCertidao.style.display = 'none';
+			} else {
+				divAgrupamento.style.display = 'none';
+				divCertidao.style.display = 'block';
+			}
+		});
+	</script>
+	<!--  // Options Script -->
+	@section Scripts {
+	@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
+    }
+	<script>
+		window.onload = function () {
+			var divBox = document.getElementById("myBox")
+			//var divQuestion = document.getElementById("divQuestion")
+
+			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+				// Large screen
+				divBox.classList.remove("col-6");
+				divBox.classList.add("col-8");
+
+				//divQuestion.classList.add("text-right");
+				//divQuestion.style.paddingRight("2em");
+			}
+		}
+	</script>
+}

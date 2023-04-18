@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230417015710_Notificacao_Added_Titulo")]
+    partial class Notificacao_Added_Titulo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,8 +162,6 @@ namespace ATLManager.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("AtividadeId");
-
-                    b.HasIndex("AtlId");
 
                     b.ToTable("Atividade");
                 });
@@ -523,9 +523,6 @@ namespace ATLManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AtlId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("DateLimit")
                         .HasColumnType("datetime2");
 
@@ -547,13 +544,10 @@ namespace ATLManager.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ReciboId");
-
-                    b.HasIndex("AtlId");
 
                     b.ToTable("Recibo");
                 });
@@ -595,9 +589,8 @@ namespace ATLManager.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ReceiptPath")
                         .HasColumnType("nvarchar(max)");
@@ -870,15 +863,6 @@ namespace ATLManager.Migrations
                     b.Navigation("ContaAdministrativa");
                 });
 
-            modelBuilder.Entity("ATLManager.Models.Atividade", b =>
-                {
-                    b.HasOne("ATLManager.Models.ATL", "Atl")
-                        .WithMany()
-                        .HasForeignKey("AtlId");
-
-                    b.Navigation("Atl");
-                });
-
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
                 {
                     b.HasOne("ATLManager.Models.Agrupamento", "Agrupamento")
@@ -1029,17 +1013,6 @@ namespace ATLManager.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                    
-                    });
-                    
-            modelBuilder.Entity("ATLManager.Models.Recibo", b =>
-                {
-                    b.HasOne("ATLManager.Models.ATL", "Atl")
-                        .WithMany()
-                        .HasForeignKey("AtlId");
-
-                    b.Navigation("Atl");
-
                 });
 
             modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>

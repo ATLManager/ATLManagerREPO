@@ -23,14 +23,16 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly INotificacoesController _notificacoesController;
 
         public RecibosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender, INotificacoesController notificacoesController)
         {
             _context = context;
             _userManager = userManager;
             _emailSender = emailSender;
+            _notificacoesController = notificacoesController;
         }
 
         // GET: Reciboes
@@ -186,9 +188,14 @@ namespace ATLManager.Controllers
                     var code = resposta.ReciboRespostaId.ToString();
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
+                    
+                    // Enviar notificação para o Encarregado de Educação
+                    var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+                    var notificationTitle = $"Novo Recibo - {recibo.Name}";
 
-                    await _emailSender.SendEmailAsync(userEmail, "Novo recibo por responder",
-                        $"Por favor responda ao recibo <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
+                    await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+
+                    await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
 
                     _context.Add(resposta);
                 }
