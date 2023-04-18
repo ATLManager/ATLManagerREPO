@@ -159,7 +159,13 @@ namespace ATLManager.Controllers
                 .Where(r => r.AtlId == userAccount.AtlId)
                 .ToListAsync();
 
+            var atividades = await _context.Atividade
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == userAccount.AtlId)
+                .ToListAsync();
+
             ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name");
+            ViewData["AtividadeId"] = new SelectList(atividades, "AtividadeId", "Name");
             return View();
         }
 
@@ -168,9 +174,16 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,StartDate,DateLimit")] Formulario formulario)
+        public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,AtividadeId,StartDate,DateLimit")] Formulario formulario)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+			if (formulario.VisitaEstudoId != null && )
+			{
+				var validationMessage = "É necessário introduzir um NIPC ou Agrupamento";
+				ModelState.AddModelError("NIPC", validationMessage);
+				ModelState.AddModelError("AtlId", validationMessage);
+			}
+
+			var user = await _userManager.GetUserAsync(HttpContext.User);
             var userAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);

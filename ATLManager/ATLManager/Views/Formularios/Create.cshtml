@@ -54,17 +54,12 @@
 												    </div>
                                                 <div class="col-3"></div>
                                             </div>
-                                               
-                                           
-                                            
                                             <div class="row mb-2">
                                                 <div class="col-6">
                                                     <label asp-for="Name" class="form-label"></label>
                                                     <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
                                                     <span asp-validation-for="Name" class="text-danger"></span>
                                                 </div>
-
-
                                                 <div class="col-6">
                                                     <!-- Se for Visita de estudo apresenta lista de visitas de estudo -->
                                                     <div class="form-group" id="divVisitaEstudo" style="display:none">
@@ -76,14 +71,10 @@
                                                     
                                                     <!-- Se for Atividade apresenta lista de atividades -->
                                                     <div class="form-group" id="divAtividade" style="display:none">
-                                                        d
-                                                    
-                                                        @* 
-                                                            <label asp-for="AtividadeId" class="control-label"></label>
-                                                            <select asp-for="AtividadeId" class="form-control" asp-items="ViewBag.AtividadeId">
-                                                                <option value="">Escolha uma Atividade</option>
-                                                            </select>
-                                                        *@
+                                                        <label asp-for="AtividadeId" class="control-label"></label>
+                                                        <select asp-for="AtividadeId" class="form-control" asp-items="ViewBag.AtividadeId">
+                                                            <option value="">Escolha uma Atividade</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>

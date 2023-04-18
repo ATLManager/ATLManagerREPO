@@ -11,24 +11,31 @@ namespace ATLManager.Models
 
 		[Required]
         [MaxLength(20)]
+        [DisplayName("Nome")]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(1000)]
+        [DisplayName("Descrição")]
         public string Description { get; set; }
 
-        [Required]
         [ForeignKey("VisitaEstudo")]
         public Guid? VisitaEstudoId { get; set; }
         public VisitaEstudo? VisitaEstudo { get; set; }
 
+        [ForeignKey("Atividade")]
+        public Guid? AtividadeId { get; set; }
+        public Atividade? Atividade { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
+        [DisplayName("Data de Emissão")]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [DisplayName("Data Limite")]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateLimit { get; set; }
 
