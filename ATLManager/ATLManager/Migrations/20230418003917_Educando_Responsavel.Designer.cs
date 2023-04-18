@@ -4,6 +4,7 @@ using ATLManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATLManager.Migrations
 {
     [DbContext(typeof(ATLManagerAuthContext))]
-    partial class ATLManagerAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20230418003917_Educando_Responsavel")]
+    partial class Educando_Responsavel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -357,9 +359,8 @@ namespace ATLManager.Migrations
                     b.Property<string>("Parentesco")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Phone")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired()
@@ -524,37 +525,6 @@ namespace ATLManager.Migrations
                     b.HasIndex("FormularioId");
 
                     b.ToTable("FormularioResposta");
-                });
-
-            modelBuilder.Entity("ATLManager.Models.Notificacao", b =>
-                {
-                    b.Property<Guid>("NotificacaoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataNotificacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Lida")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Mensagem")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("NotificacaoId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Notificacoes");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Recibo", b =>
@@ -1071,18 +1041,6 @@ namespace ATLManager.Migrations
                     b.Navigation("Formulario");
                 });
 
-            modelBuilder.Entity("ATLManager.Models.Notificacao", b =>
-                {
-                    b.HasOne("ATLManager.Areas.Identity.Data.ATLManagerUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                    
-                    });
-                    
             modelBuilder.Entity("ATLManager.Models.Recibo", b =>
                 {
                     b.HasOne("ATLManager.Models.ATL", "Atl")
@@ -1090,7 +1048,6 @@ namespace ATLManager.Migrations
                         .HasForeignKey("AtlId");
 
                     b.Navigation("Atl");
-
                 });
 
             modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>

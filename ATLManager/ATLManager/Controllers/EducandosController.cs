@@ -133,8 +133,29 @@ namespace ATLManager.Controllers
             return View(educandoSaude);
         }
 
-        // GET: Educandos/Create
-        public async Task<IActionResult> Create()
+		public async Task<IActionResult> DetailsResponsaveis(Guid? id)
+		{
+			if (id == null || _context.Educando == null)
+			{
+				return NotFound();
+			}
+
+            var responsaveis = await _context.EducandoResponsavel
+                .Include(e => e.Educando)
+                .Where(e => e.EducandoId == id)
+                .ToListAsync();
+
+			if (responsaveis == null)
+			{
+				return NotFound();
+			}
+
+            ViewData["EducandoId"] = id;
+			return View(responsaveis);
+		}
+
+		// GET: Educandos/Create
+		public async Task<IActionResult> Create()
         {
             ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "FullName");
             return View(new EducandoCreateViewModel());
