@@ -6,344 +6,329 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    <!-- Fase 1  -->
-    <!-- d-flex -->
-    <!-- Container -->
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-            <h1 class="me-3 fw-bold text-center mb-4">Criar Formulário</h1>
-            <img src="~/images/icons/add-group.png" width="50" height="50">
-        </div>
+	<!-- Fase 1  -->
+	<!-- d-flex -->
+	<!-- Container -->
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+			<h1 class="me-3 fw-bold text-center mb-4">Criar Formulário</h1>
+			<img src="~/images/icons/add-group.png" width="50" height="50">
+		</div>
+		<div class="row" style="padding-left: 6em;">
+			<div class="col-3"></div>
+			<div class="col-5"></div>
+			<div class="col-4" pb-2" id="divQuestion">
+				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
+					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+				</button>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center" id="divFase1">
+			<!-- Box  -->
+			<div class="row col-6 justify-content-center custom-box" id="myBox">
+				<div class="row box border-5 p-5">
+					<!--text-center  -->
+					<div class="container">
+						<div class="row mt-3">
+							<div class="mb-3">
+								<div class="row">
+									<div class="col-md">
+										<form asp-action="Create">
+											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											<div class="row mb-2">
+												<div class="col-3"></div>
+												<div class="col-6 mb-3">
+													<label class="form-label">Categoria</label>
+													<select class="form-control" id="comboCategoria">
+														<option value="">Escolha uma opção</option>
+														<option value="1">Visita de estudo</option>
+														<option value="2">Atividade</option>
+														<option value="3">Geral</option>
+													</select>
+												</div>
+												<div class="col-3"></div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="Name" class="form-label"></label>
+													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
+													<span asp-validation-for="Name" class="text-danger"></span>
+												</div>
+												<div class="col-6">
+													<!-- Se for Visita de estudo apresenta lista de visitas de estudo -->
+													<div class="form-group" id="divVisitaEstudo" style="display:none">
+														<label asp-for="VisitaEstudoId" class="control-label"></label>
+														<select asp-for="VisitaEstudoId" class="form-control" asp-items="ViewBag.VisitaEstudoId">
+															<option value="">Escolha uma Visita de Estudo</option>
+														</select>
+													</div>
+													<!-- Se for Atividade apresenta lista de atividades -->
+													<div class="form-group" id="divAtividade" style="display:none">
+														<label asp-for="AtividadeId" class="control-label"></label>
+														<select asp-for="AtividadeId" class="form-control" asp-items="ViewBag.AtividadeId">
+															<option value="">Escolha uma Atividade</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="StartDate" class="control-label"></label>
+													<input asp-for="StartDate" class="form-control" />
+													<span asp-validation-for="StartDate" class="text-danger"></span>
+												</div>
+												<div class="col-6 position-relative">
+													<div class="row">
+														<div class="h-100 position-absolute" id="specialDivDescription">
+															<!-- extended box content -->
+															<div class="row mb-2">
+																<div class="col">
+																	<label asp-for="Description" class="control-label">Descrição</label>
+																	<textarea asp-for="Description" class="form-control" id="descricao" style="resize:none" placeholder="Insira uma descrição"></textarea>
+																	<span asp-validation-for="Description" class="text-danger"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="DateLimit" class="control-label"></label>
+													<input asp-for="DateLimit" class="form-control" />
+													<span asp-validation-for="DateLimit" class="text-danger"></span>
+												</div>
+											</div>
+											<div class="row justify-content-center mt-4">
+												<div class="col-md-auto mt-4">
+													<div class="row">
+														<div class="col-md-6 mb-3">
+															<a asp-action="Index">
+																<button type="button"
+																		class="btn btn-secondary custom-button">
+																	Voltar
+																</button>
+															</a>
+														</div>
+														<div class="col-md-6 mb-3">
+															<button type="submit"
+																	class="btn btn-primary custom-button">
+																Criar
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- // Box -->
+	</div>
 
-        <div class="row" style="padding-left: 6em;">
-            <div class="col-3"></div>
-            <div class="col-5"></div>
-            <div class="col-4" pb-2" id="divQuestion">
-                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
-                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-                </button>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center" id="divFase1">
-            <!-- Box  -->
-            <div class="row col-6 justify-content-center custom-box" id="myBox">
-                <div class="row box border-5 p-5">
-                    <!--text-center  -->
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
-                    <div class="container">
-                        <div class="row mt-3">
-                            <div class="mb-3">
-                                <div class="row">
-                                    <div class="col-md">
-                                        <form asp-action="Create">
-                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <div class="row mb-2">
-                                                <div class="col-3"></div>
-                                                    <div class="col-6 mb-3">
-													    <label class="form-label">Categoria</label>
-													    <select class="form-control" id="comboCategoria"> 
-														    <option value="">Escolha uma opção</option>
-                                                            <option value="1">Visita de estudo</option>
-                                                            <option value="2">Atividade</option>
-                                                            <option value="3">Geral</option>
-													    </select>
-												    </div>
-                                                <div class="col-3"></div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label asp-for="Name" class="form-label"></label>
-                                                    <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
-                                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                                </div>
-                                                <div class="col-6">
-                                                    <!-- Se for Visita de estudo apresenta lista de visitas de estudo -->
-                                                    <div class="form-group" id="divVisitaEstudo" style="display:none">
-                                                        <label asp-for="VisitaEstudoId" class="control-label"></label>
-                                                        <select asp-for="VisitaEstudoId" class="form-control" asp-items="ViewBag.VisitaEstudoId">
-                                                            <option value="">Escolha uma Visita de Estudo</option>
-                                                        </select>
-                                                    </div>
-                                                    
-                                                    <!-- Se for Atividade apresenta lista de atividades -->
-                                                    <div class="form-group" id="divAtividade" style="display:none">
-                                                        <label asp-for="AtividadeId" class="control-label"></label>
-                                                        <select asp-for="AtividadeId" class="form-control" asp-items="ViewBag.AtividadeId">
-                                                            <option value="">Escolha uma Atividade</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label asp-for="StartDate" class="control-label"></label>
-                                                    <input asp-for="StartDate" class="form-control" />
-                                                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                                                </div>
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">Ajuda</h2>
+			</div>
 
-                                                <div class="col-6 position-relative">
-                                                    <div class="row">
-                                                        <div class="h-100 position-absolute" id="specialDivDescription">
-                                                            <!-- extended box content -->
-                                                            <div class="row mb-2">
-                                                                <div class="col">
-                                                                    <label asp-for="Description" class="control-label">Descrição</label>
-                                                                    <textarea asp-for="Description" class="form-control" id="descricao" style="resize:none" placeholder="Insira uma descrição"></textarea>
-                                                                    <span asp-validation-for="Description" class="text-danger"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    <label asp-for="DateLimit" class="control-label"></label>
-                                                    <input asp-for="DateLimit" class="form-control" />
-                                                    <span asp-validation-for="DateLimit" class="text-danger"></span>
-                                                </div>
-                                            </div>
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
+						<span>Como alterar uma visita de estudo</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					Here's some more textHere's some more textHere's some more textHere's some
+					more textHe
 
-                                            <div class="row justify-content-center mt-4">
-                                                <div class="col-md-auto mt-4">
-                                                    <div class="row">
-                                                        <div class="col-md-6 mb-3">
-                                                            <a asp-action="Index">
-                                                                <button type="button"
-                                                                        class="btn btn-secondary custom-button">
-                                                                    Voltar
-                                                                </button>
-                                                            </a>
-                                                        </div>
+				</span>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>Leia artigos de ajuda</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>Pergunte à comunidade</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>Novas Atualizações</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>Dê Feedback</span>
+						</div>
+					</div>
 
-                                                        <div class="col-md-6 mb-3">
-                                                            <button type="submit"
-                                                                    class="btn btn-primary custom-button">
-                                                                Criar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                           
-                                        </form>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- // Box -->
-        </div>
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- // Slide de Ajuda  -->
 
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
 
+	<!--JavaScript-->
 
-	    <!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+	<script>
+		window.onload = function () {
+			var combobox1 = document.getElementById("comboCategoria");
+			var combobox2 = document.getElementById("divVisitaEstudo");
+			var combobox3 = document.getElementById("divAtividade");
+			var descricao = document.getElementById("descricao");
+			var divDescription = document.getElementById("specialDivDescription");
 
-        <div class="row text-center mt-2">
-            <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
-            </div>
+			var divBox = document.getElementById("myBox")
+			var divQuestion = document.getElementById("divQuestion")
 
-            <div class="col-2">
-                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
-            </div>
-        </div>
-        <div class="">
-            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
-        </div>
-        <!-- -->
-        <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
-                    <div class="d-flex align-items-center justify-content-center">
+			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+				// Large screen
+				divBox.classList.remove("col-6");
+				divBox.classList.add("col-12");
 
-                        <span>Como alterar uma visita de estudo</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
+				divQuestion.classList.add("text-right");
+				divQuestion.style.paddingRight = "2em";
 
+				combobox2.style.display = "none";
+				combobox3.style.display = "none";
 
-                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
-
-                </span>
-            </li>
-
-
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/terms.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Leia artigos de ajuda</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/comunity.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Pergunte à comunidade</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/new.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Novas Atualizações</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/feedback.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Dê Feedback</span>
-                        </div>
-                    </div>
-
-                </button>
-            </li>
-        </ul>
-    </div>
-    <!-- // Slide de Ajuda  -->
-
-    <script type="text/javascript">
-        // Add the following code if you want the name of the file appear on select
-        $(".custom-file-input").on("change", function () {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-    </script>
-
-    <!--JavaScript-->
-
-
-    <script>
-        window.onload = function () {
-            var combobox1 = document.getElementById("comboCategoria");
-            var combobox2 = document.getElementById("divVisitaEstudo");
-            var combobox3 = document.getElementById("divAtividade");
-            var descricao = document.getElementById("descricao");
-            var divDescription = document.getElementById("specialDivDescription");
-            
-            var divBox = document.getElementById("myBox")
-            var divQuestion = document.getElementById("divQuestion")
-
-            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-                // Large screen
-                divBox.classList.remove("col-6");
-                divBox.classList.add("col-12");
-
-                divQuestion.classList.add("text-right");
-                divQuestion.style.paddingRight = "2em";
-
-                combobox2.style.display = "none";
-                combobox3.style.display = "none";
-
-                document.getElementById("combobox2").disabled = true;
-                document.getElementById("combobox3").disabled = true;
+				document.getElementById("combobox2").disabled = true;
+				document.getElementById("combobox3").disabled = true;
 
 
-                divDescription.style.top = "-5.25em";
-                descricao.style.height = "13.1em";
-            }else{
-                combobox2.style.display = "none";
-                combobox3.style.display = "none";
+				divDescription.style.top = "-5.25em";
+				descricao.style.height = "13.1em";
+			} else {
+				combobox2.style.display = "none";
+				combobox3.style.display = "none";
 
-                document.getElementById("combobox2").disabled = true;
-                document.getElementById("combobox3").disabled = true;
+				document.getElementById("combobox2").disabled = true;
+				document.getElementById("combobox3").disabled = true;
 
-                divDescription.style.top = "-5.25em";
-                descricao.style.height = "13.1em";
-            }
-            
-        }
-    </script>
+				divDescription.style.top = "-5.25em";
+				descricao.style.height = "13.1em";
+			}
 
-    <script>
-        //obtem as referências para as caixas de seleção
-        var combobox1 = document.getElementById("comboCategoria");
-        var combobox2 = document.getElementById("divVisitaEstudo");
-        var combobox3 = document.getElementById("divAtividade");
-        var descricao = document.getElementById("descricao");
-        var divDescription = document.getElementById("specialDivDescription");
+		}
+	</script>
 
-        //adiciona um ouvinte de evento "change" para a primeira caixa de seleção
-        combobox1.addEventListener("change", function () {
-            //verifica qual opção foi selecionada na primeira caixa de seleção
-            if (combobox1.value == "1") {
-                //mostra a segunda caixa de seleção e oculta a terceira caixa de seleção
-                combobox2.style.display = "block";
-                combobox3.style.display = "none";
-                divDescription.style.top = "";
-                descricao.style.height = "8em";
+	<script>
+		//obtem as referências para as caixas de seleção
+		var combobox1 = document.getElementById("comboCategoria");
+		var combobox2 = document.getElementById("divVisitaEstudo");
+		var combobox3 = document.getElementById("divAtividade");
+		var descricao = document.getElementById("descricao");
+		var divDescription = document.getElementById("specialDivDescription");
 
-                document.getElementById("combobox2").value = "";
-                document.getElementById("combobox3").value = "";
+		//adiciona um ouvinte de evento "change" para a primeira caixa de seleção
+		combobox1.addEventListener("change", function () {
+			//verifica qual opção foi selecionada na primeira caixa de seleção
+			if (combobox1.value == "1") {
+				//mostra a segunda caixa de seleção e oculta a terceira caixa de seleção
+				combobox2.style.display = "block";
+				combobox3.style.display = "none";
+				divDescription.style.top = "";
+				descricao.style.height = "8em";
 
-                document.getElementById("combobox3").disabled = true;
-                document.getElementById("combobox2").disabled = false;
+				document.getElementById("combobox2").value = "";
+				document.getElementById("combobox3").value = "";
+
+				document.getElementById("combobox3").disabled = true;
+				document.getElementById("combobox2").disabled = false;
 
 
-            } else if (combobox1.value == "2") {
-                //mostra a terceira caixa de seleção e oculta a segunda caixa de seleção
-                combobox2.style.display = "none";
-                combobox3.style.display = "block";
-                divDescription.style.top = "";
-                descricao.style.height = "8em";
+			} else if (combobox1.value == "2") {
+				//mostra a terceira caixa de seleção e oculta a segunda caixa de seleção
+				combobox2.style.display = "none";
+				combobox3.style.display = "block";
+				divDescription.style.top = "";
+				descricao.style.height = "8em";
 
-                document.getElementById("combobox2").value = "";
-                document.getElementById("combobox3").value = "";
+				document.getElementById("combobox2").value = "";
+				document.getElementById("combobox3").value = "";
 
-                document.getElementById("combobox2").disabled = true;
-                document.getElementById("combobox3").disabled = false;
+				document.getElementById("combobox2").disabled = true;
+				document.getElementById("combobox3").disabled = false;
 
-            } else {
-                combobox2.style.display = "none";
-                combobox3.style.display = "none";
-                divDescription.style.top = "-5.25em";
-                descricao.style.height = "13.1em";
+			} else {
+				combobox2.style.display = "none";
+				combobox3.style.display = "none";
+				divDescription.style.top = "-5.25em";
+				descricao.style.height = "13.1em";
 
-                document.getElementById("combobox2").value = "";
-                document.getElementById("combobox3").value = "";
+				document.getElementById("combobox2").value = "";
+				document.getElementById("combobox3").value = "";
 
-                document.getElementById("combobox2").disabled = true;
-                document.getElementById("combobox3").disabled = true;
-            }
-        });
-    </script>
+				document.getElementById("combobox2").disabled = true;
+				document.getElementById("combobox3").disabled = true;
+			}
+		});
+	</script>
 
-    @section Scripts {
-    @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+	@section Scripts {
+	@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
     }
 
 

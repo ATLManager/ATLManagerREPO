@@ -174,7 +174,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,AtividadeId,StartDate,DateLimit")] Formulario formulario)
+        public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,AtividadeId,DateLimit")] Formulario formulario)
         {
 			if (formulario.VisitaEstudoId != null && formulario.AtividadeId != null)
 			{
@@ -192,6 +192,7 @@ namespace ATLManager.Controllers
             {
                 formulario.FormularioId = Guid.NewGuid();
                 formulario.AtlId = userAccount?.AtlId;
+                formulario.StartDate = DateTime.UtcNow.Date;
                 _context.Add(formulario);
 
                 var educandos = await _context.Educando
@@ -201,11 +202,13 @@ namespace ATLManager.Controllers
 
                 foreach (var educando in educandos)
                 {
-                    var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId);
-                    resposta.DateLimit = formulario.DateLimit;
+					var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId)
+					{
+						DateLimit = formulario.DateLimit
+					};
 
-                    // Obter Encarregado do Educando e a sua conta
-                    var encarregado = await _context.EncarregadoEducacao
+					// Obter Encarregado do Educando e a sua conta
+					var encarregado = await _context.EncarregadoEducacao
                         .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
                     var encarregadoAccount = await _context.Users
                         .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
@@ -214,7 +217,6 @@ namespace ATLManager.Controllers
                     var code = resposta.FormularioRespostaId.ToString();
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Action("Responder", "FormularioRespostas", new { id = resposta.FormularioRespostaId }, Request.Scheme);
-
 
                     // Enviar notificação para o Encarregado de Educação
                     var notificationMessage = $"Há um novo formulário disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";

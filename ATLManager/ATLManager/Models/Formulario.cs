@@ -10,7 +10,7 @@ namespace ATLManager.Models
         public Guid FormularioId { get; set; }
 
 		[Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 
@@ -20,10 +20,12 @@ namespace ATLManager.Models
         public string Description { get; set; }
 
         [ForeignKey("VisitaEstudo")]
+        [DisplayName("Visita de Estudo")]
         public Guid? VisitaEstudoId { get; set; }
         public VisitaEstudo? VisitaEstudo { get; set; }
 
         [ForeignKey("Atividade")]
+        [DisplayName("Atividade")]
         public Guid? AtividadeId { get; set; }
         public Atividade? Atividade { get; set; }
 
