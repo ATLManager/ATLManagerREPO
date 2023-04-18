@@ -266,11 +266,20 @@
 
                 combobox2.style.display = "none";
                 combobox3.style.display = "none";
+
+                document.getElementById("combobox2").disabled = true;
+                document.getElementById("combobox3").disabled = true;
+
+
                 divDescription.style.top = "-5.25em";
                 descricao.style.height = "13.1em";
             }else{
                 combobox2.style.display = "none";
                 combobox3.style.display = "none";
+
+                document.getElementById("combobox2").disabled = true;
+                document.getElementById("combobox3").disabled = true;
+
                 divDescription.style.top = "-5.25em";
                 descricao.style.height = "13.1em";
             }
@@ -296,6 +305,9 @@
                 divDescription.style.top = "";
                 descricao.style.height = "8em";
 
+                document.getElementById("combobox2").value = "";
+                document.getElementById("combobox3").value = "";
+
                 document.getElementById("combobox3").disabled = true;
                 document.getElementById("combobox2").disabled = false;
 
@@ -307,6 +319,9 @@
                 divDescription.style.top = "";
                 descricao.style.height = "8em";
 
+                document.getElementById("combobox2").value = "";
+                document.getElementById("combobox3").value = "";
+
                 document.getElementById("combobox2").disabled = true;
                 document.getElementById("combobox3").disabled = false;
 
@@ -315,6 +330,10 @@
                 combobox3.style.display = "none";
                 divDescription.style.top = "-5.25em";
                 descricao.style.height = "13.1em";
+
+                document.getElementById("combobox2").value = "";
+                document.getElementById("combobox3").value = "";
+
                 document.getElementById("combobox2").disabled = true;
                 document.getElementById("combobox3").disabled = true;
             }
