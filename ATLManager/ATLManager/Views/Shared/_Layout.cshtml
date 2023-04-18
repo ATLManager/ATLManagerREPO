@@ -199,7 +199,7 @@
                         @if (User.IsInRole("EncarregadoEducacao"))
                         {
                             <a class="nav-link collapsed" asp-controller="Formularios" asp-action="IndexEE"
-                               aria-expanded="true" aria-controls="recibos">
+                               aria-expanded="true" aria-controls="formularios">
                                 <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
                                 <span>Formulários</span>
                             </a>
@@ -250,7 +250,7 @@
                             <a class="nav-link collapsed" asp-controller="Recibos" asp-action="IndexEE"
                                aria-expanded="true" aria-controls="recibos">
                                  <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
-                                <span>Recibos</span>
+                                <span>Faturas</span>
                             </a>                            
                         }
                         else
@@ -258,7 +258,7 @@
                             <a class="nav-link collapsed" asp-controller="Recibos" asp-action="Index"
                                aria-expanded="true" aria-controls="recibos">
                                  <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
-                                <span>Recibos</span>
+                                <span>Faturas</span>
                             </a>
                         }
                     </li>
