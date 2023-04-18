@@ -25,7 +25,7 @@
 
                     <div class="d-flex align-items-start">
                         <div class="nav row col-3 flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link text-center" href="@Url.Action("Details", new { id = Model.EducandoId })">
+                            <a class="nav-link text-center" asp-action="Details" asp-route-id="@Model.EducandoId">
                                 <button class="nav-link mx-auto" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
                                         type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
                                     Educando
@@ -36,7 +36,7 @@
                                 Info. Saúde
                             </button>
 
-                            <a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
+                            <a class="nav-link text-center" asp-action="DetailsResponsaveis" asp-route-id="@Model.EducandoId">
                                 <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                                         type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                     Autorizações
@@ -47,20 +47,6 @@
                                 <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                                         type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                     Encarregado de Educação
-                                </button>
-                            </a>
-
-                            <a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
-                                <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                                        type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                                    Recibos de Pagamento
-                                </button>
-                            </a>
-
-                            <a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
-                                <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                                        type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                                    Visitas de Estudo
                                 </button>
                             </a>
                         </div>
