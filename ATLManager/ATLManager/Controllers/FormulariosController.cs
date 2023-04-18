@@ -176,11 +176,11 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,AtividadeId,StartDate,DateLimit")] Formulario formulario)
         {
-			if (formulario.VisitaEstudoId != null && )
+			if (formulario.VisitaEstudoId != null && formulario.AtividadeId != null)
 			{
-				var validationMessage = "É necessário introduzir um NIPC ou Agrupamento";
-				ModelState.AddModelError("NIPC", validationMessage);
-				ModelState.AddModelError("AtlId", validationMessage);
+				var validationMessage = "Apenas permitido escolher uma Visita ou uma Atividade";
+				ModelState.AddModelError("VisitaEdtudoId", validationMessage);
+				ModelState.AddModelError("AtividadeId", validationMessage);
 			}
 
 			var user = await _userManager.GetUserAsync(HttpContext.User);
