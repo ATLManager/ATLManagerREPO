@@ -11,6 +11,7 @@ using System.Text.Encodings.Web;
 using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ATLManager.ViewModels;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -20,7 +21,6 @@ namespace ATLManager.Controllers
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly INotificacoesController _notificacoesController;
-
 
         public FormulariosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
@@ -343,9 +343,46 @@ namespace ATLManager.Controllers
             {
                 return Problem("Entity set 'ATLManagerAuthContext.Formulario'  is null.");
             }
-            var formulario = await _context.Formulario.FindAsync(id);
+            var formulario = await _context.Formulario
+                .Include(f => f.VisitaEstudo)
+                .Include(f => f.Atividade)
+                .FirstOrDefaultAsync(m => m.FormularioId == id);
             if (formulario != null)
             {
+                var record = new FormularioRecord()
+                {
+                    FormularioId = formulario.FormularioId,
+                    Name = formulario.Name,
+                    Description = formulario.Description,
+                    VisitaEstudo = formulario.VisitaEstudo?.Name,
+                    Atividade = formulario.Atividade?.Name,
+                    StartDate = formulario.StartDate.Date,
+                    DateLimit = formulario.DateLimit.Date,
+                    AtlId = formulario.AtlId,
+                };
+
+                var respostas = await _context.FormularioResposta
+                    .Include(r => r.Formulario)
+                    .Include(r => r.Educando)
+                    .Where(r => r.FormularioId == formulario.FormularioId)
+                    .ToListAsync();
+
+                foreach (var resposta in respostas)
+                {
+                    var respostaRecord = new FormularioRespostaRecord()
+                    {
+                        FormularioRespostaId = resposta.FormularioRespostaId,
+                        FormularioRecordId = record.FormularioRecordId,
+                        Educando = resposta.Educando.Name + " " + resposta.Educando.Apelido,
+                        Authorized = resposta.Authorized,
+                        DateLimit = ((DateTime)resposta.DateLimit).Date,
+                        ResponseDate = (resposta.ResponseDate == null) ? null : ((DateTime)resposta.ResponseDate).Date,
+                    };
+                    
+                    _context.Add(respostaRecord);
+                };
+
+                _context.Add(record);
                 _context.Formulario.Remove(formulario);
             }
             

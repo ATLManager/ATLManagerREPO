@@ -611,6 +611,77 @@ namespace ATLManager.Migrations
                     b.ToTable("EducandoRecord");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.Historicos.FormularioRecord", b =>
+                {
+                    b.Property<Guid>("FormularioRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Atividade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FormularioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VisitaEstudo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FormularioRecordId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("FormularioRecord");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.FormularioRespostaRecord", b =>
+                {
+                    b.Property<Guid>("FormularioRespostaRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Authorized")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DateLimit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Educando")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FormularioRecordId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FormularioRespostaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("FormularioRespostaRecordId");
+
+                    b.HasIndex("FormularioRecordId");
+
+                    b.ToTable("FormularioRespostaRecord");
+                });
+
             modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
                 {
                     b.Property<Guid>("FuncionarioRecordId")
@@ -1328,6 +1399,26 @@ namespace ATLManager.Migrations
                         .IsRequired();
 
                     b.Navigation("Atl");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.FormularioRecord", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.FormularioRespostaRecord", b =>
+                {
+                    b.HasOne("ATLManager.Models.Historicos.FormularioRecord", "FormularioRecord")
+                        .WithMany()
+                        .HasForeignKey("FormularioRecordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FormularioRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
