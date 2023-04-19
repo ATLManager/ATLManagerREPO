@@ -166,43 +166,6 @@ namespace ATLManager.Migrations
                     b.ToTable("Atividade");
                 });
 
-            modelBuilder.Entity("ATLManager.Models.AtividadeRecord", b =>
-                {
-                    b.Property<Guid>("AtividadeRecordId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AtividadeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AtlId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("AtividadeRecordId");
-
-                    b.HasIndex("AtlId");
-
-                    b.ToTable("AtividadeRecord");
-                });
-
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
                 {
                     b.Property<Guid>("AtlId")
@@ -566,6 +529,85 @@ namespace ATLManager.Migrations
                     b.HasIndex("FormularioId");
 
                     b.ToTable("FormularioResposta");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.AtividadeRecord", b =>
+                {
+                    b.Property<Guid>("AtividadeRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AtividadeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AtividadeRecordId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("AtividadeRecord");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
+                {
+                    b.Property<Guid>("FuncionarioRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ContaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FuncionarioRecordId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("FuncionarioRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.VisitaEstudoRecord", b =>
@@ -999,15 +1041,6 @@ namespace ATLManager.Migrations
                     b.Navigation("Atl");
                 });
 
-            modelBuilder.Entity("ATLManager.Models.AtividadeRecord", b =>
-                {
-                    b.HasOne("ATLManager.Models.ATL", "Atl")
-                        .WithMany()
-                        .HasForeignKey("AtlId");
-
-                    b.Navigation("Atl");
-                });
-
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
                 {
                     b.HasOne("ATLManager.Models.Agrupamento", "Agrupamento")
@@ -1162,6 +1195,24 @@ namespace ATLManager.Migrations
                     b.Navigation("Educando");
 
                     b.Navigation("Formulario");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.AtividadeRecord", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.VisitaEstudoRecord", b =>

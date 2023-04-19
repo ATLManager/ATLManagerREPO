@@ -6,6 +6,7 @@ using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -315,10 +316,28 @@ namespace ATLManager.Controllers
             {
                 return Problem("Entity set 'ATLManagerAuthContext.ContaAdministrativa' is null.");
             }
-            var funcionario = await _context.ContaAdministrativa.FindAsync(id);
+
+            var funcionario = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .Where(f => f.ContaId == id)
+                .FirstAsync();
+
             if (funcionario != null)
             {
+                var record = new FuncionarioRecord()
+                {
+                    ContaId = funcionario.ContaId,
+                    FirstName = funcionario.User.FirstName,
+                    LastName = funcionario.User.LastName,
+                    Email = funcionario.User.Email,
+                    DateOfBirth = funcionario.DateOfBirth,
+                    CC = funcionario.CC,
+                    ProfilePicture = funcionario.ProfilePicture,
+                    AtlId = funcionario.AtlId,
+                };
+
                 var user = await _userManager.FindByIdAsync(funcionario.UserId);
+                _context.Add(record);
                 _context.ContaAdministrativa.Remove(funcionario);
                 await _userManager.DeleteAsync(user);
             }
