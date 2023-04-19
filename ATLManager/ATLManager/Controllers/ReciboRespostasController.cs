@@ -78,7 +78,8 @@ namespace ATLManager.Controllers
 			    Price = resposta.Price,
 			    NIB = resposta.NIB,
 			    Description = resposta.Description,
-			    ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString(),
+			    //ResponseDate = resposta.ResponseDate.ToString(),
+			    ResponseDate = (resposta.ResponseDate != null) ? resposta.ResponseDate.ToString() : "-",
 			    DateLimit = resposta.DateLimit.ToShortDateString(),
 			    ComprovativoPath = resposta.ComprovativoPath,
 			    Authorized = resposta.Authorized,
@@ -102,6 +103,7 @@ namespace ATLManager.Controllers
             ModelState.Remove("Name");
             ModelState.Remove("Price");
             ModelState.Remove("NIB");
+            ModelState.Remove("DateLimit");
             ModelState.Remove("Description");
             ModelState.Remove("ComprovativoPath");
             ModelState.Remove("ResponseDate");
