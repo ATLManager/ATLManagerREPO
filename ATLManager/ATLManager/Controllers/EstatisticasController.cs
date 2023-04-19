@@ -31,6 +31,8 @@ namespace ATLManager.Controllers
 			{
 				VisitasEstudoPorMesEstatisticas = await GetVisitasEstudoPorMesEstatisticas(),
 				AtividadesPorMesEstatisticas = await GetAtividadesPorMesEstatisticas(),
+				NumeroDeEducandosNovos = await GetNumeroDeEducandosNovos(),
+				EducandosPorMes = await GetEducandosPorMesEstatisticas(),
 				NumeroDeEducandos = await GetNumeroDeEducandos(),
 				NumeroDeRapazes = await GetNumeroDeRapazes(),
 				NumeroDeRaparigas = await GetNumeroDeRaparigas(),
@@ -108,7 +110,38 @@ namespace ATLManager.Controllers
             return estatisticas;
         }
 
+		private async Task<int> GetNumeroDeEducandosNovos()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			DateTime umMesAtras = DateTime.Now.AddMonths(-1);
+
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == currentUserAccount.AtlId && c.DataDeInscricao >= umMesAtras)
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
 		private async Task<int> GetNumeroDeEducandos()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == currentUserAccount.AtlId)
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
+		private async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticas()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -119,7 +152,16 @@ namespace ATLManager.Controllers
 				.Where(c => c.AtlId == currentUserAccount.AtlId)
 				.ToListAsync();
 
-			return educandos.Count;
+			var anoAtual = DateTime.Now.Year;
+			var estatisticas = new Dictionary<string, int>();
+
+			for (int mes = 1; mes <= 12; mes++)
+			{
+				var educandosNoMes = educandos.Count(a => a.DataDeInscricao.Year == anoAtual && a.DataDeInscricao.Month == mes);
+				estatisticas.Add($"EducandosMes{mes}", educandosNoMes);
+			}
+
+			return estatisticas;
 		}
 
 

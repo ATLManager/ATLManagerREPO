@@ -141,20 +141,19 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-4">
-								<h3>Número de Educandos</h3>
-                                <p>@Model.NumeroDeEducandos</p>
+							<div class="col-md-6">
+								<h3>Número de Educandos Inscritos Por Mês</h3>
+								<p>+ @Model.NumeroDeEducandosNovos @((Model.NumeroDeEducandosNovos == 1) ? "Educando" : "Educandos") inscritos no último mês</p>
+								<div class="chart-container">
+									<canvas id="educandosPorMesChart"></canvas>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<h3>Número de Rapazes & Número de Raparigas</h3>
+								<p>@Model.NumeroDeEducandos Educandos no Total no ATL</p>
 								<div class="chart-container">
 									<canvas id="generoEducandosChart"></canvas>
 								</div>
-							</div>
-							<div class="col-md-4">
-								<h3>Número de Rapazes</h3>
-								<p>@Model.NumeroDeRapazes</p>
-							</div>
-							<div class="col-md-4">
-								<h3>Número de Raparigas</h3>
-								<p>@Model.NumeroDeRaparigas</p>
 							</div>
 						</div>
 
@@ -163,16 +162,21 @@
 								<h3>Faturas em Atraso</h3>
 								<p>Quantidade: @Model.FaturasEmAtraso</p>
 								<p>Valor total: @Model.TotalValorEmAtraso.ToString("C")</p>
-								<div class="chart-container">
-									<canvas id="faturasChart"></canvas>
-								</div>
-
 							</div>
 							<div class="col-md-6">
 								<h3>Faturas Pagas</h3>
 								<p>Quantidade: @Model.FaturasPagas</p>
 								<p>Valor total: @Model.TotalValorPago.ToString("C")</p>
 							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3"></div>
+							<div class="col-md-6">
+								<div class="chart-container">
+									<canvas id="faturasChart"></canvas>
+								</div>
+							</div>
+							<div class="col-md-3"></div>
 						</div>
 					</div>
 				</div>
@@ -271,6 +275,7 @@
 
 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	
 	<script>
 
 		// Gráfico de barras para as estatísticas de atividades por mês
@@ -308,7 +313,7 @@
 				scales: {
 					y: {
 						beginAtZero: true,
-						max: Math.ceil(Math.max(...visitasEstudoPorMesData.datasets[0].data) / 10) * 10,
+						max: Math.ceil(Math.max(...visitasEstudoPorMesData.datasets[0].data) / 5) * 5,
 						ticks: {
 							stepSize: 1,
 							font: {
@@ -387,8 +392,7 @@
 				scales: {
 					y: {
 						beginAtZero: true,
-						max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 10) * 10,
-
+						max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 5) * 5,
 						ticks: {
 							stepSize: 1,
 							font: {
@@ -429,6 +433,83 @@
 			atividadesPorMesConfig
 		);
 
+		// Gráfico de barras para as estatísticas de educandos por mês
+		const educandosPorMesData = {
+			labels: [
+				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+			],
+			datasets: [{
+				label: 'Educandos por Mês',
+				data: [
+					@Model.EducandosPorMes["EducandosMes1"],
+					@Model.EducandosPorMes["EducandosMes2"],
+					@Model.EducandosPorMes["EducandosMes3"],
+					@Model.EducandosPorMes["EducandosMes4"],
+					@Model.EducandosPorMes["EducandosMes5"],
+					@Model.EducandosPorMes["EducandosMes6"],
+					@Model.EducandosPorMes["EducandosMes7"],
+					@Model.EducandosPorMes["EducandosMes8"],
+					@Model.EducandosPorMes["EducandosMes9"],
+					@Model.EducandosPorMes["EducandosMes10"],
+					@Model.EducandosPorMes["EducandosMes11"],
+					@Model.EducandosPorMes["EducandosMes12"]
+										],
+				backgroundColor: 'rgba(75, 192, 192, 0.2)',
+				borderColor: 'rgba(75, 192, 192, 1)',
+				borderWidth: 1
+			}]
+		};
+
+		const educandosPorMesConfig = {
+			type: 'bar',
+			data: educandosPorMesData,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: Math.ceil(Math.max(...educandosPorMesData.datasets[0].data) / 10) * 10,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
+
+		const educandosPorMesChart = new Chart(
+			document.getElementById('educandosPorMesChart'),
+			educandosPorMesConfig
+		);
+
+		
 		const generoEducandosData = {
 			labels: ['Educandos'],
 			datasets: [
