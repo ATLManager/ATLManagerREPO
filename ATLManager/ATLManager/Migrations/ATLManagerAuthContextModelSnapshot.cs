@@ -568,6 +568,49 @@ namespace ATLManager.Migrations
                     b.ToTable("AtividadeRecord");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.Historicos.EducandoRecord", b =>
+                {
+                    b.Property<Guid>("EducandoRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Apelido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("EducandoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Encarregado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Genero")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EducandoRecordId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("EducandoRecord");
+                });
+
             modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
                 {
                     b.Property<Guid>("FuncionarioRecordId")
@@ -1202,6 +1245,17 @@ namespace ATLManager.Migrations
                     b.HasOne("ATLManager.Models.ATL", "Atl")
                         .WithMany()
                         .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.EducandoRecord", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Atl");
                 });
