@@ -56,22 +56,28 @@
                                             @Html.DisplayFor(model => model.Description)
                                         </dd>
                                     </div>
-                                    <div class="row">
-                                        <dt class="col mr-2">
-                                            @Html.DisplayNameFor(model => model.VisitaEstudo)
-                                        </dt>
-                                        <dd class="col text-left">
-                                            @if (Model.VisitaEstudo != null)
-                                            {
+                                    @if (Model.VisitaEstudoId != null)
+                                    {
+                                        <div class="row">
+                                            <dt class="col mr-2">
+                                                @Html.DisplayNameFor(model => model.VisitaEstudo)
+                                            </dt>
+                                            <dd class="col text-left">
                                                 @Html.DisplayFor(model => model.VisitaEstudo.Name)
-                                            }
-                                            else
-                                            {
-                                                <span class="text-center"> - </span>
-                                            }
-                                            
-                                        </dd>
-                                    </div>
+                                            </dd>
+                                        </div>
+                                    }
+                                    @if (Model.AtividadeId != null)
+                                    {
+                                        <div class="row">
+                                            <dt class="col mr-2">
+                                                @Html.DisplayNameFor(model => model.Atividade)
+                                            </dt>
+                                            <dd class="col text-left">
+                                                @Html.DisplayFor(model => model.Atividade.Name)
+                                            </dd>
+                                        </div>
+                                    }
                                     <div class="row">
                                         <dt class="col mr-2">
                                             @Html.DisplayNameFor(model => model.StartDate)

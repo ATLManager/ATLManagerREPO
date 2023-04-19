@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
-using ATLManager.Migrations;
 using MessagePack;
 using NuGet.Configuration;
 

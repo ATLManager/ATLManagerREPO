@@ -59,6 +59,7 @@ namespace ATLManager.Controllers
 
             var formulario = await _context.Formulario
                 .Include(f => f.VisitaEstudo)
+                .Include(v => v.Atividade)
                 .FirstOrDefaultAsync(m => m.FormularioId == id);
             if (formulario == null)
             {
@@ -159,7 +160,13 @@ namespace ATLManager.Controllers
                 .Where(r => r.AtlId == userAccount.AtlId)
                 .ToListAsync();
 
+            var atividades = await _context.Atividade
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == userAccount.AtlId)
+                .ToListAsync();
+
             ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name");
+            ViewData["AtividadeId"] = new SelectList(atividades, "AtividadeId", "Name");
             return View();
         }
 
@@ -168,9 +175,16 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,StartDate,DateLimit")] Formulario formulario)
+        public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,AtividadeId,DateLimit")] Formulario formulario)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+			if (formulario.VisitaEstudoId != null && formulario.AtividadeId != null)
+			{
+				var validationMessage = "Apenas permitido escolher uma Visita ou uma Atividade";
+				ModelState.AddModelError("VisitaEdtudoId", validationMessage);
+				ModelState.AddModelError("AtividadeId", validationMessage);
+			}
+
+			var user = await _userManager.GetUserAsync(HttpContext.User);
             var userAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
@@ -179,6 +193,7 @@ namespace ATLManager.Controllers
             {
                 formulario.FormularioId = Guid.NewGuid();
                 formulario.AtlId = userAccount?.AtlId;
+                formulario.StartDate = DateTime.UtcNow.Date;
                 _context.Add(formulario);
 
                 var educandos = await _context.Educando
@@ -188,11 +203,13 @@ namespace ATLManager.Controllers
 
                 foreach (var educando in educandos)
                 {
-                    var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId);
-                    resposta.DateLimit = formulario.DateLimit;
+					var resposta = new FormularioResposta(formulario.FormularioId, educando.EducandoId)
+					{
+						DateLimit = formulario.DateLimit
+					};
 
-                    // Obter Encarregado do Educando e a sua conta
-                    var encarregado = await _context.EncarregadoEducacao
+					// Obter Encarregado do Educando e a sua conta
+					var encarregado = await _context.EncarregadoEducacao
                         .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
                     var encarregadoAccount = await _context.Users
                         .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
@@ -201,7 +218,6 @@ namespace ATLManager.Controllers
                     var code = resposta.FormularioRespostaId.ToString();
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Action("Responder", "FormularioRespostas", new { id = resposta.FormularioRespostaId }, Request.Scheme);
-
 
                     // Enviar notificação para o Encarregado de Educação
                     var notificationMessage = $"Há um novo formulário disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
@@ -245,28 +261,10 @@ namespace ATLManager.Controllers
 			{
 				FormularioId = formulario.FormularioId,
 				Name = formulario.Name,
-				VisitaEstudoId = formulario.VisitaEstudoId,
 				Description = formulario.Description,
-				StartDate = formulario.StartDate.ToShortDateString(),
 				DateLimit = formulario.DateLimit.ToShortDateString(),
 			};
 
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var visitas = await _context.VisitaEstudo
-                .Include(a => a.Atl)
-                .Where(r => r.AtlId == userAccount.AtlId)
-                .ToListAsync();
-
-            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", formulario.VisitaEstudoId);
 			return View(viewModel);
 		}
 
@@ -293,8 +291,6 @@ namespace ATLManager.Controllers
 						formulario.Name = viewModel.Name;
 						formulario.Description = viewModel.Description;
 
-						if (viewModel.StartDate != null)
-							formulario.StartDate = DateTime.Parse(viewModel.StartDate);
 						if (viewModel.DateLimit != null)
 							formulario.DateLimit = DateTime.Parse(viewModel.DateLimit);
                         
@@ -316,22 +312,6 @@ namespace ATLManager.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var userAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
-
-            if (userAccount == null)
-            {
-                return NotFound();
-            }
-
-            var visitas = await _context.VisitaEstudo
-                .Include(a => a.Atl)
-                .Where(r => r.AtlId == userAccount.AtlId)
-                .ToListAsync();
-
-            ViewData["VisitaEstudoId"] = new SelectList(visitas, "VisitaEstudoID", "Name", viewModel.VisitaEstudoId);
             return View(viewModel);
         }
 

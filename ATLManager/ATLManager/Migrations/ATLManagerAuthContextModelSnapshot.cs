@@ -464,6 +464,9 @@ namespace ATLManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AtividadeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("AtlId")
                         .HasColumnType("uniqueidentifier");
 
@@ -477,17 +480,18 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("VisitaEstudoId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FormularioId");
+
+                    b.HasIndex("AtividadeId");
 
                     b.HasIndex("AtlId");
 
@@ -1037,15 +1041,19 @@ namespace ATLManager.Migrations
 
             modelBuilder.Entity("ATLManager.Models.Formulario", b =>
                 {
+                    b.HasOne("ATLManager.Models.Atividade", "Atividade")
+                        .WithMany()
+                        .HasForeignKey("AtividadeId");
+
                     b.HasOne("ATLManager.Models.ATL", "Atl")
                         .WithMany()
                         .HasForeignKey("AtlId");
 
                     b.HasOne("ATLManager.Models.VisitaEstudo", "VisitaEstudo")
                         .WithMany()
-                        .HasForeignKey("VisitaEstudoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VisitaEstudoId");
+
+                    b.Navigation("Atividade");
 
                     b.Navigation("Atl");
 
@@ -1080,9 +1088,8 @@ namespace ATLManager.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                    
-                    });
-                    
+                });
+
             modelBuilder.Entity("ATLManager.Models.Recibo", b =>
                 {
                     b.HasOne("ATLManager.Models.ATL", "Atl")
@@ -1090,7 +1097,6 @@ namespace ATLManager.Migrations
                         .HasForeignKey("AtlId");
 
                     b.Navigation("Atl");
-
                 });
 
             modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>
