@@ -653,6 +653,76 @@ namespace ATLManager.Migrations
                     b.ToTable("FuncionarioRecord");
                 });
 
+            modelBuilder.Entity("ATLManager.Models.Historicos.RefeicaoRecord", b =>
+                {
+                    b.Property<Guid>("RefeicaoRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AGSat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Acucar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("AtlId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HidratosCarbono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lipidos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Proteina")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RefeicaoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Sal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValorEnergetico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RefeicaoRecordId");
+
+                    b.HasIndex("AtlId");
+
+                    b.ToTable("RefeicaoRecord");
+                });
+
             modelBuilder.Entity("ATLManager.Models.Historicos.VisitaEstudoRecord", b =>
                 {
                     b.Property<Guid>("VisitaEstudoRecordID")
@@ -1261,6 +1331,15 @@ namespace ATLManager.Migrations
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
+                {
+                    b.HasOne("ATLManager.Models.ATL", "Atl")
+                        .WithMany()
+                        .HasForeignKey("AtlId");
+
+                    b.Navigation("Atl");
+                });
+
+            modelBuilder.Entity("ATLManager.Models.Historicos.RefeicaoRecord", b =>
                 {
                     b.HasOne("ATLManager.Models.ATL", "Atl")
                         .WithMany()

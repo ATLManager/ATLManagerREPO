@@ -21,9 +21,11 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
 
     public DbSet<Agrupamento> Agrupamento { get; set; }
     public DbSet<ContaAdministrativa> ContaAdministrativa { get; set; }
+	public DbSet<FuncionarioRecord> FuncionarioRecord { get; set; }
     public DbSet<EncarregadoEducacao> EncarregadoEducacao { get; set; }
     public DbSet<ATL> ATL { get; set; }
     public DbSet<Refeicao> Refeicao { get; set; }
+	public DbSet<RefeicaoRecord> RefeicaoRecord { get; set; }
     public DbSet<Educando> Educando { get; set; }
 	public DbSet<EducandoRecord> EducandoRecord { get; set; }
     public DbSet<EducandoSaude> EducandoSaude { get; set; }
@@ -39,5 +41,4 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
     public DbSet<Recibo> Recibo { get; set; }
     public DbSet<ReciboResposta> ReciboResposta { get; set; }
 	public DbSet<Notificacao> Notificacoes { get; set; }
-	public DbSet<FuncionarioRecord> FuncionarioRecord { get; set; }
 }

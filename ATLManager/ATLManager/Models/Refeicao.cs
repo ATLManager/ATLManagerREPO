@@ -14,10 +14,12 @@ namespace ATLManager.Models
 
         [Required]
         [MaxLength(20)]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(20)]
+        [Display(Name = "Categoria")]
         public string Categoria { get; set; }
 
         [Required]
@@ -28,29 +30,38 @@ namespace ATLManager.Models
 
         [Required]
         [MaxLength(255)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        [Display(Name = "Proteína")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Proteina { get; set; }
 
+        [Display(Name = "Hidratos de Carbono")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string HidratosCarbono { get; set; }
 
+        [Display(Name = "VR")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string VR { get; set; }
 
+        [Display(Name = "Açúcar")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Acucar { get; set; }
 
+        [Display(Name = "Lípidos")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Lipidos { get; set; }
 
+        [Display(Name = "Valor Energético")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string ValorEnergetico { get; set; }
 
+        [Display(Name = "AG Saturados")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string AGSat { get; set; }
 
+        [Display(Name = "Sal")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Sal { get; set; }
 
