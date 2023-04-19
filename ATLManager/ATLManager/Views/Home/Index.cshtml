@@ -121,106 +121,128 @@
 else
 {
     // conteudo relativo aos coordenadores e funcionarios
-    @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
-    {
-        <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">40,000 €</div>
-                                <div class="mt-2 mb-0 text-muted text-xs">
-                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                    <span>Since last month</span>
+  @*  @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+    {*@
+            <div class="row justify-content-center">
+                <!-- BoardCards para o Coordenador-->
+                 @if (User.IsInRole("Coordenador")) { 
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Faturação (Por Mês)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">40,000 €</div>
+                                        <div class="mt-2 mb-0 text-muted text-xs">
+                                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                            <span>Since last month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-primary"></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-primary"></i>
+                        </div>
+                    </div> 
+                    <!-- Earnings (Annual) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Faturas por pagar</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                        <div class="mt-2 mb-0 text-muted text-xs">
+                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                            <span>Since last years</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- New User Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Novos Educandos</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                                        <div class="mt-2 mb-0 text-muted text-xs">
+                                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
+                                            <span>Since last month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-info"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Recibos Por Autorizar</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        <div class="mt-2 mb-0 text-muted text-xs">
+                                            <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                                            <span>Since yesterday</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-warning"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> 
-            <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                                <div class="mt-2 mb-0 text-muted text-xs">
-                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last years</span>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-shopping-cart fa-2x text-success"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            <!-- New User Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                                <div class="mt-2 mb-0 text-muted text-xs">
-                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                    <span>Since last month</span>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-users fa-2x text-info"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                <div class="mt-2 mb-0 text-muted text-xs">
-                                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                    <span>Since yesterday</span>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-warning"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+                    }
+
+
+                    @if (User.IsInRole("Administrador"))
+                    {
+                   
+                    }
+
+                    @if (User.IsInRole("Encarregado"))
+                    {
+
+                    }
+
+                    @if (User.IsInRole("Funcionario"))
+                    {
+
+                    }
+            </div>
+
+
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
                         <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Month <i class="fas fa-chevron-down"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                 aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Select Periode</div>
+                                <a class="dropdown-item" href="#">Today</a>
+                                <a class="dropdown-item" href="#">Week</a>
+                                <a class="dropdown-item active" href="#">Month</a>
+                                <a class="dropdown-item" href="#">This Year</a>
                             </div>
                         </div>
                     </div>
@@ -235,7 +257,7 @@ else
             <div class="col-xl-4 col-lg-5">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Formulários Respondidos</h6>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -303,9 +325,108 @@ else
                             class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
-            </div>
+    </div>
+
             <!-- Invoice Example -->
             <div class="col-xl-8 col-lg-7 mb-4">
+                        <div class="card">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Ementas Semanais</h6>
+                                @*<a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
+                                    class="fas fa-chevron-right"></i></a>*@
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Semanas <i class="fas fa-chevron-down"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Select Periode</div>
+                                            <a class="dropdown-item" href="#">Semana 1</a>
+                                            <a class="dropdown-item" href="#">Semana 1</a>
+                                            <a class="dropdown-item active" href="#">Semana 3</a>
+                                            <a class="dropdown-item" href="#">Semana 4</a>
+                                        </div>
+                                    </div>
+                                </div>
+                  
+                            <div class="card-footer">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-2"><img src="~/images/logo/logo.png" height="60" width="60"/></div>
+                                    <div class="col">
+                                        <div class="row">Segunda-feira</div>
+                                        <div class="row small">25 Abril</div>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="me-1">+</span>Ementa Carne
+                                    </div>
+                                </div>
+                            </div>  
+
+                             <div class="card-footer">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-2"><img src="~/images/logo/logo.png" height="60" width="60"/></div>
+                                    <div class="col">
+                                        <div class="row">Terça-feira</div>
+                                        <div class="row small">25 Abril</div>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="me-1">+</span>Ementa Carne
+                                    </div>
+                                </div>
+                            </div>  
+
+                             <div class="card-footer">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-2"><img src="~/images/logo/logo.png" height="60" width="60"/></div>
+                                    <div class="col">
+                                        <div class="row">Quarta-feira</div>
+                                        <div class="row small">25 Abril</div>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="me-1">+</span>Ementa Carne
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-2"><img src="~/images/logo/logo.png" height="60" width="60" /></div>
+                                    <div class="col">
+                                        <div class="row">Quinta-feira</div>
+                                        <div class="row small">25 Abril</div>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="me-1">+</span>Ementa Carne
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-2"><img src="~/images/logo/logo.png" height="60" width="60"/></div>
+                                    <div class="col">
+                                        <div class="row">Sexta-feira</div>
+                                        <div class="row small">25 Abril</div>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="me-1">+</span>Ementa Carne
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+        </div>
+                    </div> 
+            <!-- Message From Customer-->
+
+
+            <!-- Invoice Example -->
+            @*<div class="col-xl-8 col-lg-7 mb-4">
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
@@ -364,12 +485,13 @@ else
                     </div>
                     <div class="card-footer"></div>
                 </div>
-            </div> 
+            </div> *@
             <!-- Message From Customer-->
-            <div class="col-xl-4 col-lg-5 ">
+            
+            <div class="col-xl-4 col-lg-5">
                 <div class="card">
                     <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
+                        <h6 class="m-0 font-weight-bold text-light">Messagem de Encarregado</h6>
                     </div>
                     <div>
                         <div class="customer-message align-items-center">
@@ -408,16 +530,26 @@ else
                     </div>
                 </div>
             </div>
-        </div> 
+       
         <!--Row-->
 
         // conteudo relativo aos encarregados
-        }@if (User.IsInRole("EncarregadoEducacao"))
-        {
+     }
+    
+    @if (User.IsInRole("Funcionario"))
+    {
 
-        }
+    }
+     @if (User.IsInRole("EncarregadoEducacao"))
+     {
 
-}
+     }
+     @if (User.IsInRole("Administrador"))
+     {
+
+     }
+
+
 
 <script>
     $(document).ready(function () {
