@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {

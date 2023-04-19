@@ -78,7 +78,6 @@ namespace ATLManager.Controllers
 			    Price = resposta.Price,
 			    NIB = resposta.NIB,
 			    Description = resposta.Description,
-			    //ResponseDate = resposta.ResponseDate.ToString(),
 			    ResponseDate = (resposta.ResponseDate != null) ? resposta.ResponseDate.ToString() : "-",
 			    DateLimit = resposta.DateLimit.ToShortDateString(),
 			    ComprovativoPath = resposta.ComprovativoPath,

@@ -36,8 +36,6 @@
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-   
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -270,7 +268,18 @@
                         <a class="nav-link collapsed" asp-controller="Notificacoes" asp-action="Index"
                            aria-expanded="true" aria-controls="notificacoes">
                             <i class="fas fa-fw fa-user"></i>
-                            <span>Notificacoes</span>
+                            <span>Notificações</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Historico" asp-action="Historico"
+                           aria-expanded="true" aria-controls="notificacoes">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Historico</span>
                         </a>
                     </li>
                 }

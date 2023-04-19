@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ATLManager.Models.Historicos;
 using ATLManager.Models;
 
 namespace ATLManager.Data;
@@ -27,6 +28,7 @@ public class ATLManagerAuthContext : IdentityDbContext<ATLManagerUser>
     public DbSet<EducandoSaude> EducandoSaude { get; set; }
     public DbSet<EducandoResponsavel> EducandoResponsavel { get; set; }
     public DbSet<VisitaEstudo> VisitaEstudo { get; set; }
+    public DbSet<VisitaEstudoRecord> VisitaEstudoRecord { get; set; }
     public DbSet<Formulario> Formulario { get; set; }
     public DbSet<FormularioResposta> FormularioResposta { get; set; }
     public DbSet<ATLAdmin> ATLAdmin { get; set; }
