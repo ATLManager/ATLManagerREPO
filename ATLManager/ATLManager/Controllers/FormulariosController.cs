@@ -140,6 +140,57 @@ namespace ATLManager.Controllers
             return View(respostas);
         }
 
+        public async Task<IActionResult> Estatisticas(Guid id)
+        {
+            var estatisticas = await GetVisitasDeEstudoEstatisticas(id);
+            ViewData["formularioId"] = id; // Passa o id do formulário para a view
+            return View(estatisticas);
+        }
+        
+        private async Task<Dictionary<string, decimal>> GetVisitasDeEstudoEstatisticas(Guid? id)
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            // Obtenha os formulários gerenciados pelo usuário atual
+            var formularios = await _context.Formulario
+                .Where(r => r.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            // Obtenha as respostas dos formulários gerenciados pelo usuário atual
+            var respostas = await _context.FormularioResposta
+                .Include(fr => fr.Formulario)
+                .Where(fr => fr.Formulario.AtlId == currentUserAccount.AtlId && (!id.HasValue || fr.Formulario.FormularioId == id))
+                .ToListAsync();
+
+            var totalFormularios = respostas.Count;
+            var totalAutorizados = respostas.Count(fr => fr.Authorized);
+            var totalNaoAutorizados = totalFormularios - totalAutorizados;
+            var percentualAutorizados = totalFormularios != 0 ? (decimal)totalAutorizados / totalFormularios * 100 : 0;
+
+            var estatisticas = new Dictionary<string, decimal>
+            {
+                { "TotalAutorizados", totalAutorizados },
+                { "TotalNaoAutorizados", totalNaoAutorizados },
+                { "PercentualAutorizados", percentualAutorizados },
+                { "PercentualNaoAutorizados", 100 - percentualAutorizados }
+            };
+
+            return estatisticas;
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetVisitasDeEstudoEstatisticasAjax(Guid formularioId)
+        {
+            var estatisticas = await GetVisitasDeEstudoEstatisticas(formularioId);
+            return Json(estatisticas);
+        }
+
         // GET: Formularios/Create
         [Authorize(Roles = "Coordenador")]
         public async Task<IActionResult> Create()
