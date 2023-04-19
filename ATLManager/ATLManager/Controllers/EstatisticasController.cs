@@ -25,7 +25,7 @@ namespace ATLManager.Controllers
         {
             var estatisticasViewModel = new EstatisticasViewModel
             {
-                VisitasDeEstudoEstatisticas = await GetVisitasDeEstudoEstatisticas(id),
+                VisitasEstudoPorMesEstatisticas = await GetVisitasEstudoPorMesEstatisticas(),
                 AtividadesPorMesEstatisticas = await GetAtividadesPorMesEstatisticas()
             };
 
@@ -41,7 +41,7 @@ namespace ATLManager.Controllers
             return View(estatisticasViewModel);
         }
 
-        private async Task<Dictionary<string, decimal>> GetVisitasDeEstudoEstatisticas(Guid? id)
+        private async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticas()
         {
             // Obtenha o usuário atual
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -51,37 +51,24 @@ namespace ATLManager.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            // Obtenha os formulários gerenciados pelo usuário atual
-            var formularios = await _context.Formulario
-                .Where(r => r.AtlId == currentUserAccount.AtlId)
+            // Obtenha as atividades gerenciadas pelo usuário atual
+            var visitasEstudo = await _context.VisitaEstudo
+                .Where(a => a.AtlId == currentUserAccount.AtlId)
                 .ToListAsync();
 
-            // Obtenha as respostas dos formulários gerenciados pelo usuário atual
-            var respostas = await _context.FormularioResposta
-                .Include(fr => fr.Formulario)
-                .Where(fr => fr.Formulario.AtlId == currentUserAccount.AtlId && (!id.HasValue || fr.Formulario.FormularioId == id))
-                .ToListAsync();
-            
-            var totalFormularios = respostas.Count;
-            var totalAutorizados = respostas.Count(fr => fr.Authorized);
-            var percentualAutorizados = totalFormularios != 0 ? (decimal)totalAutorizados / totalFormularios * 100 : 0;
 
-            var estatisticas = new Dictionary<string, decimal>
+            var anoAtual = DateTime.Now.Year;
+            var estatisticas = new Dictionary<string, int>();
+
+            for (int mes = 1; mes <= 12; mes++)
             {
-                { "PercentualAutorizados", percentualAutorizados },
-                { "PercentualNaoAutorizados", 100 - percentualAutorizados }
-            };
+                var visitasEstudoNoMes = visitasEstudo.Count(a => a.Date.Year == anoAtual && a.Date.Month == mes);
+                estatisticas.Add($"VisitaEstudoMes{mes}", visitasEstudoNoMes);
+            }
 
             return estatisticas;
         }
-
-        [HttpGet]
-        public async Task<JsonResult> GetVisitasDeEstudoEstatisticasAjax(Guid formularioId)
-        {
-            var estatisticas = await GetVisitasDeEstudoEstatisticas(formularioId);
-            return Json(estatisticas);
-        }
-
+        
         private async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticas()
         {
             // Obtenha o usuário atual
@@ -109,6 +96,6 @@ namespace ATLManager.Controllers
 
             return estatisticas;
         }
-
     }
+    
 }
