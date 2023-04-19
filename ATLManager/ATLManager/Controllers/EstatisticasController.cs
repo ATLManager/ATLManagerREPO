@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace ATLManager.Controllers
 {
@@ -23,13 +24,23 @@ namespace ATLManager.Controllers
 
         public async Task<IActionResult> Index(Guid? id)
         {
-            var estatisticasViewModel = new EstatisticasViewModel
-            {
-                VisitasEstudoPorMesEstatisticas = await GetVisitasEstudoPorMesEstatisticas(),
-                AtividadesPorMesEstatisticas = await GetAtividadesPorMesEstatisticas()
-            };
+			var faturasEmAtraso = await GetFaturasEmAtraso();
+			var faturasPagas = await GetFaturasPagas();
 
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var estatisticasViewModel = new EstatisticasViewModel
+			{
+				VisitasEstudoPorMesEstatisticas = await GetVisitasEstudoPorMesEstatisticas(),
+				AtividadesPorMesEstatisticas = await GetAtividadesPorMesEstatisticas(),
+				NumeroDeEducandos = await GetNumeroDeEducandos(),
+				NumeroDeRapazes = await GetNumeroDeRapazes(),
+				NumeroDeRaparigas = await GetNumeroDeRaparigas(),
+				FaturasEmAtraso = faturasEmAtraso.Count,
+				FaturasPagas = faturasPagas.Count,
+				TotalValorEmAtraso = faturasEmAtraso.Total,
+				TotalValorPago = faturasPagas.Total
+			};
+
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             var currentUserAccount = await _context.ContaAdministrativa
                     .Include(f => f.User)
                     .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
@@ -96,6 +107,80 @@ namespace ATLManager.Controllers
 
             return estatisticas;
         }
-    }
-    
+
+		private async Task<int> GetNumeroDeEducandos()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == currentUserAccount.AtlId)
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
+
+		private async Task<int> GetNumeroDeRapazes()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == currentUserAccount.AtlId && c.Genero == "Masculino")
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
+		private async Task<int> GetNumeroDeRaparigas()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == currentUserAccount.AtlId && c.Genero == "Feminino")
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
+		private async Task<(int Count, decimal Total)> GetFaturasEmAtraso()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var faturasEmAtraso = await _context.ReciboResposta
+				.Where(r => r.Recibo.AtlId == currentUserAccount.AtlId && !r.Authorized)
+				.ToListAsync();
+
+			decimal totalValorEmAtraso = faturasEmAtraso.Sum(f => decimal.Parse(f.Price.Replace(',', '.'), CultureInfo.InvariantCulture));
+			return (faturasEmAtraso.Count, totalValorEmAtraso);
+		}
+
+		private async Task<(int Count, decimal Total)> GetFaturasPagas()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var faturasPagas = await _context.ReciboResposta
+				.Where(r => r.Recibo.AtlId == currentUserAccount.AtlId && r.Authorized)
+				.ToListAsync();
+
+			decimal totalValorPago = faturasPagas.Sum(f => decimal.Parse(f.Price.Replace(',', '.'), CultureInfo.InvariantCulture));
+			return (faturasPagas.Count, totalValorPago);
+		}
+
+	}
+
 }

@@ -140,29 +140,40 @@
 							</div>
 						</div>
 
-							<div class="col-md-6">
-								<h3>Atividades por Mês</h3>
-								<div class="table-container">
-									<table class="table table-bordered table-striped table-hover align-middle">
-										<thead class="thead-dark">
-											<tr>
-												@for (int i = 0; i < 12; i++)
-												{
-													<th>@meses[i]</th>
-												}
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												@for (int i = 0; i < 12; i++)
-												{
-													<td>@Model.AtividadesPorMesEstatisticas[$"AtividadesMes{i + 1}"]</td>
-												}
-											</tr>
-										</tbody>
-									</table>
+						<div class="row">
+							<div class="col-md-4">
+								<h3>Número de Educandos</h3>
+                                <p>@Model.NumeroDeEducandos</p>
+								<div class="chart-container">
+									<canvas id="generoEducandosChart"></canvas>
 								</div>
 							</div>
+							<div class="col-md-4">
+								<h3>Número de Rapazes</h3>
+								<p>@Model.NumeroDeRapazes</p>
+							</div>
+							<div class="col-md-4">
+								<h3>Número de Raparigas</h3>
+								<p>@Model.NumeroDeRaparigas</p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<h3>Faturas em Atraso</h3>
+								<p>Quantidade: @Model.FaturasEmAtraso</p>
+								<p>Valor total: @Model.TotalValorEmAtraso.ToString("C")</p>
+								<div class="chart-container">
+									<canvas id="faturasChart"></canvas>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<h3>Faturas Pagas</h3>
+								<p>Quantidade: @Model.FaturasPagas</p>
+								<p>Valor total: @Model.TotalValorPago.ToString("C")</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -417,6 +428,110 @@
 			document.getElementById('atividadesPorMesChart'),
 			atividadesPorMesConfig
 		);
+
+		const generoEducandosData = {
+			labels: ['Educandos'],
+			datasets: [
+				{
+					label: 'Rapazes',
+					data: [@Model.NumeroDeRapazes],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				},
+				{
+					label: 'Raparigas',
+					data: [@Model.NumeroDeRaparigas],
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255, 99, 132, 1)',
+					borderWidth: 1
+				}
+			]
+		};
+
+		const generoEducandosConfig = {
+			type: 'bar',
+			data: generoEducandosData,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 10) * 10,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: true
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
+
+		const generoEducandosChart = new Chart(
+			document.getElementById('generoEducandosChart'),
+			generoEducandosConfig
+		);
+
+		const faturasData = {
+			labels: ['Faturas Pagas', 'Faturas em Atraso'],
+			datasets: [
+				{
+					data: [@Model.FaturasPagas, @Model.FaturasEmAtraso],
+					backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+					borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+					borderWidth: 1
+				}
+			]
+		};
+
+		const faturasDataConfig = {
+			type: 'doughnut',
+			data: faturasData,
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Faturas Pagas x Faturas em Atraso'
+					}
+				}
+			}
+		};
+
+		const faturasDataChart = new Chart(
+			document.getElementById('faturasChart'),
+			faturasDataConfig
+		);
+
+		
 	</script>
 
 	<!-- // Slide de Ajuda  -->
