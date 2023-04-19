@@ -7,23 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models.Historicos;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class VisitaEstudoRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly UserManager<ATLManagerUser> _userManager;
 
-        public VisitaEstudoRecordsController(ATLManagerAuthContext context)
+        public VisitaEstudoRecordsController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: VisitaEstudoRecords
         public async Task<IActionResult> Index()
         {
-            var aTLManagerAuthContext = _context.VisitaEstudoRecord.Include(v => v.Atl);
-            return View(await aTLManagerAuthContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var visitasRecords = await _context.VisitaEstudoRecord
+                .Include(a => a.Atl)
+                .Where(r => r.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return View(visitasRecords);
         }
 
         // GET: VisitaEstudoRecords/Details/5

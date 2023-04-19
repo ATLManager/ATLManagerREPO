@@ -1,4 +1,4 @@
-﻿@model ATLManager.Models.Atividade
+﻿@model ATLManager.Models.Historicos.AtividadeRecord
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -97,7 +97,7 @@
                       
                             <div class="col">
                                 <form asp-action="Delete">
-                                    <input type="hidden" asp-for="AtividadeId" />
+                                    <input type="hidden" asp-for="AtividadeRecordId" />
                                     <input type="submit" value="Delete" class="btn btn-danger w-50" style="border-radius:6em" />
                                 </form>
                             </div>                        

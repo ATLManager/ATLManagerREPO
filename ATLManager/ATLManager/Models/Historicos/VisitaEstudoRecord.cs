@@ -30,5 +30,10 @@ namespace ATLManager.Models.Historicos
         [ForeignKey("Atl")]
         public Guid? AtlId { get; set; }
         public ATL? Atl { get; set; }
+
+        public VisitaEstudoRecord()
+        {
+            VisitaEstudoRecordID = Guid.NewGuid();
+        }
     }
 }

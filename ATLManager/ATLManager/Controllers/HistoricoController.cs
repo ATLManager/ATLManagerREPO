@@ -4,7 +4,7 @@ namespace ATLManager.Controllers
 {
     public class HistoricoController : Controller
     {
-        public IActionResult Historico()
+        public IActionResult Escolher()
         {
             return View();
         }
