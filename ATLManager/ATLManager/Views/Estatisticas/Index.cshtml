@@ -431,80 +431,80 @@
 		);
 
 		
-		const visitasEstudoPorMesData = {
-			labels: [
-				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-			],
-			datasets: [{
-				label: 'Visitas de Estudo por Mês',
-				data: [
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes1"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes2"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes3"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes4"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes5"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes6"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes7"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes8"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes9"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes10"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes11"],
-		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes12"]
-										],
-				backgroundColor: 'rgba(75, 192, 192, 0.2)',
-				borderColor: 'rgba(75, 192, 192, 1)',
-				borderWidth: 1
-			}]
-		};
+		//const visitasEstudoPorMesData = {
+		//	labels: [
+		//		'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+		//		'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+		//	],
+		//	datasets: [{
+		//		label: 'Visitas de Estudo por Mês',
+		//		data: [
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes1"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes2"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes3"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes4"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes5"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes6"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes7"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes8"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes9"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes10"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes11"],
+		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes12"]
+		//								],
+		//		backgroundColor: 'rgba(75, 192, 192, 0.2)',
+		//		borderColor: 'rgba(75, 192, 192, 1)',
+		//		borderWidth: 1
+		//	}]
+		//};
 
-		const visitasEstudoPorMesConfig = {
-			type: 'bar',
-			data: visitasEstudoPorMesData,
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: Math.ceil(Math.max(...visitasEstudoPorMesData.datasets[0].data) / 5) * 5,
-						ticks: {
-							stepSize: 1,
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						},
-					},
-					x: {
-						ticks: {
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					}
-				},
-				plugins: {
-					legend: {
-						display: false
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				layout: {
-					padding: {
-						left: 10,
-						right: 10,
-						top: 10,
-						bottom: 10
-					}
-				}
-			}
-		};
+		//const visitasEstudoPorMesConfig = {
+		//	type: 'bar',
+		//	data: visitasEstudoPorMesData,
+		//	options: {
+		//		scales: {
+		//			y: {
+		//				beginAtZero: true,
+		//				max: Math.ceil(Math.max(...visitasEstudoPorMesData.datasets[0].data) / 5) * 5,
+		//				ticks: {
+		//					stepSize: 1,
+		//					font: {
+		//						size: 14,
+		//						family: 'Poppins'
+		//					}
+		//				},
+		//			},
+		//			x: {
+		//				ticks: {
+		//					font: {
+		//						size: 14,
+		//						family: 'Poppins'
+		//					}
+		//				}
+		//			}
+		//		},
+		//		plugins: {
+		//			legend: {
+		//				display: false
+		//			}
+		//		},
+		//		responsive: true,
+		//		maintainAspectRatio: false,
+		//		layout: {
+		//			padding: {
+		//				left: 10,
+		//				right: 10,
+		//				top: 10,
+		//				bottom: 10
+		//			}
+		//		}
+		//	}
+		//};
 
-		const visitasEstudoPorMesChart = new Chart(
-			document.getElementById('visitasEstudoPorMesChart'),
-			visitasEstudoPorMesConfig
-		);
+		//const visitasEstudoPorMesChart = new Chart(
+		//	document.getElementById('visitasEstudoPorMesChart'),
+		//	visitasEstudoPorMesConfig
+		//);
 
 		
 		
@@ -585,81 +585,81 @@
 		);
 
 
-				// Gráfico de barras para as estatísticas de atividades por mês
-		const atividadesPorMesData = {
-			labels: [
-				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-			],
-			datasets: [{
-				label: 'Atividades por Mês',
-				data: [
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes1"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes2"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes3"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes4"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes5"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes6"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes7"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes8"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes9"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes10"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes11"],
-		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes12"]
-								],
-				backgroundColor: 'rgba(75, 192, 192, 0.2)',
-				borderColor: 'rgba(75, 192, 192, 1)',
-				borderWidth: 1
-			}]
-		};
+		//		// Gráfico de barras para as estatísticas de atividades por mês
+		//const atividadesPorMesData = {
+		//	labels: [
+		//		'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+		//		'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+		//	],
+		//	datasets: [{
+		//		label: 'Atividades por Mês',
+		//		data: [
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes1"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes2"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes3"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes4"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes5"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes6"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes7"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes8"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes9"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes10"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes11"],
+		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes12"]
+		//						],
+		//		backgroundColor: 'rgba(75, 192, 192, 0.2)',
+		//		borderColor: 'rgba(75, 192, 192, 1)',
+		//		borderWidth: 1
+		//	}]
+		//};
 
-		const atividadesPorMesConfig = {
-			type: 'bar',
-			data: atividadesPorMesData,
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 5) * 5,
-						ticks: {
-							stepSize: 1,
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					},
-					x: {
-						ticks: {
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					}
-				},
-				plugins: {
-					legend: {
-						display: false
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				layout: {
-					padding: {
-						left: 10,
-						right: 10,
-						top: 10,
-						bottom: 10
-					}
-				}
-			}
-		};
+		//const atividadesPorMesConfig = {
+		//	type: 'bar',
+		//	data: atividadesPorMesData,
+		//	options: {
+		//		scales: {
+		//			y: {
+		//				beginAtZero: true,
+		//				max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 5) * 5,
+		//				ticks: {
+		//					stepSize: 1,
+		//					font: {
+		//						size: 14,
+		//						family: 'Poppins'
+		//					}
+		//				}
+		//			},
+		//			x: {
+		//				ticks: {
+		//					font: {
+		//						size: 14,
+		//						family: 'Poppins'
+		//					}
+		//				}
+		//			}
+		//		},
+		//		plugins: {
+		//			legend: {
+		//				display: false
+		//			}
+		//		},
+		//		responsive: true,
+		//		maintainAspectRatio: false,
+		//		layout: {
+		//			padding: {
+		//				left: 10,
+		//				right: 10,
+		//				top: 10,
+		//				bottom: 10
+		//			}
+		//		}
+		//	}
+		//};
 
-		const atividadesPorMesChart = new Chart(
-			document.getElementById('atividadesPorMesChart'),
-			atividadesPorMesConfig
-		);
+		//const atividadesPorMesChart = new Chart(
+		//	document.getElementById('atividadesPorMesChart'),
+		//	atividadesPorMesConfig
+		//);
 
 		// Gráfico de barras para as estatísticas de educandos por mês
 		const educandosPorMesData = {
@@ -765,7 +765,7 @@
 				scales: {
 					y: {
 						beginAtZero: true,
-						max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 10) * 10,
+						max: Math.ceil(Math.max(...generoEducandosData.datasets[0].data) / 10) * 10,
 						ticks: {
 							stepSize: 1,
 							font: {
@@ -859,9 +859,9 @@
 				.catch(error => console.error("Erro ao buscar as estatísticas:", error));
 		}
 		
-		window.addEventListener('load', () => {
-  updateStats();
-});
+//		window.addEventListener('load', () => {
+//  updateStats();
+//});
 
 	</script>
 
