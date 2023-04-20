@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -246,6 +247,18 @@ namespace ATLManager.Controllers
             var visitaEstudo = await _context.VisitaEstudo.FindAsync(id);
             if (visitaEstudo != null)
             {
+                var record = new VisitaEstudoRecord()
+                {
+                    VisitaEstudoID = id,
+                    Name = visitaEstudo.Name,
+                    Location = visitaEstudo.Location,
+                    Description = visitaEstudo.Description,
+                    Date = visitaEstudo.Date.Date,
+                    Picture = visitaEstudo.Picture,
+                    AtlId = visitaEstudo.AtlId
+                };
+
+                _context.Add(record);
                 _context.VisitaEstudo.Remove(visitaEstudo);
             }
             

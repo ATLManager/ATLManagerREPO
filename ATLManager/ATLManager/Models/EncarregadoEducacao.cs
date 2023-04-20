@@ -20,7 +20,7 @@ namespace ATLManager.Models
         [Phone]
         [Required]
         [RegularExpression("^9[0-9]{8}$")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 5)]
@@ -48,7 +48,7 @@ namespace ATLManager.Models
 			EncarregadoId = Guid.NewGuid();
 		}
 
-		public EncarregadoEducacao(ATLManagerUser user, string firstName, string lastName, int phone, string address, string city, string postalCode, int nif) : this ()
+		public EncarregadoEducacao(ATLManagerUser user, string firstName, string lastName, string phone, string address, string city, string postalCode, int nif) : this ()
         {
             User = user;
             UserId = user.Id;

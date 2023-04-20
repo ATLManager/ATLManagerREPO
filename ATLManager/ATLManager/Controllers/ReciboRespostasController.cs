@@ -21,9 +21,11 @@ namespace ATLManager.Controllers
         private readonly INotificacoesController _notificacoesController;
 
 
-        public ReciboRespostasController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment, 
-											INotificacoesController notificacoesController, UserManager<ATLManagerUser> userManager,
-											RoleManager<IdentityRole> roleManager)
+        public ReciboRespostasController(ATLManagerAuthContext context, 
+            IWebHostEnvironment webHostEnvironment, 
+			INotificacoesController notificacoesController, 
+            UserManager<ATLManagerUser> userManager,
+			RoleManager<IdentityRole> roleManager)
 		{
 			_context = context;
 			_webHostEnvironment = webHostEnvironment;
@@ -78,7 +80,6 @@ namespace ATLManager.Controllers
 			    Price = resposta.Price,
 			    NIB = resposta.NIB,
 			    Description = resposta.Description,
-			    //ResponseDate = resposta.ResponseDate.ToString(),
 			    ResponseDate = (resposta.ResponseDate != null) ? resposta.ResponseDate.ToString() : "-",
 			    DateLimit = resposta.DateLimit.ToShortDateString(),
 			    ComprovativoPath = resposta.ComprovativoPath,

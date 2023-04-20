@@ -265,6 +265,29 @@ namespace ATLManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AtividadeRecord",
+                columns: table => new
+                {
+                    AtividadeRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AtividadeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AtividadeRecord", x => x.AtividadeRecordId);
+                    table.ForeignKey(
+                        name: "FK_AtividadeRecord_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ContaAdministrativa",
                 columns: table => new
                 {
@@ -324,6 +347,79 @@ namespace ATLManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EducandoRecord",
+                columns: table => new
+                {
+                    EducandoRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EducandoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apelido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Encarregado = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducandoRecord", x => x.EducandoRecordId);
+                    table.ForeignKey(
+                        name: "FK_EducandoRecord_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FormularioRecord",
+                columns: table => new
+                {
+                    FormularioRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FormularioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VisitaEstudo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Atividade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateLimit = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormularioRecord", x => x.FormularioRecordId);
+                    table.ForeignKey(
+                        name: "FK_FormularioRecord_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FuncionarioRecord",
+                columns: table => new
+                {
+                    FuncionarioRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FuncionarioRecord", x => x.FuncionarioRecordId);
+                    table.ForeignKey(
+                        name: "FK_FuncionarioRecord_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Recibo",
                 columns: table => new
                 {
@@ -377,6 +473,37 @@ namespace ATLManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RefeicaoRecord",
+                columns: table => new
+                {
+                    RefeicaoRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RefeicaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Categoria = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Proteina = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HidratosCarbono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VR = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Acucar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lipidos = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ValorEnergetico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AGSat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sal = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefeicaoRecord", x => x.RefeicaoRecordId);
+                    table.ForeignKey(
+                        name: "FK_RefeicaoRecord_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "VisitaEstudo",
                 columns: table => new
                 {
@@ -393,6 +520,29 @@ namespace ATLManager.Migrations
                     table.PrimaryKey("PK_VisitaEstudo", x => x.VisitaEstudoID);
                     table.ForeignKey(
                         name: "FK_VisitaEstudo_ATL_AtlId",
+                        column: x => x.AtlId,
+                        principalTable: "ATL",
+                        principalColumn: "AtlId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VisitaEstudoRecord",
+                columns: table => new
+                {
+                    VisitaEstudoRecordID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    VisitaEstudoID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AtlId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VisitaEstudoRecord", x => x.VisitaEstudoRecordID);
+                    table.ForeignKey(
+                        name: "FK_VisitaEstudoRecord_ATL_AtlId",
                         column: x => x.AtlId,
                         principalTable: "ATL",
                         principalColumn: "AtlId");
@@ -449,6 +599,30 @@ namespace ATLManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EducandoResponsavel",
+                columns: table => new
+                {
+                    EducandoResponsavelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EducandoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Apelido = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    CC = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Parentesco = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducandoResponsavel", x => x.EducandoResponsavelId);
+                    table.ForeignKey(
+                        name: "FK_EducandoResponsavel_Educando_EducandoId",
+                        column: x => x.EducandoId,
+                        principalTable: "Educando",
+                        principalColumn: "EducandoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EducandoSaude",
                 columns: table => new
                 {
@@ -471,6 +645,29 @@ namespace ATLManager.Migrations
                         column: x => x.EducandoId,
                         principalTable: "Educando",
                         principalColumn: "EducandoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FormularioRespostaRecord",
+                columns: table => new
+                {
+                    FormularioRespostaRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FormularioRespostaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FormularioRecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Educando = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Authorized = table.Column<bool>(type: "bit", nullable: false),
+                    DateLimit = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ResponseDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormularioRespostaRecord", x => x.FormularioRespostaRecordId);
+                    table.ForeignKey(
+                        name: "FK_FormularioRespostaRecord_FormularioRecord_FormularioRecordId",
+                        column: x => x.FormularioRecordId,
+                        principalTable: "FormularioRecord",
+                        principalColumn: "FormularioRecordId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -620,6 +817,11 @@ namespace ATLManager.Migrations
                 column: "AtlId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AtividadeRecord_AtlId",
+                table: "AtividadeRecord",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ATL_AgrupamentoId",
                 table: "ATL",
                 column: "AgrupamentoId");
@@ -665,6 +867,16 @@ namespace ATLManager.Migrations
                 column: "EncarregadoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EducandoRecord_AtlId",
+                table: "EducandoRecord",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducandoResponsavel_EducandoId",
+                table: "EducandoResponsavel",
+                column: "EducandoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EducandoSaude_EducandoId",
                 table: "EducandoSaude",
                 column: "EducandoId");
@@ -690,6 +902,11 @@ namespace ATLManager.Migrations
                 column: "VisitaEstudoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FormularioRecord_AtlId",
+                table: "FormularioRecord",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FormularioResposta_EducandoId",
                 table: "FormularioResposta",
                 column: "EducandoId");
@@ -698,6 +915,16 @@ namespace ATLManager.Migrations
                 name: "IX_FormularioResposta_FormularioId",
                 table: "FormularioResposta",
                 column: "FormularioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormularioRespostaRecord_FormularioRecordId",
+                table: "FormularioRespostaRecord",
+                column: "FormularioRecordId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FuncionarioRecord_AtlId",
+                table: "FuncionarioRecord",
+                column: "AtlId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notificacoes_UserId",
@@ -725,8 +952,18 @@ namespace ATLManager.Migrations
                 column: "AtlId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RefeicaoRecord_AtlId",
+                table: "RefeicaoRecord",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VisitaEstudo_AtlId",
                 table: "VisitaEstudo",
+                column: "AtlId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VisitaEstudoRecord_AtlId",
+                table: "VisitaEstudoRecord",
                 column: "AtlId");
 
             migrationBuilder.AddForeignKey(
@@ -759,16 +996,31 @@ namespace ATLManager.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "AtividadeRecord");
+
+            migrationBuilder.DropTable(
                 name: "ATLAdmin");
 
             migrationBuilder.DropTable(
                 name: "CoordATL");
 
             migrationBuilder.DropTable(
+                name: "EducandoRecord");
+
+            migrationBuilder.DropTable(
+                name: "EducandoResponsavel");
+
+            migrationBuilder.DropTable(
                 name: "EducandoSaude");
 
             migrationBuilder.DropTable(
                 name: "FormularioResposta");
+
+            migrationBuilder.DropTable(
+                name: "FormularioRespostaRecord");
+
+            migrationBuilder.DropTable(
+                name: "FuncionarioRecord");
 
             migrationBuilder.DropTable(
                 name: "Notificacoes");
@@ -780,10 +1032,19 @@ namespace ATLManager.Migrations
                 name: "Refeicao");
 
             migrationBuilder.DropTable(
+                name: "RefeicaoRecord");
+
+            migrationBuilder.DropTable(
+                name: "VisitaEstudoRecord");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Formulario");
+
+            migrationBuilder.DropTable(
+                name: "FormularioRecord");
 
             migrationBuilder.DropTable(
                 name: "Educando");

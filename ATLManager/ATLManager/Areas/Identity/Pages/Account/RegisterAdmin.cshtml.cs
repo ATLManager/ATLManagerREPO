@@ -88,7 +88,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
 			[Required]
 			[DataType(DataType.Text)]
-			public string CC { get; set; }
+            [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
+            public string CC { get; set; }
 
 			/// <summary>
 			///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

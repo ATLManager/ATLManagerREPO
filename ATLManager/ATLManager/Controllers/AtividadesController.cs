@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
-using ATLManager.Models;
 using Microsoft.AspNetCore.Hosting;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Areas.Identity.Data;
+using ATLManager.Models;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -250,6 +251,18 @@ namespace ATLManager.Controllers
             var atividade = await _context.Atividade.FindAsync(id);
             if (atividade != null)
             {
+                var record = new AtividadeRecord()
+                {
+                    AtividadeId = atividade.AtividadeId,
+                    Name = atividade.Name,
+                    StartDate = atividade.StartDate,
+                    EndDate = atividade.EndDate,
+                    Description = atividade.Description,
+                    Picture = atividade.Picture,
+                    AtlId = atividade.AtlId,
+                };
+
+                _context.Add(record);
                 _context.Atividade.Remove(atividade);
             }
             

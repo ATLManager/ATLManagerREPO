@@ -4,13 +4,13 @@
 
 namespace ATLManager.Migrations
 {
-    public partial class Educando_Responsavel_PhoneToString : Migration
+    public partial class Misc_Updates : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Phone",
-                table: "EducandoResponsavel",
+                table: "EncarregadoEducacao",
                 type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(int),
@@ -21,7 +21,7 @@ namespace ATLManager.Migrations
         {
             migrationBuilder.AlterColumn<int>(
                 name: "Phone",
-                table: "EducandoResponsavel",
+                table: "EncarregadoEducacao",
                 type: "int",
                 nullable: false,
                 oldClrType: typeof(string),

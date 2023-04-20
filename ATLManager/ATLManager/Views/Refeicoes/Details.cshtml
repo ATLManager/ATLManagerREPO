@@ -5,7 +5,6 @@
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -30,7 +29,6 @@
                                  class="rounded-circle mb-3"
                                  style="width:10%"
                              asp-append-version="true" />
-
                             <dl class="row text-end">
                                 <div class="row col-12 mb-3">
                                     <div class="col"></div>
@@ -41,24 +39,18 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row col-12 text-left">
-                                    
                                     <div class="row">
                                         <dt class="col-1"></dt>
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.Name)
                                         </dt>
-
                                         <dd class="col-3">
                                             @Html.DisplayFor(model => model.Name)
                                         </dd>
-
-
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.Proteina)
                                         </dt>
-
                                         <dd class="col-1">
                                             @Html.DisplayFor(model => model.Proteina)
                                         </dd>
@@ -70,7 +62,6 @@
                                             @Html.DisplayFor(model => model.VR)
                                         </dd>
                                     </div>
-
                                     <div class="row">
                                         <dt class="col-1"></dt>
                                         <dt class="col">
@@ -96,35 +87,24 @@
                                     </div>
                                     <div class="row">
                                         <dt class="col-1"></dt>
-
-
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.Categoria)
                                         </dt>
-
                                         <dd class="col-3">
                                             @Html.DisplayFor(model => model.Categoria)
                                         </dd>
-                                   
-                                       
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.Lipidos)
                                         </dt>
-
                                         <dd class="col-1">
                                             @Html.DisplayFor(model => model.Lipidos)
                                         </dd>
-
-
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.AGSat)
                                         </dt>
-
                                         <dd class="col-1">
                                             @Html.DisplayFor(model => model.AGSat)
                                         </dd>
-
-                                      
                                     </div>
                                     <div class="row">
                                         <dt class="col-1"></dt>
@@ -137,27 +117,18 @@
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.ValorEnergetico)
                                         </dt>
-
                                         <dd class="col-1">
                                             @Html.DisplayFor(model => model.ValorEnergetico)
                                         </dd>
-
-
                                         <dt class="col">
                                             @Html.DisplayNameFor(model => model.Sal)
                                         </dt>
-
                                         <dd class="col-1">
                                             @Html.DisplayFor(model => model.Sal)
                                         </dd>
                                     </div>
-
-                              
                                 </div>
                             </dl>
-
-
-
                             <hr />
                             <div class="d-flex text-center mt-4">
                                 <div class="col">
@@ -168,12 +139,6 @@
                                         </button>
                                     </a>
                                 </div>
-                            </div>
-
-
-                            <div>
-                                @*<a asp-action="Edit" asp-route-id="@Model?.AgrupamentoID">Edit</a> |*@
-
                             </div>
                         </div>
                     </div>

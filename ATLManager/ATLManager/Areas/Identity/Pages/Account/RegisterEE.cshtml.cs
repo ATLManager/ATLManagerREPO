@@ -89,7 +89,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
             [Required]
             [RegularExpression("^9[0-9]{8}$")]
-            public int Phone { get; set; }
+            public string Phone { get; set; }
 
             [Required]
             [StringLength(50, MinimumLength = 5)]
