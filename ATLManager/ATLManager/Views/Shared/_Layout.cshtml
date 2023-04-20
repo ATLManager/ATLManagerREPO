@@ -56,22 +56,39 @@
         <div id="wrapper">
             <!-- Sidebar -->
             <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index" id="manage">
-
-                    <div class="sidebar-brand-icon">
+                @if (User.IsInRole("EncarregadoEducacao"))
+                {
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="IndexEE" id="manage">
+                                    <div class="sidebar-brand-icon">
                         <img src="~/images/logo/logo.png">
                     </div>
                     <div class="sidebar-brand-text mx-3">ATL Manager</div>
                 </a>
-                @*<hr class="sidebar-divider my-0">*@
+                }else{
+                        <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index" id="manage">
+                        <div class="sidebar-brand-icon">
+                            <img src="~/images/logo/logo.png">
+                        </div>
+                        <div class="sidebar-brand-text mx-3">ATL Manager</div>
+                    </a>
+                }
+                <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
+                    @if (User.IsInRole("EncarregadoEducacao"))
+                    {
+                    <a class="nav-link" asp-controller="Home" asp-action="IndexEE">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    }else{
+
                     <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
+                    }
                 </li>
-                @*<hr class="sidebar-divider">*@
-                @*<br><br>*@
+
                  <hr class="sidebar-divider">
                 <div class="sidebar-heading">
                     Educação
@@ -229,7 +246,7 @@
                     Recursos
                 </div>
 
-                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("Administrador"))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-controller="Estatisticas" asp-action="Index"

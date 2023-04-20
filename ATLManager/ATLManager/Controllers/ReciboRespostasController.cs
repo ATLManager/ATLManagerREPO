@@ -108,8 +108,9 @@ namespace ATLManager.Controllers
             ModelState.Remove("Description");
             ModelState.Remove("ComprovativoPath");
             ModelState.Remove("ResponseDate");
+			ModelState.Remove("DateLimit");
 
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
 			{
 				try
 				{
