@@ -2,8 +2,10 @@
 {
 	public class EstatisticasViewModel
 	{
-		public Dictionary<string, int> VisitasEstudoPorMesEstatisticas { get; set; }
-		public Dictionary<string, int> AtividadesPorMesEstatisticas { get; set; }
+		public Dictionary<string, int> VisitasEstudoPorMesEstatisticasCoordenadores { get; set; }
+		public Dictionary<string, int> AtividadesPorMesEstatisticasCoordenadores { get; set; }
+		public Dictionary<string, int> GetAtividadesPorMesEstatisticasEnc { get; set; }
+		public Dictionary<string, int> GetVisitasEstudoPorMesEstatisticasEnc { get; set; }
 		public int NumeroDeEducandosNovos { get; set; }
 		public int NumeroDeEducandos { get; set; }
 		public Dictionary<string, int> EducandosPorMes { get; set; }

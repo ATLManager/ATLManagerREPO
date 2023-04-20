@@ -116,68 +116,144 @@
 				<div class="row box border-5">
 
 					<div class="container">
-						<div class="row">
-							<div class="col-md-6">
-								<h3>Visitas de Estudo por Mês</h3>
-								@if (ViewBag.Formularios.Count == 0)
-								{
-									<div id="noFormulariosMessage" class="text-center no-formulario-msg">
-										<h4>Formulários não criado</h4>
-									</div>
-								}
-								else
-								{
+						@if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+						{
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Visitas de Estudo por Mês</h3>
+									@if (ViewBag.Formularios.Count == 0)
+									{
+										<div id="noFormulariosMessage" class="text-center no-formulario-msg">
+											<h4>Formulários não criado</h4>
+										</div>
+									}
+									else
+									{
+										<div class="chart-container">
+											<canvas id="visitasEstudoPorMesChartCoord"></canvas>
+										</div>
+									}
+								</div>
+								<div class="col-md-6">
+									<h3>Atividades por Mês</h3>
 									<div class="chart-container">
-										<canvas id="visitasEstudoPorMesChart"></canvas>
+										<canvas id="atividadesPorMesChartCoord"></canvas>
 									</div>
-								}
-							</div>
-							<div class="col-md-6">
-								<h3>Atividades por Mês</h3>
-								<div class="chart-container">
-									<canvas id="atividadesPorMesChart"></canvas>
 								</div>
 							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-md-6">
-								<h3>Número de Educandos Inscritos Por Mês</h3>
-								<p>+ @Model.NumeroDeEducandosNovos @((Model.NumeroDeEducandosNovos == 1) ? "Educando" : "Educandos") inscritos no último mês</p>
-								<div class="chart-container">
-									<canvas id="educandosPorMesChart"></canvas>
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Número de Educandos Inscritos Por Mês</h3>
+									<p>+ @Model.NumeroDeEducandosNovos @(
+								(Model.NumeroDeEducandosNovos == 1) ? "Educando" : "Educandos"
+								) inscritos no último mês</p>
+									<div class="chart-container">
+										<canvas id="educandosPorMesChart"></canvas>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h3>Número de Rapazes & Número de Raparigas</h3>
+									<p>@Model.NumeroDeEducandos Educandos no Total no ATL</p>
+									<div class="chart-container">
+										<canvas id="generoEducandosChart"></canvas>
+									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<h3>Número de Rapazes & Número de Raparigas</h3>
-								<p>@Model.NumeroDeEducandos Educandos no Total no ATL</p>
-								<div class="chart-container">
-									<canvas id="generoEducandosChart"></canvas>
-								</div>
-							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-md-6">
-								<h3>Faturas em Atraso</h3>
-								<p>Quantidade: @Model.FaturasEmAtraso</p>
-								<p>Valor total: @Model.TotalValorEmAtraso.ToString("C")</p>
-							</div>
-							<div class="col-md-6">
-								<h3>Faturas Pagas</h3>
-								<p>Quantidade: @Model.FaturasPagas</p>
-								<p>Valor total: @Model.TotalValorPago.ToString("C")</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3"></div>
-							<div class="col-md-6">
-								<div class="chart-container">
-									<canvas id="faturasChart"></canvas>
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Faturas em Atraso</h3>
+									<p>Quantidade: @Model.FaturasEmAtraso</p>
+									<p>Valor total: @Model.TotalValorEmAtraso.ToString("C")</p>
+								</div>
+								<div class="col-md-6">
+									<h3>Faturas Pagas</h3>
+									<p>Quantidade: @Model.FaturasPagas</p>
+									<p>Valor total: @Model.TotalValorPago.ToString("C")</p>
 								</div>
 							</div>
-							<div class="col-md-3"></div>
-						</div>
+							<div class="row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<div class="chart-container">
+										<canvas id="faturasChart"></canvas>
+									</div>
+								</div>
+								<div class="col-md-3"></div>
+							</div>
+						}
+
+						@if (User.IsInRole("Administrador"))
+							{
+								<div class="row">
+									<div class="col-md-12 d-flex justify-content-center">
+										<label for="atl-select" class="form-label">Selecione o ATL:</label>
+										<select class="form-select" id="atl-select" onchange="updateStats()">
+											<option value="0" selected>Escolha o ATL...</option>
+											@foreach (var atl in ViewBag.ATLs)
+											{
+											<option value="@atl.AtlId">@atl.Name</option>
+											}
+										</select>
+									</div>
+								</div>
+    
+								<div class="row">
+									<div class="col-md-6">
+										<h3>Visitas de Estudo por Mês</h3>
+										<div class="chart-container">
+											<canvas id="visitasEstudoPorMesChart"></canvas>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<h3>Atividades por Mês</h3>
+										<div class="chart-container">
+											<canvas id="atividadesPorMesChart"></canvas>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<h3>Número de Educandos Inscritos Por Mês</h3>
+										<p>+ <span id="numeroDeEducandosNovos"></span> Educandos inscritos no último mês</p>
+										<div class="chart-container">
+											<canvas id="educandosPorMesChart"></canvas>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<h3>Número de Rapazes & Número de Raparigas</h3>
+										<p><span id="numeroDeEducandos"></span> Educandos no Total no ATL</p>
+										<div class="chart-container">
+											<canvas id="generoEducandosChart"></canvas>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<h3>Faturas em Atraso</h3>
+										<p>Quantidade: <span id="faturas-em-atraso-quantidade"></span></p>
+										<p>Valor total: <span id="faturas-em-atraso-valor"></span></p>
+									</div>
+									<div class="col-md-6">
+										<h3>Faturas Pagas</h3>
+										<p>Quantidade: <span id="faturas-pagas-quantidade"></span></p>
+										<p>Valor total: <span id="faturas-pagas-valor"></span></p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3"></div>
+									<div class="col-md-6">
+									<div class="chart-container">
+										<canvas id="faturasChart"></canvas>
+									</div>
+								</div>
+								<div class="col-md-3"></div>
+							</div>
+						}
+
 					</div>
 				</div>
 			</div>
@@ -279,6 +355,82 @@
 	<script>
 
 		// Gráfico de barras para as estatísticas de atividades por mês
+		const visitasEstudoPorMesDataCoord = {
+			labels: [
+				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+			],
+			datasets: [{
+				label: 'Visitas de Estudo por Mês',
+				data: [
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes1"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes2"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes3"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes4"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes5"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes6"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes7"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes8"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes9"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes10"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes11"],
+		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes12"]
+										],
+				backgroundColor: 'rgba(75, 192, 192, 0.2)',
+				borderColor: 'rgba(75, 192, 192, 1)',
+				borderWidth: 1
+			}]
+		};
+
+		const visitasEstudoPorMesConfigCoord = {
+			type: 'bar',
+			data: visitasEstudoPorMesDataCoord,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: Math.ceil(Math.max(...visitasEstudoPorMesDataCoord.datasets[0].data) / 5) * 5,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						},
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
+
+		const visitasEstudoPorMesChartCoord = new Chart(
+			document.getElementById('visitasEstudoPorMesChartCoord'),
+			visitasEstudoPorMesConfigCoord
+		);
+
+		
 		const visitasEstudoPorMesData = {
 			labels: [
 				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -287,18 +439,18 @@
 			datasets: [{
 				label: 'Visitas de Estudo por Mês',
 				data: [
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes1"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes2"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes3"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes4"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes5"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes6"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes7"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes8"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes9"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes10"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes11"],
-		@Model.VisitasEstudoPorMesEstatisticas["VisitaEstudoMes12"]
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes1"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes2"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes3"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes4"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes5"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes6"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes7"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes8"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes9"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes10"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes11"],
+		@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes12"]
 										],
 				backgroundColor: 'rgba(75, 192, 192, 0.2)',
 				borderColor: 'rgba(75, 192, 192, 1)',
@@ -354,10 +506,86 @@
 			visitasEstudoPorMesConfig
 		);
 
-
 		
 		
 		// Gráfico de barras para as estatísticas de atividades por mês
+		const atividadesPorMesDataCoord = {
+			labels: [
+				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+			],
+			datasets: [{
+				label: 'Atividades por Mês',
+				data: [
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes1"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes2"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes3"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes4"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes5"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes6"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes7"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes8"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes9"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes10"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes11"],
+		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes12"]
+								],
+				backgroundColor: 'rgba(75, 192, 192, 0.2)',
+				borderColor: 'rgba(75, 192, 192, 1)',
+				borderWidth: 1
+			}]
+		};
+
+		const atividadesPorMesConfigCoord = {
+			type: 'bar',
+			data: atividadesPorMesDataCoord,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: Math.ceil(Math.max(...atividadesPorMesDataCoord.datasets[0].data) / 5) * 5,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
+
+		const atividadesPorMesChartCoord = new Chart(
+			document.getElementById('atividadesPorMesChartCoord'),
+			atividadesPorMesConfigCoord
+		);
+
+
+				// Gráfico de barras para as estatísticas de atividades por mês
 		const atividadesPorMesData = {
 			labels: [
 				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -366,18 +594,18 @@
 			datasets: [{
 				label: 'Atividades por Mês',
 				data: [
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes1"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes2"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes3"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes4"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes5"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes6"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes7"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes8"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes9"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes10"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes11"],
-		@Model.AtividadesPorMesEstatisticas["AtividadesMes12"]
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes1"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes2"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes3"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes4"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes5"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes6"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes7"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes8"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes9"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes10"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes11"],
+		@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes12"]
 								],
 				backgroundColor: 'rgba(75, 192, 192, 0.2)',
 				borderColor: 'rgba(75, 192, 192, 1)',
@@ -612,7 +840,29 @@
 			faturasDataConfig
 		);
 
+		function updateStats() {
+			let atlId = document.getElementById("atl-select").value;
+
+			console.log(atlId);
+			// Busque as estatísticas para o ATL selecionado usando AJAX
+			fetch(`/Estatisticas/GetEstatisticasPorATL?id=${atlId}`)
+				.then(response => response.json())
+				.then(data => {
+					// Atualize os gráficos com os novos dados
+					visitasEstudoPorMesChart.data.datasets[0].data = data.visitasEstudoPorMes;
+					atividadesPorMesChart.data.datasets[0].data = data.atividadesPorMes;
+
+					// Atualize todos os gráficos
+					visitasEstudoPorMesChart.update();
+					atividadesPorMesChart.update();
+				})
+				.catch(error => console.error("Erro ao buscar as estatísticas:", error));
+		}
 		
+		window.addEventListener('load', () => {
+  updateStats();
+});
+
 	</script>
 
 	<!-- // Slide de Ajuda  -->

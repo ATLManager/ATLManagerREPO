@@ -263,8 +263,16 @@ else
                 </div>
             </div>
             <div class="card-body">
+    <select class="form-select" id="educando-select" onchange="onEducandoSelectChange()">
+                        <option value="">-- Selecione um educando --</option>
+                    @foreach (var educando in ViewBag.Educandos)
+                    {
+                        <option value="@educando.EducandoId">@educando.Name @educando.Apelido</option>
+                    }
+                </select>
                 <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+                    <canvas id="myAreaChartVisitaEstudos"></canvas>
+                    <canvas id="myAreaChartAtividades"></canvas>
                 </div>
             </div>
         </div>
@@ -590,4 +598,166 @@ else
             $(this).addClass('active');
         });
     });
+</script>
+
+<script>
+    let myAreaChartVisitaEstudos;
+    let myAreaChartAtividades;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateEstatisticas();
+    });
+
+    function onEducandoSelectChange() {
+    updateEstatisticas();
+}
+
+
+
+  async function updateEstatisticas() {
+    const selectedEducandoId = document.getElementById('educando-select').value;
+    if (selectedEducandoId === '') {
+            // Limpe ou oculte as estatísticas se nenhuma opção estiver selecionada
+            return;
+        }
+
+const response = await fetch(`/Home/GetEstatisticasPorEducando?id=${selectedEducandoId}`);
+    const responseText = await response.text();
+    
+     try {
+        const data = JSON.parse(responseText);
+
+        // Atualize as estatísticas com base nos dados recebidos
+        // Exemplo: atualizar o gráfico myAreaChart
+        if (!myAreaChartVisitaEstudos) {
+            myAreaChartVisitaEstudos = new Chart(
+                document.getElementById('myAreaChartVisitaEstudos'),
+                {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                        ],
+                        datasets: [{
+                            label: 'Visitas de Estudo por Mês',
+                            data: Object.values(data.visitasEstudoPorMes),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+max: Math.ceil(Math.max(...Object.values(data.visitasEstudoPorMes)) / 5) * 5,
+ticks: {
+stepSize: 1,
+font: {
+size: 14,
+family: 'Poppins'
+}
+},
+},
+x: {
+ticks: {
+font: {
+size: 14,
+family: 'Poppins'
+}
+}
+}
+},
+plugins: {
+legend: {
+display: false
+}
+},
+responsive: true,
+maintainAspectRatio: false,
+layout: {
+padding: {
+left: 10,
+right: 10,
+top: 10,
+bottom: 10
+}
+}
+}
+}
+);
+} else {
+myAreaChartVisitaEstudos.data.datasets[0].data = Object.values(data.visitasEstudoPorMes);
+myAreaChartVisitaEstudos.options.scales.y.max = Math.ceil(Math.max(...Object.values(data.visitasEstudoPorMes)) / 5) * 5;
+myAreaChartVisitaEstudos.update();
+}
+ if (!myAreaChartAtividades) {
+        myAreaChartAtividades = new Chart(
+            document.getElementById('myAreaChartAtividades'),
+            {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                    ],
+                    datasets: [{
+                        label: 'Atividades por Mês',
+                        data: Object.values(data.atividadesPorMes),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: Math.ceil(Math.max(...Object.values(data.atividadesPorMes)) / 5) * 5,
+                            ticks: {
+                                stepSize: 1,
+                                font: {
+                                    size: 14,
+                                    family: 'Poppins'
+                                }
+                            },
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 14,
+                                    family: 'Poppins'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 10
+                        }
+                    }
+                }
+            }
+        );
+    } else {
+        myAreaChartAtividades.data.datasets[0].data = Object.values(data.atividadesPorMes);
+        myAreaChartAtividades.options.scales.y.max = Math.ceil(Math.max(...Object.values(data.atividadesPorMes)) / 5) * 5;
+        myAreaChartAtividades.update();
+    } 
+    } catch (error) {
+        console.error('Erro ao processar a resposta JSON:', error);
+        console.log('Resposta do servidor:', responseText);
+    }
+}
 </script>

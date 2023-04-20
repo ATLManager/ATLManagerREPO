@@ -152,6 +152,7 @@ builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 });
 
 builder.Services.AddScoped<INotificacoesController, NotificacoesController>();
+builder.Services.AddScoped<EstatisticasController>();
 
 
 
