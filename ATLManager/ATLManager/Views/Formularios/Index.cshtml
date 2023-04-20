@@ -18,7 +18,6 @@
             <h1 class="me-3 fw-bold text-center mb-4">Consultar Formulário</h1>
             <img src="~/images/icons/search-group.png" width="50" height="50">
         </div>
-
         <div class="row" style="padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-5"></div>
@@ -28,36 +27,28 @@
                 </button>
             </div>
         </div>
-
         <!-- Fase 1  -->
         <!-- d-flex -->
         <div class="d-flex justify-content-center" id="divFase1">
             <!-- Box  -->
             <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
                 <div class="row box border-5 p-5">
-
                     <div class="container">
                         <form>
                             <div class="row">
-
                                 <div class="mb-5">
                                     <label for="nome" class="form-label">Procure Formulário:</label>
                                     <input type="text" class="form-control" id="nome"
                                            placeholder="Digite o nome do Formulário">
                                 </div>
                             </div>
-
                             <div class="row mt-3">
                                 <div class="mb-3">
-
                                     <div class="row">
                                         <div class="col-4">
                                             <label for="lista-formularios" class="form-label">Lista de Formulário(s):</label>
                                         </div>
-
                                         <div class="col-8">
-                                            @*http://localhost:56970/FormularioRespostas/Obrigado*@
-
                                             <div class="d-flex">
                                                 <div class="col text-end">
                                                     <a asp-action="Create">
@@ -66,22 +57,13 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <p class="rounded-circle"></p>
-
-
                                     <table class="table table-hover table-bordered text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.Name)
                                                 </th>
-                                               @* <th>
-                                                    @Html.DisplayNameFor(model => model.Description)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.VisitaEstudo)
-                                                </th>*@
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.StartDate)
                                                 </th>
@@ -98,32 +80,18 @@
                                                     <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.Name)
                                                     </td>
-                                                    @*<td class="align-middle">
-                                                        @Html.DisplayFor(modelItem => item.Description)
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        @if (item.VisitaEstudo != null)
-                                                        {
-                                                            @Html.DisplayFor(modelItem => item.VisitaEstudo.Descripton)
-                                                        }else{
-                                                                <span class="text-center"> - </span>
-                                                            }
-                                                    </td>*@
                                                     <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.StartDate)
                                                     </td>
                                                     <td class="align-middle">
                                                         @Html.DisplayFor(modelItem => item.DateLimit)
                                                     </td>
-
-
                                                     <td class="text-center w-25">
                                                         <a asp-action="Details" asp-route-id="@item.FormularioId">
                                                             <button type="button" class="btn btn-primary custom-button" style="border-radius:6em">
                                                                 <img src="~/images/icons/search-icon1.png" height="20" width="20">
                                                             </button>
                                                         </a>
-
                                                         <a asp-action="Edit" asp-route-id="@item.FormularioId">
                                                             <button type="button" class="btn btn-success custom-button" style="border-radius:6em">
                                                                 <img src="~/images/icons/edit-icon1.png" height="20" width="20">

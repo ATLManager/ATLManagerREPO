@@ -19,6 +19,7 @@ namespace ATLManager.Models
         public Guid EducandoId { get; set; }
         public Educando Educando { get; set; }
         
+		[DisplayName("Autorizado")]
         public bool Authorized { get; set; } = false;
 
         [DataType(DataType.Date)]
@@ -28,7 +29,7 @@ namespace ATLManager.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        [DisplayName("Data de início do formulário")]
+        [DisplayName("Data da resposta")]
         public DateTime? ResponseDate { get; set; }
 
         public FormularioResposta ()

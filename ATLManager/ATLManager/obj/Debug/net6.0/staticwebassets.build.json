@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OSnGmAknQPk0CL9Xg/hNmJic+8IRvyoo2DR94IZsqiM=",
+  "Hash": "cHy8dTHUGr18oQnYvXiQixbyYRJKJKbvsUm2but6ioU=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -1207,6 +1207,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\26338037-03b6-4727-969f-2c06e5f8547a_id_cringe.jpg",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "files/users/recibos/26338037-03b6-4727-969f-2c06e5f8547a_id_cringe.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\26338037-03b6-4727-969f-2c06e5f8547a_id_cringe.jpg"
+    },
+    {
       "Identity": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\3a1a5bfe-26a5-4fcd-aa0c-59261258d65b_id_04_DarkCloud.pdf",
       "SourceId": "ATLManager",
       "SourceType": "Discovered",
@@ -1273,6 +1290,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\883db2b7-f1c8-4537-9bf8-3421ebf4d8f3_id_04_DarkCloud.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\files\\users\\recibos\\dadf3770-bcf6-4362-a189-1af2d3c1a179_id_cringe.jpg",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "files/users/recibos/dadf3770-bcf6-4362-a189-1af2d3c1a179_id_cringe.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\users\\recibos\\dadf3770-bcf6-4362-a189-1af2d3c1a179_id_cringe.jpg"
     },
     {
       "Identity": "C:\\Users\\bruno\\OneDrive\\Desktop\\Escola\\3º Ano\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\boy.png",

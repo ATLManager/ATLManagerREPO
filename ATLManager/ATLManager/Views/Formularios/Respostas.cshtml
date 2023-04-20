@@ -15,21 +15,19 @@
 		<h1 class="me-3 fw-bold text-center mb-4">Consulta de respostas</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
-
-
 	<!-- Container -->
 	<div class="container-fluid">
-
-		@*<div class="row" style="padding-left: 6em;">
-			<div class="col-3"></div>
-			<div class="col-5"></div>
-			<div class="col-4  pb-2" id="divQuestion">
-				<button class="btn btn-primary rounded-circle" id="btn-ajuda" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-				</button>
+		@*
+			<div class="row" style="padding-left: 6em;">
+				<div class="col-3"></div>
+				<div class="col-5"></div>
+				<div class="col-4  pb-2" id="divQuestion">
+					<button class="btn btn-primary rounded-circle" id="btn-ajuda" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+						<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+					</button>
+				</div>
 			</div>
-		</div>
-*@
+		*@
 		<!-- Fase 1  -->
 		<!-- d-flex -->
 		<div class="d-flex justify-content-center" id="divFase1">
@@ -40,7 +38,7 @@
 						<div class="d-flex align-items-start">
 
 							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-								<a class="nav-link" href="@Url.Action("Details", new { id = formId })">
+								<a class="nav-link" asp-action="Details" asp-route-id="@formId">
 									<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
 											type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
 										Detalhes do Formulário
@@ -60,34 +58,18 @@
 							</div>
 							<div class="row pl-5">
 								<div class="mb-3">
-
 									<form>
-										@*<div class="row">
-
-											<div class="mb-5">
-												<label for="nome" class="form-label">Procure formulário:</label>
-												<input type="text" class="form-control" id="nome"
-													   placeholder="Digite o nome do formulário">
-											</div>
-										</div>*@
-
 										<div class="row mt-3">
 											<div class="mb-3">
-
 												<div class="row ">
 													<div class="col">
 														<label for="lista-formularios" class="form-label">Lista de respostas:</label>
 													</div>
-
 												</div>
-
 												<p class="rounded-circle"></p>
-
-
 												<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
 													<thead>
 														<tr>
-														
 															<th>
 																@Html.DisplayNameFor(model => model.EducandoName)
 															</th>
@@ -97,7 +79,6 @@
 															<th>
 																@Html.DisplayNameFor(model => model.ResponseDate)
 															</th>
-
 															<th class="text-center"> Acções </th>
 														</tr>
 													</thead>
@@ -105,7 +86,6 @@
 														@foreach (var item in Model)
 														{
 															<tr>
-																
 																<td>
 																	@Html.DisplayFor(modelItem => item.EducandoName)
 																</td>
@@ -132,9 +112,6 @@
 							</div>
 						</div>
 					</div>
-					
-						
-				
 				</div>
 			</div>
 			<!-- // Box -->

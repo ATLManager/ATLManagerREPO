@@ -145,10 +145,6 @@ namespace ATLManager.Controllers
                     {
                         responsavel.ProfilePicture = photoFileName;
                     }
-                    else
-                    {
-                        responsavel.ProfilePicture = "logo.png";
-                    }
 
                     _context.Update(responsavel);
                     await _context.SaveChangesAsync();

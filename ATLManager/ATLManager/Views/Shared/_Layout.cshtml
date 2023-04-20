@@ -36,8 +36,6 @@
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-   
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -83,12 +81,14 @@
                         <span>Dashboard</span>
                     </a>
                     }else{
+
                     <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
                     }
                 </li>
+
                  <hr class="sidebar-divider">
                 <div class="sidebar-heading">
                     Educação
@@ -285,7 +285,18 @@
                         <a class="nav-link collapsed" asp-controller="Notificacoes" asp-action="Index"
                            aria-expanded="true" aria-controls="notificacoes">
                             <i class="fas fa-fw fa-user"></i>
-                            <span>Notificacoes</span>
+                            <span>Notificações</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Historico" asp-action="Escolher"
+                           aria-expanded="true" aria-controls="notificacoes">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Historico</span>
                         </a>
                     </li>
                 }
@@ -397,7 +408,7 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item dropdown no-arrow mx-1">
+                           @* <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-envelope fa-fw"></i>
@@ -436,7 +447,7 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                                 </div>
-                            </li>
+                            </li>*@
 
 
                         <li class="nav-item">

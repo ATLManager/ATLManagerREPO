@@ -11,6 +11,7 @@ using ATLManager.ViewModels;
 using NuGet.ContentModel;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -255,6 +256,26 @@ namespace ATLManager.Controllers
             var refeicao = await _context.Refeicao.FindAsync(id);
             if (refeicao != null)
             {
+                var record = new RefeicaoRecord()
+                {
+                    RefeicaoId = refeicao.RefeicaoId,
+                    Name = refeicao.Name,
+                    Categoria = refeicao.Categoria,
+                    Data = refeicao.Data.Date,
+                    Descricao = refeicao.Descricao,
+                    Proteina = refeicao.Proteina,
+                    HidratosCarbono = refeicao.Proteina,
+                    VR = refeicao.VR,
+                    Acucar = refeicao.Acucar,
+                    Lipidos = refeicao.Lipidos,
+                    ValorEnergetico = refeicao.ValorEnergetico,
+                    AGSat = refeicao.AGSat,
+                    Sal = refeicao.Sal,
+                    Picture = refeicao.Picture,
+                    AtlId = refeicao.AtlId,
+                };
+
+                _context.Add(record);
                 _context.Refeicao.Remove(refeicao);
             }
             

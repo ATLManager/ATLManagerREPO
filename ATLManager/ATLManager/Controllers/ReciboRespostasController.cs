@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
-using ATLManager.Migrations;
 using MessagePack;
 using NuGet.Configuration;
 
@@ -22,9 +21,11 @@ namespace ATLManager.Controllers
         private readonly INotificacoesController _notificacoesController;
 
 
-        public ReciboRespostasController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment, 
-											INotificacoesController notificacoesController, UserManager<ATLManagerUser> userManager,
-											RoleManager<IdentityRole> roleManager)
+        public ReciboRespostasController(ATLManagerAuthContext context, 
+            IWebHostEnvironment webHostEnvironment, 
+			INotificacoesController notificacoesController, 
+            UserManager<ATLManagerUser> userManager,
+			RoleManager<IdentityRole> roleManager)
 		{
 			_context = context;
 			_webHostEnvironment = webHostEnvironment;
@@ -79,8 +80,8 @@ namespace ATLManager.Controllers
 			    Price = resposta.Price,
 			    NIB = resposta.NIB,
 			    Description = resposta.Description,
-				ResponseDate = (resposta.ResponseDate != null) ? resposta.ResponseDate.ToString() : "-",
-				DateLimit = resposta.DateLimit.ToShortDateString(),
+			    ResponseDate = (resposta.ResponseDate != null) ? resposta.ResponseDate.ToString() : "-",
+			    DateLimit = resposta.DateLimit.ToShortDateString(),
 			    ComprovativoPath = resposta.ComprovativoPath,
 			    Authorized = resposta.Authorized,
 			    Notes = resposta.Notes
@@ -103,6 +104,7 @@ namespace ATLManager.Controllers
             ModelState.Remove("Name");
             ModelState.Remove("Price");
             ModelState.Remove("NIB");
+            ModelState.Remove("DateLimit");
             ModelState.Remove("Description");
             ModelState.Remove("ComprovativoPath");
             ModelState.Remove("ResponseDate");

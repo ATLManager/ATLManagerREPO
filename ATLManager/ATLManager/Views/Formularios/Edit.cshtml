@@ -48,26 +48,6 @@
 													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
 													<span asp-validation-for="Name" class="text-danger"></span>
 												</div>
-
-
-												<div class="col-6">
-													<div class="form-group">
-														<label asp-for="VisitaEstudoId" class="control-label"></label>
-														<select asp-for="VisitaEstudoId" class="form-control" asp-items="ViewBag.VisitaEstudoId">
-															<option value="">Escolha uma Visita de Estudo</option>
-														</select>
-													</div>
-												</div>
-
-											</div>
-
-											<div class="row mb-2">
-												<div class="col-6">
-													<label asp-for="StartDate" class="control-label"> Start Date Atual - @Html.DisplayFor(model => model.StartDate)</label>									
-													<input asp-for="StartDate" class="form-control" />
-													<span asp-validation-for="StartDate" class="text-danger"></span>
-												</div>
-
 												<div class="col-6 position-relative">
 													<div class="row">
 														<div class="h-100 position-absolute top-0 end-0">
@@ -81,9 +61,9 @@
 															</div>
 														</div>
 													</div>
-												</div>
+												</div>				
 											</div>
-
+										
 											<div class="row mb-2">
 												<div class="col-6">
 													<label asp-for="DateLimit" class="control-label">End Date Atual - @Html.DisplayFor(model => model.DateLimit) </label>

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -285,12 +286,54 @@ namespace ATLManager.Controllers
             {
                 return Problem("Entity set 'ATLManagerAuthContext.Recibo'  is null.");
             }
-            var recibo = await _context.Recibo.FindAsync(id);
+
+            var recibo = await _context.Recibo
+                .Include(f => f.Atl)
+                .FirstOrDefaultAsync(m => m.ReciboId == id);
             if (recibo != null)
             {
+                var record = new ReciboRecord()
+                {
+                    Name = recibo.Name,
+                    Price = recibo.Price,
+                    NIB = recibo.NIB,
+                    Description = recibo.Description,
+                    EmissionDate = recibo.EmissionDate.Date,
+                    DateLimit = recibo.DateLimit,
+                    AtlId = recibo.AtlId,
+                };
+
+                var respostas = await _context.ReciboResposta
+                    .Include(r => r.Recibo)
+                    .Include(r => r.Educando)
+                    .Where(r => r.ReciboId == recibo.ReciboId)
+                    .ToListAsync();
+
+                foreach (var resposta in respostas)
+                {
+                    var respostaRecord = new ReciboRespostaRecord()
+                    {
+                        ReciboRecordId = record.ReciboRecordId,
+                        Educando = resposta.Educando.Name + " " + resposta.Educando.Apelido,
+                        Name = resposta.Name, 
+                        Price = resposta.Price,
+                        NIB = resposta.NIB,
+                        Description = resposta.Description,
+                        DateLimit = ((DateTime)resposta.DateLimit).Date,
+                        Authorized = resposta.Authorized,
+                        ResponseDate = (resposta.ResponseDate == null) ? null : ((DateTime)resposta.ResponseDate).Date,
+                        ComprovativoPath = resposta.ComprovativoPath,
+                        ReceiptPath = resposta.ReceiptPath,
+                        Notes = resposta.Notes,
+                    };
+
+                    _context.Add(respostaRecord);
+                };
+
+                _context.Add(record);
                 _context.Recibo.Remove(recibo);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -10,6 +10,7 @@ using ATLManager.Models;
 using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -366,9 +367,25 @@ namespace ATLManager.Controllers
             {
                 return Problem("Entity set 'ATLManagerAuthContext.Educando'  is null.");
             }
-            var educando = await _context.Educando.FindAsync(id);
+            var educando = await _context.Educando
+                .Include(f => f.Encarregado)
+                .Where(f => f.EducandoId == id)
+                .FirstAsync();
             if (educando != null)
             {
+                var record = new EducandoRecord()
+                {
+                    EducandoId = educando.EducandoId,
+                    Name = educando.Name,
+                    Apelido = educando.Apelido,
+                    CC = educando.CC,
+                    Genero = educando.Genero,
+                    ProfilePicture = educando.ProfilePicture,
+                    Encarregado = educando.Encarregado.FullName,
+                    AtlId = educando.AtlId,
+                };
+
+                _context.Add(record);
                 _context.Educando.Remove(educando);
             }
             

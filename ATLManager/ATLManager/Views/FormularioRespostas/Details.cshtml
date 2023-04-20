@@ -21,16 +21,21 @@
 		<!-- Box  -->
 		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
 			<div class="row box border-5 p-5">
-
 				<div class="container">
-
 					<div class="row mt-3">
 						<div class="mb-3">
-
 							<dl class="row">
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Formulario)
+										@Html.DisplayNameFor(model => model.Formulario.Name)
+									</dt>
+									<dd class="col text-left">
+										@Html.DisplayFor(model => model.Formulario.Name)
+									</dd>
+								</div>
+								<div class="row">
+									<dt class="col mr-2">
+										@Html.DisplayNameFor(model => model.Formulario.Description)
 									</dt>
 									<dd class="col text-left">
 										@Html.DisplayFor(model => model.Formulario.Description)
@@ -58,8 +63,14 @@
 										@Html.DisplayNameFor(model => model.ResponseDate)
 									</dt>
 									<dd class="col text-left">
-										@Html.DisplayFor(model => model.ResponseDate)
-									</dd>
+										@if (Model.ResponseDate != null)
+										{
+											@Html.DisplayFor(model => model.ResponseDate)
+										}
+										else
+										{
+											<span class="text-center"> - </span>
+										}									</dd>
 								</div>
 							</dl>
 							<hr />

@@ -16,14 +16,6 @@ namespace ATLManager.ViewModels
 		[MaxLength(1000)]
 		public string Description { get; set; }
 
-		[ForeignKey("VisitaEstudo")]
-		public Guid? VisitaEstudoId { get; set; }
-		public VisitaEstudo? VisitaEstudo { get; set; }
-
-		[DataType(DataType.Date)]
-		[DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-		public string? StartDate { get; set; }
-
 		[DataType(DataType.Date)]
 		[DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
 		public string? DateLimit { get; set; }

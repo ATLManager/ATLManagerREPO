@@ -48,7 +48,7 @@
 													<span asp-validation-for="Name" class="text-danger"></span>
 												</div>
 												<div class="col-6">
-													<!-- 
+													
 													<div class="form-group">
 														<label asp-for="Picture" class="control-label">Imagem da atividade</label>
 														<div class="custom-file">
@@ -57,10 +57,7 @@
 														</div>
 														<span asp-validation-for="Picture" class="text-danger"></span>
 													</div>
-													-->
-													<label asp-for="Picture" class="control-label"></label>
-													<input asp-for="Picture" class="file-input">
-													<span asp-validation-for="Picture" class="text-danger"></span>
+													
 												</div>
 											</div>
 											<div class="row mb-2">
@@ -209,7 +206,13 @@
 		</ul>
 	</div>
 	<!-- // Slide de Ajuda  -->
-
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")
