@@ -111,6 +111,16 @@
                                     </table>
                                 </div>
                             </div>
+                            <div class="d-flex text-center mt-4">
+                                <div class="col text-center">
+                                    <a asp-controller="Historico" asp-action="Escolher">
+                                        <button type="button" class="btn btn-secondary custom-button w-25"
+                                                style=" border-radius:6em">
+                                            Voltar
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -239,7 +249,7 @@
         });
     </script>
 
-@*    <script>
+   <script>
         window.onload = function () {
             var divBox = document.getElementById("myBox")
             var divQuestion = document.getElementById("divQuestion")
@@ -253,6 +263,6 @@
                 divQuestion.style.paddingRight("2em");
             }
         }
-    </script>*@
+    </script>
 }
 
