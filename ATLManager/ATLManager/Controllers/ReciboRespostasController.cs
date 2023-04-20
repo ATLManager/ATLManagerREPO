@@ -21,9 +21,11 @@ namespace ATLManager.Controllers
         private readonly INotificacoesController _notificacoesController;
 
 
-        public ReciboRespostasController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment, 
-											INotificacoesController notificacoesController, UserManager<ATLManagerUser> userManager,
-											RoleManager<IdentityRole> roleManager)
+        public ReciboRespostasController(ATLManagerAuthContext context, 
+            IWebHostEnvironment webHostEnvironment, 
+			INotificacoesController notificacoesController, 
+            UserManager<ATLManagerUser> userManager,
+			RoleManager<IdentityRole> roleManager)
 		{
 			_context = context;
 			_webHostEnvironment = webHostEnvironment;
