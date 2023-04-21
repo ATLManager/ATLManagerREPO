@@ -158,6 +158,16 @@ namespace ATLManager.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
+
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = recibo.DateLimit;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
+                ModelState.AddModelError("DateLimit", validationMessage);
+            }
+
             if (ModelState.IsValid)
             {
                 recibo.EmissionDate = DateTime.UtcNow.Date;
