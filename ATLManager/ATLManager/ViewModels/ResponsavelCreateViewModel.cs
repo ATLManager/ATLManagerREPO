@@ -1,7 +1,9 @@
 ﻿using ATLManager.Areas.Identity.Data;
+using ATLManager.Attributes;
 using ATLManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Xunit.Sdk;
 
 namespace ATLManager.ViewModels
 {
@@ -33,6 +35,8 @@ namespace ATLManager.ViewModels
 		public string? Parentesco { get; set; }
 
 		[DisplayName("Imagem de perfil")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
         public IFormFile? ProfilePicture { get; set; }
 
 		public ResponsavelCreateViewModel()

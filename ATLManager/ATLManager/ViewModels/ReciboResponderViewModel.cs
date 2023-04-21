@@ -1,9 +1,11 @@
 ﻿using ATLManager.Areas.Identity.Data;
+using ATLManager.Attributes;
 using ATLManager.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Xunit.Sdk;
 
 namespace ATLManager.ViewModels
 {
@@ -33,6 +35,8 @@ namespace ATLManager.ViewModels
 		public string DateLimit { get; set; }
 
         [DisplayName("Comprovativo")]
+        [AllowedExtensions(new string[] { ".pdf" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .pdf")]
         public IFormFile Comprovativo { get; set; }
 	}
 }
