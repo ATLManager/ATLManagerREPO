@@ -108,6 +108,18 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VisitaEstudoCreateViewModel viewModel)
         {
+
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = viewModel.Date;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+                ModelState.AddModelError("Date", validationMessage);
+            }
+
+
+
             if (ModelState.IsValid)
             {
                 var currentUser = await _userManager.GetUserAsync(HttpContext.User);
