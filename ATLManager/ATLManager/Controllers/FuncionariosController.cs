@@ -132,6 +132,19 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            // Obter a data de nascimento do ViewModel
+            DateTime dataNascimento = viewModel.DateOfBirth;
+
+            // Calcular a diferença entre a data de nascimento e a data atual
+            TimeSpan diferenca = DateTime.Today - dataNascimento;
+
+            // Verifique se a diferença em anos é maior ou igual a 18
+            if (diferenca.TotalDays / 365.25 < 18)
+            {
+                var validationMessage = "A idade mínima para registar um funcionário é 18 anos";
+                ModelState.AddModelError("DateOfBirth", validationMessage);
+            }
+
             if (ModelState.IsValid)
             {
                 // Criar user
