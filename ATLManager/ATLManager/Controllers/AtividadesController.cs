@@ -109,6 +109,23 @@ namespace ATLManager.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
+            
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = viewModel.StartDate;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
+                ModelState.AddModelError("StartDate", validationMessage);
+            }
+
+            if (viewModel.EndDate < viewModel.StartDate)
+            {
+                var validationMessage = "Não é possível criar uma Atividade com uma data de término anterior à data de incício";
+                ModelState.AddModelError("EndDate", validationMessage);
+            }
+
+
             if (ModelState.IsValid)
             {
                 string fileName = UploadedFile(viewModel.Picture);
