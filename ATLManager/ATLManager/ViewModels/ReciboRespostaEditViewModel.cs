@@ -1,7 +1,9 @@
-﻿using ATLManager.Models;
+﻿using ATLManager.Attributes;
+using ATLManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Xunit.Sdk;
 
 namespace ATLManager.ViewModels
 {
@@ -42,7 +44,9 @@ namespace ATLManager.ViewModels
 		public bool Authorized { get; set; }
 
 		[DisplayName("Recibo")]
-		public IFormFile? Receipt { get; set; }
+        [AllowedExtensions(new string[] { ".pdf" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .pdf")]
+        public IFormFile? Receipt { get; set; }
 
 		[MaxLength(500)]
 		[DisplayName("Notas")]
