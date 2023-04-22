@@ -188,6 +188,15 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel =  DateTime.Parse(viewModel.Data);
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
+                ModelState.AddModelError("Data", validationMessage);
+            }
+
             if (ModelState.IsValid)
             {
                 try
