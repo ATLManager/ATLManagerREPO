@@ -240,6 +240,22 @@ namespace ATLManager.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = formulario.StartDate;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
+                ModelState.AddModelError("StartDate", validationMessage);
+            }
+
+            if (formulario.DateLimit < formulario.StartDate)
+            {
+                var validationMessage = "Não é possível criar uma Atividade com uma data de término anterior à data de incício";
+                ModelState.AddModelError("DateLimit", validationMessage);
+            }
+
+
             if (ModelState.IsValid)
             {
                 formulario.FormularioId = Guid.NewGuid();
