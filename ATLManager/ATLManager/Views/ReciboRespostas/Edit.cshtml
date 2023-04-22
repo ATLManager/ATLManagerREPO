@@ -8,6 +8,7 @@
 @{
 	ViewData["Title"] = "Edit";
 }
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -19,7 +20,7 @@
 	<!-- d-flex -->
 	<div class="d-flex justify-content-center mt-0">
 		<!-- Box  -->
-		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+		<div class="row justify-content-center custom-box" id="myBox">
 			<div class="row box border-5 p-5">
 				<div class="container">
 					<div class="row mt-3">
@@ -174,17 +175,4 @@
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	</script>
-
-	<script>
-		window.onload = function () {
-			var divBox = document.getElementById("myBox")
-
-			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-				// Large screen
-				divBox.classList.remove("col-6");
-				divBox.classList.add("col-8");
-			}
-		}
-	</script>
-
 }

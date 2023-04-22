@@ -8,6 +8,8 @@
 @{
 	ViewData["Title"] = "Create";
 }
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+
 @if (SignInManager.IsSignedIn(User))
 {
 	<!-- Fase 1  -->
@@ -29,7 +31,7 @@
 		</div>
 		<div class="d-flex justify-content-center" id="divFase1">
 			<!-- Box  -->
-			<div class="row col-6 justify-content-center custom-box" id="myBox">
+			<div class="row justify-content-center custom-box" id="myBox">
 				<div class="row box border-5 p-5">
 					<!--text-center  -->
 					<div class="container">
@@ -235,24 +237,12 @@
 			var combobox3 = document.getElementById("divAtividade");
 			var descricao = document.getElementById("descricao");
 			
-			var divBox = document.getElementById("myBox");
-			var divQuestion = document.getElementById("divQuestion");
-
-
-			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-				// Large screen
-				divBox.classList.remove("col-6");
-				divBox.classList.add("col-12");
-				divQuestion.classList.add("text-right");
-				divQuestion.style.paddingRight = "2em";	
-			}
 			combobox2.style.display = "none";
 			combobox3.style.display = "none";
 			descricao.style.height = "7.85em";
 			
 			document.getElementById("combobox2").disabled = true;
-			document.getElementById("combobox3").disabled = true;
-			
+			document.getElementById("combobox3").disabled = true;		
 		}
 	</script>
 

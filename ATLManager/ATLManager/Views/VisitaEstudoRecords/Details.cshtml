@@ -10,6 +10,8 @@
     ViewData["Title"] = "Details";
 }
 
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
@@ -99,18 +101,6 @@
     
     <!-- JS do Google Maps API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init"></script>
-
-    <script>
-        window.onload = function () {
-            var divBox = document.getElementById("myBox")
-
-            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-                // Large screen
-                divBox.classList.remove("col-6");
-                divBox.classList.add("col-8");
-            }
-        }
-    </script>
 
     <script>
         // Função para inicializar o mapa
