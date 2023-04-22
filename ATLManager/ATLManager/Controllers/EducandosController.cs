@@ -303,18 +303,18 @@ namespace ATLManager.Controllers
 							educando.ProfilePicture = photoFileName;
 						}
 
-                        string boletinFileName = UploadedFile(viewModel.ProfilePicture);
+                        string boletinFileName = UploadedFile(viewModel.BoletimVacinas);
 
-                        if (photoFileName != null)
+                        if (boletinFileName != null)
                         {
-                            educando.ProfilePicture = boletinFileName;
+                            educando.BoletimVacinas = boletinFileName;
                         }
 
-                        string declaracaoFileName = UploadedFile(viewModel.ProfilePicture);
+                        string declaracaoFileName = UploadedFile(viewModel.DeclaracaoMedica);
 
-                        if (photoFileName != null)
+                        if (declaracaoFileName != null)
                         {
-                            educando.ProfilePicture = declaracaoFileName;
+                            educando.DeclaracaoMedica = declaracaoFileName;
                         }
 
                         _context.Update(educando);
@@ -395,12 +395,12 @@ namespace ATLManager.Controllers
 
         private bool EducandoExists(Guid id)
         {
-          return _context.Educando.Any(e => e.EducandoId == id);
+            return _context.Educando.Any(e => e.EducandoId == id);
         }
         
         private bool EducandoSaudeExists(Guid id)
         {
-          return _context.EducandoSaude.Any(e => e.EducandoId == id);
+            return _context.EducandoSaude.Any(e => e.EducandoId == id);
         }
 
 		private string UploadedFile(IFormFile logoPicture)
@@ -409,8 +409,8 @@ namespace ATLManager.Controllers
 
 			if (logoPicture != null)
 			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/educandos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\educandos");
+				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + logoPicture.FileName;
 				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 				using (var fileStream = new FileStream(filePath, FileMode.Create))
 				{
@@ -419,5 +419,13 @@ namespace ATLManager.Controllers
 			}
 			return uniqueFileName;
 		}
-	}
+
+        public IActionResult Download(string fileName)
+        {
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\educandos");
+            string filePath = Path.Combine(uploadsFolder, fileName);
+            string fileCleanName = fileName.Substring(fileName.IndexOf("_id_") + 4);
+            return File(System.IO.File.ReadAllBytes(filePath), "application/pdf", fileCleanName);
+        }
+    }
 }
