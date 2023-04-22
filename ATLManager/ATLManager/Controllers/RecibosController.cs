@@ -246,6 +246,17 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = recibo.DateLimit;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
+                ModelState.AddModelError("DateLimit", validationMessage);
+            }
+
+
             if (ModelState.IsValid)
             {
                 try
