@@ -245,13 +245,13 @@ namespace ATLManager.Controllers
             DateTime dataViewModel = formulario.StartDate;
             if (dataViewModel.CompareTo(dataAtual) < 0)
             {
-                var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
+                var validationMessage = "Não é possível criar um Formulário com uma data anterior à data atual";
                 ModelState.AddModelError("StartDate", validationMessage);
             }
 
             if (formulario.DateLimit < formulario.StartDate)
             {
-                var validationMessage = "Não é possível criar uma Atividade com uma data de término anterior à data de incício";
+                var validationMessage = "Não é possível criarum Formulário com uma data de término anterior à data de incício";
                 ModelState.AddModelError("DateLimit", validationMessage);
             }
 
@@ -346,6 +346,16 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
+
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = DateTime.Parse(viewModel.DateLimit);
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar um Formulário com uma data anterior à data atual";
+                ModelState.AddModelError("StartDate", validationMessage);
+            }
+
 
             if (ModelState.IsValid)
             {
