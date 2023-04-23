@@ -59,18 +59,25 @@
 										<dl class="row text-end">
 											<div class="row">
 												<dt class="col mr-2">
-													@Html.DisplayNameFor(model => model.FullName)
+													@Html.DisplayNameFor(model => model.User.FirstName)
 												</dt>
 												<dd class="col text-left">
-													@Html.DisplayFor(model => model.FullName)
+													@Html.DisplayFor(model => model.User.FirstName)
+													@Html.DisplayFor(model => model.User.LastName)
 												</dd>
 											</div>
 											<div class="row">
 												<dt class="col mr-2">
-													@Html.DisplayNameFor(model => model.Phone)
+													Número de telemóvel
 												</dt>
 												<dd class="col text-left">
-													@Html.DisplayFor(model => model.Phone)
+													@if (Model.User.PhoneNumber != null) {
+														@Html.DisplayFor(model => model.User.PhoneNumber)
+													}
+													else
+													{
+														<span class="text-center"> - </span>
+													}
 												</dd>
 											</div>
 											<div class="row">

@@ -88,7 +88,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            [RegularExpression("^9[0-9]{8}$")]
+            [RegularExpression("^[1-9][0-9]{8}$")]
             public string Phone { get; set; }
 
             [Required]
@@ -173,7 +173,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
             if (!string.IsNullOrEmpty(Input.NIF))
             {
-                if (_context.EncarregadoEducacao.Any(e => e.NIF == Convert.ToInt32(Input.NIF)))
+                if (_context.EncarregadoEducacao.Any(e => e.NIF == Input.NIF))
                 {
                     var validationMessage = "Outro Encarregado já contém este NIF";
                     ModelState.AddModelError("NIF", validationMessage);
@@ -193,16 +193,14 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.SetPhoneNumberAsync(user, Input.Phone);
 					await _userManager.AddToRoleAsync(user, "EncarregadoEducacao");
 
-					var perfil = new EncarregadoEducacao(user,
-                        Input.FirstName,
-                        Input.LastName,
-                        Input.Phone, 
+					var perfil = new EncarregadoEducacao(user.Id,
                         Input.Address, 
                         Input.City, 
                         Input.PostalCode, 
-                        Convert.ToInt32(Input.NIF));
+                        Input.NIF);
 
                     _context.Add(perfil);
 					await _context.SaveChangesAsync();
@@ -215,7 +213,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId, code, returnUrl },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirme o seu email",
@@ -223,7 +221,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                     }
                     else
                     {

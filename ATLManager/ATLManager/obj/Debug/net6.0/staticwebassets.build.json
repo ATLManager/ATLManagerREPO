@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eNf5yRGJy0I1WJY2wpKr+4yJgh1iAIJoOvRjUeRL/vM=",
+  "Hash": "J5/OwaCdhlLLPmWaR0MhA6UgdxydCWEU255ezz0EJVs=",
   "Source": "ATLManager",
   "BasePath": "_content/ATLManager",
   "Mode": "Default",
@@ -2514,6 +2514,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\uploads\\responsaveis\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\users\\e9825e9e-086b-446e-877c-538db9fa67d1_id_cat.jpg",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "images/uploads/users/e9825e9e-086b-446e-877c-538db9fa67d1_id_cat.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\uploads\\users\\e9825e9e-086b-446e-877c-538db9fa67d1_id_cat.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\users\\logo.png",
+      "SourceId": "ATLManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\",
+      "BasePath": "_content/ATLManager",
+      "RelativePath": "images/uploads/users/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\uploads\\users\\logo.png"
     },
     {
       "Identity": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitasEstudo\\logo.png",
