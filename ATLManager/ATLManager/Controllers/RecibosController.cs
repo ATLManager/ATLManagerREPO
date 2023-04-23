@@ -137,6 +137,7 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            ViewData["ReciboId"] = id;
             return View(respostas);
         }
 

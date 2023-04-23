@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using ATLManager.Attributes;
+using Xunit.Sdk;
 
 namespace ATLManager.ViewModels
 {
@@ -9,7 +11,7 @@ namespace ATLManager.ViewModels
     {
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [StringLength(30, MinimumLength = 5)]
         public string Name { get; set; }
 
         [Required]
@@ -17,7 +19,7 @@ namespace ATLManager.ViewModels
         public string Location { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(500)]
         public string Descripton { get; set; }
 
         [Required]
@@ -26,8 +28,9 @@ namespace ATLManager.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
-
         [DisplayName("Local da Visita de Estudo")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
         public IFormFile? Picture { get; set; }
     }
 }

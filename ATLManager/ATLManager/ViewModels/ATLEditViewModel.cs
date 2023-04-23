@@ -1,8 +1,10 @@
 ﻿using ATLManager.Areas.Identity.Data;
+using ATLManager.Attributes;
 using ATLManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Xunit.Sdk;
 
 namespace ATLManager.ViewModels
 {
@@ -34,7 +36,9 @@ namespace ATLManager.ViewModels
 
         [DataType(DataType.Upload)]
         [DisplayName("Logo do Agrupamento")]
-		public IFormFile? LogoPicture { get; set; }
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
+        public IFormFile? LogoPicture { get; set; }
 
 		public ATLEditViewModel()
 		{

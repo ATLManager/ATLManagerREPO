@@ -138,13 +138,14 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            ViewData["FormularioId"] = id;
             return View(respostas);
         }
 
         public async Task<IActionResult> Estatisticas(Guid id)
         {
             var estatisticas = await GetVisitasDeEstudoEstatisticas(id);
-            ViewData["formularioId"] = id; // Passa o id do formulário para a view
+            ViewData["FormularioId"] = id; // Passa o id do formulário para a view
             return View(estatisticas);
         }
         

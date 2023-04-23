@@ -14,6 +14,10 @@ using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Educando'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class EducandosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -30,6 +34,12 @@ namespace ATLManager.Controllers
         }
 
         // GET: Educandos
+        /// <summary>
+        /// Obtem uma lista de 'Educandos' e exibe a informação obtida numa view.
+        /// Quando um utilizador tem o role de 'Coordenador', obtem os 'Educandos' do 'ATL' ao qual está registado e, 
+        /// quando tem o role de 'EncarregadoEducacao', obtem os 'Educandos' aos quais lhe estão associados (ex. filhos).
+        /// </summary>
+        /// <returns>Uma view com a lista de educandos obtidos pelas queries</returns>
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -65,6 +75,11 @@ namespace ATLManager.Controllers
         }
 
         // GET: Educandos/Details/5
+        /// <summary>
+        /// Obtem os detalhes de um 'Educando' e exibe a informação numa view.
+        /// </summary>
+        /// <param name="id">O Id do 'Educando' a vizualizar</param>
+        /// <returns>Uma view 'Details' com a informação do 'Educando'</returns>
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Educando == null)
@@ -85,6 +100,11 @@ namespace ATLManager.Controllers
         }
 
 		// GET: EducandoSaude/DetailsSaude/5
+		/// <summary>
+		/// Obtem os detalhes de saúde de um 'Educando' e exibe a informação numa view.
+		/// </summary>
+		/// <param name="id">O Id do 'Educando' a vizualizar</param>
+		/// <returns>Uma view 'DetailsSaude' com a informação de 'EducandoSaude' de um 'Educando'</returns>
 		public async Task<IActionResult> DetailsSaude(Guid? id)
 		{
 			if (id == null || _context.EducandoSaude == null)
@@ -102,9 +122,10 @@ namespace ATLManager.Controllers
 
 			return View(educandoSaude);
 		}
-
+    
         [HttpPost]
-        public async Task<IActionResult> DetailsSaude(Guid id, [Bind("EducandoSaudeId,BloodType,EmergencyContact,InsuranceName,InsuranceNumber,Allergies,Diseases,Medication,MedicalHistory,EducandoId")] EducandoSaude educandoSaude)
+        [ValidateAntiForgeryToken]
+		public async Task<IActionResult> DetailsSaude(Guid id, [Bind("EducandoSaudeId,BloodType,EmergencyContact,InsuranceName,InsuranceNumber,Allergies,Diseases,Medication,MedicalHistory,EducandoId")] EducandoSaude educandoSaude)
         {
             if (id != educandoSaude.EducandoId)
             {
@@ -134,6 +155,7 @@ namespace ATLManager.Controllers
             return View(educandoSaude);
         }
 
+		// GET: EducandoSaude/DetailsResponsaveis/5
 		public async Task<IActionResult> DetailsResponsaveis(Guid? id)
 		{
 			if (id == null || _context.Educando == null)
@@ -155,6 +177,36 @@ namespace ATLManager.Controllers
 			return View(responsaveis);
 		}
 
+		// GET: EducandoSaude/DetailsEncarregado/5
+		public async Task<IActionResult> DetailsEncarregado(Guid? id)
+		{
+			if (id == null || _context.EducandoSaude == null)
+			{
+				return NotFound();
+			}
+
+            var educando = await _context.Educando
+                .Where(e => e.EducandoId == id)
+                .FirstOrDefaultAsync();
+
+			if (educando == null)
+			{
+				return NotFound();
+			}
+
+			var educandoEncarregado = await _context.EncarregadoEducacao
+				.Include(e => e.User)
+				.FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+
+			if (educandoEncarregado == null)
+			{
+				return NotFound();
+			}
+
+			ViewData["EducandoId"] = id;
+			return View(educandoEncarregado);
+		}
+
 		// GET: Educandos/Create
 		public async Task<IActionResult> Create()
         {
@@ -163,8 +215,6 @@ namespace ATLManager.Controllers
         }
 
         // POST: Educandos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EducandoCreateViewModel viewModel)
@@ -303,18 +353,18 @@ namespace ATLManager.Controllers
 							educando.ProfilePicture = photoFileName;
 						}
 
-                        string boletinFileName = UploadedFile(viewModel.ProfilePicture);
+                        string boletinFileName = UploadedFile(viewModel.BoletimVacinas);
 
-                        if (photoFileName != null)
+                        if (boletinFileName != null)
                         {
-                            educando.ProfilePicture = boletinFileName;
+                            educando.BoletimVacinas = boletinFileName;
                         }
 
-                        string declaracaoFileName = UploadedFile(viewModel.ProfilePicture);
+                        string declaracaoFileName = UploadedFile(viewModel.DeclaracaoMedica);
 
-                        if (photoFileName != null)
+                        if (declaracaoFileName != null)
                         {
-                            educando.ProfilePicture = declaracaoFileName;
+                            educando.DeclaracaoMedica = declaracaoFileName;
                         }
 
                         _context.Update(educando);
@@ -395,12 +445,12 @@ namespace ATLManager.Controllers
 
         private bool EducandoExists(Guid id)
         {
-          return _context.Educando.Any(e => e.EducandoId == id);
+            return _context.Educando.Any(e => e.EducandoId == id);
         }
         
         private bool EducandoSaudeExists(Guid id)
         {
-          return _context.EducandoSaude.Any(e => e.EducandoId == id);
+            return _context.EducandoSaude.Any(e => e.EducandoId == id);
         }
 
 		private string UploadedFile(IFormFile logoPicture)
@@ -409,8 +459,8 @@ namespace ATLManager.Controllers
 
 			if (logoPicture != null)
 			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/educandos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
+				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\educandos");
+				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + logoPicture.FileName;
 				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 				using (var fileStream = new FileStream(filePath, FileMode.Create))
 				{
@@ -419,5 +469,13 @@ namespace ATLManager.Controllers
 			}
 			return uniqueFileName;
 		}
-	}
+
+        public IActionResult Download(string fileName)
+        {
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\educandos");
+            string filePath = Path.Combine(uploadsFolder, fileName);
+            string fileCleanName = fileName.Substring(fileName.IndexOf("_id_") + 4);
+            return File(System.IO.File.ReadAllBytes(filePath), "application/pdf", fileCleanName);
+        }
+    }
 }
