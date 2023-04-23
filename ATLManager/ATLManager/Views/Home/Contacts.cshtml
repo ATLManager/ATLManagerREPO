@@ -13,29 +13,77 @@
 
 @if (!SignInManager.IsSignedIn(User))
 {
-    <div>
-        <h1 class="display-4">@language.GetKey("txtWelcomeToPageContactUs")</h1>
-        <p>@language.GetKey("txt1ContactUs")</p>
-        <p>@language.GetKey("txt2ContactUs")</p>
-        <p>@language.GetKey("txt3ContactUs")</p>
-        <p>@language.GetKey("txt4ContactUs")</p>
-    </div>
+
+	<!-- Fase 1  -->
+	<!-- d-flex -->
+	<!-- Container -->
+	<div class="container-fluid mt-1">
+		<div class="d-flex justify-content-center" id="divFase1">
+			<!-- Box  -->
+			<div class="row justify-content-center custom-box col-12" id="myBox">
+				<div class="row box border-5 p-5">
+					<!--text-center  -->
+					<div class="container">
+						<div class="row mt-3">
+							<h1 class="display-4 text-center">Contact Us</h1>
+							<div class="row">
+								<p>@language.GetKey("txt1ContactUs")</p>
+								<p>@language.GetKey("txt2ContactUs") @language.GetKey("txt3ContactUs")</p>
+																
+							</div>
+							<div class="d-flex justify-content-center mb-3">
+								<div class="row col-8">
+									<div class="col-md">
+                                        <form action="#" method="post">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Nome</label>
+                                                <input type="text" class="form-control" id="name" name="name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">E-mail</label>
+                                                <input type="email" class="form-control" id="email" name="email" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message" class="form-label">Mensagem</label>
+                                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                            </div>
+                                            
+
+											<div class="d-flex text-center mt-0">
+												<div class="col text-left">
+													<div class="form-group">
+														<input type="submit" value="Send" class="btn btn-primary w-50" style="border-radius:6em" />
+													</div>
+												</div>
+											</div>
+                                        </form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- // Box -->
+	</div>
+
+    <!-- SCRIPT PARA CLICAR NO MENU E MUDAR LI SELECIONADO (ACTIVE)  -->
+    <script>
+        $(document).ready(function () {
+            var activeId = "contact-us"; // desired li element
+            $('#' + activeId).addClass('active'); // add the active class to the desired li element
+            $('.nav-link').click(function () {
+                // check if the clicked nav-link has an id of "language"
+                if ($(this).attr('id') === 'language') {
+                    // do nothing
+                    return;
+                }
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
 }
 
 
-<!-- SCRIPT PARA CLICAR NO MENU E MUDAR LI SELECIONADO (ACTIVE)  -->
-<script>
-    $(document).ready(function () {
-        var activeId = "contact-us"; // desired li element
-        $('#' + activeId).addClass('active'); // add the active class to the desired li element
-        $('.nav-link').click(function () {
-            // check if the clicked nav-link has an id of "language"
-            if ($(this).attr('id') === 'language') {
-                // do nothing
-                return;
-            }
-            $('.nav-link').removeClass('active');
-            $(this).addClass('active');
-        });
-    });
-</script>
