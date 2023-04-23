@@ -84,9 +84,11 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Date)]
+            [CustomValidation(typeof(ValidationHelper), "ValidateBirthDate")]
             public DateTime BirthDate { get; set; }
 
-			[Required]
+
+            [Required]
 			[DataType(DataType.Text)]
             [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
             public string CC { get; set; }
@@ -163,6 +165,23 @@ namespace ATLManager.Areas.Identity.Pages.Account
                     ModelState.AddModelError("CC", validationMessage);
                 }
             }
+
+            //Obter a data atual
+            var today = DateTime.Today;
+
+            //Obter a data de nascimento fornecida pelo usuário
+            var birthDate = Input.BirthDate;
+
+            //Calcular a idade do usuário com base na data de nascimento
+            var age = today.Year - birthDate.Year;
+
+            //Verificar se o usuário já completou 18 anos
+            if (age < 18)
+            {
+                var validationMessage = "Para adicionar um Administrador, é necessário que o mesmo tenha no mínimo 18 anos";
+                ModelState.AddModelError("BirthDate", validationMessage);
+            }
+
 
             if (ModelState.IsValid)
             {
