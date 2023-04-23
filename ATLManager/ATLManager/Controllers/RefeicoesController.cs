@@ -107,47 +107,61 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
         {
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var currentUserAccount = await _context.ContaAdministrativa
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
-            var refeicao = new Refeicao
-            {
-                RefeicaoId = Guid.NewGuid(),
-                Name = viewModel.Name,
-                Categoria = viewModel.Categoria,
-                Data = viewModel.Data,
-                Descricao = viewModel.Descricao,
-                Proteina = viewModel.Proteina,
-                HidratosCarbono = viewModel.HidratosCarbono,
-                VR = viewModel.VR,
-                Acucar = viewModel.Acucar,
-                Lipidos = viewModel.Lipidos,
-                ValorEnergetico = viewModel.ValorEnergetico,
-                AGSat = viewModel.AGSat,
-                Sal = viewModel.Sal,
-                AtlId = (Guid)currentUserAccount.AtlId
-            };
+            DateTime dataAtual = DateTime.Now;
 
-            string fileName = UploadedFile(viewModel.Picture);
-
-            if (fileName != null)
+            DateTime dataViewModel = viewModel.Data;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
             {
-                refeicao.Picture = fileName;
-            }
-            else
-            {
-                refeicao.Picture = "logo.png";
+                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+                ModelState.AddModelError("Data", validationMessage);
             }
 
-            _context.Add(refeicao);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                var currentUserAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+                var refeicao = new Refeicao
+                {
+                    RefeicaoId = Guid.NewGuid(),
+                    Name = viewModel.Name,
+                    Categoria = viewModel.Categoria,
+                    Data = viewModel.Data,
+                    Descricao = viewModel.Descricao,
+                    Proteina = viewModel.Proteina,
+                    HidratosCarbono = viewModel.HidratosCarbono,
+                    VR = viewModel.VR,
+                    Acucar = viewModel.Acucar,
+                    Lipidos = viewModel.Lipidos,
+                    ValorEnergetico = viewModel.ValorEnergetico,
+                    AGSat = viewModel.AGSat,
+                    Sal = viewModel.Sal,
+                    AtlId = (Guid)currentUserAccount.AtlId
+                };
+
+                string fileName = UploadedFile(viewModel.Picture);
+
+                if (fileName != null)
+                {
+                    refeicao.Picture = fileName;
+                }
+                else
+                {
+                    refeicao.Picture = "logo.png";
+                }
+
+                _context.Add(refeicao);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(viewModel);
         }
 
-        // GET: Refeicoes/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+    // GET: Refeicoes/Edit/5
+    public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
             {
@@ -172,6 +186,15 @@ namespace ATLManager.Controllers
             if (id != viewModel.RefeicaoId)
             {
                 return NotFound();
+            }
+
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel =  DateTime.Parse(viewModel.Data);
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
+                ModelState.AddModelError("Data", validationMessage);
             }
 
             if (ModelState.IsValid)
