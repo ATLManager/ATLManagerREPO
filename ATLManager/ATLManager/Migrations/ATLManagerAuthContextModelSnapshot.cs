@@ -301,6 +301,9 @@ namespace ATLManager.Migrations
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("BoletimVacinas")
                         .HasColumnType("nvarchar(max)");
 

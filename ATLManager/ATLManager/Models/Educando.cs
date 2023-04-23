@@ -49,6 +49,10 @@ namespace ATLManager.Models
 		[Display(Name = "Data de Inscrição")]
 		public DateTime DataDeInscricao { get; set; }
 
+		[DataType(DataType.Date)]
+		[Display(Name = "Data de Nascimento")]
+		public DateTime BirthDate { get; set; }
+
 		public Educando()
 		{
 			EducandoId = Guid.NewGuid();

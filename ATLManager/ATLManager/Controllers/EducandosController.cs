@@ -92,6 +92,7 @@ namespace ATLManager.Controllers
             var educando = await _context.Educando
                 .Include(e => e.Atl)
                 .Include(e => e.Encarregado)
+                .Include(e => e.Encarregado.User)
                 .FirstOrDefaultAsync(m => m.EducandoId == id);
             if (educando == null)
             {
@@ -212,8 +213,13 @@ namespace ATLManager.Controllers
 		// GET: Educandos/Create
 		public async Task<IActionResult> Create()
         {
-            ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "FullName");
-            return View(new EducandoCreateViewModel());
+			var encarregados = await _context.EncarregadoEducacao
+				.Include(e => e.User)
+				.Select(e => new { e.EncarregadoId, Name = (e.User.FirstName + " " + e.User.LastName) })
+				.ToListAsync();
+
+			ViewData["EncarregadoId"] = new SelectList(encarregados, "EncarregadoId", "Name");
+			return View(new EducandoCreateViewModel());
         }
 
         // POST: Educandos/Create
@@ -229,6 +235,12 @@ namespace ATLManager.Controllers
                     var validationMessage = "Outro Educando já contém este CC";
                     ModelState.AddModelError("CC", validationMessage);
                 }
+            }
+
+            if (DateTime.Compare(viewModel.BirthDate, DateTime.UtcNow) >= 0)
+            {
+                var validationMessage = "A data de nascimento do educando não pode ser no futuro";
+                ModelState.AddModelError("BirthDate", validationMessage);
             }
 
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -251,7 +263,8 @@ namespace ATLManager.Controllers
                     CC = viewModel.CC,
                     Genero = viewModel.Genero,
                     AtlId = (Guid)userAccount.AtlId,
-                    EncarregadoId = viewModel.EncarregadoId
+                    EncarregadoId = viewModel.EncarregadoId,
+                    BirthDate = viewModel.BirthDate,
                 };
 
 				string photoFileName = UploadedFile(viewModel.ProfilePicture);
@@ -286,7 +299,13 @@ namespace ATLManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
+
+			var encarregados = await _context.EncarregadoEducacao
+				.Include(e => e.User)
+				.Select(e => new { e.EncarregadoId, Name = (e.User.FirstName + " " + e.User.LastName) })
+				.ToListAsync();
+
+			ViewData["EncarregadoId"] = new SelectList(encarregados, "EncarregadoId", "Name", viewModel.EncarregadoId);
             return View(viewModel);
         }
 
@@ -304,8 +323,13 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
+
+            var encarregados = await _context.EncarregadoEducacao
+                .Include(e => e.User)
+                .Select(e => new { e.EncarregadoId, Name = (e.User.FirstName + " " + e.User.LastName)})
+                .ToListAsync();
             
-            ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", educando.EncarregadoId);
+            ViewData["EncarregadoId"] = new SelectList(encarregados, "EncarregadoId", "Name", educando.EncarregadoId);
             return View(new EducandoEditViewModel(educando));
         }
 
@@ -335,7 +359,13 @@ namespace ATLManager.Controllers
 				}
 			}
 
-            if (ModelState.IsValid)
+			if (DateTime.Compare(viewModel.BirthDate, DateTime.UtcNow) >= 0)
+			{
+				var validationMessage = "A data de nascimento do educando não pode ser no futuro";
+				ModelState.AddModelError("BirthDate", validationMessage);
+			}
+
+			if (ModelState.IsValid)
             {
                 try
                 {
@@ -348,6 +378,7 @@ namespace ATLManager.Controllers
                         educando.CC = viewModel.CC;
                         educando.Genero = viewModel.Genero;
                         educando.EncarregadoId = viewModel.EncarregadoId;
+                        educando.BirthDate = viewModel.BirthDate;
 
 						string photoFileName = UploadedFile(viewModel.ProfilePicture);
 						if (photoFileName != null)
@@ -386,8 +417,13 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EncarregadoId"] = new SelectList(_context.EncarregadoEducacao, "EncarregadoId", "Address", viewModel.EncarregadoId);
-            return View(viewModel);
+			var encarregados = await _context.EncarregadoEducacao
+				.Include(e => e.User)
+				.Select(e => new { e.EncarregadoId, Name = (e.User.FirstName + " " + e.User.LastName) })
+				.ToListAsync();
+
+			ViewData["EncarregadoId"] = new SelectList(encarregados, "EncarregadoId", "Name", viewModel.EncarregadoId);
+			return View(viewModel);
         }
 
         // GET: Educandos/Delete/5
