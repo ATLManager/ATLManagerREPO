@@ -8,7 +8,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         {
             if (birthDate.Date.AddYears(18) > DateTime.Today)
             {
-                return new ValidationResult("Você deve ter pelo menos 18 anos para se cadastrar.");
+                return new ValidationResult("Você deve ter pelo menos 18 anos para se registar como administrador.");
             }
 
             return ValidationResult.Success;
