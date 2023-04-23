@@ -12,8 +12,8 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-		<h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+		<h1 class="me-3 fw-bold text-center mb-0">Detalhes da consulta</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
 	<!-- Fase 1  -->
@@ -130,7 +130,7 @@
 							</dl>
 							<hr />
 							<div class="d-flex text-center mt-4">
-								<div class="col">
+								<div class="col-8 text-right">
 									@if (User.IsInRole("EncarregadoEducacao"))
 									{
 										<a asp-controller="Recibos" asp-action="IndexEE">

@@ -46,8 +46,8 @@
     }
  </head>
 
-@*<body id="page-top">*@
-<body class="d-flex flex-column min-vh-100" style=" overflow-x: hidden; background: #EFEFEF;">
+@*<body id="page-top"> overflow-x: hidden;*@
+<body class="d-flex flex-column min-vh-100" style="background: #EFEFEF;">
 
     <partial name="_LoginPartial" />
 
@@ -450,31 +450,21 @@
                             </li>*@
 
 
-                        <li class="nav-item">
+                        <li class="nav-item ">
                                 <div class="language-dropdown" style="cursor:pointer">
                                 <a class="nav-link text-decoration-none" id="language">
                                         <i class="fas fa-language fa-fw"></i>
                                     @*<img src="~/images/icons/language.png">*@ @*@language.GetKey("language")*@</a>
                                 <div class="language-content" style="float:right">
 
-                                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language" class="text-decoration-none">
+                                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language" class="text-decoration-none">
                                         <img src="~/images/flags/en.png" class="flag-logo" />
                                         <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
-                                    </a>
-
-                                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="de-DE" id="language" class=" text-decoration-none">
-                                        <img src="~/images/flags/de.png" class="flag-logo" />
-                                        <span class="language-label">@language.GetKey("txtMenuDeutsch")</span>
                                     </a>
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" id="language" class=" text-decoration-none">
                                         <img src="~/images/flags/pt.png" class="flag-logo" />
                                         <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
-                                    </a>
-
-                                        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" id="language" class="text-decoration-none">
-                                        <img src="~/images/flags/fr.png" class="flag-logo" />
-                                        <span class="language-label">@language.GetKey("txtMenuFrench")</span>
                                     </a>
                                 </div>
                             </div>
@@ -962,4 +952,3 @@ else
     @*<script src="~/js/monitor_adapt.js"></script>*@
 </body>
 </html>
-}

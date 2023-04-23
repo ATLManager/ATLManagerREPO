@@ -19,16 +19,14 @@
 	<!-- d-flex -->
 	<!-- Container -->
 	<div class="container-fluid">
-		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-			<h1 class="me-3 fw-bold text-center mb-4">Criar Atividade - Calendário</h1>
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+			<h1 class="me-3 fw-bold text-center mb-0">Criar Atividade - Calendário</h1>
 			<img src="~/images/icons/add-group.png" width="50" height="50">
 		</div>
 
 		<div class="row" style="padding-left: 6em;">
-			<div class="col-3"></div>
-			<div class="col-5"></div>
-			<div class="col-4" pb-2" id="divQuestion">
-				<button class="btn btn-primary rounded-circle mb-3" id="btn-ajuda">
+			<div class="col text-right pb-2" id="divQuestion">
+				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
 					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
 				</button>
 			</div>
@@ -93,26 +91,21 @@
 													<span asp-validation-for="EndDate" class="text-danger"></span>
 												</div>
 											</div>
-											<div class="row justify-content-center mt-4">
-												<div class="col-md-auto mt-4">
-													<div class="row">
-														<div class="col-md-6 mb-3">
-															<a asp-action="Index">
-																<button type="button"
-																		class="btn btn-secondary custom-button">
-																	Voltar
-																</button>
-															</a>
-														</div>
-														<div class="col-md-6 mb-3">
-															<button type="submit"
-																	class="btn btn-primary custom-button">
-																Criar
-															</button>
-														</div>
+												<div class="d-flex text-center mt-4">
+												<div class="col text-right">
+													<a asp-action="Index">
+														<button type="button"
+																class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+															Voltar
+														</button>
+													</a>
+												</div>
+												<div class="col text-left">
+													<div class="form-group">
+														<input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
 													</div>
 												</div>
-											</div>
+										</div>
 										</form>
 									</div>
 								</div>
