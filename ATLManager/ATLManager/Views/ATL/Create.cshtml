@@ -41,28 +41,24 @@
 											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 											<div class="row mb-3">
 												<div class="col-6">
-													<div class="form-group">
-														<label asp-for="Name" class="control-label"></label>
-														<input asp-for="Name" class="form-control" placeholder="Insira um nome" />
-														<span asp-validation-for="Name" class="text-danger"></span>
-													</div>
-											</div>
+													<label asp-for="Name" class="control-label"></label>
+													<input asp-for="Name" class="form-control" placeholder="Insira um nome" />
+													<span asp-validation-for="Name" class="text-danger"></span>
+												</div>
+										
 												<div class="col-6">
-													<div class="form-group">
-														<label asp-for="Address" class="control-label"></label>
-														<input asp-for="Address" class="form-control" placeholder="Insira uma morada" />
-														<span asp-validation-for="Address" class="text-danger"></span>
-													</div>
+													<label asp-for="Address" class="control-label"></label>
+													<input asp-for="Address" class="form-control" placeholder="Insira uma morada" />
+													<span asp-validation-for="Address" class="text-danger"></span>
 											</div>
 											</div>
 											<div class="row mb-3">
 												<div class="col-6">
 													<label asp-for="PostalCode" class="control-label"></label>
-													<div class="input-group">
+												
 														<input asp-for="PostalCode" class="form-control" placeholder="Insira um código postal" />
 														<span asp-validation-for="PostalCode" class="text-danger"></span>
-												
-													</div>
+											
 												</div>
 												<div class="col-6">
 													<label asp-for="City" class="control-label"></label>
