@@ -16,9 +16,895 @@
 	};
 }
 
+@section Scripts {
+	@if (User.IsInRole("Administrador"))
+	{
+		<script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+		
+		<!-- JS do Google Maps API -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init&libraries=visualization" async defer></script>
+
+		<script>
+
+			const visitasEstudoPorMesData = {
+				labels: [
+					'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+					'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+				],
+				datasets: [{
+					label: 'Visitas de Estudo por Mês',
+					data: [],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				}]
+			};
+
+			const visitasEstudoPorMesConfig = {
+				type: 'bar',
+				data: visitasEstudoPorMesData,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: Math.max(...visitasEstudoPorMesData.datasets[0].data) < 5 ? 5 : Math.ceil(Math.max(...visitasEstudoPorMesData.datasets[0].data) / 5) * 5,
+							ticks: {
+								stepSize: 1,
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							},
+						},
+						x: {
+							ticks: {
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: false
+						}
+					},
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+						padding: {
+							left: 10,
+							right: 10,
+							top: 10,
+							bottom: 10
+						}
+					}
+				}
+			};
+
+			const visitasEstudoPorMesChart = new Chart(
+				document.getElementById('visitasEstudoPorMesChart'),
+				visitasEstudoPorMesConfig
+			);
+
+
+					// Gráfico de barras para as estatísticas de atividades por mês
+			const atividadesPorMesData = {
+				labels: [
+					'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+					'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+				],
+				datasets: [{
+					label: 'Atividades por Mês',
+					data: [],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				}]
+			};
+
+			const atividadesPorMesConfig = {
+				type: 'bar',
+				data: atividadesPorMesData,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: Math.max(...atividadesPorMesData.datasets[0].data) < 5 ? 5 : Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 5) * 5,
+							ticks: {
+								stepSize: 1,
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						},
+						x: {
+							ticks: {
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: false
+						}
+					},
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+						padding: {
+							left: 10,
+							right: 10,
+							top: 10,
+							bottom: 10
+						}
+					}
+				}
+			};
+
+			const atividadesPorMesChart = new Chart(
+				document.getElementById('atividadesPorMesChart'),
+				atividadesPorMesConfig
+			);
+
+			// Gráfico de barras para as estatísticas de educandos por mês
+			const educandosPorMesData = {
+				labels: [
+					'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+					'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+				],
+				datasets: [{
+					label: 'Educandos por Mês',
+					data: [],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				}]
+			};
+
+			const educandosPorMesConfig = {
+				type: 'bar',
+				data: educandosPorMesData,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: Math.max(...educandosPorMesData.datasets[0].data) < 10 ? 10 : Math.ceil(Math.max(...educandosPorMesData.datasets[0].data) / 10) * 10,
+							ticks: {
+								stepSize: 1,
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						},
+						x: {
+							ticks: {
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: false
+						}
+					},
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+						padding: {
+							left: 10,
+							right: 10,
+							top: 10,
+							bottom: 10
+						}
+					}
+				}
+			};
+
+			const educandosPorMesChart = new Chart(
+				document.getElementById('educandosPorMesChart'),
+				educandosPorMesConfig
+			);
+
+
+			const generoEducandosData = {
+				labels: ['Educandos'],
+				datasets: [
+					{
+						label: 'Rapazes',
+						data: [],
+						backgroundColor: 'rgba(75, 192, 192, 0.2)',
+						borderColor: 'rgba(75, 192, 192, 1)',
+						borderWidth: 1
+					},
+					{
+						label: 'Raparigas',
+						data: [],
+						backgroundColor: 'rgba(255, 99, 132, 0.2)',
+						borderColor: 'rgba(255, 99, 132, 1)',
+						borderWidth: 1
+					}
+				]
+			};
+
+			const generoEducandosConfig = {
+				type: 'bar',
+				data: generoEducandosData,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: Math.max(...generoEducandosData.datasets[0].data) < 10 ? 10 : Math.ceil(Math.max(...generoEducandosData.datasets[0].data) / 10) * 10,
+							ticks: {
+								stepSize: 1,
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						},
+						x: {
+							ticks: {
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: true
+						}
+					},
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+						padding: {
+							left: 10,
+							right: 10,
+							top: 10,
+							bottom: 10
+						}
+					}
+				}
+			};
+
+			const generoEducandosChart = new Chart(
+				document.getElementById('generoEducandosChart'),
+				generoEducandosConfig
+			);
+
+			const faturasData = {
+				labels: ['Faturas Pagas', 'Faturas em Atraso'],
+				datasets: [
+					{
+						data: [],
+						backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+						borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+						borderWidth: 1
+					}
+				]
+			};
+
+			const faturasDataConfig = {
+				type: 'doughnut',
+				data: faturasData,
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							position: 'top',
+						},
+						title: {
+							display: true,
+							text: 'Faturas Pagas x Faturas em Atraso'
+						}
+					}
+				}
+			};
+
+			const faturasDataChart = new Chart(
+				document.getElementById('faturasChart'),
+				faturasDataConfig
+			);
+			
+
+			//Atualizar todos os stats
+			function updateStats(atlId = null) {
+			  fetch(`/Estatisticas/GetEstatisticasPorATL?id=${atlId}`)
+				.then(response => response.json())
+				.then(data => {
+				  console.log('Dados JSON:', data);
+
+				  // Atualize os dados de visitas de estudo
+				  const visitasEstudoData = [        data.visitasEstudoPorMes['VisitaEstudoMes1'],
+					data.visitasEstudoPorMes['VisitaEstudoMes2'],
+					data.visitasEstudoPorMes['VisitaEstudoMes3'],
+					data.visitasEstudoPorMes['VisitaEstudoMes4'],
+					data.visitasEstudoPorMes['VisitaEstudoMes5'],
+					data.visitasEstudoPorMes['VisitaEstudoMes6'],
+					data.visitasEstudoPorMes['VisitaEstudoMes7'],
+					data.visitasEstudoPorMes['VisitaEstudoMes8'],
+					data.visitasEstudoPorMes['VisitaEstudoMes9'],
+					data.visitasEstudoPorMes['VisitaEstudoMes10'],
+					data.visitasEstudoPorMes['VisitaEstudoMes11'],
+					data.visitasEstudoPorMes['VisitaEstudoMes12']
+				  ];
+				  console.log(visitasEstudoData);
+				 visitasEstudoPorMesData.datasets[0].data = visitasEstudoData;
+				 visitasEstudoPorMesChart.update();
+
+
+	  
+				  // Atualize os dados de atividades
+				  const atividadesData = [        
+					data.atividadesPorMes['AtividadesMes1'],
+					data.atividadesPorMes['AtividadesMes2'],
+					data.atividadesPorMes['AtividadesMes3'],
+					data.atividadesPorMes['AtividadesMes4'],
+					data.atividadesPorMes['AtividadesMes5'],
+					data.atividadesPorMes['AtividadesMes6'],
+					data.atividadesPorMes['AtividadesMes7'],
+					data.atividadesPorMes['AtividadesMes8'],
+					data.atividadesPorMes['AtividadesMes9'],
+					data.atividadesPorMes['AtividadesMes10'],
+					data.atividadesPorMes['AtividadesMes11'],
+					data.atividadesPorMes['AtividadesMes12']
+				  ];
+					atividadesPorMesData.datasets[0].data = atividadesData;
+						atividadesPorMesChart.update();
+
+
+						// Atualize os dados de educandos por mês
+						const educandosPorMesDataUpdate = [
+							data.educandoPorMes["EducandosMes1"],
+							data.educandoPorMes["EducandosMes2"],
+							data.educandoPorMes["EducandosMes3"],
+							data.educandoPorMes["EducandosMes4"],
+							data.educandoPorMes["EducandosMes5"],
+							data.educandoPorMes["EducandosMes6"],
+							data.educandoPorMes["EducandosMes7"],
+							data.educandoPorMes["EducandosMes8"],
+							data.educandoPorMes["EducandosMes9"],
+							data.educandoPorMes["EducandosMes10"],
+							data.educandoPorMes["EducandosMes11"],
+							data.educandoPorMes["EducandosMes12"]
+						];
+						educandosPorMesData.datasets[0].data = educandosPorMesDataUpdate;
+						educandosPorMesChart.update();
+
+						// Atualize os dados de gênero dos educandos
+						generoEducandosData.datasets[0].data = [data.numRapazes];
+						generoEducandosData.datasets[1].data = [data.numRaparigas];
+						generoEducandosChart.update();
+
+						// Atualize os dados de faturas
+						faturasData.datasets[0].data = [data.faturasPagasADM, data.faturasEmAtrasoADM];
+						faturasDataChart.update();
+
+						// Atualize o número de educandos no ultimo mes
+						document.getElementById("numeroDeEducandosNovos").textContent = data.numEducandosPorMes;
+
+						// Atualize o número total de educandos
+						document.getElementById("numeroDeEducandos").textContent =  data.numEducandos;
+
+						// Atualize a quantidade e o valor das faturas em atraso
+						document.getElementById("faturas-em-atraso-quantidade").textContent = data.faturasEmAtrasoADM;
+						document.getElementById("faturas-em-atraso-valor").textContent = data.totalValorEmAtrasoADM.toFixed(2);
+
+						// Atualize a quantidade e o valor das faturas pagas
+						document.getElementById("faturas-pagas-quantidade").textContent = data.faturasPagasADM;
+						document.getElementById("faturas-pagas-valor").textContent = data.totalValorPagoADM.toFixed(2);
+
+
+				})
+				.catch(error => console.error('Erro ao buscar dados:', error));
+			}
+
+
+
+			document.getElementById("atl-select").addEventListener("change", (event) => {
+				updateStats(event.target.value);
+			});
+
+			window.addEventListener('load', () => {
+				updateStats(); // Chama a função sem passar nenhum parâmetro para usar o valor padrão 'null'
+			});
+		</script>
+
+			<script>
+			$("#atl-select").on("change", function () {
+				var atlId = $(this).val();
+				$.ajax({
+					url: "/Estatisticas/GetAgrupamentoIdFromAtl",
+					type: "GET",
+					data: { atlId: atlId },
+					success: function (data) {
+						// Extraia o valor de agrupamentoId do objeto JSON
+						var agrupamentoId = data.agrupamentoId;
+
+						// Chame a função init() com o agrupamentoId obtido
+						init(agrupamentoId);
+					},
+					error: function () {
+						// Trate o erro aqui
+					}
+				});
+			});
+
+			async function init(agrupamentoId) {
+				const locations = await fetchATLs(agrupamentoId);
+
+				if (locations.length > 0 && isFinite(locations[0].lat) && isFinite(locations[0].lng)) {
+					console.log(locations[0].lat, locations[0].lng); // Adicione esta linha para verificar os valores de lat e lng
+					const map = initMap(locations[0].lat, locations[0].lng);
+					addHeatmap(locations, map);
+				} else {
+					console.error('Nenhum ATL encontrado ou coordenadas inválidas.');
+				}
+			}
+
+
+
+				function initMap(lat, lng) {
+					const mapOptions = {
+						center: { lat: lat, lng: lng },
+						zoom: 13,
+						mapTypeId: 'roadmap'
+					};
+
+					const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+					return map;
+				}
+
+			function createClickableCircle(atl, map) {
+				const circle = new google.maps.Circle({
+					center: new google.maps.LatLng(atl.lat, atl.lng),
+					radius: 50, // Ajuste o raio conforme necessário
+					map: map,
+					fillColor: '#ffffff00',
+					strokeColor: '#ffffff00',
+				});
+
+				const infoWindow = new google.maps.InfoWindow({
+					content: atl.name
+				});
+
+				google.maps.event.addListener(circle, 'click', () => {
+					infoWindow.setPosition(circle.getCenter());
+					infoWindow.open(map);
+				});
+			}
+
+
+				async function fetchATLs(agrupamentoId) {
+					const response = await fetch(`/Agrupamentos/GetATLsByAgrupamento?agrupamentoId=${agrupamentoId}`);
+					const atls = await response.json();
+
+					const locations = []; // array para armazenar as localizações
+
+					for (let i = 0; i < atls.length; i++) {
+						const atl = atls[i];
+
+						const fullAddress = `${atl.address}, ${atl.city}, ${atl.postalCode}`;
+						const coordinates = await getLocation(fullAddress);
+						atl.latitude = coordinates.lat;
+						atl.longitude = coordinates.lng;
+						
+
+					// Busque o número de educandos para cada ATL
+					const statsResponse = await fetch(`/Estatisticas/GetEstatisticasPorATL?id=${atl.atlId}`);
+					const stats = await statsResponse.json();
+					const numEducandos = stats.numEducandos;
+
+					console.log(numEducandos);
+					// adicionar as coordenadas ao array
+					// adicionar as coordenadas ao array
+					// Adicione o nome do ATL ao objeto que está sendo empurrado para o array locations
+					locations.push({ name: atl.name, lat: atl.latitude, lng: atl.longitude, weight: numEducandos });
+				}
+
+				// Adicione um console.log aqui
+				console.log(locations);
+
+				return locations;
+			}
+
+			function addHeatmap(locations, map) {
+				const weightedLocations = locations.map(location => {
+					return {
+						location: new google.maps.LatLng(location.lat, location.lng),
+						weight: location.weight
+					};
+				});
+
+				const heatmap = new google.maps.visualization.HeatmapLayer({
+					data: weightedLocations,
+					map: map
+				});
+
+				// Adicionar círculos clicáveis para cada ATL
+				for (const atl of locations) {
+					createClickableCircle(atl, map);
+				}
+			}
+
+
+
+
+				async function getLocation(address) {
+					return new Promise((resolve, reject) => {
+						const geocoder = new google.maps.Geocoder();
+						geocoder.geocode({ address: address }, (results, status) => {
+							if (status === google.maps.GeocoderStatus.OK) {
+								const coordinates = {
+									lat: results[0].geometry.location.lat(),
+									lng: results[0].geometry.location.lng()
+								};
+								resolve(coordinates);
+							} else {
+								reject(new Error('Localização não encontrada'));
+							}
+						});
+					});
+				}
+			</script>
+
+	}
+	else if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+	{
+		<script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+
+		<script>
+					// Gráfico de barras para as estatísticas de atividades por mês
+			const visitasEstudoPorMesDataCoord = {
+				labels: [
+					'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+					'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+				],
+				datasets: [{
+					label: 'Visitas de Estudo por Mês',
+					data: [
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes1"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes2"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes3"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes4"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes5"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes6"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes7"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes8"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes9"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes10"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes11"],
+			@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes12"]
+													],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				}]
+			};
+
+			const visitasEstudoPorMesConfigCoord = {
+				type: 'bar',
+				data: visitasEstudoPorMesDataCoord,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: Math.ceil(Math.max(...visitasEstudoPorMesDataCoord.datasets[0].data) / 5) * 5,
+							ticks: {
+								stepSize: 1,
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							},
+						},
+						x: {
+							ticks: {
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: false
+						}
+					},
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+						padding: {
+							left: 10,
+							right: 10,
+							top: 10,
+							bottom: 10
+						}
+					}
+				}
+			};
+
+			const visitasEstudoPorMesChartCoord = new Chart(
+				document.getElementById('visitasEstudoPorMesChartCoord'),
+				visitasEstudoPorMesConfigCoord
+			);
+
+			// Gráfico de barras para as estatísticas de atividades por mês
+			const atividadesPorMesDataCoord = {
+				labels: [
+					'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+					'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+				],
+				datasets: [{
+					label: 'Atividades por Mês',
+					data: [
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes1"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes2"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes3"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes4"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes5"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes6"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes7"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes8"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes9"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes10"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes11"],
+			@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes12"]
+											],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				}]
+			};
+
+			const atividadesPorMesConfigCoord = {
+				type: 'bar',
+				data: atividadesPorMesDataCoord,
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: Math.ceil(Math.max(...atividadesPorMesDataCoord.datasets[0].data) / 5) * 5,
+							ticks: {
+								stepSize: 1,
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						},
+						x: {
+							ticks: {
+								font: {
+									size: 14,
+									family: 'Poppins'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: false
+						}
+					},
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+						padding: {
+							left: 10,
+							right: 10,
+							top: 10,
+							bottom: 10
+						}
+					}
+				}
+			};
+
+			const atividadesPorMesChartCoord = new Chart(
+				document.getElementById('atividadesPorMesChartCoord'),
+				atividadesPorMesConfigCoord
+			);
+			
+			// Gráfico de barras para as estatísticas de educandos por mês
+		const educandosPorMesData = {
+			labels: [
+				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+			],
+			datasets: [{
+				label: 'Educandos por Mês',
+				data: [
+					@Model.EducandosPorMes["EducandosMes1"],
+					@Model.EducandosPorMes["EducandosMes2"],
+					@Model.EducandosPorMes["EducandosMes3"],
+					@Model.EducandosPorMes["EducandosMes4"],
+					@Model.EducandosPorMes["EducandosMes5"],
+					@Model.EducandosPorMes["EducandosMes6"],
+					@Model.EducandosPorMes["EducandosMes7"],
+					@Model.EducandosPorMes["EducandosMes8"],
+					@Model.EducandosPorMes["EducandosMes9"],
+					@Model.EducandosPorMes["EducandosMes10"],
+					@Model.EducandosPorMes["EducandosMes11"],
+					@Model.EducandosPorMes["EducandosMes12"]
+										],
+				backgroundColor: 'rgba(75, 192, 192, 0.2)',
+				borderColor: 'rgba(75, 192, 192, 1)',
+				borderWidth: 1
+			}]
+		};
+
+		const educandosPorMesConfig = {
+			type: 'bar',
+			data: educandosPorMesData,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: Math.ceil(Math.max(...educandosPorMesData.datasets[0].data) / 10) * 10,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
+
+		const educandosPorMesChart = new Chart(
+			document.getElementById('educandosPorMesChart'),
+			educandosPorMesConfig
+		);
+
+		
+		const generoEducandosData = {
+			labels: ['Educandos'],
+			datasets: [
+				{
+					label: 'Rapazes',
+					data: [@Model.NumeroDeRapazes],
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				},
+				{
+					label: 'Raparigas',
+					data: [@Model.NumeroDeRaparigas],
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255, 99, 132, 1)',
+					borderWidth: 1
+				}
+			]
+		};
+
+		const generoEducandosConfig = {
+			type: 'bar',
+			data: generoEducandosData,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: Math.ceil(Math.max(...generoEducandosData.datasets[0].data) / 10) * 10,
+						ticks: {
+							stepSize: 1,
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					},
+					x: {
+						ticks: {
+							font: {
+								size: 14,
+								family: 'Poppins'
+							}
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: true
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				layout: {
+					padding: {
+						left: 10,
+						right: 10,
+						top: 10,
+						bottom: 10
+					}
+				}
+			}
+		};
+
+		const generoEducandosChart = new Chart(
+			document.getElementById('generoEducandosChart'),
+			generoEducandosConfig
+		);
+
+		const faturasData = {
+			labels: ['Faturas Pagas', 'Faturas em Atraso'],
+			datasets: [
+				{
+					data: [@Model.FaturasPagas, @Model.FaturasEmAtraso],
+					backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+					borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+					borderWidth: 1
+				}
+			]
+		};
+
+		const faturasDataConfig = {
+			type: 'doughnut',
+			data: faturasData,
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Faturas Pagas x Faturas em Atraso'
+					}
+				}
+			}
+		};
+
+		const faturasDataChart = new Chart(
+			document.getElementById('faturasChart'),
+			faturasDataConfig
+		);
+		
+	</script>
+		
+		
+	}
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
-
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
 
 	<style>
@@ -246,11 +1132,21 @@
 								<div class="row">
 									<div class="col-md-3"></div>
 									<div class="col-md-6">
-									<div class="chart-container">
-										<canvas id="faturasChart"></canvas>
+										<div class="chart-container">
+											<canvas id="faturasChart"></canvas>
+										</div>
 									</div>
+									<div class="col-md-3"></div>
 								</div>
-								<div class="col-md-3"></div>
+							<div class="row">
+								<dt class="col text-center mt-4">
+									<h3>HeatMap do Número de Estudantes</h3>
+									<div id="map" style="width: 100%; height: 250px; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); margin: 0 auto;">
+										<div id="mapError" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin: 0 auto;">
+											<h4>Localização não encontrada</h4>
+										</div>
+									</div>
+								</dt>
 							</div>
 						}
 
@@ -350,520 +1246,8 @@
 	</div>
 
 
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	
-	<script>
-
-		// Gráfico de barras para as estatísticas de atividades por mês
-		const visitasEstudoPorMesDataCoord = {
-			labels: [
-				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-			],
-			datasets: [{
-				label: 'Visitas de Estudo por Mês',
-				data: [
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes1"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes2"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes3"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes4"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes5"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes6"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes7"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes8"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes9"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes10"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes11"],
-		@Model.VisitasEstudoPorMesEstatisticasCoordenadores["VisitaEstudoMes12"]
-										],
-				backgroundColor: 'rgba(75, 192, 192, 0.2)',
-				borderColor: 'rgba(75, 192, 192, 1)',
-				borderWidth: 1
-			}]
-		};
-
-		const visitasEstudoPorMesConfigCoord = {
-			type: 'bar',
-			data: visitasEstudoPorMesDataCoord,
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: Math.ceil(Math.max(...visitasEstudoPorMesDataCoord.datasets[0].data) / 5) * 5,
-						ticks: {
-							stepSize: 1,
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						},
-					},
-					x: {
-						ticks: {
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					}
-				},
-				plugins: {
-					legend: {
-						display: false
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				layout: {
-					padding: {
-						left: 10,
-						right: 10,
-						top: 10,
-						bottom: 10
-					}
-				}
-			}
-		};
-
-		const visitasEstudoPorMesChartCoord = new Chart(
-			document.getElementById('visitasEstudoPorMesChartCoord'),
-			visitasEstudoPorMesConfigCoord
-		);
-
-		
-		//const visitasEstudoPorMesData = {
-		//	labels: [
-		//		'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-		//		'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-		//	],
-		//	datasets: [{
-		//		label: 'Visitas de Estudo por Mês',
-		//		data: [
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes1"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes2"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes3"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes4"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes5"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes6"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes7"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes8"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes9"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes10"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes11"],
-		//@Model.GetVisitasEstudoPorMesEstatisticasEnc["VisitaEstudoMes12"]
-		//								],
-		//		backgroundColor: 'rgba(75, 192, 192, 0.2)',
-		//		borderColor: 'rgba(75, 192, 192, 1)',
-		//		borderWidth: 1
-		//	}]
-		//};
-
-		//const visitasEstudoPorMesConfig = {
-		//	type: 'bar',
-		//	data: visitasEstudoPorMesData,
-		//	options: {
-		//		scales: {
-		//			y: {
-		//				beginAtZero: true,
-		//				max: Math.ceil(Math.max(...visitasEstudoPorMesData.datasets[0].data) / 5) * 5,
-		//				ticks: {
-		//					stepSize: 1,
-		//					font: {
-		//						size: 14,
-		//						family: 'Poppins'
-		//					}
-		//				},
-		//			},
-		//			x: {
-		//				ticks: {
-		//					font: {
-		//						size: 14,
-		//						family: 'Poppins'
-		//					}
-		//				}
-		//			}
-		//		},
-		//		plugins: {
-		//			legend: {
-		//				display: false
-		//			}
-		//		},
-		//		responsive: true,
-		//		maintainAspectRatio: false,
-		//		layout: {
-		//			padding: {
-		//				left: 10,
-		//				right: 10,
-		//				top: 10,
-		//				bottom: 10
-		//			}
-		//		}
-		//	}
-		//};
-
-		//const visitasEstudoPorMesChart = new Chart(
-		//	document.getElementById('visitasEstudoPorMesChart'),
-		//	visitasEstudoPorMesConfig
-		//);
-
-		
-		
-		// Gráfico de barras para as estatísticas de atividades por mês
-		const atividadesPorMesDataCoord = {
-			labels: [
-				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-			],
-			datasets: [{
-				label: 'Atividades por Mês',
-				data: [
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes1"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes2"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes3"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes4"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes5"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes6"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes7"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes8"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes9"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes10"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes11"],
-		@Model.AtividadesPorMesEstatisticasCoordenadores["AtividadesMes12"]
-								],
-				backgroundColor: 'rgba(75, 192, 192, 0.2)',
-				borderColor: 'rgba(75, 192, 192, 1)',
-				borderWidth: 1
-			}]
-		};
-
-		const atividadesPorMesConfigCoord = {
-			type: 'bar',
-			data: atividadesPorMesDataCoord,
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: Math.ceil(Math.max(...atividadesPorMesDataCoord.datasets[0].data) / 5) * 5,
-						ticks: {
-							stepSize: 1,
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					},
-					x: {
-						ticks: {
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					}
-				},
-				plugins: {
-					legend: {
-						display: false
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				layout: {
-					padding: {
-						left: 10,
-						right: 10,
-						top: 10,
-						bottom: 10
-					}
-				}
-			}
-		};
-
-		const atividadesPorMesChartCoord = new Chart(
-			document.getElementById('atividadesPorMesChartCoord'),
-			atividadesPorMesConfigCoord
-		);
-
-
-		//		// Gráfico de barras para as estatísticas de atividades por mês
-		//const atividadesPorMesData = {
-		//	labels: [
-		//		'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-		//		'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-		//	],
-		//	datasets: [{
-		//		label: 'Atividades por Mês',
-		//		data: [
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes1"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes2"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes3"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes4"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes5"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes6"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes7"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes8"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes9"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes10"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes11"],
-		//@Model.GetAtividadesPorMesEstatisticasEnc["AtividadesMes12"]
-		//						],
-		//		backgroundColor: 'rgba(75, 192, 192, 0.2)',
-		//		borderColor: 'rgba(75, 192, 192, 1)',
-		//		borderWidth: 1
-		//	}]
-		//};
-
-		//const atividadesPorMesConfig = {
-		//	type: 'bar',
-		//	data: atividadesPorMesData,
-		//	options: {
-		//		scales: {
-		//			y: {
-		//				beginAtZero: true,
-		//				max: Math.ceil(Math.max(...atividadesPorMesData.datasets[0].data) / 5) * 5,
-		//				ticks: {
-		//					stepSize: 1,
-		//					font: {
-		//						size: 14,
-		//						family: 'Poppins'
-		//					}
-		//				}
-		//			},
-		//			x: {
-		//				ticks: {
-		//					font: {
-		//						size: 14,
-		//						family: 'Poppins'
-		//					}
-		//				}
-		//			}
-		//		},
-		//		plugins: {
-		//			legend: {
-		//				display: false
-		//			}
-		//		},
-		//		responsive: true,
-		//		maintainAspectRatio: false,
-		//		layout: {
-		//			padding: {
-		//				left: 10,
-		//				right: 10,
-		//				top: 10,
-		//				bottom: 10
-		//			}
-		//		}
-		//	}
-		//};
-
-		//const atividadesPorMesChart = new Chart(
-		//	document.getElementById('atividadesPorMesChart'),
-		//	atividadesPorMesConfig
-		//);
-
-		// Gráfico de barras para as estatísticas de educandos por mês
-		const educandosPorMesData = {
-			labels: [
-				'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-				'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-			],
-			datasets: [{
-				label: 'Educandos por Mês',
-				data: [
-					@Model.EducandosPorMes["EducandosMes1"],
-					@Model.EducandosPorMes["EducandosMes2"],
-					@Model.EducandosPorMes["EducandosMes3"],
-					@Model.EducandosPorMes["EducandosMes4"],
-					@Model.EducandosPorMes["EducandosMes5"],
-					@Model.EducandosPorMes["EducandosMes6"],
-					@Model.EducandosPorMes["EducandosMes7"],
-					@Model.EducandosPorMes["EducandosMes8"],
-					@Model.EducandosPorMes["EducandosMes9"],
-					@Model.EducandosPorMes["EducandosMes10"],
-					@Model.EducandosPorMes["EducandosMes11"],
-					@Model.EducandosPorMes["EducandosMes12"]
-										],
-				backgroundColor: 'rgba(75, 192, 192, 0.2)',
-				borderColor: 'rgba(75, 192, 192, 1)',
-				borderWidth: 1
-			}]
-		};
-
-		const educandosPorMesConfig = {
-			type: 'bar',
-			data: educandosPorMesData,
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: Math.ceil(Math.max(...educandosPorMesData.datasets[0].data) / 10) * 10,
-						ticks: {
-							stepSize: 1,
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					},
-					x: {
-						ticks: {
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					}
-				},
-				plugins: {
-					legend: {
-						display: false
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				layout: {
-					padding: {
-						left: 10,
-						right: 10,
-						top: 10,
-						bottom: 10
-					}
-				}
-			}
-		};
-
-		const educandosPorMesChart = new Chart(
-			document.getElementById('educandosPorMesChart'),
-			educandosPorMesConfig
-		);
-
-		
-		const generoEducandosData = {
-			labels: ['Educandos'],
-			datasets: [
-				{
-					label: 'Rapazes',
-					data: [@Model.NumeroDeRapazes],
-					backgroundColor: 'rgba(75, 192, 192, 0.2)',
-					borderColor: 'rgba(75, 192, 192, 1)',
-					borderWidth: 1
-				},
-				{
-					label: 'Raparigas',
-					data: [@Model.NumeroDeRaparigas],
-					backgroundColor: 'rgba(255, 99, 132, 0.2)',
-					borderColor: 'rgba(255, 99, 132, 1)',
-					borderWidth: 1
-				}
-			]
-		};
-
-		const generoEducandosConfig = {
-			type: 'bar',
-			data: generoEducandosData,
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: Math.ceil(Math.max(...generoEducandosData.datasets[0].data) / 10) * 10,
-						ticks: {
-							stepSize: 1,
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					},
-					x: {
-						ticks: {
-							font: {
-								size: 14,
-								family: 'Poppins'
-							}
-						}
-					}
-				},
-				plugins: {
-					legend: {
-						display: true
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				layout: {
-					padding: {
-						left: 10,
-						right: 10,
-						top: 10,
-						bottom: 10
-					}
-				}
-			}
-		};
-
-		const generoEducandosChart = new Chart(
-			document.getElementById('generoEducandosChart'),
-			generoEducandosConfig
-		);
-
-		const faturasData = {
-			labels: ['Faturas Pagas', 'Faturas em Atraso'],
-			datasets: [
-				{
-					data: [@Model.FaturasPagas, @Model.FaturasEmAtraso],
-					backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-					borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
-					borderWidth: 1
-				}
-			]
-		};
-
-		const faturasDataConfig = {
-			type: 'doughnut',
-			data: faturasData,
-			options: {
-				responsive: true,
-				plugins: {
-					legend: {
-						position: 'top',
-					},
-					title: {
-						display: true,
-						text: 'Faturas Pagas x Faturas em Atraso'
-					}
-				}
-			}
-		};
-
-		const faturasDataChart = new Chart(
-			document.getElementById('faturasChart'),
-			faturasDataConfig
-		);
-
-		function updateStats() {
-			let atlId = document.getElementById("atl-select").value;
-
-			console.log(atlId);
-			// Busque as estatísticas para o ATL selecionado usando AJAX
-			fetch(`/Estatisticas/GetEstatisticasPorATL?id=${atlId}`)
-				.then(response => response.json())
-				.then(data => {
-					// Atualize os gráficos com os novos dados
-					visitasEstudoPorMesChart.data.datasets[0].data = data.visitasEstudoPorMes;
-					atividadesPorMesChart.data.datasets[0].data = data.atividadesPorMes;
-
-					// Atualize todos os gráficos
-					visitasEstudoPorMesChart.update();
-					atividadesPorMesChart.update();
-				})
-				.catch(error => console.error("Erro ao buscar as estatísticas:", error));
-		}
-		
-//		window.addEventListener('load', () => {
-//  updateStats();
-//});
-
-	</script>
 
 	<!-- // Slide de Ajuda  -->
 	<!-- Search on table (Fase1) -->

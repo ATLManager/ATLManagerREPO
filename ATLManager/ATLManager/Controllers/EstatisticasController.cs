@@ -27,12 +27,26 @@ namespace ATLManager.Controllers
 			var faturasEmAtraso = await GetFaturasEmAtraso();
 			var faturasPagas = await GetFaturasPagas();
 
+			var faturasEmAtrasoADM = await GetFaturasEmAtrasoADM(id);
+			var faturasPagasADM = await GetFaturasPagasADM(id);
+
+
 			var estatisticasViewModel = new EstatisticasViewModel
 			{
 				VisitasEstudoPorMesEstatisticasCoordenadores = await GetVisitasEstudoPorMesEstatisticasCoord(),
 				AtividadesPorMesEstatisticasCoordenadores = await GetAtividadesPorMesEstatisticasCoord(),
 				GetVisitasEstudoPorMesEstatisticasEnc = await GetVisitasEstudoPorMesEstatisticasEnc(id),
 				GetAtividadesPorMesEstatisticasEnc = await GetAtividadesPorMesEstatisticasEnc(id),
+				GetNumeroDeEducandosNovosADM = await GetNumeroDeEducandosNovosADM(id),
+				NumeroDeEducandosADM = await GetNumeroDeEducandosADM(id),
+				EducandosPorMesADM = await GetEducandosPorMesEstatisticasADM(id),
+				NumeroDeRapazesADM = await GetNumeroDeRapazesADM(id),
+				NumeroDeRaparigasADM = await GetNumeroDeRaparigasADM(id),
+				FaturasEmAtrasoADM = faturasEmAtrasoADM.Count,
+				FaturasPagasADM = faturasPagasADM.Count,
+				TotalValorEmAtrasoADM = faturasEmAtrasoADM.Total,
+				TotalValorPagoADM = faturasPagasADM.Total,
+				
 				NumeroDeEducandosNovos = await GetNumeroDeEducandosNovos(),
 				EducandosPorMes = await GetEducandosPorMesEstatisticas(),
 				NumeroDeEducandos = await GetNumeroDeEducandos(),
@@ -65,6 +79,7 @@ namespace ATLManager.Controllers
 								  select atl).Include(a => a.Agrupamento).ToListAsync();
 
 
+
 				// Preenche a ViewBag com os ATLs
 				ViewBag.ATLs = atls;
 			}
@@ -72,7 +87,22 @@ namespace ATLManager.Controllers
             return View(estatisticasViewModel);
         }
 
-        public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasCoord()
+		[HttpGet]
+		public async Task<IActionResult> GetAgrupamentoIdFromAtl(Guid atlId)
+		{
+			var atl = await _context.ATL.FindAsync(atlId);
+			if (atl == null)
+			{
+				return NotFound(); // ou você pode retornar um valor padrão
+			}
+
+			Guid? agrupamentoId = atl.AgrupamentoId;
+			return Json(new { agrupamentoId = agrupamentoId });
+		}
+
+
+
+		public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasCoord()
         {
             // Obtenha o usuário atual
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -176,8 +206,23 @@ namespace ATLManager.Controllers
         {
             var visitasEstudoPorMes = await GetVisitasEstudoPorMesEstatisticasEnc(id);
             var atividadesPorMes = await GetAtividadesPorMesEstatisticasEnc(id);
+			var numEducandosPorMes = await GetNumeroDeEducandosNovosADM(id);
+			var numEducandos = await GetNumeroDeEducandosADM(id);
+			var educandoPorMes = await GetEducandosPorMesEstatisticasADM(id);
+			var numRapazes = await GetNumeroDeRapazesADM(id);
+			var numRaparigas = await GetNumeroDeRaparigasADM(id);
+			var faturasAtraso = await GetFaturasEmAtrasoADM(id);
+			var faturasPagas = await GetFaturasPagasADM(id);
 
-            return Json(new { visitasEstudoPorMes, atividadesPorMes });
+			var FaturasEmAtrasoADM = faturasAtraso.Count;
+			var FaturasPagasADM = faturasPagas.Count;
+			var TotalValorEmAtrasoADM = faturasAtraso.Total;
+			var TotalValorPagoADM = faturasPagas.Total;
+
+
+			return Json(new { visitasEstudoPorMes, atividadesPorMes, numEducandosPorMes,
+								numEducandos, educandoPorMes, numRapazes, numRaparigas,
+								FaturasEmAtrasoADM,	FaturasPagasADM, TotalValorEmAtrasoADM, TotalValorPagoADM});
         }
 
 
@@ -279,6 +324,7 @@ namespace ATLManager.Controllers
 			return (faturasEmAtraso.Count, totalValorEmAtraso);
 		}
 
+		//Faturas Pagas de um ATL em especifico
 		private async Task<(int Count, decimal Total)> GetFaturasPagas()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -293,6 +339,86 @@ namespace ATLManager.Controllers
 			decimal totalValorPago = faturasPagas.Sum(f => decimal.Parse(f.Price.Replace(',', '.'), CultureInfo.InvariantCulture));
 			return (faturasPagas.Count, totalValorPago);
 		}
+
+		//Faturas Pagas por ATL
+		private async Task<(int Count, decimal Total)> GetFaturasPagasADM(Guid? id)
+		{
+			var faturasPagas = await _context.ReciboResposta
+							.Where(r => r.Recibo.AtlId == id && r.Authorized)
+							.ToListAsync();
+
+			decimal totalValorPago = faturasPagas.Sum(f => decimal.Parse(f.Price.Replace(',', '.'), CultureInfo.InvariantCulture));
+			return (faturasPagas.Count, totalValorPago);
+		}
+
+		//Faturas em Atraso de um ATL
+		private async Task<(int Count, decimal Total)> GetFaturasEmAtrasoADM(Guid? id)
+		{
+			var faturasEmAtraso = await _context.ReciboResposta
+				.Where(r => r.Recibo.AtlId == id && !r.Authorized)
+				.ToListAsync();
+
+			decimal totalValorEmAtraso = faturasEmAtraso.Sum(f => decimal.Parse(f.Price.Replace(',', '.'), CultureInfo.InvariantCulture));
+			return (faturasEmAtraso.Count, totalValorEmAtraso);
+		}
+
+		private async Task<int> GetNumeroDeRaparigasADM(Guid? id)
+		{
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == id && c.Genero == "Feminino")
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
+		private async Task<int> GetNumeroDeRapazesADM(Guid? id)
+		{
+			var educandos = await _context.Educando
+							.Where(c => c.AtlId == id && c.Genero == "Masculino")
+							.ToListAsync();
+
+			return educandos.Count;
+		}
+
+		private async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticasADM(Guid? id)
+		{
+			var educandos = await _context.Educando
+							.Where(c => c.AtlId == id)
+							.ToListAsync();
+
+			var anoAtual = DateTime.Now.Year;
+			var estatisticas = new Dictionary<string, int>();
+
+			for (int mes = 1; mes <= 12; mes++)
+			{
+				var educandosNoMes = educandos.Count(a => a.DataDeInscricao.Year == anoAtual && a.DataDeInscricao.Month == mes);
+				estatisticas.Add($"EducandosMes{mes}", educandosNoMes);
+			}
+
+			return estatisticas;
+		}
+
+		private async Task<int> GetNumeroDeEducandosADM(Guid? id)
+		{
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == id)
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
+		private async Task<int> GetNumeroDeEducandosNovosADM(Guid? id)
+		{
+
+			DateTime umMesAtras = DateTime.Now.AddMonths(-1);
+
+			var educandos = await _context.Educando
+				.Where(c => c.AtlId == id && c.DataDeInscricao >= umMesAtras)
+				.ToListAsync();
+
+			return educandos.Count;
+		}
+
 
 	}
 
