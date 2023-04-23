@@ -387,31 +387,39 @@ namespace ATLManager.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Allergies")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("BloodType")
+                        .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("Diseases")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<Guid>("EducandoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmergencyContact")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("InsuranceName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("InsuranceNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("MedicalHistory")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Medication")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("EducandoSaudeId");
 
@@ -436,17 +444,10 @@ namespace ATLManager.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("NIF")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NIF")
                         .HasMaxLength(9)
-                        .HasColumnType("int");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()

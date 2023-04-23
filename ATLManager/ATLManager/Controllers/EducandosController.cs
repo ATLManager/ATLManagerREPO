@@ -53,6 +53,7 @@ namespace ATLManager.Controllers
                 var educandos = await _context.Educando
                     .Include(e => e.Atl)
                     .Include(e => e.Encarregado)
+                    .Include(e => e.Encarregado.User)
                     .Where(e => e.AtlId == currentUserAccount.AtlId)
                     .ToListAsync();
 
@@ -66,9 +67,10 @@ namespace ATLManager.Controllers
 
                 var educandos = await _context.Educando
                     .Include(e => e.Atl)
-                    .Include(e => e.Encarregado)
-                    .Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
-                    .ToListAsync();
+					.Include(e => e.Encarregado)
+					.Include(e => e.Encarregado.User)
+					.Where(e => e.EncarregadoId == currentUserAccount.EncarregadoId)
+					.ToListAsync();
 
                 return View(educandos);
             }
@@ -399,12 +401,14 @@ namespace ATLManager.Controllers
             var educando = await _context.Educando
                 .Include(e => e.Atl)
                 .Include(e => e.Encarregado)
+                .Include(e => e.Encarregado.User)
                 .FirstOrDefaultAsync(m => m.EducandoId == id);
+
             if (educando == null)
             {
                 return NotFound();
             }
-
+            
             return View(educando);
         }
 
@@ -419,6 +423,7 @@ namespace ATLManager.Controllers
             }
             var educando = await _context.Educando
                 .Include(f => f.Encarregado)
+                .Include(f => f.Encarregado.User)
                 .Where(f => f.EducandoId == id)
                 .FirstAsync();
             if (educando != null)
@@ -431,7 +436,7 @@ namespace ATLManager.Controllers
                     CC = educando.CC,
                     Genero = educando.Genero,
                     ProfilePicture = educando.ProfilePicture,
-                    Encarregado = educando.Encarregado.FullName,
+                    Encarregado = educando.Encarregado.User.FirstName + " " + educando.Encarregado.User.LastName,
                     AtlId = educando.AtlId,
                 };
 

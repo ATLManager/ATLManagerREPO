@@ -90,7 +90,8 @@
                                     @Html.DisplayNameFor(model => model.Encarregado)
                                 </dt>
                                 <dd class="col text-left">
-                                    @Html.DisplayFor(model => model.Encarregado.FullName)
+                                    @Html.DisplayFor(model => model.Encarregado.User.FirstName)
+                                    @Html.DisplayFor(model => model.Encarregado.User.LastName)
                                 </dd>
                             </div>
                         </dl>
