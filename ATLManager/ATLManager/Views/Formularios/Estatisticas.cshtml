@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Estatísticas do Formulário";
 }
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
 <style>
     .chart-container {
@@ -34,8 +35,8 @@
 </style>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-        <h1 class="me-3 fw-bold text-center mb-4">Estatísticas do Formulário</h1>
+    <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+        <h1 class="me-3 fw-bold text-center mb-0">Estatísticas do Formulário</h1>
     </div>
     <div class="d-flex justify-content-center" id="divFase1"
          data-percentual-autorizados="@(Model.ContainsKey("PercentualAutorizados") ? Model["PercentualAutorizados"] : 0)"
@@ -204,16 +205,6 @@
             });
         });
         
-
-        window.onload = function () {
-            var divBox = document.getElementById("myBox")
-
-            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-                // Large screen
-                divBox.classList.remove("col-6");
-                divBox.classList.add("col-8");
-            }
-        }
     </script>
 }
 
