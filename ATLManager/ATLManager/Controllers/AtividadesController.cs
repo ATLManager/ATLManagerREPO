@@ -196,21 +196,25 @@ namespace ATLManager.Controllers
 
             DateTime dataAtual = DateTime.Now;
 
-            DateTime dataViewModel = (DateTime)viewModel.StartDate;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
-            {
-                var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
-                ModelState.AddModelError("StartDate", validationMessage);
-            }
 
-            if (viewModel.EndDate < viewModel.StartDate)
-            {
-                var validationMessage = "Não é possível criar uma Atividade com uma data de término anterior à data de incício";
-                ModelState.AddModelError("EndDate", validationMessage);
-            }
+			if (viewModel.StartDate.HasValue)
+			{
+				DateTime dataViewModel = viewModel.StartDate.Value;
+				if (dataViewModel.CompareTo(dataAtual) < 0)
+				{
+					var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
+					ModelState.AddModelError("StartDate", validationMessage);
+				}
+			}
+
+			if (viewModel.EndDate.HasValue && viewModel.StartDate.HasValue && viewModel.EndDate.Value < viewModel.StartDate.Value)
+			{
+				var validationMessage = "Não é possível criar uma Atividade com uma data de término anterior à data de início";
+				ModelState.AddModelError("EndDate", validationMessage);
+			}
 
 
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 var atividade = await _context.Atividade.FindAsync(id);
 
