@@ -237,9 +237,9 @@ namespace ATLManager.Controllers
                 }
             }
 
-            if (DateTime.Compare(viewModel.BirthDate, DateTime.UtcNow) >= 0)
+            if (DateTime.Compare(viewModel.BirthDate, DateTime.UtcNow.AddYears(-3)) >= 0)
             {
-                var validationMessage = "A data de nascimento do educando não pode ser no futuro";
+                var validationMessage = "O Educando não pode ter menos de 3 anos de idade";
                 ModelState.AddModelError("BirthDate", validationMessage);
             }
 
@@ -359,9 +359,9 @@ namespace ATLManager.Controllers
 				}
 			}
 
-			if (DateTime.Compare(viewModel.BirthDate, DateTime.UtcNow) >= 0)
+			if (DateTime.Compare(viewModel.BirthDate, DateTime.UtcNow.AddYears(-3)) >= 0)
 			{
-				var validationMessage = "A data de nascimento do educando não pode ser no futuro";
+				var validationMessage = "O Educando não pode ter menos de 3 anos de idade";
 				ModelState.AddModelError("BirthDate", validationMessage);
 			}
 
