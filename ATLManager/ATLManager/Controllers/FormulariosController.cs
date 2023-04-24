@@ -235,27 +235,19 @@ namespace ATLManager.Controllers
 				ModelState.AddModelError("VisitaEdtudoId", validationMessage);
 				ModelState.AddModelError("AtividadeId", validationMessage);
 			}
+            
+            if (formulario.DateLimit < DateTime.UtcNow)
+            {
+                var validationMessage = "Não é possível criarum Formulário com uma data de término anterior à data de incício";
+                ModelState.AddModelError("DateLimit", validationMessage);
+            }
 
 			var user = await _userManager.GetUserAsync(HttpContext.User);
             var userAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = formulario.StartDate;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
-            {
-                var validationMessage = "Não é possível criar um Formulário com uma data anterior à data atual";
-                ModelState.AddModelError("StartDate", validationMessage);
-            }
-
-            if (formulario.DateLimit < formulario.StartDate)
-            {
-                var validationMessage = "Não é possível criarum Formulário com uma data de término anterior à data de incício";
-                ModelState.AddModelError("DateLimit", validationMessage);
-            }
-
+            ModelState.Remove("StartDate");
 
             if (ModelState.IsValid)
             {
