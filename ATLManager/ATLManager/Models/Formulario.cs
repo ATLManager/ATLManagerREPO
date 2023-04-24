@@ -36,7 +36,7 @@ namespace ATLManager.Models
         [DataType(DataType.Date)]
         [DisplayName("Data de Emissão")]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.UtcNow;
 
         [Required]
         [DataType(DataType.Date)]

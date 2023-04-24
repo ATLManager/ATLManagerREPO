@@ -7,7 +7,7 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Atividades";
 }
 
 
@@ -210,7 +210,8 @@
 			}
 
 			// Preenche os elementos da modal com as informações do evento clicado
-			modal.find('.modal-title').text(title);
+			modal.find('.modal-title').css('text-align', 'center').text(title);
+
 			modal.find('.modal-body').html('<img id="picture" src="' + picture + '" alt="Atividade" class="img-fluid rounded-circle mb-3" style="width: 15%;" />' +
 				'<p><strong>Data e hora de início:</strong> ' + startString + '</p>' +
 				'<p><strong>Data e hora de término:</strong> ' + endString + '</p>' +
@@ -234,15 +235,22 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-
-	<h1>Lista de Atividades</h1>
+	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+		<h1 class="me-3 fw-bold text-center mb-0">Lista de Atividades</h1>
+		<img src="~/images/icons/calendar.png" width="45" height="45">
+	</div>
+	
 
 	@if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
 	{
 		<div class="row">
 			<div class="col">
 				<p class="text-end">
-					<a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Atividade </button></a>
+					<a asp-action="Create">
+						<li type="button" class="btn btn-primary custom-button style=" border-radius:6em""> 
+							+ Adicionar Atividade 
+						</li>
+					</a>
 				</p>
 			</div>
 		</div>

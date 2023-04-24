@@ -192,7 +192,7 @@ namespace ATLManager.Controllers
 				NIB = recibo.NIB,
                 Price = recibo.Price,
                 Description = recibo.Description,
-                DateLimit = recibo.DateLimit.ToShortDateString()
+                DateLimit = ((DateTime)recibo.DateLimit).ToShortDateString()
             };
 
             return View(viewModel);

@@ -101,8 +101,20 @@
       "PackagePath": "staticwebassets\\images\\icons\\add-group.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\add-group1.png",
+      "PackagePath": "staticwebassets\\images\\icons\\add-group1.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\calendar.png",
+      "PackagePath": "staticwebassets\\images\\icons\\calendar.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\delete-group.png",
       "PackagePath": "staticwebassets\\images\\icons\\delete-group.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\delete-group1.png",
+      "PackagePath": "staticwebassets\\images\\icons\\delete-group1.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\delete-icon1.png",
@@ -117,12 +129,16 @@
       "PackagePath": "staticwebassets\\images\\icons\\edit-group.png"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit-group1.png",
+      "PackagePath": "staticwebassets\\images\\icons\\edit-group1.png"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit-icon1.png",
       "PackagePath": "staticwebassets\\images\\icons\\edit-icon1.png"
     },
     {
-      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit-icon2.png",
-      "PackagePath": "staticwebassets\\images\\icons\\edit-icon2.png"
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\edit.png",
+      "PackagePath": "staticwebassets\\images\\icons\\edit.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\info_ementa.png",
@@ -151,6 +167,14 @@
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\menu-icons\\funcionario.png",
       "PackagePath": "staticwebassets\\images\\icons\\menu-icons\\funcionario.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\menu-icons\\historico.png",
+      "PackagePath": "staticwebassets\\images\\icons\\menu-icons\\historico.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\menu-icons\\notificacao.png",
+      "PackagePath": "staticwebassets\\images\\icons\\menu-icons\\notificacao.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\menu-icons\\ping-pong_1.png",

@@ -8,18 +8,19 @@
 @{
 	ViewData["Title"] = "Details";
 }
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
 @if (SignInManager.IsSignedIn(User))
 {
 	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-		<h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+		<h1 class="me-3 fw-bold text-center mb-0">Detalhes da consulta</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
 	<!-- Fase 1  -->
 	<!-- d-flex -->
 	<div class="d-flex justify-content-center mt-3">
 		<!-- Box  -->
-		<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+		<div class="row justify-content-center custom-box" id="myBox">
 			<div class="row box border-5">
 				<div class="container">
 
@@ -97,7 +98,7 @@
 										</dl>
 										<hr />
 										<div class="d-flex text-center mt-4">
-											<div class="col">
+											<div class="col-8 text-right">
 												<a asp-action="Index">
 													<button type="button"
 															class="btn btn-secondary custom-button w-50" style="border-radius:6em">
@@ -119,17 +120,4 @@
 		</div>
 		<!-- // Fase 1 -->
 	</div>
-
-	<script>
-		window.onload = function () {
-			var divBox = document.getElementById("myBox")
-
-			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-				// Large screen
-				divBox.classList.remove("col-6");
-				divBox.classList.add("col-12");
-				//divBox.classList.add("col-8"); -> monitores maiores
-			}
-		}
-	</script>
 }

@@ -6,22 +6,36 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Faturas";
 }
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+
 @if (SignInManager.IsSignedIn(User))
 {
-	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-		<h1 class="me-3 fw-bold text-center mb-4">Consulta de respostas</h1>
+	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+		<h1 class="me-3 fw-bold text-center mb-0">Consulta de respostas</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
 
 	<!-- Container -->
 	<div class="container-fluid">
+
+		@*
+	<div class="row" style="padding-left: 6em;">
+	<div class="col text-right pb-2" id="divQuestion">
+	<button class="btn btn-primary rounded-circle" id="btn-ajuda">
+	<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+	</button>
+	</div>
+	</div>
+	*@
+
+
 		<!-- Fase 1  -->
 		<!-- d-flex -->
 		<div class="d-flex justify-content-center" id="divFase1">
 			<!-- Box  -->
-			<div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+			<div class="row justify-content-center custom-box" id="myBox">
 				<div class="row box border-5 p-5">
 					<div class="container">
 						<div class="d-flex align-items-start">
@@ -248,22 +262,6 @@
 				rows[i].style.display = match ? "" : "none";
 			}
 		});
-	</script>
-
-	<script>
-		window.onload = function () {
-			var divBox = document.getElementById("myBox")
-			var divQuestion = document.getElementById("divQuestion")
-
-			if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-				// Large screen
-				divBox.classList.remove("col-6");
-				divBox.classList.add("col-12");
-
-				divQuestion.classList.add("text-right");
-				divQuestion.style.paddingRight("2em");
-			}
-		}
 	</script>
 
 	<script>

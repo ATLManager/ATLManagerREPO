@@ -9,6 +9,7 @@
 @{
     ViewData["Title"] = "Create";
 }
+<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -16,25 +17,21 @@
     <!-- d-flex -->
     <!-- Container -->
     <div class="container-fluid">
-        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
-            <h1 class="me-3 fw-bold text-center mb-4">Criar Refeição</h1>
+        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+            <h1 class="me-3 fw-bold text-center mb-0">Criar Refeição</h1>
             <img src="~/images/icons/add-group.png" width="50" height="50">
         </div>
 
         <div class="row" style="padding-left: 6em;">
-            <div class="col-4"></div>
-            <div class="col-6 text-right" style="padding-right:2em;">
+            <div class="col text-right pb-2" id="divQuestion">
                 <button class="btn btn-primary rounded-circle" id="btn-ajuda">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
-            <div class="col pb-2 mb-3">
-                
-            </div>
         </div>
         <div class="d-flex justify-content-center">
             <!-- Box  -->
-            <div class="row col-6 justify-content-center custom-box" id="myBox">
+            <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5">
                     <!--text-center  -->
 
@@ -119,7 +116,7 @@
                                     <div class="form-group">
 
                                         <label asp-for="Categoria" class="control-label"></label>
-                                        <select asp-for="Categoria" class="form-control">
+                                        <select asp-for="Categoria" class="form-control" required>
                                             <option value=null>Selecione uma opção</option>
                                             <option value="Carne">Carne</option>
                                             <option value="Peixe">Peixe</option>
@@ -151,38 +148,31 @@
 
                             </div>
 
-                            <div class="form-group">
-                                <label asp-for="Picture" class="control-label"></label>
+                            <div class="row form-group">
+                                <div class="col-6">                                <label asp-for="Picture" class="control-label"></label>
                                 <div class="custom-file">
                                     <input asp-for="Picture" class="custom-file-input" id="customFile">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <span asp-validation-for="Picture" class="text-danger"></span>
-                            </div>
-
-
-
-                            <div class="row justify-content-center mt-4">
-                                <div class="col-md-auto mt-4">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <a asp-action="Index">
-                                                <button type="button"
-                                                        class="btn btn-secondary custom-button">
-                                                    Voltar
-                                                </button>
-                                            </a>
-                                        </div>
-
-                                        <div class="col-md-6 mb-3">
-                                            <button type="submit"
-                                                    class="btn btn-primary custom-button">
-                                                Registar
-                                            </button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
+
+                            <div class="d-flex text-center mt-4">
+                                <div class="col text-right">
+                                    <a asp-action="Index">
+                                        <button type="button"
+                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                            Voltar
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col text-left">
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
+                                    </div>
+                                </div>
+                            </div> 
                         </form>
                     </div>
                 </div>
@@ -312,16 +302,4 @@
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
     }
-
-    <script>
-        window.onload = function () {
-            var divBox = document.getElementById("myBox")
-
-            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
-                // Large screen
-                divBox.classList.remove("col-6");
-                divBox.classList.add("col-8");
-            }
-        }
-    </script>
 }

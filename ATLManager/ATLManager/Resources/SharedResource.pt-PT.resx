@@ -414,7 +414,10 @@
     <value>Descarregue uma aplicação de autenticador de dois factores como o Microsoft Authenticator para</value>
   </data>
   <data name="txt1ContactUs" xml:space="preserve">
-    <value>Estamos sempre disponíveis para responder às suas perguntas sobre o ATLManager. Para nos contactar, basta preencher o formulário abaixo ou enviar um e-mail para a nossa equipa de apoio em support@atlmanager.com.</value>
+    <value>
+    Estamos sempre aqui para o ajudar com quaisquer perguntas que tenha sobre o ATLManager. Para entrar em contacto, basta preencher o formulário abaixo ou enviar um e-mail para a nossa equipa de apoio em ATLManagerIPS@gmail.com.
+    
+    </value>
   </data>
   <data name="txt1Disable2factorAuth" xml:space="preserve">
     <value>Esta ação apenas desactiva 2FA</value>
@@ -450,7 +453,9 @@
     <value>Google Authenticator para</value>
   </data>
   <data name="txt2ContactUs" xml:space="preserve">
-    <value>A nossa equipa de apoio está disponível de segunda a sexta-feira das 9h00 às 18h00. Faremos o nosso melhor para responder o mais rapidamente possível. Se tiver perguntas urgentes, pode telefonar-nos para +XX XXX XXX XXX.</value>
+    <value>
+    A nossa equipa de apoio está disponível de segunda a sexta-feira das 9h00 às 18h00. Faremos o nosso melhor para lhe responder o mais rapidamente possível.
+    </value>
   </data>
   <data name="txt2Disable2factorAuth" xml:space="preserve">
     <value>A desativação do 2FA não altera as chaves utilizadas nas aplicações de autenticação. Se desejar alterar a chave utilizada numa aplicação de autenticador deve</value>
@@ -486,7 +491,10 @@
     <value>Digitalize o Código QR ou introduza esta chave</value>
   </data>
   <data name="txt3ContactUs" xml:space="preserve">
-    <value>Pode também encontrar-nos nas redes sociais. Siga-nos no Twitter, Facebook e Instagram para se manter a par das novidades e actualizações dos nossos produtos.</value>
+    <value>
+    Obrigado pelo seu interesse no ATLManager. Aguardamos o seu contacto em breve!
+    
+    </value>
   </data>
   <data name="txt3Disable2factorAuth" xml:space="preserve">
     <value>reinicialize as chaves do seu autenticador.</value>
