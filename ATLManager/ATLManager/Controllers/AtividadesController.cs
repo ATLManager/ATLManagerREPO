@@ -107,13 +107,9 @@ namespace ATLManager.Controllers
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             var currentUserAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);;
 
-            
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = viewModel.StartDate;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            if (viewModel.StartDate.CompareTo(DateTime.UtcNow) < 0)
             {
                 var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
                 ModelState.AddModelError("StartDate", validationMessage);
@@ -193,14 +189,10 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-
-            DateTime dataAtual = DateTime.Now;
-
-
-			if (viewModel.StartDate.HasValue)
+            
+			if (viewModel.StartDate != null)
 			{
-				DateTime dataViewModel = viewModel.StartDate.Value;
-				if (dataViewModel.CompareTo(dataAtual) < 0)
+				if (((DateTime)viewModel.StartDate).CompareTo(DateTime.UtcNow) < 0)
 				{
 					var validationMessage = "Não é possível criar uma Atividade com uma data anterior à data atual";
 					ModelState.AddModelError("StartDate", validationMessage);
@@ -212,7 +204,6 @@ namespace ATLManager.Controllers
 				var validationMessage = "Não é possível criar uma Atividade com uma data de término anterior à data de início";
 				ModelState.AddModelError("EndDate", validationMessage);
 			}
-
 
 			if (ModelState.IsValid)
             {
@@ -228,7 +219,6 @@ namespace ATLManager.Controllers
 
                 if (viewModel.EndDate != null)
                     atividade.EndDate = (DateTime)viewModel.EndDate;
-
 
                 string fileName = UploadedFile(viewModel.Picture);
 

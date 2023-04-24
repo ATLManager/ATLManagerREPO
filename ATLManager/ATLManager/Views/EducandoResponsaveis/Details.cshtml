@@ -17,7 +17,6 @@
             <h1 class="me-3 fw-bold text-center mb-0">Consulta Responsavel</h1>
             <img src="~/images/icons/search-group.png" width="50" height="50">
         </div>
-
         @*<div class="row" style="padding-left: 6em;">
             <div class="col text-right pb-2" id="divQuestion">
                 <button class="btn btn-primary rounded-circle" id="btn-ajuda">
@@ -31,7 +30,6 @@
             <!-- Box  -->
             <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5 p-5">
-                  
                     <div class="container text-center">
                         <div class="row justify-content-center">
                             <img src="~/images/uploads/responsaveis/@Model.ProfilePicture"
@@ -39,7 +37,6 @@
                                  style="width:15%"
                              asp-append-version="true" />
                         </div>
-
                         <dl class="row text-end">
                             <div class="row">
                                 <dt class="col mr-2">
@@ -49,7 +46,6 @@
                                     @Html.DisplayFor(model => model.Name)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Apelido)
@@ -58,7 +54,6 @@
                                     @Html.DisplayFor(model => model.Apelido)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.CC)
@@ -67,7 +62,6 @@
                                     @Html.DisplayFor(model => model.CC)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Phone)
@@ -76,14 +70,13 @@
                                     @Html.DisplayFor(model => model.Phone)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     Grau de Parentesco
                                     @*@Html.DisplayNameFor(model => model.Parentesco)*@
                                 </dt>
                                 <dd class="col text-left">
-                                    @if (string.IsNullOrEmpty(Model.Parentesco))
+                                    @if (Model.Parentesco != null)
                                     {
                                         @Html.DisplayFor(model => model.Parentesco)
                                     }
@@ -91,20 +84,17 @@
                                     {
                                         <p>-</p>
                                     }
-
                                 </dd>
                             </div>
-
                         </dl>
                         <hr />
-
                         <div class="d-flex text-center mt-4">
                             <div class="col-8 text-right">
                                 <a asp-controller="Educandos" asp-action="DetailsResponsaveis" asp-route-id="@Model.EducandoId">
-                                    <button type="button"
+                                    <li type="button"
                                             class="btn btn-secondary custom-button w-50" style="border-radius:6em">
                                         Voltar
-                                    </button>
+                                    </li>
                                 </a>
                             </div>
                         </div>

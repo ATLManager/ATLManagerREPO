@@ -159,17 +159,14 @@ namespace ATLManager.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
+            
+			if (recibo.DateLimit.CompareTo(DateTime.UtcNow) < 0)
+			{
+				var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
+				ModelState.AddModelError("DateLimit", validationMessage);
+			}
 
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = recibo.DateLimit;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
-            {
-                var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
-                ModelState.AddModelError("DateLimit", validationMessage);
-            }
-
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 recibo.EmissionDate = DateTime.UtcNow.Date;
                 recibo.AtlId = userAccount.AtlId;
@@ -232,7 +229,18 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            return View(recibo);
+
+            var viewModel = new ReciboEditViewModel
+            {
+                ReciboId = recibo.ReciboId,
+                Name = recibo.Name,
+                Price = recibo.Price,
+                NIB = recibo.NIB,
+                Description = recibo.Description,
+                DateLimit = recibo.DateLimit,
+            };
+
+            return View(viewModel);
         }
 
         // POST: Recibos/Edit/5
@@ -240,34 +248,51 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ReciboId,Name,Price,NIB,Description,DateLimit")] Recibo recibo)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ReciboId,Name,Price,NIB,Description,DateLimit")] ReciboEditViewModel viewModel)
         {
-            if (id != recibo.ReciboId)
+            if (id != viewModel.ReciboId)
             {
                 return NotFound();
             }
 
-
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = recibo.DateLimit;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            if (viewModel.DateLimit != null)
             {
-                var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
-                ModelState.AddModelError("DateLimit", validationMessage);
+                if (((DateTime)viewModel.DateLimit).CompareTo(DateTime.UtcNow) < 0)
+                {
+                    var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
+                    ModelState.AddModelError("DateLimit", validationMessage);
+                }
             }
-
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(recibo);
+                    var recibo = await _context.Recibo.FindAsync(id);
+
+                    if (recibo == null) return NotFound();
+
+                    if (viewModel.Name != recibo.Name) 
+                        recibo.Name = viewModel.Name;
+
+                    if (viewModel.Price != recibo.Price) 
+                        recibo.Price = viewModel.Price;
+
+                    if (viewModel.NIB != recibo.NIB) 
+                        recibo.NIB = viewModel.NIB;
+
+                    if (viewModel.Description != recibo.Description) 
+                        recibo.Description = viewModel.Description;
+                    
+                    if (viewModel.DateLimit != null && viewModel.DateLimit != recibo.DateLimit) 
+                        recibo.DateLimit = (DateTime)viewModel.DateLimit;
+
+					_context.Update(recibo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ReciboExists(recibo.ReciboId))
+                    if (!ReciboExists(viewModel.ReciboId))
                     {
                         return NotFound();
                     }
@@ -278,7 +303,7 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(recibo);
+            return View(viewModel);
         }
 
         // GET: Reciboes/Delete/5

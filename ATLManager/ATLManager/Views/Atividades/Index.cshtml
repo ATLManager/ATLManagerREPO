@@ -7,7 +7,7 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Atividades";
 }
 
 
@@ -246,7 +246,11 @@
 		<div class="row">
 			<div class="col">
 				<p class="text-end">
-					<a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Atividade </button></a>
+					<a asp-action="Create">
+						<li type="button" class="btn btn-primary custom-button style=" border-radius:6em""> 
+							+ Adicionar Atividade 
+						</li>
+					</a>
 				</p>
 			</div>
 		</div>

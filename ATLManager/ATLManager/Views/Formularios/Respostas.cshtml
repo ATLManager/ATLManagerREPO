@@ -6,7 +6,7 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Respostas ao Formulário";
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -38,10 +38,10 @@
 
 							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 								<a class="nav-link" asp-action="Details" asp-route-id="@ViewData["FormularioId"]">
-									<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+									<li class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
 											type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
 										Detalhes do Formulário
-									</button>
+									</li>
 								</a>
 								<button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
 										type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
@@ -49,10 +49,10 @@
 								</button>
 
 								<a class="nav-link" asp-action="Estatisticas" asp-route-id="@ViewData["FormularioId"]">
-									<button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+									<li class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
 											type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
 										Estatísticas do formulário
-									</button>
+									</li>
 								</a>
 							</div>
 							<div class="row pl-5">
@@ -95,14 +95,22 @@
 																	@Html.DisplayFor(modelItem => item.ResponseDate)
 																</td>
 																<td class="text-center w-25">
-																	<a asp-action="Details" asp-controller="FormularioRespostas" asp-route-id="@item.RespostaId"> <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button></a>
+																	<a asp-action="Details" asp-controller="FormularioRespostas" asp-route-id="@item.RespostaId">
+																		<li type="button" class="btn btn-primary custom-button" style="border-radius:6em">
+																			<img src="~/images/icons/search-icon1.png" height="20" width="20">
+																		</li>
+																	</a>
 																</td>
 															</tr>
 														}
 													</tbody>
 												</table>
 												<div class="d-flex row text-center">
-													<a asp-controller="Formularios" asp-action="Index"><button type="button" class="btn btn-secondary custom-button w-25" style=" border-radius:6em"> Voltar </button></a>
+													<a asp-controller="Formularios" asp-action="Index">
+														<li type="button" class="btn btn-secondary custom-button w-25" style=" border-radius:6em"> 
+															Voltar 
+														</li>
+													</a>
 												</div>
 											</div>
 										</div>
