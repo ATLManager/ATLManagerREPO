@@ -98,7 +98,8 @@
                                                         @Html.DisplayFor(modelItem => item.Atl.Name)
                                                     </td>
                                                     <td class="align-middle">
-                                                        @Html.DisplayFor(modelItem => item.Encarregado.FullName)
+                                                        @Html.DisplayFor(modelItem => item.Encarregado.User.FirstName)
+                                                        @Html.DisplayFor(modelItem => item.Encarregado.User.LastName)
                                                     </td>
                                                     <td class="text-center w-25">
                                                         <a asp-action="Details" asp-route-id="@item.EducandoId">

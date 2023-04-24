@@ -11,7 +11,7 @@ namespace ATLManager.ViewModels
     {
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [StringLength(30, MinimumLength = 5)]
         public string Name { get; set; }
 
         [Required]
@@ -19,7 +19,7 @@ namespace ATLManager.ViewModels
         public string Location { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(500)]
         public string Descripton { get; set; }
 
         [Required]

@@ -145,6 +145,7 @@ namespace ATLManager.Controllers
         {
             var modelStateWithoutUser = new ModelStateDictionary(ModelState);
             modelStateWithoutUser.Remove("User");
+            
 
             if (modelStateWithoutUser.IsValid)
             {

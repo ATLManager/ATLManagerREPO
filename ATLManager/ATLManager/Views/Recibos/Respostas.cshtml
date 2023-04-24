@@ -7,7 +7,6 @@
 
 @{
 	ViewData["Title"] = "Index";
-	var formId = Model.FirstOrDefault().ReciboId;
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -40,7 +39,7 @@
 					<div class="container">
 						<div class="d-flex align-items-start">
 							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-								<a class="nav-link" asp-action="Details" asp-route-id="@formId">
+								<a class="nav-link" asp-action="Details" asp-route-id="@ViewData["ReciboId"]">
 									<button class="nav-link d-flex justify-content-center" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
 											type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
 										Detalhes da Fatura

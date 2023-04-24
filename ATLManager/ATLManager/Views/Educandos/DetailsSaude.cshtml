@@ -36,22 +36,19 @@
                             type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                 Info. Saúde
                             </button>
-
                             <a class="nav-link text-center" asp-action="DetailsResponsaveis" asp-route-id="@Model.EducandoId">
                                 <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                                         type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                     Autorizações
                                 </button>
                             </a>
-
-                            <a class="nav-link text-center" href="@*@Url.Action(" DetailsSaude", new { id=Model.EducandoId })*@">
+                            <a class="nav-link text-center" asp-action="DetailsEncarregado" asp-route-id="@Model.EducandoId">
                                 <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                                         type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                     Encarregado de Educação
                                 </button>
                             </a>
                         </div>
-
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <div class="row mt-3 text-center">
@@ -64,8 +61,6 @@
                                     <div>
                                         <input type="hidden" asp-for="EducandoId" value="@Model.EducandoId"/>
                                         <input type="hidden" asp-for="EducandoSaudeId" value="@Model.EducandoSaudeId"/>
-                                      @*  <h4>EducandoSaude</h4>
-                                        <hr />*@
                                         <dl class="row">
                                             <div class="row mb-3">
                                                 <div class="col-6">
@@ -93,7 +88,6 @@
                                                             <option value="O+">O+</option>
                                                             <option value="O-">O-</option>
                                                         </select>
-                                                        @*<input type="text" asp-for="BloodType" class="form-control" value="@Model.BloodType" />*@
                                                     </dd>      
                                                 </div>
                                             </div>

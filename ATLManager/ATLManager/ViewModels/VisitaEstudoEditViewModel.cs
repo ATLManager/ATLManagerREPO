@@ -14,6 +14,7 @@ namespace ATLManager.ViewModels
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
+        [StringLength(30, MinimumLength = 5)]
         public string Name { get; set; }
 
         [Required]

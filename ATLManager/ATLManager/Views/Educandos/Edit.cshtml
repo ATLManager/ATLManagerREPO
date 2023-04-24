@@ -32,7 +32,6 @@
 			<div class="row justify-content-center custom-box" id="myBox">
 				<div class="row box border-5">
 					<!--text-center  -->
-
 					<div class="container">
 						<form enctype="multipart/form-data" asp-action="Edit">
 							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -65,7 +64,6 @@
 									<span asp-validation-for="Genero" class="text-danger"></span>
 								</div>
 							</div>
-
 							<div class="row mt-5">
 								<div class="col">
 									<label asp-for="EncarregadoId" class="control-label">Encarregado</label>
@@ -73,8 +71,12 @@
 										<option value=null>Escolha um Encarregado</option>
 									</select>
 								</div>
+								<div class="col">
+									<label asp-for="BirthDate" class="control-label" placeholder="Insira um nome"></label>
+									<input asp-for="BirthDate" class="form-control" />
+									<span asp-validation-for="BirthDate" class="text-danger"></span>
+								</div>
 							</div>
-
 							<div class="row mt-5">
 								<div class="col">
 									<label asp-for="DeclaracaoMedica" class="control-label"> Declaração Médica (PDF)</label>
@@ -109,7 +111,6 @@
 									<span asp-validation-for="ProfilePicture" class="text-danger"></span>
 								</div>
 							</div>
-							
 							<div class="row mt-4 justify-content-center">
 								<div class="col-md-auto">
 									<div class="row">
@@ -121,7 +122,6 @@
 												</button>
 											</a>
 										</div>
-
 										<div class="col-md-6 mb-3">
 											<button type="submit"
 													class="btn btn-primary custom-button">

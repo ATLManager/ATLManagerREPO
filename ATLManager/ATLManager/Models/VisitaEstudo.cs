@@ -14,6 +14,7 @@ namespace ATLManager.Models
         [Required]
         [Display(Name = "Nome")]
         [Column(TypeName = "nvarchar(100)")]
+        [StringLength(50, MinimumLength = 5)]
         public string Name { get; set; }
 
         [Required]
@@ -22,8 +23,8 @@ namespace ATLManager.Models
         public string Location { get; set; }
 
         [Required]
-        [StringLength(255)]
         [Display(Name = "Descrição")]
+        [StringLength(255, MinimumLength = 5)]
         public string Description { get; set; }
 
         [Required]

@@ -44,5 +44,10 @@ namespace ATLManager.ViewModels
         [AllowedExtensions(new string[] { ".pdf" },
             ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .pdf")]
         public IFormFile? BoletimVacinas { get; set; }
+
+		[DataType(DataType.Date)]
+        [DisplayName("Data de Nascimento")]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime BirthDate { get; set; }
     }
 }

@@ -138,13 +138,14 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
+            ViewData["FormularioId"] = id;
             return View(respostas);
         }
 
         public async Task<IActionResult> Estatisticas(Guid id)
         {
             var estatisticas = await GetVisitasDeEstudoEstatisticas(id);
-            ViewData["formularioId"] = id; // Passa o id do formulário para a view
+            ViewData["FormularioId"] = id; // Passa o id do formulário para a view
             return View(estatisticas);
         }
         
@@ -240,6 +241,22 @@ namespace ATLManager.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = formulario.StartDate;
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar um Formulário com uma data anterior à data atual";
+                ModelState.AddModelError("StartDate", validationMessage);
+            }
+
+            if (formulario.DateLimit < formulario.StartDate)
+            {
+                var validationMessage = "Não é possível criarum Formulário com uma data de término anterior à data de incício";
+                ModelState.AddModelError("DateLimit", validationMessage);
+            }
+
+
             if (ModelState.IsValid)
             {
                 formulario.FormularioId = Guid.NewGuid();
@@ -330,6 +347,16 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
+
+            DateTime dataAtual = DateTime.Now;
+
+            DateTime dataViewModel = DateTime.Parse(viewModel.DateLimit);
+            if (dataViewModel.CompareTo(dataAtual) < 0)
+            {
+                var validationMessage = "Não é possível criar um Formulário com uma data anterior à data atual";
+                ModelState.AddModelError("StartDate", validationMessage);
+            }
+
 
             if (ModelState.IsValid)
             {
