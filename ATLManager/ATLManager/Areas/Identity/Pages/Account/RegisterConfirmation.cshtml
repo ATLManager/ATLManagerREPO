@@ -9,26 +9,27 @@
 @inject LanguageService language
 
 <body class="body">
-    <!-- Image -->
-    <div class="container-image-recover-password">
-        <!-- <div class="image"></div> -->
-        <img src="~/images/logo1.png" class="image" salt="ATLMANAGER">
-    </div>
-    <!-- / Image -->
 
-    <div class="container-box">
-        <div class="box-recover-password">
+    <!-- Container -->
+<div class="container h-auto mt-auto" style="padding-top:6em">
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row box border-5">
+                    <form method="post" class="form">
+                        <h1>@ViewData["Title"]</h1>
+                        <p>
+                            @language.GetKey("txtConfirmEmail")
+                        </p>
 
-            <form method="post" class="form">
-                <h1>@ViewData["Title"]</h1>
-                <p>
-                    @language.GetKey("txtConfirmEmail")
-                </p>
-                
 
-            </form>
+                    </form>
+            </div>
         </div>
+        <!-- // Box -->
     </div>
+</div>
+<!-- // Container -->
 
 
 

@@ -10,26 +10,47 @@ using ATLManager.Models;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.Diagnostics;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.FileProviders;
 
 namespace ATLManager.Controllers
 {
     public class AgrupamentosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
+        private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-		List<string> allowedPrefixesNIPC = new List<string> { "5", "6", "7", "8", "9" };
+		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
-		public AgrupamentosController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+		public AgrupamentosController(ATLManagerAuthContext context,
+            UserManager<ATLManagerUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Agrupamentos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Agrupamento.ToListAsync());
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var agrupamentos = await _context.Agrupamento
+                    .Where(g => g.ContaId == userAccount.ContaId)
+                    .ToListAsync();
+            
+            return View(agrupamentos);
         }
 
         // GET: Agrupamentos/Details/5
@@ -80,12 +101,18 @@ namespace ATLManager.Controllers
 
 			if (ModelState.IsValid)
             {
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var userAccount = await _context.ContaAdministrativa
+                    .Include(f => f.User)
+                    .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
                 var agrupamento = new Agrupamento
                 {
                     AgrupamentoID = Guid.NewGuid(),
                     Name = viewModel.Name,
                     Location = viewModel.Location,
-                    NIPC = viewModel.NIPC
+                    NIPC = viewModel.NIPC,
+                    ContaId = userAccount?.ContaId
                 };
 
                 string fileName = UploadedFile(viewModel.LogoPicture);
@@ -247,5 +274,41 @@ namespace ATLManager.Controllers
 			}
 			return uniqueFileName;
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetATLsByAgrupamento(Guid agrupamentoId)
+		{
+			var atls = await _context.ATL
+				.Where(a => a.AgrupamentoId == agrupamentoId)
+				.Select(a => new
+				{
+					a.AtlId,
+					a.Name,
+					a.Address,
+					a.City,
+					a.PostalCode
+				})
+				.ToListAsync();
+
+			return Json(atls);
+		}
+        
+		[HttpGet]
+		public async Task<IActionResult> GetCoordenadoresByATL(Guid atlId)
+		{
+			var coordenadores = await _context.ContaAdministrativa
+				.Include(ca => ca.User)
+				.Where(ca => ca.AtlId == atlId)
+				.Select(ca => new {
+					FirstName = ca.User.FirstName,
+					LastName = ca.User.LastName
+				})
+				.ToListAsync();
+
+			return Json(new { Coordenadores = coordenadores });
+		}
+
+
+
 	}
 }

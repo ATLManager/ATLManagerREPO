@@ -1,7 +1,9 @@
 ﻿using ATLManager.Areas.Identity.Data;
+using ATLManager.Attributes;
 using ATLManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Xunit.Sdk;
 
 namespace ATLManager.ViewModels
 {
@@ -17,11 +19,10 @@ namespace ATLManager.ViewModels
         [MaxLength(20)]
         public string Categoria { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Data { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        public string? Data { get; set; }
 
         [Required]
         [MaxLength(255)]
@@ -53,6 +54,8 @@ namespace ATLManager.ViewModels
 
         [DataType(DataType.Upload)]
         [DisplayName("Fotografia do menu")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
         public IFormFile? Picture { get; set; }
 
         public RefeicaoEditViewModel()
@@ -64,7 +67,7 @@ namespace ATLManager.ViewModels
             RefeicaoId = refeicao.RefeicaoId;
             Name = refeicao.Name;
             Categoria = refeicao.Categoria;
-            Data = refeicao.Data;
+            Data = refeicao.Data.ToShortDateString();
             Descricao = refeicao.Descricao;
             Proteina = refeicao.Proteina;
             HidratosCarbono = refeicao.HidratosCarbono;

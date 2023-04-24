@@ -1,10 +1,21 @@
-﻿@using ATLManager.Services
+﻿@using ATLManager.Data;
+@using ATLManager.Services
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
+@using ATLManager.Controllers
+@using System.Security.Claims
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 @inject LanguageService language
+@inject ATLManagerAuthContext _context
+@inject RoleManager<IdentityRole> _roleManager;
+
+
+@{
+    var userNotifications = await (new NotificacoesController(_context, UserManager, _roleManager)).GetUserNotifications(User.FindFirstValue(ClaimTypes.NameIdentifier));
+}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +23,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ATLManager</title>
-    
+
     <!-- Ligação ao bootstrap localmente -->
     <link rel='stylesheet' type='text/css' media='screen' href='~/lib/bootstrap/dist/css/bootstrap.min.css'>
 
     <!-- Configs-->
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/configs.css'>
+
+     <!-- Menu de ajuda -->
+    <link href="~/css/ajuda.css" rel="stylesheet">
 
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -29,10 +43,7 @@
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="~/css/menu.min.css" rel="stylesheet">
-        <link href="~/css/slide-help.css" rel="stylesheet">
     }
-
-
  </head>
 
 @*<body id="page-top">*@
@@ -45,110 +56,253 @@
         <div id="wrapper">
             <!-- Sidebar -->
             <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index" id="manage">
-
-                    <div class="sidebar-brand-icon">
+                @if (User.IsInRole("EncarregadoEducacao"))
+                {
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="IndexEE" id="manage">
+                                    <div class="sidebar-brand-icon">
                         <img src="~/images/logo/logo.png">
                     </div>
                     <div class="sidebar-brand-text mx-3">ATL Manager</div>
                 </a>
+                }else{
+                        <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index" id="manage">
+                        <div class="sidebar-brand-icon">
+                            <img src="~/images/logo/logo.png">
+                        </div>
+                        <div class="sidebar-brand-text mx-3">ATL Manager</div>
+                    </a>
+                }
                 <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
+                    @if (User.IsInRole("EncarregadoEducacao"))
+                    {
+                    <a class="nav-link" asp-controller="Home" asp-action="IndexEE">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    }else{
+
                     <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
+                    }
                 </li>
+
+                 <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    Educação
+                </div>
+                @if(User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a id="manage" class="nav-link collapsed" asp-action="Index" asp-controller="Agrupamentos" 
+                           aria-expanded="false" aria-controls="agrupamentos">
+
+                            <i class="far fa-fw fa-window-maximize"></i>
+                            <span>Agrupamentos</span>
+                        </a>
+                       @* <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Bootstrap UI</h6> -->
+                            
+                                <a id="manage" class="collapse-item" asp-controller="Agrupamentos" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
+
+                @if (User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-action="Index" asp-controller="Atl" 
+                        aria-expanded="false" aria-controls="atl">
+                            <i class="fab fa-fw fa-wpforms"></i>
+                            <span>ATL</span>
+                        </a>
+                        @*<div id="atl" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Forms</h6> -->
+                                <a id="manage" class="collapse-item" asp-controller="ATL" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="ATL" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="ATL" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="ATL" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
+
+                @if (User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Coordenadores" asp-action="Index"
+                        aria-expanded="true" aria-controls="coordenadores">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Coordenadores</span>
+                        </a>
+                        @*<div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Tables</h6> -->
+                                <a id="manage" class="collapse-item" asp-controller="Coordenadores" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="Coordenadores" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="Coordenadores" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="Coordenadores" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Funcionarios" asp-action="Index"
+                        aria-expanded="true" aria-controls="funcionarios">
+                             <img class="me-1" src="~/images/icons/menu-icons/funcionario.png" height="25" width="25" >
+                            <span>Funcionários</span>
+                        </a>
+                        @*<div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <!-- <h6 class="collapse-header">Tables</h6> -->
+                                <a id="manage" class="collapse-item" asp-controller="Funcionarios" asp-action="Index">Consultar</a>
+                                <a class="collapse-item" asp-controller="Funcionarios" asp-action="Create">Criar</a>
+                                <a class="collapse-item" asp-controller="Funcionarios" asp-action="Edit">Editar</a>
+                                <a class="collapse-item" asp-controller="Funcionarios" asp-action="Delete">Remover</a>
+                            </div>
+                        </div>*@
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
+                        aria-expanded="true" aria-controls="collapseTable">
+                            <img class="me-1" src="~/images/icons/menu-icons/refeicao.png" height="25" width="25" >
+                            <span>Refeições</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
+                           aria-expanded="true" aria-controls="funcionarios">
+                              <img class="me-1" src="~/images/icons/menu-icons/educando.png" height="25" width="25" >
+                            <span>Educandos</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="VisitasEstudo" asp-action="Index"
+                           aria-expanded="true" aria-controls="visitasestudo">
+                            <img class="me-1" src="~/images/icons/menu-icons/visita_estudo.png" height="25" width="25">
+                            <span>Visitas de Estudo</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        @if (User.IsInRole("EncarregadoEducacao"))
+                        {
+                            <a class="nav-link collapsed" asp-controller="Formularios" asp-action="IndexEE"
+                               aria-expanded="true" aria-controls="formularios">
+                                <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
+                                <span>Formulários</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav-link collapsed" asp-controller="Formularios" asp-action="Index"
+                               aria-expanded="true" aria-controls="formularios">
+                                <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
+                                <span>Formulários</span>
+                            </a>
+                        }
+                    </li>
+                }
+
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Atividades" asp-action="Index"
+                           aria-expanded="true" aria-controls="atividades">
+                             <img class="me-1" src="~/images/icons/menu-icons/atividade.png" height="25" width="25" >
+                            <span>Atividades</span>
+                        </a>
+                    </li>
+                }
+
                 <hr class="sidebar-divider">
                 <div class="sidebar-heading">
-                    Features
+                    Recursos
                 </div>
-                <li class="nav-item">
-                    <a id="manage" class="nav-link collapsed" asp-action="Index" asp-controller="Agrupamentos" 
-                       aria-expanded="false" aria-controls="agrupamentos">
 
-                        <i class="far fa-fw fa-window-maximize"></i>
-                        <span>Agrupamentos</span>
-                    </a>
-                   @* <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Bootstrap UI</h6> -->
-                            
-                            <a id="manage" class="collapse-item" asp-controller="Agrupamentos" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="Agrupamentos" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("Administrador"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Estatisticas" asp-action="Index"
+                           aria-expanded="true" aria-controls="estatisticas">
+                            <img class="me-1" src="~/images/icons/menu-icons/estatistica.png" height="25" width="25" >
+                            <span>Estatisticas</span>
+                        </a>
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-action="Index" asp-controller="Atl" 
-                    aria-expanded="false" aria-controls="atl">
-                        <i class="fab fa-fw fa-wpforms"></i>
-                        <span>ATL</span>
-                    </a>
-                    @*<div id="atl" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Forms</h6> -->
-                            <a id="manage" class="collapse-item" asp-controller="ATL" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="ATL" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="ATL" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="ATL" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Coordenadores" asp-action="Index"
-                    aria-expanded="true" aria-controls="coordenadores">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Coordenadores</span>
-                    </a>
-                    @*<div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Tables</h6> -->
-                            <a id="manage" class="collapse-item" asp-controller="Coordenadores" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="Coordenadores" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="Coordenadores" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="Coordenadores" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        @if (User.IsInRole("EncarregadoEducacao"))
+                        {
+                            <a class="nav-link collapsed" asp-controller="Recibos" asp-action="IndexEE"
+                               aria-expanded="true" aria-controls="recibos">
+                                 <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
+                                <span>Faturas</span>
+                            </a>                            
+                        }
+                        else
+                        {
+                            <a class="nav-link collapsed" asp-controller="Recibos" asp-action="Index"
+                               aria-expanded="true" aria-controls="recibos">
+                                 <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
+                                <span>Faturas</span>
+                            </a>
+                        }
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Funcionarios" asp-action="Index"
-                    aria-expanded="true" aria-controls="funcionarios">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Funcionários</span>
-                    </a>
-                    @*<div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Tables</h6> -->
-                            <a id="manage" class="collapse-item" asp-controller="Funcionarios" asp-action="Index">Consultar</a>
-                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Create">Criar</a>
-                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Edit">Editar</a>
-                            <a class="collapse-item" asp-controller="Funcionarios" asp-action="Delete">Remover</a>
-                        </div>
-                    </div>*@
-                </li>
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("EncarregadoEducacao"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Notificacoes" asp-action="Index"
+                           aria-expanded="true" aria-controls="notificacoes">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Notificações</span>
+                        </a>
+                    </li>
+                }
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
-                    aria-expanded="true" aria-controls="collapseTable">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Refeições</span>
-                    </a>
-                </li>
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" asp-controller="Historico" asp-action="Escolher"
+                           aria-expanded="true" aria-controls="notificacoes">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Historico</span>
+                        </a>
+                    </li>
+                }
+                
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
-                       aria-expanded="true" aria-controls="funcionarios">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Educandos</span>
-                    </a>
-                </li>
-
-
+                @*
                 <!-- Agrupamento, Atl, Coordenadores, Funcionários, Refeições  -->
                 <!--
                              <li class="nav-item">
@@ -184,7 +338,7 @@
                               </a>
                             </li>
                             <hr class="sidebar-divider">-->
-                            @*<div class="version" id="version-flame"></div> *@
+                            <div class="version" id="version-flame"></div> *@
             </ul>
             <!-- Sidebar -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -219,50 +373,42 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
-                                    <span class="badge badge-danger badge-counter">3+</span>
+                                    @if (userNotifications.Count > 0)
+                                    {
+                                        <span class="badge badge-danger badge-counter">@userNotifications.Count</span>
+                                    }
                                 </a>
-                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="alertsDropdown">
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 class="dropdown-header">
                                         Alerts Center
                                     </h6>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-primary">
-                                                <i class="fas fa-file-alt text-white"></i>
+                                    @foreach (var notification in userNotifications.OrderByDescending(n => n.DataNotificacao).Take(3))
+                                    {
+                                        <a class="dropdown-item d-flex align-items-center" href="@Url.RouteUrl(new { controller = "Notificacoes", action = "Index", id = notification.NotificacaoId })" data-id="@notification.NotificacaoId">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-primary">
+                                                    <i class="fas fa-file-alt text-white"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
+                                            <div>
+                                                <div class="small text-gray-500">@notification.DataNotificacao</div>
+                                                <span class="font-weight-bold">@notification.Titulo</span>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 7, 2019</div>
-                                            $290.29 has been deposited into your account!
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 2, 2019</div>
-                                            Spending Alert: We've noticed unusually high spending for your account.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                        </a>
+                                    }
+
+                                    @if (userNotifications.Count == 0)
+                                    {
+                                        <a class="dropdown-item text-center small text-gray-500">No new notifications</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item text-center small text-gray-500" asp-controller="Notificacoes" asp-action="Index">Show All Alerts</a>
+                                    }
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+
+                           @* <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-envelope fa-fw"></i>
@@ -301,7 +447,7 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                                 </div>
-                            </li>
+                            </li>*@
 
 
                         <li class="nav-item">
@@ -729,7 +875,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                                            <h5 class="modal-title" id="exampleModalLabelLogout">Logout!</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -741,7 +887,7 @@
                                             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
 
                                             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                                <button id="logout" type="submit" class="custom-submit">Logout</button>
+                                                <button id="logout" type="submit" class="btn btn-outline-danger custom-submit">Logout</button>
                                             </form>
                                            
                                         </div>
@@ -811,5 +957,9 @@ else
     <script src="~/js/menu.min.js"></script>
     <script src="~/vendor/chart.js/Chart.min.js"></script>
     <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/ajuda.js"></script>
+
+    @*<script src="~/js/monitor_adapt.js"></script>*@
 </body>
 </html>
+}

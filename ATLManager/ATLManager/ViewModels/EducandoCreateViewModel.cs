@@ -5,6 +5,11 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using ATLManager.Attributes;
+using Xunit.Sdk;
+
 namespace ATLManager.ViewModels
 {
     public class EducandoCreateViewModel
@@ -23,18 +28,26 @@ namespace ATLManager.ViewModels
 
 		[Required]
 		public string Genero { get; set; }
-		public Guid AtlId { get; set; }
 		public Guid EncarregadoId { get; set; }
 
 		[DisplayName("Imagem da educando")]
-		public IFormFile? ProfilePicture { get; set; }
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
+        public IFormFile? ProfilePicture { get; set; }
 
-		[FileExtensions(Extensions = "pdf")]
         [Display(Name = "Caminho do ficheiro PDF")]
+        [AllowedExtensions(new string[] { ".pdf" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .pdf")]
         public IFormFile? DeclaracaoMedica { get; set; }
 
-        [FileExtensions(Extensions = "pdf")]
         [Display(Name = "Caminho do ficheiro PDF")]
+        [AllowedExtensions(new string[] { ".pdf" },
+            ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .pdf")]
         public IFormFile? BoletimVacinas { get; set; }
+
+		[DataType(DataType.Date)]
+        [DisplayName("Data de Nascimento")]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime BirthDate { get; set; }
     }
 }

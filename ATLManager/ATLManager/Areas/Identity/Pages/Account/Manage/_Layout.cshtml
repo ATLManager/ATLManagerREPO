@@ -12,10 +12,13 @@
 }
 @inject LanguageService language
 
-<h1>@language.GetKey("titleManageAccount")</h1>
+<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 2%;">
+    <h1 class="me-3 fw-bold text-center mb-4">@language.GetKey("titleManageAccount") </h1>
+    <img src="~/images/icons/add-group.png" width="50" height="50">
+</div>
 
 <div>
-    <h2>@language.GetKey("txtManageAccount")</h2>
+    @*<h2>@language.GetKey("txtManageAccount")</h2>*@
     <hr />
     <div class="row">
         <div class="col-md-3">

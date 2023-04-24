@@ -1,0 +1,194 @@
+﻿@model ATLManager.Models.EducandoSaude
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+        <h1 class="me-3 fw-bold text-center mb-4">Detalhes da consulta</h1>
+        <img src="~/images/icons/search-group.png" width="50" height="50">
+    </div>
+    <!-- Fase 1  -->
+    <!-- d-flex -->
+    <div class="d-flex justify-content-center mt-3">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
+            <div class="row box border-5">
+                <div class="container">
+
+                    <div class="d-flex align-items-start">
+                        <div class="nav row col-3 flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link text-center" asp-action="Details" asp-route-id="@Model.EducandoId">
+                                <button class="nav-link mx-auto" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                                        type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                    Educando
+                                </button>
+                            </a>
+                            <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                            type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                Info. Saúde
+                            </button>
+                            <a class="nav-link text-center" asp-action="DetailsResponsaveis" asp-route-id="@Model.EducandoId">
+                                <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                                        type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                    Autorizações
+                                </button>
+                            </a>
+                            <a class="nav-link text-center" asp-action="DetailsEncarregado" asp-route-id="@Model.EducandoId">
+                                <button class="nav-link mx-auto" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                                        type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                    Encarregado de Educação
+                                </button>
+                            </a>
+                        </div>
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <div class="row mt-3 text-center">
+                                    <div class="mb-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <form asp-action="DetailsSaude" >
+                                    <div>
+                                        <input type="hidden" asp-for="EducandoId" value="@Model.EducandoId"/>
+                                        <input type="hidden" asp-for="EducandoSaudeId" value="@Model.EducandoSaudeId"/>
+                                        <dl class="row">
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.Educando)
+                                                    </dt>
+                                                    <dd>
+                                                        @Html.DisplayFor(model => model.Educando.Name)
+                                                        @Html.DisplayFor(model => model.Educando.Apelido)
+                                                    </dd>
+                                                </div>
+                                                <div class="col-6">     
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.BloodType)
+                                                    </dt>
+                                                    <dd>
+                                                        <select asp-for="BloodType" class="form-control">
+                                                            <option value="">Blood type</option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                        </select>
+                                                    </dd>      
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.InsuranceName)
+                                                    </dt>
+                                                    <dd>
+                                                        <input type="text" asp-for="InsuranceName" class="form-control" value="@Model.InsuranceName" placeholder="Insira um nome de seguro" />
+                                                    </dd>
+                                                </div>
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.InsuranceNumber)
+                                                    </dt>
+                                                    <dd>
+                                                        <input type="text" asp-for="InsuranceNumber" class="form-control" value="@Model.InsuranceNumber" placeholder="Insira o numero de seguro" />
+                                                    </dd>
+                                                </div>
+                                                     
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.Allergies)
+                                                    </dt>
+                                                    <dd>
+                                                        <textarea class="form-control" style="height:6em;resize:none" asp-for="Allergies" value="@Model.Allergies" placeholder="Insira alergias"></textarea>
+                                                    </dd>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.Diseases)
+                                                    </dt>
+                                                    <dd>
+                                                        <textarea class="form-control" style="height:6em;resize:none" asp-for="Diseases" value="@Model.Diseases" placeholder="Insira doenças"></textarea>
+                                                    </dd>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                            <div class="row mb-3">
+                                               
+                                                <div class="col-6">
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.Medication)
+                                                    </dt>
+                                                    <dd>
+                                                        <textarea class="form-control" style="height:6em;resize:none" asp-for="Medication" value="@Model.Medication" placeholder="Insira a medicação"></textarea>
+                                                    </dd>
+                                                </div>
+
+                                                <div class="col-6">
+                                                   
+                                                        <dt>
+                                                            @Html.DisplayNameFor(model => model.MedicalHistory)
+                                                        </dt>
+                                                        <dd>
+                                                            <textarea class="form-control" style="height:6em;resize:none" asp-for="MedicalHistory" value="@Model.MedicalHistory" placeholder="Insira o historico médico"></textarea>
+                                                        </dd>
+                                                </div>                                            
+                                            </div>
+                                            <div class="col-3"></div>
+                                            <div class="col">
+                                            <div class="row">
+                                                <dt>
+                                                    @Html.DisplayNameFor(model => model.EmergencyContact)
+                                                </dt>
+                                                <dd>
+                                                    @*<textarea class="form-control" style="height:6em;resize:none" asp-for="Medication" value="@Model.Medication" placeholder="Insira a medicação"></textarea>*@
+
+                                                    <input type="text" asp-for="EmergencyContact" class="form-control" value="@Model.EmergencyContact" placeholder="Insira um contacto de emergencia" />
+                                                </dd>
+                                                </div>
+                                            </div>
+                                            <div class="col-3"></div>
+                                            <div class="mb-3 mt-3 text-center">
+                                                <button type="submit" class="btn btn-primary custom-button">Save</button>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // Box -->
+        </div>
+        <!-- // Fase 1 -->
+    </div>
+    <script>
+        window.onload = function () {
+            var divBox = document.getElementById("myBox")
+
+            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+                // Large screen
+                divBox.classList.remove("col-6");
+                divBox.classList.add("col-12");
+            }
+        }
+    </script>
+}

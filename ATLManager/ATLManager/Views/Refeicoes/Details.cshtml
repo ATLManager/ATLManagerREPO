@@ -5,7 +5,6 @@
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -20,7 +19,7 @@
     <!-- d-flex -->
     <div class="d-flex justify-content-center mt-5">
         <!-- Box  -->
-        <div class="row col-6 justify-content-center custom-box w-50">
+        <div class="row col-6 justify-content-center custom-box w-50" id="myBox">
             <div class="row box border-5 p-5">
                 <div class="container">
                     
@@ -28,130 +27,107 @@
                         <div class="mb-3">
                             <img src="~/images/uploads/refeicoes/@Model.Picture"
                                  class="rounded-circle mb-3"
-                                 style="width:15%"
+                                 style="width:10%"
                              asp-append-version="true" />
                             <dl class="row text-end">
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Name)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Name)
-                                    </dd>
+                                <div class="row col-12 mb-3">
+                                    <div class="col"></div>
+                                    <div class="d-flex col-7 justify-content-center ms-2 pb-1">
+                                        <img src="~/images/icons/info_ementa.png" width="30" height="30">
+                                        <div style="margin-left: 1%;">
+                                            <h4 class="fw-bold text-center">Informação Nutricional</h4>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="row col-12 text-left">
+                                    <div class="row">
+                                        <dt class="col-1"></dt>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </dt>
+                                        <dd class="col-3">
+                                            @Html.DisplayFor(model => model.Name)
+                                        </dd>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Proteina)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.Proteina)
+                                        </dd>
 
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Categoria)
-                                    </dt>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.VR)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.VR)
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col-1"></dt>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Data)
+                                        </dt>
 
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Categoria)
-                                    </dd>
+                                        <dd class="col-3">
+                                            @Html.DisplayFor(model => model.Data)
+                                        </dd>
+
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.HidratosCarbono)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.HidratosCarbono)
+                                        </dd>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Acucar)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.Acucar)
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col-1"></dt>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Categoria)
+                                        </dt>
+                                        <dd class="col-3">
+                                            @Html.DisplayFor(model => model.Categoria)
+                                        </dd>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Lipidos)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.Lipidos)
+                                        </dd>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.AGSat)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.AGSat)
+                                        </dd>
+                                    </div>
+                                    <div class="row">
+                                        <dt class="col-1"></dt>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Descricao)
+                                        </dt>
+                                        <dd class="col-3">
+                                            @Html.DisplayFor(model => model.Descricao)
+                                        </dd>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.ValorEnergetico)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.ValorEnergetico)
+                                        </dd>
+                                        <dt class="col">
+                                            @Html.DisplayNameFor(model => model.Sal)
+                                        </dt>
+                                        <dd class="col-1">
+                                            @Html.DisplayFor(model => model.Sal)
+                                        </dd>
+                                    </div>
                                 </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Data)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Data)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Descricao)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Descricao)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Proteina)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Proteina)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.HidratosCarbono)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.HidratosCarbono)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.VR)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.VR)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Acucar)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Acucar)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Lipidos)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Lipidos)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.ValorEnergetico)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.ValorEnergetico)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.AGSat)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.AGSat)
-                                    </dd>
-                                </div>
-
-                                <div class="row">
-                                    <dt class="col mr-2">
-                                        @Html.DisplayNameFor(model => model.Sal)
-                                    </dt>
-
-                                    <dd class="col text-left">
-                                        @Html.DisplayFor(model => model.Sal)
-                                    </dd>
-                                </div>
-                               
-
                             </dl>
                             <hr />
                             <div class="d-flex text-center mt-4">
@@ -164,12 +140,6 @@
                                     </a>
                                 </div>
                             </div>
-
-
-                            <div>
-                                @*<a asp-action="Edit" asp-route-id="@Model?.AgrupamentoID">Edit</a> |*@
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,4 +148,16 @@
         </div>
         <!-- // Fase 1 -->
     </div>
+
+    <script>
+        window.onload = function () {
+            var divBox = document.getElementById("myBox")
+
+            if (screen.width >= 1366 && screen.height >= 768 && screen.width < 1920 && screen.height <= 1080) {
+                // Large screen
+                divBox.classList.remove("col-6");
+                divBox.classList.add("col-10");
+            }
+        }
+    </script>
 }

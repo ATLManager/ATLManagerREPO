@@ -14,43 +14,54 @@ namespace ATLManager.Models
 
         [Required]
         [MaxLength(20)]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(20)]
+        [Display(Name = "Categoria")]
         public string Categoria { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
 
         [Required]
         [MaxLength(255)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        [Display(Name = "Proteína")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Proteina { get; set; }
 
+        [Display(Name = "Hidratos de Carbono")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string HidratosCarbono { get; set; }
 
+        [Display(Name = "VR")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string VR { get; set; }
 
+        [Display(Name = "Açúcar")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Acucar { get; set; }
 
+        [Display(Name = "Lípidos")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Lipidos { get; set; }
 
+        [Display(Name = "Valor Energético")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string ValorEnergetico { get; set; }
 
+        [Display(Name = "AG Saturados")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string AGSat { get; set; }
 
+        [Display(Name = "Sal")]
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]
         public string Sal { get; set; }
 
@@ -58,36 +69,13 @@ namespace ATLManager.Models
         [DisplayName("Fotografia do menu")]
         public string Picture { get; set; }
 
-        public Refeicao(string name, string categoria, DateTime data, string descricao,
-                        string proteina, string hidratosCarbono, string vR, string acucar, string lipidos,
-                        string valorEnergetico, string aGSat, string sal) : this(name, categoria, data, descricao)
-        {
-            Descricao = descricao;
-            Proteina = proteina;
-            HidratosCarbono = hidratosCarbono;
-            VR = vR;
-            Acucar = acucar;
-            Lipidos = lipidos;
-            ValorEnergetico = valorEnergetico;
-            AGSat = aGSat;
-            Sal = sal;
-        }
+        [ForeignKey("Atl")]
+        public Guid? AtlId { get; set; }
+        public ATL? Atl { get; set; }
 
         public Refeicao()
         {
             RefeicaoId = Guid.NewGuid();
         }
-
-
-        public Refeicao(string name, string categoria, DateTime data, string descricao) : this()
-        {
-            Name = name;
-            Data = data;
-            Categoria = categoria;
-            Descricao = descricao;
-
-        }
-
-        
     }
 }

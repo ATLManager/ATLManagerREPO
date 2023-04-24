@@ -7,13 +7,14 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
-@inject LanguageService language
 @model ATLManager.Areas.Identity.Pages.Account.RegisterTypeModel
-@inject LanguageService language
+
+
 @{
 	ViewData["Title"] = @language.GetKey("register");
 	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
+@inject LanguageService language
 
 @if (!SignInManager.IsSignedIn(User))
 {
@@ -21,11 +22,11 @@
 <div class="container h-auto mt-auto">
 
     <!-- Botão de Ajuda -->
-			<div class="row" style="padding-top: 6em;padding-left: 6em;">
+			<div class="row" style="padding-top: 2em;padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-5"></div>
             <div class="col-4 text-right pb-2">
-                <button class="btn btn-primary rounded-circle" id="question-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
                     <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
                 </button>
             </div>
@@ -38,12 +39,12 @@
         <div class="row col-6 justify-content-center custom-box">
             <div class="row text-center box border-5">
                 <div class="row mb-2">
-                    <h2 class="fw-bold text-primary mb-5">Tipo de conta</h2>
+                    <h2 class="fw-bold text-primary mb-5">Tipo de Conta</h2>
                 </div>
 
                 <div class="row">
                     <div class="col-md">
-                        <h5 class="fw-bold">Registar como administrador</h5>
+                        <h5 class="fw-bold">Registar como proprietário do estabelecimento</h5>
                     </div>
                     <div class="col-md">
                         <h5 class="fw-bold">Registar como encarregado</h5>
@@ -75,110 +76,197 @@
     </div>
     <!-- // Container-Form -->
 
+
+
+		    <!-- Slide de Ajuda  -->
+    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+
+        <div class="row text-center mt-2">
+            <div class="col-10 ">
+                <h2 class="text-white ms-5">Ajuda</h2>
+            </div>
+
+            <div class="col-2">
+                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="">
+            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+        </div>
+        <!-- -->
+        <ul class="row justify-content-center p-4 bg-white mt-4 "
+            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>Como registar como educado</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+                  Deverá selecionar a opção de registo como encarregado de educação
+
+                </span>
+            </li>
+
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText2">
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <span>Como registar como administrador</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+
+
+                <span class="myText p-3 helpShadowButton" id="displayText2" style="display: none; position: relative;">
+                    Deverá selecionar a opção de registo como administrador
+
+                </span>
+            </li>
+
+
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/terms.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>Leia artigos de ajuda</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/comunity.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>Pergunte à comunidade</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/new.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>Novas Atualizações</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/feedback.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>Dê Feedback</span>
+                        </div>
+                    </div>
+
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- // Slide de Ajuda  -->
 </div>
-	<!-- Slide Left (Help) -->
-	<div class="offcanvas offcanvas-end position-fixed box myButton bg-primary h-auto" style="top:11%" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight"
-		 aria-labelledby="offcanvasRightLabel">
 
-		<div class="offcanvas-header helpCustomMargin">
-			<div class="col col-11 text-center">
-				<h5 class="offcanvas-title fw-bold justify-content-center" id="offcanvasRightLabel"
-					style="color:white;">
-					Ajuda
-				</h5>
-			</div>
-			<div class="col" text-right>
-				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-						aria-label="Close"></button>
-			</div>
-		</div>
-
-		<input class="form-control mr-sm-2 mb-3 p-3 text-center" type="search" placeholder="Procure artigos que o ajude"
-			   aria-label="Search" style="border-radius: 10px;">
-
-		<div class="helpCustomMargin h-100" style="background-color: #F8F8F8; margin-bottom: -1.25em; ">
-			<div class="offcanvas-body box overflow-auto">
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText1">
-						<span>Como registar como administrador</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText1"
-						  style="display: none; position: relative;">
-						Deverá selecionar a opção de registo como administrador
-					</span>
-				</div>
-
-				<div class=" row p-3 " style=" background-color: #F8F8F8">
-					<button type="button" class=" helpShadowButton custom-button helpButton border-0 mt-3 fw-bold"
-							id="showText2">
-						<span>Como registar como administrador</span>
-						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-					</button>
-
-					<br><br><br><br>
-					<span class="myText p-3 helpShadowButton" id="displayText2"
-						  style="display: none; position: relative;">
-						Deverá selecionar a opção de registo como administrador
-					</span>
-				</div>
-				
-			</div>
-		</div>
-	</div>
+  
 
 	<script type="text/javascript">
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText2').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText2');
+            var showTextBtn = document.getElementById('showText2');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText3').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText3');
+            var showTextBtn = document.getElementById('showText3');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText4').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText4');
+            var showTextBtn = document.getElementById('showText4');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
+        // Script: Sempre que o botão dentro do menu ajuda é clicado mostra ou esconde a informação do mesmo
+        document.getElementById('showText5').addEventListener('click', function () {
+            var displayText = document.getElementById('displayText5');
+            var showTextBtn = document.getElementById('showText5');
+
+            if (displayText.style.display === 'none') {
+                displayText.style.display = 'block';
+                showTextBtn.classList.remove('btn-help', 'btn');
+                showTextBtn.classList.add('myButton');
+
+            } else {
+                displayText.style.display = 'none';
+                showTextBtn.classList.remove('myButton');
+                showTextBtn.classList.add('btn-help');
+            }
+        });
+        //
+
 		// Add the following code if you want the name of the file appear on select
 		$(".custom-file-input").on("change", function () {
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	</script>
-
-	<!-- // Slide Left (Help) -->
-	<!-- JS Button help 1 -->
-	<script>
-		document.getElementById('showText1').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText1');
-			var showTextBtn = document.getElementById('showText1');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 1 -->
-	<!-- JS Button help 2 -->
-	<script>
-		document.getElementById('showText2').addEventListener('click', function () {
-			var displayText = document.getElementById('displayText2');
-			var showTextBtn = document.getElementById('showText2');
-
-			if (displayText.style.display === 'none') {
-				displayText.style.display = 'block';
-				showTextBtn.classList.remove('custom-button');
-				showTextBtn.classList.add('myButton');
-
-				// myButton
-			} else {
-				displayText.style.display = 'none';
-				showTextBtn.classList.remove('myButton');
-				showTextBtn.classList.add('custom-button');
-			}
-		});
-	</script>
-	<!-- JS Button help 2 -->
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
 
 }

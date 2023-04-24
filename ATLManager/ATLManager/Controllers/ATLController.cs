@@ -8,26 +8,47 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
+using ATLManager.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
     public class ATLController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
-		List<string> allowedPrefixesNIPC = new List<string> { "5", "6", "7", "8", "9" };
+        private readonly UserManager<ATLManagerUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
-		public ATLController(ATLManagerAuthContext context, IWebHostEnvironment webHostEnvironment)
+		public ATLController(ATLManagerAuthContext context,
+            UserManager<ATLManagerUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: ATL
         public async Task<IActionResult> Index()
         {
-            var aTLManagerAuthContext = _context.ATL.Include(a => a.Agrupamento);
-            return View(await aTLManagerAuthContext.ToListAsync());
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            return View(atls);
         }
 
         // GET: ATL/Details/5
@@ -41,6 +62,7 @@ namespace ATLManager.Controllers
             var atl = await _context.ATL
                 .Include(a => a.Agrupamento)
                 .FirstOrDefaultAsync(m => m.AtlId == id);
+
             if (atl == null)
             {
                 return NotFound();
@@ -50,9 +72,23 @@ namespace ATLManager.Controllers
         }
 
         // GET: ATL/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name");
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var agrupamentos = await _context.Agrupamento
+                    .Where(g => g.ContaId == userAccount.ContaId)
+                    .ToListAsync();
+
+            ViewData["AgrupamentoId"] = new SelectList(agrupamentos, "AgrupamentoID", "Name");
             return View(new ATLCreateViewModel());
         }
 
@@ -65,14 +101,14 @@ namespace ATLManager.Controllers
         {
             if (string.IsNullOrEmpty(viewModel.NIPC) && string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
             {
-                var validationMessage = "É necessário introduzir um NIPC ou ATLId";
+                var validationMessage = "É necessário introduzir um NIPC ou Agrupamento";
                 ModelState.AddModelError("NIPC", validationMessage);
                 ModelState.AddModelError("AtlId", validationMessage);
             }
 
             if (!string.IsNullOrEmpty(viewModel.NIPC) && !string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
             {
-                var validationMessage = "Apenas permitido introduzir um NIPC ou um ATLId";
+                var validationMessage = "Apenas permitido introduzir um NIPC ou um Agrupamento";
                 ModelState.AddModelError("NIPC", validationMessage);
                 ModelState.AddModelError("AtlId", validationMessage);
             }
@@ -92,6 +128,11 @@ namespace ATLManager.Controllers
                     ModelState.AddModelError("NIPC", validationMessage);
                 }
             }
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
             if (ModelState.IsValid)
             {
@@ -116,11 +157,29 @@ namespace ATLManager.Controllers
                     atl.LogoPicture = "logo.png";
                 }
 
+                var atlAdmin = new ATLAdmin
+                {
+                    AtlId = atl.AtlId,
+                    ContaId = userAccount.ContaId
+                };
+
                 _context.Add(atl);
+                _context.Add(atlAdmin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", viewModel.AgrupamentoId);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var agrupamentos = await _context.Agrupamento
+                    .Where(g => g.ContaId == userAccount.ContaId)
+                    .ToListAsync();
+
+            ViewData["AgrupamentoId"] = new SelectList(agrupamentos, "AgrupamentoID", "Name");
+
             return View(viewModel);
         }
 
@@ -137,7 +196,22 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", atl.AgrupamentoId);
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var agrupamentos = await _context.Agrupamento
+                    .Where(g => g.ContaId == userAccount.ContaId)
+                    .ToListAsync();
+
+            ViewData["AgrupamentoId"] = new SelectList(agrupamentos, "AgrupamentoID", "Name", atl.AgrupamentoId);
             return View(new ATLEditViewModel(atl));
         }
 
@@ -224,7 +298,22 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AgrupamentoId"] = new SelectList(_context.Agrupamento, "AgrupamentoID", "Name", viewModel.AgrupamentoId);
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var agrupamentos = await _context.Agrupamento
+                    .Where(g => g.ContaId == userAccount.ContaId)
+                    .ToListAsync();
+
+            ViewData["AgrupamentoId"] = new SelectList(agrupamentos, "AgrupamentoID", "Name", viewModel.AgrupamentoId);
             return View(viewModel);
         }
 

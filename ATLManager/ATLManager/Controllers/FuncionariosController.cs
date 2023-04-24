@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
@@ -10,9 +6,7 @@ using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text.Encodings.Web;
-using System.Text;
+using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
@@ -37,8 +31,13 @@ namespace ATLManager.Controllers
         }
 
         // GET: Coordenador
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
             var usersFuncionarios = from user in _context.Users
                                      join userRole in _context.UserRoles on user.Id equals userRole.UserId
                                      join role in _context.Roles on userRole.RoleId equals role.Id
@@ -46,14 +45,15 @@ namespace ATLManager.Controllers
                                      select user;
 
 			var funcionarios = from user in usersFuncionarios
-								join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
-                                join atl in _context.ATL on profile.AtlId equals atl.AtlId
-								select new LowerAccountViewModel
-								{
-                                    User = user,
-                                    Profile = profile,
-                                    AtlName = atl.Name
-								};
+							   join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
+                               join atl in _context.ATL on profile.AtlId equals atl.AtlId
+                               where atl.AtlId == currentUserAccount.AtlId
+							   select new LowerAccountViewModel
+							   {
+                                   User = user,
+                                   Profile = profile,
+                                   AtlName = atl.Name
+							   };
 
 			return View(funcionarios);
         }
@@ -86,10 +86,23 @@ namespace ATLManager.Controllers
         }
 
         // GET: Coordenador/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-			ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
-			return View(new LowerAccountCreateViewModel());
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await _context.ATL.Where(a => a.AtlId == userAccount.AtlId).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
+
+			return View(new FuncionarioCreateViewModel());
         }
 
         // POST: Coordenador/Create
@@ -97,7 +110,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LowerAccountCreateViewModel viewModel)
+        public async Task<IActionResult> Create(FuncionarioCreateViewModel viewModel)
         {
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
@@ -107,6 +120,29 @@ namespace ATLManager.Controllers
                     var validationMessage = "Outro Agrupamento já contém este CC";
                     ModelState.AddModelError("CC", validationMessage);
                 }
+            }
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            // Obter a data de nascimento do ViewModel
+            DateTime dataNascimento = viewModel.DateOfBirth;
+
+            // Calcular a diferença entre a data de nascimento e a data atual
+            TimeSpan diferenca = DateTime.Today - dataNascimento;
+
+            // Verifique se a diferença em anos é maior ou igual a 18
+            if (diferenca.TotalDays / 365.25 < 18)
+            {
+                var validationMessage = "A idade mínima para registar um funcionário é 18 anos";
+                ModelState.AddModelError("DateOfBirth", validationMessage);
             }
 
             if (ModelState.IsValid)
@@ -124,11 +160,8 @@ namespace ATLManager.Controllers
                     // Dar role de funcionario à conta
                     await _userManager.AddToRoleAsync(user, "Funcionario");
 
-                    // Aceder ao ATL pelo Id
-                    var atl = await _context.ATL.Where(a => a.AtlId == viewModel.AtlId).FirstAsync();
-
                     // Criar o perfil
-                    var funcionario = new ContaAdministrativa(user, atl, viewModel.DateOfBirth, viewModel.CC);
+                    var funcionario = new ContaAdministrativa(user, atlId: (Guid)userAccount.AtlId, viewModel.DateOfBirth, viewModel.CC);
 
                     string fileName = UploadedFile(viewModel.ProfilePicture);
 					if (fileName != null)
@@ -153,8 +186,6 @@ namespace ATLManager.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name", viewModel.AtlId);
             return View(viewModel);
         }
 
@@ -170,13 +201,12 @@ namespace ATLManager.Controllers
                               join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
                               join atl in _context.ATL on profile.AtlId equals atl.AtlId
                               where profile.ContaId == id
-                              select new LowerAccountEditViewModel
+                              select new FuncionarioEditViewModel
                               {
                                   ContaId = profile.ContaId,
                                   FirstName = user.FirstName,
                                   LastName = user.LastName,
-                                  AtlId = profile.AtlId.Value,
-                                  DateOfBirth = profile.DateOfBirth,
+                                  DateOfBirth = profile.DateOfBirth.ToShortDateString(),
                                   CC = profile.CC,
                                   Email = user.Email
                               };
@@ -186,7 +216,6 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
             return View(await funcionario.FirstAsync());
         }
 
@@ -195,7 +224,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, LowerAccountEditViewModel viewModel)
+        public async Task<IActionResult> Edit(Guid id, CoordenadorEditViewModel viewModel)
         {
             if (id != viewModel.ContaId)
             {
@@ -215,6 +244,21 @@ namespace ATLManager.Controllers
                 }
             }
 
+
+            // Obter a data de nascimento do ViewModel
+            DateTime dataNascimento = DateTime.Parse(viewModel.DateOfBirth);
+
+            // Calcular a diferença entre a data de nascimento e a data atual
+            TimeSpan diferenca = DateTime.Today - dataNascimento;
+
+            // Verifique se a diferença em anos é maior ou igual a 18
+            if (diferenca.TotalDays / 365.25 < 18)
+            {
+                var validationMessage = "A idade mínima para registar um funcionário é 18 anos";
+                ModelState.AddModelError("DateOfBirth", validationMessage);
+            }
+
+
             if (ModelState.IsValid)
             {
                 try
@@ -223,9 +267,11 @@ namespace ATLManager.Controllers
                     
                     if (funcionario != null)
                     {
-                        funcionario.DateOfBirth = viewModel.DateOfBirth;
+                        if (viewModel.DateOfBirth != null)
+                        {
+                            funcionario.DateOfBirth = DateTime.Parse(viewModel.DateOfBirth);
+                        }
                         funcionario.CC = viewModel.CC;
-                        funcionario.AtlId = viewModel.AtlId;
 
                         string fileName = UploadedFile(viewModel.ProfilePicture);
 						if (fileName != null)
@@ -259,7 +305,6 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name", viewModel.AtlId);
             return View(viewModel);
         }
 
@@ -299,10 +344,28 @@ namespace ATLManager.Controllers
             {
                 return Problem("Entity set 'ATLManagerAuthContext.ContaAdministrativa' is null.");
             }
-            var funcionario = await _context.ContaAdministrativa.FindAsync(id);
+
+            var funcionario = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .Where(f => f.ContaId == id)
+                .FirstAsync();
+
             if (funcionario != null)
             {
+                var record = new FuncionarioRecord()
+                {
+                    ContaId = funcionario.ContaId,
+                    FirstName = funcionario.User.FirstName,
+                    LastName = funcionario.User.LastName,
+                    Email = funcionario.User.Email,
+                    DateOfBirth = funcionario.DateOfBirth,
+                    CC = funcionario.CC,
+                    ProfilePicture = funcionario.ProfilePicture,
+                    AtlId = funcionario.AtlId,
+                };
+
                 var user = await _userManager.FindByIdAsync(funcionario.UserId);
+                _context.Add(record);
                 _context.ContaAdministrativa.Remove(funcionario);
                 await _userManager.DeleteAsync(user);
             }

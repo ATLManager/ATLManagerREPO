@@ -37,8 +37,13 @@ namespace ATLManager.Controllers
         }
 
         // GET: Coordenador
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
             var usersCoordenadores = from user in _context.Users
                                      join userRole in _context.UserRoles on user.Id equals userRole.UserId
                                      join role in _context.Roles on userRole.RoleId equals role.Id
@@ -48,6 +53,8 @@ namespace ATLManager.Controllers
 			var coordenadores = from user in usersCoordenadores
 								join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
                                 join atl in _context.ATL on profile.AtlId equals atl.AtlId
+                                join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                                where atlAdmin.ContaId == userAccount.ContaId
 								select new LowerAccountViewModel
 								{
                                     User = user,
@@ -86,10 +93,26 @@ namespace ATLManager.Controllers
         }
 
         // GET: Coordenador/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-			ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
-			return View(new LowerAccountCreateViewModel());
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
+			return View(new CoordenadorCreateViewModel());
         }
 
         // POST: Coordenador/Create
@@ -97,17 +120,31 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LowerAccountCreateViewModel viewModel)
+        public async Task<IActionResult> Create(CoordenadorCreateViewModel viewModel)
         {
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
                 if (_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC) 
                     || _context.Educando.Any(e => e.CC == viewModel.CC))
                 {
-                    var validationMessage = "Outro Agrupamento já contém este CC";
+                    var validationMessage = "Outro Coordenador já contém este CC";
                     ModelState.AddModelError("CC", validationMessage);
                 }
             }
+
+            // Obter a data de nascimento do ViewModel
+            DateTime dataNascimento = viewModel.DateOfBirth;
+
+            // Calcular a diferença entre a data de nascimento e a data atual
+            TimeSpan diferenca = DateTime.Today - dataNascimento;
+
+            // Verifique se a diferença em anos é maior ou igual a 18
+            if (diferenca.TotalDays / 365.25 < 18)
+            {
+                var validationMessage = "A idade mínima para registar um coordenador é 18 anos";
+                ModelState.AddModelError("DateOfBirth", validationMessage);
+            }
+
 
             if (ModelState.IsValid)
             {
@@ -139,6 +176,7 @@ namespace ATLManager.Controllers
                     {
                         coordenador.ProfilePicture = "logo.png";
                     }
+
                     _context.Add(coordenador);
                     await _context.SaveChangesAsync();
                 
@@ -154,7 +192,23 @@ namespace ATLManager.Controllers
                 }
             }
 
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name", viewModel.AtlId);
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name", viewModel.AtlId);
             return View(viewModel);
         }
 
@@ -170,13 +224,13 @@ namespace ATLManager.Controllers
                               join profile in _context.ContaAdministrativa on user.Id equals profile.UserId
                               join atl in _context.ATL on profile.AtlId equals atl.AtlId
                               where profile.ContaId == id
-                              select new LowerAccountEditViewModel
+                              select new CoordenadorEditViewModel
                               {
                                   ContaId = profile.ContaId,
                                   FirstName = user.FirstName,
                                   LastName = user.LastName,
                                   AtlId = profile.AtlId.Value,
-                                  DateOfBirth = profile.DateOfBirth,
+                                  DateOfBirth = profile.DateOfBirth.ToShortDateString(),
                                   CC = profile.CC,
                                   Email = user.Email
                               };
@@ -186,7 +240,23 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name");
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name");
             return View(await coordenador.FirstAsync());
         }
 
@@ -195,7 +265,7 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, LowerAccountEditViewModel viewModel)
+        public async Task<IActionResult> Edit(Guid id, CoordenadorEditViewModel viewModel)
         {
             if (id != viewModel.ContaId)
             {
@@ -204,16 +274,32 @@ namespace ATLManager.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.CC))
             {
-				var coordenador = _context.ContaAdministrativa.Find(viewModel.ContaId);
+				var coordenador = _context.ContaAdministrativa.Find(id);
 
 				if (coordenador.CC != viewModel.CC &&
-					_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
-                    || _context.Educando.Any(e => e.CC == viewModel.CC))
+					(_context.ContaAdministrativa.Any(c => c.CC == viewModel.CC)
+                    || _context.Educando.Any(e => e.CC == viewModel.CC)))
                 {
                     var validationMessage = "Outra conta já contém este CC";
                     ModelState.AddModelError("CC", validationMessage);
                 }
             }
+
+
+            // Obter a data de nascimento do ViewModel
+            DateTime dataNascimento = DateTime.Parse(viewModel.DateOfBirth);
+
+            // Calcular a diferença entre a data de nascimento e a data atual
+            TimeSpan diferenca = DateTime.Today - dataNascimento;
+
+            // Verifique se a diferença em anos é maior ou igual a 18
+            if (diferenca.TotalDays / 365.25 < 18)
+            {
+                var validationMessage = "A idade mínima para registar um coordenador é 18 anos";
+                ModelState.AddModelError("DateOfBirth", validationMessage);
+            }
+
+
 
             if (ModelState.IsValid)
             {
@@ -223,7 +309,10 @@ namespace ATLManager.Controllers
                     
                     if (coordenador != null)
                     {
-						coordenador.DateOfBirth = viewModel.DateOfBirth;
+                        if (viewModel.DateOfBirth != null)
+                        {
+						    coordenador.DateOfBirth = DateTime.Parse(viewModel.DateOfBirth);
+                        }
                         coordenador.CC = viewModel.CC;
                         coordenador.AtlId = viewModel.AtlId;
 
@@ -259,7 +348,24 @@ namespace ATLManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AtlId"] = new SelectList(_context.ATL, "AtlId", "Name", viewModel.AtlId);
+
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var userAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            if (userAccount == null)
+            {
+                return NotFound();
+            }
+
+            var atls = await (from atl in _context.ATL
+                              join atlAdmin in _context.ATLAdmin on atl.AtlId equals atlAdmin.AtlId
+                              join admin in _context.ContaAdministrativa on atlAdmin.ContaId equals admin.ContaId
+                              where admin.ContaId == userAccount.ContaId
+                              select atl).Include(a => a.Agrupamento).ToListAsync();
+
+            ViewData["AtlId"] = new SelectList(atls, "AtlId", "Name", viewModel.AtlId);
             return View(viewModel);
         }
 

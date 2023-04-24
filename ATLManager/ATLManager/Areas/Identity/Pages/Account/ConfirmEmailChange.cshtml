@@ -7,5 +7,17 @@
 }
 @inject LanguageService language
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<!-- Container -->
+<div class="container h-auto mt-auto">
+    <div class="d-flex justify-content-center">
+        <!-- Box  -->
+        <div class="row col-6 justify-content-center custom-box">
+            <div class="row box border-5">
+                <h1>@ViewData["Title"]</h1>
+                <partial name="_StatusMessage" model="Model.StatusMessage" />
+            </div>
+        </div>
+        <!-- // Box -->
+    </div>
+</div>
+<!-- // Container -->

@@ -8,7 +8,7 @@ namespace ATLManager
         public static async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<ATLManagerUser>>();
+            //var userManager = serviceProvider.GetRequiredService<UserManager<ATLManagerUser>>();
 
             foreach (var roleName in Enum.GetValues(typeof(ATLManagerUserRole)))
             {
@@ -16,6 +16,7 @@ namespace ATLManager
                 if (!roleExist) await roleManager.CreateAsync(new IdentityRole(roleName.ToString()));
             }
 
+            /*
             var admin = new ATLManagerUser
             {
                 FirstName = "Admin",
@@ -34,6 +35,7 @@ namespace ATLManager
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(admin);
                 await userManager.ConfirmEmailAsync(admin, code);
             }
+            */
         }
     }
 }

@@ -28,5 +28,10 @@ public class ATLManagerUser : IdentityUser
 	[EmailAddress]
 	[ProtectedPersonalData]
 	override public string Email { get; set; }
+
+    [Required]
+    [ProtectedPersonalData]
+    [DisplayName("Foto de perfil")]
+    public string Picture { get; set; } = "logo.png";
 }
 
