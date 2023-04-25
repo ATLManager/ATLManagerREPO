@@ -28,7 +28,8 @@ namespace ATLManager.ViewModels
 		[DisplayName("Logo do Agrupamento")]
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }, 
 			ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
-        public IFormFile? LogoPicture { get; set; }
+		[MaxFileSize(128 * 1024, ErrorMessage = "Tamanho máximo permitido é de 128kB")]
+		public IFormFile? LogoPicture { get; set; }
 
 		public AgrupamentoEditViewModel ()
 		{

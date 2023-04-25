@@ -56,7 +56,8 @@ namespace ATLManager.ViewModels
         [DisplayName("Fotografia do menu")]
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
             ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
-        public IFormFile? Picture { get; set; }
+		[MaxFileSize(128 * 1024, ErrorMessage = "Tamanho máximo permitido é de 128kB")]
+		public IFormFile? Picture { get; set; }
 
         public RefeicaoEditViewModel()
         {

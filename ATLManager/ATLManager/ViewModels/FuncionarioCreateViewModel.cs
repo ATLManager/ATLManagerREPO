@@ -50,6 +50,7 @@ namespace ATLManager.ViewModels
         [DisplayName("Imagem de perfil")]
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
             ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
-        public IFormFile? ProfilePicture { get; set; }
+		[MaxFileSize(128 * 1024, ErrorMessage = "Tamanho máximo permitido é de 128kB")]
+		public IFormFile? ProfilePicture { get; set; }
     }
 }
