@@ -1,4 +1,4 @@
-﻿@model ATLManager.Models.Recibo
+﻿@model ATLManager.ViewModels.ReciboCreateViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
@@ -20,7 +20,6 @@
 			<h1 class="me-3 fw-bold text-center mb-0">Criar Fatura</h1>
 			<img src="~/images/icons/edit-group.png" width="50" height="50">
 		</div>
-
 		<div class="row" style="padding-left: 6em;">
 			<div class="col text-right pb-2" id="divQuestion">
 				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
@@ -44,6 +43,12 @@
 													<label asp-for="Name" class="form-label"></label>
 													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
 													<span asp-validation-for="Name" class="text-danger"></span>
+												</div>
+												<div class="col">
+													<label asp-for="Educando" class="control-label">Encarregado</label>
+													<select asp-for="Educando" class="form-control" asp-items="ViewBag.Educandos">
+														<option value=null>Escolha um Educando</option>
+													</select>
 												</div>
 											</div>
 											<div class="row mb-2">
@@ -113,7 +118,6 @@
 
 	<!-- Slide de Ajuda  -->
 	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
-
 		<div class="row text-center mt-2">
 			<div class="col-10 ">
 				<h2 class="text-white ms-5">Ajuda</h2>
@@ -138,16 +142,11 @@
 						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
 					</div>
 				</button>
-
-
 				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
 					Here's some more textHere's some more textHere's some more textHere's some
 					more textHe
-
 				</span>
 			</li>
-
-
 			<li class="row">
 				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
 					<div class="d-flex align-items-center justify-content-center">
