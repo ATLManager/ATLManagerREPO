@@ -12,12 +12,40 @@
 
 @if (!SignInManager.IsSignedIn(User))
 {
-    <div>
-        <h1 class="display-4">@language.GetKey("txtWelcomeToPageAboutUs")</h1>
-        <p>@language.GetKey("txt1AboutUs")</p>
-        <p>@language.GetKey("txt2AboutUs")</p>
-        <p>@language.GetKey("txt3AboutUs")</p>
-    </div>
+    <!-- Fase 1  -->
+	<!-- d-flex -->
+	<!-- Container -->
+	<div class="container-fluid mt-1">
+		<div class="d-flex justify-content-center" id="divFase1">
+			<!-- Box  -->
+			<div class="row justify-content-center custom-box col-9" id="myBox">
+				<div class="row box border-5 p-5">
+					<!--text-center  -->
+					<div class="container">
+						<div class="row mt-3">
+							<h1 class="display-4 text-center mb-4">Contact Us</h1>
+							<div class="row">
+								@*<p>@language.GetKey("txt1ContactUs")</p>*@
+								@*<p>@language.GetKey("txtWelcomeToPageAboutUs") @language.GetKey("txt3ContactUs")</p>*@
+							@*	<h1 class="display-4">@language.GetKey("")</h1>*@
+							</div>
+							<div class="d-flex justify-content-center mb-3">
+								<div class="row col-8">
+									<div class="col-md">
+										<p>@language.GetKey("txt1AboutUs")</p>
+										<p>@language.GetKey("txt2AboutUs")</p>
+										<p>@language.GetKey("txt3AboutUs")</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- // Box -->
+	</div>
+
  }
 
 
