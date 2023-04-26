@@ -38,6 +38,11 @@
 									<div class="col-md">
 										<form asp-action="Create">
 											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											<div class="form-check mb-3">
+												<input type="checkbox" class="form-check-input" id="enviarFaturaParaTodos" onclick="toggleEducandoCombo()">
+												<label class="form-check-label" for="enviarFaturaParaTodos">Enviar Fatura para Todos os Educandos</label>
+											</div>
+
 											<div class="row mb-2">
 												<div class="col">
 													<label asp-for="Name" class="form-label"></label>
@@ -46,7 +51,7 @@
 												</div>
 												<div class="col">
 													<label asp-for="Educando" class="control-label">Encarregado</label>
-													<select asp-for="Educando" class="form-control" asp-items="ViewBag.Educandos">
+													<select asp-for="Educando" class="form-control" asp-items="ViewBag.Educandos" id="educandoCombo">
 														<option value=null>Escolha um Educando</option>
 													</select>
 												</div>
@@ -243,6 +248,19 @@
 				divCertidao.style.display = 'block';
 			}
 		});
+	</script>
+
+		<script>
+		function toggleEducandoCombo() {
+			var enviarFaturaParaTodos = document.getElementById('enviarFaturaParaTodos');
+			var educandoCombo = document.getElementById('educandoCombo');
+
+			if (enviarFaturaParaTodos.checked) {
+				educandoCombo.setAttribute('disabled', 'disabled');
+			} else {
+				educandoCombo.removeAttribute('disabled');
+			}
+		}
 	</script>
 	<!--  // Options Script -->
 	@section Scripts {
