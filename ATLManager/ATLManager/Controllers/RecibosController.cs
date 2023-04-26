@@ -142,9 +142,22 @@ namespace ATLManager.Controllers
         }
 
         // GET: Reciboes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Where(e => e.AtlId == currentUserAccount.AtlId)
+                .Select(e => new { Id = e.EducandoId, Name = e.Name + " " + e.Apelido + " (CC: " + e.CC + ")"})
+                .ToListAsync();
+
+            ViewData["Educandos"] = new SelectList(educandos, "Id", "Name");
+			return View();
         }
 
         // POST: Reciboes/Create
@@ -152,15 +165,14 @@ namespace ATLManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Price,NIB,Description,DateLimit")] Recibo recibo)
+        public async Task<IActionResult> Create([Bind("Name,Price,NIB,Description,DateLimit,Educando")] ReciboCreateViewModel viewModel)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var userAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
-            
-			if (recibo.DateLimit.CompareTo(DateTime.UtcNow) < 0)
+			if (viewModel.DateLimit.CompareTo(DateTime.UtcNow) < 0)
 			{
 				var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
 				ModelState.AddModelError("DateLimit", validationMessage);
@@ -168,52 +180,101 @@ namespace ATLManager.Controllers
 
 			if (ModelState.IsValid)
             {
-                recibo.EmissionDate = DateTime.UtcNow.Date;
-                recibo.AtlId = userAccount.AtlId;
-                _context.Add(recibo);
+				var recibo = new Recibo()
+				{
+                    Name = viewModel.Name,
+                    Price = viewModel.Price,
+                    NIB = viewModel.NIB,
+                    Description = viewModel.Description,
+                    DateLimit = viewModel.DateLimit,
+					EmissionDate = DateTime.UtcNow.Date,
+					AtlId = userAccount.AtlId
+				};
+				_context.Add(recibo);
 
-                var educandos = await _context.Educando
-                    .Include(c => c.Atl)
-                    .Where(g => g.AtlId == userAccount.AtlId)
-                    .ToListAsync();
-
-                foreach (var educando in educandos)
+                if (viewModel.Educando == null)
                 {
-                    var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+                    var educandos = await _context.Educando
+                        .Include(c => c.Atl)
+                        .Where(g => g.AtlId == userAccount.AtlId)
+                        .ToListAsync();
+
+                    foreach (var educando in educandos)
                     {
-                        Name = recibo.Name,
-                        Price = recibo.Price,
-                        NIB = recibo.NIB,
-                        Description = recibo.Description,
-                        DateLimit = recibo.DateLimit
-                    };
+                        var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+                        {
+                            Name = recibo.Name,
+                            Price = recibo.Price,
+                            NIB = recibo.NIB,
+                            Description = recibo.Description,
+                            DateLimit = recibo.DateLimit
+                        };
 
-                    // Obter Encarregado do Educando e a sua conta
-                    var encarregado = await _context.EncarregadoEducacao
-                        .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
-                    var encarregadoAccount = await _context.Users
-                        .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+                        // Obter Encarregado do Educando e a sua conta
+                        var encarregado = await _context.EncarregadoEducacao
+                            .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+                        var encarregadoAccount = await _context.Users
+                            .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
 
-                    var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
-                    var code = resposta.ReciboRespostaId.ToString();
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
+                        var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
+                        var code = resposta.ReciboRespostaId.ToString();
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
                     
-                    // Enviar notificação para o Encarregado de Educação
-                    var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
-                    var notificationTitle = $"Novo Recibo - {recibo.Name}";
+                        // Enviar notificação para o Encarregado de Educação
+                        var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+                        var notificationTitle = $"Novo Recibo - {recibo.Name}";
 
-                    await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+                        await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
 
-                    await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
+                        await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
 
-                    _context.Add(resposta);
+                        _context.Add(resposta);
+                    }
                 }
+                else
+                {
+                    var educando = await _context.Educando.
+                        Include(e => e.Atl).
+                        FirstOrDefaultAsync(e => e.EducandoId == (Guid)viewModel.Educando);
+
+                    if (educando == null) return NotFound();
+
+					var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+					{
+						Name = recibo.Name,
+						Price = recibo.Price,
+						NIB = recibo.NIB,
+						Description = recibo.Description,
+						DateLimit = recibo.DateLimit
+					};
+
+					// Obter Encarregado do Educando e a sua conta
+					var encarregado = await _context.EncarregadoEducacao
+						.FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+					var encarregadoAccount = await _context.Users
+						.FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+
+					var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
+					var code = resposta.ReciboRespostaId.ToString();
+					code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+					var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
+
+					// Enviar notificação para o Encarregado de Educação
+					var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+					var notificationTitle = $"Novo Recibo - {recibo.Name}";
+
+					await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+
+					await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
+
+					_context.Add(resposta);
+				}
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(recibo);
+            return View(viewModel);
         }
 
         // GET: Recibos/Edit/5
