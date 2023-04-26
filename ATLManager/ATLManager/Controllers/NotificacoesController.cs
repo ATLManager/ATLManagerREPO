@@ -73,73 +73,97 @@ namespace ATLManager.Controllers
             }
         }
 
-        // GET: Notificacao/Create
-        [Authorize]
-        public async Task<IActionResult> Create()
+        [HttpGet]
+        public async Task<IActionResult> GetUsers(string searchTerm)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var currentUserRoles = await _userManager.GetRolesAsync(currentUser);
-            var userAccount = await _context.ContaAdministrativa.FirstOrDefaultAsync(a => a.UserId == currentUser.Id);
+            var allUsers = await GetUsersAsync(currentUser);
 
-            List<ATLManagerUser> targetUsers;
+			var filteredUsers = allUsers
+				.Where(u => u.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
+				.Select(u => new { id = u.Id, firstName = u.FirstName, lastName = u.LastName })
+				.ToList();
 
-            if (currentUserRoles.Contains("Coordenador") || currentUserRoles.Contains("Funcionario"))
-            {
-                // Get Encarregados de Educação users
-                var educandos = await _context.Educando
-                    .Include(c => c.Atl)
-                    .Where(g => g.AtlId == userAccount.AtlId)
-                    .ToListAsync();
 
-                var encarregadoUsers = new List<ATLManagerUser>();
-
-                foreach (var educando in educandos)
-                {
-                    var encarregado = await _context.EncarregadoEducacao
-                        .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
-                    var encarregadoAccount = await _context.Users
-                        .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
-
-                    if (encarregadoAccount != null && !encarregadoUsers.Any(u => u.Id == encarregadoAccount.Id))
-                    {
-                        encarregadoUsers.Add(encarregadoAccount);
-                    }
-                }
-
-                targetUsers = encarregadoUsers;
-            }
-            else if (currentUserRoles.Contains("EncarregadoEducacao"))
-            {
-
-                // Get Coordenador and Funcionario users
-                var roleNames = new[] { "Coordenador", "Funcionario" };
-
-                var encarregado = await _context.EncarregadoEducacao.FirstOrDefaultAsync(ee => ee.UserId == currentUser.Id);
-                var educando = await _context.Educando.FirstOrDefaultAsync(e => e.EncarregadoId == encarregado.EncarregadoId);
-
-                Guid specificATLId = (Guid)educando.AtlId;
-
-                targetUsers = await (from user in _context.Users
-                                     join userRole in _context.UserRoles on user.Id equals userRole.UserId
-                                     join role in _context.Roles on userRole.RoleId equals role.Id
-                                     join account in _context.ContaAdministrativa on user.Id equals account.UserId
-                                     where roleNames.Contains(role.Name) && account.AtlId == specificATLId
-                                     select user).ToListAsync();
-            }
-            else
-            {
-                // If the user doesn't have any of the expected roles, return an empty list
-                targetUsers = new List<ATLManagerUser>();
-            }
-
-            ViewData["UserId"] = new SelectList(targetUsers, "Id", "UserName");
-            return View();
+			return Json(filteredUsers);
         }
 
-        // POST: Notificacao/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        
+		private async Task<List<ATLManagerUser>> GetUsersAsync(ATLManagerUser currentUser)
+		{
+			var currentUserRoles = await _userManager.GetRolesAsync(currentUser);
+			var userAccount = await _context.ContaAdministrativa.FirstOrDefaultAsync(a => a.UserId == currentUser.Id);
+
+			List<ATLManagerUser> targetUsers;
+
+			if (currentUserRoles.Contains("Coordenador") || currentUserRoles.Contains("Funcionario"))
+			{
+				// Get Encarregados de Educação users
+				var educandos = await _context.Educando
+					.Include(c => c.Atl)
+					.Where(g => g.AtlId == userAccount.AtlId)
+					.ToListAsync();
+
+				var encarregadoUsers = new List<ATLManagerUser>();
+
+				foreach (var educando in educandos)
+				{
+					var encarregado = await _context.EncarregadoEducacao
+						.FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+					var encarregadoAccount = await _context.Users
+						.FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+
+					if (encarregadoAccount != null && !encarregadoUsers.Any(u => u.Id == encarregadoAccount.Id))
+					{
+						encarregadoUsers.Add(encarregadoAccount);
+					}
+				}
+
+				targetUsers = encarregadoUsers;
+			}
+			else if (currentUserRoles.Contains("EncarregadoEducacao"))
+			{
+				// Get Coordenador and Funcionario users
+				var roleNames = new[] { "Coordenador", "Funcionario" };
+
+				var encarregado = await _context.EncarregadoEducacao.FirstOrDefaultAsync(ee => ee.UserId == currentUser.Id);
+				var educando = await _context.Educando.FirstOrDefaultAsync(e => e.EncarregadoId == encarregado.EncarregadoId);
+
+				Guid specificATLId = (Guid)educando.AtlId;
+
+				targetUsers = await (from user in _context.Users
+									 join userRole in _context.UserRoles on user.Id equals userRole.UserId
+									 join role in _context.Roles on userRole.RoleId equals role.Id
+									 join account in _context.ContaAdministrativa on user.Id equals account.UserId
+									 where roleNames.Contains(role.Name) && account.AtlId == specificATLId
+									 select user).ToListAsync();
+			}
+			else
+			{
+				// If the user doesn't have any of the expected roles, return an empty list
+				targetUsers = new List<ATLManagerUser>();
+			}
+
+			return targetUsers;
+		}
+
+
+		// GET: Notificacao/Create
+		[Authorize]
+		public async Task<IActionResult> Create()
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			var targetUsers = await GetUsersAsync(currentUser);
+
+			ViewData["UserId"] = new SelectList(targetUsers, "Id", "UserName");
+			return View();
+		}
+
+
+		// POST: Notificacao/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NotificacaoId,UserId,Titulo,Mensagem")] Notificacao notificacao)
         {

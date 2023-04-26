@@ -6,7 +6,7 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Notification";
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -35,13 +35,13 @@
                                     <div class="col-md">
                                         <form asp-action="Create">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <div class="form-group">
-                                                <label asp-for="UserId" class="form-label">Utilizador</label>
-                                                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId" id="userSelect">
-                                                    <option value="">-- Selecione um utilizador --</option>
-                                                </select>
-                                                <span asp-validation-for="UserId" class="text-danger"></span>
-                                            </div>
+											<div class="form-group">
+												<label asp-for="UserId" class="form-label">Utilizador</label>
+												<input type="text" class="form-control" id="userInput" placeholder="Digite os primeiros 3 caracteres">
+												<div class="list-group" id="userList" style="display:none;"></div>
+												<input type="hidden" asp-for="UserId" id="userId" />
+												<span asp-validation-for="UserId" class="text-danger"></span>
+											</div>
                                             <div class="form-group">
                                                 <label asp-for="Titulo" class="form-label">Título</label>
                                                 <input asp-for="Titulo" class="form-control" placeholder="Insira o título" />
@@ -214,6 +214,42 @@
 				divAgrupamento.style.display = 'none';
 				divCertidao.style.display = 'block';
 			}
+		});
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			$('#userInput').on('input', function () {
+				var inputText = $(this).val();
+				if (inputText.length >= 2) {
+					$.ajax({
+						url: '/Notificacoes/GetUsers', 
+						type: 'GET',
+						data: { searchTerm: inputText },
+						success: function (data) {
+							if (data.length > 0) {
+								var listHtml = '';
+								for (var i = 0; i < data.length; i++) {
+									listHtml += '<button type="button" class="list-group-item list-group-item-action user-item" data-id="' + data[i].id + '">' + data[i].firstName + ' ' + data[i].lastName + '</button>';
+								}
+								$('#userList').html(listHtml).show();
+							} else {
+								$('#userList').hide();
+							}
+						}
+					});
+				} else {
+					$('#userList').hide();
+				}
+			});
+
+			$(document).on('click', '.user-item', function () {
+				var userId = $(this).data('id');
+				var userName = $(this).text();
+				$('#userId').val(userId);
+				$('#userInput').val(userName);
+				$('#userList').hide();
+			});
 		});
 	</script>
 	<!--  // Options Script -->

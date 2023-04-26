@@ -210,15 +210,36 @@ namespace ATLManager.Controllers
 			return View(educandoEncarregado);
 		}
 
-		// GET: Educandos/Create
-		public async Task<IActionResult> Create()
-        {
-			var encarregados = await _context.EncarregadoEducacao
-				.Include(e => e.User)
-				.Select(e => new { e.EncarregadoId, Name = (e.User.FirstName + " " + e.User.LastName) })
-				.ToListAsync();
 
-			ViewData["EncarregadoId"] = new SelectList(encarregados, "EncarregadoId", "Name");
+        private async Task<List<ATLManagerUser>> GetEncarregadosAsync()
+        {
+            var encarregados = await _context.EncarregadoEducacao
+                .Include(e => e.User)
+                .Select(e => e.User)
+                .ToListAsync();
+
+            return encarregados;
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetEncarregados(string searchTerm)
+        {
+            var allEncarregados = await GetEncarregadosAsync();
+
+            var filteredEncarregados = allEncarregados
+                .Where(e => e.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .Select(e => new { id = e.Id, firstName = e.FirstName, lastName = e.LastName})
+                .ToList();
+
+            return Json(filteredEncarregados);
+        }
+
+
+
+        // GET: Educandos/Create
+        public async Task<IActionResult> Create()
+        {
 			return View(new EducandoCreateViewModel());
         }
 
