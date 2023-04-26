@@ -221,7 +221,7 @@
 		$(document).ready(function () {
 			$('#userInput').on('input', function () {
 				var inputText = $(this).val();
-				if (inputText.length >= 2) {
+				if (inputText.length >= 3) {
 					$.ajax({
 						url: '/Notificacoes/GetUsers', 
 						type: 'GET',
