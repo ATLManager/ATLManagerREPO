@@ -88,6 +88,10 @@ namespace ATLManager.Controllers
         {
             return View();
         }
+        public IActionResult Policy()
+        {
+            return View();
+        }
 
         public IActionResult ChangeLanguage(string culture)
         {

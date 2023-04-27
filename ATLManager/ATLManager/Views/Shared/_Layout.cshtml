@@ -354,7 +354,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-search fa-fw"></i>
+                                    <i class="fas fa-search fa-fw"></i>~
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                      aria-labelledby="searchDropdown">
@@ -924,14 +924,16 @@ else
     </div>
 }
 
+
+
     <!-- Footer -->
     <footer class="bg-light text-center mt-auto fixed-bottom">
         <!-- Copyright -->
         <div class="text-center p-3 shadow">
             <div class="row">
-                <div class="col footer-p">@language.GetKey("contacts")</div>
-                <div class="col footer-p">@language.GetKey("support")</div>
-                <div class="col footer-p">@language.GetKey("siteMap")</div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none">@language.GetKey("contacts") </a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none">@language.GetKey("support")</a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Policy" style="text-decoration:none">Política</a></div>
                 <div class="col footer-p">@language.GetKey("copyright")</div>
             </div>
             <!-- Copyright -->
