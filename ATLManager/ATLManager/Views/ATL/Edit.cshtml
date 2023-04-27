@@ -63,9 +63,6 @@
                                                     <div class="input-group">
                                                         <input asp-for="PostalCode" class="form-control" placeholder="Insira um código postal" />
                                                         <span asp-validation-for="PostalCode" class="text-danger"></span>
-                                                        @*<input type="text" class="form-control" id="codigo-postal-1" placeholder="XXXX">
-                                                        <span class="input-group-text">-</span>
-                                                        <input type="text" class="form-control" id="codigo-postal-2" placeholder="XXX">*@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -105,11 +102,8 @@
                                        
                                             <div class="d-flex text-center mt-4">
                                                 <div class="col text-right">
-                                                    <a asp-action="Index">
-                                                        <button type="button"
-                                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                                    <a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
                                                             Voltar
-                                                        </button>
                                                     </a>
                                                 </div>
                                                 <div class="col text-left">

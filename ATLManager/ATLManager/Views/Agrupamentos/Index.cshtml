@@ -71,7 +71,7 @@
 
                                         <div class="col">
                                             <p class="text-end">
-                                                <a asp-action="Create"><button type="button" class="btn btn-primary custom-button style=" border-radius:6em""> + Adicionar Agrupamento </button></a>
+                                                <a asp-action="Create" class="btn btn-primary custom-button"> + Adicionar Agrupamento </a>
                                             </p>
                                         </div>
                                     </div>
@@ -82,15 +82,16 @@
                                     <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
-                                                <th class="text-center pr-2  ">
+                                                <th class="text-center pr-2">
+                                                    Picture
                                                 </th>
-                                                <th class="text-center pr-2 ">
+                                                <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Name)
                                                 </th>
-                                                <th class="text-center pr-2 ">
+                                                <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Location)
                                                 </th>
-                                                <th class="text-center pr-2 ">
+                                                <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.NIPC)
                                                 </th>
                                                 <th class="text-center"> Acções </th>
@@ -116,11 +117,9 @@
                                                         @Html.DisplayFor(modelItem => item.NIPC)
                                                     </td>
                                                     <td class="text-center w-25">
-                                                        <a asp-action="Details" asp-route-id="@item.AgrupamentoID">
-                                                            <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></button>
-                                                        </a>
-                                                        <a asp-action="Edit" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-success custom-button" style="border-radius:6em"> <img src="~/images/icons/edit-icon1.png" height="20" width="20"> </button></a>
-                                                        <a asp-action="Delete" asp-route-id="@item.AgrupamentoID"> <button type="button" class="btn btn-danger custom-button" style="border-radius:6em;"> <img src="~/images/icons/delete-icon1.png" height="20" width="20"></button></a>
+                                                        <a asp-action="Details" asp-route-id="@item.AgrupamentoID" class="btn btn-primary custom-button" style="border-radius:6em"> <img src="~/images/icons/search-icon1.png" height="20" width="20"></a>
+                                                        <a asp-action="Edit" asp-route-id="@item.AgrupamentoID" class="btn btn-success custom-button" style="border-radius:6em"> <img src="~/images/icons/edit-icon1.png" height="20" width="20"> </a>
+                                                        <a asp-action="Delete" asp-route-id="@item.AgrupamentoID" class="btn btn-danger custom-button" style="border-radius:6em;"> <img src="~/images/icons/delete-icon1.png" height="20" width="20"></a>
                                                     </td>
                                                 </tr>
                                             }
