@@ -66,6 +66,7 @@ builder.Services.AddDefaultIdentity<ATLManagerUser>(options => {
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<LanguageService>();
+builder.Services.AddSingleton<IFileManager ,FileManager>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 builder.Services.AddMvc()
@@ -86,10 +87,10 @@ builder.Services.Configure<RequestLocalizationOptions>(
     {
         var supportedCultures = new List<CultureInfo>
         {
-                        new CultureInfo("en-US"),
-                        new CultureInfo("pt-PT"),
-                        new CultureInfo("de-DE"),
-                        new CultureInfo("fr-FR"),
+            new CultureInfo("en-US"),
+            new CultureInfo("pt-PT"),
+            new CultureInfo("de-DE"),
+            new CultureInfo("fr-FR"),
         };
 
         options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
