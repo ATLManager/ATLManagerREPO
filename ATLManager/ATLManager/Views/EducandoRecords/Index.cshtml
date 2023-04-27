@@ -62,7 +62,7 @@
                                                 <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Atl)
                                                 </th>
-                                                <th class="text-center pr-2">
+                                                    <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Encarregado)
                                                 </th>
                                                 <th class="text-center"> Ações </th>
@@ -91,11 +91,9 @@
                                                         @Html.DisplayFor(modelItem => item.Encarregado)
                                                     </td>
                                                     <td class="text-center w-25">
-                                                        <a asp-action="Details" asp-route-id="@item.EducandoRecordId">
-                                                            <button type="button" class="btn btn-primary custom-button" style="border-radius:6em"><img src="~/images/icons/search-icon1.png" height="20" width="20"></button>
+                                                        <a asp-action="Details" asp-route-id="@item.EducandoRecordId" class="btn btn-primary custom-button" style="border-radius:6em"><img src="~/images/icons/search-icon1.png" height="20" width="20">
                                                         </a>
-                                                        <a asp-action="Delete" asp-route-id="@item.EducandoRecordId">
-                                                            <button type="button" class="btn btn-danger custom-button" style="border-radius:6em; "> <img src="~/images/icons/delete-icon1.png" height="20" width="20"></button>
+                                                        <a asp-action="Delete" asp-route-id="@item.EducandoRecordId" class="btn btn-danger custom-button" style="border-radius:6em; "> <img src="~/images/icons/delete-icon1.png" height="20" width="20">
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -106,11 +104,9 @@
                             </div>
                             <div class="d-flex text-center mt-4">
                                 <div class="col text-center">
-                                    <a asp-controller="Historico" asp-action="Escolher">
-                                        <button type="button" class="btn btn-secondary custom-button w-25"
+                                    <a asp-controller="Historico" asp-action="Escolher" class="btn btn-secondary custom-button w-25"
                                                 style=" border-radius:6em">
                                             Voltar
-                                        </button>
                                     </a>
                                 </div>
                             </div>

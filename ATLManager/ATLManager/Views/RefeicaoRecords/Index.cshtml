@@ -88,17 +88,15 @@
                                                         @Html.DisplayFor(modelItem => item.Data)
                                                     </td>
                                                     <td class="text-center w-25">
-                                                        <a asp-action="Details" asp-route-id="@item.RefeicaoRecordId"> 
-                                                            <button type="button" class="btn btn-primary custom-button" 
+                                                        <a asp-action="Details" asp-route-id="@item.RefeicaoRecordId"> class="btn btn-primary custom-button" 
                                                                     style="border-radius:6em"> 
                                                                 <img src="~/images/icons/search-icon1.png" height="20" width="20">
-                                                            </button>
+                                                  
                                                         </a>
-                                                        <a asp-action="Delete" asp-route-id="@item.RefeicaoRecordId"> 
-                                                            <button type="button" class="btn btn-danger custom-button" 
+                                                        <a asp-action="Delete" asp-route-id="@item.RefeicaoRecordId" class="btn btn-danger custom-button" 
                                                                     style="border-radius:6em;"> 
                                                                 <img src="~/images/icons/delete-icon1.png" height="20" width="20">
-                                                            </button>
+                                                  
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -109,11 +107,10 @@
                             </div>
                             <div class="d-flex text-center mt-4">
                                 <div class="col text-center">
-                                    <a asp-controller="Historico" asp-action="Escolher">
-                                        <button type="button" class="btn btn-secondary custom-button w-25"
+                                    <a asp-controller="Historico" asp-action="Escolher"class="btn btn-secondary custom-button w-25"
                                                 style=" border-radius:6em">
                                             Voltar
-                                        </button>
+                       
                                     </a>
                                 </div>
                             </div>
