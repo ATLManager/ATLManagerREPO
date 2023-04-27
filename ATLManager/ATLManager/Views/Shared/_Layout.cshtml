@@ -16,7 +16,6 @@
     var userNotifications = await (new NotificacoesController(_context, UserManager, _roleManager)).GetUserNotifications(User.FindFirstValue(ClaimTypes.NameIdentifier));
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +35,9 @@
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+     <!-- Custom Table -->
+    <link rel="stylesheet" href="~/css/customTable.css">
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -344,7 +346,7 @@
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
                     <!-- TopBar -->
-                    <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+                    <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-2 static-top">
                         <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
@@ -459,12 +461,12 @@
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language" class="text-decoration-none">
                                         <img src="~/images/flags/en.png" class="flag-logo" />
-                                        <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
+                                            <span class="language-label" id="language_en">@language.GetKey("txtMenuEnglish")</span>
                                     </a>
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" id="language" class=" text-decoration-none">
                                         <img src="~/images/flags/pt.png" class="flag-logo" />
-                                        <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
+                                        <span class="language-label" id="language_pt">@language.GetKey("txtMenuPortugues")</span>
                                     </a>
                                 </div>
                             </div>
@@ -948,7 +950,19 @@ else
     <script src="~/vendor/chart.js/Chart.min.js"></script>
     <script src="~/js/demo/chart-area-demo.js"></script>
     <script src="~/js/ajuda.js"></script>
+    
+    <!-- Datatables -->
+    <script src="~/js/datatable/jquery-3.5.1.js"></script>
 
-    @*<script src="~/js/monitor_adapt.js"></script>*@
+    @if (language.GetCurrentLanguage() == "en")
+    {
+        <script id="datatable-en" src="~/js/datatable/datatables_en.min.js"></script>
+    }
+    else if (language.GetCurrentLanguage() == "pt")
+    {
+        <script id="datatable-pt" src="~/js/datatable/datatables_pt.min.js"></script>
+    }
+    
+    <script src="~/js/datatable/datatables.bootstrap5.min.js"></script>
 </body>
 </html>
