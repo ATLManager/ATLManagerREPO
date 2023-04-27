@@ -8,10 +8,20 @@
 @{
     ViewData["Title"] = "Index";
 }
-<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
 @if (SignInManager.IsSignedIn(User))
 {
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+
+    <!-- 1.13.4 -->
+    <link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
+    <script src="~/js/datatable/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
     <!-- Container -->
     <div class="container-fluid">
         <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
@@ -34,22 +44,12 @@
             <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5 p-5">
                     <div class="container">
-                            <div class="row">
-                                <div class="mb-5">
-                                    <label for="nome" class="form-label">Procurar Notificação:</label>
-                                    <input type="text" class="form-control" id="nome"
-                                           placeholder="Digite o título da notificação">
-                                </div>
-                            </div>
+                            <div class="row"></div>
 
                             <div class="row mt-3">
                                 <div class="mb-3">
 
                                     <div class="row">
-                                        <div class="col-4">
-                                            <label for="lista-recibos" class="form-label">Lista de Notificações:</label>
-                                        </div>
-
                                         <div class="col-2">
                                             <form asp-action="MarkAllAsRead" method="post">
                                                 <input type="submit" value="Mark All as Read" class="btn btn-primary me-2" />
@@ -67,8 +67,7 @@
                                         <div class="col-3">
                                             <div class="d-flex">
                                                 <div class="col text-end">
-                                                    <a asp-action="Create">
-                                                        <button type="button" class="btn btn-primary custom-button ms-2" style="border-radius:6em"> + Adicionar Recado </button>
+                                                    <a asp-action="Create" class="btn btn-primary custom-button ms-2"> + Adicionar Recado
                                                     </a>
                                                 </div>
                                             </div>
@@ -82,16 +81,16 @@
                                     <table class="table table-hover table-bordered text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
-                                                <th>
+                                                <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Titulo)
                                                 </th>
-                                                <th>
+                                                 <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Mensagem)
                                                 </th>
-                                                <th>
+                                                 <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Lida)
                                                 </th>
-                                                <th class="text-center">
+                                                   <th class="text-center pr-2">
                                                     Data
                                                 </th>
                                             </tr>

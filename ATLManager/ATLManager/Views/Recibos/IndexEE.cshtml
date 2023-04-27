@@ -8,13 +8,19 @@
 @{
 	ViewData["Title"] = "Faturas";
 }
-<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-<!-- 1.13.4 -->
-<link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
-<script src="~/js/datatable/jquery-3.6.0.min.js"></script>
 
 @if (SignInManager.IsSignedIn(User))
 {
+	<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+	<!-- 1.13.4 -->
+	<link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
+	<script src="~/js/datatable/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#recibos-table').DataTable();
+        });
+    </script>
 	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
 		<h1 class="me-3 fw-bold text-center mb-0">Consulta de respostas</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
@@ -69,13 +75,13 @@
 												<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="recibos-table">
 													<thead>
 														<tr>
-															<th>
+															 <th class="text-center pr-2">
 																@Html.DisplayNameFor(model => model.EducandoName)
 															</th>
-															<th>
+															 <th class="text-center pr-2">
 																@Html.DisplayNameFor(model => model.Authorized)
 															</th>
-															<th>
+															 <th class="text-center pr-2">
 																@Html.DisplayNameFor(model => model.ResponseDate)
 															</th>
 															<th class="text-center">Ações</th>
