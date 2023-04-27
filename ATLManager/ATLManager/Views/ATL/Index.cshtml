@@ -10,6 +10,14 @@
 }
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+<!-- 1.13.4 -->
+<link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
+<script src="~/js/datatable/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -46,7 +54,6 @@
 
                             <div class="row mt-3">
                                 <div class="mb-3">
-
                                     <div class="row">
                                         <div class="col">
                                             <label for="lista-atls" class="form-label">Lista de Atl(s):</label>
