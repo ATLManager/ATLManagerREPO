@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -26,18 +27,20 @@ namespace ATLManager.Controllers
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "coordenadores";
 
         public CoordenadoresController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         /// <summary>
@@ -187,7 +190,7 @@ namespace ATLManager.Controllers
                     // Criar o perfil
                     var coordenador = new ContaAdministrativa(user, atl, viewModel.DateOfBirth, viewModel.CC);
 
-                    string fileName = UploadedFile(viewModel.ProfilePicture);
+                    string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
                     if (fileName != null)
                     {
                         coordenador.ProfilePicture = fileName;
@@ -345,7 +348,7 @@ namespace ATLManager.Controllers
                         coordenador.CC = viewModel.CC;
                         coordenador.AtlId = viewModel.AtlId;
 
-                        string fileName = UploadedFile(viewModel.ProfilePicture);
+                        string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
                         if (fileName != null)
                         {
                             coordenador.ProfilePicture = fileName;

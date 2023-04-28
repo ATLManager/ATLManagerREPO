@@ -13,6 +13,7 @@ using System.Diagnostics;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -24,17 +25,18 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
+        private readonly string FolderName = "agrupamentos";
+        private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public AgrupamentosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         /// <summary>
@@ -135,7 +137,7 @@ namespace ATLManager.Controllers
                     ContaId = userAccount?.ContaId
                 };
 
-                string fileName = UploadedFile(viewModel.LogoPicture);
+                string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
 
                 if (fileName != null)
                 {
@@ -219,7 +221,7 @@ namespace ATLManager.Controllers
                         agrupamento.Location = viewModel.Location;
                         agrupamento.NIPC = viewModel.NIPC;
 
-					    string fileName = UploadedFile(viewModel.LogoPicture);
+					    string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
                         if (fileName != null)
                         {
                             agrupamento.LogoPicture = fileName;
@@ -303,6 +305,7 @@ namespace ATLManager.Controllers
             return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
 
+
         /// <summary>
         /// Faz upload do arquivo especificado para a pasta de uploads do agrupamento.
         /// </summary>
@@ -363,15 +366,12 @@ namespace ATLManager.Controllers
 				.Include(ca => ca.User)
 				.Where(ca => ca.AtlId == atlId)
 				.Select(ca => new {
-					FirstName = ca.User.FirstName,
-					LastName = ca.User.LastName
+                    ca.User.FirstName,
+					ca.User.LastName
 				})
 				.ToListAsync();
 
 			return Json(new { Coordenadores = coordenadores });
 		}
-
-
-
 	}
 }

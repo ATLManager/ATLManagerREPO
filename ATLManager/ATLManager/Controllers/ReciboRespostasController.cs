@@ -3,12 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
-using MessagePack;
-using NuGet.Configuration;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -23,19 +20,23 @@ namespace ATLManager.Controllers
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly INotificacoesController _notificacoesController;
+        private readonly IFileManager _fileManager;
 
+        private readonly string FolderName = "recibos";
 
         public ReciboRespostasController(ATLManagerAuthContext context, 
             IWebHostEnvironment webHostEnvironment, 
 			INotificacoesController notificacoesController, 
             UserManager<ATLManagerUser> userManager,
-			RoleManager<IdentityRole> roleManager)
+			RoleManager<IdentityRole> roleManager,
+			IFileManager fileManager)
 		{
 			_context = context;
 			_webHostEnvironment = webHostEnvironment;
 			_notificacoesController = notificacoesController;
 			_userManager = userManager;
 			_roleManager = roleManager;
+			_fileManager = fileManager;
 		}
 
         /// <summary>
@@ -143,7 +144,7 @@ namespace ATLManager.Controllers
                     resposta.Notes = viewModel.Notes;
                     
                     if (viewModel.Receipt != null)
-					    resposta.ReceiptPath = UploadedFile(viewModel.Receipt);
+					    resposta.ReceiptPath = _fileManager.UploadFile(viewModel.Receipt, FolderName);
 
 					_context.Update(resposta);
 					await _context.SaveChangesAsync();
@@ -218,7 +219,7 @@ namespace ATLManager.Controllers
 				NIB = recibo.NIB,
                 Price = recibo.Price,
                 Description = recibo.Description,
-                DateLimit = ((DateTime)recibo.DateLimit).ToShortDateString()
+                DateLimit = recibo.DateLimit.ToShortDateString()
             };
 
             return View(viewModel);
@@ -255,7 +256,7 @@ namespace ATLManager.Controllers
                     if (reciboResposta == null) 
                         return NotFound();
 
-                    reciboResposta.ComprovativoPath = UploadedFile(viewModel.Comprovativo);
+                    reciboResposta.ComprovativoPath = _fileManager.UploadFile(viewModel.Comprovativo, FolderName);
                     reciboResposta.ResponseDate = DateTime.UtcNow.Date;
 
 					_context.Update(reciboResposta);

@@ -12,6 +12,7 @@ using NuGet.ContentModel;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -24,14 +25,19 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "refeicoes";
 
         public RefeicoesController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         /// <summary>
@@ -162,7 +168,7 @@ namespace ATLManager.Controllers
                     AtlId = (Guid)currentUserAccount.AtlId
                 };
 
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 if (fileName != null)
                 {
@@ -251,7 +257,7 @@ namespace ATLManager.Controllers
                             refeicao.Data = DateTime.Parse(viewModel.Data);
                         }
 
-                        string fileName = UploadedFile(viewModel.Picture);
+                        string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                         if (fileName != null)
                         {

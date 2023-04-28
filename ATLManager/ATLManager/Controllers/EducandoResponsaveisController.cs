@@ -9,6 +9,7 @@ using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -19,13 +20,15 @@ namespace ATLManager.Controllers
     public class EducandoResponsaveisController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-		public EducandoResponsaveisController(ATLManagerAuthContext context, 
-            IWebHostEnvironment webHostEnvironment)
+        private readonly string FolderName = "responsaveis";
+
+        public EducandoResponsaveisController(ATLManagerAuthContext context,
+            IFileManager fileManager)
 		{
 			_context = context;
-			_webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
 		}
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace ATLManager.Controllers
                     Parentesco = viewModel.Parentesco,
                 };
 
-				string photoFileName = UploadedFile(viewModel.ProfilePicture);
+				string photoFileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 
 				if (photoFileName != null)
 				{
@@ -165,7 +168,7 @@ namespace ATLManager.Controllers
                     responsavel.Phone = viewModel.Phone;
                     responsavel.Parentesco = viewModel.Parentesco;
 
-                    string photoFileName = UploadedFile(viewModel.ProfilePicture);
+                    string photoFileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 
                     if (photoFileName != null)
                     {

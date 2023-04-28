@@ -9,7 +9,7 @@
 
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Visita de Estudo";
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -35,7 +35,6 @@
             <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5 p-5">
                     <!--text-center  -->
-
                     <div class="container">
                         <div class="row mt-3">
                             <div class="mb-3">
@@ -50,8 +49,6 @@
                                                     <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
                                                     <span asp-validation-for="Name" class="text-danger"></span>
                                                 </div>
-
-
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label asp-for="Picture" class="control-label">Imagem da Visita de Estudo</label>
@@ -62,16 +59,13 @@
                                                         <span asp-validation-for="Picture" class="text-danger"></span>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <div class="row mb-2">
                                                 <div class="col-6 mb-2">
                                                     <label asp-for="Location" class="form-label"></label>
                                                     <input asp-for="Location" class="form-control" />
                                                     <span asp-validation-for="Location" class="text-danger"></span>
                                                 </div>
-
                                                 <div class="col-6 position-relative">
                                                     <div class="row">
                                                         <div class="h-100 position-absolute top-0 end-0">
@@ -96,7 +90,6 @@
                                                     <span asp-validation-for="Date" class="text-danger"></span>
                                                 </div>
                                             </div>
-
                                             <div class="d-flex text-center mt-4">
                                                 <div class="col text-right">
                                                     <a asp-action="Index">
