@@ -399,27 +399,5 @@ namespace ATLManager.Controllers
         {
           return _context.ATL.Any(e => e.AtlId == id);
         }
-
-        /// <summary>
-        /// Método responsável por fazer o upload do arquivo enviado e retornar o nome único do arquivo gerado.
-        /// </summary>
-        /// <param name="logoPicture">Objeto IFormFile que contém as informações do arquivo enviado.</param>
-        /// <returns>O nome único do arquivo gerado, ou null caso o objeto IFormFile seja nulo.</returns>
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atls");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

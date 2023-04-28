@@ -345,33 +345,9 @@ namespace ATLManager.Controllers
         /// </summary>
         /// <param name="id">O ID da actividade a verificar.</param>
         /// <returns>Verdadeiro se existir na base de dados uma actividade com o ID especificado; caso contrário, falso.</returns>
-        p
         private bool AtividadeExists(Guid id)
         {
           return (_context.Atividade?.Any(e => e.AtividadeId == id)).GetValueOrDefault();
         }
-
-        /// <summary>
-        /// Carrega um ficheiro para o servidor e devolve o nome do ficheiro carregado.
-        /// </summary>
-        /// <param name="comprovativo">O ficheiro a carregar.</param>
-        /// <returns>O nome do ficheiro carregado.</returns>
-
-        private string UploadedFile(IFormFile comprovativo)
-		{
-			string uniqueFileName = null;
-
-			if (comprovativo != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atividades");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					comprovativo.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

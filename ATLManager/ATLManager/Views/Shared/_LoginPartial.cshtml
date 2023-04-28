@@ -25,7 +25,7 @@
         <!-- Menu Before Login -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                 <img src="~/images/logo/logo.png" alt="Logo da aplicação" width="65" height="55">
             </a>
 
@@ -50,12 +50,12 @@
                             <div class="language-content" style="float:right">
 
                                 <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language">
-                                    <img src="~/images/flags/en.png" class="flag-logo" />
+                                    <img src="~/images/flags/en.png" class="flag-logo mt-1"  />
                                     <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
                                 </a>
 
                                 <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" id="language">
-                                    <img src="~/images/flags/pt.png" class="flag-logo" />
+                                    <img src="~/images/flags/pt.png" class="flag-logo mt-1"   />
                                     <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
                                 </a>
                             </div>
@@ -67,7 +67,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <div class="d-grid gap-2 mx-auto">
                     <li class="nav-item">
-                        <a asp-area="Identity" asp-page="/Account/Login" class="nav-link btn btn-primary border-0 shadow fw-bold px-4 pl-3 pr-3 custom-button">@language.GetKey("login")</a>
+                        <a asp-area="Identity" asp-page="/Account/Login" class="nav-link btn btn-primary border-0 shadow colo-white px-4 pl-3 pr-3 color-white custom-button">@language.GetKey("login")</a>
                     </li>
             </div>
             <div class="d-grid gap-2">

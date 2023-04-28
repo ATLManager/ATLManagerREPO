@@ -455,27 +455,5 @@ namespace ATLManager.Controllers
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
         }
-
-        /// <summary>
-        /// Método que faz o upload de um arquivo enviado via formulário web para a pasta de uploads de imagens de funcionários.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo enviado pelo formulário web.</param>
-        /// <returns>O nome único do arquivo gerado após o upload.</returns>
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/funcionarios");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
     }
 }

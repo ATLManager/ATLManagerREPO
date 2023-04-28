@@ -2,20 +2,22 @@
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 @using System.Web;
-
+@using ATLManager.Services
+@inject LanguageService language
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 @{
-	ViewData["Title"] = "Detalhes do ATL";
+	ViewData["Title"] = @language.GetKey("menuAtl");
+
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
+<title>@ViewData["Title"]</title>
 @if (SignInManager.IsSignedIn(User))
 {
 	<!-- Fase 1  -->
 	<!-- d-flex -->
 	<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-		<h1 class="me-3 fw-bold text-center mb-0">Detalhes da consulta</h1>
+		<h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("tconsulta_atl")</h1>
 		<img src="~/images/icons/search-group.png" width="50" height="50">
 	</div>
 	<div class="d-flex justify-content-center mt-5 ">
@@ -30,7 +32,7 @@
 							<dl class="row text-end">
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Name)
+										@language.GetKey("gname")
 									</dt>
 									<dd class="col text-left">
 										@Html.DisplayFor(model => model.Name)
@@ -38,7 +40,7 @@
 								</div>
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Address)
+										@language.GetKey("taddress")
 									</dt>
 
 									<dd class="col text-left">
@@ -47,7 +49,7 @@
 								</div>
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.City)
+										@language.GetKey("tcity")
 									</dt>
 									<dd class="col text-left">
 										@Html.DisplayFor(model => model.City)
@@ -55,7 +57,7 @@
 								</div>
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.PostalCode)
+										@language.GetKey("tpostal")
 									</dt>
 									<dd class="col text-left">
 										@Html.DisplayFor(model => model.PostalCode)
@@ -63,7 +65,7 @@
 								</div>
 								<div class="row">
 									<dt class="col mr-2">
-										@Html.DisplayNameFor(model => model.Agrupamento)
+										@language.GetKey("menuAgrupamento")
 									</dt>
 									<dd class="col text-left">
 										@if (Model.Agrupamento != null)
@@ -88,7 +90,7 @@
 									<dt class="col text-center mt-4">
 										<div id="map" style="width: 100%; height: 250px; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); margin: 0 auto;">
 											<div id="mapError" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin: 0 auto;">
-												<h4>Localização não encontrada</h4>
+												<h4>@language.GetKey("location404")</h4>
 											</div>
 										</div>
 									</dt>
@@ -98,7 +100,7 @@
 							<div class="d-flex text-center mt-4 mb-4">
 								<div class="col-8 text-right">
 									<a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-											Voltar
+										@language.GetKey("btnVoltar")
 									</a>
 								</div>
 							</div>

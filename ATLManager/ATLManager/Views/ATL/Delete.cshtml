@@ -1,20 +1,21 @@
 ﻿@model ATLManager.Models.ATL
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
-
+@using ATLManager.Services
+@inject LanguageService language
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 @{
-	ViewData["Title"] = "Apagar ATL";
+	ViewData["Title"] = @language.GetKey("menuAtl"); 
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
+<title>@ViewData["Title"]</title>
 @if (SignInManager.IsSignedIn(User))
 {
 	<!-- Container -->
 	<div class="container-fluid">
 		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-			<h1 class="me-3 fw-bold text-center mb-0">Remover Atl</h1>
+			<h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("btnDelete") @language.GetKey("menuAtl")</h1>
 			<img src="~/images/icons/delete-group.png" width="50" height="50">
 		</div>
 		<div class="row" style="padding-left: 6em;">
@@ -29,9 +30,9 @@
 		<div class="d-flex justify-content-center" id="divFase1">
 			<!-- Box  -->
 			<div class="row justify-content-center custom-box" id="myBox">
-				<div class="row box border-5">
+				<div class="row box border-5 p-5">
 					<div class="row mb-3 text-center">
-						<h3>Tens a certeza que queres remover este atl?</h3>
+						<h3>@language.GetKey("qremove_atl")</h3>
 					</div>
 					<div class="container text-center">
 						<div class="row justify-content-center">
@@ -44,7 +45,7 @@
 						<dl class="row text-end">
 							<div class="row">
 								<dt class="col mr-2">
-									@Html.DisplayNameFor(model => model.Name)
+									 @language.GetKey("gname")
 								</dt>
 								<dd class="col text-left">
 									@Html.DisplayFor(model => model.Name)
@@ -52,7 +53,7 @@
 							</div>
 							<div class="row">
 								<dt class="col mr-2">
-									@Html.DisplayNameFor(model => model.Address)
+									 @language.GetKey("taddress")
 								</dt>
 								<dd class="col text-left">
 									@Html.DisplayFor(model => model.Address)
@@ -60,7 +61,7 @@
 							</div>
 							<div class="row">
 								<dt class="col mr-2">
-									@Html.DisplayNameFor(model => model.PostalCode)
+									 @language.GetKey("tpostal")
 								</dt>
 								<dd class="col text-left">
 									@Html.DisplayFor(model => model.PostalCode)
@@ -69,7 +70,7 @@
 
 							<div class="row">
 								<dt class="col mr-2">
-									@Html.DisplayNameFor(model => model.City)
+									 @language.GetKey("tcity")
 								</dt>
 								<dd class="col text-left">
 									@Html.DisplayFor(model => model.City)
@@ -78,7 +79,7 @@
 
 							<div class="row">
 								<dt class="col mr-2">
-									@Html.DisplayNameFor(model => model.Agrupamento)
+									@language.GetKey("menuAgrupamento")
 								</dt>
 								<dd class="col text-left">
 
@@ -107,13 +108,13 @@
 						<div class="d-flex text-center mt-4">
 							<div class="col">
 								<a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-									Voltar
+									@language.GetKey("btnVoltar")
 								</a>
 							</div>
 							<div class="col">
 								<form asp-action="Delete">
 									<input type="hidden" asp-for="AtlId" />
-									<input type="submit" value="Delete" class="btn btn-danger w-50" style="border-radius:6em" />
+									<input type="submit" value="@language.GetKey("btnDelete")" class="btn btn-danger w-50" style="border-radius:6em" />
 								</form>
 							</div>
 						</div>
@@ -122,94 +123,97 @@
 			</div>
 		</div>
 	</div>
-		    <!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
-        <div class="row text-center mt-2">
-            <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
-            </div>
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">@language.GetKey("help")</h2>
+			</div>
 
-            <div class="col-2">
-                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
-            </div>
-        </div>
-        <div class="">
-            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
-        </div>
-        <!-- -->
-        <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
-                    <div class="d-flex align-items-center justify-content-center">
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
 
-                        <span>Como alterar uma visita de estudo</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
-
-                </span>
-            </li>
+						<span>@language.GetKey("howto_delete_atl")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
 
 
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/terms.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Leia artigos de ajuda</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/comunity.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Pergunte à comunidade</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/new.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Novas Atualizações</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/feedback.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Dê Feedback</span>
-                        </div>
-                    </div>
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					@language.GetKey("txt_delete_atl")
 
-                </button>
-            </li>
-        </ul>
-    </div>
-    <!-- // Slide de Ajuda  -->
+				</span>
+			</li>
+
+
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("readarticles")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("askcomunity")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("newsupdates")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>
+								<a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+									@language.GetKey("givefeedback")
+								</a>
+							</span>
+						</div>
+					</div>
+
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- // Slide de Ajuda  -->
 
 }

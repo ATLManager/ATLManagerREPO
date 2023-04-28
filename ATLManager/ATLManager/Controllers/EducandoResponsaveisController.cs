@@ -26,10 +26,10 @@ namespace ATLManager.Controllers
 
         public EducandoResponsaveisController(ATLManagerAuthContext context,
             IFileManager fileManager)
-		{
+        {
 			_context = context;
             _fileManager = fileManager;
-		}
+        }
 
         /// <summary>
         /// Mostra os detalhes do responsável pelo educando com o ID especificado.
@@ -254,28 +254,5 @@ namespace ATLManager.Controllers
         {
           return (_context.EducandoResponsavel?.Any(e => e.EducandoResponsavelId == id)).GetValueOrDefault();
         }
-
-        /// <summary>
-        /// Salva um arquivo enviado como um objeto IFormFile em um diretório específico no servidor e retorna o nome único do arquivo salvo.
-        /// </summary>
-        /// <param name="logoPicture">O objeto IFormFile que contém o arquivo enviado.</param>
-        /// <returns>O nome único do arquivo salvo.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/responsaveis");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

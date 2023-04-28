@@ -88,11 +88,13 @@ namespace ATLManager.Controllers
             {
                 var respostas = await (from resposta in _context.ReciboResposta
                                        join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
+                                       join recibo in _context.Recibo on resposta.ReciboId equals recibo.ReciboId
                                        where resposta.EducandoId == educando.EducandoId
                                        select new ReciboRespostasViewModel
                                        {
                                            RespostaId = resposta.ReciboRespostaId,
                                            ReciboId = resposta.ReciboId,
+                                           ReciboName = recibo.Name,
                                            EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
                                            Authorized = resposta.Authorized,
                                            ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString(),
@@ -106,14 +108,12 @@ namespace ATLManager.Controllers
 			ViewBag.Educandos = educandos;
 			return View(recibos);
         }
-        
 
         /// <summary>
         /// Retorna os detalhes de um recibo com base no ID fornecido.
         /// </summary>
         /// <param name="id">O ID do recibo.</param>
         /// <returns>Uma instância de IActionResult que contém uma exibição dos detalhes do recibo.</returns>
-
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Recibo == null)

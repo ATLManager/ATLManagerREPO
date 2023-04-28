@@ -65,9 +65,10 @@
 							<div class="row mt-5">
 								<div class="col">
 									<label asp-for="EncarregadoId" class="control-label">Encarregado</label>
-									<select asp-for="EncarregadoId" class="form-control" asp-items="ViewBag.EncarregadoId">
-										<option value=null>Escolha um Encarregado</option>
-									</select>
+									<input type="text" class="form-control" id="encarregadoInput" placeholder="Digite os primeiros 3 caracteres">
+									<div class="list-group" id="encarregadoList" style="display:none;"></div>
+									<input type="hidden" asp-for="EncarregadoId" id="EncarregadoId" />
+									<span asp-validation-for="EncarregadoId" class="text-danger"></span>
 								</div>
 								<div class="col">
 									<label asp-for="BirthDate" class="control-label" placeholder="Insira um nome"></label>
@@ -227,6 +228,46 @@
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			$('#encarregadoInput').on('input', function () {
+				var inputText = $(this).val();
+				if (inputText.length >= 3) {
+					$.ajax({
+						url: '/Educandos/GetEncarregados',
+						type: 'GET',
+						data: { searchTerm: inputText },
+						success: function (data) {
+							if (data.length > 0) {
+								var listHtml = '';
+								for (var i = 0; i < data.length; i++) {
+									listHtml += '<button type="button" class="list-group-item list-group-item-action encarregado-item" data-id="' + data[i].id + '">' +
+										'<span class="encarregado-name">' + data[i].firstName + ' ' + data[i].lastName + ' ' + 'NIF: ' + data[i].nif + '</span>' + // Use a propriedade nif aqui
+										'</button>';
+								}
+								$('#encarregadoList').html(listHtml).show();
+							} else {
+								$('#encarregadoList').hide();
+							}
+						}
+
+					});
+				} else {
+					$('#encarregadoList').hide();
+				}
+			});
+
+			$(document).on('click', '.encarregado-item', function () {
+				var encarregadoId = $(this).data('id');
+				var encarregadoName = $(this).find('.encarregado-name').text();
+				$('#EncarregadoId').val(encarregadoId);
+				$('#encarregadoInput').val(encarregadoName);
+				$('#encarregadoList').hide();
+			});
+		});
+
 	</script>
 
 	@section Scripts {

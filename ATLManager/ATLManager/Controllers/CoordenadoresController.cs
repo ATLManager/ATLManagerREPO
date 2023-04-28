@@ -501,28 +501,5 @@ namespace ATLManager.Controllers
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
         }
-
-        /// <summary>
-        /// Faz upload de um arquivo para a pasta de upload de coordenadores.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser enviado.</param>
-        /// <returns>O nome exclusivo do arquivo.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/coordenadores");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

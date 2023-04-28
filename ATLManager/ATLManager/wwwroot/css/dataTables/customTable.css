@@ -1,8 +1,4 @@
-﻿.table thead th {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-}
+﻿
 
 th:first-child {
     pointer-events: none;

@@ -24,20 +24,17 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IFileManager _fileManager;
 
         private readonly string FolderName = "visitas";
 
         public VisitasEstudoController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment,
             IFileManager fileManager
             )
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
             _fileManager = fileManager;
         }
 
@@ -86,8 +83,8 @@ namespace ATLManager.Controllers
                     visitas = visitas.Union(tempVisitas).ToList();
                 }
 
-				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
-				return View(visitas);
+                ViewBag.Educandos = educandos;
+                return View(visitas);
             }
         }
 
@@ -241,7 +238,6 @@ namespace ATLManager.Controllers
                         }
 
                         string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
-
 						if (fileName != null)
                         {
                             visitaEstudo.Picture = fileName;
@@ -335,29 +331,6 @@ namespace ATLManager.Controllers
         private bool VisitaEstudoExists(Guid id)
         {
           return (_context.VisitaEstudo?.Any(e => e.VisitaEstudoID == id)).GetValueOrDefault();
-        }
-
-        /// <summary>
-        /// Faz upload de um arquivo
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser carregado</param>
-        /// <returns>O nome único do arquivo carregado</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/visitasEstudo");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

@@ -176,67 +176,67 @@ namespace ATLManager.Controllers
 
             for (int mes = 1; mes <= 12; mes++)
             {
-                var atividadesNoMes = atividades.Count(a => a.StartDate.Year == anoAtual && a.StartDate.Month == mes);
+                var atividadesNoMes = atividades.Count(a => a.StartDate.Year == anoAtual && a.StartDate.Month == mes || a.EndDate.Month == mes && a.EndDate.Year == anoAtual);
                 estatisticas.Add($"AtividadesMes{mes}", atividadesNoMes);
             }
 
             return estatisticas;
         }
 
+
         /// <summary>
         /// Obtém as estatísticas de visitas de estudo por mês.
         /// </summary>
         /// <param name="id">O id do educando atual.</param>
         /// <returns>Um dicionário com as estatísticas das visitas de estudo por mês.</returns>
-
         public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasEnc(Guid? id)
-		{
+        {
             if (id == Guid.Empty) return new Dictionary<string, int>();
 
-			// Obtenha as visitas de estudo gerenciadas pelo educando atual
-			var visitasEstudo = await _context.VisitaEstudo
-				.Where(a => a.AtlId == id)
-				.ToListAsync();
+            // Obtenha as visitas de estudo gerenciadas pelo educando atual
+            var visitasEstudo = await _context.VisitaEstudo
+                .Where(a => a.AtlId == id)
+                .ToListAsync();
 
-			var anoAtual = DateTime.Now.Year;
-			var estatisticas = new Dictionary<string, int>();
+            var anoAtual = DateTime.Now.Year;
+            var estatisticas = new Dictionary<string, int>();
 
-			for (int mes = 1; mes <= 12; mes++)
-			{
-				var visitasEstudoNoMes = visitasEstudo.Count(a => a.Date.Year == anoAtual && a.Date.Month == mes);
-				estatisticas.Add($"VisitaEstudoMes{mes}", visitasEstudoNoMes);
-			}
+            for (int mes = 1; mes <= 12; mes++)
+            {
+                var visitasEstudoNoMes = visitasEstudo.Count(a => a.Date.Year == anoAtual && a.Date.Month == mes);
+                estatisticas.Add($"VisitaEstudoMes{mes}", visitasEstudoNoMes);
+            }
 
-			return estatisticas;
-		}
+            return estatisticas;
+        }
 
         /// <summary>
         /// Obtém as estatísticas de atividades por mês.
         /// </summary>
         /// <param name="id">O id do educando atual.</param>
         /// <returns>Um dicionário com as estatísticas das atividades por mês.</returns>
-
         public async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticasEnc(Guid? id)
-		{
+        {
             if (id == Guid.Empty) return new Dictionary<string, int>();
 
 
-			// Obtenha as atividades gerenciadas pelo educando atual
-			var atividades = await _context.Atividade
-				.Where(a => a.AtlId == id)
-				.ToListAsync();
+            // Obtenha as atividades gerenciadas pelo educando atual
+            var atividades = await _context.Atividade
+                .Where(a => a.AtlId == id)
+                .ToListAsync();
 
-			var anoAtual = DateTime.Now.Year;
-			var estatisticas = new Dictionary<string, int>();
+            var anoAtual = DateTime.Now.Year;
+            var estatisticas = new Dictionary<string, int>();
 
-			for (int mes = 1; mes <= 12; mes++)
-			{
-				var atividadesNoMes = atividades.Count(a => a.StartDate.Year == anoAtual && a.StartDate.Month == mes);
-				estatisticas.Add($"AtividadesMes{mes}", atividadesNoMes);
-			}
-			
-			return estatisticas;
-		}
+            for (int mes = 1; mes <= 12; mes++)
+            {
+                var atividadesNoMes = atividades.Count(a => a.StartDate.Year == anoAtual && a.StartDate.Month == mes || a.EndDate.Month == mes && a.EndDate.Year == anoAtual);
+
+                estatisticas.Add($"AtividadesMes{mes}", atividadesNoMes);
+            }
+
+            return estatisticas;
+        }
 
         /// <summary>
         /// Obtém as estatísticas de visitas de estudo, atividades, educandos novos e educandos de um ATL.

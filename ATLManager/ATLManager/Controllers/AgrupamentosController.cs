@@ -305,30 +305,6 @@ namespace ATLManager.Controllers
             return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
 
-
-        /// <summary>
-        /// Faz upload do arquivo especificado para a pasta de uploads do agrupamento.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser enviado.</param>
-        /// <returns>O nome único do arquivo enviado.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/agrupamentos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
-
         /// <summary>
         /// Obtém todas as ATLs associadas ao agrupamento especificado.
         /// </summary>

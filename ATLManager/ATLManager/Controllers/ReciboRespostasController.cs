@@ -344,28 +344,5 @@ namespace ATLManager.Controllers
         {
           return (_context.ReciboResposta?.Any(e => e.ReciboRespostaId == id)).GetValueOrDefault();
         }
-
-        /// <summary>
-        /// Salva o arquivo enviado pelo usuário no servidor e retorna o nome do arquivo gerado.
-        /// </summary>
-        /// <param name="comprovativo">Arquivo enviado pelo utilizador.</param>
-        /// <returns>Nome do arquivo gerado.</returns>
-
-        private string UploadedFile(IFormFile comprovativo)
-        {
-            string uniqueFileName = null;
-
-            if (comprovativo != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "files/users/recibos");
-                uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-					comprovativo.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
     }
 }

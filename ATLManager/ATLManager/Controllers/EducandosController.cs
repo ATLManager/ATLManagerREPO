@@ -243,22 +243,18 @@ namespace ATLManager.Controllers
 			return View(educandoEncarregado);
 		}
 
-
         /// <summary>
         /// Obtém uma lista de utilizadores EncarregadoEducacao.
         /// </summary>
         /// <returns>Uma lista de utilizadores EncarregadoEducacao.</returns>
-
-        private async Task<List<ATLManagerUser>> GetEncarregadosAsync()
+        private async Task<List<EncarregadoEducacao>> GetEncarregadosAsync()
         {
             var encarregados = await _context.EncarregadoEducacao
                 .Include(e => e.User)
-                .Select(e => e.User)
                 .ToListAsync();
 
             return encarregados;
         }
-
 
         /// <summary>
         /// Obtém uma lista de utilizadores EncarregadoEducacao filtrada por um termo de pesquisa.
@@ -272,15 +268,12 @@ namespace ATLManager.Controllers
             var allEncarregados = await GetEncarregadosAsync();
 
             var filteredEncarregados = allEncarregados
-                .Where(e => e.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
-                .Select(e => new { id = e.Id, firstName = e.FirstName, lastName = e.LastName})
+                .Where(e => e.User.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.User.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.NIF.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .Select(e => new { id = e.EncarregadoId, firstName = e.User.FirstName, lastName = e.User.LastName, nif = e.NIF })
                 .ToList();
 
             return Json(filteredEncarregados);
         }
-
-
-
 
         /// <summary>
         /// Exibe o formulário para criar um novo Educando.
@@ -613,29 +606,6 @@ namespace ATLManager.Controllers
         {
             return _context.EducandoSaude.Any(e => e.EducandoId == id);
         }
-
-        /// <summary>
-        /// Faz o upload de um arquivo especificado para a pasta de uploads de imagens de educandos.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser enviado.</param>
-        /// <returns>O nome exclusivo do arquivo enviado.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\educandos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 
         /// <summary>
         /// Faz o download de um arquivo com o nome especificado da pasta de uploads de imagens de educandos.
