@@ -464,12 +464,12 @@
                                 <div class="language-content" style="float:right">
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language" class="text-decoration-none">
-                                        <img src="~/images/flags/en.png" class="flag-logo" />
+                                        <img src="~/images/flags/en.png" class="flag-logo mt-1" />
                                             <span class="language-label" id="language_en">@language.GetKey("txtMenuEnglish")</span>
                                     </a>
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" id="language" class=" text-decoration-none">
-                                        <img src="~/images/flags/pt.png" class="flag-logo" />
+                                        <img src="~/images/flags/pt.png" class="flag-logo mt-1" />
                                         <span class="language-label" id="language_pt">@language.GetKey("txtMenuPortugues")</span>
                                     </a>
                                 </div>
@@ -497,14 +497,6 @@
                                     <a id="manage" class="dropdown-item"  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         @language.GetKey("profile")
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        @language.GetKey("settings")
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                       @language.GetKey("activitylog")
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
@@ -886,9 +878,9 @@ else
         <!-- Copyright -->
         <div class="text-center p-3 shadow">
             <div class="row">
-                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none">@language.GetKey("contacts") </a></div>
-                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none">@language.GetKey("support")</a></div>
-                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Policy" style="text-decoration:none">@language.GetKey("politica")</a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">@language.GetKey("contacts") </a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">@language.GetKey("support")</a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Policy" style="text-decoration:none;color:inherit;">@language.GetKey("politica")</a></div>
                 <div class="col footer-p">@language.GetKey("copyright")</div>
             </div>
             <!-- Copyright -->
