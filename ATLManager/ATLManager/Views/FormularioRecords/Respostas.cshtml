@@ -21,7 +21,8 @@
     <!-- 1.13.4 -->
     <link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
     <script src="~/js/datatable/jquery-3.6.0.min.js"></script>
-
+	<!-- Custom Table -->
+	<link rel="stylesheet" href="~/css/dataTables/customTable-end.css">
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
@@ -76,13 +77,13 @@
 												<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
 													<thead>
 														<tr>
-															<th>
+															<th class="text-center pr-2">
 																@Html.DisplayNameFor(model => model.Educando)
 															</th>
-															<th>
+															<th class="text-center pr-2">
 																@Html.DisplayNameFor(model => model.Authorized)
 															</th>
-															<th>
+															<th class="text-center pr-2">
 																@Html.DisplayNameFor(model => model.ResponseDate)
 															</th>
 															<th class="text-center"> Ações </th>
