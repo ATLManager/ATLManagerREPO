@@ -108,12 +108,14 @@ namespace ATLManager.Controllers
 			foreach (var educando in educandos)
 			{
 				var respostas = await (from resposta in _context.FormularioResposta
+                                       join formulario in _context.Formulario on resposta.FormularioId equals formulario.FormularioId
 									   join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
 									   where resposta.EducandoId == educando.EducandoId
 									   select new FormularioRespostasViewModel
 									   {
 										   RespostaId = resposta.FormularioRespostaId,
 										   FormularioId = resposta.FormularioId,
+                                           FormularioName = formulario.Name,
 										   EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
 										   Authorized = resposta.Authorized,
 										   ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
