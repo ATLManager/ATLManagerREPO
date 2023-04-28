@@ -380,5 +380,16 @@ namespace ATLManager.Controllers
             }
             return uniqueFileName;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRefeicoesByATLId(Guid atlid)
+        {
+            
+            var refeicoes = await _context.Refeicao
+                .Where(r => r.AtlId == atlid)
+                .ToListAsync();
+
+            return Json(refeicoes);
+        }
     }
 }

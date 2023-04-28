@@ -8,6 +8,7 @@ using System.Diagnostics;
 using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace ATLManager.Controllers
 {
@@ -21,13 +22,16 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly EstatisticasController _estatisticasController;
+        private readonly RefeicoesController _refeicoesController;
 
-        public HomeController(ILogger<HomeController> logger, ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager, EstatisticasController estatisticasController)
+
+        public HomeController(ILogger<HomeController> logger, ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager, EstatisticasController estatisticasController, RefeicoesController refeicoesController)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
             _estatisticasController = estatisticasController;
+            _refeicoesController = refeicoesController;
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace ATLManager.Controllers
 
                 ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
                 ViewBag.Educandos = educandos;
-            
+            ViewBag.EncarregadoId = currentUserAccount.EncarregadoId;
 
             return View();
         }
@@ -77,11 +81,15 @@ namespace ATLManager.Controllers
             var visitasEstudoPorMesEstatisticas = new Dictionary<string, int>();
             var atividadesPorMesEstatisticas = new Dictionary<string, int>();
 
-            if (id.HasValue)
-            {
-                visitasEstudoPorMesEstatisticas = await _estatisticasController.GetVisitasEstudoPorMesEstatisticasEnc(id.Value);
-                atividadesPorMesEstatisticas = await _estatisticasController.GetAtividadesPorMesEstatisticasEnc(id.Value);
-            }
+
+			var ATLbyEducando = await _context.Educando
+					.Include(f => f.Atl)
+					.Include(f => f.Encarregado)
+					.FirstOrDefaultAsync(m => m.EducandoId == id);
+            
+                visitasEstudoPorMesEstatisticas = await _estatisticasController.GetVisitasEstudoPorMesEstatisticasEnc(ATLbyEducando.AtlId);
+                atividadesPorMesEstatisticas = await _estatisticasController.GetAtividadesPorMesEstatisticasEnc(ATLbyEducando.AtlId);
+           
 
             var result = new
             {
@@ -92,10 +100,132 @@ namespace ATLManager.Controllers
             return Json(result);
         }
 
+
         /// <summary>
         /// Retorna a View "AboutUs".
         /// </summary>
         /// <returns>A View "AboutUs".</returns>
+        [HttpGet]
+        public async Task<IActionResult> GetRefeicoesByEducandoId(Guid educandoId)
+        {
+            var ATLbyEducando = await _context.Educando
+            .Include(f => f.Atl)
+            .Include(f => f.Encarregado)
+            .FirstOrDefaultAsync(m => m.EducandoId == educandoId);
+
+            var result = await _refeicoesController.GetRefeicoesByATLId(ATLbyEducando.AtlId) as JsonResult;
+            var refeicoes = result?.Value as List<Refeicao>;
+
+            return Json(refeicoes);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFormulariosByEncarregadoId(Guid encarregadoId)
+        {
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Include(e => e.Encarregado)
+                .Where(e => e.EncarregadoId == encarregadoId)
+                .ToListAsync();
+
+            var formularios = new List<dynamic>();
+
+            foreach (var educando in educandos)
+            {
+
+
+                var respostas = await (from resposta in _context.FormularioResposta
+                                       join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
+                                       join formularioTable in _context.Formulario on resposta.FormularioId equals formularioTable.FormularioId
+                                       where resposta.EducandoId == educando.EducandoId && resposta.Authorized == false
+                                       select new
+                                       {
+                                           RespostaId = resposta.FormularioRespostaId,
+                                           FormularioId = resposta.FormularioId,
+                                           FormularioName = formularioTable.Name,
+                                           FormularioDescription = formularioTable.Description,
+                                           FormularioEndDate = formularioTable.DateLimit,
+                                           EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
+                                           Authorized = resposta.Authorized,
+                                           ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
+                                       }).ToListAsync();
+
+                formularios = formularios.Concat(respostas).ToList(); // usando 'Concat' em vez de 'Union'
+            }
+
+            return Json(formularios);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRecibosByEncarregadoId(Guid encarregadoId)
+        {
+            // Obtenha a lista de Educandos associados ao Encarregado de Educação
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Include(e => e.Encarregado)
+                .Where(e => e.EncarregadoId == encarregadoId)
+                .ToListAsync();
+
+            var recibos = new List<dynamic>();
+
+            foreach (var educando in educandos)
+            {
+                // Busque os recibos associados a cada educando
+                var recibosEducando = await (from recibo in _context.ReciboResposta
+                                             join educandoTable in _context.Educando on recibo.EducandoId equals educandoTable.EducandoId
+                                             where recibo.EducandoId == educando.EducandoId && recibo.Authorized == false
+                                             select new
+                                             {
+                                                 RespostaId = recibo.ReciboRespostaId,
+                                                 ReciboId = recibo.ReciboId,
+                                                 ReciboName = recibo.Name,
+                                                 EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
+                                                 DateLimit = recibo.DateLimit,
+                                                 Valor = recibo.Price
+                                             }).ToListAsync();
+                
+                recibos = recibos.Concat(recibosEducando).ToList();
+            }
+
+            return Json(recibos);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEducandoAtividadesByEncarregadoId(Guid encarregadoId)
+        {
+            // Obtenha a lista de Educandos associados ao Encarregado de Educação
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Include(e => e.Encarregado)
+                .Where(e => e.EncarregadoId == encarregadoId)
+                .ToListAsync();
+            
+            var educandoAtividades = new List<dynamic>();
+
+            foreach (var educando in educandos)
+            {
+                // Armazene o ID do educando atual em uma variável
+                var currentEducandoId = educando.EducandoId;
+
+                var atividadesEducando = await (from Educando in _context.Educando
+                                                join atividade in _context.Atividade on educando.AtlId equals atividade.AtlId
+                                                where Educando.EducandoId == currentEducandoId // Use a variável para fazer a comparação correta
+                                                select new
+                                                {
+                                                    AtividadeId = atividade.AtividadeId,
+                                                    EducandoName = educando.Name + " " + educando.Apelido,
+                                                    AtividadeName = atividade.Name,
+                                                    AtividadeDescription = atividade.Description,
+                                                    AtividadeStartDate = atividade.StartDate,
+                                                    AtividadeEndDate = atividade.EndDate,
+                                                    AtividadePhoto = atividade.Picture
+                                                }).ToListAsync();
+
+                educandoAtividades = educandoAtividades.Concat(atividadesEducando).ToList();
+            }
+
+            return Json(educandoAtividades);
+        }
 
         public IActionResult AboutUs()
         {
