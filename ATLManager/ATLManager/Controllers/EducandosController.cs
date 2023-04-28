@@ -271,8 +271,8 @@ namespace ATLManager.Controllers
             var allEncarregados = await GetEncarregadosAsync();
 
             var filteredEncarregados = allEncarregados
-                .Where(e => e.User.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.User.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
-                .Select(e => new { id = e.EncarregadoId, firstName = e.User.FirstName, lastName = e.User.LastName })
+                .Where(e => e.User.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.User.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.NIF.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .Select(e => new { id = e.EncarregadoId, firstName = e.User.FirstName, lastName = e.User.LastName, nif = e.NIF })
                 .ToList();
 
             return Json(filteredEncarregados);
