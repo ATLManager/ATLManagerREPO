@@ -859,7 +859,7 @@
     <value>Sair</value>
   </data>
   <data name="cancelar" xml:space="preserve">
-    <value>cancelar</value>
+    <value>Cancelar</value>
   </data>
   <data name="qlogout" xml:space="preserve">
     <value>De certeza que quer sair?</value>

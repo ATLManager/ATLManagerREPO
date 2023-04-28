@@ -132,18 +132,15 @@ namespace ATLManager.Controllers
         public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
         {
 
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = viewModel.Data;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            if ((viewModel.Data).CompareTo(DateTime.UtcNow) < 0)
             {
-                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+                var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
                 ModelState.AddModelError("Data", validationMessage);
             }
 
             if (ModelState.IsValid)
             {
-                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
                 var currentUserAccount = await _context.ContaAdministrativa
                     .Include(f => f.User)
                     .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
@@ -220,14 +217,14 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel =  DateTime.Parse(viewModel.Data);
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            
+            if (viewModel.Data != null)
             {
-                var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
-                ModelState.AddModelError("Data", validationMessage);
+                if (((DateTime)viewModel.Data).CompareTo(DateTime.UtcNow) < 0)
+                {
+                    var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
+                    ModelState.AddModelError("Data", validationMessage);
+                }
             }
 
             if (ModelState.IsValid)
@@ -252,7 +249,7 @@ namespace ATLManager.Controllers
 
                         if (viewModel.Data != null)
                         {
-                            refeicao.Data = DateTime.Parse(viewModel.Data);
+                            refeicao.Data = (DateTime)viewModel.Data;
                         }
 
                         string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);

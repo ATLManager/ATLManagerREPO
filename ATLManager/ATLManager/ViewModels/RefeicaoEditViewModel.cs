@@ -22,7 +22,7 @@ namespace ATLManager.ViewModels
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        public string? Data { get; set; }
+        public DateTime? Data { get; set; }
 
         [Required]
         [MaxLength(255)]
@@ -68,7 +68,7 @@ namespace ATLManager.ViewModels
             RefeicaoId = refeicao.RefeicaoId;
             Name = refeicao.Name;
             Categoria = refeicao.Categoria;
-            Data = refeicao.Data.ToShortDateString();
+            Data = refeicao.Data;
             Descricao = refeicao.Descricao;
             Proteina = refeicao.Proteina;
             HidratosCarbono = refeicao.HidratosCarbono;
