@@ -8,7 +8,7 @@ namespace ATLManager.ViewModels
         public Guid FormularioId { get; set; }
 
         [DisplayName("Nome do Formulário")]
-        public string? Formularioname { get; set; }
+        public string? FormularioName { get; set; }
 
         [DisplayName("Nome do Educando")]
         public string EducandoName { get; set; }
