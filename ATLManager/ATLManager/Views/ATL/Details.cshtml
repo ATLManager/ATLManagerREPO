@@ -117,6 +117,38 @@
 	<!-- JS do Google Maps API -->
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init"></script>
 
+
+
+		/**
+	 * Inicializa o mapa com as coordenadas especificadas.
+	 *
+	 * @param {number} lat - A latitude do centro do mapa.
+	 * @param {number} lng - A longitude do centro do mapa.
+	 * @returns {google.maps.Map} O objeto de mapa criado.
+	 */
+
+	/**
+	 * Inicializa o mapa e executa a função principal.
+	 *
+	 * @function
+	 */
+
+	/**
+	 * Obtém as coordenadas de um endereço usando a API Geocoding do Google Maps.
+	 *
+	 * @function
+	 * @param {string} address - O endereço a ser geocodificado.
+	 * @returns {Promise<{lat: number, lng: number}>} Uma promessa que resolve com um objeto de coordenadas contendo a latitude e a longitude.
+	 */
+
+	/**
+	 * Função principal que cria um marcador e uma janela de informações para exibir no mapa.
+	 *
+	 * @function
+	 * @param {string} location - O endereço completo a ser exibido na janela de informações.
+	 * @param {{lat: number, lng: number}} coordinates - O objeto de coordenadas contendo a latitude e a longitude do marcador.
+	 */
+
 	<script>
 		// Função para inicializar o mapa
 		function initMap(lat, lng) {
