@@ -231,6 +231,18 @@
         });
     </script>
 
+
+    /**
+     * Script que lida com a pesquisa de encarregados e a seleção do encarregado num formulário.
+     *
+     * @param {string} inputText - O texto de entrada inserido pelo usuário.
+     * @param {array} data - A lista de encarregados retornados da API.
+     * @param {number} data[i].id - O ID do encarregado.
+     * @param {string} data[i].firstName - O primeiro nome do encarregado.
+     * @param {string} data[i].lastName - O sobrenome do encarregado.
+     * @param {number} encarregadoId - O ID do encarregado selecionado pelo usuário.
+     * @param {string} encarregadoName - O nome do encarregado selecionado pelo usuário.
+     */
     <script>
         $(document).ready(function () {
             $('#encarregadoInput').on('input', function () {
