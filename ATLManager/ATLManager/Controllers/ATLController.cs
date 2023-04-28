@@ -23,19 +23,17 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IFileManager _fileManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "atls";
         private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public ATLController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _fileManager = fileManager;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -401,27 +399,5 @@ namespace ATLManager.Controllers
         {
           return _context.ATL.Any(e => e.AtlId == id);
         }
-
-        /// <summary>
-        /// Método responsável por fazer o upload do arquivo enviado e retornar o nome único do arquivo gerado.
-        /// </summary>
-        /// <param name="logoPicture">Objeto IFormFile que contém as informações do arquivo enviado.</param>
-        /// <returns>O nome único do arquivo gerado, ou null caso o objeto IFormFile seja nulo.</returns>
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atls");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

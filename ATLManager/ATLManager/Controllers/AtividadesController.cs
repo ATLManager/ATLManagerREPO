@@ -25,18 +25,16 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IFileManager _fileManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "atividades";
 
         public AtividadesController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
-            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _fileManager = fileManager;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -351,28 +349,5 @@ namespace ATLManager.Controllers
         {
           return (_context.Atividade?.Any(e => e.AtividadeId == id)).GetValueOrDefault();
         }
-
-        /// <summary>
-        /// Carrega um ficheiro para o servidor e devolve o nome do ficheiro carregado.
-        /// </summary>
-        /// <param name="comprovativo">O ficheiro a carregar.</param>
-        /// <returns>O nome do ficheiro carregado.</returns>
-
-        private string UploadedFile(IFormFile comprovativo)
-		{
-			string uniqueFileName = null;
-
-			if (comprovativo != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atividades");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					comprovativo.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

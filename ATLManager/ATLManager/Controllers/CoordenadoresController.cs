@@ -28,21 +28,19 @@ namespace ATLManager.Controllers
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly IFileManager _fileManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "coordenadores";
 
         public CoordenadoresController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _fileManager = fileManager;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -503,28 +501,5 @@ namespace ATLManager.Controllers
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
         }
-
-        /// <summary>
-        /// Faz upload de um arquivo para a pasta de upload de coordenadores.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser enviado.</param>
-        /// <returns>O nome exclusivo do arquivo.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/coordenadores");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

@@ -615,29 +615,6 @@ namespace ATLManager.Controllers
         }
 
         /// <summary>
-        /// Faz o upload de um arquivo especificado para a pasta de uploads de imagens de educandos.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser enviado.</param>
-        /// <returns>O nome exclusivo do arquivo enviado.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\educandos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
-
-        /// <summary>
         /// Faz o download de um arquivo com o nome especificado da pasta de uploads de imagens de educandos.
         /// </summary>
         /// <param name="fileName">O nome do arquivo a ser baixado.</param>

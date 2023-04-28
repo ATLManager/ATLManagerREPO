@@ -26,19 +26,17 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IFileManager _fileManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "agrupamentos";
         private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public AgrupamentosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _fileManager = fileManager;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -306,30 +304,6 @@ namespace ATLManager.Controllers
         {
             return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
-
-
-        /// <summary>
-        /// Faz upload do arquivo especificado para a pasta de uploads do agrupamento.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo a ser enviado.</param>
-        /// <returns>O nome único do arquivo enviado.</returns>
-
-        private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/agrupamentos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 
         /// <summary>
         /// Obtém todas as ATLs associadas ao agrupamento especificado.

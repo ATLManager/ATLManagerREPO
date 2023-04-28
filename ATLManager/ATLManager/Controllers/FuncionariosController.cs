@@ -22,21 +22,19 @@ namespace ATLManager.Controllers
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly IFileManager _fileManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "funcionarios";
 
         public FuncionariosController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _fileManager = fileManager;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -456,28 +454,6 @@ namespace ATLManager.Controllers
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
-        }
-
-        /// <summary>
-        /// Método que faz o upload de um arquivo enviado via formulário web para a pasta de uploads de imagens de funcionários.
-        /// </summary>
-        /// <param name="logoPicture">O arquivo enviado pelo formulário web.</param>
-        /// <returns>O nome único do arquivo gerado após o upload.</returns>
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/funcionarios");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

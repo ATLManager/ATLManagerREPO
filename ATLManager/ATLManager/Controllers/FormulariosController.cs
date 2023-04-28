@@ -28,7 +28,8 @@ namespace ATLManager.Controllers
 
         public FormulariosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IEmailSender emailSender, INotificacoesController notificacoesController)
+            IEmailSender emailSender, 
+            INotificacoesController notificacoesController)
         {
             _context = context;
             _userManager = userManager;
