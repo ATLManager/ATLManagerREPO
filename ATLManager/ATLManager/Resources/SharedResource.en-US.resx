@@ -1140,13 +1140,18 @@
     <value>Details of Group</value>
   </data>
 
-<data name="gname" xml:space="preserve">
-    <value>Nome</value>
+   <data name="tconsultar" xml:space="preserve">
+    <value>Consult</value>
+  </data>
+
+<data
+    name="gname" xml:space="preserve">
+    <value>Name</value>
   </data>
 
   <data
     name="glocation" xml:space="preserve">
-    <value>Localização</value>
+    <value>Location</value>
   </data>
 
   <data name="btnVoltar"
@@ -1276,15 +1281,18 @@
     <value>Location not found</value>
   </data>
 
-    <data name="howtofuncionalidades" xml:space="preserve">
+    <data
+    name="howtofuncionalidades" xml:space="preserve">
     <value>Functionality</value>
   </data>
 
-    <data name="txtfuncionalidades" xml:space="preserve">
+    <data
+    name="txtfuncionalidades" xml:space="preserve">
     <value>In this page you can find elements in a list, each element has three buttons, a button for details, one to edit and another to remove.</value>
   </data>
 
-<data name="askcomunity"
+<data
+    name="askcomunity"
     xml:space="preserve">
     <value>Ask the comunity</value>
   </data>
@@ -1302,4 +1310,114 @@
  <data name="btnCreate" xml:space="preserve">
     <value>Create</value>
   </data>
+
+  <data
+    name="tconsulta_agrupamento" xml:space="preserve">
+    <value>Details of Group</value>
+  </data>
+    <data
+    name="picture" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+
+    <data name="action"
+    xml:space="preserve">
+    <value>Action</value>
+  </data>
+
+      <data name="btnAdicionarAgrupamento"
+    xml:space="preserve">
+    <value>Add Group</value>
+  </data>
+
+  <data name="tcriar" xml:space="preserve">
+    <value>Create</value>
+  </data>
+
+  <data
+    name="teditar" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+
+  <data name="tconsultar"
+    xml:space="preserve">
+    <value>Consult</value>
+  </data>
+
+  <data name="tdetalhes" xml:space="preserve">
+    <value>Details </value>
+  </data>
+
+  <data
+    name="tremover" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+
+  <data name="tadd"
+    xml:space="preserve">
+    <value>Add</value>
+  </data>
+
+
+  <!-- -->
+
+  <data name="plinsert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+
+    <data
+    name="plpostal" xml:space="preserve">
+    <value>a postal code</value>
+  </data>
+
+  <data name="pladdress"
+    xml:space="preserve">
+    <value>an address</value>
+  </data>
+
+  <data name="taddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+
+    <data
+    name="tpostal" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+    <data name="tcity"
+    xml:space="preserve">
+    <value>City</value>
+  </data>
+
+  <data name="plcity" xml:space="preserve">
+    <value>a city</value>
+  </data>
+
+    <data
+    name="choosegroup" xml:space="preserve">
+    <value>Choose a group</value>
+  </data>
+
+      <data name="askgroup1"
+    xml:space="preserve">
+    <value>Belongs to a group?</value>
+  </data>
+  <data name="chooseatl" xml:space="preserve">
+    <value>Escolha um atl</value>
+  </data>
+
+    <data name="howto_change_atl" xml:space="preserve">
+    <value>How to change atl</value>
+  </data>
+    <data name="btnAlterar" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+
+      <data name="tconsulta_atl" xml:space="preserve">
+    <value>Details of ATL</value>
+  </data>
+
+   <data name="qremove_atl" xml:space="preserve">
+    <value>Are you sure you want to remove this atl?</value>
+  </data>
+
 </root>

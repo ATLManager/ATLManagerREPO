@@ -1,15 +1,16 @@
 ﻿@model ATLManager.ViewModels.ATLEditViewModel
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
-
+@using ATLManager.Services
+@inject LanguageService language
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-    ViewData["Title"] = "Editar ATL";
+    ViewData["Title"] = @language.GetKey("menuAtl");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
+<title>@ViewData["Title"]</title>
 @if (SignInManager.IsSignedIn(User))
 {
 
@@ -18,7 +19,7 @@
     <!-- Container -->
     <div class="container-fluid">
         <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-            <h1 class="me-3 fw-bold text-center mb-0">Editar Atl</h1>
+            <h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("teditar") @language.GetKey("menuAtl")</h1>
             <img src="~/images/icons/edit-group.png" width="50" height="50">
         </div>
 
@@ -44,35 +45,35 @@
                                             <div class="row mb-3">
                                                 <div class="col-6">
                                             <div class="form-group">
-                                                <label asp-for="Name" class="control-label"></label>
-                                                <input asp-for="Name" class="form-control" placeholder="Insira um nome"/>
+                                                        <label asp-for="Name" class="control-label">@language.GetKey("gname")</label>
+                                                        <input asp-for="Name" class="form-control" placeholder="@language.GetKey("plname")" />
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                             </div>
                                                 <div class="col-6">
                                             <div class="form-group">
-                                                <label asp-for="Address" class="control-label"></label>
-                                                        <input asp-for="Address" class="form-control" placeholder="Insira uma morada" />
+                                                        <label asp-for="Address" class="control-label"> @language.GetKey("taddress")</label>
+                                                        <input asp-for="Address" class="form-control" placeholder="@language.GetKey("plinsert") @language.GetKey("pladdress")" />
                                                 <span asp-validation-for="Address" class="text-danger"></span>
                                             </div>
                                             </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-6">
-                                                    <label asp-for="PostalCode" class="control-label"></label>
+                                                    <label asp-for="PostalCode" class="control-label">@language.GetKey("tpostal")</label>
                                                     <div class="input-group">
-                                                        <input asp-for="PostalCode" class="form-control" placeholder="Insira um código postal" />
+                                                        <input asp-for="PostalCode" class="form-control" placeholder="@language.GetKey("plinsert") @language.GetKey("plpostal")" />
                                                         <span asp-validation-for="PostalCode" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label asp-for="City" class="control-label"></label>
-                                                    <input asp-for="City" class="form-control" placeholder="Insira uma cidade" />
+                                                    <label asp-for="City" class="control-label">@language.GetKey("tcity")</label>
+                                                    <input asp-for="City" class="form-control" placeholder="@language.GetKey("plinsert") @language.GetKey("plcity")" />
                                                     <span asp-validation-for="City" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="form-switch row text-center mb-3">
-                                                <div class="col-8">Pertence a um agrupamento?</div>
+                                                <div class="col-6 text-end">@language.GetKey("askgroup1")</div>
                                                 <div class="col-2">
                                                     <input class="form-check-input" style="float:left" type="checkbox"
                                                            id="toggleSwitch">
@@ -81,21 +82,23 @@
                                             <div class="row mb-3" id="divCertidao">
                                                 <div class="col-12">
                                                     <label asp-for="NIPC" class="control-label"></label>
-                                                    <input asp-for="NIPC" class="form-control" placeholder="Insira um nipc" />
+                                                    <input asp-for="NIPC" class="form-control" placeholder="@language.GetKey("plinsert") @language.GetKey("plnipc")" />
                                                     <span asp-validation-for="NIPC" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="row mb-3" id="divAgrupamento" style="display: none;">
-                                                <label asp-for="AgrupamentoId" class="form-label"></label>
+                                                <div class="col-12">
+                                                <label asp-for="AgrupamentoId" class="form-label"> @language.GetKey("menuAgrupamento")</label>
                                                 <select asp-for="AgrupamentoId" class="form-control" asp-items="ViewBag.AgrupamentoId">
-                                                    <option value="">Escolha um Agrupamento</option>
+                                                    <option value="">@language.GetKey("choosegroup")</option>
                                                 </select>
+                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label asp-for="LogoPicture" class="control-label"></label>
+                                                <label asp-for="LogoPicture" class="control-label">Logo</label>
                                                 <div class="custom-file">
                                                     <input asp-for="LogoPicture" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    <label class="custom-file-label" for="customFile">@language.GetKey("lchoose")</label>
                                                 </div>
                                                 <span asp-validation-for="LogoPicture" class="text-danger"></span>
                                             </div>
@@ -103,12 +106,12 @@
                                             <div class="d-flex text-center mt-4">
                                                 <div class="col text-right">
                                                     <a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-                                                            Voltar
+                                                        @language.GetKey("btnVoltar")
                                                     </a>
                                                 </div>
                                                 <div class="col text-left">
                                                     <div class="form-group">
-                                                        <input type="submit" value="Alterar" class="btn btn-primary w-50" style="border-radius:6em" />
+                                                        <input type="submit" value="@language.GetKey("btnSave")" class="btn btn-primary w-50" style="border-radius:6em" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,12 +132,12 @@
 
 
 
- 	    <!-- Slide de Ajuda  -->
+    <!-- Slide de Ajuda  -->
     <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
         <div class="row text-center mt-2">
             <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
+                <h2 class="text-white ms-5">@language.GetKey("help")</h2>
             </div>
 
             <div class="col-2">
@@ -143,24 +146,25 @@
         </div>
         <div class="">
             <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+                   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
         </div>
         <!-- -->
         <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+            style="position: absolute; right: 0em; left: 0em; height: 80%;">
             <li class="row">
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
 
-                        <span>Como alterar uma visita de estudo</span>
+                        <span>
+                            @language.GetKey("howto_change_atl")
+                        </span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
 
 
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
+                    @language.GetKey("txt_change_atl")
 
                 </span>
             </li>
@@ -173,7 +177,7 @@
                             <img src="~/images/guide/terms.png" class="">
                         </div>
                         <div class="col">
-                            <span>Leia artigos de ajuda</span>
+                            <span>@language.GetKey("readarticles")</span>
                         </div>
                     </div>
                 </button>
@@ -185,7 +189,7 @@
                             <img src="~/images/guide/comunity.png" class="">
                         </div>
                         <div class="col">
-                            <span>Pergunte à comunidade</span>
+                            <span>@language.GetKey("askcomunity")</span>
                         </div>
                     </div>
                 </button>
@@ -197,7 +201,7 @@
                             <img src="~/images/guide/new.png" class="">
                         </div>
                         <div class="col">
-                            <span>Novas Atualizações</span>
+                            <span>@language.GetKey("newsupdates")</span>
                         </div>
                     </div>
                 </button>
@@ -209,7 +213,7 @@
                             <img src="~/images/guide/feedback.png" class="">
                         </div>
                         <div class="col">
-                            <span>Dê Feedback</span>
+                            <span>@language.GetKey("givefeedback")</span>
                         </div>
                     </div>
 
@@ -218,6 +222,7 @@
         </ul>
     </div>
     <!-- // Slide de Ajuda  -->
+
 
     <script type="text/javascript">
         // Add the following code if you want the name of the file appear on select
@@ -238,9 +243,11 @@
             if (toggleSwitch.checked) {
                 divAgrupamento.style.display = 'block';
                 divCertidao.style.display = 'none';
+                divCertidao.disabled = true;
             } else {
                 divAgrupamento.style.display = 'none';
                 divCertidao.style.display = 'block';
+                divCertidao.disabled = false;
             }
         });
     </script>

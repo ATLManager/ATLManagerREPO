@@ -771,6 +771,10 @@
     <value>Adicionar Funcionário</value>
   </data>
 
+  <data name="btnAdicionarAgrupamento" xml:space="preserve">
+    <value>Adicionar Agrupamento</value>
+  </data>
+
   <data name="colNome" xml:space="preserve">
     <value>Nome</value>
   </data>
@@ -908,8 +912,12 @@
     <value>De certeza que quer sair?</value>
   </data>
 
-  <data name="tConsulta" xml:space="preserve">
+  <data name="tconsulta_agrupamento" xml:space="preserve">
     <value>Detalhes do Agrupamento</value>
+  </data>
+
+    <data name="tconsulta_atl" xml:space="preserve">
+    <value>Detalhes do ATL</value>
   </data>
 
   <data name="gname" xml:space="preserve">
@@ -937,6 +945,28 @@
     <value>Remover</value>
   </data>
 
+  <data name="tcriar" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+
+  <data name="tconsultar" xml:space="preserve">
+    <value>Consultar</value>
+  </data>
+
+  <data name="tdetalhes" xml:space="preserve">
+    <value>Detalhes </value>
+  </data>
+
+  <data name="teditar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+
+  <data name="tremover" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+
+  <!-- -->
+
 
   <data name="plname" xml:space="preserve">
     <value>Insira um nome</value>
@@ -958,6 +988,10 @@
 
   <data name="howto_change_group" xml:space="preserve">
     <value>Como alterar agrupamento</value>
+  </data>
+
+    <data name="howto_change_atl" xml:space="preserve">
+    <value>Como alterar atl</value>
   </data>
 
   <data name="howto_delete_group" xml:space="preserve">
@@ -1027,6 +1061,69 @@
   </data>
   <data name="btnCreate" xml:space="preserve">
     <value>Criar</value>
+  </data>
+
+  <data name="picture" xml:space="preserve">
+    <value>Imagem</value>
+  </data>
+
+  <data name="action" xml:space="preserve">
+    <value>Ação</value>
+  </data>
+
+
+  <data name="tadd" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+
+
+  <data name="plinsert" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+
+  <data name="plpostal" xml:space="preserve">
+    <value>um código postal</value>
+  </data>
+
+  <data name="pladdress" xml:space="preserve">
+    <value>uma morada</value>
+  </data>
+
+  <data name="taddress" xml:space="preserve">
+    <value>Morada</value>
+  </data>
+
+  <data name="tpostal" xml:space="preserve">
+    <value>Código Postal</value>
+  </data>
+  <data name="tcity" xml:space="preserve">
+    <value>Cidade</value>
+  </data>
+
+
+  <data name="plcity" xml:space="preserve">
+    <value>uma cidade</value>
+  </data>
+
+  <data name="choosegroup" xml:space="preserve">
+    <value>Escolha um agrupamento</value>
+  </data>
+
+  <data name="chooseatl" xml:space="preserve">
+    <value>Escolha um atl</value>
+  </data>
+
+  <data name="askgroup1" xml:space="preserve">
+    <value>Pertence a um agrupamento?</value>
+  </data>
+
+
+  <data name="btnAlterar" xml:space="preserve">
+    <value>Alterar</value>
+  </data>
+
+<data name="qremove_atl" xml:space="preserve">
+    <value>Tens a certeza que queres remover este atl?</value>
   </data>
 
 

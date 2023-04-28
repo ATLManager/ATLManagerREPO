@@ -12,9 +12,10 @@
 }
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
+<title>@ViewData["Title"]</title>
 @if (SignInManager.IsSignedIn(User))
 {
+    
 	<!-- Container -->
 	<div class="container-fluid">
 		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
