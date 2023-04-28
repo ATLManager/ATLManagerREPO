@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Resposta de Formulários'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class FormularioRespostasController : Controller
     {
 		private readonly ATLManagerAuthContext _context;
@@ -24,8 +28,13 @@ namespace ATLManager.Controllers
 			_notificacoesController = notificacoesController;
 		}
 
-		// GET: FormularioRespostas/Details/5
-		public async Task<IActionResult> Details(Guid? id)
+        /// <summary>
+        /// Obtém os detalhes de uma resposta de formulário.
+        /// </summary>
+        /// <param name="id">O ID da resposta de formulário.</param>
+        /// <returns>Retorna a visualização com os detalhes da resposta do formulário.</returns>
+
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.FormularioResposta == null)
             {
@@ -44,8 +53,13 @@ namespace ATLManager.Controllers
             return View(formularioResposta);
 		}
 
-		// GET: FormularioRespostas/Edit/5
-		[Authorize(Roles = "EncarregadoEducacao")]
+        /// <summary>
+        /// Obtém uma visualização para responder um formulário.
+        /// </summary>
+        /// <param name="id">O ID da resposta de formulário.</param>
+        /// <returns>Retorna a visualização para responder o formulário.</returns>
+
+        [Authorize(Roles = "EncarregadoEducacao")]
 		public async Task<IActionResult> Responder(Guid? id)
         {
             if (id == null || _context.FormularioResposta == null)
@@ -76,9 +90,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // POST: FormularioRespostas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Salva uma resposta de formulário.
+        /// </summary>
+        /// <param name="id">O ID da resposta de formulário.</param>
+        /// <param name="viewModel">A visualização com os dados da resposta do formulário.</param>
+        /// <returns>Redireciona para a página "Obrigado" após guardar a resposta do formulário.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Responder(Guid id, FormularioResponderViewModel viewModel)
@@ -154,12 +172,23 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-		public IActionResult Obrigado()
+        /// <summary>
+        /// Retorna uma visualização de agradecimento após guardar a resposta do formulário.
+        /// </summary>
+        /// <returns>Retorna a visualização de agradecimento.</returns>
+
+        public IActionResult Obrigado()
 		{
 			return View();
 		}
 
-		private bool FormularioRespostaExists(Guid id)
+        /// <summary>
+        /// Verifica se a resposta de formulário existe no contexto.
+        /// </summary>
+        /// <param name="id">O ID da resposta de formulário.</param>
+        /// <returns>Retorna "true" se a resposta de formulário existir no contexto e "false" caso contrário.</returns>
+
+        private bool FormularioRespostaExists(Guid id)
         {
           return (_context.FormularioResposta?.Any(e => e.FormularioRespostaId == id)).GetValueOrDefault();
         }

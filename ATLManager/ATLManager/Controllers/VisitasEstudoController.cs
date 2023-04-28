@@ -15,6 +15,10 @@ using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Visitas de Estudo'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class VisitasEstudoController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -30,7 +34,10 @@ namespace ATLManager.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: VisitasEstudo
+        /// <summary>
+        /// Retorna uma lista de visitas de estudo do ATL correspondente ao utilizador atual.
+        /// </summary>
+        /// <returns>Uma vista com a lista de visitas de estudo.</returns>
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -77,7 +84,12 @@ namespace ATLManager.Controllers
             }
         }
 
-        // GET: VisitasEstudo/Details/5
+        /// <summary>
+        /// Retorna os detalhes de uma visita de estudo com base no ID especificado.
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo.</param>
+        /// <returns>Uma vista com os detalhes da visita de estudo.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.VisitaEstudo == null)
@@ -95,15 +107,22 @@ namespace ATLManager.Controllers
             return View(visitaEstudo);
         }
 
-        // GET: VisitasEstudo/Create
+        /// <summary>
+        /// Exibe o formulário de criação de uma nova visita de estudo.
+        /// </summary>
+        /// <returns>Uma vista com o formulário de criação de visita de estudo.</returns>
+
         public IActionResult Create()
         {
             return View(new VisitaEstudoCreateViewModel());
         }
 
-        // POST: VisitasEstudo/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria uma nova visita de estudo.
+        /// </summary>
+        /// <param name="viewModel">O modelo de exibição que contém as informações da nova visita de estudo.</param>
+        /// <returns>Redireciona para a lista de visitas de estudo.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VisitaEstudoCreateViewModel viewModel)
@@ -156,8 +175,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-            // GET: VisitasEstudo/Edit/5
-            public async Task<IActionResult> Edit(Guid? id)
+        /// <summary>
+        /// Exibe o formulário de edição de uma visita de estudo com base no ID especificado.
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo.</param>
+        /// <returns>Uma vista com o formulário de edição da visita de estudo.</returns>
+
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.VisitaEstudo == null)
             {
@@ -172,9 +196,13 @@ namespace ATLManager.Controllers
             return View(new VisitaEstudoEditViewModel(visitaEstudo));
         }
 
-        // POST: VisitasEstudo/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita uma visita de estudo existente.
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo a ser editada.</param>
+        /// <param name="viewModel">O modelo de exibição que contém as informações atualizadas da visita de estudo.</param>
+        /// <returns>Redireciona para a lista de visitas de estudo.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, VisitaEstudoEditViewModel viewModel)
@@ -240,7 +268,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: VisitasEstudo/Delete/5
+        /// <summary>
+        /// Remove uma VisitaEstudo .
+        /// </summary>
+        /// <param name="id"> ID de uma VisitaEstudo para remover</param>
+        /// <returns>A ViewResult object.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.VisitaEstudo == null)
@@ -258,7 +291,12 @@ namespace ATLManager.Controllers
             return View(visitaEstudo);
         }
 
-        // POST: VisitasEstudo/Delete/5
+        /// <summary>
+        /// Confirma a remoção uma visita de estudo
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo</param>
+        /// <returns>Uma ação assíncrona do tipo IActionResult</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -289,10 +327,22 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica se uma visita de estudo existe
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo</param>
+        /// <returns>True se a visita de estudo existir, False caso contrário</returns>
+
         private bool VisitaEstudoExists(Guid id)
         {
           return (_context.VisitaEstudo?.Any(e => e.VisitaEstudoID == id)).GetValueOrDefault();
         }
+
+        /// <summary>
+        /// Faz upload de um arquivo
+        /// </summary>
+        /// <param name="logoPicture">O arquivo a ser carregado</param>
+        /// <returns>O nome único do arquivo carregado</returns>
 
         private string UploadedFile(IFormFile logoPicture)
         {

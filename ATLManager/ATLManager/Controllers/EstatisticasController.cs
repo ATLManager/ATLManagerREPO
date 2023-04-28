@@ -9,6 +9,10 @@ using System.Globalization;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Estatísticas'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class EstatisticasController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -21,8 +25,14 @@ namespace ATLManager.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Método que retorna uma View com a ViewModel de estatísticas
+        /// </summary>
+        /// <param name="id">O id de um objeto do tipo Guid</param>
+        /// <returns>Uma View contendo uma ViewModel de estatísticas</returns>
 
-		public async Task<IActionResult> Index(Guid? id)
+
+        public async Task<IActionResult> Index(Guid? id)
 		{
 			var faturasEmAtraso = await GetFaturasEmAtraso();
 			var faturasPagas = await GetFaturasPagas();
@@ -87,7 +97,13 @@ namespace ATLManager.Controllers
             return View(estatisticasViewModel);
         }
 
-		[HttpGet]
+        /// <summary>
+        /// Método que retorna o ID do Agrupamento a partir do ID do ATL
+        /// </summary>
+        /// <param name="atlId">O ID de um ATL</param>
+        /// <returns>Um JSON contendo o ID do Agrupamento</returns>
+
+        [HttpGet]
 		public async Task<IActionResult> GetAgrupamentoIdFromAtl(Guid atlId)
 		{
 			var atl = await _context.ATL.FindAsync(atlId);
@@ -101,8 +117,12 @@ namespace ATLManager.Controllers
 		}
 
 
+        /// <summary>
+        /// Método que retorna um dicionário contendo as estatísticas de visitas de estudo por mês
+        /// </summary>
+        /// <returns>Um dicionário contendo as estatísticas de visitas de estudo por mês</returns>
 
-		public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasCoord()
+        public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasCoord()
         {
             // Obtenha o usuário atual
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -129,7 +149,12 @@ namespace ATLManager.Controllers
 
             return estatisticas;
         }
-        
+
+        /// <summary>
+        /// Obtém as estatísticas de atividades por mês.
+        /// </summary>
+        /// <returns>Um dicionário com as estatísticas das atividades por mês.</returns>
+
         public async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticasCoord()
         {
             // Obtenha o usuário atual
@@ -157,8 +182,14 @@ namespace ATLManager.Controllers
 
             return estatisticas;
         }
-		
-		public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasEnc(Guid? id)
+
+        /// <summary>
+        /// Obtém as estatísticas de visitas de estudo por mês.
+        /// </summary>
+        /// <param name="id">O id do educando atual.</param>
+        /// <returns>Um dicionário com as estatísticas das visitas de estudo por mês.</returns>
+
+        public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticasEnc(Guid? id)
 		{
             if (id == Guid.Empty) return new Dictionary<string, int>();
 
@@ -179,7 +210,13 @@ namespace ATLManager.Controllers
 			return estatisticas;
 		}
 
-		public async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticasEnc(Guid? id)
+        /// <summary>
+        /// Obtém as estatísticas de atividades por mês.
+        /// </summary>
+        /// <param name="id">O id do educando atual.</param>
+        /// <returns>Um dicionário com as estatísticas das atividades por mês.</returns>
+
+        public async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticasEnc(Guid? id)
 		{
             if (id == Guid.Empty) return new Dictionary<string, int>();
 
@@ -200,6 +237,12 @@ namespace ATLManager.Controllers
 			
 			return estatisticas;
 		}
+
+        /// <summary>
+        /// Obtém as estatísticas de visitas de estudo, atividades, educandos novos e educandos de um ATL.
+        /// </summary>
+        /// <param name="id">O id da ATL.</param>
+        /// <returns>Um objeto JSON com as estatísticas de visitas de estudo, atividades, educandos novos e educandos.</returns>
 
         [HttpGet]
         public async Task<IActionResult> GetEstatisticasPorATL(Guid id)
@@ -225,6 +268,10 @@ namespace ATLManager.Controllers
 								FaturasEmAtrasoADM,	FaturasPagasADM, TotalValorEmAtrasoADM, TotalValorPagoADM});
         }
 
+        /// <summary>
+        /// Obtém o número de educandos novos no ATL nos últimos 30 dias.
+        /// </summary>
+        /// <returns>O número de educandos novos.</returns>
 
         private async Task<int> GetNumeroDeEducandosNovos()
 		{
@@ -242,7 +289,12 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<int> GetNumeroDeEducandos()
+        /// <summary>
+        /// Obtém o número de educandos no ATL.
+        /// </summary>
+        /// <returns>O número de educandos.</returns>
+
+        private async Task<int> GetNumeroDeEducandos()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -257,7 +309,12 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticas()
+        /// <summary>
+        /// Retorna um dicionário contendo o número de educandos inscritos por mês.
+        /// </summary>
+        /// <returns>Dicionário com o número de educandos inscritos em cada mês.</returns>
+
+        private async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticas()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -280,8 +337,12 @@ namespace ATLManager.Controllers
 			return estatisticas;
 		}
 
+        /// <summary>
+        /// Retorna o número de rapazes inscritos no ATL.
+        /// </summary>
+        /// <returns>Número de rapazes inscritos.</returns>
 
-		private async Task<int> GetNumeroDeRapazes()
+        private async Task<int> GetNumeroDeRapazes()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -295,7 +356,12 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<int> GetNumeroDeRaparigas()
+        /// <summary>
+        /// Retorna o número de raparigas inscritas no ATL.
+        /// </summary>
+        /// <returns>Número de raparigas inscritas.</returns>
+
+        private async Task<int> GetNumeroDeRaparigas()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -309,7 +375,12 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<(int Count, decimal Total)> GetFaturasEmAtraso()
+        /// <summary>
+        /// Retorna o número e o total em atraso de faturas não autorizadas de um ATL.
+        /// </summary>
+        /// <returns>Tupla contendo o número de faturas e o valor total em atraso.</returns>
+
+        private async Task<(int Count, decimal Total)> GetFaturasEmAtraso()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -324,8 +395,12 @@ namespace ATLManager.Controllers
 			return (faturasEmAtraso.Count, totalValorEmAtraso);
 		}
 
-		//Faturas Pagas de um ATL em especifico
-		private async Task<(int Count, decimal Total)> GetFaturasPagas()
+        /// <summary>
+        /// Retorna o número e o total pago de faturas autorizadas de um ATL.
+        /// </summary>
+        /// <returns>Tupla contendo o número de faturas e o valor total pago.</returns>
+
+        private async Task<(int Count, decimal Total)> GetFaturasPagas()
 		{
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 			var currentUserAccount = await _context.ContaAdministrativa
@@ -340,8 +415,13 @@ namespace ATLManager.Controllers
 			return (faturasPagas.Count, totalValorPago);
 		}
 
-		//Faturas Pagas por ATL
-		private async Task<(int Count, decimal Total)> GetFaturasPagasADM(Guid? id)
+        /// <summary>
+        /// Retorna o número e o total pago de faturas autorizadas de um ATL específico.
+        /// </summary>
+        /// <param name="id">ID do ATL.</param>
+        /// <returns>Tupla contendo o número de faturas e o valor total pago.</returns>
+
+        private async Task<(int Count, decimal Total)> GetFaturasPagasADM(Guid? id)
 		{
 			var faturasPagas = await _context.ReciboResposta
 							.Where(r => r.Recibo.AtlId == id && r.Authorized)
@@ -351,8 +431,13 @@ namespace ATLManager.Controllers
 			return (faturasPagas.Count, totalValorPago);
 		}
 
-		//Faturas em Atraso de um ATL
-		private async Task<(int Count, decimal Total)> GetFaturasEmAtrasoADM(Guid? id)
+        /// <summary>
+        /// Retorna o número e o total em atraso de faturas não autorizadas de um ATL específico.
+        /// </summary>
+        /// <param name="id">ID do ATL.</param>
+        /// <returns>Tupla contendo o número de faturas e o valor total em atraso.</returns>
+
+        private async Task<(int Count, decimal Total)> GetFaturasEmAtrasoADM(Guid? id)
 		{
 			var faturasEmAtraso = await _context.ReciboResposta
 				.Where(r => r.Recibo.AtlId == id && !r.Authorized)
@@ -362,7 +447,13 @@ namespace ATLManager.Controllers
 			return (faturasEmAtraso.Count, totalValorEmAtraso);
 		}
 
-		private async Task<int> GetNumeroDeRaparigasADM(Guid? id)
+        /// <summary>
+        /// Retorna o número de raparigas inscritas em um ATL específico.
+        /// </summary>
+        /// <param name="id">ID do ATL.</param>
+        /// <returns>Número de raparigas inscritas.</returns>
+
+        private async Task<int> GetNumeroDeRaparigasADM(Guid? id)
 		{
 			var educandos = await _context.Educando
 				.Where(c => c.AtlId == id && c.Genero == "Feminino")
@@ -371,7 +462,13 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<int> GetNumeroDeRapazesADM(Guid? id)
+        /// <summary>
+        /// Retorna o número de rapazes inscritos em um ATL específico.
+        /// </summary>
+        /// <param name="id">ID do ATL.</param>
+        /// <returns>Número de rapazes inscritos.</returns>
+
+        private async Task<int> GetNumeroDeRapazesADM(Guid? id)
 		{
 			var educandos = await _context.Educando
 							.Where(c => c.AtlId == id && c.Genero == "Masculino")
@@ -380,7 +477,12 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticasADM(Guid? id)
+        /// <summary>
+        /// Obtém estatísticas de educandos por mês para um determinado ID de ATL.
+        /// </summary>
+        /// <param name="id">O ID do ATL</param>
+        /// <returns>Um dicionário com as estatísticas de educandos por mês</returns>
+        private async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticasADM(Guid? id)
 		{
 			var educandos = await _context.Educando
 							.Where(c => c.AtlId == id)
@@ -398,7 +500,12 @@ namespace ATLManager.Controllers
 			return estatisticas;
 		}
 
-		private async Task<int> GetNumeroDeEducandosADM(Guid? id)
+        /// <summary>
+        /// Obtém o número de educandos para um determinado ID de ATL.
+        /// </summary>
+        /// <param name="id">O ID do ATL</param>
+        /// <returns>O número de educandos</returns>
+        private async Task<int> GetNumeroDeEducandosADM(Guid? id)
 		{
 			var educandos = await _context.Educando
 				.Where(c => c.AtlId == id)
@@ -407,7 +514,12 @@ namespace ATLManager.Controllers
 			return educandos.Count;
 		}
 
-		private async Task<int> GetNumeroDeEducandosNovosADM(Guid? id)
+        /// <summary>
+        /// Obtém o número de educandos novos (inscritos no último mês) para um determinado ID de ATL.
+        /// </summary>
+        /// <param name="id">O ID do ATL</param>
+        /// <returns>O número de educandos novos</returns>
+        private async Task<int> GetNumeroDeEducandosNovosADM(Guid? id)
 		{
 
 			DateTime umMesAtras = DateTime.Now.AddMonths(-1);

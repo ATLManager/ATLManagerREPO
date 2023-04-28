@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'HomePage'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,11 +30,19 @@ namespace ATLManager.Controllers
             _estatisticasController = estatisticasController;
         }
 
+        /// <summary>
+        /// Retorna a View "Index".
+        /// </summary>
+        /// <returns>A View "Index".</returns>
         public IActionResult Index()
         {
             return View();
         }
-        
+
+        /// <summary>
+        /// Retorna a View "IndexEE" com informações do usuário logado e seus educandos.
+        /// </summary>
+        /// <returns>A View "IndexEE".</returns>
         public async Task<IActionResult> IndexEE()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -53,6 +65,12 @@ namespace ATLManager.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Retorna as estatísticas de visitas de estudo e atividades por mês de um educando específico em formato JSON.
+        /// </summary>
+        /// <param name="id">O ID do educando.</param>
+        /// <returns>As estatísticas em formato JSON.</returns>
+
         [HttpGet]
         public async Task<IActionResult> GetEstatisticasPorEducando(Guid? id)
         {
@@ -74,24 +92,48 @@ namespace ATLManager.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// Retorna a View "AboutUs".
+        /// </summary>
+        /// <returns>A View "AboutUs".</returns>
+
         public IActionResult AboutUs()
         {
             return View();
         }
 
+        /// <summary>
+        /// Retorna a View "Services".
+        /// </summary>
+        /// <returns>A View "Services".</returns>
         public IActionResult Services()
         {
             return View();
         }
 
+        /// <summary>
+        /// Retorna a View "Contacts".
+        /// </summary>
+        /// <returns>A View "Contacts".</returns>
         public IActionResult Contacts()
         {
             return View();
         }
+
+        /// <summary>
+        /// Retorna a View "Policy".
+        /// </summary>
+        /// <returns>A View "Policy".</returns>
         public IActionResult Policy()
         {
             return View();
         }
+
+        /// <summary>
+        /// Altera o idioma do site e redireciona o usuário de volta para a página anterior.
+        /// </summary>
+        /// <param name="culture">A cultura desejada.</param>
+        /// <returns>O redirecionamento para a página anterior.</returns>
 
         public IActionResult ChangeLanguage(string culture)
         {
@@ -104,6 +146,10 @@ namespace ATLManager.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
         }
 
+        /// <summary>
+        /// Trata os erros e devolve uma View de erro.
+        /// </summary>
+        /// <returns>A View de erro.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

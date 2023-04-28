@@ -19,6 +19,10 @@ using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Recibos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class RecibosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -36,7 +40,11 @@ namespace ATLManager.Controllers
             _notificacoesController = notificacoesController;
         }
 
-        // GET: Reciboes
+        /// <summary>
+        /// Retorna uma lista de recibos com base no utilizador atual.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que contém uma exibição dos recibos do utilizador.</returns>
+
         [Authorize(Roles = "Coordenador,Funcionario")]
         public async Task<IActionResult> Index()
         {
@@ -53,6 +61,11 @@ namespace ATLManager.Controllers
 
             return View(recibos);
         }
+
+        /// <summary>
+        /// Retorna uma lista de recibos para os educandos do encarregado atual.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que contém uma exibição dos recibos do encarregado.</returns>
 
         [Authorize(Roles = "EncarregadoEducacao")]
         public async Task<IActionResult> IndexEE()
@@ -93,8 +106,14 @@ namespace ATLManager.Controllers
 			ViewBag.Educandos = educandos;
 			return View(recibos);
         }
+        
 
-        // GET: Reciboes/Details/5
+        /// <summary>
+        /// Retorna os detalhes de um recibo com base no ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do recibo.</param>
+        /// <returns>Uma instância de IActionResult que contém uma exibição dos detalhes do recibo.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Recibo == null)
@@ -111,6 +130,12 @@ namespace ATLManager.Controllers
 
             return View(recibo);
         }
+
+        /// <summary>
+        /// Retorna uma lista de respostas de recibo com base no ID do recibo.
+        /// </summary>
+        /// <param name="id">O ID do recibo.</param>
+        /// <returns>Uma lista de respostas de recibo.</returns>
 
         public async Task<IActionResult> Respostas(Guid? id)
         {
@@ -141,7 +166,11 @@ namespace ATLManager.Controllers
             return View(respostas);
         }
 
-        // GET: Reciboes/Create
+        /// <summary>
+        /// Retorna a view para criar um novo recibo.
+        /// </summary>
+        /// <returns>A view para criar um novo recibo.</returns>
+
         public async Task<IActionResult> Create()
         {
 			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -160,9 +189,12 @@ namespace ATLManager.Controllers
 			return View();
         }
 
-        // POST: Reciboes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo recibo com base nos dados fornecidos e notifica os encarregados de educação relevantes.
+        /// </summary>
+        /// <param name="viewModel">Os dados do recibo a serem criados.</param>
+        /// <returns>O resultado da criação do recibo.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Price,NIB,Description,DateLimit,Educando")] ReciboCreateViewModel viewModel)
@@ -277,7 +309,11 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Recibos/Edit/5
+        /// <summary>
+        /// Método responsável por retornar a View de edição de um recibo.
+        /// </summary>
+        /// <param name="id">Id do recibo a ser editado.</param>
+        /// <returns>Retorna a View de edição do recibo.</returns>
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Recibo == null)
@@ -304,9 +340,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // POST: Recibos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método responsável por atualizar um recibo.
+        /// </summary>
+        /// <param name="id">Id do recibo a ser atualizado.</param>
+        /// <param name="viewModel">ViewModel com os dados atualizados do recibo.</param>
+        /// <returns>Retorna a View de edição do recibo caso haja algum erro de validação ou a View Index caso a atualização tenha sido bem sucedida.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ReciboId,Name,Price,NIB,Description,DateLimit")] ReciboEditViewModel viewModel)
@@ -367,7 +407,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Reciboes/Delete/5
+        /// <summary>
+        /// Método de ação que retorna a view para excluir um recibo com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do recibo a ser excluído.</param>
+        /// <returns>A view para excluir o recibo com o ID especificado.</returns>
+
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Recibo == null)
@@ -385,7 +431,12 @@ namespace ATLManager.Controllers
             return View(recibo);
         }
 
-        // POST: Reciboes/Delete/5
+        /// <summary>
+        /// Método de ação que exclui permanentemente um recibo com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do recibo a ser excluído.</param>
+        /// <returns>Uma ação redirecionando para a view Index.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -445,6 +496,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se um recibo com o ID especificado existe.
+        /// </summary>
+        /// <param name="id">O ID do recibo a ser verificado.</param>
+        /// <returns>Verdadeiro se o recibo existir, falso caso contrário.</returns>
 
         private bool ReciboExists(Guid id)
         {

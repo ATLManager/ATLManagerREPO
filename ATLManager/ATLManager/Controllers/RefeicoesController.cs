@@ -15,6 +15,10 @@ using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Refeições'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class RefeicoesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -30,7 +34,11 @@ namespace ATLManager.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Refeicoes
+        /// <summary>
+        /// Retorna a visualização da lista de refeições com base no usuário atual.
+        /// </summary>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -76,7 +84,12 @@ namespace ATLManager.Controllers
 			}
 		}
 
-        // GET: Refeicoes/Details/5
+        /// <summary>
+        /// Retorna a visualização de detalhes de uma refeição com base no ID da refeição fornecido.
+        /// </summary>
+        /// <param name="id">O ID da refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
@@ -94,15 +107,22 @@ namespace ATLManager.Controllers
             return View(refeicao);
         }
 
-        // GET: Refeicoes/Create
+        /// <summary>
+        /// Retorna a visualização de criação de uma nova refeição.
+        /// </summary>
+        /// <returns>Ação do resultado.</returns>
+
         public IActionResult Create()
         {
             return View(new RefeicaoCreateViewModel());
         }
 
-        // POST: Refeicoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria uma nova refeição com base nos dados fornecidos pelo ViewModel de criação de refeição.
+        /// </summary>
+        /// <param name="viewModel">O ViewModel de criação de refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
@@ -160,8 +180,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-    // GET: Refeicoes/Edit/5
-    public async Task<IActionResult> Edit(Guid? id)
+        /// <summary>
+        /// Retorna a visualização de edição de uma refeição com base no ID da refeição fornecido.
+        /// </summary>
+        /// <param name="id">O ID da refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
             {
@@ -176,9 +201,13 @@ namespace ATLManager.Controllers
             return View(new RefeicaoEditViewModel(refeicao));
         }
 
-        // POST: Refeicoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita uma refeição existente com base nos dados fornecidos pelo ViewModel de edição de refeição.
+        /// </summary>
+        /// <param name="id">O ID da refeição.</param>
+        /// <param name="viewModel">O ViewModel de edição de refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, RefeicaoEditViewModel viewModel)
@@ -249,7 +278,11 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Refeicoes/Delete/5
+        /// <summary>
+        /// Este método processa o pedido para eliminar um objecto Refeicao com um determinado ID.
+        /// </summary>
+        /// <param name="id">O ID do objecto Refeicao a ser eliminado.</param>
+        /// <returns>A vista que contém o objecto Refeicao a eliminar.</returns>
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
@@ -267,7 +300,11 @@ namespace ATLManager.Controllers
             return View(refeicao);
         }
 
-        // POST: Refeicoes/Delete/5
+        /// <summary>
+        /// Este método processa o pedido para eliminar um objecto Refeicao com um determinado ID.
+        /// </summary>
+        /// <param name="id">O ID do objecto Refeicao a ser eliminado.</param>
+        /// <returns> Um redireccionamento para a vista do Índice após a eliminação ter sido concluída.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -306,11 +343,21 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Este método verifica se existe um objecto Refeicao na base de dados, com base no seu ID.
+        /// </summary>
+        /// <param name="id">O ID do objecto Refeicao a ser verificado.</param>
+        /// <returns>True se o objecto Refeicao existir na base de dados, false caso contrário.</returns>
         private bool RefeicaoExists(Guid id)
         {
           return _context.Refeicao.Any(e => e.RefeicaoId == id);
         }
 
+        /// <summary>
+        /// Este método carrega um ficheiro de imagem para o servidor e devolve o nome de ficheiro único gerado para o ficheiro carregado.
+        /// </summary>
+        /// <param name="logoPicture">O ficheiro de imagem a ser carregado.</param>
+        /// <returns>O nome de ficheiro único gerado para o ficheiro carregado.</returns>
         private string UploadedFile(IFormFile logoPicture)
         {
             string uniqueFileName = null;

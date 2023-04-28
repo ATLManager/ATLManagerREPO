@@ -125,7 +125,14 @@ namespace ATLManager.Controllers
 
 			return View(educandoSaude);
 		}
-    
+
+        /// <summary>
+        /// Atualiza um objeto EducandoSaude.
+        /// </summary>
+        /// <param name="id">O ID do objeto EducandoSaude.</param>
+        /// <param name="educandoSaude">O objeto EducandoSaude a ser atualizado.</param>
+        /// <returns>O resultado da execução da tarefa.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 		public async Task<IActionResult> DetailsSaude(Guid id, [Bind("EducandoSaudeId,BloodType,EmergencyContact,InsuranceName,InsuranceNumber,Allergies,Diseases,Medication,MedicalHistory,EducandoId")] EducandoSaude educandoSaude)
@@ -158,8 +165,13 @@ namespace ATLManager.Controllers
             return View(educandoSaude);
         }
 
-		// GET: EducandoSaude/DetailsResponsaveis/5
-		public async Task<IActionResult> DetailsResponsaveis(Guid? id)
+        /// <summary>
+        /// Exibe os detalhes dos responsáveis por um Educando.
+        /// </summary>
+        /// <param name="id">O ID do Educando.</param>
+        /// <returns>O resultado da execução da tarefa.</returns>
+
+        public async Task<IActionResult> DetailsResponsaveis(Guid? id)
 		{
 			if (id == null || _context.Educando == null)
 			{
@@ -180,8 +192,13 @@ namespace ATLManager.Controllers
 			return View(responsaveis);
 		}
 
-		// GET: EducandoSaude/DetailsEncarregado/5
-		public async Task<IActionResult> DetailsEncarregado(Guid? id)
+        /// <summary>
+        /// Exibe os detalhes do encarregado de educação de um Educando.
+        /// </summary>
+        /// <param name="id">O ID do Educando.</param>
+        /// <returns>O resultado da execução da tarefa.</returns>
+
+        public async Task<IActionResult> DetailsEncarregado(Guid? id)
 		{
 			if (id == null || _context.EducandoSaude == null)
 			{
@@ -210,6 +227,10 @@ namespace ATLManager.Controllers
 			return View(educandoEncarregado);
 		}
 
+        /// <summary>
+        /// Obtém uma lista de utilizadores EncarregadoEducacao.
+        /// </summary>
+        /// <returns>Uma lista de utilizadores EncarregadoEducacao.</returns>
 
         private async Task<List<ATLManagerUser>> GetEncarregadosAsync()
         {
@@ -221,6 +242,11 @@ namespace ATLManager.Controllers
             return encarregados;
         }
 
+        /// <summary>
+        /// Obtém uma lista de utilizadores EncarregadoEducacao filtrada por um termo de pesquisa.
+        /// </summary>
+        /// <param name="searchTerm">O termo de pesquisa.</param>
+        /// <returns>Uma lista de utilizadores EncarregadoEducacao filtrada pelo termo de pesquisa.</returns>
 
         [HttpGet]
         public async Task<IActionResult> GetEncarregados(string searchTerm)
@@ -237,13 +263,22 @@ namespace ATLManager.Controllers
 
 
 
-        // GET: Educandos/Create
+        /// <summary>
+        /// Exibe o formulário para criar um novo Educando.
+        /// </summary>
+        /// <returns>O resultado da execução da tarefa.</returns>
+
         public async Task<IActionResult> Create()
         {
 			return View(new EducandoCreateViewModel());
         }
 
-        // POST: Educandos/Create
+        /// <summary>
+        /// Cria um novo Educando.
+        /// </summary>
+        /// <param name="viewModel">O objeto EducandoCreateViewModel que contém as informações do novo Educando.</param>
+        /// <returns>O resultado da execução da tarefa.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EducandoCreateViewModel viewModel)
@@ -330,7 +365,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Educandos/Edit/5
+
+        /// <summary>
+        /// Método assíncrono que edita um educando com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do educando a ser editado.</param>
+        /// <returns>Uma instância de Task que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Educando == null)
@@ -354,9 +395,13 @@ namespace ATLManager.Controllers
             return View(new EducandoEditViewModel(educando));
         }
 
-        // POST: Educandos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método assíncrono que edita um educando com o ID e os dados do modelo de visualização especificados.
+        /// </summary>
+        /// <param name="id">O ID do educando a ser editado.</param>
+        /// <param name="viewModel">O modelo de visualização contendo os dados do educando a serem atualizados.</param>
+        /// <returns>Uma instância de Task que representa a operação assíncrona.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, EducandoEditViewModel viewModel)
@@ -447,7 +492,13 @@ namespace ATLManager.Controllers
 			return View(viewModel);
         }
 
-        // GET: Educandos/Delete/5
+        /// <summary>
+        /// Método assíncrono que remove um educando da base de dados.
+        /// </summary>
+        /// <param name="id">O identificador do educando a ser removido.</param>
+        /// <returns>Um objeto IActionResult representando o resultado da operação.</returns>
+
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Educando == null)
@@ -469,7 +520,12 @@ namespace ATLManager.Controllers
             return View(educando);
         }
 
-        // POST: Educandos/Delete/5
+        /// <summary>
+        /// Método assíncrono que remove um educando da base de dados após confirmação.
+        /// </summary>
+        /// <param name="id">O identificador do educando a ser removido.</param>
+        /// <returns>Um objeto IActionResult representando o resultado da operação.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -505,17 +561,35 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica se existe um Educando com o Id especificado.
+        /// </summary>
+        /// <param name="id">O Id do Educando a ser verificado.</param>
+        /// <returns>True se o Educando existir, caso contrário, False.</returns>
+
         private bool EducandoExists(Guid id)
         {
             return _context.Educando.Any(e => e.EducandoId == id);
         }
-        
+
+        /// <summary>
+        /// Verifica se existe um registro de saúde de um Educando com o Id especificado.
+        /// </summary>
+        /// <param name="id">O Id do Educando a ser verificado.</param>
+        /// <returns>True se o registro de saúde existir, caso contrário, False.</returns>
+
         private bool EducandoSaudeExists(Guid id)
         {
             return _context.EducandoSaude.Any(e => e.EducandoId == id);
         }
 
-		private string UploadedFile(IFormFile logoPicture)
+        /// <summary>
+        /// Faz o upload de um arquivo especificado para a pasta de uploads de imagens de educandos.
+        /// </summary>
+        /// <param name="logoPicture">O arquivo a ser enviado.</param>
+        /// <returns>O nome exclusivo do arquivo enviado.</returns>
+
+        private string UploadedFile(IFormFile logoPicture)
 		{
 			string uniqueFileName = null;
 
@@ -531,6 +605,12 @@ namespace ATLManager.Controllers
 			}
 			return uniqueFileName;
 		}
+
+        /// <summary>
+        /// Faz o download de um arquivo com o nome especificado da pasta de uploads de imagens de educandos.
+        /// </summary>
+        /// <param name="fileName">O nome do arquivo a ser baixado.</param>
+        /// <returns>Um objeto FileResult contendo o arquivo baixado.</returns>
 
         public IActionResult Download(string fileName)
         {

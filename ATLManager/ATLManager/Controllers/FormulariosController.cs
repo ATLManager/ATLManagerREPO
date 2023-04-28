@@ -15,6 +15,10 @@ using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Formulários'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class FormulariosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -32,7 +36,11 @@ namespace ATLManager.Controllers
             _notificacoesController = notificacoesController;
         }
 
-        // GET: Formularios
+        /// <summary>
+        /// Retorna a exibição da página inicial com uma lista de formulários associados à conta administrativa.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que representa a exibição da página inicial.</returns>
+
         [Authorize(Roles = "Coordenador,Funcionario")]
         public async Task<IActionResult> Index()
         {
@@ -49,7 +57,12 @@ namespace ATLManager.Controllers
 			return View(formularios);
         }
 
-        // GET: Formularios/Details/5
+        /// <summary>
+        /// Retorna a exibição dos detalhes do formulário especificado pelo ID.
+        /// </summary>
+        /// <param name="id">O ID do formulário a ser exibido.</param>
+        /// <returns>Uma instância de IActionResult que representa a exibição dos detalhes do formulário.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Formulario == null)
@@ -68,6 +81,11 @@ namespace ATLManager.Controllers
 
             return View(formulario);
         }
+
+        /// <summary>
+        /// Retorna a exibição da página inicial para o encarregado de educação atual com uma lista de formulários associados aos seus educandos.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que representa a exibição da página inicial do encarregado de educação.</returns>
 
         [Authorize(Roles = "EncarregadoEducacao")]
 		public async Task<IActionResult> IndexEE()
@@ -113,8 +131,13 @@ namespace ATLManager.Controllers
 			return View(formularios);
 		}
 
-		// GET: Formularios/Respostas/5
-		public async Task<IActionResult> Respostas(Guid? id)
+        /// <summary>
+        /// Obtém as respostas de um formulário pelo id.
+        /// </summary>
+        /// <param name="id">O id do formulário.</param>
+        /// <returns>Retorna uma lista de respostas do formulário ou NotFound se não existir.</returns>
+
+        public async Task<IActionResult> Respostas(Guid? id)
         {
             if (id == null || _context.Formulario == null)
             {
@@ -142,13 +165,25 @@ namespace ATLManager.Controllers
             return View(respostas);
         }
 
+        /// <summary>
+        /// Obtém as estatísticas de visitas de estudo de um formulário com base em seu ID.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Uma tarefa que representa a operação assíncrona e contém um objeto Dictionary que representa as estatísticas de visitas de estudo.</returns>
+
         public async Task<IActionResult> Estatisticas(Guid id)
         {
             var estatisticas = await GetVisitasDeEstudoEstatisticas(id);
             ViewData["FormularioId"] = id; // Passa o id do formulário para a view
             return View(estatisticas);
         }
-        
+
+        /// <summary>
+        /// Obtém as estatísticas de visitas de estudo de um formulário com base em seu ID.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Uma tarefa que representa a operação assíncrona e contém um objeto Dictionary que representa as estatísticas de visitas de estudo.</returns>
+
         private async Task<Dictionary<string, decimal>> GetVisitasDeEstudoEstatisticas(Guid? id)
         {
             // Obtenha o usuário atual
@@ -186,6 +221,12 @@ namespace ATLManager.Controllers
             return estatisticas;
         }
 
+        /// <summary>
+        /// Obtém as estatísticas de visitas de estudo de um formulário com base em seu ID através de uma solicitação Ajax.
+        /// </summary>
+        /// <param name="formularioId">O ID do formulário.</param>
+        /// <returns>Uma tarefa que representa a operação assíncrona e contém um objeto JsonResult que representa as estatísticas de visitas de estudo.</returns>
+
         [HttpGet]
         public async Task<JsonResult> GetVisitasDeEstudoEstatisticasAjax(Guid formularioId)
         {
@@ -193,7 +234,11 @@ namespace ATLManager.Controllers
             return Json(estatisticas);
         }
 
-        // GET: Formularios/Create
+        /// <summary>
+        /// Exibe a página de criação de um novo formulário.
+        /// </summary>
+        /// <returns>Uma tarefa que representa a operação assíncrona e contém um objeto IActionResult que representa o resultado da ação.</returns>
+
         [Authorize(Roles = "Coordenador")]
         public async Task<IActionResult> Create()
         {
@@ -222,9 +267,12 @@ namespace ATLManager.Controllers
             return View();
         }
 
-        // POST: Formularios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo formulário com base nos dados fornecidos pelo utilizador.
+        /// </summary>
+        /// <param name="formulario">O objeto Formulario que contém os dados do formulário a ser criado.</param>
+        /// <returns>Uma tarefa que representa a operação assíncrona e retorna uma IActionResult.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FormularioId,Name,Description,VisitaEstudoId,AtividadeId,DateLimit")] Formulario formulario)
@@ -303,8 +351,13 @@ namespace ATLManager.Controllers
             return View(formulario);
         }
 
-		// GET: Formularios/Edit/5
-		public async Task<IActionResult> Edit(Guid? id)
+        /// <summary>
+        /// Retorna a visualização do formulário para edição.
+        /// </summary>
+        /// <param name="id">O ID do formulário a ser editado.</param>
+        /// <returns>A visualização do formulário para edição.</returns>
+
+        public async Task<IActionResult> Edit(Guid? id)
 		{
 			if (id == null || _context.Formulario == null)
 			{
@@ -328,10 +381,13 @@ namespace ATLManager.Controllers
 			return View(viewModel);
 		}
 
-		// POST: Formularios/Edit/5
-		// To protect from overposting attacks, enable the specific properties you want to bind to.
-		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
+        /// <summary>
+        /// Método para editar um formulário existente.
+        /// </summary>
+        /// <param name="id">ID do formulário a ser editado.</param>
+        /// <param name="viewModel">ViewModel do formulário editado.</param>
+        /// <returns>Uma tarefa assíncrona que retorna uma ação de resultado.</returns>
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, FormularioEditViewModel viewModel)
         {
@@ -385,7 +441,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Formularios/Delete/5
+        /// <summary>
+        /// Método para obter o formulário a ser excluído.
+        /// </summary>
+        /// <param name="id">ID do formulário a ser excluído.</param>
+        /// <returns>Uma tarefa assíncrona que retorna uma ação de resultado.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Formulario == null)
@@ -404,7 +465,12 @@ namespace ATLManager.Controllers
             return View(formulario);
         }
 
-        // POST: Formularios/Delete/5
+        /// <summary>
+        /// Método para confirmar a exclusão de um formulário.
+        /// </summary>
+        /// <param name="id">ID do formulário a ser excluído.</param>
+        /// <returns>Uma tarefa assíncrona que retorna uma ação de resultado.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -459,6 +525,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se um formulário com o ID especificado existe no contexto atual.
+        /// </summary>
+        /// <param name="id">O ID do formulário a ser verificado.</param>
+        /// <returns>Retorna verdadeiro se um formulário com o ID especificado existe no contexto atual; caso contrário, retorna falso.</returns>
 
         private bool FormularioExists(Guid id)
         {
