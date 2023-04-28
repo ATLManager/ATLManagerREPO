@@ -183,14 +183,17 @@
     <!-- // Slide de Ajuda  -->
 
 
-
-	<script type="text/javascript">
-		// Add the following code if you want the name of the file appear on select
-		$(".custom-file-input").on("change", function () {
-			var fileName = $(this).val().split("\\").pop();
-			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-		});
-	</script>
+		/**
+		 * Adiciona o nome do arquivo selecionado ao label do input.
+		 * @function
+		 */
+		<script type="text/javascript">
+			// Add the following code if you want the name of the file appear on select
+			$(".custom-file-input").on("change", function () {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			});
+		</script>
 
 	@section Scripts {
 	@{
@@ -198,6 +201,10 @@
 		}
 	}
 
+	/**
+	* Configura o layout da tela com base no tamanho da tela
+	* @function
+	*/
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")

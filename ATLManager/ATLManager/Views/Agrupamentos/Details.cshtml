@@ -91,6 +91,10 @@
 		<!-- // Fase 1 -->
 	</div>
 
+	/**
+	* Configura o layout da tela com base no tamanho da tela
+	* @function
+	*/
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")
@@ -106,7 +110,46 @@
 	<!-- JS do Google Maps API -->
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init"></script>
 
+	/**
+		* Inicializa o mapa com marcadores de ATLs (Áreas de Trabalho e Lazer).
+		* @async
+		* @function init
+		* @returns {Promise<void>} Retorna uma promessa que resolve quando todos os marcadores forem adicionados ao mapa.
+		*/
+
+	/**
+		* Inicializa o mapa do Google Maps.
+		* @function initMap
+		* @param {number} lat - A latitude do centro do mapa.
+		* @param {number} lng - A longitude do centro do mapa.
+		* @returns {google.maps.Map} O objeto do mapa do Google Maps.
+		*/
+
+	/**
+		* Recupera informações de ATLs e adiciona marcadores ao mapa.
+		* @async
+		* @function fetchATLs
+		* @returns {Promise<google.maps.Marker[]>} Retorna uma promessa que resolve com um array de objetos Marker do Google Maps.
+		*/
+
+	/**
+		* Adiciona marcadores ao mapa.
+		* @function addMarkers
+		* @param {google.maps.Marker[]} markers - O array de objetos Marker do Google Maps.
+		* @param {google.maps.Map} map - O objeto do mapa do Google Maps.
+		* @returns {void}
+		*/
+
+	/**
+		* Recupera as coordenadas geográficas de um endereço.
+		* @async
+		* @function getLocation
+		* @param {string} address - O endereço a ser geocodificado.
+		* @returns {Promise<{ lat: number, lng: number }>} Retorna uma promessa que resolve com um objeto contendo a latitude e a longitude do endereço.
+		*/
+
 	<script>
+
 		async function init() {
 			const markers = await fetchATLs();
 
