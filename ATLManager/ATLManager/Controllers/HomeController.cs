@@ -227,6 +227,72 @@ namespace ATLManager.Controllers
             return Json(educandoAtividades);
         }
 
+		[HttpGet]
+		public async Task<IActionResult> GetRefeicoesByATLId()
+		{
+
+			// Obtenha o usuário atual
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+			// Obtenha a conta administrativa do usuário atual
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			// Obtenha as atividades gerenciadas pelo usuário atual
+			var refeicoes = await _context.Refeicao
+				.Where(a => a.AtlId == currentUserAccount.AtlId)
+				.ToListAsync();
+
+			return Json(refeicoes);
+		}
+        [HttpGet]
+        public async Task<IActionResult> GetFormulariosByATLId()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            // Obtenha os educandos associados ao ATL do usuário atual
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Where(e => e.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            var formularios = new List<dynamic>();
+
+            foreach (var educando in educandos)
+            {
+                var respostas = await (from resposta in _context.FormularioResposta
+                                       join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
+                                       join formularioTable in _context.Formulario on resposta.FormularioId equals formularioTable.FormularioId
+                                       where resposta.EducandoId == educando.EducandoId && resposta.Authorized == false
+                                       select new
+                                       {
+                                           RespostaId = resposta.FormularioRespostaId,
+                                           FormularioId = resposta.FormularioId,
+                                           FormularioName = formularioTable.Name,
+                                           FormularioDescription = formularioTable.Description,
+                                           FormularioEndDate = formularioTable.DateLimit,
+                                           EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
+                                           Authorized = resposta.Authorized,
+                                           ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString()
+                                       }).ToListAsync();
+
+                formularios = formularios.Concat(respostas).ToList(); // usando 'Concat' em vez de 'Union'
+            }
+
+            return Json(formularios);
+        }
+
+
+
+
+
         public IActionResult AboutUs()
         {
             return View();
