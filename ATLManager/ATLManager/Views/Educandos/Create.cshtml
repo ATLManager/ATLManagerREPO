@@ -245,7 +245,7 @@
                                 var listHtml = '';
                                 for (var i = 0; i < data.length; i++) {
                                     listHtml += '<button type="button" class="list-group-item list-group-item-action encarregado-item" data-id="' + data[i].id + '">' +
-                                        '<span class="encarregado-name">' + data[i].firstName + ' ' + data[i].lastName + '</span>' +
+                                        '<span class="encarregado-name">' + data[i].firstName + ' ' + data[i].lastName + ' ' + 'NIF: ' + data[i].nif + '</span>' + // Use a propriedade nif aqui
                                         '</button>';
                                 }
                                 $('#encarregadoList').html(listHtml).show();
@@ -253,6 +253,7 @@
                                 $('#encarregadoList').hide();
                             }
                         }
+
                     });
                 } else {
                     $('#encarregadoList').hide();
