@@ -1,0 +1,17 @@
+﻿
+
+th:first-child {
+    pointer-events: none;
+}
+
+    th:first-child::before {
+        display: none !important;
+    }
+
+    th:first-child::after {
+        display: none !important;
+    }
+
+    th:first-child .sortable {
+        display: none !important;
+    }
