@@ -1,0 +1,1 @@
+search_result['791']=["topic_00000000000001B1.html","FormulariosController.GetVisitasDeEstudoEstatisticasAjax Method","Obtém as estatísticas de visitas de estudo de um formulário com base em seu ID através de uma solicitação Ajax."];

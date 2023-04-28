@@ -1,0 +1,1 @@
+search_result['938']=["topic_0000000000000202.html","RecibosController.Index Method","Retorna uma lista de recibos com base no utilizador atual."];

@@ -1,0 +1,1 @@
+search_result['825']=["topic_00000000000001C3_overloads--.html","FuncionariosController.Create Method","Cria um novo funcionário com base nas informações fornecidas pelo utilizador e adiciona-o."];

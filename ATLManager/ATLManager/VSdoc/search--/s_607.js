@@ -1,0 +1,1 @@
+search_result['607']=["topic_000000000000014D.html","AgrupamentosController.GetCoordenadoresByATL Method","Obtém todos os coordenadores associados à ATL especificada."];

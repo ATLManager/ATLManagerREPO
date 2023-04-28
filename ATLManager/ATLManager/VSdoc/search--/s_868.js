@@ -1,0 +1,1 @@
+search_result['868']=["topic_00000000000001DD.html","NotificacoesController Class","Controlador para o modelo \u0027Notificações\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

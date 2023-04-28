@@ -1,0 +1,1 @@
+search_result['821']=["topic_00000000000001C1.html","FuncionariosController.Details Method","Retorna uma visualização que exibe detalhes de um funcionário específico."];

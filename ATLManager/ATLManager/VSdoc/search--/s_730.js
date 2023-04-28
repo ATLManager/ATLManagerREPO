@@ -1,0 +1,1 @@
+search_result['730']=["topic_000000000000018F.html","EducandosController.DeleteConfirmed Method","Método assíncrono que remove um educando da base de dados após confirmação."];

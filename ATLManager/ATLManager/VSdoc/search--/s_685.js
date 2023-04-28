@@ -1,0 +1,1 @@
+search_result['685']=["topic_0000000000000176.html","EducandoRecordsController.Delete Method","Retorna a página de exclusão do registo do educando com o ID especificado."];

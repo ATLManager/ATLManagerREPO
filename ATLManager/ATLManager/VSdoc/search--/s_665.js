@@ -1,0 +1,1 @@
+search_result['665']=["topic_000000000000016B.html","CoordenadoresController.Details Method","Retorna a exibição dos detalhes de um coordenador especificado pelo ID."];

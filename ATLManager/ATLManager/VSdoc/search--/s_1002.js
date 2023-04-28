@@ -1,0 +1,1 @@
+search_result['1002']=["topic_0000000000000226.html","VisitasEstudoController.Details Method","Retorna os detalhes de uma visita de estudo com base no ID especificado."];

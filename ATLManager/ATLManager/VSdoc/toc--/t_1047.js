@@ -1,0 +1,1 @@
+c['1047']=[['1048',"ReciboRespostaRecord Constructor","topic_00000000000002A2.html",0],['1049',"Properties","topic_0000000000000293_props--.html",1]];

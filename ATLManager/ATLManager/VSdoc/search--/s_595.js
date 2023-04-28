@@ -1,0 +1,1 @@
+search_result['595']=["topic_0000000000000145.html","AgrupamentosController.Details Method","Exibe os detalhes de um agrupamento específico."];

@@ -1,0 +1,1 @@
+search_result['892']=["topic_00000000000001EC.html","ReciboRecordsController Class","Controlador para o modelo \u0027Históricos Recibos\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

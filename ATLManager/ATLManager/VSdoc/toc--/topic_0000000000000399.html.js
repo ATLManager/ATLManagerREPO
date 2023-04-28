@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['1096',"ATLManager.Services Namespace","topic_0000000000000390.html"],['1107',"FileManager Class","topic_0000000000000398.html"],['1108',"FileManager Constructor","topic_0000000000000399.html"]];

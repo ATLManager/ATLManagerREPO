@@ -1,0 +1,1 @@
+search_result['802']=["topic_00000000000001B8.html","FuncionarioRecordsController Class","Controlador para o modelo \u0027Históricos de Funcionários\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

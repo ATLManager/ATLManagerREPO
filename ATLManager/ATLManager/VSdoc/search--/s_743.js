@@ -1,0 +1,1 @@
+search_result['743']=["topic_0000000000000197.html","EstatisticasController.GetVisitasEstudoPorMesEstatisticasEnc Method","Obtém as estatísticas de visitas de estudo por mês."];

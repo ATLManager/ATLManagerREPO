@@ -1,0 +1,1 @@
+search_result['674']=["topic_0000000000000170.html","CoordenadoresController.Delete Method","Exclui um coordenador com base no ID fornecido."];

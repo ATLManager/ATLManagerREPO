@@ -1,0 +1,1 @@
+search_result['608']=["topic_000000000000014E.html","AtividadeRecordsController Class","Controlador para o modelo \u0027Histórico de Atividades\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

@@ -1,0 +1,1 @@
+search_result['943']=["topic_0000000000000206_overloads--.html","RecibosController.Create Method","Retorna a view para criar um novo recibo."];

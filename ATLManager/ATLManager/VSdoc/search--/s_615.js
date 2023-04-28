@@ -1,0 +1,1 @@
+search_result['615']=["topic_0000000000000150.html","AtividadeRecordsController.Index Method","Obtém a página de índice de atividades para o utilizador atual."];

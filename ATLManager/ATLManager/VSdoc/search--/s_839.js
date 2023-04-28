@@ -1,0 +1,1 @@
+search_result['839']=["topic_00000000000001CA.html","HomeController Class","Controlador para o modelo \u0027HomePage\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

@@ -1,0 +1,1 @@
+search_result['683']=["topic_0000000000000174.html","EducandoRecordsController.Index Method","Retorna a página inicial da aplicação, mostrando os educandos associados à conta do utilizador atual."];

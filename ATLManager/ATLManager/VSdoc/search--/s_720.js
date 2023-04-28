@@ -1,0 +1,1 @@
+search_result['720']=["topic_0000000000000189.html","EducandosController.GetEncarregados Method","Obtém uma lista de utilizadores EncarregadoEducacao filtrada por um termo de pesquisa."];

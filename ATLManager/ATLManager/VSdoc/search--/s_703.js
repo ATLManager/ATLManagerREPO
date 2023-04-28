@@ -1,0 +1,1 @@
+search_result['703']=["topic_000000000000017F.html","EducandoResponsaveisController.Delete Method","Remove um registo EducandoResponsavel com base em um ID fornecido."];
