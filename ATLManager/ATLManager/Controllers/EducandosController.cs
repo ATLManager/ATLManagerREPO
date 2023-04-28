@@ -248,16 +248,15 @@ namespace ATLManager.Controllers
         /// Obtém uma lista de utilizadores EncarregadoEducacao.
         /// </summary>
         /// <returns>Uma lista de utilizadores EncarregadoEducacao.</returns>
-
-        private async Task<List<ATLManagerUser>> GetEncarregadosAsync()
+        private async Task<List<EncarregadoEducacao>> GetEncarregadosAsync()
         {
             var encarregados = await _context.EncarregadoEducacao
                 .Include(e => e.User)
-                .Select(e => e.User)
                 .ToListAsync();
 
             return encarregados;
         }
+
 
 
         /// <summary>
@@ -272,12 +271,13 @@ namespace ATLManager.Controllers
             var allEncarregados = await GetEncarregadosAsync();
 
             var filteredEncarregados = allEncarregados
-                .Where(e => e.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
-                .Select(e => new { id = e.Id, firstName = e.FirstName, lastName = e.LastName})
+                .Where(e => e.User.FirstName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase) || e.User.LastName.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .Select(e => new { id = e.EncarregadoId, firstName = e.User.FirstName, lastName = e.User.LastName })
                 .ToList();
 
             return Json(filteredEncarregados);
         }
+
 
 
 
