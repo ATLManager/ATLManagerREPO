@@ -12,6 +12,7 @@ using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -20,14 +21,20 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "visitas";
 
         public VisitasEstudoController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IFileManager fileManager
+            )
         {
             _context = context;
             _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         // GET: VisitasEstudo
@@ -108,19 +115,13 @@ namespace ATLManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VisitaEstudoCreateViewModel viewModel)
         {
+			if (DateTime.Compare(viewModel.Date, DateTime.UtcNow) < 0)
+			{
+				var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+				ModelState.AddModelError("Date", validationMessage);
+			}
 
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = viewModel.Date;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
-            {
-                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
-                ModelState.AddModelError("Date", validationMessage);
-            }
-
-
-
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 var currentUser = await _userManager.GetUserAsync(HttpContext.User);
                 var currentUserAccount = await _context.ContaAdministrativa
@@ -137,7 +138,7 @@ namespace ATLManager.Controllers
                     AtlId = currentUserAccount.AtlId
                 };
 
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 if (fileName != null)
                 {
@@ -184,16 +185,14 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = DateTime.Parse(viewModel.Date);
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            if (viewModel.Date != null)
             {
-                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
-                ModelState.AddModelError("Date", validationMessage);
+                if (DateTime.Compare((DateTime)viewModel.Date, DateTime.UtcNow) < 0)
+                {
+                    var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+                    ModelState.AddModelError("Date", validationMessage);
+                }
             }
-
 
             if (ModelState.IsValid)
             {
@@ -210,12 +209,12 @@ namespace ATLManager.Controllers
 
                         if (viewModel.Date != null)
                         {
-                            visitaEstudo.Date = DateTime.Parse(viewModel.Date);
+                            visitaEstudo.Date = (DateTime)viewModel.Date;
                         }
 
-                        string fileName = UploadedFile(viewModel.Picture);
+                        string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
-                        if (fileName != null)
+						if (fileName != null)
                         {
                             visitaEstudo.Picture = fileName;
                         }
@@ -292,23 +291,6 @@ namespace ATLManager.Controllers
         private bool VisitaEstudoExists(Guid id)
         {
           return (_context.VisitaEstudo?.Any(e => e.VisitaEstudoID == id)).GetValueOrDefault();
-        }
-
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/visitasEstudo");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

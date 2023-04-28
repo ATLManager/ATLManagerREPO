@@ -7,6 +7,7 @@ using ATLManager.Areas.Identity.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -16,18 +17,20 @@ namespace ATLManager.Controllers
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "funcionarios";
 
         public FuncionariosController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         // GET: Coordenador
@@ -163,7 +166,7 @@ namespace ATLManager.Controllers
                     // Criar o perfil
                     var funcionario = new ContaAdministrativa(user, atlId: (Guid)userAccount.AtlId, viewModel.DateOfBirth, viewModel.CC);
 
-                    string fileName = UploadedFile(viewModel.ProfilePicture);
+                    string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 					if (fileName != null)
 					{
 						funcionario.ProfilePicture = fileName;
@@ -244,7 +247,6 @@ namespace ATLManager.Controllers
                 }
             }
 
-
             // Obter a data de nascimento do ViewModel
             DateTime dataNascimento = DateTime.Parse(viewModel.DateOfBirth);
 
@@ -257,7 +259,6 @@ namespace ATLManager.Controllers
                 var validationMessage = "A idade mínima para registar um funcionário é 18 anos";
                 ModelState.AddModelError("DateOfBirth", validationMessage);
             }
-
 
             if (ModelState.IsValid)
             {
@@ -273,8 +274,8 @@ namespace ATLManager.Controllers
                         }
                         funcionario.CC = viewModel.CC;
 
-                        string fileName = UploadedFile(viewModel.ProfilePicture);
-						if (fileName != null)
+                        string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
+                        if (fileName != null)
 						{
 							funcionario.ProfilePicture = fileName;
 						}
@@ -399,23 +400,6 @@ namespace ATLManager.Controllers
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
-        }
-
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/funcionarios");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

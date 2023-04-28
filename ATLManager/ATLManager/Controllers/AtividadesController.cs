@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using ATLManager.Areas.Identity.Data;
 using ATLManager.Models;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -19,13 +20,17 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-        public AtividadesController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager, IWebHostEnvironment webHostEnvironment)
+        private readonly string FolderName = "atividades";
+
+        public AtividadesController(ATLManagerAuthContext context, 
+            UserManager<ATLManagerUser> userManager,
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         // GET: Atividades
@@ -124,7 +129,7 @@ namespace ATLManager.Controllers
 
             if (ModelState.IsValid)
             {
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 var atividade = new Atividade
                 {
@@ -220,7 +225,7 @@ namespace ATLManager.Controllers
                 if (viewModel.EndDate != null)
                     atividade.EndDate = (DateTime)viewModel.EndDate;
 
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 if (fileName != null)
                 {
@@ -301,22 +306,5 @@ namespace ATLManager.Controllers
         {
           return (_context.Atividade?.Any(e => e.AtividadeId == id)).GetValueOrDefault();
         }
-
-		private string UploadedFile(IFormFile comprovativo)
-		{
-			string uniqueFileName = null;
-
-			if (comprovativo != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atividades");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					comprovativo.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

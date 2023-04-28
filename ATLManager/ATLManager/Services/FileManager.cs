@@ -28,7 +28,7 @@ namespace ATLManager.Services
 				if (uploadsFolder == null)
 					return null;
 
-				string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+				string uniqueFileName = Guid.NewGuid().ToString() + "_id_" + file.FileName;
 				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
 				using var fileStream = new FileStream(filePath, FileMode.Create);

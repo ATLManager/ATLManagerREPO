@@ -14,7 +14,6 @@ namespace ATLManager.Controllers
 		private readonly UserManager<ATLManagerUser> _userManager;
 		private readonly INotificacoesController _notificacoesController;
 
-
 		public FormularioRespostasController(ATLManagerAuthContext context,
 			UserManager<ATLManagerUser> userManager,
             INotificacoesController notificacoesController)

@@ -7,7 +7,7 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Visitas de Estudo";
 }
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
@@ -44,16 +44,12 @@
             <!-- Box  -->
             <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5 p-5">
-
                     <div class="container">
                         <form>
                             <div class="row"> </div>
-
                             <div class="row mt-3">
                                 <div class="mb-3">
-
                                     <div class="row">
-                                      
                                         @if (User.IsInRole("Coordenador"))
                                         {
                                             <div class="col">
@@ -63,10 +59,7 @@
                                             </div>
                                         }
                                     </div>
-
                                     <p class="rounded-circle"></p>
-
-
                                     <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
@@ -90,7 +83,7 @@
                                             {
                                                 <tr>
                                                     <td class="align-middle">
-                                                        <img src="~/images/uploads/visitasEstudo/@item.Picture"
+                                                        <img src="~/images/uploads/visitas/@item.Picture"
                                                              class="rounded-circle"
                                                              height="40" width="40"
                                                      asp-append-version="true" />

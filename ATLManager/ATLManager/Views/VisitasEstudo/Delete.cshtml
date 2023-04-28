@@ -6,7 +6,7 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Apagar Visita de Estudo";
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="container text-center">
                         <div class="row justify-content-center">
-                            <img src="~/images/uploads/visitasEstudo/@Model.Picture"
+                            <img src="~/images/uploads/visitas/@Model.Picture"
                                  class="rounded-circle mb-3"
                                  style="width:15%"
                              asp-append-version="true" />
@@ -53,7 +53,6 @@
                                     @Html.DisplayFor(model => model.Name)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Location)
@@ -62,7 +61,6 @@
                                     @Html.DisplayFor(model => model.Location)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Date)
@@ -71,7 +69,6 @@
                                     @Html.DisplayFor(model => model.Date)
                                 </dd>
                             </div>
-
                             <div class="row">
                                 <dt class="col mr-2">
                                     @Html.DisplayNameFor(model => model.Description)
@@ -80,7 +77,6 @@
                                     @Html.DisplayFor(model => model.Description)
                                 </dd>
                             </div>
-
                        </dl>
                         <hr />
                         <div class="d-flex text-center mt-4">

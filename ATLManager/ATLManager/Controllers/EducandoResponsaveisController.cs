@@ -9,19 +9,22 @@ using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
     public class EducandoResponsaveisController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-		public EducandoResponsaveisController(ATLManagerAuthContext context, 
-            IWebHostEnvironment webHostEnvironment)
+        private readonly string FolderName = "responsaveis";
+
+        public EducandoResponsaveisController(ATLManagerAuthContext context,
+            IFileManager fileManager)
 		{
 			_context = context;
-			_webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
 		}
 
 		// GET: EducandoResponsaveis/Details/5
@@ -68,7 +71,7 @@ namespace ATLManager.Controllers
                     Parentesco = viewModel.Parentesco,
                 };
 
-				string photoFileName = UploadedFile(viewModel.ProfilePicture);
+				string photoFileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 
 				if (photoFileName != null)
 				{
@@ -139,7 +142,7 @@ namespace ATLManager.Controllers
                     responsavel.Phone = viewModel.Phone;
                     responsavel.Parentesco = viewModel.Parentesco;
 
-                    string photoFileName = UploadedFile(viewModel.ProfilePicture);
+                    string photoFileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 
                     if (photoFileName != null)
                     {
@@ -209,22 +212,5 @@ namespace ATLManager.Controllers
         {
           return (_context.EducandoResponsavel?.Any(e => e.EducandoResponsavelId == id)).GetValueOrDefault();
         }
-
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/responsaveis");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

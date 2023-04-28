@@ -10,6 +10,7 @@ using ATLManager.Models;
 using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
@@ -17,16 +18,18 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "atls";
+        private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public ATLController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         // GET: ATL
@@ -147,7 +150,7 @@ namespace ATLManager.Controllers
                     NIPC = viewModel.NIPC
 				};
 
-                string fileName = UploadedFile(viewModel.LogoPicture);
+                string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
                 if (fileName != null)
                 {
                     atl.LogoPicture = fileName;
@@ -275,7 +278,7 @@ namespace ATLManager.Controllers
                         atl.AgrupamentoId = viewModel.AgrupamentoId;
                         atl.NIPC = viewModel.NIPC;
 
-                        string fileName = UploadedFile(viewModel.LogoPicture);
+                        string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
                         if (fileName != null)
                         {
                             atl.LogoPicture = fileName;
@@ -354,27 +357,9 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool ATLExists(Guid id)
         {
           return _context.ATL.Any(e => e.AtlId == id);
         }
-
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atls");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }
