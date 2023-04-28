@@ -17,6 +17,13 @@
     <!-- 1.13.4 -->
     <link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
     <script src="~/js/datatable/jquery-3.6.0.min.js"></script>
+    
+    
+    /**
+     * Inicializa o DataTable no elemento com o ID "myTable"
+     *
+     * @function
+     */
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
@@ -216,6 +223,12 @@
     </div>
     <!-- // Slide de Ajuda  -->
     <!-- Search on table (Fase1) -->
+
+    /**
+     * Adiciona um ouvinte de entrada ao elemento de entrada fornecido e filtra uma tabela de acordo com o valor de entrada.
+     * @param {HTMLElement} input - O elemento de entrada a ser monitorado para entrada.
+     * @function
+     */
     <script>
         // Get the input element and add an event listener for input
         const input = document.getElementById("nome");
