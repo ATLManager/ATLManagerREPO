@@ -25,16 +25,18 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IFileManager _fileManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "atividades";
 
         public AtividadesController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
-            IFileManager fileManager)
+            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _userManager = userManager;
             _fileManager = fileManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -345,7 +347,6 @@ namespace ATLManager.Controllers
         /// </summary>
         /// <param name="id">O ID da actividade a verificar.</param>
         /// <returns>Verdadeiro se existir na base de dados uma actividade com o ID especificado; caso contrário, falso.</returns>
-        p
         private bool AtividadeExists(Guid id)
         {
           return (_context.Atividade?.Any(e => e.AtividadeId == id)).GetValueOrDefault();

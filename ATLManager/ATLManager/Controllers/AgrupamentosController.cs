@@ -26,17 +26,19 @@ namespace ATLManager.Controllers
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IFileManager _fileManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "agrupamentos";
         private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public AgrupamentosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IFileManager fileManager)
+            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _userManager = userManager;
             _fileManager = fileManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>

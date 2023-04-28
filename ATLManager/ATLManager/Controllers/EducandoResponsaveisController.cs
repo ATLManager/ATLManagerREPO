@@ -21,15 +21,17 @@ namespace ATLManager.Controllers
     {
         private readonly ATLManagerAuthContext _context;
         private readonly IFileManager _fileManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "responsaveis";
 
         public EducandoResponsaveisController(ATLManagerAuthContext context,
-            IFileManager fileManager)
-		{
+            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
+        {
 			_context = context;
             _fileManager = fileManager;
-		}
+            _webHostEnvironment = webHostEnvironment;
+        }
 
         /// <summary>
         /// Mostra os detalhes do responsável pelo educando com o ID especificado.

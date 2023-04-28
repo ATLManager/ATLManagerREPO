@@ -22,19 +22,21 @@ namespace ATLManager.Controllers
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly IFileManager _fileManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly string FolderName = "funcionarios";
 
         public FuncionariosController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IFileManager fileManager)
+            IFileManager fileManager, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _fileManager = fileManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
