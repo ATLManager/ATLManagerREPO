@@ -238,7 +238,7 @@
 
 			tableRows.forEach(row => {
 				const rowEducandoId = row.getAttribute('data-educando-id');
-				row.style.display = selectedEducandoId === '' || rowEducandoId !== selectedEducandoId ? 'none' : '';
+				row.style.display = (selectedEducandoId !== '' && rowEducandoId !== selectedEducandoId) ? 'none' : '';
 			});
 		}
 	</script>

@@ -83,8 +83,8 @@ namespace ATLManager.Controllers
                     visitas = visitas.Union(tempVisitas).ToList();
                 }
 
-				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
-				return View(visitas);
+                ViewBag.Educandos = educandos;
+                return View(visitas);
             }
         }
 

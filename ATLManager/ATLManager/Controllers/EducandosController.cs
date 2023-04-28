@@ -243,7 +243,6 @@ namespace ATLManager.Controllers
 			return View(educandoEncarregado);
 		}
 
-
         /// <summary>
         /// Obtém uma lista de utilizadores EncarregadoEducacao.
         /// </summary>
@@ -256,8 +255,6 @@ namespace ATLManager.Controllers
 
             return encarregados;
         }
-
-
 
         /// <summary>
         /// Obtém uma lista de utilizadores EncarregadoEducacao filtrada por um termo de pesquisa.
@@ -277,10 +274,6 @@ namespace ATLManager.Controllers
 
             return Json(filteredEncarregados);
         }
-
-
-
-
 
         /// <summary>
         /// Exibe o formulário para criar um novo Educando.

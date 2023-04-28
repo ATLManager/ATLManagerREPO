@@ -82,8 +82,9 @@ namespace ATLManager.Controllers
 
 					refeicoes = refeicoes.Union(tempRefeicoes).ToList();
 				}
-				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
-				return View(refeicoes);
+
+                ViewBag.Educandos = educandos;
+                return View(refeicoes);
 			}
 		}
 
