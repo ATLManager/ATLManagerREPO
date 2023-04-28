@@ -4,9 +4,12 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
+@using ATLManager.Services
+@inject LanguageService language
+
 
 @{
-    ViewData["Title"] = "Agrupamentos";
+    ViewData["Title"] = @language.GetKey("menuAgrupamento");
 }
 
 @if (SignInManager.IsSignedIn(User))
@@ -132,7 +135,7 @@
 
         <div class="row text-center mt-2">
             <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
+                <h2 class="text-white ms-5">@language.GetKey("help")</h2>
             </div>
 
             <div class="col-2">
@@ -150,15 +153,13 @@
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
 
-                        <span>Como alterar uma visita de estudo</span>
+                        <span>@language.GetKey("howtofuncionalidades")</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
-
-
+                
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
+                    @language.GetKey("txtfuncionalidades")
 
                 </span>
             </li>
@@ -171,7 +172,7 @@
                             <img src="~/images/guide/terms.png" class="">
                         </div>
                         <div class="col">
-                            <span>Leia artigos de ajuda</span>
+                            <span>@language.GetKey("readarticles")</span>
                         </div>
                     </div>
                 </button>
@@ -183,7 +184,7 @@
                             <img src="~/images/guide/comunity.png" class="">
                         </div>
                         <div class="col">
-                            <span>Pergunte à comunidade</span>
+                            <span>@language.GetKey("askcomunity")</span>
                         </div>
                     </div>
                 </button>
@@ -195,7 +196,7 @@
                             <img src="~/images/guide/new.png" class="">
                         </div>
                         <div class="col">
-                            <span>Novas Atualizações</span>
+                            <span>@language.GetKey("newsupdates")</span>
                         </div>
                     </div>
                 </button>
@@ -207,7 +208,7 @@
                             <img src="~/images/guide/feedback.png" class="">
                         </div>
                         <div class="col">
-                            <span>Dê Feedback</span>
+                            <span>@language.GetKey("givefeedback")</span>
                         </div>
                     </div>
 

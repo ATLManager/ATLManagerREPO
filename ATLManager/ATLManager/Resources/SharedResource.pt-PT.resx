@@ -808,5 +808,237 @@
     <value>Consultar Funcionario</value>
   </data>
 
+  <data name="menuAgrupamento" xml:space="preserve">
+    <value>Agrupamentos</value>
+  </data>
+
+  <data name="menuAtl" xml:space="preserve">
+    <value>ATL's</value>
+  </data>
+
+  <data name="menuCoordenador" xml:space="preserve">
+    <value>Coordenadores</value>
+  </data>
+
+  <data name="menuFuncionario" xml:space="preserve">
+    <value>Funcionários</value>
+  </data>
+
+  <data name="menuRefeicao" xml:space="preserve">
+    <value>Refeições</value>
+  </data>
+
+  <data name="menuEducando" xml:space="preserve">
+    <value>Educandos</value>
+  </data>
+
+  <data name="menuVisitaEstudo" xml:space="preserve">
+    <value>Visitas de Estudo</value>
+  </data>
+
+  <data name="menuFormulario" xml:space="preserve">
+    <value>Formulários</value>
+  </data>
+
+  <data name="menuAtividade" xml:space="preserve">
+    <value>Atividades</value>
+  </data>
+
+  <data name="menuEstatistica" xml:space="preserve">
+    <value>Educandos</value>
+  </data>
+
+  <data name="menuFatura" xml:space="preserve">
+    <value>Faturas</value>
+  </data>
+
+  <data name="menuNotificacao" xml:space="preserve">
+    <value>Notificações</value>
+  </data>
+
+  <data name="menuHistorico" xml:space="preserve">
+    <value>Histórico</value>
+  </data>
+
+  <data name="menuEducacao" xml:space="preserve">
+    <value>Educação</value>
+  </data>
+
+  <data name="menuRecurso" xml:space="preserve">
+    <value>Recursos</value>
+  </data>
+
+  <data name="menuMensagens" xml:space="preserve">
+    <value>Centro de alertas</value>
+  </data>
+
+  <data name="menuNovasMensagens" xml:space="preserve">
+    <value>Sem novas notificações</value>
+  </data>
+
+  <data name="menuMostraMensagens" xml:space="preserve">
+    <value>Mostra todos as notificações</value>
+  </data>
+
+  <data name="menuPlaceSearch" xml:space="preserve">
+    <value>O que deseja procurar?</value>
+  </data>
+
+  <data name="profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+
+  <data name="settings" xml:space="preserve">
+    <value>Definições</value>
+  </data>
+
+  <data name="activityLog" xml:space="preserve">
+    <value>Log de atividades</value>
+  </data>
+
+  <data name="sair" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+
+  <data name="cancelar" xml:space="preserve">
+    <value>cancelar</value>
+  </data>
+
+  <data name="qlogout" xml:space="preserve">
+    <value>De certeza que quer sair?</value>
+  </data>
+
+  <data name="tConsulta" xml:space="preserve">
+    <value>Detalhes do Agrupamento</value>
+  </data>
+
+  <data name="gname" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+
+  <data name="glocation" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+
+
+  <data name="btnVoltar" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
+
+
+  <data name="qremove" xml:space="preserve">
+    <value>Tens a certeza que queres remover este agrupamento?</value>
+  </data>
+
+  <data name="tremove_agr" xml:space="preserve">
+    <value>Remover Agrupamento</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+
+
+  <data name="plname" xml:space="preserve">
+    <value>Insira um nome</value>
+  </data>
+  <data name="pllocalidade" xml:space="preserve">
+    <value>Insira uma localidade</value>
+  </data>
+  <data name="plnipc" xml:space="preserve">
+    <value>Insira NIPC</value>
+  </data>
+  <data name="lchoose" xml:space="preserve">
+    <value>Escolha a imagem</value>
+  </data>
+
+
+  <data name="howto_create_group" xml:space="preserve">
+    <value>Como criar agrupamento</value>
+  </data>
+
+  <data name="howto_change_group" xml:space="preserve">
+    <value>Como alterar agrupamento</value>
+  </data>
+
+  <data name="howto_delete_group" xml:space="preserve">
+    <value>Como remover agrupamento</value>
+  </data>
+
+  <data name="txt_create_group" xml:space="preserve">
+    <value>Para criar um agrupamento deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
+
+  <data name="txt_change_group" xml:space="preserve">
+    <value>Para alterar um agrupamento deverá alterar pelo menos dos campos já preenchidos</value>
+  </data>
+
+  <data name="txt_delete_group" xml:space="preserve">
+    <value>Para remover o agrupamento basta clicar no botão vermelho de remover.</value>
+  </data>
+
+
+  <data name="txt_create_atl" xml:space="preserve">
+    <value>To create a atl you'll need to insert data in each field, being the only optional one, the image.</value>
+  </data>
+
+  <data name="txt_change_atl" xml:space="preserve">
+    <value>To change a atl you'll need to change at least one field.</value>
+  </data>
+
+  <data name="txt_delete_atl" xml:space="preserve">
+    <value>To remove a atl click on the red button to remove.</value>
+  </data>
+
+  <data name="txt_create_coordinator" xml:space="preserve">
+    <value>To create a coordinator you'll need to insert data in each field, being the only optional one, the image.</value>
+  </data>
+
+  <data name="txt_change_coordinator" xml:space="preserve">
+    <value>To change a coordinator you'll need to change at least one field.</value>
+  </data>
+
+  <data name="txt_delete_coordinator" xml:space="preserve">
+    <value>To remove a coordinator click on the red button to remove.</value>
+  </data>
+
+  <data name="askcomunity" xml:space="preserve">
+    <value>Pergunte à comunidade</value>
+  </data>
+  <data name="readarticles" xml:space="preserve">
+    <value>Leia artigos de ajuda</value>
+  </data>
+  <data name="newsupdates" xml:space="preserve">
+    <value>Novas atualizações</value>
+  </data>
+  <data name="givefeedback" xml:space="preserve">
+    <value>Dê feedback</value>
+  </data>
+
+  <data name="location404" xml:space="preserve">
+    <value>Localização não encontrada</value>
+  </data>
+
+  <data name="howtofuncionalidades" xml:space="preserve">
+    <value>Funcionalidades</value>
+  </data>
+
+  <data name="txtfuncionalidades" xml:space="preserve">
+    <value>Na página poderá encontrar procurar elementos numa lista, cada elementa é acompanhado por três botões, o botão de consultar, editar e remover o elemento em questão.</value>
+  </data>
+  <data name="btnCreate" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+
 
 </root>
+<!-- 
+@using ATLManager.Services
+@inject LanguageService language
+
+@language.GetKey("txtSearchHelpArticles")
+
+<data name="ASD" xml:space="preserve">
+    <value>ASDASD</value>
+  </data>
+
+btnSave -->

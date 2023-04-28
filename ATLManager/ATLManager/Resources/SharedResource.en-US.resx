@@ -22,8 +22,10 @@
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing"
+  mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework
+  object]</value>
         <comment>This is a comment</comment>
     </data>
                 
@@ -59,7 +61,8 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -105,639 +108,827 @@
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
-  <resheader name="resmimetype">
+  <resheader
+    name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
+  Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
+  Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="2factorAuth" xml:space="preserve">
+  <data name="2factorAuth"
+    xml:space="preserve">
     <value>Two-factor authentication</value>
   </data>
   <data name="and" xml:space="preserve">
     <value>and</value>
   </data>
-  <data name="btnChangeEmail" xml:space="preserve">
+  <data
+    name="btnChangeEmail" xml:space="preserve">
     <value>Change email</value>
   </data>
-  <data name="btnClickLogout" xml:space="preserve">
+  <data
+    name="btnClickLogout" xml:space="preserve">
     <value>Click here to Logout</value>
   </data>
-  <data name="btnClickResendEmail" xml:space="preserve">
+  <data
+    name="btnClickResendEmail" xml:space="preserve">
     <value>Resend</value>
   </data>
-  <data name="btnDeletePersonalData" xml:space="preserve">
+  <data
+    name="btnDeletePersonalData" xml:space="preserve">
     <value>Delete data and close my account</value>
   </data>
-  <data name="btnDisable2factorAuth" xml:space="preserve">
+  <data
+    name="btnDisable2factorAuth" xml:space="preserve">
     <value>Disable 2FA</value>
   </data>
-  <data name="btnDownloadPersonalData" xml:space="preserve">
+  <data
+    name="btnDownloadPersonalData" xml:space="preserve">
     <value>Download</value>
   </data>
-  <data name="btnGenerateRecoveryCodes" xml:space="preserve">
+  <data
+    name="btnGenerateRecoveryCodes" xml:space="preserve">
     <value>Generate Recovery Codes</value>
   </data>
-  <data name="btnLoginExternalLogin" xml:space="preserve">
+  <data
+    name="btnLoginExternalLogin" xml:space="preserve">
     <value>Log in using your</value>
   </data>
-  <data name="btnRemoveLogin" xml:space="preserve">
+  <data
+    name="btnRemoveLogin" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="btnRemoveLogintxt1" xml:space="preserve">
+  <data
+    name="btnRemoveLogintxt1" xml:space="preserve">
     <value>Remove this</value>
   </data>
-  <data name="btnRemoveLogintxt2" xml:space="preserve">
+  <data
+    name="btnRemoveLogintxt2" xml:space="preserve">
     <value>login from your account</value>
   </data>
-  <data name="btnResetAuthKey" xml:space="preserve">
+  <data
+    name="btnResetAuthKey" xml:space="preserve">
     <value>Reset authenticator key</value>
   </data>
-  <data name="btnResetPassword" xml:space="preserve">
+  <data
+    name="btnResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
-  <data name="btnSave" xml:space="preserve">
+  <data name="btnSave"
+    xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="btnSendVerificationEmail" xml:space="preserve">
+  <data name="btnSendVerificationEmail"
+    xml:space="preserve">
     <value>Send verification email</value>
   </data>
   <data name="btnSetPassword" xml:space="preserve">
     <value>Set password</value>
   </data>
-  <data name="btnUpdatePassword" xml:space="preserve">
+  <data
+    name="btnUpdatePassword" xml:space="preserve">
     <value>Update password</value>
   </data>
-  <data name="btnVerify" xml:space="preserve">
+  <data name="btnVerify"
+    xml:space="preserve">
     <value>Verify</value>
   </data>
-  <data name="confirmPassword" xml:space="preserve">
+  <data name="confirmPassword"
+    xml:space="preserve">
     <value>Confirm Password</value>
   </data>
   <data name="contacts" xml:space="preserve">
     <value>Contacts</value>
   </data>
-  <data name="copyright" xml:space="preserve">
+  <data
+    name="copyright" xml:space="preserve">
     <value>Copyright - IPS 2023</value>
   </data>
-  <data name="createAccount" xml:space="preserve">
+  <data name="createAccount"
+    xml:space="preserve">
     <value>Create Account</value>
   </data>
   <data name="doLoginBy" xml:space="preserve">
     <value>Login via:</value>
   </data>
-  <data name="doRegisterBy" xml:space="preserve">
+  <data
+    name="doRegisterBy" xml:space="preserve">
     <value>Register via:</value>
   </data>
-  <data name="email" xml:space="preserve">
+  <data name="email"
+    xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="externalLogins" xml:space="preserve">
     <value>External logins</value>
   </data>
-  <data name="forgetPassword" xml:space="preserve">
+  <data
+    name="forgetPassword" xml:space="preserve">
     <value>Forgot your Password ?</value>
   </data>
-  <data name="haveAccount" xml:space="preserve">
+  <data name="haveAccount"
+    xml:space="preserve">
     <value>Already have an account ?</value>
   </data>
   <data name="hello" xml:space="preserve">
     <value>Hello</value>
   </data>
-  <data name="help" xml:space="preserve">
+  <data
+    name="help" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="home" xml:space="preserve">
+  <data name="home"
+    xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="howToLoginOnApp" xml:space="preserve">
+  <data name="howToLoginOnApp"
+    xml:space="preserve">
     <value>How to log in to the application</value>
   </data>
-  <data name="howToLoginViaFacebook" xml:space="preserve">
+  <data name="howToLoginViaFacebook"
+    xml:space="preserve">
     <value>How to login via facebook</value>
   </data>
-  <data name="howToLoginViaGoogle" xml:space="preserve">
+  <data name="howToLoginViaGoogle"
+    xml:space="preserve">
     <value>How to login via google</value>
   </data>
-  <data name="howToLoginViaOutlook" xml:space="preserve">
+  <data name="howToLoginViaOutlook"
+    xml:space="preserve">
     <value>How to login via outlook</value>
   </data>
-  <data name="howToLoginViaTwitter" xml:space="preserve">
+  <data name="howToLoginViaTwitter"
+    xml:space="preserve">
     <value>How to login via twitter</value>
   </data>
-  <data name="howToRegisterOnApp" xml:space="preserve">
+  <data name="howToRegisterOnApp"
+    xml:space="preserve">
     <value>How to register in the application</value>
   </data>
-  <data name="howToRegisterViaFacebook" xml:space="preserve">
+  <data name="howToRegisterViaFacebook"
+    xml:space="preserve">
     <value>How to register via facebook</value>
   </data>
-  <data name="howToRegisterViaGoogle" xml:space="preserve">
+  <data name="howToRegisterViaGoogle"
+    xml:space="preserve">
     <value>How to register via google</value>
   </data>
-  <data name="howToRegisterViaOutlook" xml:space="preserve">
+  <data name="howToRegisterViaOutlook"
+    xml:space="preserve">
     <value>How to register via outlook</value>
   </data>
-  <data name="howToRegisterViaTwitter" xml:space="preserve">
+  <data name="howToRegisterViaTwitter"
+    xml:space="preserve">
     <value>How to register via twitter</value>
   </data>
-  <data name="hrefDeletePersonalData" xml:space="preserve">
+  <data name="hrefDeletePersonalData"
+    xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="lastNameAccount" xml:space="preserve">
+  <data
+    name="lastNameAccount" xml:space="preserve">
     <value>Surname</value>
   </data>
-  <data name="login" xml:space="preserve">
+  <data name="login"
+    xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="nameAccount" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="newEmail" xml:space="preserve">
+  <data
+    name="newEmail" xml:space="preserve">
     <value>New Email</value>
   </data>
-  <data name="newPassword" xml:space="preserve">
+  <data name="newPassword"
+    xml:space="preserve">
     <value>New password</value>
   </data>
   <data name="oldPassword" xml:space="preserve">
     <value>Old password</value>
   </data>
-  <data name="or" xml:space="preserve">
+  <data
+    name="or" xml:space="preserve">
     <value>or</value>
   </data>
-  <data name="password" xml:space="preserve">
+  <data name="password"
+    xml:space="preserve">
     <value>Password</value>
   </data>
   <data name="personalData" xml:space="preserve">
     <value>Personal data</value>
   </data>
-  <data name="privacy" xml:space="preserve">
+  <data
+    name="privacy" xml:space="preserve">
     <value>Privacy</value>
   </data>
-  <data name="register" xml:space="preserve">
+  <data name="register"
+    xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="rememberMe" xml:space="preserve">
     <value>Remember me ?</value>
   </data>
-  <data name="reSentEmailConfirmation" xml:space="preserve">
+  <data
+    name="reSentEmailConfirmation" xml:space="preserve">
     <value>Resend confirmation email</value>
   </data>
-  <data name="siteMap" xml:space="preserve">
+  <data
+    name="siteMap" xml:space="preserve">
     <value>Site Map</value>
   </data>
-  <data name="support" xml:space="preserve">
+  <data name="support"
+    xml:space="preserve">
     <value>Support</value>
   </data>
-  <data name="title2FactorAuth" xml:space="preserve">
+  <data name="title2FactorAuth"
+    xml:space="preserve">
     <value>Two-factor authentication (2FA)</value>
   </data>
   <data name="titleAboutUs" xml:space="preserve">
     <value>About Us</value>
   </data>
-  <data name="titleAccessDenied" xml:space="preserve">
+  <data
+    name="titleAccessDenied" xml:space="preserve">
     <value>Access denied</value>
   </data>
-  <data name="titleChangePassword" xml:space="preserve">
+  <data
+    name="titleChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
-  <data name="titleConfigure2factorAuth" xml:space="preserve">
+  <data
+    name="titleConfigure2factorAuth" xml:space="preserve">
     <value>Configure authenticator app</value>
   </data>
-  <data name="titleConfirmEmail" xml:space="preserve">
+  <data
+    name="titleConfirmEmail" xml:space="preserve">
     <value>Confirm Email</value>
   </data>
-  <data name="titleConfirmEmailChange" xml:space="preserve">
+  <data
+    name="titleConfirmEmailChange" xml:space="preserve">
     <value>Confirm email change</value>
   </data>
-  <data name="titleContactUs" xml:space="preserve">
+  <data
+    name="titleContactUs" xml:space="preserve">
     <value>Contact Us</value>
   </data>
-  <data name="titleDeletePersonalData" xml:space="preserve">
+  <data
+    name="titleDeletePersonalData" xml:space="preserve">
     <value>Delete Personal Data</value>
   </data>
-  <data name="titleDisable2factorAuth" xml:space="preserve">
+  <data
+    name="titleDisable2factorAuth" xml:space="preserve">
     <value>Disable two-factor authentication (2FA)</value>
   </data>
-  <data name="titleDownloadData" xml:space="preserve">
+  <data
+    name="titleDownloadData" xml:space="preserve">
     <value>Download Your Data</value>
   </data>
-  <data name="titleForgotPasswordConfirmation" xml:space="preserve">
+  <data
+    name="titleForgotPasswordConfirmation" xml:space="preserve">
     <value>Confirmation message</value>
   </data>
-  <data name="titleGenerateRecoveryCodes" xml:space="preserve">
+  <data
+    name="titleGenerateRecoveryCodes" xml:space="preserve">
     <value>Generate two-factor authentication (2FA) recovery codes</value>
   </data>
-  <data name="titleLogout" xml:space="preserve">
+  <data
+    name="titleLogout" xml:space="preserve">
     <value>Log out</value>
   </data>
-  <data name="titleManageAccount" xml:space="preserve">
+  <data
+    name="titleManageAccount" xml:space="preserve">
     <value>Manage your account</value>
   </data>
-  <data name="titleManageEmail" xml:space="preserve">
+  <data
+    name="titleManageEmail" xml:space="preserve">
     <value>Manage Email</value>
   </data>
-  <data name="titleManageExternalLogins" xml:space="preserve">
+  <data
+    name="titleManageExternalLogins" xml:space="preserve">
     <value>Manage your external logins</value>
   </data>
-  <data name="titlePrivacyPolicy" xml:space="preserve">
+  <data
+    name="titlePrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>
-  <data name="titleProfileIndex" xml:space="preserve">
+  <data
+    name="titleProfileIndex" xml:space="preserve">
     <value>Profile</value>
   </data>
-  <data name="titleResendEmailConfirmation" xml:space="preserve">
+  <data
+    name="titleResendEmailConfirmation" xml:space="preserve">
     <value>Resend email confirmation</value>
   </data>
-  <data name="titleResetAuthKey" xml:space="preserve">
+  <data
+    name="titleResetAuthKey" xml:space="preserve">
     <value>Reset authenticator key</value>
   </data>
-  <data name="titleResetPassword" xml:space="preserve">
+  <data
+    name="titleResetPassword" xml:space="preserve">
     <value>Reset password</value>
   </data>
-  <data name="titleResetPasswordConfirmation" xml:space="preserve">
+  <data
+    name="titleResetPasswordConfirmation" xml:space="preserve">
     <value>Reset password confirmation</value>
   </data>
-  <data name="titleServices" xml:space="preserve">
+  <data
+    name="titleServices" xml:space="preserve">
     <value>Services</value>
   </data>
-  <data name="titleSetPassword" xml:space="preserve">
+  <data
+    name="titleSetPassword" xml:space="preserve">
     <value>Set password</value>
   </data>
-  <data name="titleShowRecoveryCodes" xml:space="preserve">
+  <data
+    name="titleShowRecoveryCodes" xml:space="preserve">
     <value>Recovery codes</value>
   </data>
-  <data name="txt10_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt10_2FactorAuth" xml:space="preserve">
     <value>Forget this browser</value>
   </data>
-  <data name="txt11_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt11_2FactorAuth" xml:space="preserve">
     <value>Disable 2FA</value>
   </data>
-  <data name="txt12_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt12_2FactorAuth" xml:space="preserve">
     <value>Reset recovery codes</value>
   </data>
-  <data name="txt13_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt13_2FactorAuth" xml:space="preserve">
     <value>Authenticator app</value>
   </data>
-  <data name="txt14_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt14_2FactorAuth" xml:space="preserve">
     <value>Add authenticator app</value>
   </data>
-  <data name="txt15_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt15_2FactorAuth" xml:space="preserve">
     <value>Set up authenticator app</value>
   </data>
-  <data name="txt16_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt16_2FactorAuth" xml:space="preserve">
     <value>Reset authenticator app</value>
   </data>
-  <data name="txt17_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt17_2FactorAuth" xml:space="preserve">
     <value>Privacy and cookie policy have not been accepted.</value>
   </data>
-  <data name="txt18_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt18_2FactorAuth" xml:space="preserve">
     <value>You must accept the policy before you can enable two factor authentication</value>
   </data>
-  <data name="txt1AboutUs" xml:space="preserve">
+  <data
+    name="txt1AboutUs" xml:space="preserve">
     <value>Welcome to ATLManager, a project designed to make your life easier. We are a group of highly experienced technology professionals who have worked together to create a complete solution for managing extracurricular activities. Our goal is to provide a simple and intuitive platform for parents, school administrators, coordinators, staff, and students to track and manage all extracurricular activities in one place.
     
     </value>
 
   </data>
-  <data name="txt1Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt1Configure2factorAuth" xml:space="preserve">
     <value>Download a two-factor authenticator app like Microsoft Authenticator for</value>
   </data>
-  <data name="txt1ContactUs" xml:space="preserve">
+  <data
+    name="txt1ContactUs" xml:space="preserve">
     <value>
    We are always here to help you with any questions you have about ATLManager. To get in touch, simply fill out the form below or send an email to our support team at ATLManagerIPS@gmail.com.
 
     </value>
   </data>
-  <data name="txt1Disable2factorAuth" xml:space="preserve">
+  <data
+    name="txt1Disable2factorAuth" xml:space="preserve">
     <value>This action only disables 2FA</value>
   </data>
-  <data name="txt1GenerateRecoveryCodes" xml:space="preserve">
+  <data
+    name="txt1GenerateRecoveryCodes" xml:space="preserve">
     <value>Put these codes in a safe place</value>
   </data>
-  <data name="txt1PersonalData" xml:space="preserve">
+  <data
+    name="txt1PersonalData" xml:space="preserve">
     <value>Your account contains personal data that you have given us. This page allows you to download or delete that data</value>
   </data>
-  <data name="txt1PrivacyPolicy" xml:space="preserve">
+  <data
+    name="txt1PrivacyPolicy" xml:space="preserve">
     <value>Welcome to the page</value>
   </data>
-  <data name="txt1ResetAuthKey" xml:space="preserve">
+  <data
+    name="txt1ResetAuthKey" xml:space="preserve">
     <value>If you reset your authenticator key your authenticator app will not work until you reconfigure it</value>
   </data>
-  <data name="txt1ResetPasswordConfirmation" xml:space="preserve">
+  <data
+    name="txt1ResetPasswordConfirmation" xml:space="preserve">
     <value>Your password has been reset. Please</value>
   </data>
-  <data name="txt1Services" xml:space="preserve">
+  <data
+    name="txt1Services" xml:space="preserve">
     <value>At ATLManager we are dedicated to offering complete solutions for the management of activities in ATL's. With our platform, you can simplify the administration of your activities, automating processes and making management more efficient.</value>
   </data>
-  <data name="txt1SetPassword" xml:space="preserve">
+  <data name="txt1SetPassword"
+    xml:space="preserve">
     <value>Set your password</value>
   </data>
-  <data name="txt1_2FactorAuth" xml:space="preserve">
+  <data name="txt1_2FactorAuth"
+    xml:space="preserve">
     <value>You must</value>
   </data>
   <data name="txt2AboutUs" xml:space="preserve">
     <value>We are committed to providing an exceptional user experience and are always working to improve and update our system. We value transparency, efficiency, and excellence in everything we do.</value>
   </data>
-  <data name="txt2Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt2Configure2factorAuth" xml:space="preserve">
     <value>Google Authenticator for</value>
   </data>
-  <data name="txt2ContactUs" xml:space="preserve">
+  <data
+    name="txt2ContactUs" xml:space="preserve">
     <value>
     Our support team is available Monday through Friday from 9am to 6pm. We'll do our best to respond to you as quickly as possible.
 
     </value>
   </data>
-  <data name="txt2Disable2factorAuth" xml:space="preserve">
+  <data
+    name="txt2Disable2factorAuth" xml:space="preserve">
     <value>Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should</value>
   </data>
-  <data name="txt2GenerateRecoveryCodes" xml:space="preserve">
+  <data
+    name="txt2GenerateRecoveryCodes" xml:space="preserve">
     <value>If you lose your device and don't have the recovery codes you will lose access to your account</value>
   </data>
-  <data name="txt2PersonalData" xml:space="preserve">
+  <data
+    name="txt2PersonalData" xml:space="preserve">
     <value>Deleting this data will permanently remove your account, and this cannot be recovered</value>
   </data>
-  <data name="txt2PrivacyPolicy" xml:space="preserve">
+  <data
+    name="txt2PrivacyPolicy" xml:space="preserve">
     <value>This page will be used to explain the application policies (to be continued)</value>
   </data>
-  <data name="txt2ResetAuthKey" xml:space="preserve">
+  <data
+    name="txt2ResetAuthKey" xml:space="preserve">
     <value>This process disables 2FA until you verify your authenticator app. If you do not complete your authenticator app configuration you may lose access to your account.</value>
   </data>
-  <data name="txt2ResetPasswordConfirmation" xml:space="preserve">
+  <data
+    name="txt2ResetPasswordConfirmation" xml:space="preserve">
     <value>click here to log in</value>
   </data>
-  <data name="txt2Services" xml:space="preserve">
+  <data
+    name="txt2Services" xml:space="preserve">
     <value>Our services include:</value>
   </data>
-  <data name="txt2SetPassword" xml:space="preserve">
+  <data name="txt2SetPassword"
+    xml:space="preserve">
     <value>You do not have a local username/password for this site. Add a local account so you can log in without an external login</value>
   </data>
-  <data name="txt2_2FactorAuth" xml:space="preserve">
+  <data name="txt2_2FactorAuth"
+    xml:space="preserve">
     <value>generate a new set of recovery codes</value>
   </data>
   <data name="txt3AboutUs" xml:space="preserve">
     <value>We thank you for your confidence in our project. We hope you enjoy our platform and if you have any questions or suggestions, please do not hesitate to contact us.</value>
   </data>
-  <data name="txt3Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt3Configure2factorAuth" xml:space="preserve">
     <value>Scan the QR Code or enter this key</value>
   </data>
-  <data name="txt3ContactUs" xml:space="preserve">
+  <data
+    name="txt3ContactUs" xml:space="preserve">
     <value>
     Thank you for your interest in ATLManager. We look forward to hearing from you soon!
     </value>
   </data>
-  <data name="txt3Disable2factorAuth" xml:space="preserve">
+  <data
+    name="txt3Disable2factorAuth" xml:space="preserve">
     <value>reset your authenticator keys.</value>
   </data>
-  <data name="txt3GenerateRecoveryCodes" xml:space="preserve">
+  <data
+    name="txt3GenerateRecoveryCodes" xml:space="preserve">
     <value>Generating new recovery codes does not change the keys used in authenticator apps. If you wish to change the key used in an authenticator app you should</value>
   </data>
-  <data name="txt3Services" xml:space="preserve">
+  <data
+    name="txt3Services" xml:space="preserve">
     <value>Activity management: ATLManager allows you to record and manage all the activities offered by your institution in a single place, in an intuitive and easy-to-use way.</value>
   </data>
-  <data name="txt3_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt3_2FactorAuth" xml:space="preserve">
     <value>before you can log in with a recovery code.</value>
   </data>
-  <data name="txt4Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt4Configure2factorAuth" xml:space="preserve">
     <value>into your two factor authenticator app. Spaces and casing do not matter.</value>
   </data>
-  <data name="txt4ContactUs" xml:space="preserve">
+  <data
+    name="txt4ContactUs" xml:space="preserve">
     <value>Thank you for your interest in ATLManager and we look forward to hearing from you soon.</value>
   </data>
-  <data name="txt4GenerateRecoveryCodes" xml:space="preserve">
+  <data
+    name="txt4GenerateRecoveryCodes" xml:space="preserve">
     <value>reset your authenticator keys.</value>
   </data>
-  <data name="txt4Services" xml:space="preserve">
+  <data
+    name="txt4Services" xml:space="preserve">
     <value>Attendance control: Control attendance of students and tutors in each activity, automatically and integrated with student and staff records.</value>
   </data>
-  <data name="txt4_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt4_2FactorAuth" xml:space="preserve">
     <value>You have no recovery codes left.</value>
   </data>
-  <data name="txt5Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt5Configure2factorAuth" xml:space="preserve">
     <value>Learn how to</value>
   </data>
-  <data name="txt5Services" xml:space="preserve">
+  <data
+    name="txt5Services" xml:space="preserve">
     <value>Communication with parents and guardians: Maintain clear and transparent communication with parents and guardians by sending information about activities, attendance and school performance.</value>
   </data>
-  <data name="txt5_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt5_2FactorAuth" xml:space="preserve">
     <value>You have 1 recovery code left.</value>
   </data>
-  <data name="txt6Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt6Configure2factorAuth" xml:space="preserve">
     <value>enable QR code generation</value>
   </data>
-  <data name="txt6Services" xml:space="preserve">
+  <data
+    name="txt6Services" xml:space="preserve">
     <value>Reporting and analysis: with our platform, you can generate comprehensive reports on the performance of activities, student attendance and other relevant indicators for the management of your institution.</value>
   </data>
-  <data name="txt6_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt6_2FactorAuth" xml:space="preserve">
     <value>You can</value>
   </data>
-  <data name="txt7Configure2factorAuth" xml:space="preserve">
+  <data
+    name="txt7Configure2factorAuth" xml:space="preserve">
     <value>Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below.</value>
   </data>
-  <data name="txt7Services" xml:space="preserve">
+  <data
+    name="txt7Services" xml:space="preserve">
     <value>If you are looking for a complete and efficient solution to manage the activities of your institution, contact us and learn more about how ATLManager can help you!</value>
   </data>
-  <data name="txt7_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt7_2FactorAuth" xml:space="preserve">
     <value>You should</value>
   </data>
-  <data name="txt8_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt8_2FactorAuth" xml:space="preserve">
     <value>You have</value>
   </data>
-  <data name="txt9_2FactorAuth" xml:space="preserve">
+  <data
+    name="txt9_2FactorAuth" xml:space="preserve">
     <value>recovery codes left.</value>
   </data>
-  <data name="txtAccessDenied" xml:space="preserve">
+  <data
+    name="txtAccessDenied" xml:space="preserve">
     <value>You do not have access to this resource</value>
   </data>
-  <data name="txtAddAnotherServiceLogin" xml:space="preserve">
+  <data
+    name="txtAddAnotherServiceLogin" xml:space="preserve">
     <value>Add another service to log in</value>
   </data>
-  <data name="txtConfigure2factorAuth" xml:space="preserve">
+  <data
+    name="txtConfigure2factorAuth" xml:space="preserve">
     <value>To use an authenticator app go through the following steps:</value>
   </data>
-  <data name="txtConfirmEmail" xml:space="preserve">
+  <data
+    name="txtConfirmEmail" xml:space="preserve">
     <value>Please check your email to confirm your account, if you can't find the message in your inbox, please check your email SPAM.</value>
   </data>
-  <data name="txtConfirmPasswordRequired" xml:space="preserve">
+  <data
+    name="txtConfirmPasswordRequired" xml:space="preserve">
     <value>The Confirm Password field is required</value>
   </data>
-  <data name="txtDeletePersonalData" xml:space="preserve">
+  <data
+    name="txtDeletePersonalData" xml:space="preserve">
     <value>Deleting this data will permanently remove your account, and this cannot be recovered</value>
   </data>
-  <data name="txtEmailRequired" xml:space="preserve">
+  <data
+    name="txtEmailRequired" xml:space="preserve">
     <value>The Email field is required</value>
   </data>
-  <data name="txtErrorConfirmEmail" xml:space="preserve">
+  <data
+    name="txtErrorConfirmEmail" xml:space="preserve">
     <value>Error confirming your email</value>
   </data>
-  <data name="txtForgotPasswordConfirmation" xml:space="preserve">
+  <data
+    name="txtForgotPasswordConfirmation" xml:space="preserve">
     <value>Please check your email to reset your password, if you don't find the message in your inbox, check your email SPAM</value>
   </data>
-  <data name="txtHoverLoginFacebook" xml:space="preserve">
+  <data
+    name="txtHoverLoginFacebook" xml:space="preserve">
     <value>Log in using your Facebook account</value>
   </data>
-  <data name="txtHoverLoginGoogle" xml:space="preserve">
+  <data
+    name="txtHoverLoginGoogle" xml:space="preserve">
     <value>Log in using your Google account</value>
   </data>
-  <data name="txtHoverLoginMicrosoft" xml:space="preserve">
+  <data
+    name="txtHoverLoginMicrosoft" xml:space="preserve">
     <value>Log in using your Microsoft account</value>
   </data>
-  <data name="txtHoverLoginTwitter" xml:space="preserve">
+  <data
+    name="txtHoverLoginTwitter" xml:space="preserve">
     <value>Log in using your Twitter account</value>
   </data>
-  <data name="txtHoverRegisterFacebook" xml:space="preserve">
+  <data
+    name="txtHoverRegisterFacebook" xml:space="preserve">
     <value>Register using your Facebook account</value>
   </data>
-  <data name="txtHoverRegisterGoogle" xml:space="preserve">
+  <data
+    name="txtHoverRegisterGoogle" xml:space="preserve">
     <value>Register using your Google account</value>
   </data>
-  <data name="txtHoverRegisterMicrosoft" xml:space="preserve">
+  <data
+    name="txtHoverRegisterMicrosoft" xml:space="preserve">
     <value>Register using your Microsoft account</value>
   </data>
-  <data name="txtHoverRegisterTwitter" xml:space="preserve">
+  <data
+    name="txtHoverRegisterTwitter" xml:space="preserve">
     <value>Register using your Twitter account</value>
   </data>
-  <data name="txtHowToLoginOnApp" xml:space="preserve">
+  <data
+    name="txtHowToLoginOnApp" xml:space="preserve">
     <value>To log into your account, enter the e-mail address and password associated with your account. Click "Login" to access your account. If you have forgotten your password, click "Forgot your password?" to retrieve it. Remember to keep your account secure by not sharing your password with anyone and log out of your account when using a shared device.</value>
   </data>
-  <data name="txtHowToLoginViaFacebook" xml:space="preserve">
+  <data
+    name="txtHowToLoginViaFacebook" xml:space="preserve">
     <value>To log into your account via Facebook, click the "Facebook" button on the login page. This will redirect you to the Facebook login page. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and have access to your account. Note that this option is only available if you have a Facebook account and have used it to register previously.</value>
   </data>
-  <data name="txtHowToLoginViaGoogle" xml:space="preserve">
+  <data
+    name="txtHowToLoginViaGoogle" xml:space="preserve">
     <value>To sign into your account via Google, click the "Google" button on the login page. This will redirect you to the Google login page. Enter your login credentials and authorize permission to access your basic information. You will then be redirected back to our page and will have access to your account. Keep in mind that this option will only be available if you have a Google account and have used it to register previously.</value>
   </data>
-  <data name="txtHowToLoginViaOutlook" xml:space="preserve">
+  <data
+    name="txtHowToLoginViaOutlook" xml:space="preserve">
     <value>To log into your account via Outlook, click the "Outlook" button on the login page. This will redirect you to the login page with Outlook. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and have access to your account. Keep in mind that this option will only be available if you have anOutlook account and have used it to register previously.</value>
   </data>
-  <data name="txtHowToLoginViaTwitter" xml:space="preserve">
+  <data
+    name="txtHowToLoginViaTwitter" xml:space="preserve">
     <value>To log into your account via Twitter, click the "Twitter" button on the login page. This will redirect you to the Twitter login page. Enter your login credentials and authorize permission to access your basic information. You will then be redirected back to our page and have access to your account. Keep in mind that this option is only available if you have a Twitter account and have used it to register previously.</value>
   </data>
-  <data name="txtHowToRegisterOnApp" xml:space="preserve">
+  <data
+    name="txtHowToRegisterOnApp" xml:space="preserve">
     <value>To create an account, fill in the email, password, password confirmation, first name and last name. Make sure the email is valid, the passwords entered are the same, and meet security requirements (such as being at least 6 characters long). Make sure the first and last name field is filled in. Click "Register" to complete the process. Remember to keep your account secure by not sharing your password with anyone.</value>
   </data>
-  <data name="txtHowToRegisterViaFacebook" xml:space="preserve">
+  <data
+    name="txtHowToRegisterViaFacebook" xml:space="preserve">
     <value>To create an account via Facebook, click the "Facebook" button on the account creation page. This will redirect you to the Facebook login page. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and your account will be created automatically. Note that this option is only available if you have a Facebook account.</value>
   </data>
-  <data name="txtHowToRegisterViaGoogle" xml:space="preserve">
+  <data
+    name="txtHowToRegisterViaGoogle" xml:space="preserve">
     <value>To create an account via Google, click the "Google" button on the account creation page. This will redirect you to the Google login page. Enter your login credentials and authorize permission to access your basic information. You will then be redirected back to our page and your account will be created automatically. Please note that this option is only available if you have a Google account.</value>
   </data>
-  <data name="txtHowToRegisterViaOutlook" xml:space="preserve">
+  <data
+    name="txtHowToRegisterViaOutlook" xml:space="preserve">
     <value>To create an account via Outlook, click on the "Outlook" button on the account creation page. This will redirect you to the login page with Outlook. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and your account will be created automatically. Note that this option is only available if you have an Outlook account.</value>
   </data>
-  <data name="txtHowToRegisterViaTwitter" xml:space="preserve">
+  <data
+    name="txtHowToRegisterViaTwitter" xml:space="preserve">
     <value>To create an account via Twitter, click the "Twitter" button on the account creation page. This will redirect you to the Twitter login page. Enter your login credentials and authorize access to your basic information. You will then be redirected back to our page and your account will be created automatically. Note that this option is only available if you have a Twitter account.</value>
   </data>
-  <data name="txtInvalidLogin" xml:space="preserve">
+  <data
+    name="txtInvalidLogin" xml:space="preserve">
     <value>Invalid login attempt</value>
   </data>
-  <data name="txtLastNameRequired" xml:space="preserve">
+  <data
+    name="txtLastNameRequired" xml:space="preserve">
     <value>The Last Name field is required</value>
   </data>
-  <data name="txtLogoutSuccess" xml:space="preserve">
+  <data
+    name="txtLogoutSuccess" xml:space="preserve">
     <value>You have successfully logged out of the application</value>
   </data>
-  <data name="txtManageAccount" xml:space="preserve">
+  <data
+    name="txtManageAccount" xml:space="preserve">
     <value>Change your account settings</value>
   </data>
-  <data name="txtMenuDeutsch" xml:space="preserve">
+  <data
+    name="txtMenuDeutsch" xml:space="preserve">
     <value>German</value>
   </data>
-  <data name="txtMenuEnglish" xml:space="preserve">
+  <data
+    name="txtMenuEnglish" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="txtMenuFrench" xml:space="preserve">
+  <data name="txtMenuFrench"
+    xml:space="preserve">
     <value>French</value>
   </data>
-  <data name="txtMenuPortugues" xml:space="preserve">
+  <data name="txtMenuPortugues"
+    xml:space="preserve">
     <value>Portuguese</value>
   </data>
-  <data name="txtNameRequired" xml:space="preserve">
+  <data name="txtNameRequired"
+    xml:space="preserve">
     <value>The First Name field is required</value>
   </data>
-  <data name="txtPasswordRequired" xml:space="preserve">
+  <data name="txtPasswordRequired"
+    xml:space="preserve">
     <value>The Password field is required</value>
   </data>
   <data name="txtPhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
-  <data name="txtRegisterConfirmation" xml:space="preserve">
+  <data
+    name="txtRegisterConfirmation" xml:space="preserve">
     <value>Register Confirmation</value>
   </data>
-  <data name="txtRegisteredLogins" xml:space="preserve">
+  <data
+    name="txtRegisteredLogins" xml:space="preserve">
     <value>Registered Logins</value>
   </data>
-  <data name="txtResetPassword" xml:space="preserve">
+  <data
+    name="txtResetPassword" xml:space="preserve">
     <value>Reset your password</value>
   </data>
-  <data name="txtSearchHelpArticles" xml:space="preserve">
+  <data
+    name="txtSearchHelpArticles" xml:space="preserve">
     <value>Look for articles that will help you</value>
   </data>
-  <data name="txtThankYouConfirmEmail" xml:space="preserve">
+  <data
+    name="txtThankYouConfirmEmail" xml:space="preserve">
     <value>Thank you for confirming your email</value>
   </data>
-  <data name="txtVerificationCode" xml:space="preserve">
+  <data
+    name="txtVerificationCode" xml:space="preserve">
     <value>Verification Code</value>
   </data>
-  <data name="txtWelcome" xml:space="preserve">
+  <data
+    name="txtWelcome" xml:space="preserve">
     <value>Are you looking for the most efficient way to manage your ATL or ATL grouping ?</value>
   </data>
-  <data name="txtWelcomeToPageAboutUs" xml:space="preserve">
+  <data
+    name="txtWelcomeToPageAboutUs" xml:space="preserve">
     <value>Welcome to the About Us page</value>
   </data>
-  <data name="txtWelcomeToPageContactUs" xml:space="preserve">
+  <data
+    name="txtWelcomeToPageContactUs" xml:space="preserve">
     <value>Welcome to the Contact Us page</value>
   </data>
-  <data name="txtWelcomeToPageServices" xml:space="preserve">
+  <data
+    name="txtWelcomeToPageServices" xml:space="preserve">
     <value>Welcome to the Services page</value>
   </data>
-  <data name="welcome" xml:space="preserve">
+  <data
+    name="welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
 
-  <data name="txtFirstName" xml:space="preserve">
+  <data name="txtFirstName"
+    xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="placeholderFirstName" xml:space="preserve">
+  <data name="placeholderFirstName"
+    xml:space="preserve">
     <value>Insert first name</value>
   </data>
 
   <data name="txtSurnameName" xml:space="preserve">
     <value>Surname</value>
   </data>
-  <data name="placeholderSurnameName" xml:space="preserve">
+  <data
+    name="placeholderSurnameName" xml:space="preserve">
     <value>Insert surname</value>
   </data>
 
-  <data name="txtCC" xml:space="preserve">
+  <data name="txtCC"
+    xml:space="preserve">
     <value>Citizen Card</value>
   </data>
   <data name="placeholderCC" xml:space="preserve">
     <value>Insert citizen card number</value>
   </data>
 
-  <data name="txtProfile" xml:space="preserve">
+  <data
+    name="txtProfile" xml:space="preserve">
     <value>Profile Image</value>
   </data>
-  <data name="placeholderProfile" xml:space="preserve">
+  <data
+    name="placeholderProfile" xml:space="preserve">
     <value>Choose a file</value>
   </data>
 
-  <data name="txtEmail" xml:space="preserve">
+  <data name="txtEmail"
+    xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="placeholderEmail" xml:space="preserve">
+  <data name="placeholderEmail"
+    xml:space="preserve">
     <value>Insert email</value>
   </data>
 
-  <data name="txtDataNascimento" xml:space="preserve">
+  <data name="txtDataNascimento"
+    xml:space="preserve">
     <value>Date of birth</value>
   </data>
 
@@ -745,29 +936,36 @@
   <data name="txtPassword" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="placeholderPassword" xml:space="preserve">
+  <data
+    name="placeholderPassword" xml:space="preserve">
     <value>Insert password</value>
   </data>
 
-  <data name="txtConfirmPassword" xml:space="preserve">
+  <data
+    name="txtConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
-  <data name="placeholderConfirmPassword" xml:space="preserve">
+  <data
+    name="placeholderConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
-  
+
   <!-- Search -->
-  <data name="txtProcureFuncionario" xml:space="preserve">
+  <data
+    name="txtProcureFuncionario" xml:space="preserve">
     <value>Search Employee:</value>
   </data>
-  <data name="placeholderProcureFuncionario" xml:space="preserve">
+  <data
+    name="placeholderProcureFuncionario" xml:space="preserve">
     <value>Insert the name of the employee</value>
   </data>
-  <data name="txtListaFuncionario" xml:space="preserve">
+  <data
+    name="txtListaFuncionario" xml:space="preserve">
     <value>Lista of employee(s):</value>
   </data>
 
-  <data name="colNome" xml:space="preserve">
+  <data name="colNome"
+    xml:space="preserve">
     <value>Name</value>
   </data>
 
@@ -775,37 +973,333 @@
     <value>Surname</value>
   </data>
 
-  <data name="colNomeAtl" xml:space="preserve">
+  <data
+    name="colNomeAtl" xml:space="preserve">
     <value>ATL Name</value>
   </data>
 
-  <data name="colAcoes" xml:space="preserve">
+  <data name="colAcoes"
+    xml:space="preserve">
     <value>Actions</value>
   </data>
 
   <!-- Ajuda -->
-  <data name="btnComoCriarFuncionario" xml:space="preserve">
+  <data name="btnComoCriarFuncionario"
+    xml:space="preserve">
     <value>How to create employee</value>
   </data>
 
-  <data name="txtComoCriarFuncionario" xml:space="preserve">
+  <data name="txtComoCriarFuncionario"
+    xml:space="preserve">
     <value>You must fill in all the fields shown, although the image field is optional.
       The password must contain a minimum of 8 characters, 1 capital letter and one special character.
     </value>
   </data>
 
   <!-- Botões -->
-  <data name="btnAdicionarFuncionario" xml:space="preserve">
+  <data name="btnAdicionarFuncionario"
+    xml:space="preserve">
     <value>Add Employee</value>
   </data>
 
   <!-- Titulos -->
-  <data name="tituloCriarFuncionario" xml:space="preserve">
+  <data name="tituloCriarFuncionario"
+    xml:space="preserve">
     <value>Create Employee</value>
   </data>
 
-  <data name="tituloConsultarFuncionario" xml:space="preserve">
+  <data name="tituloConsultarFuncionario"
+    xml:space="preserve">
     <value>Consult Employee</value>
   </data>
 
+<data name="menuAgrupamento"
+    xml:space="preserve">
+    <value>Group</value>
+  </data>
+
+  <data name="menuAtl" xml:space="preserve">
+    <value>ATL's</value>
+  </data>
+
+  <data
+    name="menuCoordenador" xml:space="preserve">
+    <value>Coordinators</value>
+  </data>
+
+  <data
+    name="menuFuncionario" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+
+  <data name="menuRefeicao"
+    xml:space="preserve">
+    <value>Meals</value>
+  </data>
+
+  <data name="menuEducando" xml:space="preserve">
+    <value>Student</value>
+  </data>
+
+  <data
+    name="menuVisitaEstudo" xml:space="preserve">
+    <value>Student Visits</value>
+  </data>
+
+  <data
+    name="menuFormulario" xml:space="preserve">
+    <value>Forms</value>
+  </data>
+
+  <data name="menuAtividade"
+    xml:space="preserve">
+    <value>Ativities</value>
+  </data>
+
+    <data name="menuEstatistica"
+    xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+
+    <data name="menuFatura" xml:space="preserve">
+    <value>Invoices</value>
+  </data>
+
+    <data
+    name="menuNotificacao" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+
+    <data
+    name="menuHistorico" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="menuEducacao"
+    xml:space="preserve">
+    <value>Education</value>
+  </data>
+
+  <data name="menuRecurso" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+
+<data
+    name="menuMensagens" xml:space="preserve">
+    <value>Alerts Center</value>
+  </data>
+
+  <data
+    name="menuNovasMensagens" xml:space="preserve">
+    <value> No new notifications</value>
+  </data>
+
+
+<data
+    name="menuMostraMensagens" xml:space="preserve">
+    <value>Show All Alerts</value>
+  </data>
+
+  <data
+    name="menuPlaceSearch" xml:space="preserve">
+    <value>O que deseja procurar?</value>
+  </data>What do you want to look
+  for? <data name="profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+
+  <data name="settings"
+    xml:space="preserve">
+    <value>Settings</value>
+  </data>
+
+  <data name="activityLog" xml:space="preserve">
+    <value>Activity Log</value>
+  </data>
+
+  <data
+    name="sair" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+
+<data name="politica"
+    xml:space="preserve">
+    <value>Policy</value>
+  </data>
+
+<data name="cancelar" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+
+  <data
+    name="qlogout" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  
+   <data name="tConsulta"
+    xml:space="preserve">
+    <value>Details of Group</value>
+  </data>
+
+<data name="gname" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+
+  <data
+    name="glocation" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+
+  <data name="btnVoltar"
+    xml:space="preserve">
+    <value>Go Back</value>
+  </data>
+
+<data name="qremove" xml:space="preserve">
+    <value>Are you sure you want to remove this grouping?</value>
+  </data>
+
+  <data
+    name="tremove_agr" xml:space="preserve">
+    <value>Remove Group</value>
+  </data>
+  <data name="btnDelete"
+    xml:space="preserve">
+    <value>Remove</value>
+  </data>
+ <data name="plname" xml:space="preserve">
+    <value>Insert a name</value>
+  </data>
+  <data
+    name="pllocalidade" xml:space="preserve">
+    <value>Insert a local</value>
+  </data>
+ <data name="plnipc"
+    xml:space="preserve">
+    <value>Insert a NIPC</value>
+  </data>
+ <data name="lchoose" xml:space="preserve">
+    <value>Select file image</value>
+  </data>
+
+  <data
+    name="howto_create_group" xml:space="preserve">
+    <value>How to create a group</value>
+  </data>
+
+  <data
+    name="howto_change_group" xml:space="preserve">
+    <value>How to change a group</value>
+  </data>
+
+  <data
+    name="howto_delete_group" xml:space="preserve">
+    <value>How to remove a group</value>
+  </data>
+
+  <data
+    name="howto_create_atl" xml:space="preserve">
+    <value>How to create a atl</value>
+  </data>
+
+  <data
+    name="howto_change_atl" xml:space="preserve">
+    <value>How to change a atl</value>
+  </data>
+
+  <data
+    name="howto_delete_atl" xml:space="preserve">
+    <value>How to remove a atl</value>
+  </data>
+
+    <data
+    name="howto_create_coordinator" xml:space="preserve">
+    <value>How to create a coordinator</value>
+  </data>
+
+  <data
+    name="howto_change_coordinator" xml:space="preserve">
+    <value>How to change a coordinator</value>
+  </data>
+
+  <data
+    name="howto_delete_coordinator" xml:space="preserve">
+    <value>How to remove a coordinator</value>
+  </data>
+
+ <data
+    name="txt_create_group" xml:space="preserve">
+    <value>To create a group you'll need to insert data in each field, being the only optional one, the image.</value>
+  </data>
+
+  <data
+    name="txt_change_group" xml:space="preserve">
+    <value>To change a group you'll need to change at least one field.</value>
+  </data>
+
+  <data
+    name="txt_delete_group" xml:space="preserve">
+    <value>To remove a group click on the red button to remove.</value>
+  </data>
+
+  <data
+    name="txt_create_atl" xml:space="preserve">
+    <value>To create a atl you'll need to insert data in each field, being the only optional one, the image.</value>
+  </data>
+
+  <data
+    name="txt_change_atl" xml:space="preserve">
+    <value>To change a atl you'll need to change at least one field.</value>
+  </data>
+
+  <data
+    name="txt_delete_atl" xml:space="preserve">
+    <value>To remove a atl click on the red button to remove.</value>
+  </data>
+
+  <data
+    name="txt_create_coordinator" xml:space="preserve">
+    <value>To create a coordinator you'll need to insert data in each field, being the only optional one, the image.</value>
+  </data>
+
+  <data
+    name="txt_change_coordinator" xml:space="preserve">
+    <value>To change a coordinator you'll need to change at least one field.</value>
+  </data>
+
+  <data
+    name="txt_delete_coordinator" xml:space="preserve">
+    <value>To remove a coordinator click on the red button to remove.</value>
+  </data>
+
+<data
+    name="location404" xml:space="preserve">
+    <value>Location not found</value>
+  </data>
+
+    <data name="howtofuncionalidades" xml:space="preserve">
+    <value>Functionality</value>
+  </data>
+
+    <data name="txtfuncionalidades" xml:space="preserve">
+    <value>In this page you can find elements in a list, each element has three buttons, a button for details, one to edit and another to remove.</value>
+  </data>
+
+<data name="askcomunity"
+    xml:space="preserve">
+    <value>Ask the comunity</value>
+  </data>
+  <data name="readarticles" xml:space="preserve">
+    <value>Read Documentation</value>
+  </data>
+  <data
+    name="newsupdates" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="givefeedback"
+    xml:space="preserve">
+    <value>Give feedback</value>
+  </data>
+ <data name="btnCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
 </root>

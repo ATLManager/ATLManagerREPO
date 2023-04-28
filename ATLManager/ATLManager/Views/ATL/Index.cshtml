@@ -4,9 +4,10 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
-
+@using ATLManager.Services
+@inject LanguageService language
 @{
-    ViewData["Title"] = "ATLs";
+    ViewData["Title"] = @language.GetKey("menuAtl"); 
 }
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
@@ -130,12 +131,12 @@
         <!-- // Fase 1 -->
     </div>
 
- 	    <!-- Slide de Ajuda  -->
+    <!-- Slide de Ajuda  -->
     <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
         <div class="row text-center mt-2">
             <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
+                <h2 class="text-white ms-5">@language.GetKey("help")</h2>
             </div>
 
             <div class="col-2">
@@ -144,7 +145,7 @@
         </div>
         <div class="">
             <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+                   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
         </div>
         <!-- -->
         <ul class="row justify-content-center p-4 bg-white mt-4 "
@@ -153,15 +154,13 @@
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
 
-                        <span>Como alterar uma visita de estudo</span>
+                        <span>@language.GetKey("howtofuncionalidades")</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
 
-
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
+                    @language.GetKey("txtfuncionalidades")
 
                 </span>
             </li>
@@ -174,7 +173,7 @@
                             <img src="~/images/guide/terms.png" class="">
                         </div>
                         <div class="col">
-                            <span>Leia artigos de ajuda</span>
+                            <span>@language.GetKey("readarticles")</span>
                         </div>
                     </div>
                 </button>
@@ -186,7 +185,7 @@
                             <img src="~/images/guide/comunity.png" class="">
                         </div>
                         <div class="col">
-                            <span>Pergunte à comunidade</span>
+                            <span>@language.GetKey("askcomunity")</span>
                         </div>
                     </div>
                 </button>
@@ -198,7 +197,7 @@
                             <img src="~/images/guide/new.png" class="">
                         </div>
                         <div class="col">
-                            <span>Novas Atualizações</span>
+                            <span>@language.GetKey("newsupdates")</span>
                         </div>
                     </div>
                 </button>
@@ -210,7 +209,7 @@
                             <img src="~/images/guide/feedback.png" class="">
                         </div>
                         <div class="col">
-                            <span>Dê Feedback</span>
+                            <span>@language.GetKey("givefeedback")</span>
                         </div>
                     </div>
 

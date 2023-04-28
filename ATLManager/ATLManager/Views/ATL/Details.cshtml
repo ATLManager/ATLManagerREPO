@@ -2,11 +2,13 @@
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 @using System.Web;
-
+@using ATLManager.Services
+@inject LanguageService language
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 @{
-	ViewData["Title"] = "Detalhes do ATL";
+	ViewData["Title"] = @language.GetKey("menuAtl"); ;
+
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
