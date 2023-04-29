@@ -1,0 +1,947 @@
+﻿@using ATLManager.Services;
+@using Microsoft.AspNetCore.Identity
+@using ATLManager.Areas.Identity.Data
+
+@inject SignInManager<ATLManagerUser> SignInManager
+@inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <style>
+    .chart-fade {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .chart-wrapper {
+        width: 100%;
+        height: 100%; /* Atualizado para 100% */
+        position: absolute; /* Adicione posição absoluta */
+    }
+    .card-body {
+        overflow: hidden;
+    }
+
+    .chart-area {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .chart-navigation {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap; /* Adicionada a regra flex-wrap para ajustar o layout em telas menores */
+    }
+
+    .chart-nav-button {
+        background-color: #6777ef;
+        border: 1px solid #dee2e6;
+        padding: 0.5rem;
+        cursor: pointer;
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #ffffff;
+        margin: 0.5rem; /* Adicionada margem para dar espaço entre os elementos em telas menores */
+    }
+
+    /* Adicionada regra para posicionar o botão à direita */
+    #next-chart {
+        margin-left: auto;
+    }
+
+    </style>
+
+    
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+
+
+    <script>
+        $(document).ready(function () {
+            var activeId = "home"; // desired li element
+            $('#' + activeId).addClass('active'); // add the active class to the desired li element
+            $('.nav-link').click(function () {
+                // check if the clicked nav-link has an id of "language"
+                if ($(this).attr('id') === 'language') {
+                    // do nothing
+                    return;
+                }
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
+    
+<script>
+        let visitasEstudoPorMesChart;
+        let atividadesPorMesChart;
+        let educandosPorMesChart;
+        let rapazesXRaparigasChart;
+
+
+      
+        
+        document.addEventListener('DOMContentLoaded', init);
+    function init() {
+            const visitasEstudoPorMesData = createChartData('Visitas de Estudo por Mês', 'rgba(75, 192, 192, 0.2)', 'rgba(75, 192, 192, 1)');
+            const atividadesPorMesData = createChartData('Atividades por Mês', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 1)');
+            const educandosPorMesData = createChartData('Educandos Por Mês', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 1)');
+            
+            rapazesXRaparigasChart = createChart('myAreaChartRapazesXRaparigas', createRapazesXRaparigasChartData(), 'bar');
+            educandosPorMesChart = createChart('myAreaChartEducandosPorMes', educandosPorMesData, 'bar');
+            visitasEstudoPorMesChart = createChart('myAreaChartVisitaEstudos', visitasEstudoPorMesData, 'bar');
+            atividadesPorMesChart = createChart('myAreaChartAtividades', atividadesPorMesData, 'bar');
+     
+                updateChartVisibility();
+        }
+
+        function createRapazesXRaparigasChartData() {
+          return {
+            labels: ['Educandos'],
+            datasets: [
+              {
+                label: 'Rapazes',
+                data: [],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+              },
+              {
+                label: 'Raparigas',
+                data: [],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+              },
+            ],
+          };
+        }
+
+        
+        function createChartData(label, backgroundColor, borderColor) {
+            return {
+                labels: [
+                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ],
+                datasets: [{
+                    label: label,
+                    data: [],
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
+                    borderWidth: 1
+                }]
+            };
+        }
+
+              function createChart(elementId, chartData, chartType) {
+          const canvas = document.getElementById(elementId);
+          if (canvas.chart) {
+            canvas.chart.destroy();
+          }
+
+          let chartConfig;
+
+          if (chartType === 'bar') {
+            const maxData = Math.max(...chartData.datasets[0].data);
+            const maxY = maxData < 5 ? 5 : Math.ceil(maxData / 5) * 5;
+
+            chartConfig = {
+              type: 'bar',
+              data: chartData,
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    max: maxY,
+                    ticks: {
+                      stepSize: 1,
+                      precision: 0,
+                      font: {
+                        size: 14,
+                        family: 'Poppins',
+                      },
+                    },
+                  },
+                  x: {
+                    ticks: {
+                      font: {
+                        size: 14,
+                        family: 'Poppins',
+                      },
+                    },
+                  },
+                },
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                  padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10,
+                  },
+                },
+              },
+            };
+          } else if (chartType === 'doughnut') {
+            chartConfig = {
+              type: 'doughnut',
+              data: chartData,
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                },
+              },
+            };
+          }
+
+          if (chartData.options && chartData.options.title) {
+            chartConfig.options.plugins.title = {
+              display: true,
+              text: chartData.options.title.text,
+            };
+          }
+
+          const chart = new Chart(canvas, chartConfig);
+          canvas.chart = chart;
+          return chart;
+        }
+
+        async function updateStats() {
+            const atlId = document.getElementById("atl-select").value;
+            const urlBase = '/Home/';
+
+            const responseVisitasEstudo = await fetch(`${urlBase}GetVisitasEstudoPorMesEstatisticasADM?atlId=${atlId}`);
+            const visitasEstudoData = await responseVisitasEstudo.json();
+
+            const responseAtividades = await fetch(`${urlBase}GetAtividadesPorMesEstatisticasADM?atlId=${atlId}`);
+            const atividadesData = await responseAtividades.json();
+
+            const responseEducandos = await fetch(`${urlBase}GetEducandosPorMesEstatisticasADM?atlId=${atlId}`);
+            const educandosData = await responseEducandos.json();
+
+            const responseRapazes = await fetch(`${urlBase}GetNumeroDeRapazesADM?atlId=${atlId}`);
+            const numeroDeRapazes = await responseRapazes.json();
+
+            const responseRaparigas = await fetch(`${urlBase}GetNumeroDeRaparigasADM?atlId=${atlId}`);
+            const numeroDeRaparigas = await responseRaparigas.json();
+
+            const responseFaturacaoMesAtual = await fetch(`${urlBase}GetFaturacaoMesAtualADM?atlId=${atlId}`);
+            const faturacaoMesAtual = await responseFaturacaoMesAtual.json();
+
+            const responseFaturasEmAtraso = await fetch(`${urlBase}GetFaturasEmAtrasoADM?atlId=${atlId}`);
+            const faturasEmAtrasoData = await responseFaturasEmAtraso.json();
+
+            const responseNumeroEducandosNovos = await fetch(`${urlBase}GetNumeroDeEducandosNovosADM?atlId=${atlId}`);
+            const numeroEducandosNovos = await responseNumeroEducandosNovos.json();
+
+            updateChart(educandosPorMesChart, educandosData, 'noEducandosData');
+            updateChart(visitasEstudoPorMesChart, visitasEstudoData, 'noVisitasEstudoData');
+            updateChart(atividadesPorMesChart, atividadesData, 'noAtividadesData');
+            updateRapazesXRaparigasChart(rapazesXRaparigasChart, numeroDeRapazes, numeroDeRaparigas, 'noRapazesRaparigasData');
+            updateDivs(faturacaoMesAtual, faturasEmAtrasoData);
+
+            const educandosNovosDiv = document.getElementById('educandosNovosDiv');
+            educandosNovosDiv.textContent = `${numeroEducandosNovos}`;
+            await fetchRefeicoes();
+            await fetchFormularios();
+            await fetchFaturas();
+            await fetchAtividades();
+        }
+        
+
+
+
+        function updateDivs(faturacaoMesAtual, faturasEmAtrasoData, numeroEducandosNovos) {
+            const faturacaoDiv = document.getElementById('faturacaoDiv');
+            faturacaoDiv.textContent = `${faturacaoMesAtual} €`;
+
+
+            const faturasEmAtrasoDiv = document.getElementById('faturasEmAtrasoDiv');
+            faturasEmAtrasoDiv.textContent = `${faturasEmAtrasoData}`;
+
+        }
+
+        function updateRapazesXRaparigasChart(chart, rapazesData, raparigasData, noDataElementId) {
+              const noDataElement = document.getElementById(noDataElementId);
+              const chartWrapper = chart.canvas.closest('.chart-wrapper');
+
+              chart.canvas.style.display = 'none';
+              noDataElement.style.display = 'none';
+
+              if (rapazesData === 0 && raparigasData === 0) {
+                noDataElement.style.display = 'block';
+              } else {
+                chart.canvas.style.display = 'block';
+                chart.data.datasets[0].data = [rapazesData];
+                chart.data.datasets[1].data = [raparigasData];
+                chart.update();
+              }
+
+              updateChartVisibility(chartWrapper);
+            }
+
+        
+        function updateChart(chart, data, noDataElementId) {
+            const values = Object.values(data).map(Number);
+            const max = Math.max(...values);
+            const maxLimit = Math.ceil(max / 5) * 5;
+            const noDataElement = document.getElementById(noDataElementId);
+            const chartWrapper = chart.canvas.closest('.chart-wrapper');
+
+            // Reset the display style for chart and noDataElement
+            chart.canvas.style.display = 'none';
+            noDataElement.style.display = 'none';
+
+            if (values.every(value => value === 0)) {
+                noDataElement.style.display = 'block';
+            } else {
+                chart.canvas.style.display = 'block';
+                chart.data.datasets[0].data = values;
+                chart.options.scales.y.max = maxLimit;
+                chart.update();
+            }
+
+            // Call updateChartVisibility after updating chart and noDataElement visibility
+            updateChartVisibility(chartWrapper);
+        }
+
+        const prevChartButton = document.getElementById('prev-chart');
+        const nextChartButton = document.getElementById('next-chart');
+        const chartCanvases = document.querySelectorAll('.chart-area canvas');
+
+        let currentChartIndex = 0;
+
+        function updateChartVisibility() {
+            const chartWrappers = document.querySelectorAll('.chart-wrapper');
+            chartWrappers.forEach((wrapper, index) => {
+                if (index === currentChartIndex) {
+                    wrapper.style.display = 'block';
+                    setTimeout(() => {
+                        // Remover a classe chart-fade para exibir o gráfico com animação
+                        wrapper.classList.remove('chart-fade');
+                    }, 0); // Adicione um setTimeout para garantir que a transição seja executada
+                } else {
+                    // Adicionar a classe chart-fade para ocultar o gráfico com animação
+                    wrapper.classList.add('chart-fade');
+                    setTimeout(() => {
+                        wrapper.style.display = 'none';
+                    }, 500); // Deve corresponder à duração da transição no CSS (0.5s)
+                }
+            });
+        }
+
+        prevChartButton.addEventListener('click', () => {
+            currentChartIndex = (currentChartIndex - 1 + chartCanvases.length) % chartCanvases.length;
+            updateChartVisibility();
+        });
+
+        nextChartButton.addEventListener('click', () => {
+            currentChartIndex = (currentChartIndex + 1) % chartCanvases.length;
+            updateChartVisibility();
+        });
+
+
+    
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+    
+        async function fetchRefeicoes() {
+                    const atlId = document.getElementById("atl-select").value;
+            const urlBase = '/Home/';
+            const response = await fetch(`${urlBase}GetRefeicoesByATLIdADM?atlId=${atlId}`);
+        
+            const refeicoes = await response.json();
+
+            const currentDate = new Date();
+
+            const sortedRefeicoes = refeicoes
+                .map(refeicao => ({
+                    ...refeicao,
+                    data: new Date(refeicao.data)
+                }))
+                .sort((a, b) => a.data - b.data)
+                .filter(refeicao => refeicao.data >= currentDate)
+                .slice(0, 5);
+
+            const tableBody = document.getElementById('refeicoes-table-body');
+            tableBody.innerHTML = '';
+
+            if (sortedRefeicoes != null && sortedRefeicoes.length > 0) {
+                sortedRefeicoes.forEach((refeicao) => {
+                    const row = document.createElement('tr');
+
+                    const pictureCell = document.createElement('td');
+                    const pictureImg = document.createElement('img');
+                    pictureImg.src = `/images/uploads/refeicoes/${refeicao.picture}`;
+                    pictureImg.className = 'rounded-circle';
+                    pictureImg.height = 40;
+                    pictureImg.width = 40;
+                    pictureCell.appendChild(pictureImg);
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = refeicao.name;
+
+                    const categoriaCell = document.createElement('td');
+                    categoriaCell.textContent = refeicao.categoria;
+
+                    const dataCell = document.createElement('td');
+                    dataCell.textContent = refeicao.data.toLocaleDateString('pt-PT');
+
+                    row.appendChild(pictureCell);
+                    row.appendChild(nameCell);
+                    row.appendChild(categoriaCell);
+                    row.appendChild(dataCell);
+
+                    tableBody.appendChild(row);
+                });
+            } else {
+                const noRefeicoesRow = document.createElement('tr');
+                const noRefeicoesCell = document.createElement('td');
+                noRefeicoesCell.colSpan = 4;
+                noRefeicoesCell.textContent = 'Não há ementas disponíveis.';
+                noRefeicoesRow.appendChild(noRefeicoesCell);
+                tableBody.appendChild(noRefeicoesRow);
+            }
+        }
+
+        async function fetchFormularios() {
+            try {
+                        const atlId = document.getElementById("atl-select").value;
+                const urlBase = '/Home/';
+                const response = await fetch(`${urlBase}GetFormulariosByATLIdADM?atlId=${atlId}`);
+                const formularios = await response.json();
+
+                const currentDate = new Date();
+
+                const sortedFormularios = formularios
+                    .map(formulario => ({
+                        ...formulario,
+                        formularioEndDate: new Date(formulario.formularioEndDate)
+                    }))
+                    .sort((a, b) => a.formularioEndDate - b.formularioEndDate)
+                    .filter(formulario => formulario.formularioEndDate >= currentDate)
+                    .slice(0, 3);
+
+                const tableBody = document.getElementById('formularios-table-body');
+                tableBody.innerHTML = '';
+
+                if (sortedFormularios != null && sortedFormularios.length > 0) {
+                    sortedFormularios.forEach((formulario) => {
+                        const row = document.createElement('tr');
+                        row.style.cursor = 'pointer';
+
+                        const formularioNameCell = document.createElement('td');
+                        formularioNameCell.textContent = formulario.formularioName;
+
+                        const educandoNameCell = document.createElement('td');
+                        educandoNameCell.textContent = formulario.educandoName;
+
+                        const formularioEndDateCell = document.createElement('td');
+                        formularioEndDateCell.textContent = formatDate(formulario.formularioEndDate);
+
+                        row.appendChild(formularioNameCell);
+                        row.appendChild(educandoNameCell);
+                        row.appendChild(formularioEndDateCell);
+
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    const noFormulariosRow = document.createElement('tr');
+                    const noFormulariosCell = document.createElement('td');
+                    noFormulariosCell.colSpan = 3;
+                    noFormulariosCell.textContent = 'Não há formulários disponíveis.';
+                    noFormulariosRow.appendChild(noFormulariosCell);
+                    tableBody.appendChild(noFormulariosRow);
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar formularios:', error);
+            }
+        }
+        
+         async function fetchFaturas() {
+            try {
+                const atlId = document.getElementById("atl-select").value;
+
+                const urlBase = '/Home/';
+                const response = await fetch(`${urlBase}GetRecibosByAtlIdADM?atlId=${atlId}`);
+                const faturas = await response.json();
+
+                const currentDate = new Date();
+
+                const sortedFaturas = faturas
+                    .map(fatura => ({
+                        ...fatura,
+                        dateLimit: new Date(fatura.dateLimit)
+                    }))
+                    .sort((a, b) => a.dateLimit - b.dateLimit)
+                    .filter(fatura => fatura.dateLimit >= currentDate)
+                    .slice(0, 5);
+
+                const tableBody = document.getElementById('faturas-table-body');
+                tableBody.innerHTML = '';
+
+                if (sortedFaturas != null && sortedFaturas.length > 0) {
+                    sortedFaturas.forEach((fatura) => {
+                        const row = document.createElement('tr');
+                        row.style.cursor = 'pointer';
+
+                        const nomeFaturaCell = document.createElement('td');
+                        nomeFaturaCell.textContent = fatura.reciboName;
+
+                        const educandoNomeCell = document.createElement('td');
+                        educandoNomeCell.textContent = fatura.educandoName;
+
+                        const dataLimiteCell = document.createElement('td');
+                        dataLimiteCell.textContent = formatDate(fatura.dateLimit);
+
+                        const valorCell = document.createElement('td');
+                        valorCell.textContent = fatura.valor;
+
+                        row.appendChild(nomeFaturaCell);
+                        row.appendChild(educandoNomeCell);
+                        row.appendChild(dataLimiteCell);
+                        row.appendChild(valorCell);
+
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    const noFaturasRow = document.createElement('tr');
+                    const noFaturasCell = document.createElement('td');
+                    noFaturasCell.colSpan = 4;
+                    noFaturasCell.textContent = 'Não há faturas disponíveis.';
+                    noFaturasRow.appendChild(noFaturasCell);
+                    tableBody.appendChild(noFaturasRow);
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar faturas:', error);
+            }
+        }
+
+
+        async function fetchAtividades() {
+            try {
+                const atlId = document.getElementById("atl-select").value;
+                const urlBase = '/Home/';
+                const response = await fetch(`${urlBase}GetAtividadesByATLADM?atlId=${atlId}`);
+                const atividades = await response.json();
+
+                const events = atividades.map(function (atividade) {
+                    return {
+                        id: atividade.atividadeId,
+                        title: atividade.atividadeName,
+                        start: atividade.atividadeStartDate,
+                        end: atividade.atividadeEndDate
+                    };
+                });
+
+                return events;
+            } catch (error) {
+                console.error('Erro ao buscar atividades:', error);
+                return [];
+            }
+        }
+
+
+
+        let calendar;
+
+        function initializeCalendar() {
+            var smallCalendarEl = document.getElementById('smallCalendar');
+
+            calendar = new FullCalendar.Calendar(smallCalendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: ''
+                },
+                themeSystem: 'bootstrap5',
+                height: 'auto',
+                displayEventTime: false,
+                events: async function (fetchInfo, successCallback, failureCallback) {
+                    try {
+                        const events = await fetchAtividades();
+                        successCallback(events);
+                    } catch (error) {
+                        console.error('Erro ao buscar atividades:', error);
+                        successCallback([]);
+                    }
+                }
+            });
+
+            calendar.render();
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchRefeicoes();
+            await fetchFormularios();
+            await fetchFaturas();
+            await updateStats();
+            init();
+            initializeCalendar();
+        });
+
+
+        document.getElementById("atl-select").addEventListener("change", (event) => {
+            updateStats(event.target.value);
+            calendar.refetchEvents();
+        });
+
+
+        window.addEventListener('load', () => {
+            updateStats(); // Chama a função sem passar nenhum parâmetro para usar o valor padrão 'null'
+        });
+        
+    </script>
+
+}
+
+@if (!SignInManager.IsSignedIn(User))
+{
+    <!-- Primeira row, frase + logo -->
+    <div>
+        <div class="row p-3">
+            <div class="col col-6 p-3">
+                <h1 class="display-4 mt-4 pt-4 p-3" style="margin-left: 15%; ">
+                    Está à procura da forma mais
+                    eficiente de gerir o seu <span class="text-primary"> ATL ou Agrupamento de ATL's ?</span>
+                </h1>
+            </div>
+            <div class="col col-1"></div>
+            <div class="col col-5 mt-5 text-center">
+                <img src="~/images/logo/logo1.png" class="mb-4" style="margin-top:3em ;margin-left: 5%; width: 45%;">
+            </div>
+        </div>
+    </div>
+    <!-- // Primeira row, frase + logo -->
+    <!-- Segunda row -->
+
+    <div class="row bg-white pl-3 justify-content-center">
+        <div class="row p-3">
+            <div class="col">
+                <div class="row"></div>
+                <div class="row justify-content-center">
+                    <img src="~/images/non-login-pages/handshake1.png" class="p-3"
+                         style="width: 26.4%;">
+                </div>
+                <div class="row text-center">
+                    <h3 class="fw-bold">235</h3>
+                </div>
+                <div class="row text-center">
+                    <h3>Utilizadores diários</h3>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row"></div>
+                <div class="row justify-content-center">
+                    <img src="~/images/non-login-pages/chart1.png" class="w-25 p-3">
+                </div>
+                <div class="row text-center">
+                    <h3 class="fw-bold">8+</h3>
+                </div>
+                <div class="row text-center">
+                    <h3>Anos de experiência</h3>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row"></div>
+                <div class="row justify-content-center">
+                    <img src="~/images/non-login-pages/people1.png" class="w-25 p-3">
+                </div>
+                <div class="row text-center">
+                    <h3 class="fw-bold">12</h3>
+                </div>
+                <div class="row text-center">
+                    <h3>Agrupamentos</h3>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row"></div>
+                <div class="row justify-content-center">
+                    <img src="~/images/non-login-pages/badge1.png" class="w-25 p-3">
+                </div>
+                <div class="row text-center">
+                    <h3 class="fw-bold">112</h3>
+                </div>
+                <div class="row text-center">
+                    <h3>ATL's</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // Segunda row -->
+    <!-- Terceira row -->
+    <div class="row">
+        <div class="col text-center">
+            <div class="row justify-content-center">
+                <img src="~/images/non-login-pages/eficacia.png" class="p-3 w-25">
+            </div>
+            <div class="row">
+                <h3 class="fw-bold">Eficácia</h3>
+            </div>
+            <div class="row mb-5">
+                <h4 class="mb-4">
+                    Our solutions combine technology and acumen to attract and hire people who will contribute to your
+                    company's growth.
+                </h4>
+            </div>
+        </div>
+        <div class="col text-center">
+            <div class="row justify-content-center">
+                <img src="~/images/non-login-pages/eficiencia.png" class="p-3 w-25">
+            </div>
+            <div class="row">
+                <h3 class="fw-bold">Eficácia</h3>
+            </div>
+            <div class="row">
+                <h4>
+                    Employ whenever you need and for the period you want, from a pool of independently-screened
+                    candidates.
+                </h4>
+            </div>
+        </div>
+        <div class="col text-center">
+            <div class="row justify-content-center">
+                <img src="~/images/non-login-pages/custo_benificio.png"
+                     class="p-3 w-25">
+            </div>
+            <div class="row">
+                <h3 class="fw-bold">Eficácia</h3>
+            </div>
+            <div class="row">
+                <h4>
+                    Employ whenever you need and for the period you want, from a pool of independently-screened
+                    candidates.
+                </h4>
+            </div>
+        </div>
+    </div>
+    <!-- // Terceira row -->
+}
+else
+{
+    <div class="row justify-content-center">
+        <div class="row mb-4">
+            <div class="col-md-12 d-flex justify-content-center">
+                <label for="atl-select" class="form-label">Selecione o ATL:</label>
+                <select class="form-select" id="atl-select" onchange="updateStats()">
+                    @foreach (var atl in ViewBag.ATLs)
+                    {
+                        <option value="@atl.AtlId">@atl.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-uppercase mb-1">Faturação (Por Mês)</div>
+                        <div id="faturacaoDiv" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Earnings (Annual) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                             <div class="text-xs font-weight-bold text-uppercase mb-1">Faturas por pagar</div>
+                            <div id="faturasEmAtrasoDiv" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- New User Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Novos Educandos</div>
+                            <div id="educandosNovosDiv" class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-info"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pending Requests Card Example -->
+    </div>
+
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card mb-4">
+
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
+            </div>
+
+
+            <div class="card-body">
+                <div class="chart-navigation">
+                    <div class="chart-area">
+                        <div class="chart-wrapper chart-fade">
+                            <h8 class="m-0 text-primary">Visitas de Estudo</h8>
+                            <canvas id="myAreaChartVisitaEstudos" style="display: none;"></canvas>
+                            <div id="noVisitasEstudoData" style="display: none;">Sem visitas de estudo registadas</div>
+                        </div>
+                        <div class="chart-wrapper chart-fade">
+                            <h8 class="m-0 text-primary">Atividades</h8>
+                            <canvas id="myAreaChartAtividades" style="display: none;"></canvas>
+                            <div id="noAtividadesData" style="display: none;">Sem atividades registadas</div>
+                        </div>
+                        <div class="chart-wrapper chart-fade">
+                            <h8 class="m-0 text-primary">Educandos Por Mês</h8>
+                            <canvas id="myAreaChartEducandosPorMes" style="display: none;"></canvas>
+                            <div id="noEducandosData" style="display: none;">Sem educandos registados</div>
+                        </div>
+                        <div class="chart-wrapper chart-fade">
+                            <h8 class="m-0 text-primary">Número de Rapazes & Número de Raparigas</h8>
+                            <canvas id="myAreaChartRapazesXRaparigas" style="display: none;"></canvas>
+                            <div id="noRapazesRaparigasData" style="display: none;">Sem dados no registo</div>
+                        </div>
+                    </div>
+                    <button id="prev-chart" class="chart-nav-button">&larr;</button>
+                    <button id="next-chart" class="chart-nav-button">&rarr;</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Ementas Semanais</h6>
+            </div>
+
+            <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
+                <thead>
+                    <tr>
+                        <th class="text-center pr-2">
+                            Imagem
+                        </th>
+                        <th class="text-center pr-2">
+                            Nome
+                        </th>
+                        <th class="text-center pr-2">
+                            Categoria
+                        </th>
+                        <th class="text-center pr-2">
+                            Data
+                        </th>
+                    </tr>
+                <tbody id="refeicoes-table-body">
+                    <!-- As linhas da tabela serão adicionadas dinamicamente pela função JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Faturas Por Comprovar</h6>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center pr-2">
+                                Nome
+                            </th>
+                            <th class="text-center pr-2">
+                                Educando
+                            </th>
+                            <th class="text-center pr-2">
+                                Data Limite
+                            </th>
+                            <th class="text-center pr-2">
+                                Valor €
+                            </th>
+                        </tr>
+                    <tbody id="faturas-table-body">
+                        <!-- As linhas da tabela serão adicionadas dinamicamente pela função JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-5">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Formulários Por Responder</h6>
+            </div>
+            <div class="table-responsive">
+                <!-- Adicione esta div com a classe table-responsive -->
+                <table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center pr-2">
+                                Nome
+                            </th>
+                            <th class="text-center pr-2">
+                                Educando
+                            </th>
+                            <th class="text-center pr-2">
+                                Data Limite
+                            </th>
+                        </tr>
+                    <tbody id="formularios-table-body">
+                        <!-- As linhas da tabela serão adicionadas dinamicamente pela função JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Calendário de Atividades</h6>
+            </div>
+            <div id="smallCalendar" class="row"></div>
+        </div>
+    </div>
+}

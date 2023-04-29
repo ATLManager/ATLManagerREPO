@@ -140,6 +140,11 @@ namespace ATLManager.Areas.Identity.Pages.Account
                     {
                         returnUrl = Url.Content("~/Home/IndexEE");
                     }
+                    
+                    if (user != null && await _userManager.IsInRoleAsync(user, "Administrador"))
+                    {
+                        returnUrl = Url.Content("~/Home/IndexADM");
+                    }
 
                     return LocalRedirect(returnUrl);
                 }
