@@ -6,9 +6,20 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Details";
+	ViewData["Title"] = "Detalhes do Educando - Responsáveis";
 }
-<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+ <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+    <!-- 1.13.4 -->
+    <link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
+    <script src="~/js/datatable/jquery-3.6.0.min.js"></script>
+   <!-- Custom Table -->
+	<link rel="stylesheet" href="~/css/dataTables/customTable.css">
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -72,16 +83,16 @@
 											<table class="table table-hover border text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
 												<thead>
 													<tr>
-														<th>
-															Foto
+														<th class="text-center pr-2">
+															Picture
 														</th>
-														<th>
+														<th class="text-center pr-2">
 															@Html.DisplayNameFor(model => model.Name)
 														</th>
-														<th>
+														<th class="text-center pr-2">
 															@Html.DisplayNameFor(model => model.CC)
 														</th>
-														<th>
+														<th class="text-center pr-2">
 															@Html.DisplayNameFor(model => model.Phone)
 														</th>
 														<th class="text-center"> Ações </th>

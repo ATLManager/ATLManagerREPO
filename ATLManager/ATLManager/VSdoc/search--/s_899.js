@@ -1,0 +1,1 @@
+search_result['899']=["topic_00000000000001EE.html","ReciboRecordsController.Index Method","Retorna uma lista de recibos associados à conta administrativa do utilizador."];

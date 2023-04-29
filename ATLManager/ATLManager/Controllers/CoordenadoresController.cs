@@ -13,30 +13,41 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Coordenadores'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class CoordenadoresController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "coordenadores";
 
         public CoordenadoresController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: Coordenador
+        /// <summary>
+        /// Retorna a exibição da lista de coordenadores que pertencem ao ATL.
+        /// </summary>
+        /// <returns>Uma View com a lista de coordenadores.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -65,7 +76,12 @@ namespace ATLManager.Controllers
 			return View(coordenadores);
         }
 
-        // GET: Coordenador/Details/5
+        /// <summary>
+        /// Retorna a exibição dos detalhes de um coordenador especificado pelo ID.
+        /// </summary>
+        /// <param name="id">O ID do coordenador.</param>
+        /// <returns>Uma View com os detalhes do coordenador.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ContaAdministrativa == null)
@@ -92,7 +108,11 @@ namespace ATLManager.Controllers
             return View(await coordenador.FirstAsync());
         }
 
-        // GET: Coordenador/Create
+        /// <summary>
+        /// Retorna a exibição do formulário de criação de um novo coordenador.
+        /// </summary>
+        /// <returns>Uma View com o formulário de criação.</returns>
+
         public async Task<IActionResult> Create()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -115,9 +135,12 @@ namespace ATLManager.Controllers
 			return View(new CoordenadorCreateViewModel());
         }
 
-        // POST: Coordenador/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo coordenador com base nos dados fornecidos pelo formulário de criação.
+        /// </summary>
+        /// <param name="viewModel">O ViewModel contendo os dados do coordenador a ser criado.</param>
+        /// <returns>Uma View com os detalhes do novo coordenador, se a criação for bem-sucedida, ou o formulário de criação com erros, caso contrário.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CoordenadorCreateViewModel viewModel)
@@ -167,7 +190,7 @@ namespace ATLManager.Controllers
                     // Criar o perfil
                     var coordenador = new ContaAdministrativa(user, atl, viewModel.DateOfBirth, viewModel.CC);
 
-                    string fileName = UploadedFile(viewModel.ProfilePicture);
+                    string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
                     if (fileName != null)
                     {
                         coordenador.ProfilePicture = fileName;
@@ -212,7 +235,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Coordenador/Edit/5
+        /// <summary>
+        /// Método de ação que exibe a tela de edição de um coordenador
+        /// </summary>
+        /// <param name="id">O id da conta do coordenador</param>
+        /// <returns>Uma ActionResult</returns>
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.ContaAdministrativa == null)
@@ -260,9 +288,13 @@ namespace ATLManager.Controllers
             return View(await coordenador.FirstAsync());
         }
 
-        // POST: Coordenador/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método de ação que atualiza as informações de um coordenador
+        /// </summary>
+        /// <param name="id">O id da conta do coordenador</param>
+        /// <param name="viewModel">O objeto view model com as informações do coordenador</param>
+        /// <returns>Uma ActionResult</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, CoordenadorEditViewModel viewModel)
@@ -316,7 +348,7 @@ namespace ATLManager.Controllers
                         coordenador.CC = viewModel.CC;
                         coordenador.AtlId = viewModel.AtlId;
 
-                        string fileName = UploadedFile(viewModel.ProfilePicture);
+                        string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
                         if (fileName != null)
                         {
                             coordenador.ProfilePicture = fileName;
@@ -369,7 +401,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Coordenador/Delete/5
+        /// <summary>
+        /// Exclui um coordenador com base no ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do coordenador a ser excluído.</param>
+        /// <returns>Um objeto do tipo IActionResult.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.ContaAdministrativa == null)
@@ -396,7 +433,12 @@ namespace ATLManager.Controllers
             return View(await coordenador.FirstAsync());
         }
 
-        // POST: Coordenador/Delete/5
+        /// <summary>
+        /// Confirma a exclusão de um coordenador com base no ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do coordenador a ser excluído.</param>
+        /// <returns>Um objeto do tipo IActionResult.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -417,10 +459,21 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica se uma conta administrativa existe com base no ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID da conta administrativa.</param>
+        /// <returns>Um valor booleano que indica se a conta administrativa existe.</returns>
+
         private bool ContaAdministrativaExists(Guid id)
         {
           return _context.ContaAdministrativa.Any(e => e.ContaId == id);
         }
+
+        /// <summary>
+        /// Cria uma instância de ATLManagerUser.
+        /// </summary>
+        /// <returns>Um objeto do tipo ATLManagerUser.</returns>
 
         private ATLManagerUser CreateUser()
         {
@@ -435,6 +488,11 @@ namespace ATLManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém o armazenamento de e-mail do usuário.
+        /// </summary>
+        /// <returns>Um objeto do tipo IUserEmailStore&lt;ATLManagerUser&gt;.</returns>
+
         private IUserEmailStore<ATLManagerUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
@@ -443,22 +501,5 @@ namespace ATLManager.Controllers
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
         }
-
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/coordenadores");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

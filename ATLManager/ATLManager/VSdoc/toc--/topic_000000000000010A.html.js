@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['16',"ATLManager.Areas.Identity.Pages.Account Namespace","topic_00000000000000B6.html"],['145',"RegisterConfirmationModel Class","topic_0000000000000109.html"],['146',"RegisterConfirmationModel Constructor","topic_000000000000010A.html"]];

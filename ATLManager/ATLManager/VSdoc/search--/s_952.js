@@ -1,0 +1,1 @@
+search_result['952']=["topic_000000000000020C.html","RefeicaoRecordsController Class","Controlador para o modelo \u0027Históricos de Refeições\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

@@ -12,6 +12,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Históricos de Visitas de Estudo'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class VisitaEstudoRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -23,7 +27,11 @@ namespace ATLManager.Controllers
             _userManager = userManager;
         }
 
-        // GET: VisitaEstudoRecords
+        /// <summary>
+        /// Retorna a exibição da lista de registos de visita de estudo do utilizador atual.
+        /// </summary>
+        /// <returns>A exibição da lista de registos de visita de estudo do utilizador atual.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -40,7 +48,12 @@ namespace ATLManager.Controllers
             return View(visitasRecords);
         }
 
-        // GET: VisitaEstudoRecords/Details/5
+        /// <summary>
+        /// Retorna a exibição dos detalhes do registo de visita de estudo com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo de visita de estudo.</param>
+        /// <returns>A exibição dos detalhes do registo de visita de estudo.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.VisitaEstudoRecord == null)
@@ -59,7 +72,12 @@ namespace ATLManager.Controllers
             return View(visitaEstudoRecord);
         }
 
-        // GET: VisitaEstudoRecords/Delete/5
+        /// <summary>
+        /// Retorna a exibição para confirmar a exclusão do registo de visita de estudo com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo de visita de estudo.</param>
+        /// <returns>A exibição para confirmar a exclusão do registo de visita de estudo.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.VisitaEstudoRecord == null)
@@ -78,7 +96,12 @@ namespace ATLManager.Controllers
             return View(visitaEstudoRecord);
         }
 
-        // POST: VisitaEstudoRecords/Delete/5
+        /// <summary>
+        /// Confirma a exclusão de um registo de visita de estudo.
+        /// </summary>
+        /// <param name="id">O ID do regisro a ser excluído.</param>
+        /// <returns>O resultado da ação de exclusão.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -96,6 +119,13 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+        /// <summary>
+        /// Verifica se um registo de visita de estudo com o ID especificado existe no contexto de dados.
+        /// </summary>
+        /// <param name="id">O ID do registo a ser verificado.</param>
+        /// <returns>Verdadeiro se o registo existir, falso caso contrário.</returns>
 
         private bool VisitaEstudoRecordExists(Guid id)
         {

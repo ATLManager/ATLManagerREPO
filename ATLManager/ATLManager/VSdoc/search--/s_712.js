@@ -1,0 +1,1 @@
+search_result['712']=["topic_0000000000000183.html","EducandosController.Index Method","Obtem uma lista de \u0027Educandos\u0027 e exibe a informação obtida numa view.\r\nQuando um utilizador tem o role de \u0027Coordenador\u0027, obtem os \u0027Educandos\u0027 do \u0027ATL\u0027 ao qual está registado e,\r\nquando tem o role de \u0027..."];

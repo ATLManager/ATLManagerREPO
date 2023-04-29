@@ -25,6 +25,13 @@
 		<!-- JS do Google Maps API -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC89_FsNcLfp7fNL0m7KhpJRn5PRrpdxEE&callback=init&libraries=visualization" async defer></script>
 
+
+		/**
+
+		* Vai buscar as estatísticas de um determinado ATL e atualiza os dados do gráfico.
+		*
+		* @param {number} [atlId=null] - ID da ATL para a qual buscar as estatísticas.
+		*/
 		<script>
 
 			const visitasEstudoPorMesData = {
@@ -423,7 +430,89 @@
 			});
 		</script>
 
+
+
+
+
+			/**
+			 * Inicializa o mapa do Google Maps com a localização passada.
+			 * @function
+			 * @param {number} lat - A latitude da localização central do mapa.
+			 * @param {number} lng - A longitude da localização central do mapa.
+			 * @returns {Object} O objeto do mapa do Google Maps.
+			 */
+
+			/**
+			 * As opções de configuração do mapa.
+			 * @type {Object}
+			 */
+
+			/**
+			* Cria um círculo clicável com as informações do ATL passado.
+			* @function
+			* @param {Object} atl - O objeto com as informações do ATL.
+			* @param {Object} map - O objeto do mapa do Google Maps.
+			 */   
+
+			 /**
+			 * Vai buscar a lista de ATLs (Atividades de Tempos Livres) para um determinado agrupamento.
+			 * @async
+			 * @param {number} agrupamentoId - O ID do agrupamento para buscar ATLs.
+			 * @returns {Promise<Array<object>>} Uma Promise que resolve com uma matriz de objetos de localização de ATL.
+			 */
+
+			/**
+			 * Array de objetos de localização de ATL.
+			 * @typedef {object} ATL
+			 * @property {string} name - O nome do ATL.
+			 * @property {number} lat - A latitude da localização do ATL.
+			 * @property {number} lng - A longitude da localização do ATL.
+			 * @property {number} weight - O peso do ATL (número de educandos).
+			 */
+
+			/**
+			 * Uma matriz de objetos de localização de ATL.
+			 * @type {Array<ATL>}
+			 */
+
+			/**
+			 * Uma matriz de objetos de localização de ATL.
+			 * @returns {Array<ATL>} Uma matriz de objetos de localização de ATL.
+			 */
+
+			/**
+			 * Adiciona um mapa de calor a um mapa com base em uma lista de localizações ponderadas.
+			 * @param {Array<object>} locations - Uma matriz de objetos de localização ponderada para o mapa de calor.
+			 * @param {google.maps.Map} map - O mapa em que o mapa de calor deve ser adicionado.
+			 */
+
+			/**
+			 * Busca as coordenadas geográficas para um endereço usando o serviço Geocoding do Google Maps.
+			 * @async
+			 * @param {string} address - O endereço para buscar as coordenadas.
+			 * @returns {Promise<{lat: number, lng: number}>} Uma Promise que resolve com um objeto de coordenadas (latitude e longitude).
+			 */
+
+			/**
+			 * Um objeto de coordenadas (latitude e longitude).
+			 * @typedef {object} Coordinates
+			 * @property {number} lat - A latitude da localização.
+			 * @property {number} lng - A longitude da localização.
+			 */
+
+			/**
+			 * Um objeto de coordenadas (latitude e longitude).
+			 * @type {Promise<Coordinates>} Uma Promise que resolve com um objeto de coordenadas (latitude e longitude).
+			 */
+
 			<script>
+			@* //*
+			// * Inicializa o mapa com a localização do primeiro ATL retornado da API.
+			// * @async
+			// * @function
+			// * @param {number} agrupamentoId - O id do agrupamento para buscar os ATLs.
+			// * @returns {Promise} Uma promise que resolve com um array de objetos de localização dos ATLs.
+			*@ 
 			$("#atl-select").on("change", function () {
 				var atlId = $(this).val();
 				$.ajax({
@@ -443,6 +532,12 @@
 				});
 			});
 
+
+			 @* /**
+			   * O array de objetos de localização dos ATLs.
+			   * @type {Object[]}
+			   */
+			  *@
 			async function init(agrupamentoId) {
 				const locations = await fetchATLs(agrupamentoId);
 

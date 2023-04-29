@@ -12,6 +12,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Histórico de formulários'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class FormularioRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -23,7 +27,11 @@ namespace ATLManager.Controllers
             _userManager = userManager;
         }
 
-        // GET: FormularioRecords
+        /// <summary>
+        /// Retorna a visualização de índice da conta administrativa.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que representa a visualização de índice da conta administrativa.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -41,7 +49,12 @@ namespace ATLManager.Controllers
             return View(formularios);
         }
 
-        // GET: FormularioRecords/Respostas/5
+        /// <summary>
+        /// Retorna a visualização de respostas para o formulário com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Uma instância de IActionResult que representa a visualização de respostas para o formulário.</returns>
+
         public async Task<IActionResult> Respostas(Guid? id)
         {
             if (id == null || _context.Formulario == null)
@@ -61,7 +74,12 @@ namespace ATLManager.Controllers
             return View(respostas);
         }
 
-        // GET: FormularioRecords/Details/5
+        /// <summary>
+        /// Retorna a visualização de detalhes para o formulário com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Uma instância de IActionResult que representa a visualização de detalhes para o formulário.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.FormularioRecord == null)
@@ -80,7 +98,12 @@ namespace ATLManager.Controllers
             return View(formularioRecord);
         }
 
-        // GET: FormularioRecords/Delete/5
+        /// <summary>
+        /// Retorna a visualização de exclusão para o formulário com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Uma instância de IActionResult que representa a visualização de exclusão para o formulário.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.FormularioRecord == null)
@@ -99,7 +122,12 @@ namespace ATLManager.Controllers
             return View(formularioRecord);
         }
 
-        // POST: FormularioRecords/Delete/5
+        /// <summary>
+        /// Confirma a exclusão do formulário com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Uma instância de IActionResult que redireciona para a visualização de índice após a exclusão do formulário.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -117,6 +145,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se o formulário com o ID especificado existe.
+        /// </summary>
+        /// <param name="id">O ID do formulário.</param>
+        /// <returns>Verdadeiro se o formulário existir, caso contrário, falso.</returns>
 
         private bool FormularioRecordExists(Guid id)
         {

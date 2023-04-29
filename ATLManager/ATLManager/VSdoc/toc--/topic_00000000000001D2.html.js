@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['373',"ATLManager.Controllers Namespace","topic_0000000000000141.html"],['544',"HomeController Class","topic_00000000000001CA.html"],['546',"Methods","topic_00000000000001CA_methods--.html"],['551',"GetEducandoAtividadesByEncarregadoId Method","topic_00000000000001D2.html"]];

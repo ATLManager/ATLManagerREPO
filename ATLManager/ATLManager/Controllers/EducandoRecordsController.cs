@@ -12,6 +12,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Histórico de Educandos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class EducandoRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -24,7 +28,11 @@ namespace ATLManager.Controllers
             _userManager = userManager;
         }
 
-        // GET: EducandoRecords
+        /// <summary>
+        /// Retorna a página inicial da aplicação, mostrando os educandos associados à conta do utilizador atual.
+        /// </summary>
+        /// <returns>Uma exibição da lista de educandos associados à conta do utilizador atual.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -42,7 +50,12 @@ namespace ATLManager.Controllers
             
         }
 
-        // GET: EducandoRecords/Details/5
+        /// <summary>
+        /// Retorna a página de detalhes do registo do educando com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo do educando.</param>
+        /// <returns>Uma exibição dos detalhes do registo do educando com o ID especificado.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.EducandoRecord == null)
@@ -61,7 +74,12 @@ namespace ATLManager.Controllers
             return View(educandoRecord);
         }
 
-        // GET: EducandoRecords/Delete/5
+        /// <summary>
+        /// Retorna a página de exclusão do registo do educando com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo do educando.</param>
+        /// <returns>Uma exibição da página de exclusão do registo do educando com o ID especificado.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.EducandoRecord == null)
@@ -80,7 +98,12 @@ namespace ATLManager.Controllers
             return View(educandoRecord);
         }
 
-        // POST: EducandoRecords/Delete/5
+        /// <summary>
+        /// Confirma a exclusão do registo do educando com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo do educando a ser excluído.</param>
+        /// <returns>Redireciona para a página inicial após a exclusão do registo.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -98,6 +121,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se existe um registo de educando com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo do educando a ser verificado.</param>
+        /// <returns>True se o registo do educando com o ID especificado existir, False caso contrário.</returns>
 
         private bool EducandoRecordExists(Guid id)
         {

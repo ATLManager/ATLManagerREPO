@@ -16,13 +16,14 @@
     var userNotifications = await (new NotificacoesController(_context, UserManager, _roleManager)).GetUserNotifications(User.FindFirstValue(ClaimTypes.NameIdentifier));
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ATLManager</title>
+
+    @await Html.PartialAsync("_Favicons")
 
     <!-- Ligação ao bootstrap localmente -->
     <link rel='stylesheet' type='text/css' media='screen' href='~/lib/bootstrap/dist/css/bootstrap.min.css'>
@@ -36,6 +37,9 @@
     <!-- Scripts Locais do bootstrap -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+     <!-- Custom Tables Color -->
+    <link rel="stylesheet" href="~/css/dataTables/custom_color.css">
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -64,23 +68,46 @@
                     </div>
                     <div class="sidebar-brand-text mx-3">ATL Manager</div>
                 </a>
-                }else{
-                        <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index" id="manage">
+                }
+                
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="IndexADM" id="manage">
                         <div class="sidebar-brand-icon">
                             <img src="~/images/logo/logo.png">
                         </div>
                         <div class="sidebar-brand-text mx-3">ATL Manager</div>
                     </a>
                 }
+                @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                {
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index" id="manage">
+                        <div class="sidebar-brand-icon">
+                            <img src="~/images/logo/logo.png">
+                        </div>
+                        <div class="sidebar-brand-text mx-3">ATL Manager</div>
+                    </a>
+                }
+                
                 <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
+                     @if (User.IsInRole("Administrador"))
+                    {
+                    <a class="nav-link" asp-controller="Home" asp-action="IndexADM">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    }
                     @if (User.IsInRole("EncarregadoEducacao"))
                     {
                     <a class="nav-link" asp-controller="Home" asp-action="IndexEE">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
-                    }else{
+                    }
+
+                    @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario"))
+                    {
 
                     <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -91,7 +118,7 @@
 
                  <hr class="sidebar-divider">
                 <div class="sidebar-heading">
-                    Educação
+                    @language.GetKey("menuEducacao")
                 </div>
                 @if(User.IsInRole("Administrador"))
                 {
@@ -100,7 +127,7 @@
                            aria-expanded="false" aria-controls="agrupamentos">
 
                             <i class="far fa-fw fa-window-maximize"></i>
-                            <span>Agrupamentos</span>
+                            <span>@language.GetKey("menuAgrupamento")</span>
                         </a>
                        @* <div id="agrupamentos" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -121,7 +148,7 @@
                         <a class="nav-link collapsed" asp-action="Index" asp-controller="Atl" 
                         aria-expanded="false" aria-controls="atl">
                             <i class="fab fa-fw fa-wpforms"></i>
-                            <span>ATL</span>
+                            <span>@language.GetKey("menuAtl")</span>
                         </a>
                         @*<div id="atl" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -141,7 +168,7 @@
                         <a class="nav-link collapsed" asp-controller="Coordenadores" asp-action="Index"
                         aria-expanded="true" aria-controls="coordenadores">
                             <i class="fas fa-fw fa-user"></i>
-                            <span>Coordenadores</span>
+                            <span>@language.GetKey("menuCoordenador")</span>
                         </a>
                         @*<div id="coordenadores" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -161,7 +188,7 @@
                         <a class="nav-link collapsed" asp-controller="Funcionarios" asp-action="Index"
                         aria-expanded="true" aria-controls="funcionarios">
                              <img class="me-1" src="~/images/icons/menu-icons/funcionario.png" height="25" width="25" >
-                            <span>Funcionários</span>
+                            <span>@language.GetKey("menuFuncionario")</span>
                         </a>
                         @*<div id="funcionarios" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -181,7 +208,7 @@
                         <a class="nav-link collapsed" asp-controller="Refeicoes" asp-action="Index"
                         aria-expanded="true" aria-controls="collapseTable">
                             <img class="me-1" src="~/images/icons/menu-icons/refeicao.png" height="25" width="25" >
-                            <span>Refeições</span>
+                            <span>@language.GetKey("menuRefeicao")</span>
                         </a>
                     </li>
                 }
@@ -192,7 +219,7 @@
                         <a class="nav-link collapsed" asp-controller="Educandos" asp-action="Index"
                            aria-expanded="true" aria-controls="funcionarios">
                               <img class="me-1" src="~/images/icons/menu-icons/educando.png" height="25" width="25" >
-                            <span>Educandos</span>
+                            <span>@language.GetKey("menuEducando")</span>
                         </a>
                     </li>
                 }
@@ -203,7 +230,7 @@
                         <a class="nav-link collapsed" asp-controller="VisitasEstudo" asp-action="Index"
                            aria-expanded="true" aria-controls="visitasestudo">
                             <img class="me-1" src="~/images/icons/menu-icons/visita_estudo.png" height="25" width="25">
-                            <span>Visitas de Estudo</span>
+                            <span>@language.GetKey("menuVisitaEstudo")</span>
                         </a>
                     </li>
                 }
@@ -216,7 +243,7 @@
                             <a class="nav-link collapsed" asp-controller="Formularios" asp-action="IndexEE"
                                aria-expanded="true" aria-controls="formularios">
                                 <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
-                                <span>Formulários</span>
+                                <span>@language.GetKey("menuFormulario")</span>
                             </a>
                         }
                         else
@@ -224,7 +251,7 @@
                             <a class="nav-link collapsed" asp-controller="Formularios" asp-action="Index"
                                aria-expanded="true" aria-controls="formularios">
                                 <img class="me-1" src="~/images/icons/menu-icons/formulario.png" height="25" width="25">
-                                <span>Formulários</span>
+                                <span>@language.GetKey("menuFormulario")</span>
                             </a>
                         }
                     </li>
@@ -236,14 +263,14 @@
                         <a class="nav-link collapsed" asp-controller="Atividades" asp-action="Index"
                            aria-expanded="true" aria-controls="atividades">
                              <img class="me-1" src="~/images/icons/menu-icons/atividade.png" height="25" width="25" >
-                            <span>Atividades</span>
+                            <span>@language.GetKey("menuAtividade")</span>
                         </a>
                     </li>
                 }
 
                 <hr class="sidebar-divider">
                 <div class="sidebar-heading">
-                    Recursos
+                    @language.GetKey("menuResources")
                 </div>
 
                 @if (User.IsInRole("Coordenador") || User.IsInRole("Funcionario") || User.IsInRole("Administrador"))
@@ -252,7 +279,7 @@
                         <a class="nav-link collapsed" asp-controller="Estatisticas" asp-action="Index"
                            aria-expanded="true" aria-controls="estatisticas">
                             <img class="me-1" src="~/images/icons/menu-icons/estatistica.png" height="25" width="25" >
-                            <span>Estatisticas</span>
+                            <span>@language.GetKey("menuEstatistica")</span>
                         </a>
                     </li>
                 }
@@ -265,7 +292,7 @@
                             <a class="nav-link collapsed" asp-controller="Recibos" asp-action="IndexEE"
                                aria-expanded="true" aria-controls="recibos">
                                  <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
-                                <span>Faturas</span>
+                                <span>@language.GetKey("menuFatura")</span>
                             </a>                            
                         }
                         else
@@ -273,7 +300,7 @@
                             <a class="nav-link collapsed" asp-controller="Recibos" asp-action="Index"
                                aria-expanded="true" aria-controls="recibos">
                                  <img class="me-1" src="~/images/icons/menu-icons/recibo.png" height="25" width="25" >
-                                <span>Faturas</span>
+                                <span>@language.GetKey("menuFatura")</span>
                             </a>
                         }
                     </li>
@@ -285,7 +312,7 @@
                         <a class="nav-link collapsed" asp-controller="Notificacoes" asp-action="Index"
                            aria-expanded="true" aria-controls="notificacoes">
                             <img class="me-1" src="~/images/icons/menu-icons/notificacao.png" height="25" width="25">
-                            <span>Notificações</span>
+                            <span>@language.GetKey("menuNotificacao")</span>
                         </a>
                     </li>
                 }
@@ -296,7 +323,7 @@
                         <a class="nav-link collapsed" asp-controller="Historico" asp-action="Escolher"
                            aria-expanded="true" aria-controls="notificacoes">
                             <img class="me-1" src="~/images/icons/menu-icons/historico.png" height="25" width="25">
-                            <span>Historico</span>
+                            <span>@language.GetKey("menuHistorico")</span>
                         </a>
                     </li>
                 }
@@ -344,7 +371,7 @@
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
                     <!-- TopBar -->
-                    <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+                    <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-2 static-top">
                         <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
@@ -358,7 +385,7 @@
                                      aria-labelledby="searchDropdown">
                                     <form class="navbar-search">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-1 small" placeholder="What do you want to look for?"
+                                            <input type="text" class="form-control bg-light border-1 small" placeholder="@language.GetKey("menuPlaceSearch")"
                                                    aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
@@ -399,11 +426,15 @@
 
                                     @if (userNotifications.Count == 0)
                                     {
-                                        <a class="dropdown-item text-center small text-gray-500">No new notifications</a>
+                                        <a class="dropdown-item text-center small text-gray-500">
+                                            @language.GetKey("menuNovasMensagens")
+                                            </a>
                                     }
                                     else
                                     {
-                                        <a class="dropdown-item text-center small text-gray-500" asp-controller="Notificacoes" asp-action="Index">Show All Alerts</a>
+                                        <a class="dropdown-item text-center small text-gray-500" asp-controller="Notificacoes" asp-action="Index">
+                                            @language.GetKey("menuMostraMensagens")
+                                           </a>
                                     }
                                 </div>
                             </li>
@@ -458,67 +489,18 @@
                                 <div class="language-content" style="float:right">
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" id="language" class="text-decoration-none">
-                                        <img src="~/images/flags/en.png" class="flag-logo" />
-                                        <span class="language-label">@language.GetKey("txtMenuEnglish")</span>
+                                        <img src="~/images/flags/en.png" class="flag-logo mt-1" />
+                                            <span class="language-label" id="language_en">@language.GetKey("txtMenuEnglish")</span>
                                     </a>
 
                                     <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="pt-PT" id="language" class=" text-decoration-none">
-                                        <img src="~/images/flags/pt.png" class="flag-logo" />
-                                        <span class="language-label">@language.GetKey("txtMenuPortugues")</span>
+                                        <img src="~/images/flags/pt.png" class="flag-logo mt-1" />
+                                        <span class="language-label" id="language_pt">@language.GetKey("txtMenuPortugues")</span>
                                     </a>
                                 </div>
                             </div>
                         </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-tasks fa-fw"></i>
-                                    <span class="badge badge-success badge-counter">3</span>
-                                </a>
-                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="messagesDropdown">
-                                    <h6 class="dropdown-header">
-                                        Task
-                                    </h6>
-                                    <a class="dropdown-item align-items-center" href="#">
-                                        <div class="mb-3">
-                                            <div class="small text-gray-500">
-                                                Design Button
-                                                <div class="small float-right"><b>50%</b></div>
-                                            </div>
-                                            <div class="progress" style="height: 12px;">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item align-items-center" href="#">
-                                        <div class="mb-3">
-                                            <div class="small text-gray-500">
-                                                Make Beautiful Transitions
-                                                <div class="small float-right"><b>30%</b></div>
-                                            </div>
-                                            <div class="progress" style="height: 12px;">
-                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item align-items-center" href="#">
-                                        <div class="mb-3">
-                                            <div class="small text-gray-500">
-                                                Create Pie Chart
-                                                <div class="small float-right"><b>75%</b></div>
-                                            </div>
-                                            <div class="progress" style="height: 12px;">
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">View All Taks</a>
-                                </div>
-                            </li>
+                            
                             <div class="topbar-divider d-none d-sm-block"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -539,20 +521,12 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a id="manage" class="dropdown-item"  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Activity Log
+                                        @language.GetKey("profile")
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
+                                        @language.GetKey("sair")
                                     </a>
                                 </div>
                             </li>
@@ -865,19 +839,19 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabelLogout">Logout!</h5>
+                                            <h5 class="modal-title" id="exampleModalLabelLogout">@language.GetKey("sair")!</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Are you sure you want to logout?</p>
+                                            <p>@language.GetKey("qlogout")</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">@language.GetKey("cancelar")</button>
 
                                             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                                <button id="logout" type="submit" class="btn btn-outline-danger custom-submit">Logout</button>
+                                                <button id="logout" type="submit" class="btn btn-outline-danger custom-submit">@language.GetKey("sair")</button>
                                             </form>
                                            
                                         </div>
@@ -922,14 +896,16 @@ else
     </div>
 }
 
+
+
     <!-- Footer -->
     <footer class="bg-light text-center mt-auto fixed-bottom">
         <!-- Copyright -->
         <div class="text-center p-3 shadow">
             <div class="row">
-                <div class="col footer-p">@language.GetKey("contacts")</div>
-                <div class="col footer-p">@language.GetKey("support")</div>
-                <div class="col footer-p">@language.GetKey("siteMap")</div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">@language.GetKey("contacts") </a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">@language.GetKey("support")</a></div>
+                <div class="col footer-p"><a asp-area="" asp-controller="Home" asp-action="Policy" style="text-decoration:none;color:inherit;">@language.GetKey("politica")</a></div>
                 <div class="col footer-p">@language.GetKey("copyright")</div>
             </div>
             <!-- Copyright -->
@@ -945,10 +921,22 @@ else
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="~/js/menu.min.js"></script>
-    <script src="~/vendor/chart.js/Chart.min.js"></script>
-    <script src="~/js/demo/chart-area-demo.js"></script>
+   @* <script src="~/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/js/demo/chart-area-demo.js"></script>*@
     <script src="~/js/ajuda.js"></script>
+    
+    <!-- Datatables -->
+    <script src="~/js/datatable/jquery-3.5.1.js"></script>
 
-    @*<script src="~/js/monitor_adapt.js"></script>*@
+    @if (language.GetCurrentLanguage() == "en")
+    {
+        <script id="datatable-en" src="~/js/datatable/datatables_en.min.js"></script>
+    }
+    else if (language.GetCurrentLanguage() == "pt")
+    {
+        <script id="datatable-pt" src="~/js/datatable/datatables_pt.min.js"></script>
+    }
+    
+    <script src="~/js/datatable/datatables.bootstrap5.min.js"></script>
 </body>
 </html>

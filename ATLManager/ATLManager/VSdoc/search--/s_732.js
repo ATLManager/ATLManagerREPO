@@ -1,0 +1,1 @@
+search_result['732']=["topic_0000000000000191.html","EstatisticasController Class","Controlador para o modelo \u0027Estatísticas\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

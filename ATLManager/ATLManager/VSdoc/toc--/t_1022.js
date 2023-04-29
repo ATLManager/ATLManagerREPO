@@ -1,0 +1,1 @@
+c['1022']=[['1023',"FuncionarioRecord Constructor","topic_0000000000000287.html",0],['1024',"Properties","topic_000000000000027C_props--.html",1]];

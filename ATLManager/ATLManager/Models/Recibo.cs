@@ -16,7 +16,7 @@ namespace ATLManager.Models
 
         [Required]
         [DisplayName("Preço")]
-        [RegularExpression("[1-9][0-9]*?[,.][0-9]{0,2}", ErrorMessage = "Formato Incorreto: Ex. 200,00")]
+        [RegularExpression("[1-9][0-9]*?[,.][0-9]{0,2}", ErrorMessage = "Formato Incorreto: O preço deve conter um valor decimal")]
         public string Price { get; set; }
 
         [Required]

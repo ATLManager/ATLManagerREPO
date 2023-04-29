@@ -43,6 +43,8 @@ namespace ATLManager.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
 		[DisplayName("Data limite de pagamento")]
 		public DateTime DateLimit { get; set; }
+
+        [DisplayName("Pago")]
         public bool Authorized { get; set; } = false;
 
         [DataType(DataType.Date)]

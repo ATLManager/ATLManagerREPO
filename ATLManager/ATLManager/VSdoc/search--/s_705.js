@@ -1,0 +1,1 @@
+search_result['705']=["topic_0000000000000181.html","EducandosController Class","Controlador para o modelo Educando.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

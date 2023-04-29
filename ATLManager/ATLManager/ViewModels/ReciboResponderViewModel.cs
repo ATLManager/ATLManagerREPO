@@ -37,6 +37,7 @@ namespace ATLManager.ViewModels
         [DisplayName("Comprovativo")]
         [AllowedExtensions(new string[] { ".pdf" },
             ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .pdf")]
-        public IFormFile Comprovativo { get; set; }
+		[MaxFileSize(3 * 1024 * 1024, ErrorMessage = "Tamanho máximo permitido é de 3mB")]
+		public IFormFile Comprovativo { get; set; }
 	}
 }

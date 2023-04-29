@@ -13,83 +13,148 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-        <h1 class="me-3 fw-bold text-center mb-0">Detalhes da consulta</h1>
+        <h1 class="me-3 fw-bold text-center mb-0">Consulta de histórico</h1>
         <img src="~/images/icons/search-group.png" width="50" height="50">
     </div>
     <!-- Fase 1  -->
     <!-- d-flex -->
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-3">
         <!-- Box  -->
         <div class="row justify-content-center custom-box" id="myBox">
-            <div class="row box border-5 p-5">
-                <div class="container">
-                    <div class="row mt-3 text-center">
-                        
-                        <div class="row mb-3">
-                            <div class="col">
-                                <a asp-controller="VisitaEstudoRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Visitas de Estudo
-                                    </button>
-                                </a>
+            <div class="row box border-5 p-3">
+                <div class="container">                  
+                    <div class="row mt-3 text-center align-items-center">
+                        <div class="row d-flex justify-content-center">
+                            <div class="row mb-3">
+                                <div class="row mb-3"> 
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/visita_estudo.png" style="width:25%">
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/atividade.png" style="width:25%">
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/funcionario.png" style="width:25%">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="VisitaEstudoRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style="border-radius:6em;width:60%;">
+                                            Visitas de Estudo
+                                        </a>
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="AtividadeRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style=" border-radius:6em;width:60%;">
+                                            Atividades
+                                        </a>
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="FuncionarioRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style=" border-radius:6em;width:60%;">
+                                            Funcionários
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-4"></div>
-                            <div class="col">
-                                <a asp-controller="AtividadeRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Atividades
-                                    </button>
-                                </a>
-                            </div>  
+
+
+                            <div class="row mb-3">
+                                <div class="row mb-3">
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/refeicao.png" style="width:25%">
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/formulario.png" style="width:25%">
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/fatura.png" style="width:25%">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="RefeicaoRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style=" border-radius:6em;width:60%;">
+                                            Refeições
+                                        </a>
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="FormularioRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style=" border-radius:6em;width:60%;">
+                                            Formulários
+                                        </a>
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="ReciboRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style=" border-radius:6em;width:60%;">
+                                            Recibos
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="row mb-2">
+                                    <div class="col justify-content-center">
+                                      
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <img src="~/images/history_page/educando.png" style="width:25%">
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                      
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col justify-content-center">
+                                      
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                        <a asp-controller="EducandoRecords" asp-action="Index" class="btn btn-primary custom-button"
+                                           style=" border-radius:6em;width:60%;">
+                                            Educandos
+                                        </a>
+                                    </div>
+
+                                    <div class="col justify-content-center">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                           
                         </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <a asp-controller="FuncionarioRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Funcionários
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a asp-controller="RefeicaoRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Refeições
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a asp-controller="EducandoRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Educandos
-                                    </button>
-                                </a>
-                            </div>                      
+
+                       
+
+                       @* <div class="col">
+                           
                         </div>
+
+               
                         <div class="row mb-3">
+                            <div class="col"></div>
                             <div class="col">
-                                <a asp-controller="FormularioRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Formulários
-                                    </button>
-                                </a>
+                               
                             </div>
-                            <div class="col-4"></div>
-                            <div class="col">
-                                <a asp-controller="ReciboRecords" asp-action="Index">
-                                    <button type="button" class="btn btn-secondary custom-button"
-                                            style=" border-radius:6em">
-                                        Recibos
-                                    </button>
-                                </a>
-                            </div>    
+                           
+                            <div class="col"></div>
                         </div>
-                      
+                      *@
                     </div>
                 </div>
             </div>

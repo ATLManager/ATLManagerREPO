@@ -1,0 +1,1 @@
+search_result['714']=["topic_0000000000000185.html","EducandosController.DetailsSaude (Nullable\u0026lt;Guid\u0026gt;) Method","Obtem os detalhes de saúde de um Educando e exibe a informação numa view."];

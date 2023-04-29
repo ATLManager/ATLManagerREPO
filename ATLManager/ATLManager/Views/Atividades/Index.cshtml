@@ -29,8 +29,59 @@
 		return $"#{r:X2}{g:X2}{b:X2}";
 	}
 }
+
 @section Scripts {
+
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+
+@*		/**
+		 * Aplica os estilos CSS para a janela modal
+		 * @name applyModalStyles
+		 * @function
+		 */
+
+		 /**
+		 * Retorna o evento com o ID especificado a partir da matriz de eventos fornecida
+		 * @param {number} id - O ID do evento
+		 * @param {array} events - A matriz de eventos a ser pesquisada
+		 * @returns {object} O evento com o ID especificado ou undefined se nenhum evento com esse ID for encontrado
+		 * @name getEventById
+		 * @function 
+		*/
+
+		 /**
+		   * Aplica os estilos CSS e configura o calendário FullCalendar
+		   * @name setupCalendar
+		   * @function 
+		   */
+		  
+		 /**
+		 * Manipulador de evento chamado quando um evento do calendário é clicado
+		 * @param {object} info - As informações sobre o evento clicado
+		 * @name eventClick
+		 * @function
+		 */
+		 
+		 /**
+		 * Manipulador de evento chamado após um evento ser renderizado no calendário
+		 * @param {object} info - As informações sobre o evento renderizado
+		 * @name eventDidMount
+		 * @function
+		 */
+		 
+		 /**
+		 * Exibe a janela modal com os detalhes do evento especificado
+		 * @param {string} title - O título do evento
+		 * @param {Date} start - A data de início do evento
+		 * @param {Date} end - A data de término do evento
+		 * @param {string} description - A descrição do evento
+		 * @param {number} id - O ID do evento
+		 * @param {string} picture - A imagem associada ao evento
+		 * @name showModal
+		 * @function
+		 */
+
+		 *@
 	<script>
 
 		function applyModalStyles() {
@@ -173,10 +224,6 @@
 			});
 		});
 
-
-
-
-
 		function showModal(title, start, end, description, id, picture) {
 			// Seleciona o elemento modal
 			var modal = $('#myModal');
@@ -246,10 +293,8 @@
 		<div class="row">
 			<div class="col">
 				<p class="text-end">
-					<a asp-action="Create">
-						<li type="button" class="btn btn-primary custom-button style=" border-radius:6em""> 
+					<a asp-action="Create" class="btn btn-primary custom-button"> 
 							+ Adicionar Atividade 
-						</li>
 					</a>
 				</p>
 			</div>

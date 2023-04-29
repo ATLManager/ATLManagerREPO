@@ -1,9 +1,11 @@
-﻿@model ATLManager.Models.Recibo
+﻿@model ATLManager.ViewModels.ReciboCreateViewModel
+@using ATLManager.Services;
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
 
 @{
 	ViewData["Title"] = "Criar Fatura";
@@ -20,7 +22,6 @@
 			<h1 class="me-3 fw-bold text-center mb-0">Criar Fatura</h1>
 			<img src="~/images/icons/edit-group.png" width="50" height="50">
 		</div>
-
 		<div class="row" style="padding-left: 6em;">
 			<div class="col text-right pb-2" id="divQuestion">
 				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
@@ -39,11 +40,22 @@
 									<div class="col-md">
 										<form asp-action="Create">
 											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											<div class="form-check mb-3">
+												<input type="checkbox" class="form-check-input" id="enviarFaturaParaTodos" onclick="toggleEducandoCombo()">
+												<label class="form-check-label" for="enviarFaturaParaTodos">Enviar Fatura para Todos os Educandos</label>
+											</div>
+
 											<div class="row mb-2">
 												<div class="col">
 													<label asp-for="Name" class="form-label"></label>
 													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
 													<span asp-validation-for="Name" class="text-danger"></span>
+												</div>
+												<div class="col">
+													<label asp-for="Educando" class="control-label">Encarregado</label>
+													<select asp-for="Educando" class="form-control" asp-items="ViewBag.Educandos" id="educandoCombo">
+														<option value=null>Escolha um Educando</option>
+													</select>
 												</div>
 											</div>
 											<div class="row mb-2">
@@ -113,41 +125,31 @@
 
 	<!-- Slide de Ajuda  -->
 	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
-
 		<div class="row text-center mt-2">
 			<div class="col-10 ">
-				<h2 class="text-white ms-5">Ajuda</h2>
+				<h2 class="text-white ms-5">@language.GetKey("help")</h2>
 			</div>
-
 			<div class="col-2">
 				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
 			</div>
 		</div>
 		<div class="">
 			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+				   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
 		</div>
-		<!-- -->
 		<ul class="row justify-content-center p-4 bg-white mt-4 "
 			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
 			<li class="row">
 				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
 					<div class="d-flex align-items-center justify-content-center">
-
-						<span>Como criar uma fatura</span>
+						<span>Como criar um Recibo</span>
 						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
 					</div>
 				</button>
-
-
 				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-					Here's some more textHere's some more textHere's some more textHere's some
-					more textHe
-
+					Para criar um recibo deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.
 				</span>
 			</li>
-
-
 			<li class="row">
 				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
 					<div class="d-flex align-items-center justify-content-center">
@@ -155,7 +157,7 @@
 							<img src="~/images/guide/terms.png" class="">
 						</div>
 						<div class="col">
-							<span>Leia artigos de ajuda</span>
+							<span>@language.GetKey("readarticles")</span>
 						</div>
 					</div>
 				</button>
@@ -167,7 +169,7 @@
 							<img src="~/images/guide/comunity.png" class="">
 						</div>
 						<div class="col">
-							<span>Pergunte à comunidade</span>
+							<span>@language.GetKey("askcomunity")</span>
 						</div>
 					</div>
 				</button>
@@ -179,7 +181,7 @@
 							<img src="~/images/guide/new.png" class="">
 						</div>
 						<div class="col">
-							<span>Novas Atualizações</span>
+							<span>@language.GetKey("newsupdates")</span>
 						</div>
 					</div>
 				</button>
@@ -191,10 +193,13 @@
 							<img src="~/images/guide/feedback.png" class="">
 						</div>
 						<div class="col">
-							<span>Dê Feedback</span>
+							<span>
+								<a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+									@language.GetKey("givefeedback")
+								</a>
+							</span>
 						</div>
 					</div>
-
 				</button>
 			</li>
 		</ul>
@@ -244,6 +249,19 @@
 				divCertidao.style.display = 'block';
 			}
 		});
+	</script>
+
+		<script>
+		function toggleEducandoCombo() {
+			var enviarFaturaParaTodos = document.getElementById('enviarFaturaParaTodos');
+			var educandoCombo = document.getElementById('educandoCombo');
+
+			if (enviarFaturaParaTodos.checked) {
+				educandoCombo.setAttribute('disabled', 'disabled');
+			} else {
+				educandoCombo.removeAttribute('disabled');
+			}
+		}
 	</script>
 	<!--  // Options Script -->
 	@section Scripts {

@@ -12,6 +12,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Histórico de Atividades'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
+    
     public class AtividadeRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -23,7 +28,11 @@ namespace ATLManager.Controllers
             _userManager = userManager;
         }
 
-        // GET: AtividadeRecords
+        /// <summary>
+        /// Obtém a página de índice de atividades para o utilizador atual.
+        /// </summary>
+        /// <returns>A página de índice de atividades com as atividades do utilizador atual.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -39,7 +48,12 @@ namespace ATLManager.Controllers
             return View(atividades);
         }
 
-        // GET: AtividadeRecords/Details/5
+        /// <summary>
+        /// Obtém a página de detalhes da atividade com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID da atividade.</param>
+        /// <returns>A página de detalhes da atividade com o ID fornecido.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.AtividadeRecord == null)
@@ -58,7 +72,12 @@ namespace ATLManager.Controllers
             return View(atividadeRecord);
         }
 
-        // GET: AtividadeRecords/Delete/5
+        /// <summary>
+        /// Obtém a página de exclusão da atividade com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID da atividade.</param>
+        /// <returns>A página de exclusão da atividade com o ID fornecido.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.AtividadeRecord == null)
@@ -77,7 +96,12 @@ namespace ATLManager.Controllers
             return View(atividadeRecord);
         }
 
-        // POST: AtividadeRecords/Delete/5
+        /// <summary>
+        /// Exclui a atividade com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID da atividade.</param>
+        /// <returns>Redireciona para a página de índice de atividades após a exclusão da atividade com o ID fornecido.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -95,6 +119,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se existe um registo de atividade com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do registo de atividade a ser verificado.</param>
+        /// <returns>True se o registo de atividade existir, False caso contrário.</returns>
 
         private bool AtividadeRecordExists(Guid id)
         {

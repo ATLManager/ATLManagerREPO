@@ -1,0 +1,1 @@
+search_result['925']=["topic_00000000000001FC.html","ReciboRespostasController.Responder (Nullable\u0026lt;Guid\u0026gt;) Method","Obtém a resposta a um recibo para ser respondida por um Encarregado de Educação."];

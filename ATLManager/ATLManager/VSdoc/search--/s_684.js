@@ -1,0 +1,1 @@
+search_result['684']=["topic_0000000000000175.html","EducandoRecordsController.Details Method","Retorna a página de detalhes do registo do educando com o ID especificado."];

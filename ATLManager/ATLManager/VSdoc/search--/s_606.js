@@ -1,0 +1,1 @@
+search_result['606']=["topic_000000000000014C.html","AgrupamentosController.GetATLsByAgrupamento Method","Obtém todas as ATLs associadas ao agrupamento especificado."];

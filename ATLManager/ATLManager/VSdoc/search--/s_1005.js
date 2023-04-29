@@ -1,0 +1,1 @@
+search_result['1005']=["topic_0000000000000228.html","VisitasEstudoController.Create (VisitaEstudoCreateViewModel) Method","Cria uma nova visita de estudo."];

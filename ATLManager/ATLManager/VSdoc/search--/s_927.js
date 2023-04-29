@@ -1,0 +1,1 @@
+search_result['927']=["topic_00000000000001FD.html","ReciboRespostasController.Responder (Guid, ReciboResponderViewModel) Method","Método para responder um recibo."];

@@ -1,0 +1,1 @@
+search_result['649']=["topic_0000000000000163.html","ATLController.Create (ATLCreateViewModel) Method","Cria um novo ATL com base nos dados fornecidos pelo objeto viewModel."];

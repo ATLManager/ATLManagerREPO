@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Localization;
+using System.Globalization;
 using System.Reflection;
 
 namespace ATLManager.Services
@@ -18,5 +19,16 @@ namespace ATLManager.Services
         {
             return _localizer[key];
         }
+
+        public string GetCurrentLanguage()
+        {
+            // Example implementation - replace with your own code
+            var currentCulture = CultureInfo.CurrentCulture;
+            var currentLanguage = currentCulture.TwoLetterISOLanguageName;
+
+            return currentLanguage;
+        }
+
+
     }
 }

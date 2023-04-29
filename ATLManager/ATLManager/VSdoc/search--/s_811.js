@@ -1,0 +1,1 @@
+search_result['811']=["topic_00000000000001BC.html","FuncionarioRecordsController.Delete Method","Retorna a página de exclusão do funcionário com o ID fornecido."];

@@ -1,0 +1,1 @@
+search_result['1984']=["topic_000000000000048D.html","RefeicaoEditViewModel.ValorEnergetico Property",""];

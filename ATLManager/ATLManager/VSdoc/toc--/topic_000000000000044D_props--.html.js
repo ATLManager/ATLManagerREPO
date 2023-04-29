@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['1120',"ATLManager.ViewModels Namespace","topic_00000000000003A2.html"],['1314',"ReciboEditViewModel Class","topic_000000000000044D.html"],['1315',"Properties","topic_000000000000044D_props--.html"]];

@@ -12,6 +12,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Históricos de Resposta de Formulários'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class FormularioRespostaRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -21,7 +25,12 @@ namespace ATLManager.Controllers
             _context = context;
         }
 
-        // GET: FormularioRespostaRecords/Details/5
+        /// <summary>
+        /// Exibe os detalhes de um registro de formulário de resposta com base no ID.
+        /// </summary>
+        /// <param name="id">O ID do registro de formulário de resposta.</param>
+        /// <returns>Um objeto IActionResult que exibe a visualização dos detalhes do registro de formulário de resposta.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.FormularioRespostaRecord == null)

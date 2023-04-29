@@ -1,0 +1,1 @@
+search_result['617']=["topic_0000000000000152.html","AtividadeRecordsController.Delete Method","Obtém a página de exclusão da atividade com o ID fornecido."];

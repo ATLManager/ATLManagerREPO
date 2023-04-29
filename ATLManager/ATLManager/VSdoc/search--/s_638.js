@@ -1,0 +1,1 @@
+search_result['638']=["topic_000000000000015E.html","ATLController Class","Controlador para o modelo \u0027ATL\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

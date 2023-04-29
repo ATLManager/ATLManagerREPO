@@ -1,0 +1,1 @@
+search_result['848']=["topic_00000000000001CE.html","HomeController.GetEstatisticasPorEducando Method","Retorna as estatísticas de visitas de estudo e atividades por mês de um educando específico em formato JSON."];

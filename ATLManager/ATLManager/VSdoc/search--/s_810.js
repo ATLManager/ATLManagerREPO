@@ -1,0 +1,1 @@
+search_result['810']=["topic_00000000000001BB.html","FuncionarioRecordsController.Details Method","Retorna a página de detalhes do funcionário com o ID fornecido."];

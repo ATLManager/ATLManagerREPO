@@ -6,7 +6,7 @@
 @inject UserManager<ATLManagerUser> UserManager
 
 @{
-	ViewData["Title"] = "Details";
+	ViewData["Title"] = "Detalhes do Histórico de Atividade";
 }
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
@@ -72,11 +72,8 @@
 							<hr />
 							<div class="d-flex text-center mt-4">
 								<div class="col-8 text-right">
-									<a asp-action="Index">
-										<button type="button"
-												class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+									<a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
 											Voltar
-										</button>
 									</a>
 								</div>
 							</div>

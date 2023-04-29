@@ -1,0 +1,1 @@
+search_result['994']=["topic_0000000000000223.html","VisitasEstudoController Class","Controlador para o modelo \u0027Visitas de Estudo\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using ATLManager.Areas.Identity.Data;
 using ATLManager.Attributes;
 using ATLManager.Models;
+using ATLManager.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,16 +25,18 @@ namespace ATLManager.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly SignInManager<ATLManagerUser> _signInManager;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-		public IndexModel(
+        private readonly string FolderName = "users";
+
+        public IndexModel(
             UserManager<ATLManagerUser> userManager,
             SignInManager<ATLManagerUser> signInManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
         /// <summary>
@@ -155,7 +158,7 @@ namespace ATLManager.Areas.Identity.Pages.Account.Manage
 				await _userManager.UpdateAsync(user);
 			}
 
-			string photoFileName = UploadedFile(Input.Picture);
+			string photoFileName = _fileManager.UploadFile(Input.Picture, FolderName);
 			if (photoFileName != null)
 			{
 				user.Picture = photoFileName;
@@ -166,22 +169,5 @@ namespace ATLManager.Areas.Identity.Pages.Account.Manage
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
-
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, @"images\uploads\users");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

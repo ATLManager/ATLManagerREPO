@@ -1,0 +1,1 @@
+search_result['950']=["topic_000000000000020A.html","RecibosController.Delete Method","Método de ação que retorna a view para excluir um recibo com o ID especificado."];

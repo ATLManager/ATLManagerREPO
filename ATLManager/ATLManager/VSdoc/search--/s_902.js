@@ -1,0 +1,1 @@
+search_result['902']=["topic_00000000000001F1.html","ReciboRecordsController.Delete Method","Exclui um recibo específico do banco de dados."];

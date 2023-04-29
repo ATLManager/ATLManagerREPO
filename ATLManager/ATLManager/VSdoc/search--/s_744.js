@@ -1,0 +1,1 @@
+search_result['744']=["topic_0000000000000198.html","EstatisticasController.GetAtividadesPorMesEstatisticasEnc Method","Obtém as estatísticas de atividades por mês."];

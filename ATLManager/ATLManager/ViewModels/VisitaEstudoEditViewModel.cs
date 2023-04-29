@@ -28,13 +28,14 @@ namespace ATLManager.ViewModels
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public string? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [DataType(DataType.Upload)]
         [DisplayName("Local da Visita de Estudo")]
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" },
             ErrorMessage = "A extensão do ficheiro escolhido não é permitida: .jpg, .jpeg, .png")]
-        public IFormFile? Picture { get; set; }
+		[MaxFileSize(128 * 1024, ErrorMessage = "Tamanho máximo permitido é de 128kB")]
+		public IFormFile? Picture { get; set; }
 
         public VisitaEstudoEditViewModel()
         {
@@ -46,7 +47,7 @@ namespace ATLManager.ViewModels
             Name = visitaEstudo.Name;
             Location = visitaEstudo.Location;
             Descripton = visitaEstudo.Description;
-            Date = visitaEstudo.Date.ToShortDateString();
+            Date = visitaEstudo.Date;
         }
     }
 }

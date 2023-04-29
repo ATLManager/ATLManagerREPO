@@ -19,6 +19,10 @@ using ATLManager.Models.Historicos;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Recibos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class RecibosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -36,7 +40,11 @@ namespace ATLManager.Controllers
             _notificacoesController = notificacoesController;
         }
 
-        // GET: Reciboes
+        /// <summary>
+        /// Retorna uma lista de recibos com base no utilizador atual.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que contém uma exibição dos recibos do utilizador.</returns>
+
         [Authorize(Roles = "Coordenador,Funcionario")]
         public async Task<IActionResult> Index()
         {
@@ -53,6 +61,11 @@ namespace ATLManager.Controllers
 
             return View(recibos);
         }
+
+        /// <summary>
+        /// Retorna uma lista de recibos para os educandos do encarregado atual.
+        /// </summary>
+        /// <returns>Uma instância de IActionResult que contém uma exibição dos recibos do encarregado.</returns>
 
         [Authorize(Roles = "EncarregadoEducacao")]
         public async Task<IActionResult> IndexEE()
@@ -75,11 +88,13 @@ namespace ATLManager.Controllers
             {
                 var respostas = await (from resposta in _context.ReciboResposta
                                        join educandoTable in _context.Educando on resposta.EducandoId equals educandoTable.EducandoId
+                                       join recibo in _context.Recibo on resposta.ReciboId equals recibo.ReciboId
                                        where resposta.EducandoId == educando.EducandoId
                                        select new ReciboRespostasViewModel
                                        {
                                            RespostaId = resposta.ReciboRespostaId,
                                            ReciboId = resposta.ReciboId,
+                                           ReciboName = recibo.Name,
                                            EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
                                            Authorized = resposta.Authorized,
                                            ResponseDate = ((DateTime)resposta.ResponseDate).ToShortDateString(),
@@ -94,7 +109,11 @@ namespace ATLManager.Controllers
 			return View(recibos);
         }
 
-        // GET: Reciboes/Details/5
+        /// <summary>
+        /// Retorna os detalhes de um recibo com base no ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do recibo.</param>
+        /// <returns>Uma instância de IActionResult que contém uma exibição dos detalhes do recibo.</returns>
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Recibo == null)
@@ -111,6 +130,12 @@ namespace ATLManager.Controllers
 
             return View(recibo);
         }
+
+        /// <summary>
+        /// Retorna uma lista de respostas de recibo com base no ID do recibo.
+        /// </summary>
+        /// <param name="id">O ID do recibo.</param>
+        /// <returns>Uma lista de respostas de recibo.</returns>
 
         public async Task<IActionResult> Respostas(Guid? id)
         {
@@ -141,26 +166,45 @@ namespace ATLManager.Controllers
             return View(respostas);
         }
 
-        // GET: Reciboes/Create
-        public IActionResult Create()
+        /// <summary>
+        /// Retorna a view para criar um novo recibo.
+        /// </summary>
+        /// <returns>A view para criar um novo recibo.</returns>
+
+        public async Task<IActionResult> Create()
         {
-            return View();
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+			var currentUserAccount = await _context.ContaAdministrativa
+				.Include(f => f.User)
+				.FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+			var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Where(e => e.AtlId == currentUserAccount.AtlId)
+                .Select(e => new { Id = e.EducandoId, Name = e.Name + " " + e.Apelido + " (CC: " + e.CC + ")"})
+                .ToListAsync();
+
+            ViewData["Educandos"] = new SelectList(educandos, "Id", "Name");
+			return View();
         }
 
-        // POST: Reciboes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo recibo com base nos dados fornecidos e notifica os encarregados de educação relevantes.
+        /// </summary>
+        /// <param name="viewModel">Os dados do recibo a serem criados.</param>
+        /// <returns>O resultado da criação do recibo.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Price,NIB,Description,DateLimit")] Recibo recibo)
+        public async Task<IActionResult> Create([Bind("Name,Price,NIB,Description,DateLimit,Educando")] ReciboCreateViewModel viewModel)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var userAccount = await _context.ContaAdministrativa
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id);
 
-            
-			if (recibo.DateLimit.CompareTo(DateTime.UtcNow) < 0)
+			if (viewModel.DateLimit.CompareTo(DateTime.UtcNow) < 0)
 			{
 				var validationMessage = "Não é possível criar uma fatura com uma data limite anterior à data atual";
 				ModelState.AddModelError("DateLimit", validationMessage);
@@ -168,55 +212,108 @@ namespace ATLManager.Controllers
 
 			if (ModelState.IsValid)
             {
-                recibo.EmissionDate = DateTime.UtcNow.Date;
-                recibo.AtlId = userAccount.AtlId;
-                _context.Add(recibo);
+				var recibo = new Recibo()
+				{
+                    Name = viewModel.Name,
+                    Price = viewModel.Price,
+                    NIB = viewModel.NIB,
+                    Description = viewModel.Description,
+                    DateLimit = viewModel.DateLimit,
+					EmissionDate = DateTime.UtcNow.Date,
+					AtlId = userAccount.AtlId
+				};
+				_context.Add(recibo);
 
-                var educandos = await _context.Educando
-                    .Include(c => c.Atl)
-                    .Where(g => g.AtlId == userAccount.AtlId)
-                    .ToListAsync();
-
-                foreach (var educando in educandos)
+                if (viewModel.Educando == null)
                 {
-                    var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+                    var educandos = await _context.Educando
+                        .Include(c => c.Atl)
+                        .Where(g => g.AtlId == userAccount.AtlId)
+                        .ToListAsync();
+
+                    foreach (var educando in educandos)
                     {
-                        Name = recibo.Name,
-                        Price = recibo.Price,
-                        NIB = recibo.NIB,
-                        Description = recibo.Description,
-                        DateLimit = recibo.DateLimit
-                    };
+                        var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+                        {
+                            Name = recibo.Name,
+                            Price = recibo.Price,
+                            NIB = recibo.NIB,
+                            Description = recibo.Description,
+                            DateLimit = recibo.DateLimit
+                        };
 
-                    // Obter Encarregado do Educando e a sua conta
-                    var encarregado = await _context.EncarregadoEducacao
-                        .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
-                    var encarregadoAccount = await _context.Users
-                        .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+                        // Obter Encarregado do Educando e a sua conta
+                        var encarregado = await _context.EncarregadoEducacao
+                            .FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+                        var encarregadoAccount = await _context.Users
+                            .FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
 
-                    var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
-                    var code = resposta.ReciboRespostaId.ToString();
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
+                        var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
+                        var code = resposta.ReciboRespostaId.ToString();
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
                     
-                    // Enviar notificação para o Encarregado de Educação
-                    var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
-                    var notificationTitle = $"Novo Recibo - {recibo.Name}";
+                        // Enviar notificação para o Encarregado de Educação
+                        var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+                        var notificationTitle = $"Novo Recibo - {recibo.Name}";
 
-                    await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+                        await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
 
-                    await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
+                        await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
 
-                    _context.Add(resposta);
+                        _context.Add(resposta);
+                    }
                 }
+                else
+                {
+                    var educando = await _context.Educando.
+                        Include(e => e.Atl).
+                        FirstOrDefaultAsync(e => e.EducandoId == (Guid)viewModel.Educando);
+
+                    if (educando == null) return NotFound();
+
+					var resposta = new ReciboResposta(recibo.ReciboId, educando.EducandoId)
+					{
+						Name = recibo.Name,
+						Price = recibo.Price,
+						NIB = recibo.NIB,
+						Description = recibo.Description,
+						DateLimit = recibo.DateLimit
+					};
+
+					// Obter Encarregado do Educando e a sua conta
+					var encarregado = await _context.EncarregadoEducacao
+						.FirstOrDefaultAsync(e => e.EncarregadoId == educando.EncarregadoId);
+					var encarregadoAccount = await _context.Users
+						.FirstOrDefaultAsync(e => e.Id == encarregado.UserId);
+
+					var userEmail = await _userManager.GetEmailAsync(encarregadoAccount);
+					var code = resposta.ReciboRespostaId.ToString();
+					code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+					var callbackUrl = Url.Action("Responder", "ReciboRespostas", new { id = resposta.ReciboRespostaId }, Request.Scheme);
+
+					// Enviar notificação para o Encarregado de Educação
+					var notificationMessage = $"Há um novo recibo disponível para o seu educando {educando.Name} {educando.Apelido}, que pertence ao ATL {educando.Atl.Name}. Por favor, responda o mais rápido possível ao <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicar aqui</a>.";
+					var notificationTitle = $"Novo Recibo - {recibo.Name}";
+
+					await _emailSender.SendEmailAsync(userEmail, notificationTitle, notificationMessage);
+
+					await _notificacoesController.CreateNotification(encarregado.UserId, notificationTitle, notificationMessage);
+
+					_context.Add(resposta);
+				}
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(recibo);
+            return View(viewModel);
         }
 
-        // GET: Recibos/Edit/5
+        /// <summary>
+        /// Método responsável por retornar a View de edição de um recibo.
+        /// </summary>
+        /// <param name="id">Id do recibo a ser editado.</param>
+        /// <returns>Retorna a View de edição do recibo.</returns>
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Recibo == null)
@@ -243,9 +340,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // POST: Recibos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método responsável por atualizar um recibo.
+        /// </summary>
+        /// <param name="id">Id do recibo a ser atualizado.</param>
+        /// <param name="viewModel">ViewModel com os dados atualizados do recibo.</param>
+        /// <returns>Retorna a View de edição do recibo caso haja algum erro de validação ou a View Index caso a atualização tenha sido bem sucedida.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ReciboId,Name,Price,NIB,Description,DateLimit")] ReciboEditViewModel viewModel)
@@ -306,7 +407,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Reciboes/Delete/5
+        /// <summary>
+        /// Método de ação que retorna a view para excluir um recibo com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do recibo a ser excluído.</param>
+        /// <returns>A view para excluir o recibo com o ID especificado.</returns>
+
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Recibo == null)
@@ -324,7 +431,12 @@ namespace ATLManager.Controllers
             return View(recibo);
         }
 
-        // POST: Reciboes/Delete/5
+        /// <summary>
+        /// Método de ação que exclui permanentemente um recibo com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do recibo a ser excluído.</param>
+        /// <returns>Uma ação redirecionando para a view Index.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -384,6 +496,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se um recibo com o ID especificado existe.
+        /// </summary>
+        /// <param name="id">O ID do recibo a ser verificado.</param>
+        /// <returns>Verdadeiro se o recibo existir, falso caso contrário.</returns>
 
         private bool ReciboExists(Guid id)
         {
