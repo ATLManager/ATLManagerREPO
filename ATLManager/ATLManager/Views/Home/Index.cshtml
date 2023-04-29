@@ -85,6 +85,280 @@
 
     
 <script>
+        let visitasEstudoPorMesChart;
+        let atividadesPorMesChart;
+        let educandosPorMesChart;
+        let rapazesXRaparigasChart;
+
+        document.addEventListener('DOMContentLoaded', init);
+    function init() {
+            const visitasEstudoPorMesData = createChartData('Visitas de Estudo por Mês', 'rgba(75, 192, 192, 0.2)', 'rgba(75, 192, 192, 1)');
+            const atividadesPorMesData = createChartData('Atividades por Mês', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 1)');
+            const educandosPorMesData = createChartData('Educandos Por Mês', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 1)');
+            
+            rapazesXRaparigasChart = createChart('myAreaChartRapazesXRaparigas', createRapazesXRaparigasChartData(), 'bar');
+            educandosPorMesChart = createChart('myAreaChartEducandosPorMes', educandosPorMesData, 'bar');
+            visitasEstudoPorMesChart = createChart('myAreaChartVisitaEstudos', visitasEstudoPorMesData, 'bar');
+            atividadesPorMesChart = createChart('myAreaChartAtividades', atividadesPorMesData, 'bar');
+     
+                fetchDataAndUpdateCharts();
+                updateChartVisibility();
+        }
+
+        function createRapazesXRaparigasChartData() {
+          return {
+            labels: ['Educandos'],
+            datasets: [
+              {
+                label: 'Rapazes',
+                data: [],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+              },
+              {
+                label: 'Raparigas',
+                data: [],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+              },
+            ],
+          };
+        }
+
+        
+        function createChartData(label, backgroundColor, borderColor) {
+            return {
+                labels: [
+                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ],
+                datasets: [{
+                    label: label,
+                    data: [],
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
+                    borderWidth: 1
+                }]
+            };
+        }
+
+      function createChart(elementId, chartData, chartType) {
+  const canvas = document.getElementById(elementId);
+  if (canvas.chart) {
+    canvas.chart.destroy();
+  }
+
+  let chartConfig;
+
+  if (chartType === 'bar') {
+    const maxData = Math.max(...chartData.datasets[0].data);
+    const maxY = maxData < 5 ? 5 : Math.ceil(maxData / 5) * 5;
+
+    chartConfig = {
+      type: 'bar',
+      data: chartData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: maxY,
+            ticks: {
+              stepSize: 1,
+              precision: 0,
+              font: {
+                size: 14,
+                family: 'Poppins',
+              },
+            },
+          },
+          x: {
+            ticks: {
+              font: {
+                size: 14,
+                family: 'Poppins',
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+          padding: {
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10,
+          },
+        },
+      },
+    };
+  } else if (chartType === 'doughnut') {
+    chartConfig = {
+      type: 'doughnut',
+      data: chartData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+        },
+      },
+    };
+  }
+
+  if (chartData.options && chartData.options.title) {
+    chartConfig.options.plugins.title = {
+      display: true,
+      text: chartData.options.title.text,
+    };
+  }
+
+  const chart = new Chart(canvas, chartConfig);
+  canvas.chart = chart;
+  return chart;
+}
+
+    
+            async function fetchDataAndUpdateCharts() {
+                  const responseVisitasEstudo = await fetch('/Home/GetVisitasEstudoPorMesEstatisticas');
+                  const visitasEstudoData = await responseVisitasEstudo.json();
+
+                  const responseAtividades = await fetch('/Home/GetAtividadesPorMesEstatisticas');
+                  const atividadesData = await responseAtividades.json();
+
+                  const responseEducandos = await fetch('/Home/GetEducandosPorMesEstatisticas');
+                  const educandosData = await responseEducandos.json();
+
+                  const responseRapazes = await fetch('/Home/GetNumeroDeRapazes');
+                  const numeroDeRapazes = await responseRapazes.json();
+
+                  const responseRaparigas = await fetch('/Home/GetNumeroDeRaparigas');
+                  const numeroDeRaparigas = await responseRaparigas.json();
+
+
+                  const responseFaturacaoMesAtual = await fetch('/Home/GetFaturacaoMesAtual');
+                  const faturacaoMesAtual = await responseFaturacaoMesAtual.json();
+
+                  const responseFaturasEmAtraso = await fetch('/Home/GetFaturasEmAtraso');
+                  const faturasEmAtrasoData = await responseFaturasEmAtraso.json();
+
+                  const responseNumeroEducandosNovos = await fetch('/Home/GetNumeroDeEducandosNovos');
+                  const numeroEducandosNovos = await responseNumeroEducandosNovos.json();
+                  
+                  
+                  updateChart(educandosPorMesChart, educandosData, 'noEducandosData');
+                  updateChart(visitasEstudoPorMesChart, visitasEstudoData, 'noVisitasEstudoData');
+                  updateChart(atividadesPorMesChart, atividadesData, 'noAtividadesData');
+                  updateRapazesXRaparigasChart(rapazesXRaparigasChart, numeroDeRapazes, numeroDeRaparigas, 'noRapazesRaparigasData');
+                  updateDivs(faturacaoMesAtual, faturasEmAtrasoData);
+                  
+                   const educandosNovosDiv = document.getElementById('educandosNovosDiv');
+                    educandosNovosDiv.textContent = `${numeroEducandosNovos}`;
+                }
+
+                
+
+                function updateDivs(faturacaoMesAtual, faturasEmAtrasoData, numeroEducandosNovos) {
+                    const faturacaoDiv = document.getElementById('faturacaoDiv');
+                    faturacaoDiv.textContent = `${faturacaoMesAtual} €`;
+
+                  
+                  const faturasEmAtrasoDiv = document.getElementById('faturasEmAtrasoDiv');
+                    faturasEmAtrasoDiv.textContent = `${faturasEmAtrasoData}`;
+                
+                }
+
+                  
+            
+            function updateRapazesXRaparigasChart(chart, rapazesData, raparigasData, noDataElementId) {
+              const noDataElement = document.getElementById(noDataElementId);
+              const chartWrapper = chart.canvas.closest('.chart-wrapper');
+
+              chart.canvas.style.display = 'none';
+              noDataElement.style.display = 'none';
+
+              if (rapazesData === 0 && raparigasData === 0) {
+                noDataElement.style.display = 'block';
+              } else {
+                chart.canvas.style.display = 'block';
+                chart.data.datasets[0].data = [rapazesData];
+                chart.data.datasets[1].data = [raparigasData];
+                chart.update();
+              }
+
+              updateChartVisibility(chartWrapper);
+            }
+
+        
+        function updateChart(chart, data, noDataElementId) {
+            const values = Object.values(data).map(Number);
+            const max = Math.max(...values);
+            const maxLimit = Math.ceil(max / 5) * 5;
+            const noDataElement = document.getElementById(noDataElementId);
+            const chartWrapper = chart.canvas.closest('.chart-wrapper');
+
+            // Reset the display style for chart and noDataElement
+            chart.canvas.style.display = 'none';
+            noDataElement.style.display = 'none';
+
+            if (values.every(value => value === 0)) {
+                noDataElement.style.display = 'block';
+            } else {
+                chart.canvas.style.display = 'block';
+                chart.data.datasets[0].data = values;
+                chart.options.scales.y.max = maxLimit;
+                chart.update();
+            }
+
+            // Call updateChartVisibility after updating chart and noDataElement visibility
+            updateChartVisibility(chartWrapper);
+        }
+
+        const prevChartButton = document.getElementById('prev-chart');
+        const nextChartButton = document.getElementById('next-chart');
+        const chartCanvases = document.querySelectorAll('.chart-area canvas');
+
+        let currentChartIndex = 0;
+
+        function updateChartVisibility() {
+            const chartWrappers = document.querySelectorAll('.chart-wrapper');
+            chartWrappers.forEach((wrapper, index) => {
+                if (index === currentChartIndex) {
+                    wrapper.style.display = 'block';
+                    setTimeout(() => {
+                        // Remover a classe chart-fade para exibir o gráfico com animação
+                        wrapper.classList.remove('chart-fade');
+                    }, 0); // Adicione um setTimeout para garantir que a transição seja executada
+                } else {
+                    // Adicionar a classe chart-fade para ocultar o gráfico com animação
+                    wrapper.classList.add('chart-fade');
+                    setTimeout(() => {
+                        wrapper.style.display = 'none';
+                    }, 500); // Deve corresponder à duração da transição no CSS (0.5s)
+                }
+            });
+        }
+
+        prevChartButton.addEventListener('click', () => {
+            currentChartIndex = (currentChartIndex - 1 + chartCanvases.length) % chartCanvases.length;
+            updateChartVisibility();
+        });
+
+        nextChartButton.addEventListener('click', () => {
+            currentChartIndex = (currentChartIndex + 1) % chartCanvases.length;
+            updateChartVisibility();
+        });
+
+
+    
         function formatDate(dateString) {
             const date = new Date(dateString);
             const day = String(date.getDate()).padStart(2, '0');
@@ -210,11 +484,120 @@
             }
         }
         
+         async function fetchFaturas() {
+            try {
+                const response = await fetch(`/Home/GetRecibosByAtlId`);
+                const faturas = await response.json();
+
+                const currentDate = new Date();
+
+                const sortedFaturas = faturas
+                    .map(fatura => ({
+                        ...fatura,
+                        dateLimit: new Date(fatura.dateLimit)
+                    }))
+                    .sort((a, b) => a.dateLimit - b.dateLimit)
+                    .filter(fatura => fatura.dateLimit >= currentDate)
+                    .slice(0, 5);
+
+                const tableBody = document.getElementById('faturas-table-body');
+                tableBody.innerHTML = '';
+
+                if (sortedFaturas != null && sortedFaturas.length > 0) {
+                    sortedFaturas.forEach((fatura) => {
+                        const row = document.createElement('tr');
+                        row.style.cursor = 'pointer';
+
+                        row.addEventListener('click', () => {
+                            window.location.href = `/ReciboRespostas/Edit/${fatura.respostaId}`;
+                        });
+
+                        const nomeFaturaCell = document.createElement('td');
+                        nomeFaturaCell.textContent = fatura.reciboName;
+
+                        const educandoNomeCell = document.createElement('td');
+                        educandoNomeCell.textContent = fatura.educandoName;
+
+                        const dataLimiteCell = document.createElement('td');
+                        dataLimiteCell.textContent = formatDate(fatura.dateLimit);
+
+                        const valorCell = document.createElement('td');
+                        valorCell.textContent = fatura.valor;
+
+                        row.appendChild(nomeFaturaCell);
+                        row.appendChild(educandoNomeCell);
+                        row.appendChild(dataLimiteCell);
+                        row.appendChild(valorCell);
+
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    const noFaturasRow = document.createElement('tr');
+                    const noFaturasCell = document.createElement('td');
+                    noFaturasCell.colSpan = 4;
+                    noFaturasCell.textContent = 'Não há faturas disponíveis.';
+                    noFaturasRow.appendChild(noFaturasCell);
+                    tableBody.appendChild(noFaturasRow);
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar faturas:', error);
+            }
+        }
+
 
         document.addEventListener('DOMContentLoaded', async () => {
             await fetchRefeicoes();
             await fetchFormularios();
+            await fetchFaturas();
+                init();
+            await fetchDataAndUpdateCharts();
         });
+
+          async function fetchAtividades(successCallback) {
+            try {
+                const response = await fetch(`/Home/GetAtividadesByATL`);
+                const atividades = await response.json();
+
+                const events = atividades.map(function (atividade) {
+                    return {
+                        id: atividade.atividadeId,
+                        title: atividade.atividadeName,
+                        start: atividade.atividadeStartDate,
+                        end: atividade.atividadeEndDate
+                    };
+                });
+
+                successCallback(events);
+            } catch (error) {
+                console.error('Erro ao buscar atividades:', error);
+                successCallback([]);
+            }
+        }
+
+
+        $(document).ready(function () {
+            var smallCalendarEl = document.getElementById('smallCalendar');
+
+            var calendar = new FullCalendar.Calendar(smallCalendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: ''
+                },
+                themeSystem: 'bootstrap5',
+                height: 'auto',
+                displayEventTime: false,
+                events: function (fetchInfo, successCallback, failureCallback) {
+                    fetchAtividades(successCallback);
+                }
+            });
+
+            calendar.render();
+        });
+
+        
     </script>
 
 }
@@ -351,12 +734,8 @@ else
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Faturação (Por Mês)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">40,000 €</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span>Since last month</span>
-                            </div>
+                        <div class="text-xs font-weight-bold text-uppercase mb-1">Faturação (Por Mês)</div>
+                        <div id="faturacaoDiv" class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -371,12 +750,8 @@ else
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Faturas por pagar</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                <span>Since last years</span>
-                            </div>
+                             <div class="text-xs font-weight-bold text-uppercase mb-1">Faturas por pagar</div>
+                            <div id="faturasEmAtrasoDiv" class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -392,11 +767,7 @@ else
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Novos Educandos</div>
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                <span>Since last month</span>
-                            </div>
+                            <div id="educandosNovosDiv" class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-info"></i>
@@ -406,25 +777,6 @@ else
             </div>
         </div>
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Recibos Por Autorizar</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                <span>Since yesterday</span>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -452,18 +804,13 @@ else
                         </div>
                         <div class="chart-wrapper chart-fade">
                             <h8 class="m-0 text-primary">Educandos Por Mês</h8>
-                            <canvas id="myAreaChartAtividades" style="display: none;"></canvas>
-                            <div id="noAtividadesData" style="display: none;">Sem educandos registados</div>
+                            <canvas id="myAreaChartEducandosPorMes" style="display: none;"></canvas>
+                            <div id="noEducandosData" style="display: none;">Sem educandos registados</div>
                         </div>
                         <div class="chart-wrapper chart-fade">
                             <h8 class="m-0 text-primary">Número de Rapazes & Número de Raparigas</h8>
-                            <canvas id="myAreaChartAtividades" style="display: none;"></canvas>
-                            <div id="noAtividadesData" style="display: none;">Sem dados no registo</div>
-                        </div>
-                        <div class="chart-wrapper chart-fade">
-                            <h8 class="m-0 text-primary">Faturas Pagas x Faturas em Atraso</h8>
-                            <canvas id="myAreaChartAtividades" style="display: none;"></canvas>
-                            <div id="noAtividadesData" style="display: none;">Sem dados registados</div>
+                            <canvas id="myAreaChartRapazesXRaparigas" style="display: none;"></canvas>
+                            <div id="noRapazesRaparigasData" style="display: none;">Sem dados no registo</div>
                         </div>
                     </div>
                     <button id="prev-chart" class="chart-nav-button">&larr;</button>
@@ -500,7 +847,7 @@ else
             </table>
         </div>
 
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Faturas Por Comprovar</h6>
             </div>
@@ -556,7 +903,7 @@ else
             </div>
         </div>
 
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Calendário de Atividades</h6>
             </div>

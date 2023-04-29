@@ -9,6 +9,7 @@ using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System.Globalization;
 
 namespace ATLManager.Controllers
 {
@@ -289,8 +290,285 @@ namespace ATLManager.Controllers
             return Json(formularios);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAtividadesByATL()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
 
+            // Obtenha as atividades relacionadas ao ATL do usuário atual
+            var atividades = await _context.Atividade
+                .Include(a => a.Atl)
+                .Where(a => a.AtlId == currentUserAccount.AtlId)
+                .Select(a => new
+                {
+                    AtividadeId = a.AtividadeId,
+                    AtividadeName = a.Name,
+                    AtividadeDescription = a.Description,
+                    AtividadeStartDate = a.StartDate,
+                    AtividadeEndDate = a.EndDate,
+                    AtividadePhoto = a.Picture
+                })
+                .ToListAsync();
+
+            return Json(atividades);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRecibosByATLId()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            // Obtenha a lista de Educandos associados ao ATL do usuário atual
+            var educandos = await _context.Educando
+                .Include(e => e.Atl)
+                .Where(e => e.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            var recibos = new List<dynamic>();
+
+            foreach (var educando in educandos)
+            {
+                // Busque os recibos associados a cada educando
+                var recibosEducando = await (from recibo in _context.ReciboResposta
+                                             join educandoTable in _context.Educando on recibo.EducandoId equals educandoTable.EducandoId
+                                             where recibo.EducandoId == educando.EducandoId && recibo.Authorized == false
+                                             select new
+                                             {
+                                                 RespostaId = recibo.ReciboRespostaId,
+                                                 ReciboId = recibo.ReciboId,
+                                                 ReciboName = recibo.Name,
+                                                 EducandoName = educandoTable.Name + " " + educandoTable.Apelido,
+                                                 DateLimit = recibo.DateLimit,
+                                                 Valor = recibo.Price
+                                             }).ToListAsync();
+
+                recibos = recibos.Concat(recibosEducando).ToList();
+            }
+
+            return Json(recibos);
+        }
+        
+        [HttpGet]
+        public async Task<Dictionary<string, int>> GetVisitasEstudoPorMesEstatisticas()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+            
+
+            // Obtenha as visitas de estudo gerenciadas pelo educando atual
+            var visitasEstudo = await _context.VisitaEstudo
+                .Where(a => a.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            var anoAtual = DateTime.Now.Year;
+            var estatisticas = new Dictionary<string, int>();
+
+            for (int mes = 1; mes <= 12; mes++)
+            {
+                var visitasEstudoNoMes = visitasEstudo.Count(a => a.Date.Year == anoAtual && a.Date.Month == mes);
+                estatisticas.Add($"VisitaEstudoMes{mes}", visitasEstudoNoMes);
+            }
+
+            return estatisticas;
+        }
+
+        [HttpGet]
+        public async Task<Dictionary<string, int>> GetAtividadesPorMesEstatisticas()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            // Obtenha as atividades gerenciadas pelo educando atual
+            var atividades = await _context.Atividade
+                .Where(a => a.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            var anoAtual = DateTime.Now.Year;
+            var estatisticas = new Dictionary<string, int>();
+
+            for (int mes = 1; mes <= 12; mes++)
+            {
+                var atividadesNoMes = atividades.Count(a => a.StartDate.Year == anoAtual && a.StartDate.Month == mes && a.EndDate.Year == anoAtual && a.EndDate.Month == mes);
+                estatisticas.Add($"AtividadeMes{mes}", atividadesNoMes);
+            }
+
+            return estatisticas;
+        }
+
+        /// <summary>
+        /// Obtém o número de educandos para um determinado ID de ATL.
+        /// </summary>
+        /// <param name="id">O ID do ATL</param>
+        /// <returns>O número de educandos</returns>
+        [HttpGet]
+        public async Task<int> GetNumeroDeEducandosADM()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+            
+            var educandos = await _context.Educando
+                .Where(c => c.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            return educandos.Count;
+        }
+
+        /// <summary>
+        /// Obtém o número de educandos novos (inscritos no último mês) para um determinado ID de ATL.
+        /// </summary>
+        /// <param name="id">O ID do ATL</param>
+        /// <returns>O número de educandos novos</returns>
+        [HttpGet]
+        public async Task<int> GetNumeroDeEducandosNovos()
+        {
+            // Obtenha o usuário atual
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Obtenha a conta administrativa do usuário atual
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+            
+            DateTime umMesAtras = DateTime.Now.AddMonths(-1);
+
+            var educandos = await _context.Educando
+                .Where(c => c.AtlId == currentUserAccount.AtlId && c.DataDeInscricao >= umMesAtras)
+                .ToListAsync();
+
+            return educandos.Count;
+        }
+
+        /// <summary>
+        /// Retorna um dicionário contendo o número de educandos inscritos por mês.
+        /// </summary>
+        /// <returns>Dicionário com o número de educandos inscritos em cada mês.</returns>
+        [HttpGet]
+        public async Task<Dictionary<string, int>> GetEducandosPorMesEstatisticas()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var educandos = await _context.Educando
+                .Where(c => c.AtlId == currentUserAccount.AtlId)
+                .ToListAsync();
+
+            var anoAtual = DateTime.Now.Year;
+            var estatisticas = new Dictionary<string, int>();
+
+            for (int mes = 1; mes <= 12; mes++)
+            {
+                var educandosNoMes = educandos.Count(a => a.DataDeInscricao.Year == anoAtual && a.DataDeInscricao.Month == mes);
+                estatisticas.Add($"EducandosMes{mes}", educandosNoMes);
+            }
+
+            return estatisticas;
+        }
+
+        /// <summary>
+        /// Retorna o número de rapazes inscritos no ATL.
+        /// </summary>
+        /// <returns>Número de rapazes inscritos.</returns>
+        [HttpGet]
+        public async Task<int> GetNumeroDeRapazes()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var educandos = await _context.Educando
+                .Where(c => c.AtlId == currentUserAccount.AtlId && c.Genero == "Masculino")
+                .ToListAsync();
+
+            return educandos.Count;
+        }
+
+        /// <summary>
+        /// Retorna o número de raparigas inscritas no ATL.
+        /// </summary>
+        /// <returns>Número de raparigas inscritas.</returns>
+        [HttpGet]
+        public async Task<int> GetNumeroDeRaparigas()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var educandos = await _context.Educando
+                .Where(c => c.AtlId == currentUserAccount.AtlId && c.Genero == "Feminino")
+                .ToListAsync();
+
+            return educandos.Count;
+        }
+
+        /// <summary>
+        /// Retorna o número e o total em atraso de faturas não autorizadas de um ATL.
+        /// </summary>
+        /// <returns>Tupla contendo o número de faturas e o valor total em atraso.</returns>
+        [HttpGet]
+        public async Task<int> GetFaturasEmAtraso()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var faturasEmAtraso = await _context.ReciboResposta
+                .Where(r => r.Recibo.AtlId == currentUserAccount.AtlId && !r.Authorized)
+                .ToListAsync();
+
+            return faturasEmAtraso.Count;
+        }
+
+        /// <summary>
+        /// Retorna o número e o total pago de faturas autorizadas de um ATL.
+        /// </summary>
+        /// <returns>Tupla contendo o número de faturas e o valor total pago.</returns>
+        [HttpGet]
+        public async Task<decimal> GetFaturacaoMesAtual()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUserAccount = await _context.ContaAdministrativa
+                .Include(f => f.User)
+                .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
+
+            var faturasPagasMesAtual = await _context.ReciboResposta
+                .Where(r => r.Recibo.AtlId == currentUserAccount.AtlId && r.Authorized && r.DateLimit.Month == DateTime.Now.Month)
+                .ToListAsync();
+
+            decimal totalValorPagoMesAtual = faturasPagasMesAtual.Sum(f => decimal.Parse(f.Price.Replace(',', '.'), CultureInfo.InvariantCulture));
+            return totalValorPagoMesAtual;
+        }
 
 
         public IActionResult AboutUs()

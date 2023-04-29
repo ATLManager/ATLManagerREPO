@@ -430,18 +430,8 @@
 			});
 		</script>
 
-			/**
-			 * Inicializa o mapa com a localização do primeiro ATL retornado da API.
-			 * @async
-			 * @function
-			 * @param {number} agrupamentoId - O id do agrupamento para buscar os ATLs.
-			 * @returns {Promise} Uma promise que resolve com um array de objetos de localização dos ATLs.
-			 */
 
-			  /**
-			   * O array de objetos de localização dos ATLs.
-			   * @type {Object[]}
-			   */
+
 
 
 			/**
@@ -516,6 +506,13 @@
 			 */
 
 			<script>
+			@* //*
+			// * Inicializa o mapa com a localização do primeiro ATL retornado da API.
+			// * @async
+			// * @function
+			// * @param {number} agrupamentoId - O id do agrupamento para buscar os ATLs.
+			// * @returns {Promise} Uma promise que resolve com um array de objetos de localização dos ATLs.
+			*@ 
 			$("#atl-select").on("change", function () {
 				var atlId = $(this).val();
 				$.ajax({
@@ -535,6 +532,12 @@
 				});
 			});
 
+
+			 @* /**
+			   * O array de objetos de localização dos ATLs.
+			   * @type {Object[]}
+			   */
+			  *@
 			async function init(agrupamentoId) {
 				const locations = await fetchATLs(agrupamentoId);
 
