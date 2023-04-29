@@ -7,7 +7,7 @@
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 
-@model ExternalLoginModel
+@model ExternalLoginModelEE
 
 @{
     ViewData["Title"] = language.GetKey("register");
@@ -50,40 +50,51 @@
                     </p>
                     <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-registo">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="row">
-							    <div class="col-md-6 mb-3">
+    <div class="row">
+                                <div class="col-md-6 mb-3">
                                     <label asp-for="Input.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-                                    <input class="form-control" asp-for="Input.FirstName" autocomplete="username" aria-required="true"><br><br>
+                                    <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true">
                                     <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                                 </div>
-
                                 <div class="col-md-6 mb-3">
                                     <label asp-for="Input.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
                                     <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" />
                                     <span asp-validation-for="Input.LastName" class="text-danger"></span>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label asp-for="Input.BirthDate" class="form-label">Data de Nascimento</label>
-                                    <input asp-for="Input.BirthDate" class="form-control" autocomplete="birthdate" aria-required="true" />
-                                    <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                                    <label asp-for="Input.Phone" class="form-label">Número de Telemóvel</label>
+                                    <input asp-for="Input.Phone" class="form-control" autocomplete="phone" aria-required="true" />
+                                    <span asp-validation-for="Input.Phone" class="text-danger"></span>
                                 </div>
-
                                 <div class="col-md-6 mb-3">
-                                    <label asp-for="Input.CC" class="form-label">CC</label>
-                                    <input asp-for="Input.CC" class="form-control" autocomplete="cc" aria-required="true" />
-                                    <span asp-validation-for="Input.CC" class="text-danger"></span>
+                                    <label asp-for="Input.NIF" class="form-label">NIF</label>
+                                    <input asp-for="Input.NIF" class="form-control" autocomplete="nif" aria-required="true" />
+                                    <span asp-validation-for="Input.NIF" class="text-danger"></span>
                                 </div>
                             </div>
-
+                            <div class="mb-3">
+                                <label asp-for="Input.Address" class="form-label">Morada</label>
+                                <input asp-for="Input.Address" class="form-control" autocomplete="address" aria-required="true" />
+                                <span asp-validation-for="Input.Address" class="text-danger"></span>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
-                                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    <label asp-for="Input.City" class="form-label">Cidade</label>
+                                    <input asp-for="Input.City" class="form-control" autocomplete="city" aria-required="true" />
+                                    <span asp-validation-for="Input.City" class="text-danger"></span>
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.PostalCode" class="form-label">Código Postal</label>
+                                    <input asp-for="Input.PostalCode" class="form-control" autocomplete="postal-code" aria-required="true" />
+                                    <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
+                                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -91,12 +102,13 @@
                                     <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
                                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
-                                    <label asp-for="Input.ConfirmPassword">@language.GetKey("confirmPassword")</label>
+                                    <label asp-for="Input.ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
                                     <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
                                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                                </div>    
-                               
+                                </div>
+
                             </div>
                             
                         <div class="text-center row">

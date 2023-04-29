@@ -26,23 +26,23 @@ using ATLManager.Models;
 namespace ATLManager.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class ExternalLoginModel : PageModel
+    public class ExternalLoginModelEE : PageModel
     {
         private readonly SignInManager<ATLManagerUser> _signInManager;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
         private readonly IEmailSender _emailSender;
-        private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly ILogger<ExternalLoginModelEE> _logger;
         private readonly LanguageService _language;
         private readonly ATLManagerAuthContext _context;
 
 
-        public ExternalLoginModel(
+        public ExternalLoginModelEE(
             SignInManager<ATLManagerUser> signInManager,
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            ILogger<ExternalLoginModel> logger,
+            ILogger<ExternalLoginModelEE> logger,
             IEmailSender emailSender,
             LanguageService language,
             ATLManagerAuthContext context)
@@ -91,26 +91,31 @@ namespace ATLManager.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
+            [Required]
+            [RegularExpression("^[1-9][0-9]{8}$")]
+            public string Phone { get; set; }
 
             [Required]
-            [DataType(DataType.Date)]
-            [CustomValidation(typeof(ValidationHelper), "ValidateBirthDate")]
-            public DateTime BirthDate { get; set; }
-
+            [StringLength(50, MinimumLength = 5)]
+            public string Address { get; set; }
 
             [Required]
-            [DataType(DataType.Text)]
+            [MaxLength(20)]
+            public string City { get; set; }
+
+            [Required]
+            [RegularExpression(@"^\d{4}-\d{3}$", ErrorMessage = "Formato Incorreto - ex. 1234-123")]
+            public string PostalCode { get; set; }
+
+            [Required]
             [StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]
-            public string CC { get; set; }
-
+            public string NIF { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -149,7 +154,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
-            var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
+            var redirectUrl = Url.Page("./ExternalLoginEE", pageHandler: "Callback", values: new { returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return new ChallengeResult(provider, properties);
         }
@@ -228,32 +233,14 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, _language.GetKey("txtConfirmPasswordRequired"));
             }
 
-            if (!string.IsNullOrEmpty(Input.CC))
+            if (!string.IsNullOrEmpty(Input.NIF))
             {
-                if (_context.ContaAdministrativa.Any(c => c.CC == Input.CC)
-                    || _context.Educando.Any(e => e.CC == Input.CC))
+                if (_context.EncarregadoEducacao.Any(e => e.NIF == Input.NIF))
                 {
-                    var validationMessage = "Outra conta já contém este CC";
-                    ModelState.AddModelError("CC", validationMessage);
+                    var validationMessage = "Outro Encarregado já contém este NIF";
+                    ModelState.AddModelError("NIF", validationMessage);
                 }
             }
-
-            //Obter a data atual
-            var today = DateTime.Today;
-
-            //Obter a data de nascimento fornecida pelo usuário
-            var birthDate = Input.BirthDate;
-
-            //Calcular a idade do usuário com base na data de nascimento
-            var age = today.Year - birthDate.Year;
-
-            //Verificar se o usuário já completou 18 anos
-            if (age < 18)
-            {
-                var validationMessage = "Para adicionar um Administrador, é necessário que o mesmo tenha no mínimo 18 anos";
-                ModelState.AddModelError("BirthDate", validationMessage);
-            }
-
 
 
             if (ModelState.IsValid)
@@ -272,10 +259,15 @@ namespace ATLManager.Areas.Identity.Pages.Account
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
-                        await _userManager.AddToRoleAsync(user, "Administrador");
+                        await _userManager.SetPhoneNumberAsync(user, Input.Phone);
+                        await _userManager.AddToRoleAsync(user, "EncarregadoEducacao");
 
-                        var perfil = new ContaAdministrativa(user, Input.BirthDate, Input.CC);
-                        perfil.ProfilePicture = "images\\logo\\logo.png";
+                        var perfil = new EncarregadoEducacao(user.Id,
+                            Input.Address,
+                            Input.City,
+                            Input.PostalCode,
+                            Input.NIF);
+
                         _context.Add(perfil);
                         await _context.SaveChangesAsync();
 
@@ -287,7 +279,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
                         var callbackUrl = Url.Page(
                             "/Account/ConfirmEmail",
                             pageHandler: null,
-                            values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                            values: new { area = "Identity", userId, code, returnUrl },
                             protocol: Request.Scheme);
 
                         await _emailSender.SendEmailAsync(Input.Email, "Confirme o seu email",
@@ -295,7 +287,7 @@ namespace ATLManager.Areas.Identity.Pages.Account
 
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)
                         {
-                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                         }
                         else
                         {
