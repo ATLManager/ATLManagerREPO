@@ -1475,4 +1475,8 @@
     <value>Actions</value>
   </data>
 
+    <data name="placeholderName" xml:space="preserve">
+    <value>Insert first name</value>
+  </data>
+
 </root>
