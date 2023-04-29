@@ -973,7 +973,7 @@
     <value>Funcionalidades</value>
   </data>
   <data name="txtfuncionalidades" xml:space="preserve">
-    <value>Na página poderá encontrar procurar elementos numa lista, cada elementa é acompanhado por três botões, o botão de consultar, editar e remover o elemento em questão.</value>
+    <value>Na página poderá encontrar procurar elementos numa lista, cada elemento é acompanhado por três botões, o botão de consultar, editar e remover o elemento em questão.</value>
   </data>
   <data name="btnCreate" xml:space="preserve">
     <value>Criar</value>
