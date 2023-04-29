@@ -48,6 +48,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\files\users\recibos\" />
+    <Folder Include="wwwroot\images\favicons\" />
     <Folder Include="wwwroot\images\non-login-pages\" />
     <Folder Include="wwwroot\images\history_page\" />
   </ItemGroup>

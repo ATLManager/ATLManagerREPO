@@ -5,6 +5,22 @@
       "PackagePath": "staticwebassets\\ATLManager.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\android-chrome-192x192.png",
+      "PackagePath": "staticwebassets\\android-chrome-192x192.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\android-chrome-384x384.png",
+      "PackagePath": "staticwebassets\\android-chrome-384x384.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\apple-touch-icon.png",
+      "PackagePath": "staticwebassets\\apple-touch-icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\browserconfig.xml",
+      "PackagePath": "staticwebassets\\browserconfig.xml"
+    },
+    {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\ajuda.css",
       "PackagePath": "staticwebassets\\css\\ajuda.css"
     },
@@ -15,6 +31,26 @@
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\custom-box-12.css",
       "PackagePath": "staticwebassets\\css\\custom-box-12.css"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\dataTables\\bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\css\\dataTables\\bootstrap5.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\dataTables\\customTable-end.css",
+      "PackagePath": "staticwebassets\\css\\dataTables\\customTable-end.css"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\dataTables\\customTable-start.css",
+      "PackagePath": "staticwebassets\\css\\dataTables\\customTable-start.css"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\dataTables\\customTable.css",
+      "PackagePath": "staticwebassets\\css\\dataTables\\customTable.css"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\dataTables\\custom_color.css",
+      "PackagePath": "staticwebassets\\css\\dataTables\\custom_color.css"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\flag-tab.css",
@@ -31,6 +67,14 @@
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\css\\menu.min.css",
       "PackagePath": "staticwebassets\\css\\menu.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\favicon-16x16.png",
+      "PackagePath": "staticwebassets\\favicon-16x16.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\favicon-32x32.png",
+      "PackagePath": "staticwebassets\\favicon-32x32.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\favicon.ico",
@@ -95,6 +139,38 @@
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\guide\\terms.png",
       "PackagePath": "staticwebassets\\images\\guide\\terms.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\atividade.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\atividade.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\coordenador.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\coordenador.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\educando.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\educando.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\fatura.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\fatura.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\formulario.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\formulario.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\funcionario.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\funcionario.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\refeicao.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\refeicao.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\history_page\\visita_estudo.png",
+      "PackagePath": "staticwebassets\\images\\history_page\\visita_estudo.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\icons\\add-group.png",
@@ -377,12 +453,32 @@
       "PackagePath": "staticwebassets\\images\\uploads\\users\\logo.png"
     },
     {
-      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitasEstudo\\logo.png",
-      "PackagePath": "staticwebassets\\images\\uploads\\visitasEstudo\\logo.png"
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\images\\uploads\\visitas\\logo.png",
+      "PackagePath": "staticwebassets\\images\\uploads\\visitas\\logo.png"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\ajuda.js",
       "PackagePath": "staticwebassets\\js\\ajuda.js"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\datatable\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\js\\datatable\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\datatable\\dataTables_en.min.js",
+      "PackagePath": "staticwebassets\\js\\datatable\\dataTables_en.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\datatable\\dataTables_pt.min.js",
+      "PackagePath": "staticwebassets\\js\\datatable\\dataTables_pt.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\datatable\\jquery-3.5.1.js",
+      "PackagePath": "staticwebassets\\js\\datatable\\jquery-3.5.1.js"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\datatable\\jquery-3.6.0.min.js",
+      "PackagePath": "staticwebassets\\js\\datatable\\jquery-3.6.0.min.js"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\js\\demo\\chart-area-demo.js",
@@ -635,6 +731,18 @@
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\mstile-150x150.png",
+      "PackagePath": "staticwebassets\\mstile-150x150.png"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\safari-pinned-tab.svg",
+      "PackagePath": "staticwebassets\\safari-pinned-tab.svg"
+    },
+    {
+      "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\site.webmanifest",
+      "PackagePath": "staticwebassets\\site.webmanifest"
     },
     {
       "Id": "C:\\Users\\Bruno Resende\\Desktop\\My Stuff\\Uni shit\\Ano 3\\PV\\ATLManagerREPO\\ATLManager\\ATLManager\\wwwroot\\vendor\\bootstrap-datepicker\\css\\bootstrap-datepicker.css",
