@@ -8,7 +8,7 @@
 @inject LanguageService language
 
 @{
-    ViewData["Title"] = "Editar Refeição";
+    ViewData["Title"] = @language.GetKey("edit_meal");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -20,7 +20,7 @@
     <!-- Container -->
     <div class="container-fluid">
         <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-            <h1 class="me-3 fw-bold text-center mb-0">Editar Refeição</h1>
+            <h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("edit_meal")</h1>
             <img src="~/images/icons/edit-group.png" width="50" height="50">
         </div>
 
@@ -43,11 +43,10 @@
                             <input type="hidden" asp-for="RefeicaoId" />
                             <div class="row mb-3">
                                 <div class="col-6 mb-3">
-                                    <label asp-for="Name" class="form-label"></label>
-                                    <input asp-for="Name" class="form-control" />
+                                    <label asp-for="Name" class="form-label">@language.GetKey("gname")</label>
+                                    <input asp-for="Name" class="form-control" placeholder="@language.GetKey("plname")" />
                                     <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
-
                                 <div class="col-6 position-relative mt-2">
                                     <div class="row">
                                         <div class="h-100 position-absolute top-0 end-0">
@@ -56,55 +55,55 @@
                                                 <div class="d-flex justify-content-center ms-2 pb-1">
                                                     <img src="~/images/icons/info_ementa.png" width="30" height="30">
                                                     <div style="margin-left: 1%;">
-                                                        <h4 class="fw-bold text-center">Informação Nutricional</h4>
+                                                        <h4 class="fw-bold text-center">@language.GetKey("nutrition_info")</h4>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-6">
-                                                    <label asp-for="Proteina" class="form-label"></label>
-                                                    <input asp-for="Proteina" class="form-control" />
+                                                    <label asp-for="Proteina" class="form-label">@language.GetKey("protein")</label>
+                                                    <input asp-for="Proteina" class="form-control" placeholder="@language.GetKey("protein_amount")" />
                                                     <span asp-validation-for="Proteina" class="text-danger"></span>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label asp-for="HidratosCarbono" class="form-label"></label>
-                                                    <input asp-for="HidratosCarbono" class="form-control" />
+                                                    <label asp-for="HidratosCarbono" class="form-label">@language.GetKey("carbon_hydrates")</label>
+                                                    <input asp-for="HidratosCarbono" class="form-control" placeholder="@language.GetKey("ch_amount")" />
                                                     <span asp-validation-for="HidratosCarbono" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-6">
-                                                    <label asp-for="VR" class="form-label"></label>
-                                                    <input asp-for="VR" class="form-control" />
+                                                    <label asp-for="VR" class="form-label">@language.GetKey("vr")</label>
+                                                    <input asp-for="VR" class="form-control" placeholder="@language.GetKey("vr_amount")" />
                                                     <span asp-validation-for="VR" class="text-danger"></span>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label asp-for="Acucar" class="form-label"></label>
-                                                    <input asp-for="Acucar" class="form-control" />
+                                                    <label asp-for="Acucar" class="form-label">@language.GetKey("sugar")</label>
+                                                    <input asp-for="Acucar" class="form-control" placeholder="@language.GetKey("sugar_amount")" />
                                                     <span asp-validation-for="Acucar" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-6">
-                                                    <label asp-for="Lipidos" class="form-label"></label>
-                                                    <input asp-for="Lipidos" class="form-control" />
+                                                    <label asp-for="Lipidos" class="form-label">@language.GetKey("lipids")</label>
+                                                    <input asp-for="Lipidos" class="form-control" placeholder="@language.GetKey("lipids_amount")" />
                                                     <span asp-validation-for="Lipidos" class="text-danger"></span>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label asp-for="ValorEnergetico" class="form-label"></label>
-                                                    <input asp-for="ValorEnergetico" class="form-control" />
+                                                    <label asp-for="ValorEnergetico" class="form-label">@language.GetKey("energetic_value")</label>
+                                                    <input asp-for="ValorEnergetico" class="form-control" placeholder="@language.GetKey("ev_amount")" />
                                                     <span asp-validation-for="ValorEnergetico" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-6">
-                                                    <label asp-for="AGSat" class="form-label"></label>
-                                                    <input asp-for="AGSat" class="form-control" />
+                                                    <label asp-for="AGSat" class="form-label">@language.GetKey("ag_sat")</label>
+                                                    <input asp-for="AGSat" class="form-control" placeholder="@language.GetKey("ag_sat_amount")" />
                                                     <span asp-validation-for="AGSat" class="text-danger"></span>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label asp-for="Sal" class="form-label"></label>
-                                                    <input asp-for="Sal" class="form-control" />
+                                                    <label asp-for="Sal" class="form-label">@language.GetKey("salt")</label>
+                                                    <input asp-for="Sal" class="form-control" placeholder="@language.GetKey("salt_amount")" />
                                                     <span asp-validation-for="Sal" class="text-danger"></span>
                                                 </div>
                                             </div>
@@ -112,16 +111,15 @@
                                     </div>
                                 </div>
                             </div>
-                       
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label asp-for="Categoria" class="form-label"></label>
-                                        <select asp-for="Categoria" class="form-control" id="exampleFormControlSelect1">
-                                            <option value=""></option>
-                                            <option value="Carne">Carne</option>
-                                            <option value="Peixe">Peixe</option>
-                                            <option value="Vegetariano">Vegertariano</option>
+                                        <label asp-for="Categoria" class="control-label">@language.GetKey("category_label")</label>
+                                        <select asp-for="Categoria" class="form-control" required>
+                                            <option value=null>@language.GetKey("category")</option>
+                                            <option value="Carne">@language.GetKey("meat")</option>
+                                            <option value="Peixe">@language.GetKey("fish")</option>
+                                            <option value="Vegetariano">@language.GetKey("vegetarian")</option>
                                         </select>
                                     </div>
                                     <span asp-validation-for="Categoria" class="text-danger"></span>
@@ -129,36 +127,36 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label asp-for="Data" class="form-label">Data Atual - @Html.DisplayFor(model => model.Data)</label>
+                                    <label asp-for="Data" class="form-label">@language.GetKey("current_date") - @Html.DisplayFor(model => model.Data)</label>
                                     <input asp-for="Data" class="form-control" />
                                     <span asp-validation-for="Data" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label asp-for="Descricao" class="form-label"></label>
-                                    <input asp-for="Descricao" class="form-control" />
+                                    <label asp-for="Descricao" class="form-label">@language.GetKey("descricao")</label>
+                                    <input asp-for="Descricao" class="form-control" placeholder="@language.GetKey("pldescricao")" />
                                     <span asp-validation-for="Descricao" class="text-danger"></span>
                                 </div>
                             </div>
                             
                             <div class="row">
                                 <div class="col-6 mb-3">
-                                <label asp-for="Picture" class="control-label"></label>
-                                <div class="custom-file">
-                                    <input asp-for="Picture" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                                <span asp-validation-for="Picture" class="text-danger"></span>
+                                    <label asp-for="Picture" class="control-label">@language.GetKey("picture")</label>
+                                    <div class="custom-file">
+                                        <input asp-for="Picture" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">@language.GetKey("lchoose")</label>
+                                    </div>
+                                    <span asp-validation-for="Picture" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="d-flex text-center mt-4">
                                 <div class="col text-right">
                                     <a asp-action="Index">
-                                        <button type="button"
+                                        <li type="button"
                                                 class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-                                            Voltar
-                                        </button>
+                                            @language.GetKey("btnVoltar")
+                                        </li>
                                     </a>
                                 </div>
                                 <div class="col text-left">

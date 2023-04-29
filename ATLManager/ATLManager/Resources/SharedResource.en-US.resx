@@ -1644,4 +1644,97 @@ name="howtoedit_formulario" xml:space="preserve">
     <value>General</value>
   </data>
 
+<!--        Refeições          -->
+
+  <data name="create_meal" xml:space="preserve">
+    <value>Create Meal</value>
+  </data>
+  <data name="details_meal" xml:space="preserve">
+    <value>Meal Details</value>
+  </data>
+  <data name="edit_meal" xml:space="preserve">
+    <value>Edit Meal</value>
+  </data>
+  <data name="delete_meal" xml:space="preserve">
+    <value>Remove Meal</value>
+  </data>
+  <data name="index_meal" xml:space="preserve">
+    <value>Meals</value>
+  </data>
+  <data name="nutrition_info" xml:space="preserve">
+    <value>Nutritional Information</value>
+  </data>
+  <data name="protein" xml:space="preserve">
+    <value>Protein</value>
+  </data>
+  <data name="protein_amount" xml:space="preserve">
+    <value>Amount of Protein</value>
+  </data>
+  <data name="carbon_hydrates" xml:space="preserve">
+    <value>Carbohidrates</value>
+  </data>
+  <data name="ch_amount" xml:space="preserve">
+    <value>Amount of Carbohidrates</value>
+  </data>
+  <data name="vr" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="vr_amount" xml:space="preserve">
+    <value>Amount of VR</value>
+  </data>
+  <data name="sugar" xml:space="preserve">
+    <value>Sugar</value>
+  </data>
+  <data name="sugar_amount" xml:space="preserve">
+    <value>Amount of Sugar</value>
+  </data>
+  <data name="lipids" xml:space="preserve">
+    <value>Lipids</value>
+  </data>
+  <data name="lipids_amount" xml:space="preserve">
+    <value>Amount of Lipids</value>
+  </data>
+  <data name="energetic_value" xml:space="preserve">
+    <value>Energetic Value</value>
+  </data>
+  <data name="ev_amount" xml:space="preserve">
+    <value>Amount of Energetic Value</value>
+  </data>
+  <data name="ag_sat" xml:space="preserve">
+    <value>AG Sat</value>
+  </data>
+  <data name="ag_sat_amount" xml:space="preserve">
+    <value>Amount of AG Sat</value>
+  </data>
+  <data name="salt" xml:space="preserve">
+    <value>Salt</value>
+  </data>
+  <data name="salt_amount" xml:space="preserve">
+    <value>Amount of Salt</value>
+  </data>
+  <data name="category_label" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="meat" xml:space="preserve">
+    <value>Meat</value>
+  </data>
+  <data name="fish" xml:space="preserve">
+    <value>Fish</value>
+  </data>
+  <data name="vegetarian" xml:space="preserve">
+    <value>Vegetarian</value>
+  </data>
+  <data name="current_date" xml:space="preserve">
+    <value>Current Date</value>
+  </data>
+  <data name="select_student" xml:space="preserve">
+    <value>-- Choose a child --</value>
+  </data>
+  <data name="add_meal" xml:space="preserve">
+    <value>+ Create Meal</value>
+  </data>
+  <data name="ask_remove_meal" xml:space="preserve">
+    <value>Are you sure you want to remove this meal?</value>
+  </data>
+
 </root>

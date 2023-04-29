@@ -8,293 +8,278 @@
 @inject LanguageService language
 
 @{
-    ViewData["Title"] = "Criar Refeição";
+	ViewData["Title"] = @language.GetKey("create_meal");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <!-- Fase 1  -->
-    <!-- d-flex -->
-    <!-- Container -->
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-            <h1 class="me-3 fw-bold text-center mb-0">Criar Refeição</h1>
-            <img src="~/images/icons/add-group.png" width="50" height="50">
-        </div>
-
-        <div class="row" style="padding-left: 6em;">
-            <div class="col text-right pb-2" id="divQuestion">
-                <button class="btn btn-primary rounded-circle" id="btn-ajuda">
-                    <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-                </button>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center">
-            <!-- Box  -->
-            <div class="row justify-content-center custom-box" id="myBox">
-                <div class="row box border-5">
-                    <!--text-center  -->
-
-                    <div class="container">
-                        <form enctype="multipart/form-data" asp-action="Create">
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label asp-for="Name" class="form-label"></label>
-                                    <input asp-for="Name" class="form-control" placeholder="Insira o nome" />
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </div>
-  
-                                    <div class="col-6 position-relative mt-2">
-                                        <div class="row">
-                                            <div class="h-100 position-absolute top-0 end-0">
-                                                <!-- extended box content -->
-                                                <div class="row mb-2">
-                                                    <div class="d-flex justify-content-center ms-2 pb-1">
-                                                        <img src="~/images/icons/info_ementa.png" width="30" height="30">
-                                                        <div style="margin-left: 1%;">
-                                                            <h4 class="fw-bold text-center">Informação Nutricional</h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-6">
-                                                        <label asp-for="Proteina" class="form-label"></label>
-                                                        <input asp-for="Proteina" class="form-control" placeholder="Quantidade de proteina"/>
-                                                        <span asp-validation-for="Proteina" class="text-danger"></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label asp-for="HidratosCarbono" class="form-label"></label>
-                                                    <input asp-for="HidratosCarbono" class="form-control" placeholder="Quantidade de hidratos" />
-                                                        <span asp-validation-for="HidratosCarbono" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-6">
-                                                        <label asp-for="VR" class="form-label"></label>
-                                                    <input asp-for="VR" class="form-control" placeholder="Quantidade de vr" />
-                                                        <span asp-validation-for="VR" class="text-danger"></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label asp-for="Acucar" class="form-label"></label>
-                                                    <input asp-for="Acucar" class="form-control" placeholder="Quantidade de acucar" />
-                                                        <span asp-validation-for="Acucar" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-6">
-                                                        <label asp-for="Lipidos" class="form-label"></label>
-                                                    <input asp-for="Lipidos" class="form-control" placeholder="Quantidade de lipidos" />
-                                                        <span asp-validation-for="Lipidos" class="text-danger"></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label asp-for="ValorEnergetico" class="form-label"></label>
-                                                    <input asp-for="ValorEnergetico" class="form-control" placeholder="Quantidade de valor energetico" />
-                                                        <span asp-validation-for="ValorEnergetico" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-6">
-                                                        <label asp-for="AGSat" class="form-label"></label>
-                                                    <input asp-for="AGSat" class="form-control" placeholder="Quantidade de ag.sat" />
-                                                        <span asp-validation-for="AGSat" class="text-danger"></span>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label asp-for="Sal" class="form-label"></label>
-                                                    <input asp-for="Sal" class="form-control" placeholder="Quantidade de sal" />
-                                                        <span asp-validation-for="Sal" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-
-                           
-
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <div class="form-group">
-
-                                        <label asp-for="Categoria" class="control-label"></label>
-                                        <select asp-for="Categoria" class="form-control" required>
-                                            <option value=null>Selecione uma opção</option>
-                                            <option value="Carne">Carne</option>
-                                            <option value="Peixe">Peixe</option>
-                                            <option value="Vegetariano">Vegertariano</option>
-                                        </select>
-                                        <span asp-validation-for="Categoria" class="text-danger"></span>
-         
-                                    </div>
-                                </div>            
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label asp-for="Data" class="form-label"></label>
-                                    <input asp-for="Data" class="form-control" />
-                                    <span asp-validation-for="Data" class="text-danger"></span>
-                                </div>
-
-
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label asp-for="Descricao" class="form-label"></label>
-                                    <input asp-for="Descricao" class="form-control" placeholder="Insira uma descrição" />
-                                    <span asp-validation-for="Descricao" class="text-danger"></span>
-                                </div>
-
-
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col-6">                                <label asp-for="Picture" class="control-label"></label>
-                                <div class="custom-file">
-                                    <input asp-for="Picture" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                                <span asp-validation-for="Picture" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex text-center mt-4">
-                                <div class="col text-right">
-                                    <a asp-action="Index">
-                                        <button type="button"
-                                                class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-                                            Voltar
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col text-left">
-                                    <div class="form-group">
-                                        <input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
-                                    </div>
-                                </div>
-                            </div> 
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- // Box -->
-        </div>
-    </div>
+	<!-- Fase 1  -->
+	<!-- d-flex -->
+	<!-- Container -->
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
+			<h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("create_meal")</h1>
+			<img src="~/images/icons/add-group.png" width="50" height="50">
+		</div>
+		<div class="row" style="padding-left: 6em;">
+			<div class="col text-right pb-2" id="divQuestion">
+				<button class="btn btn-primary rounded-circle" id="btn-ajuda">
+					<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+				</button>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<!-- Box  -->
+			<div class="row justify-content-center custom-box" id="myBox">
+				<div class="row box border-5">
+					<!--text-center  -->
+					<div class="container">
+						<form enctype="multipart/form-data" asp-action="Create">
+							<div class="row mb-3">
+								<div class="col-6">
+									<label asp-for="Name" class="form-label">@language.GetKey("gname")</label>
+									<input asp-for="Name" class="form-control" placeholder="@language.GetKey("plname")" />
+									<span asp-validation-for="Name" class="text-danger"></span>
+								</div>
+								<div class="col-6 position-relative mt-2">
+									<div class="row">
+										<div class="h-100 position-absolute top-0 end-0">
+											<!-- extended box content -->
+											<div class="row mb-2">
+												<div class="d-flex justify-content-center ms-2 pb-1">
+													<img src="~/images/icons/info_ementa.png" width="30" height="30">
+													<div style="margin-left: 1%;">
+														<h4 class="fw-bold text-center">@language.GetKey("nutrition_info")</h4>
+													</div>
+												</div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="Proteina" class="form-label">@language.GetKey("protein")</label>
+													<input asp-for="Proteina" class="form-control" placeholder="@language.GetKey("protein_amount")" />
+													<span asp-validation-for="Proteina" class="text-danger"></span>
+												</div>
+												<div class="col-6">
+													<label asp-for="HidratosCarbono" class="form-label">@language.GetKey("carbon_hydrates")</label>
+													<input asp-for="HidratosCarbono" class="form-control" placeholder="@language.GetKey("ch_amount")" />
+													<span asp-validation-for="HidratosCarbono" class="text-danger"></span>
+												</div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="VR" class="form-label">@language.GetKey("vr")</label>
+													<input asp-for="VR" class="form-control" placeholder="@language.GetKey("vr_amount")" />
+													<span asp-validation-for="VR" class="text-danger"></span>
+												</div>
+												<div class="col-6">
+													<label asp-for="Acucar" class="form-label">@language.GetKey("sugar")</label>
+													<input asp-for="Acucar" class="form-control" placeholder="@language.GetKey("sugar_amount")" />
+													<span asp-validation-for="Acucar" class="text-danger"></span>
+												</div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="Lipidos" class="form-label">@language.GetKey("lipids")</label>
+													<input asp-for="Lipidos" class="form-control" placeholder="@language.GetKey("lipids_amount")" />
+													<span asp-validation-for="Lipidos" class="text-danger"></span>
+												</div>
+												<div class="col-6">
+													<label asp-for="ValorEnergetico" class="form-label">@language.GetKey("energetic_value")</label>
+													<input asp-for="ValorEnergetico" class="form-control" placeholder="@language.GetKey("ev_amount")" />
+													<span asp-validation-for="ValorEnergetico" class="text-danger"></span>
+												</div>
+											</div>
+											<div class="row mb-2">
+												<div class="col-6">
+													<label asp-for="AGSat" class="form-label">@language.GetKey("ag_sat")</label>
+													<input asp-for="AGSat" class="form-control" placeholder="@language.GetKey("ag_sat_amount")" />
+													<span asp-validation-for="AGSat" class="text-danger"></span>
+												</div>
+												<div class="col-6">
+													<label asp-for="Sal" class="form-label">@language.GetKey("salt")</label>
+													<input asp-for="Sal" class="form-control" placeholder="@language.GetKey("salt_amount")" />
+													<span asp-validation-for="Sal" class="text-danger"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="Categoria" class="control-label">@language.GetKey("category_label")</label>
+										<select asp-for="Categoria" class="form-control" required>
+											<option value=null>@language.GetKey("category")</option>
+											<option value="Carne">@language.GetKey("meat")</option>
+											<option value="Peixe">@language.GetKey("fish")</option>
+											<option value="Vegetariano">@language.GetKey("vegetarian")</option>
+										</select>
+										<span asp-validation-for="Categoria" class="text-danger"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+									<label asp-for="Data" class="form-label">@language.GetKey("gdate")</label>
+									<input asp-for="Data" class="form-control" />
+									<span asp-validation-for="Data" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+									<label asp-for="Descricao" class="form-label">@language.GetKey("descricao")</label>
+									<input asp-for="Descricao" class="form-control" placeholder="@language.GetKey("pldescricao")" />
+									<span asp-validation-for="Descricao" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-6">
+									<label asp-for="Picture" class="control-label">@language.GetKey("picture")</label>
+									<div class="custom-file">
+										<input asp-for="Picture" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">@language.GetKey("lchoose")</label>
+									</div>
+									<span asp-validation-for="Picture" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="d-flex text-center mt-4">
+								<div class="col text-right">
+									<a asp-action="Index">
+										<li type="button"
+												class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+											@language.GetKey("btnVoltar")
+										</li>
+									</a>
+								</div>
+								<div class="col text-left">
+									<div class="form-group">
+										<input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- // Box -->
+		</div>
+	</div>
 
 	<!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
-        <div class="row text-center mt-2">
-            <div class="col-10 ">
-                <h2 class="text-white ms-5">@language.GetKey("help")</h2>
-            </div>
-            <div class="col-2">
-                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
-            </div>
-        </div>
-        <div class="">
-            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
-        </div>
-        <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <span>Como criar uma Refeição</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Para criar uma refeição deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.
-                </span>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/terms.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>@language.GetKey("readarticles")</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/comunity.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>@language.GetKey("askcomunity")</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/new.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>@language.GetKey("newsupdates")</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/feedback.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>
-                                <a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
-                                    @language.GetKey("givefeedback")
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-        </ul>
-    </div>
-    <!-- // Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">@language.GetKey("help")</h2>
+			</div>
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
+						<span>Como criar uma Refeição</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					Para criar uma refeição deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.
+				</span>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("readarticles")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("askcomunity")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("newsupdates")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>
+								<a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+									@language.GetKey("givefeedback")
+								</a>
+							</span>
+						</div>
+					</div>
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- // Slide de Ajuda  -->
 
-    <script type="text/javascript">
-        // Add the following code if you want the name of the file appear on select
-        $(".custom-file-input").on("change", function () {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-    </script>
-
-    
-    <!--  Options Script -->
-    <script>
-        const toggleSwitch = document.getElementById('toggleSwitch');
-        const divAgrupamento = document.getElementById('divAgrupamento');
-        const divCertidao = document.getElementById('divCertidao');
+	<script type="text/javascript">
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
 
 
-        toggleSwitch.addEventListener('change', function () {
-            if (toggleSwitch.checked) {
-                divAgrupamento.style.display = 'block';
-                divCertidao.style.display = 'none';
-            } else {
-                divAgrupamento.style.display = 'none';
-                divCertidao.style.display = 'block';
-            }
-        });
-    </script>
-    <!--  // Options Script -->
-    @section Scripts {
-    @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+	<!--  Options Script -->
+	<script>
+		const toggleSwitch = document.getElementById('toggleSwitch');
+		const divAgrupamento = document.getElementById('divAgrupamento');
+		const divCertidao = document.getElementById('divCertidao');
+
+
+		toggleSwitch.addEventListener('change', function () {
+			if (toggleSwitch.checked) {
+				divAgrupamento.style.display = 'block';
+				divCertidao.style.display = 'none';
+			} else {
+				divAgrupamento.style.display = 'none';
+				divCertidao.style.display = 'block';
+			}
+		});
+	</script>
+	<!--  // Options Script -->
+	@section Scripts {
+	@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
     }
 }
