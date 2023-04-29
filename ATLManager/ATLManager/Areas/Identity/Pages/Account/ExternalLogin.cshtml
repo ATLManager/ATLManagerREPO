@@ -43,6 +43,11 @@
             <div class="row col-6 justify-content-center custom-box p-3">
                 <div class="row box border-5">
                     <h2 id="external-login-title mb-2">Associate your @Model.ProviderDisplayName account.</h2>
+                    <p id="external-login-description" class="text-info">
+                        You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+                        Please enter an email address for this site below and click the Register button to finish
+                        logging in.
+                    </p>
                     <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-registo">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="row">
@@ -80,23 +85,18 @@
                                 </div>    
                                
                             </div>
-                            </form>
+                            
+                        <div class="text-center row">
+                            <button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button" style="width: 20%;">
+                                @language.GetKey("register")
+                            </button>
+                        </div>
+                    </form>
                         </div>
                     </div>
                 </div>
-
-                            <p id="external-login-description" class="text-info">
-                                You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
-                                Please enter an email address for this site below and click the Register button to finish
-                                logging in.
-                            </p>
-
-                        <div class="text-center">
-                            <button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button" style="width: 20%;">
-                                @language.GetKey("register")</button>
-                        </div> 
-                    
-                </div>
+                 
+    </div>
           
   
 		    <!-- Slide de Ajuda  -->
