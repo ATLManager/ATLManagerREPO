@@ -8,7 +8,7 @@
 @inject LanguageService language
 
 @{
-    ViewData["Title"] = "Apagar Visita de Estudo";
+    ViewData["Title"] = @language.GetKey("menuVisitaEstudo");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -18,7 +18,7 @@
     <!-- Container -->
     <div class="container-fluid">
         <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-            <h1 class="me-3 fw-bold text-center mb-0">Remover Visita de Estudo</h1>
+            <h1 class="me-3 fw-bold text-center mb-0"> @language.GetKey("btnDelete") @language.GetKey("menuVisitaEstudo") </h1>
             <img src="~/images/icons/delete-group.png" width="50" height="50">
         </div>
 
@@ -37,7 +37,7 @@
             <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5 p-5">
                     <div class="row mb-3 text-center">
-                        <h3>Tens a certeza que queres remover esta visita de estudo?</h3>
+                        <h3> @language.GetKey("qremove_visita")</h3>
                     </div>
                     <div class="container text-center">
                         <div class="row justify-content-center">
@@ -49,7 +49,7 @@
                         <dl class="row text-end">
                             <div class="row">
                                 <dt class="col mr-2">
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    @language.GetKey("gname")
                                 </dt>
                                 <dd class="col text-left">
                                     @Html.DisplayFor(model => model.Name)
@@ -57,7 +57,7 @@
                             </div>
                             <div class="row">
                                 <dt class="col mr-2">
-                                    @Html.DisplayNameFor(model => model.Location)
+                                    @language.GetKey("glocation")
                                 </dt>
                                 <dd class="col text-left">
                                     @Html.DisplayFor(model => model.Location)
@@ -65,7 +65,7 @@
                             </div>
                             <div class="row">
                                 <dt class="col mr-2">
-                                    @Html.DisplayNameFor(model => model.Date)
+                                    @language.GetKey("gdate")
                                 </dt>
                                 <dd class="col text-left">
                                     @Html.DisplayFor(model => model.Date)
@@ -73,7 +73,7 @@
                             </div>
                             <div class="row">
                                 <dt class="col mr-2">
-                                    @Html.DisplayNameFor(model => model.Description)
+                                    @language.GetKey("descricao")
                                 </dt>
                                 <dd class="col text-left">
                                     @Html.DisplayFor(model => model.Description)
@@ -83,17 +83,14 @@
                         <hr />
                         <div class="d-flex text-center mt-4">
                             <div class="col text-right">
-                                <a asp-action="Index">
-                                    <button type="button"
-                                            class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-                                        Voltar
-                                    </button>
+                                <a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                    @language.GetKey("btnVoltar")
                                 </a>
                             </div>
                             <div class="col text-left">
                                 <form asp-action="Delete">
                                     <input type="hidden" asp-for="@Model.VisitaEstudoID" />
-                                    <input type="submit" value="Delete" class="btn btn-danger w-50" style="border-radius:6em" />
+                                    <input type="submit" value="@language.GetKey("btnDelete")" class="btn btn-danger w-50" style="border-radius:6em" />
                                 </form>
                             </div>
                         </div>
@@ -123,12 +120,12 @@
             <li class="row">
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
-                        <span>Como apagar uma Visita de Estudo</span>
+                        <span> @language.GetKey("howtoremove_visitaestudo")</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Para remover uma visita de estudo basta clicar no botão vermelho de remover.
+                    @language.GetKey("showhowtoremove_visitaestudo")
                 </span>
             </li>
             <li class="row">

@@ -146,6 +146,12 @@
   <data name="btnDownloadPersonalData" xml:space="preserve">
     <value>Descarregar</value>
   </data>
+   <data name="descricao" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+   <data name="pldescricao" xml:space="preserve">
+    <value>Insira uma descrição</value>
+  </data>
   <data name="btnGenerateRecoveryCodes" xml:space="preserve">
     <value>Gerar Códigos de Recuperação</value>
   </data>
@@ -867,11 +873,17 @@
   <data name="tconsulta_agrupamento" xml:space="preserve">
     <value>Detalhes do Agrupamento</value>
   </data>
+   <data name="tconsulta_visita" xml:space="preserve">
+    <value>Detalhes da Visita de estudo</value>
+  </data>
   <data name="tconsulta_atl" xml:space="preserve">
     <value>Detalhes do ATL</value>
   </data>
   <data name="gname" xml:space="preserve">
     <value>Nome</value>
+  </data>
+   <data name="gdate" xml:space="preserve">
+    <value>Data</value>
   </data>
   <data name="glocation" xml:space="preserve">
     <value>Localização</value>
@@ -882,6 +894,11 @@
   <data name="qremove" xml:space="preserve">
     <value>Tens a certeza que queres remover este agrupamento?</value>
   </data>
+
+<data name="qremove_visita" xml:space="preserve">
+    <value>Tens a certeza que queres remover esta visita de estudo?</value>
+  </data>
+
   <data name="tremove_agr" xml:space="preserve">
     <value>Remover Agrupamento</value>
   </data>
@@ -1083,6 +1100,19 @@
   <data name="actions" xml:space="preserve">
     <value>Ações</value>
   </data>
+   <data name="menuResources" xml:space="preserve">
+    <value>Recursos</value>
+  </data>
+
+
+  <data name="howtocreate_visitaestudo" xml:space="preserve">
+    <value>Como criar uma Visita de Estudo</value>
+  </data>
+    <data name="showhowtocreate_visitaestudo" xml:space="preserve">
+    <value>Para criar uma visita de estudo deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
+
+
 </root>
 <!-- 
 @using ATLManager.Services
