@@ -4,9 +4,11 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
+@using ATLManager.Services;
+@inject LanguageService language
 
 @{
-    ViewData["Title"] = "Detalhes do Formulário";
+    ViewData["Title"] = @language.GetKey("menuFormulario");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -50,7 +52,7 @@
                                 <dl class="row text-end">
                                     <div class="row">
                                         <dt class="col mr-2">
-                                            @Html.DisplayNameFor(model => model.Name)
+                                            @language.GetKey("txtFirstName")
                                         </dt>
                                         <dd class="col text-left">
                                             @Html.DisplayFor(model => model.Name)
@@ -58,7 +60,7 @@
                                     </div>
                                     <div class="row">
                                         <dt class="col mr-2">
-                                            @Html.DisplayNameFor(model => model.Description)
+                                            @language.GetKey("descricao")
                                         </dt>
 
                                         <dd class="col text-left">
@@ -69,7 +71,7 @@
                                     {
                                         <div class="row">
                                             <dt class="col mr-2">
-                                                @Html.DisplayNameFor(model => model.VisitaEstudo)
+                                                @language.GetKey("menuVisitaEstudo")
                                             </dt>
                                             <dd class="col text-left">
                                                 @Html.DisplayFor(model => model.VisitaEstudo.Name)
@@ -80,7 +82,7 @@
                                     {
                                         <div class="row">
                                             <dt class="col mr-2">
-                                                @Html.DisplayNameFor(model => model.Atividade)
+                                                @language.GetKey("tatividade")
                                             </dt>
                                             <dd class="col text-left">
                                                 @Html.DisplayFor(model => model.Atividade.Name)
@@ -89,7 +91,7 @@
                                     }
                                     <div class="row">
                                         <dt class="col mr-2">
-                                            @Html.DisplayNameFor(model => model.StartDate)
+                                            @language.GetKey("startdate")
                                         </dt>
                                         <dd class="col text-left">
                                             @Html.DisplayFor(model => model.StartDate)
@@ -97,7 +99,7 @@
                                     </div>
                                     <div class="row">
                                         <dt class="col mr-2">
-                                            @Html.DisplayNameFor(model => model.DateLimit)
+                                            @language.GetKey("endate")
                                         </dt>
                                         <dd class="col text-left">
                                             @Html.DisplayFor(model => model.DateLimit)
@@ -108,11 +110,9 @@
                                 <hr />
                                 <div class="d-flex text-center mt-4">
                                     <div class="col-8 text-right">
-                                        <a asp-action="Index">
-                                            <button type="button"
-                                                    class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-                                                Voltar
-                                            </button>
+                                        <a asp-action="Index"  class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+                                            @language.GetKey("btnVoltar")
+
                                         </a>
                                     </div>
                                 </div>

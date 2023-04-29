@@ -1010,6 +1010,17 @@
   <data name="plpostal" xml:space="preserve">
     <value>um código postal</value>
   </data>
+  <data name="startdate" xml:space="preserve">
+    <value>Data inicial</value>
+  </data>
+    <data name="endate" xml:space="preserve">
+    <value>Data final</value>
+  </data>
+
+
+
+
+
   <data name="pladdress" xml:space="preserve">
     <value>uma morada</value>
   </data>
@@ -1104,6 +1115,9 @@
     <value>Recursos</value>
   </data>
 
+<data name="tatividade" xml:space="preserve">
+    <value>Atividade</value>
+  </data>
 
   <data name="howtocreate_visitaestudo" xml:space="preserve">
     <value>Como criar uma Visita de Estudo</value>
@@ -1112,6 +1126,105 @@
     <value>Para criar uma visita de estudo deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
   </data>
 
+    <data
+    name="howtoedit_visitaestudo" xml:space="preserve">
+    <value>Como alterar uma visita de estudo</value>
+  </data>
+    <data
+    name="showhowtoedit_visitaestudo" xml:space="preserve">
+    <value>Para alterar uma visita de estudo é necessário modificar pelo menos um campo.</value>
+  </data>
+
+  <data
+    name="howtoremove_visitaestudo" xml:space="preserve">
+    <value>Como remover uma visita de estudo </value>
+  </data>
+    <data
+    name="showhowtoremove_visitaestudo" xml:space="preserve">
+    <value>Para remover uma visita de estudo clique no botão vermelho para remover.</value>
+  </data>
+
+
+<!--  -->
+<data name="howtocreate_formulario" xml:space="preserve">
+    <value>Como criar um formulario</value>
+  </data>
+    <data name="showhowtocreate_formulario" xml:space="preserve">
+    <value>Para criar um formulario deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
+
+    <data
+    name="howtoedit_formulario" xml:space="preserve">
+    <value>Como alterar um formulario</value>
+  </data>
+    <data
+    name="showhowtoedit_formulario" xml:space="preserve">
+    <value>Para alterar um formulario é necessário modificar pelo menos um campo.</value>
+  </data>
+
+  <data
+    name="howtoremove_formulario" xml:space="preserve">
+    <value>Como remover um formulario </value>
+  </data>
+    <data
+    name="showhowtoremove_formulario" xml:space="preserve">
+    <value>Para remover um formulario clique no botão vermelho para remover.</value>
+  </data>
+
+  <!--  -->
+ <data name="howtocreate_refeicao" xml:space="preserve">
+    <value>Como criar uma refeicao</value>
+  </data>
+    <data name="showhowtocreate_refeicao" xml:space="preserve">
+    <value>Para criar uma refeicao deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
+
+    <data
+    name="howtoedit_refeicao" xml:space="preserve">
+    <value>Como alterar uma refeicao</value>
+  </data>
+    <data
+    name="showhowtoedit_refeicao" xml:space="preserve">
+    <value>Para alterar uma refeicao é necessário modificar pelo menos um campo.</value>
+  </data>
+
+  <data
+    name="howtoremove_refeicao" xml:space="preserve">
+    <value>Como remover uma refeicao</value>
+  </data>
+    <data
+    name="showhowtoremove_refeicao" xml:space="preserve">
+    <value>Para remover uma refeicao clique no botão vermelho para remover.</value>
+  </data>
+<!--  -->
+
+ <data name="category" xml:space="preserve">
+    <value>Escolha uma categoria</value>
+  </data>
+
+ <data name="chooseoption" xml:space="preserve">
+    <value>Escolha uma opção</value>
+  </data>
+
+ <data name="choosevisita" xml:space="preserve">
+    <value>Visita de estudo</value>
+  </data>
+
+   <data name="chooseatividade" xml:space="preserve">
+    <value>Atividade</value>
+  </data>
+
+   <data name="choosegeral" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+
+   <data name="escolhavisita" xml:space="preserve">
+    <value>Escolha uma Visita de Estudo</value>
+  </data>
+
+   <data name="escolhaatividade" xml:space="preserve">
+    <value>Escolha uma Atidade </value>
+  </data>
 
 </root>
 <!-- 
