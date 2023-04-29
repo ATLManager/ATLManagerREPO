@@ -1052,8 +1052,10 @@
     <value>Tens a certeza que queres remover este atl?</value>
   </data>
   <data name="Politica" xml:space="preserve">
-    <value>Policy</value>
+    <value>Polica</value>
   </data>
+
+  
   <data name="howtocreate_visitaestudo" xml:space="preserve">
     <value>Como criar uma Visita de Estudo</value>
   </data>
@@ -1219,8 +1221,6 @@
     <value>Escolha uma Atidade </value>
   </data>
 
-</root>
-
 <!--        Refeições          -->
 
   <data name="create_meal" xml:space="preserve">
@@ -1324,3 +1324,5 @@
   </data>
 
 btnSave -->
+
+</root>
