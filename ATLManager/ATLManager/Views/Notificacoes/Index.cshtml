@@ -1,17 +1,29 @@
 ﻿@model IEnumerable<ATLManager.Models.Notificacao>
+@using ATLManager.Services;
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Notificações";
 }
-<link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
 @if (SignInManager.IsSignedIn(User))
 {
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
+
+    <!-- 1.13.4 -->
+    <link rel="stylesheet" href="~/css/dataTables/bootstrap5.min.css">
+    <script src="~/js/datatable/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
     <!-- Container -->
     <div class="container-fluid">
         <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
@@ -34,64 +46,44 @@
             <div class="row justify-content-center custom-box" id="myBox">
                 <div class="row box border-5 p-5">
                     <div class="container">
-                            <div class="row">
-                                <div class="mb-5">
-                                    <label for="nome" class="form-label">Procurar Notificação:</label>
-                                    <input type="text" class="form-control" id="nome"
-                                           placeholder="Digite o título da notificação">
-                                </div>
-                            </div>
+                            <div class="row"></div>
 
                             <div class="row mt-3">
                                 <div class="mb-3">
-
                                     <div class="row">
-                                        <div class="col-4">
-                                            <label for="lista-recibos" class="form-label">Lista de Notificações:</label>
-                                        </div>
-
                                         <div class="col-2">
                                             <form asp-action="MarkAllAsRead" method="post">
                                                 <input type="submit" value="Mark All as Read" class="btn btn-primary me-2" />
                                                 @Html.AntiForgeryToken()
                                             </form>
                                         </div>
-
                                         <div class="col-3">
                                             <form asp-action="DeleteAll" method="post">
                                                 <input type="submit" value="Delete All Notifications" class="btn btn-danger" />
                                                 @Html.AntiForgeryToken()
                                             </form>
                                         </div>
-
-                                        <div class="col-3">
-                                            <div class="d-flex">
-                                                <div class="col text-end">
-                                                    <a asp-action="Create">
-                                                        <button type="button" class="btn btn-primary custom-button ms-2" style="border-radius:6em"> + Adicionar Recado </button>
-                                                    </a>
-                                                </div>
+                                        <div class="col">
+                                            <div class="col text-end">
+                                                <a asp-action="Create" class="btn btn-primary custom-button ms-2"> + Adicionar Recado
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <p class="rounded-circle"></p>
-
-                                    
                                     <table class="table table-hover table-bordered text-center" style="background:#d3e3f2;cursor: pointer;" id="myTable">
                                         <thead>
                                             <tr>
-                                                <th>
+                                                <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Titulo)
                                                 </th>
-                                                <th>
+                                                 <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Mensagem)
                                                 </th>
-                                                <th>
+                                                 <th class="text-center pr-2">
                                                     @Html.DisplayNameFor(model => model.Lida)
                                                 </th>
-                                                <th class="text-center">
+                                                   <th class="text-center pr-2">
                                                     Data
                                                 </th>
                                             </tr>
@@ -162,16 +154,12 @@
         </div>
     </div>
 
-
-
     <!-- Slide de Ajuda  -->
     <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
-
         <div class="row text-center mt-2">
             <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
+                <h2 class="text-white ms-5">@language.GetKey("help")</h2>
             </div>
-
             <div class="col-2">
                 <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
             </div>
@@ -186,21 +174,14 @@
             <li class="row">
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
-
-                        <span>Como alterar uma visita de estudo</span>
+                        <span>@language.GetKey("howtofuncionalidades")</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
-
-
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
-
+                    @language.GetKey("txtfuncionalidades")
                 </span>
             </li>
-
-
             <li class="row">
                 <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
                     <div class="d-flex align-items-center justify-content-center">
@@ -208,7 +189,7 @@
                             <img src="~/images/guide/terms.png" class="">
                         </div>
                         <div class="col">
-                            <span>Leia artigos de ajuda</span>
+                            <span>@language.GetKey("readarticles")</span>
                         </div>
                     </div>
                 </button>
@@ -220,7 +201,7 @@
                             <img src="~/images/guide/comunity.png" class="">
                         </div>
                         <div class="col">
-                            <span>Pergunte à comunidade</span>
+                            <span>@language.GetKey("askcomunity")</span>
                         </div>
                     </div>
                 </button>
@@ -232,7 +213,7 @@
                             <img src="~/images/guide/new.png" class="">
                         </div>
                         <div class="col">
-                            <span>Novas Atualizações</span>
+                            <span>@language.GetKey("newsupdates")</span>
                         </div>
                     </div>
                 </button>
@@ -244,10 +225,13 @@
                             <img src="~/images/guide/feedback.png" class="">
                         </div>
                         <div class="col">
-                            <span>Dê Feedback</span>
+                            <span>
+                                <a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+                                    @language.GetKey("givefeedback")
+                                </a>
+                            </span>
                         </div>
                     </div>
-
                 </button>
             </li>
         </ul>

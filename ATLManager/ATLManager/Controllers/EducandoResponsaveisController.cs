@@ -9,23 +9,35 @@ using ATLManager.Data;
 using ATLManager.Models;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Responsáveis Educandos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class EducandoResponsaveisController : Controller
     {
         private readonly ATLManagerAuthContext _context;
-		private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-		public EducandoResponsaveisController(ATLManagerAuthContext context, 
-            IWebHostEnvironment webHostEnvironment)
-		{
+        private readonly string FolderName = "responsaveis";
+
+        public EducandoResponsaveisController(ATLManagerAuthContext context,
+            IFileManager fileManager)
+        {
 			_context = context;
-			_webHostEnvironment = webHostEnvironment;
-		}
+            _fileManager = fileManager;
+        }
 
-		// GET: EducandoResponsaveis/Details/5
-		public async Task<IActionResult> Details(Guid? id)
+        /// <summary>
+        /// Mostra os detalhes do responsável pelo educando com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do responsável pelo educando.</param>
+        /// <returns>Retorna uma visualização dos detalhes do responsável pelo educando com o ID especificado.</returns>
+
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.EducandoResponsavel == null)
             {
@@ -43,15 +55,23 @@ namespace ATLManager.Controllers
             return View(educandoResponsavel);
         }
 
-        // GET: EducandoResponsaveis/Create
+        /// <summary>
+        /// Mostra a página para criar um novo responsável pelo educando.
+        /// </summary>
+        /// <param name="id">O ID do educando relacionado.</param>
+        /// <returns>Retorna uma visualização da página de criação de um novo responsável pelo educando.</returns>
+
         public IActionResult Create(Guid id)
         {
             return View(new ResponsavelCreateViewModel(id));
         }
 
-        // POST: EducandoResponsaveis/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo responsável pelo educando.
+        /// </summary>
+        /// <param name="viewModel">O modelo de visualização do responsável pelo educando a ser criado.</param>
+        /// <returns>Retorna uma visualização dos detalhes do educando relacionado.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ResponsavelCreateViewModel viewModel)
@@ -68,7 +88,7 @@ namespace ATLManager.Controllers
                     Parentesco = viewModel.Parentesco,
                 };
 
-				string photoFileName = UploadedFile(viewModel.ProfilePicture);
+				string photoFileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 
 				if (photoFileName != null)
 				{
@@ -86,7 +106,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: EducandoResponsaveis/Edit/5
+        /// <summary>
+        /// Edita um responsável pelo educando.
+        /// </summary>
+        /// <param name="id">O ID do responsável.</param>
+        /// <returns>Uma instância de IActionResult.</returns>
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.EducandoResponsavel == null)
@@ -115,9 +140,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // POST: EducandoResponsaveis/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita um responsável pelo educando.
+        /// </summary>
+        /// <param name="id">O ID do responsável.</param>
+        /// <param name="viewModel">O ViewModel com as informações a serem atualizadas.</param>
+        /// <returns>Uma instância de IActionResult.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ResponsavelEditViewModel viewModel)
@@ -139,7 +168,7 @@ namespace ATLManager.Controllers
                     responsavel.Phone = viewModel.Phone;
                     responsavel.Parentesco = viewModel.Parentesco;
 
-                    string photoFileName = UploadedFile(viewModel.ProfilePicture);
+                    string photoFileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 
                     if (photoFileName != null)
                     {
@@ -166,7 +195,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: EducandoResponsaveis/Delete/5
+        /// <summary>
+        /// Remove um registo EducandoResponsavel com base em um ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do registo EducandoResponsavel a ser removido.</param>
+        /// <returns>Uma instância de IActionResult que representa o resultado da ação.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.EducandoResponsavel == null)
@@ -185,7 +219,12 @@ namespace ATLManager.Controllers
             return View(educandoResponsavel);
         }
 
-        // POST: EducandoResponsaveis/Delete/5
+        /// <summary>
+        /// Confirma a remoção de um registo EducandoResponsavel com base em um ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do registo EducandoResponsavel a ser removido.</param>
+        /// <returns>Uma instância de IActionResult que representa o resultado da ação.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -205,26 +244,15 @@ namespace ATLManager.Controllers
             return RedirectToAction("DetailsResponsaveis", "Educandos", new { id = educandoId });
         }
 
+        /// <summary>
+        /// Verifica se um registo EducandoResponsavel com o ID fornecido existe no contexto atual.
+        /// </summary>
+        /// <param name="id">O ID do registo EducandoResponsavel a ser verificado.</param>
+        /// <returns>Um valor booleano que indica se o registo EducandoResponsavel existe ou não.</returns>
+
         private bool EducandoResponsavelExists(Guid id)
         {
           return (_context.EducandoResponsavel?.Any(e => e.EducandoResponsavelId == id)).GetValueOrDefault();
         }
-
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/responsaveis");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

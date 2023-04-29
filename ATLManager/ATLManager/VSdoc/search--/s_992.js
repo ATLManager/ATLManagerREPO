@@ -1,0 +1,1 @@
+search_result['992']=["topic_0000000000000221.html","VisitaEstudoRecordsController.Delete Method","Retorna a exibição para confirmar a exclusão do registo de visita de estudo com o ID especificado."];

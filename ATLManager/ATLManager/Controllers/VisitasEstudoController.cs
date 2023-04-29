@@ -12,25 +12,36 @@ using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Visitas de Estudo'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class VisitasEstudoController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "visitas";
 
         public VisitasEstudoController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager
+            )
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: VisitasEstudo
+        /// <summary>
+        /// Retorna uma lista de visitas de estudo do ATL correspondente ao utilizador atual.
+        /// </summary>
+        /// <returns>Uma vista com a lista de visitas de estudo.</returns>
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -72,12 +83,17 @@ namespace ATLManager.Controllers
                     visitas = visitas.Union(tempVisitas).ToList();
                 }
 
-				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
-				return View(visitas);
+                ViewBag.Educandos = educandos;
+                return View(visitas);
             }
         }
 
-        // GET: VisitasEstudo/Details/5
+        /// <summary>
+        /// Retorna os detalhes de uma visita de estudo com base no ID especificado.
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo.</param>
+        /// <returns>Uma vista com os detalhes da visita de estudo.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.VisitaEstudo == null)
@@ -95,32 +111,33 @@ namespace ATLManager.Controllers
             return View(visitaEstudo);
         }
 
-        // GET: VisitasEstudo/Create
+        /// <summary>
+        /// Exibe o formulário de criação de uma nova visita de estudo.
+        /// </summary>
+        /// <returns>Uma vista com o formulário de criação de visita de estudo.</returns>
+
         public IActionResult Create()
         {
             return View(new VisitaEstudoCreateViewModel());
         }
 
-        // POST: VisitasEstudo/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria uma nova visita de estudo.
+        /// </summary>
+        /// <param name="viewModel">O modelo de exibição que contém as informações da nova visita de estudo.</param>
+        /// <returns>Redireciona para a lista de visitas de estudo.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VisitaEstudoCreateViewModel viewModel)
         {
+			if (DateTime.Compare(viewModel.Date, DateTime.UtcNow) < 0)
+			{
+				var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+				ModelState.AddModelError("Date", validationMessage);
+			}
 
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = viewModel.Date;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
-            {
-                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
-                ModelState.AddModelError("Date", validationMessage);
-            }
-
-
-
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 var currentUser = await _userManager.GetUserAsync(HttpContext.User);
                 var currentUserAccount = await _context.ContaAdministrativa
@@ -137,7 +154,7 @@ namespace ATLManager.Controllers
                     AtlId = currentUserAccount.AtlId
                 };
 
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 if (fileName != null)
                 {
@@ -156,8 +173,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-            // GET: VisitasEstudo/Edit/5
-            public async Task<IActionResult> Edit(Guid? id)
+        /// <summary>
+        /// Exibe o formulário de edição de uma visita de estudo com base no ID especificado.
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo.</param>
+        /// <returns>Uma vista com o formulário de edição da visita de estudo.</returns>
+
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.VisitaEstudo == null)
             {
@@ -172,9 +194,13 @@ namespace ATLManager.Controllers
             return View(new VisitaEstudoEditViewModel(visitaEstudo));
         }
 
-        // POST: VisitasEstudo/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita uma visita de estudo existente.
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo a ser editada.</param>
+        /// <param name="viewModel">O modelo de exibição que contém as informações atualizadas da visita de estudo.</param>
+        /// <returns>Redireciona para a lista de visitas de estudo.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, VisitaEstudoEditViewModel viewModel)
@@ -184,16 +210,14 @@ namespace ATLManager.Controllers
                 return NotFound();
             }
 
-
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = DateTime.Parse(viewModel.Date);
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            if (viewModel.Date != null)
             {
-                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
-                ModelState.AddModelError("Date", validationMessage);
+                if (DateTime.Compare((DateTime)viewModel.Date, DateTime.UtcNow) < 0)
+                {
+                    var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+                    ModelState.AddModelError("Date", validationMessage);
+                }
             }
-
 
             if (ModelState.IsValid)
             {
@@ -210,12 +234,11 @@ namespace ATLManager.Controllers
 
                         if (viewModel.Date != null)
                         {
-                            visitaEstudo.Date = DateTime.Parse(viewModel.Date);
+                            visitaEstudo.Date = (DateTime)viewModel.Date;
                         }
 
-                        string fileName = UploadedFile(viewModel.Picture);
-
-                        if (fileName != null)
+                        string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
+						if (fileName != null)
                         {
                             visitaEstudo.Picture = fileName;
                         }
@@ -240,7 +263,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: VisitasEstudo/Delete/5
+        /// <summary>
+        /// Remove uma VisitaEstudo .
+        /// </summary>
+        /// <param name="id"> ID de uma VisitaEstudo para remover</param>
+        /// <returns>A ViewResult object.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.VisitaEstudo == null)
@@ -258,7 +286,12 @@ namespace ATLManager.Controllers
             return View(visitaEstudo);
         }
 
-        // POST: VisitasEstudo/Delete/5
+        /// <summary>
+        /// Confirma a remoção uma visita de estudo
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo</param>
+        /// <returns>Uma ação assíncrona do tipo IActionResult</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -289,26 +322,15 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica se uma visita de estudo existe
+        /// </summary>
+        /// <param name="id">O ID da visita de estudo</param>
+        /// <returns>True se a visita de estudo existir, False caso contrário</returns>
+
         private bool VisitaEstudoExists(Guid id)
         {
           return (_context.VisitaEstudo?.Any(e => e.VisitaEstudoID == id)).GetValueOrDefault();
-        }
-
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/visitasEstudo");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

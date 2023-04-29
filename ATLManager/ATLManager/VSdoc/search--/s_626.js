@@ -1,0 +1,1 @@
+search_result['626']=["topic_0000000000000156.html","AtividadesController.Index Method","Retorna uma lista de atividades dependendo das permissões do utilizador."];

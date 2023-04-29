@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['737',"ATLManager.Models Namespace","topic_00000000000002C1.html"],['896',"Notificacao Class","topic_000000000000034C.html"],['897',"Notificacao Constructor","topic_0000000000000354_overloads--.html"],['898',"Notificacao() Constructor","topic_0000000000000354.html"]];

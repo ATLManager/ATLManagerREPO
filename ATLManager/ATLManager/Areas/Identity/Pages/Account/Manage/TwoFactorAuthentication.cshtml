@@ -8,65 +8,104 @@
 }
 @inject LanguageService language
 
-<partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
-@{
-    var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
-    @if (consentFeature?.CanTrack ?? true)
-    {
-        @if (Model.Is2faEnabled)
-        {
-            if (Model.RecoveryCodesLeft == 0)
-            {
-                <div class="alert alert-danger">
-                    <strong>@language.GetKey("txt4_2FactorAuth")</strong>
-                    <p>@language.GetKey("txt1_2FactorAuth") <a asp-page="./GenerateRecoveryCodes">@language.GetKey("txt2_2FactorAuth")</a> @language.GetKey("txt3_2FactorAuth")</p>
-                </div>
-            }
-            else if (Model.RecoveryCodesLeft == 1)
-            {
-                <div class="alert alert-danger">
-                    <strong>@language.GetKey("txt5_2FactorAuth")</strong>
-                    <p>@language.GetKey("txt6_2FactorAuth") <a asp-page="./GenerateRecoveryCodes">@language.GetKey("txt2_2FactorAuth")</a>.</p>
-                </div>
-            }
-            else if (Model.RecoveryCodesLeft <= 3)
-            {
-                <div class="alert alert-warning">
-                    <strong>@language.GetKey("txt8_2FactorAuth") @Model.RecoveryCodesLeft @language.GetKey("txt9_2FactorAuth")</strong>
-                    <p>@language.GetKey("txt7_2FactorAuth") <a asp-page="./GenerateRecoveryCodes">@language.GetKey("txt2_2FactorAuth")</a>.</p>
-                </div>
-            }
 
-            if (Model.IsMachineRemembered)
-            {
-                <form method="post" style="display: inline-block">
-                    <button type="submit" class="btn btn-primary">@language.GetKey("txt10_2FactorAuth")</button>
-                </form>
-            }
-            <a asp-page="./Disable2fa" class="btn btn-primary">@language.GetKey("txt11_2FactorAuth")</a>
-            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">@language.GetKey("txt12_2FactorAuth")</a>
-        }
+<div class="container-fluid">
 
-        <h4>@language.GetKey("txt13_2FactorAuth")</h4>
-        @if (!Model.HasAuthenticator)
-        {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">@language.GetKey("txt14_2FactorAuth")</a>
-        }
-        else
-        {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">@language.GetKey("txt15_2FactorAuth")</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">@language.GetKey("txt16_2FactorAuth")</a>
-        }
-    }
-    else
-    {
-        <div class="alert alert-danger">
-            <strong>@language.GetKey("txt17_2FactorAuth")</strong>
-            <p>@language.GetKey("txt18_2FactorAuth")</p>
+    <div class="d-flex justify-content-center" id="divFase1">
+        <!-- Box  -->
+        <div class="row col-12 justify-content-center custom-box mt-5" id="myBox">
+            <div class="row box border-5 p-5">
+                <!--text-center  -->
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="mb-3">
+                            <div class="row text-center">
+                                <partial name="_StatusMessage" for="StatusMessage" />
+                                <h3>@ViewData["Title"]</h3>
+                                <div class="row justify-content-center">
+                                    @{
+                                    var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+                                    @if (consentFeature?.CanTrack ?? true)
+                                    {
+                                        @if (Model.Is2faEnabled)
+                                        {
+                                            if (Model.RecoveryCodesLeft == 0)
+                                            {
+                                                <div class="alert alert-danger">
+                                                    <strong>@language.GetKey("txt4_2FactorAuth")</strong>
+                                                    <p>@language.GetKey("txt1_2FactorAuth") <a asp-page="./GenerateRecoveryCodes">@language.GetKey("txt2_2FactorAuth")</a> @language.GetKey("txt3_2FactorAuth")</p>
+                                                </div>
+                                            }
+                                            else if (Model.RecoveryCodesLeft == 1)
+                                            {
+                                                <div class="alert alert-danger">
+                                                    <strong>@language.GetKey("txt5_2FactorAuth")</strong>
+                                                    <p>@language.GetKey("txt6_2FactorAuth") <a asp-page="./GenerateRecoveryCodes">@language.GetKey("txt2_2FactorAuth")</a>.</p>
+                                                </div>
+                                            }
+                                            else if (Model.RecoveryCodesLeft <= 3)
+                                            {
+                                                <div class="alert alert-warning">
+                                                    <strong>@language.GetKey("txt8_2FactorAuth") @Model.RecoveryCodesLeft @language.GetKey("txt9_2FactorAuth")</strong>
+                                                    <p>@language.GetKey("txt7_2FactorAuth") <a asp-page="./GenerateRecoveryCodes">@language.GetKey("txt2_2FactorAuth")</a>.</p>
+                                                </div>
+                                            }
+
+                                            if (Model.IsMachineRemembered)
+                                            {
+                                                <div class="row justify-content-center mb-3">
+                                                    <form method="post" style="display: inline-block">
+                                                        <button type="submit" class="btn btn-primary w-50">@language.GetKey("txt10_2FactorAuth")</button>
+                                                    </form>
+                                                </div>
+                                            }
+
+                                                <div class="row justify-content-center mb-3">
+                                                <a asp-page="./Disable2fa" class="btn btn-primary w-50">@language.GetKey("txt11_2FactorAuth")</a>
+                                            </div>
+
+                                                <div class="row justify-content-center mb-3">
+                                                <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary w-50">@language.GetKey("txt12_2FactorAuth")</a>
+                                            </div>
+                                        }
+
+                                        <h4>@language.GetKey("txt13_2FactorAuth")</h4>
+                                        @if (!Model.HasAuthenticator)
+                                        {
+                                             <div class="row justify-content-center mb-3">
+                                                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary w-50">@language.GetKey("txt14_2FactorAuth")</a>
+                                             </div>
+                                        }
+                                        else
+                                        {
+                                                <div class="row justify-content-center mb-3">
+                                                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary w-50">@language.GetKey("txt15_2FactorAuth")</a>
+                                             </div>
+
+                                                <div class="row justify-content-center mb-3">
+                                                <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary w-50">@language.GetKey("txt16_2FactorAuth")</a>
+                                             </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-danger">
+                                            <strong>@language.GetKey("txt17_2FactorAuth")</strong>
+                                            <p>@language.GetKey("txt18_2FactorAuth")</p>
+                                        </div>
+                                    }
+                                }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    }
-}
+    </div>
+</div>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

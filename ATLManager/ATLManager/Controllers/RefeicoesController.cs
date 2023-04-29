@@ -12,25 +12,36 @@ using NuGet.ContentModel;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Refeições'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class RefeicoesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "refeicoes";
 
         public RefeicoesController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: Refeicoes
+        /// <summary>
+        /// Retorna a visualização da lista de refeições com base no usuário atual.
+        /// </summary>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -71,12 +82,18 @@ namespace ATLManager.Controllers
 
 					refeicoes = refeicoes.Union(tempRefeicoes).ToList();
 				}
-				ViewData["EducandoId"] = new SelectList(educandos, "EducandoId", "Name");
-				return View(refeicoes);
+
+                ViewBag.Educandos = educandos;
+                return View(refeicoes);
 			}
 		}
 
-        // GET: Refeicoes/Details/5
+        /// <summary>
+        /// Retorna a visualização de detalhes de uma refeição com base no ID da refeição fornecido.
+        /// </summary>
+        /// <param name="id">O ID da refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
@@ -94,32 +111,36 @@ namespace ATLManager.Controllers
             return View(refeicao);
         }
 
-        // GET: Refeicoes/Create
+        /// <summary>
+        /// Retorna a visualização de criação de uma nova refeição.
+        /// </summary>
+        /// <returns>Ação do resultado.</returns>
+
         public IActionResult Create()
         {
             return View(new RefeicaoCreateViewModel());
         }
 
-        // POST: Refeicoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria uma nova refeição com base nos dados fornecidos pelo ViewModel de criação de refeição.
+        /// </summary>
+        /// <param name="viewModel">O ViewModel de criação de refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RefeicaoCreateViewModel viewModel)
         {
 
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel = viewModel.Data;
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            if ((viewModel.Data).CompareTo(DateTime.UtcNow) < 0)
             {
-                var validationMessage = "Não é possível criar uma Visita de Estudo com uma data anterior à data atual";
+                var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
                 ModelState.AddModelError("Data", validationMessage);
             }
 
             if (ModelState.IsValid)
             {
-                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
                 var currentUserAccount = await _context.ContaAdministrativa
                     .Include(f => f.User)
                     .FirstOrDefaultAsync(m => m.UserId == currentUser.Id);
@@ -142,7 +163,7 @@ namespace ATLManager.Controllers
                     AtlId = (Guid)currentUserAccount.AtlId
                 };
 
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 if (fileName != null)
                 {
@@ -160,8 +181,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-    // GET: Refeicoes/Edit/5
-    public async Task<IActionResult> Edit(Guid? id)
+        /// <summary>
+        /// Retorna a visualização de edição de uma refeição com base no ID da refeição fornecido.
+        /// </summary>
+        /// <param name="id">O ID da refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
             {
@@ -176,9 +202,13 @@ namespace ATLManager.Controllers
             return View(new RefeicaoEditViewModel(refeicao));
         }
 
-        // POST: Refeicoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita uma refeição existente com base nos dados fornecidos pelo ViewModel de edição de refeição.
+        /// </summary>
+        /// <param name="id">O ID da refeição.</param>
+        /// <param name="viewModel">O ViewModel de edição de refeição.</param>
+        /// <returns>Ação do resultado de uma tarefa que representa a operação assíncrona.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, RefeicaoEditViewModel viewModel)
@@ -187,14 +217,14 @@ namespace ATLManager.Controllers
             {
                 return NotFound();
             }
-
-            DateTime dataAtual = DateTime.Now;
-
-            DateTime dataViewModel =  DateTime.Parse(viewModel.Data);
-            if (dataViewModel.CompareTo(dataAtual) < 0)
+            
+            if (viewModel.Data != null)
             {
-                var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
-                ModelState.AddModelError("Data", validationMessage);
+                if (((DateTime)viewModel.Data).CompareTo(DateTime.UtcNow) < 0)
+                {
+                    var validationMessage = "Não é possível editar uma Visita de Estudo com uma data anterior à data atual";
+                    ModelState.AddModelError("Data", validationMessage);
+                }
             }
 
             if (ModelState.IsValid)
@@ -219,10 +249,10 @@ namespace ATLManager.Controllers
 
                         if (viewModel.Data != null)
                         {
-                            refeicao.Data = DateTime.Parse(viewModel.Data);
+                            refeicao.Data = (DateTime)viewModel.Data;
                         }
 
-                        string fileName = UploadedFile(viewModel.Picture);
+                        string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                         if (fileName != null)
                         {
@@ -249,7 +279,11 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Refeicoes/Delete/5
+        /// <summary>
+        /// Este método processa o pedido para eliminar um objecto Refeicao com um determinado ID.
+        /// </summary>
+        /// <param name="id">O ID do objecto Refeicao a ser eliminado.</param>
+        /// <returns>A vista que contém o objecto Refeicao a eliminar.</returns>
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Refeicao == null)
@@ -267,7 +301,11 @@ namespace ATLManager.Controllers
             return View(refeicao);
         }
 
-        // POST: Refeicoes/Delete/5
+        /// <summary>
+        /// Este método processa o pedido para eliminar um objecto Refeicao com um determinado ID.
+        /// </summary>
+        /// <param name="id">O ID do objecto Refeicao a ser eliminado.</param>
+        /// <returns> Um redireccionamento para a vista do Índice após a eliminação ter sido concluída.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -306,26 +344,25 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Este método verifica se existe um objecto Refeicao na base de dados, com base no seu ID.
+        /// </summary>
+        /// <param name="id">O ID do objecto Refeicao a ser verificado.</param>
+        /// <returns>True se o objecto Refeicao existir na base de dados, false caso contrário.</returns>
         private bool RefeicaoExists(Guid id)
         {
           return _context.Refeicao.Any(e => e.RefeicaoId == id);
         }
 
-        private string UploadedFile(IFormFile logoPicture)
+        [HttpGet]
+        public async Task<IActionResult> GetRefeicoesByATLId(Guid atlid)
         {
-            string uniqueFileName = null;
+            
+            var refeicoes = await _context.Refeicao
+                .Where(r => r.AtlId == atlid)
+                .ToListAsync();
 
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/refeicoes");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
+            return Json(refeicoes);
         }
     }
 }

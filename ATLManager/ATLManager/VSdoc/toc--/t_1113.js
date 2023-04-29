@@ -1,0 +1,1 @@
+c['1113']=[['1114',"GetCurrentLanguage Method","topic_00000000000003A0.html",0],['1115',"GetKey Method","topic_000000000000039F.html",0]];

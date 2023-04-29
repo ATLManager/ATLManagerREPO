@@ -1,0 +1,33 @@
+﻿
+
+th:first-child {
+    pointer-events: none;
+}
+
+    th:first-child::before {
+        display: none !important;
+    }
+
+    th:first-child::after {
+        display: none !important;
+    }
+
+    th:first-child .sortable {
+        display: none !important;
+    }
+
+th:last-child {
+    pointer-events: none;
+}
+
+    th:last-child::before {
+        display: none !important;
+    }
+
+    th:last-child::after {
+        display: none !important;
+    }
+
+    th:last-child .sortable {
+        display: none !important;
+    }

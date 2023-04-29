@@ -1,0 +1,1 @@
+search_result['766']=["topic_00000000000001A4.html","FormularioRespostasController Class","Controlador para o modelo \u0027Resposta de Formulários\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

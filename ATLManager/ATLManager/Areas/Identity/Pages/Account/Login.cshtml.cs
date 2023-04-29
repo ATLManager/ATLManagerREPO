@@ -25,12 +25,14 @@ namespace ATLManager.Areas.Identity.Pages.Account
         private readonly SignInManager<ATLManagerUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private LanguageService _language;
+        private readonly UserManager<ATLManagerUser> _userManager;
 
-        public LoginModel(SignInManager<ATLManagerUser> signInManager, ILogger<LoginModel> logger, LanguageService language)
+        public LoginModel(SignInManager<ATLManagerUser> signInManager, ILogger<LoginModel> logger, LanguageService language, UserManager<ATLManagerUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
             _language = language;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -131,6 +133,19 @@ namespace ATLManager.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    // Verifique o papel do usuário e redirecione para a ação "IndexEE" se for um EncarregadoEducacao
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user != null && await _userManager.IsInRoleAsync(user, "EncarregadoEducacao"))
+                    {
+                        returnUrl = Url.Content("~/Home/IndexEE");
+                    }
+                    
+                    if (user != null && await _userManager.IsInRoleAsync(user, "Administrador"))
+                    {
+                        returnUrl = Url.Content("~/Home/IndexADM");
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

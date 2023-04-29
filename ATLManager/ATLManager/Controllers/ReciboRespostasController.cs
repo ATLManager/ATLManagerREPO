@@ -3,15 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using ATLManager.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using ATLManager.Models;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
-using MessagePack;
-using NuGet.Configuration;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Resposta de Recibos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class ReciboRespostasController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -19,23 +20,32 @@ namespace ATLManager.Controllers
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly INotificacoesController _notificacoesController;
+        private readonly IFileManager _fileManager;
 
+        private readonly string FolderName = "recibos";
 
         public ReciboRespostasController(ATLManagerAuthContext context, 
             IWebHostEnvironment webHostEnvironment, 
 			INotificacoesController notificacoesController, 
             UserManager<ATLManagerUser> userManager,
-			RoleManager<IdentityRole> roleManager)
+			RoleManager<IdentityRole> roleManager,
+			IFileManager fileManager)
 		{
 			_context = context;
 			_webHostEnvironment = webHostEnvironment;
 			_notificacoesController = notificacoesController;
 			_userManager = userManager;
 			_roleManager = roleManager;
+			_fileManager = fileManager;
 		}
 
-		// GET: RecibosRespostas/Details/5
-		public async Task<IActionResult> Details(Guid? id)
+        /// <summary>
+        /// Obtém os detalhes de uma resposta a um recibo específico.
+        /// </summary>
+        /// <param name="id">O identificador da resposta a ser exibida.</param>
+        /// <returns>Retorna uma exibição de detalhes da resposta.</returns>
+
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ReciboResposta == null)
             {
@@ -54,8 +64,13 @@ namespace ATLManager.Controllers
             return View(resposta);
 		}
 
-		// GET: RecibosRespostas/Edit/5
-		public async Task<IActionResult> Edit(Guid? id)
+        /// <summary>
+        /// Obtém a resposta a um recibo para edição.
+        /// </summary>
+        /// <param name="id">O identificador da resposta a ser editada.</param>
+        /// <returns>Retorna uma exibição da resposta com dados editáveis.</returns>
+
+        public async Task<IActionResult> Edit(Guid? id)
 		{
 			if (id == null || _context.ReciboResposta == null)
 			{
@@ -90,7 +105,14 @@ namespace ATLManager.Controllers
 			return View(viewModel);
 		}
 
-		[HttpPost]
+        /// <summary>
+        /// Salva as alterações feitas em uma resposta a um recibo.
+        /// </summary>
+        /// <param name="id">O identificador da resposta a ser atualizada.</param>
+        /// <param name="viewModel">O modelo de exibição da resposta editada.</param>
+        /// <returns>Retorna uma exibição da lista de respostas ao recibo.</returns>
+
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Edit(Guid id, ReciboRespostaEditViewModel viewModel)
 		{
@@ -122,7 +144,7 @@ namespace ATLManager.Controllers
                     resposta.Notes = viewModel.Notes;
                     
                     if (viewModel.Receipt != null)
-					    resposta.ReceiptPath = UploadedFile(viewModel.Receipt);
+					    resposta.ReceiptPath = _fileManager.UploadFile(viewModel.Receipt, FolderName);
 
 					_context.Update(resposta);
 					await _context.SaveChangesAsync();
@@ -165,8 +187,13 @@ namespace ATLManager.Controllers
 			return View(viewModel);
 		}
 
-		// GET: RecibosRespostas/Edit/5
-		[Authorize(Roles = "EncarregadoEducacao")]
+        /// <summary>
+        /// Obtém a resposta a um recibo para ser respondida por um Encarregado de Educação.
+        /// </summary>
+        /// <param name="id">O identificador da resposta a ser respondida.</param>
+        /// <returns>Retorna uma exibição da resposta com formulário para ser preenchido pelo Encarregado de Educação.</returns>
+
+        [Authorize(Roles = "EncarregadoEducacao")]
 		public async Task<IActionResult> Responder(Guid? id)
         {
             if (id == null || _context.ReciboResposta == null)
@@ -192,16 +219,19 @@ namespace ATLManager.Controllers
 				NIB = recibo.NIB,
                 Price = recibo.Price,
                 Description = recibo.Description,
-                DateLimit = ((DateTime)recibo.DateLimit).ToShortDateString()
+                DateLimit = recibo.DateLimit.ToShortDateString()
             };
 
             return View(viewModel);
         }
 
-		// POST: RecibosRespostas/Edit/5
-		// To protect from overposting attacks, enable the specific properties you want to bind to.
-		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
+        /// <summary>
+        /// Método para responder um recibo.
+        /// </summary>
+        /// <param name="id">o ID do recibo a ser respondido.</param>
+        /// <param name="viewModel">o ViewModel que contém as informações da resposta.</param>
+        /// <returns>um objeto Task<IActionResult>.</returns>
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Responder(Guid id, ReciboResponderViewModel viewModel)
         {
@@ -226,7 +256,7 @@ namespace ATLManager.Controllers
                     if (reciboResposta == null) 
                         return NotFound();
 
-                    reciboResposta.ComprovativoPath = UploadedFile(viewModel.Comprovativo);
+                    reciboResposta.ComprovativoPath = _fileManager.UploadFile(viewModel.Comprovativo, FolderName);
                     reciboResposta.ResponseDate = DateTime.UtcNow.Date;
 
 					_context.Update(reciboResposta);
@@ -280,10 +310,21 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-		public IActionResult Obrigado()
+        /// <summary>
+        /// Retorna a visualização da página de agradecimento.
+        /// </summary>
+        /// <returns>Visualização da página de agradecimento.</returns>
+
+        public IActionResult Obrigado()
 		{
 			return View();
 		}
+
+        /// <summary>
+        /// Faz o download do arquivo especificado e envia ao navegador.
+        /// </summary>
+        /// <param name="fileName">Nome do arquivo a ser baixado.</param>
+        /// <returns>Arquivo para download.</returns>
 
         public IActionResult Download(string fileName)
         {
@@ -293,26 +334,15 @@ namespace ATLManager.Controllers
 			return File(System.IO.File.ReadAllBytes(filePath), "application/pdf", fileCleanName);
         }
 
-		private bool ReciboRespostaExists(Guid id)
+        /// <summary>
+        /// Verifica se existe um objeto ReciboResposta com o ID especificado.
+        /// </summary>
+        /// <param name="id">ID do objeto ReciboResposta a ser procurado.</param>
+        /// <returns>True se o objeto existir, caso contrário False.</returns>
+
+        private bool ReciboRespostaExists(Guid id)
         {
           return (_context.ReciboResposta?.Any(e => e.ReciboRespostaId == id)).GetValueOrDefault();
-        }
-
-        private string UploadedFile(IFormFile comprovativo)
-        {
-            string uniqueFileName = null;
-
-            if (comprovativo != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "files/users/recibos");
-                uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-					comprovativo.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

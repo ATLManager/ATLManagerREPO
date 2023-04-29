@@ -1,0 +1,1 @@
+c['605']=[['606',"RecibosController Constructor","topic_0000000000000201.html",0],['607',"Methods","topic_0000000000000200_methods--.html",1]];

@@ -12,23 +12,36 @@ using Microsoft.AspNetCore.Identity;
 using ATLManager.Areas.Identity.Data;
 using ATLManager.Models;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Atividades'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class AtividadesController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-        public AtividadesController(ATLManagerAuthContext context, UserManager<ATLManagerUser> userManager, IWebHostEnvironment webHostEnvironment)
+        private readonly string FolderName = "atividades";
+
+        public AtividadesController(ATLManagerAuthContext context, 
+            UserManager<ATLManagerUser> userManager,
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: Atividades
+        /// <summary>
+        /// Retorna uma lista de atividades dependendo das permissões do utilizador.
+        /// </summary>
+        /// <returns>Retorna uma IActionResult contendo uma lista de atividades.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -73,7 +86,12 @@ namespace ATLManager.Controllers
             }
         }
 
-        // GET: Atividades/Details/5
+        /// <summary>
+        /// Retorna uma View com os detalhes de uma atividade específica.
+        /// </summary>
+        /// <param name="id">O ID da atividade.</param>
+        /// <returns>Retorna uma IActionResult contendo uma View com os detalhes da atividade.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Atividade == null)
@@ -91,15 +109,22 @@ namespace ATLManager.Controllers
             return View(atividade);
         }
 
-        // GET: Atividades/Create
+        /// <summary>
+        /// Cria uma nova instância da classe IActionResult que representa a ação de criar.
+        /// </summary>
+        /// <returns>Uma nova instância da classe IActionResult que representa a ação de criar.</returns>
+
         public IActionResult Create()
         {
             return View(new AtividadeCreateViewModel());
         }
 
-        // POST: Atividades/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria uma nova Atividade com base nas informações fornecidas pelo utilizador.
+        /// </summary>
+        /// <param name="viewModel">O ViewModel contendo as informações da atividade a ser criada.</param>
+        /// <returns>Uma instância de IActionResult que redireciona para a página Index em caso de sucesso,
+        /// ou exibe a página de criação novamente em caso de falha na validação do modelo.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AtividadeCreateViewModel viewModel)
@@ -124,7 +149,7 @@ namespace ATLManager.Controllers
 
             if (ModelState.IsValid)
             {
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 var atividade = new Atividade
                 {
@@ -152,7 +177,11 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Atividades/Edit/5
+        // <summary>
+        /// Método responsável por exibir a view de edição de uma atividade
+        /// </summary>
+        /// <param name="id">Id da atividade a ser editada</param>
+        /// <returns>Retorna uma View com o ViewModel preenchido com os dados da atividade a ser editada</returns>
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Atividade == null)
@@ -178,9 +207,13 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // POST: Atividades/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Action para editar uma atividade existente
+        /// </summary>
+        /// <param name="id">Id da atividade</param>
+        /// <param name="viewModel">Modelo de visualização para editar uma atividade</param>
+        /// <returns>ActionResult</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("AtividadeId,Name,StartDate,EndDate,Description,Picture")] AtividadeEditViewModel viewModel)
@@ -220,7 +253,7 @@ namespace ATLManager.Controllers
                 if (viewModel.EndDate != null)
                     atividade.EndDate = (DateTime)viewModel.EndDate;
 
-                string fileName = UploadedFile(viewModel.Picture);
+                string fileName = _fileManager.UploadFile(viewModel.Picture, FolderName);
 
                 if (fileName != null)
                 {
@@ -248,7 +281,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Atividades/Delete/5
+        /// <summary>
+        /// Action para excluir uma atividade
+        /// </summary>
+        /// <param name="id">Id da atividade</param>
+        /// <returns>ActionResult</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Atividade == null)
@@ -266,7 +304,12 @@ namespace ATLManager.Controllers
             return View(atividade);
         }
 
-        // POST: Atividades/Delete/5
+        /// <summary>
+        /// Elimina uma actividade da base de dados.
+        /// </summary>
+        /// <param name="id">O ID da actividade a eliminar.</param>
+        /// <returns>Uma IActionResult que representa o resultado da operação.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -297,26 +340,14 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Determina se existe na base de dados uma actividade com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID da actividade a verificar.</param>
+        /// <returns>Verdadeiro se existir na base de dados uma actividade com o ID especificado; caso contrário, falso.</returns>
         private bool AtividadeExists(Guid id)
         {
           return (_context.Atividade?.Any(e => e.AtividadeId == id)).GetValueOrDefault();
         }
-
-		private string UploadedFile(IFormFile comprovativo)
-		{
-			string uniqueFileName = null;
-
-			if (comprovativo != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atividades");
-				uniqueFileName = Guid.NewGuid().ToString() + "_id_" + comprovativo.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					comprovativo.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

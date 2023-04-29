@@ -7,30 +7,41 @@ using ATLManager.Areas.Identity.Data;
 using ATLManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using ATLManager.Models.Historicos;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Históricos Funcionários'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class FuncionariosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
         private readonly IUserStore<ATLManagerUser> _userStore;
         private readonly IUserEmailStore<ATLManagerUser> _emailStore;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "funcionarios";
 
         public FuncionariosController(ATLManagerAuthContext context, 
             UserManager<ATLManagerUser> userManager,
             IUserStore<ATLManagerUser> userStore,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: Coordenador
+        /// <summary>
+        /// Retorna uma visualização que lista os funcionários da ATL .
+        /// </summary>
+        /// <returns>Uma visualização que lista os funcionários da ATL.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -58,7 +69,12 @@ namespace ATLManager.Controllers
 			return View(funcionarios);
         }
 
-        // GET: Coordenador/Details/5
+        /// <summary>
+        /// Retorna uma visualização que exibe detalhes de um funcionário específico.
+        /// </summary>
+        /// <param name="id">O ID da conta do funcionário.</param>
+        /// <returns>Uma visualização que exibe detalhes de um funcionário específico.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ContaAdministrativa == null)
@@ -85,7 +101,11 @@ namespace ATLManager.Controllers
             return View(await funcionario.FirstAsync());
         }
 
-        // GET: Coordenador/Create
+        /// <summary>
+        /// Retorna uma visualização para criar um novo funcionário.
+        /// </summary>
+        /// <returns>Uma visualização para criar um novo funcionário.</returns>
+
         public async Task<IActionResult> Create()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -105,9 +125,12 @@ namespace ATLManager.Controllers
 			return View(new FuncionarioCreateViewModel());
         }
 
-        // POST: Coordenador/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo funcionário com base nas informações fornecidas pelo utilizador e adiciona-o.
+        /// </summary>
+        /// <param name="viewModel">Os dados do novo funcionário.</param>
+        /// <returns>Redireciona para a ação Index se o funcionário for criado com sucesso. Retorna a visualização Create com mensagens de erro, caso contrário.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FuncionarioCreateViewModel viewModel)
@@ -163,7 +186,7 @@ namespace ATLManager.Controllers
                     // Criar o perfil
                     var funcionario = new ContaAdministrativa(user, atlId: (Guid)userAccount.AtlId, viewModel.DateOfBirth, viewModel.CC);
 
-                    string fileName = UploadedFile(viewModel.ProfilePicture);
+                    string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
 					if (fileName != null)
 					{
 						funcionario.ProfilePicture = fileName;
@@ -189,7 +212,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Coordenador/Edit/5
+        /// <summary>
+        /// Método que edita um funcionário com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do funcionário a ser editado.</param>
+        /// <returns>Retorna uma tarefa que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.ContaAdministrativa == null)
@@ -219,9 +247,13 @@ namespace ATLManager.Controllers
             return View(await funcionario.FirstAsync());
         }
 
-        // POST: Coordenador/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método que edita um coordenador com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do coordenador a ser editado.</param>
+        /// <param name="viewModel">O objeto ViewModel contendo as informações do coordenador.</param>
+        /// <returns>Retorna uma tarefa que representa a operação assíncrona.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, CoordenadorEditViewModel viewModel)
@@ -244,7 +276,6 @@ namespace ATLManager.Controllers
                 }
             }
 
-
             // Obter a data de nascimento do ViewModel
             DateTime dataNascimento = DateTime.Parse(viewModel.DateOfBirth);
 
@@ -257,7 +288,6 @@ namespace ATLManager.Controllers
                 var validationMessage = "A idade mínima para registar um funcionário é 18 anos";
                 ModelState.AddModelError("DateOfBirth", validationMessage);
             }
-
 
             if (ModelState.IsValid)
             {
@@ -273,8 +303,8 @@ namespace ATLManager.Controllers
                         }
                         funcionario.CC = viewModel.CC;
 
-                        string fileName = UploadedFile(viewModel.ProfilePicture);
-						if (fileName != null)
+                        string fileName = _fileManager.UploadFile(viewModel.ProfilePicture, FolderName);
+                        if (fileName != null)
 						{
 							funcionario.ProfilePicture = fileName;
 						}
@@ -308,7 +338,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Coordenador/Delete/5
+        /// <summary>
+        /// Método que exclui um funcionário com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do funcionário a ser excluído.</param>
+        /// <returns>Retorna uma tarefa que representa a operação assíncrona.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.ContaAdministrativa == null)
@@ -335,7 +370,12 @@ namespace ATLManager.Controllers
             return View(await funcionario.FirstAsync());
         }
 
-        // POST: Coordenador/Delete/5
+        /// <summary>
+        /// Confirma a exclusão de uma conta administrativa.
+        /// </summary>
+        /// <param name="id">O ID da conta administrativa a ser excluída.</param>
+        /// <returns>Um objeto IActionResult.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -374,11 +414,21 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica se uma conta administrativa existe.
+        /// </summary>
+        /// <param name="id">O ID da conta administrativa a ser verificada.</param>
+        /// <returns>True se a conta existir, false caso contrário.</returns>
+
         private bool ContaAdministrativaExists(Guid id)
         {
           return _context.ContaAdministrativa.Any(e => e.ContaId == id);
         }
 
+        /// <summary>
+        /// Cria uma nova instância de ATLManagerUser.
+        /// </summary>
+        /// <returns>Um objeto ATLManagerUser.</returns>
         private ATLManagerUser CreateUser()
         {
             try
@@ -392,6 +442,11 @@ namespace ATLManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Obtém o IUserEmailStore correspondente a ATLManagerUser.
+        /// </summary>
+        /// <returns>Um objeto IUserEmailStore&lt;ATLManagerUser;.</returns>
+
         private IUserEmailStore<ATLManagerUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
@@ -399,23 +454,6 @@ namespace ATLManager.Controllers
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<ATLManagerUser>)_userStore;
-        }
-
-        private string UploadedFile(IFormFile logoPicture)
-        {
-            string uniqueFileName = null;
-
-            if (logoPicture != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/funcionarios");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    logoPicture.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

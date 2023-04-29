@@ -9,7 +9,7 @@
 @inject LanguageService language
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Responsável";
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -205,6 +205,12 @@
         </ul>
     </div>
     <!-- // Slide de Ajuda  -->
+
+    /**
+		* Adiciona o nome do arquivo selecionado ao elemento de rótulo correspondente.
+		* @function
+		* @param {Event} event - O evento "change" disparado quando um arquivo é selecionado.
+		*/
     <script type="text/javascript">
         // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function () {

@@ -16,12 +16,16 @@
 
 @if (!SignInManager.IsSignedIn(User))
 {
-    <h1>@ViewData["Title"]</h1>
-    <h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
+   @* <h1>@ViewData["Title"]</h1>
+   
+*@
 
 
-  <!-- Botão de Ajuda -->
-        <div class="row" style="padding-top: 6em;padding-left: 6em;">
+    <!-- Container -->
+    <div class="container h-auto mt-auto">
+
+        <!-- Botão de Ajuda -->
+        <div class="row" style="padding-top: 2em;padding-left: 6em;">
             <div class="col-3"></div>
             <div class="col-5"></div>
             <div class="col-4 text-right pb-2">
@@ -32,46 +36,54 @@
         </div>
         <!-- // Botão de Ajuda -->
 
+
+
         <div class="d-flex justify-content-center">
             <!-- Box  -->
             <div class="row col-6 justify-content-center custom-box p-3">
                 <div class="row box border-5">
-
+                    <h2 id="external-login-title mb-2">Associate your @Model.ProviderDisplayName account.</h2>
                     <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-registo">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="mb-3">
-                            <div>
-                                <label asp-for="Input.FirstName">@language.GetKey("nameAccount")</label>
-                                <input class="input-text" class="input-text-row" asp-for="Input.FirstName" autocomplete="username" aria-required="true"><br><br>
-                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Input.LastName">@language.GetKey("lastNameAccount")</label>
-                                <input asp-for="Input.LastName" class="input-text" autocomplete="username" aria-required="true" />
-                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb-3">
-                            <label asp-for="Input.Email">@language.GetKey("email")</label>
-                            <input asp-for="Input.Email" class="input-text" autocomplete="username" aria-required="true" />
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            <div class="row">
+							    <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.FirstName" class="form-label">@language.GetKey("nameAccount")</label>
+                                    <input class="form-control" asp-for="Input.FirstName" autocomplete="username" aria-required="true"><br><br>
+                                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                </div>
 
-                        </div>
-                        <br />
-                        <div class="mb-3">
-                            <div>
-                                <label asp-for="Input.Password">@language.GetKey("password")</label>
-                                <input asp-for="Input.Password" class="input-text" autocomplete="new-password" aria-required="true" />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
+                                    <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" />
+                                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                </div>
                             </div>
-                            @*<div style="padding:5px;">*@
-                            <div class="div-apelido">
-                                <label asp-for="Input.ConfirmPassword">@language.GetKey("confirmPassword")</label>
-                                <input asp-for="Input.ConfirmPassword" class="input-text" autocomplete="new-password" aria-required="true" />
-                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                       
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.Email" class="form-label">@language.GetKey("email")</label>
+                                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.Password" class="form-label">@language.GetKey("password")</label>
+                                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.ConfirmPassword">@language.GetKey("confirmPassword")</label>
+                                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                </div>    
+                               
+                            </div>
+                            </form>
                         </div>
+                    </div>
+                </div>
 
                             <p id="external-login-description" class="text-info">
                                 You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
@@ -83,112 +95,108 @@
                             <button id="registerSubmit" type="submit" class="btn btn-primary btn-block mx-auto custom-button" style="width: 20%;">
                                 @language.GetKey("register")</button>
                         </div> 
-                    </form>
+                    
                 </div>
-            </div>
-        </div>
-
-
-
+          
   
 		    <!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+        <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
-        <div class="row text-center mt-2">
-            <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
+            <div class="row text-center mt-2">
+                <div class="col-10 ">
+                    <h2 class="text-white ms-5">Ajuda</h2>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+                </div>
             </div>
-
-            <div class="col-2">
-                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+            <div class="">
+                <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+                    placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
             </div>
+            <!-- -->
+            <ul class="row justify-content-center p-4 bg-white mt-4 "
+                style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+                <li class="row">
+                    <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+                        <div class="d-flex align-items-center justify-content-center">
+
+                            <span>@language.GetKey("howToLoginOnApp")</span>
+                            <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                        </div>
+                    </button>
+
+
+                    <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+                      @language.GetKey("txtHowToLoginOnApp");
+
+                    </span>
+                </li>
+
+                <li class="row">
+                    <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText2">
+                        <div class="d-flex align-items-center justify-content-center">
+
+                            <span>@language.GetKey("howToLoginViaFacebook")</span>
+                            <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                        </div>
+                    </button>
+
+
+                    <span class="myText p-3 helpShadowButton" id="displayText2" style="display: none; position: relative;">
+                       @language.GetKey("txtHowToLoginViaFacebook")
+                    </span>
+                </li>
+
+			    <li class="row">
+                    <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText3">
+                        <div class="d-flex align-items-center justify-content-center">
+
+                            <span>@language.GetKey("howToLoginViaGoogle")</span>
+                            <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                        </div>
+                    </button>
+
+
+                    <span class="myText p-3 helpShadowButton" id="displayText3" style="display: none; position: relative;">
+                       @language.GetKey("txtHowToLoginViaGoogle")
+                    </span>
+                </li>
+
+
+			    <li class="row">
+                    <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText4">
+                        <div class="d-flex align-items-center justify-content-center">
+
+                            <span>@language.GetKey("howToLoginViaFacebook")</span>
+                            <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                        </div>
+                    </button>
+
+
+                    <span class="myText p-3 helpShadowButton" id="displayText4" style="display: none; position: relative;">
+                       @language.GetKey("txtHowToLoginViaFacebook")
+                    </span>
+                </li>
+
+			    <li class="row">
+                    <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText5">
+                        <div class="d-flex align-items-center justify-content-center">
+
+                            <span>@language.GetKey("howToLoginViaTwitter")</span>
+                            <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                        </div>
+                    </button>
+
+
+                    <span class="myText p-3 helpShadowButton" id="displayText5" style="display: none; position: relative;">
+                       @language.GetKey("txtHowToLoginViaTwitter")
+                    </span>
+                </li>           
+            </ul>
         </div>
-        <div class="">
-            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
-        </div>
-        <!-- -->
-        <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>@language.GetKey("howToLoginOnApp")</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                  @language.GetKey("txtHowToLoginOnApp");
-
-                </span>
-            </li>
-
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText2">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>@language.GetKey("howToLoginViaFacebook")</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText2" style="display: none; position: relative;">
-                   @language.GetKey("txtHowToLoginViaFacebook")
-                </span>
-            </li>
-
-			<li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText3">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>@language.GetKey("howToLoginViaGoogle")</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText3" style="display: none; position: relative;">
-                   @language.GetKey("txtHowToLoginViaGoogle")
-                </span>
-            </li>
-
-
-			<li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText4">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>@language.GetKey("howToLoginViaFacebook")</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText4" style="display: none; position: relative;">
-                   @language.GetKey("txtHowToLoginViaFacebook")
-                </span>
-            </li>
-
-			<li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText5">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>@language.GetKey("howToLoginViaTwitter")</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText5" style="display: none; position: relative;">
-                   @language.GetKey("txtHowToLoginViaTwitter")
-                </span>
-            </li>           
-        </ul>
-    </div>
-    <!-- // Slide de Ajuda  -->
+        <!-- // Slide de Ajuda  -->
 
 
 @section Scripts {

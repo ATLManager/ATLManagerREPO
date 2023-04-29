@@ -10,26 +10,37 @@ using ATLManager.Models;
 using ATLManager.ViewModels;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'ATL'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class ATLController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
+        private readonly IFileManager _fileManager;
+
+        private readonly string FolderName = "atls";
+        private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public ATLController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: ATL
+        /// <summary>
+        /// Retorna a view Index com uma lista de todos os ATLs pertencentes à conta administrativa.
+        /// </summary>
+        /// <returns>View com a lista de ATLs.</returns>
+
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -51,7 +62,12 @@ namespace ATLManager.Controllers
             return View(atls);
         }
 
-        // GET: ATL/Details/5
+        /// <summary>
+        /// Retorna a view Details com os detalhes do ATL especificado pelo parametro id.
+        /// </summary>
+        /// <param name="id">O id do ATL para o qual se deseja visualizar os detalhes.</param>
+        /// <returns>View com os detalhes do ATL.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -71,7 +87,11 @@ namespace ATLManager.Controllers
             return View(atl);
         }
 
-        // GET: ATL/Create
+        /// <summary>
+        /// Retorna a view Create com um formulário para criar um novo ATL.
+        /// </summary>
+        /// <returns>View com o formulário para criar um novo ATL.</returns>
+
         public async Task<IActionResult> Create()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -92,9 +112,12 @@ namespace ATLManager.Controllers
             return View(new ATLCreateViewModel());
         }
 
-        // POST: ATL/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo ATL com base nos dados fornecidos pelo objeto viewModel.
+        /// </summary>
+        /// <param name="viewModel">Objeto que contém os dados para criar um novo ATL.</param>
+        /// <returns>Redireciona para a view Index após a criação do novo ATL.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ATLCreateViewModel viewModel)
@@ -147,7 +170,7 @@ namespace ATLManager.Controllers
                     NIPC = viewModel.NIPC
 				};
 
-                string fileName = UploadedFile(viewModel.LogoPicture);
+                string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
                 if (fileName != null)
                 {
                     atl.LogoPicture = fileName;
@@ -183,7 +206,11 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: ATL/Edit/5
+        /// <summary>
+        /// Edita o ATL com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do ATL a ser editado.</param>
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -215,9 +242,13 @@ namespace ATLManager.Controllers
             return View(new ATLEditViewModel(atl));
         }
 
-        // POST: ATL/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edita o ATL com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do ATL a ser editado.</param>
+        /// <param name="viewModel">O modelo de visualização de edição do ATL.</param>
+        /// <returns>O resultado da ação.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ATLEditViewModel viewModel)
@@ -275,7 +306,7 @@ namespace ATLManager.Controllers
                         atl.AgrupamentoId = viewModel.AgrupamentoId;
                         atl.NIPC = viewModel.NIPC;
 
-                        string fileName = UploadedFile(viewModel.LogoPicture);
+                        string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
                         if (fileName != null)
                         {
                             atl.LogoPicture = fileName;
@@ -317,7 +348,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: ATL/Delete/5
+        /// <summary>
+        /// Obtém o ATL com o ID fornecido para exclusão.
+        /// </summary>
+        /// <param name="id">O ID do ATL a ser excluído.</param>
+        /// <returns>O resultado da ação.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.ATL == null)
@@ -336,7 +372,12 @@ namespace ATLManager.Controllers
             return View(atl);
         }
 
-        // POST: ATL/Delete/5
+        /// <summary>
+        /// Confirma a exclusão do ATL com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do ATL a ser excluído.</param>
+        /// <returns>O resultado da ação.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -354,27 +395,9 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool ATLExists(Guid id)
         {
           return _context.ATL.Any(e => e.AtlId == id);
         }
-
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
-
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/atls");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
 	}
 }

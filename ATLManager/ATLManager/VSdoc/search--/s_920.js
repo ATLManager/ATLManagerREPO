@@ -1,0 +1,1 @@
+search_result['920']=["topic_00000000000001F9.html","ReciboRespostasController.Details Method","Obtém os detalhes de uma resposta a um recibo específico."];

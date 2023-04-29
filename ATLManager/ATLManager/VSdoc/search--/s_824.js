@@ -1,0 +1,1 @@
+search_result['824']=["topic_00000000000001C3.html","FuncionariosController.Create (FuncionarioCreateViewModel) Method","Cria um novo funcionário com base nas informações fornecidas pelo utilizador e adiciona-o."];

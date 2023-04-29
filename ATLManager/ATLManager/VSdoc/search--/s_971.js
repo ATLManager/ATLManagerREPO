@@ -1,0 +1,1 @@
+search_result['971']=["topic_0000000000000215.html","RefeicoesController.Details Method","Retorna a visualização de detalhes de uma refeição com base no ID da refeição fornecido."];

@@ -1,0 +1,1 @@
+search_result['900']=["topic_00000000000001EF.html","ReciboRecordsController.Details Method","Retorna os detalhes de um recibo específico."];

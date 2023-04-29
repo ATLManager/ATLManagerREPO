@@ -8,7 +8,7 @@
 @inject LanguageService language
 
 @{
-	ViewData["Title"] = "Create";
+	ViewData["Title"] = @language.GetKey("create_coordenador");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -33,7 +33,6 @@
 			<!-- Box  -->
 			<div class="row justify-content-center custom-box " id="myBox">
 				<div class="row box border-5">
-
 					<div class="container">
 						<div class="row mt-3">
 							<div class="mb-3">
@@ -45,91 +44,80 @@
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="FirstName" class="form-label">@language.GetKey("nameAccount")</label>
-														<input asp-for="FirstName" class="form-control" placeholder="Insira o primeiro nome" aria-required="true">
+														<input asp-for="FirstName" class="form-control" placeholder="@language.GetKey("placeholderName")" aria-required="true">
 														<span asp-validation-for="FirstName" class="text-danger"></span>
 													</div>
 												</div>
-
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="LastName" class="form-label">@language.GetKey("lastNameAccount")</label>
-														<input asp-for="LastName" class="form-control" placeholder="Insira o ultimo nome" aria-required="true" />
+														<input asp-for="LastName" class="form-control" placeholder="@language.GetKey("placeholderSurnameName")" aria-required="true" />
 														<span asp-validation-for="LastName" class="text-danger"></span>
 													</div>
 												</div>
 											</div>
-
 											<div class="row mb-2">
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="CC" class="control-label"></label>
-														<input asp-for="CC" class="form-control" placeholder="Insira o cc" />
+														<input asp-for="CC" class="form-control" placeholder="@language.GetKey("placeholderCC")" />
 														<span asp-validation-for="CC" class="text-danger"></span>
 													</div>
 												</div>
-
 												<div class="col-6">
 													<div class="form-group">
-														<label asp-for="AtlId" class="control-label">Atl</label>
+														<label asp-for="AtlId" class="control-label">ATL</label>
 														<select asp-for="AtlId" class="form-control" asp-items="ViewBag.AtlId">
-															<option value=null>Escolha um ATL</option>
+															<option value=null>@language.GetKey("placeholder_choose_atl")</option>
 														</select>
 													</div>
 												</div>
 											</div>
-
 											<div class="row mb-2">
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="Email" class="form-label">@language.GetKey("email")</label>
-														<input asp-for="Email" class="form-control" placeholder="Insira o email" aria-required="true" />
+														<input asp-for="Email" class="form-control" placeholder="@language.GetKey("placeholderEmail")" aria-required="true" />
 														<span asp-validation-for="Email" class="text-danger"></span>
 													</div>
 												</div>
 												<div class="col-6">
 													<div class="form-group">
-														<label asp-for="DateOfBirth" class="control-label"></label>
+														<label asp-for="DateOfBirth" class="control-label">@language.GetKey("date_of_birth")</label>
 														<input asp-for="DateOfBirth" class="form-control" />
 														<span asp-validation-for="DateOfBirth" class="text-danger"></span>
 													</div>
 												</div>
-
 											</div>
-
 											<div class="row mb-2">
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="Password" class="form-label">@language.GetKey("password")</label>
-														<input asp-for="Password" class="form-control" placeholder="Insira a password" aria-required="true" />
+														<input asp-for="Password" class="form-control" placeholder="@language.GetKey("placeholderPassword")" aria-required="true" />
 														<span asp-validation-for="Password" class="text-danger"></span>
 													</div>
 												</div>
 												<div class="col-6">
 													<div class="form-group">
 														<label asp-for="ConfirmPassword" class="form-label">@language.GetKey("confirmPassword")</label>
-														<input asp-for="ConfirmPassword" class="form-control" placeholder="Confirme a password" aria-required="true" />
+														<input asp-for="ConfirmPassword" class="form-control" placeholder="@language.GetKey("placeholderConfirmPassword")" aria-required="true" />
 														<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 													</div>
 												</div>
 											</div>
-
 											<div class="form-group">
-												<label asp-for="ProfilePicture" class="control-label"></label>
+												<label asp-for="ProfilePicture" class="control-label">@language.GetKey("picture")</label>
 												<div class="custom-file">
 													<input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
-													<label class="custom-file-label" for="customFile">Choose file</label>
+													<label class="custom-file-label" for="customFile">@language.GetKey("lchoose")</label>
 												</div>
 												<span asp-validation-for="ProfilePicture" class="text-danger"></span>
 											</div>
-
 											<hr />
 											<div class="d-flex text-center mt-4">
 												<div class="col text-right">
-													<a asp-action="Index">
-														<button type="button"
-																class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-															Voltar
-														</button>
+													<a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+														@language.GetKey("btnVoltar")
 													</a>
 												</div>
 												<div class="col text-left">
@@ -138,14 +126,11 @@
 													</div>
 												</div>
 											</div>
-
-
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<!-- // Box -->
 				</div>
@@ -154,96 +139,96 @@
 		</div>
 	</div>
 
-	    <!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+	<!-- Slide de Ajuda  -->
+	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+		<div class="row text-center mt-2">
+			<div class="col-10 ">
+				<h2 class="text-white ms-5">@language.GetKey("help")</h2>
+			</div>
+			<div class="col-2">
+				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="">
+			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+				   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
+		</div>
+		<!-- -->
+		<ul class="row justify-content-center p-4 bg-white mt-4 "
+			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			<li class="row">
+				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+					<div class="d-flex align-items-center justify-content-center">
 
-        <div class="row text-center mt-2">
-            <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
-            </div>
-
-            <div class="col-2">
-                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
-            </div>
-        </div>
-        <div class="">
-            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
-        </div>
-        <!-- -->
-        <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
-            <li class="row">
-                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
-                    <div class="d-flex align-items-center justify-content-center">
-
-                        <span>Como alterar uma visita de estudo</span>
-                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
-                    </div>
-                </button>
-
-
-                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
-
-                </span>
-            </li>
-
-
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/terms.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Leia artigos de ajuda</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/comunity.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Pergunte à comunidade</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/new.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Novas Atualizações</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/feedback.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Dê Feedback</span>
-                        </div>
-                    </div>
-
-                </button>
-            </li>
-        </ul>
-    </div>
+						<span>@language.GetKey("howto_create_coord")</span>
+						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+					</div>
+				</button>
+				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+					@language.GetKey("txt_create_coord")
+				</span>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("readarticles")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("askcomunity")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("newsupdates")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>
+								<a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+									@language.GetKey("givefeedback")
+								</a>
+							</span>
+						</div>
+					</div>
+				</button>
+			</li>
+		</ul>
+	</div>
     <!-- // Slide de Ajuda  -->
 
+		/**
+		* Adiciona o nome do arquivo selecionado ao elemento de rótulo correspondente.
+		* @function
+		* @param {Event} event - O evento "change" disparado quando um arquivo é selecionado.
+		*/
 	<script type="text/javascript">
 		// Add the following code if you want the name of the file appear on select
 		$(".custom-file-input").on("change", function () {

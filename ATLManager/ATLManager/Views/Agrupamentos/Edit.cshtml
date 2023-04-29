@@ -4,13 +4,16 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
+@using ATLManager.Services
+
 @{
-	ViewData["Title"] = "Edit";
+	ViewData["Title"] = @language.GetKey("menuAgrupamento");
 }
 
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
-
+<title>@ViewData["Title"]</title>
 @if (SignInManager.IsSignedIn(User))
 {
 
@@ -18,7 +21,7 @@
 	<!-- d-flex -->
 	<div class="container-fluid">
 		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-			<h1 class="me-3 fw-bold text-center mb-0">Editar Agrupamento</h1>
+			<h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("teditar") @language.GetKey("menuAgrupamento")</h1>
 			<img src="~/images/icons/edit-group.png" width="50" height="50">
 		</div>
 
@@ -44,41 +47,38 @@
 											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 											<input type="hidden" asp-for="AgrupamentoId" />
 											<div class="form-group">
-												<label asp-for="Name" class="control-label"></label>
-												<input asp-for="Name" class="form-control" placeholder="Insira um nome" />
+												<label asp-for="Name" class="control-label">@language.GetKey("gname")</label>
+												<input asp-for="Name" class="form-control" placeholder="@language.GetKey("plname")" />
 												<span asp-validation-for="Name" class="text-danger"></span>
 											</div>
 											<div class="form-group">
-												<label asp-for="Location" class="control-label"></label>
-												<input asp-for="Location" class="form-control" placeholder="Insira uma localidade" />
+												<label asp-for="Location" class="control-label">@language.GetKey("glocation")</label>
+												<input asp-for="Location" class="form-control" placeholder="@language.GetKey("pllocalidade")" />
 												<span asp-validation-for="Location" class="text-danger"></span>
 											</div>
 											<div class="form-group">
 												<label asp-for="NIPC" class="control-label"></label>
-												<input asp-for="NIPC" class="form-control" placeholder="Insira um nipc" />
+												<input asp-for="NIPC" class="form-control" placeholder="@language.GetKey("plnipc")" />
 												<span asp-validation-for="NIPC" class="text-danger"></span>
 											</div>
 											<div class="form-group">
-												<label asp-for="LogoPicture" class="control-label"></label>
+												<label asp-for="LogoPicture" class="control-label">Logo</label>
 												<div class="custom-file">
 													<input asp-for="LogoPicture" class="custom-file-input" id="customFile">
-													<label class="custom-file-label" for="customFile">Choose file</label>
+													<label class="custom-file-label" for="customFile">@language.GetKey("lchoose")</label>
 												</div>
 												<span asp-validation-for="LogoPicture" class="text-danger"></span>
 											</div>
 										
 											<div class="d-flex text-center mt-4">
 												<div class="col text-right">
-													<a asp-action="Index">
-														<button type="button"
-																class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-															Voltar
-														</button>
+													<a asp-action="Index" class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+														@language.GetKey("btnVoltar")
 													</a>
 												</div>
 												<div class="col text-left">
 													<div class="form-group">
-														<input type="submit" value="Save" class="btn btn-primary w-50" style="border-radius:6em" />
+														<input type="submit" value="@language.GetKey("btnSave")" class="btn btn-primary w-50" style="border-radius:6em" />
 													</div>
 												</div>
 											</div>
@@ -95,105 +95,107 @@
 			</div>
 		</div>
 	</div>
-	    <!-- Slide de Ajuda  -->
-    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
 
+	<!-- Slide de Ajuda  -->
+    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
         <div class="row text-center mt-2">
             <div class="col-10 ">
-                <h2 class="text-white ms-5">Ajuda</h2>
+				<h2 class="text-white ms-5">@language.GetKey("help")</h2>
             </div>
-
             <div class="col-2">
                 <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
             </div>
         </div>
         <div class="">
             <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-                placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+				   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
         </div>
         <!-- -->
         <ul class="row justify-content-center p-4 bg-white mt-4 "
-            style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+            style="position: absolute; right: 0em; left: 0em; height: 80%;">
             <li class="row">
                 <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
                     <div class="d-flex align-items-center justify-content-center">
 
-                        <span>Como alterar uma visita de estudo</span>
+						<span>
+							@language.GetKey("howto_change_group")
+						</span>
                         <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
                     </div>
                 </button>
-
-
                 <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-                    Here's some more textHere's some more textHere's some more textHere's some
-                    more textHe
-
+					@language.GetKey("txt_change_group")
                 </span>
             </li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/terms.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("readarticles")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center">
+						<div class="col-3">
+							<img src="~/images/guide/comunity.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("askcomunity")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/new.png" class="">
+						</div>
+						<div class="col">
+							<span>@language.GetKey("newsupdates")</span>
+						</div>
+					</div>
+				</button>
+			</li>
+			<li class="row">
+				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="col-3">
+							<img src="~/images/guide/feedback.png" class="">
+						</div>
+						<div class="col">
+							<span>
+								<a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+									@language.GetKey("givefeedback")
+								</a>
+							</span>
+						</div>
+					</div>
 
-
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/terms.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Leia artigos de ajuda</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/comunity.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Pergunte à comunidade</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/new.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Novas Atualizações</span>
-                        </div>
-                    </div>
-                </button>
-            </li>
-            <li class="row">
-                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="col-3">
-                            <img src="~/images/guide/feedback.png" class="">
-                        </div>
-                        <div class="col">
-                            <span>Dê Feedback</span>
-                        </div>
-                    </div>
-
-                </button>
-            </li>
+				</button>
+			</li>
         </ul>
     </div>
     <!-- // Slide de Ajuda  -->
 
 
-
-	<script type="text/javascript">
-		// Add the following code if you want the name of the file appear on select
-		$(".custom-file-input").on("change", function () {
-			var fileName = $(this).val().split("\\").pop();
-			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-		});
-	</script>
+		/**
+		 * Adiciona o nome do arquivo selecionado ao label do input.
+		 * @function
+		 */
+		<script type="text/javascript">
+			// Add the following code if you want the name of the file appear on select
+			$(".custom-file-input").on("change", function () {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			});
+		</script>
 
 	@section Scripts {
 	@{
@@ -201,6 +203,10 @@
 		}
 	}
 
+	/**
+	* Configura o layout da tela com base no tamanho da tela
+	* @function
+	*/
 	<script>
 		window.onload = function () {
 			var divBox = document.getElementById("myBox")

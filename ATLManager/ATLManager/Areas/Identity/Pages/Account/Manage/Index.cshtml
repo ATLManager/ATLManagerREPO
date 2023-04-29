@@ -13,20 +13,10 @@
 <!-- Container -->
 <div class="container-fluid">
 	
-
-@*	<div class="row" style="padding-left: 6em;">
-		<div class="col-3"></div>
-		<div class="col-6"></div>
-		<div class="col-3" pb-2" id="divQuestion">
-			<button class="btn btn-primary rounded-circle mb-3" id="btn-ajuda">
-				<img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
-			</button>
-		</div>
-	</div>*@
 	<div class="d-flex justify-content-center" id="divFase1">
 		<!-- Box  -->
-		<div class="row col-12 justify-content-center custom-box mt-5" id="myBox">
-			<div class="row box border-5 p-5">
+		<div class="row col-12 justify-content-center custom-box mt-1" id="myBox">
+			<div class="row box border-5 p-2">
 				<!--text-center  -->
 				<div class="container">
 					<div class="row mt-3">
@@ -37,17 +27,28 @@
 								<div class="col-md-6">
 									<form id="profile-form" method="post" enctype="multipart/form-data">
 										<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+										<div class="text-center">
+											<img src="~/images/uploads/users/@Model.Input.PictureName"
+			 class="rounded-circle mb-3" style="width:35%"
+												 asp-append-version="true" />
+										</div>
+								
 										<div class="row form-floating mb-3">
 											<input asp-for="Username" class="form-control" disabled />
 											<label asp-for="Username" class="form-label">@language.GetKey("email")</label>
 										</div>
-										<img src="~/images/uploads/users/@Model.Input.PictureName"
-											 class="rounded-circle mb-3" style="width:15%"
-											 asp-append-version="true" />
 										<div class="row form-floating mb-3">
-											<input asp-for="Input.Picture" class="form-control"/>
-											<label asp-for="Input.Picture" class="control-label">Foto de Perfil</label>
-											<span asp-validation-for="Input.Picture" class="text-danger"></span>
+
+									
+												<div class="custom-file">
+													<input asp-for="Input.Picture" class="custom-file-input" id="custom-file" />
+													<label class="custom-file-label" for="customFile">Choose image</label>
+												</div>
+												<span asp-validation-for="Input.Picture" class="text-danger"></span>
+										
+
+											
+											
 										</div>
 										<div class="row form-floating mb-3">
 											<input asp-for="Input.FirstName" class="form-control" />
@@ -64,7 +65,7 @@
 											<label asp-for="Input.PhoneNumber" class="form-label">@language.GetKey("txtPhoneNumber")</label>
 											<span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
 										</div>
-										<div class="row justify-content-center">
+										<div class="row justify-content-center mb-5">
 											<button id="update-profile-button" type="submit" class="w-50 btn btn-lg btn-primary">@language.GetKey("btnSave")</button>
 										</div>
 									</form>
@@ -165,6 +166,13 @@
 </div>
 <!-- // Slide de Ajuda  -->
 
+<script type="text/javascript">
+	// Add the following code if you want the name of the file appear on select
+	$(".custom-file-input").on("change", function () {
+		var fileName = $(this).val().split("\\").pop();
+		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
+</script>
 
 
 @section Scripts {

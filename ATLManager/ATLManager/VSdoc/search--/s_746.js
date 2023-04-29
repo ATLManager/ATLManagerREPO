@@ -1,0 +1,1 @@
+search_result['746']=["topic_000000000000019A.html","FormularioRecordsController Class","Controlador para o modelo \u0027Histórico de formulários\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

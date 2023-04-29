@@ -1,0 +1,1 @@
+search_result['713']=["topic_0000000000000184.html","EducandosController.Details Method","Obtem os detalhes de um Educando e exibe a informação numa view."];

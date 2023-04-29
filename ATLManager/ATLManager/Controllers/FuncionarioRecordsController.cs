@@ -13,6 +13,10 @@ using ATLManager.Areas.Identity.Data;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Históricos de Funcionários'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class FuncionarioRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -24,7 +28,11 @@ namespace ATLManager.Controllers
             _userManager = userManager;
         }
 
-        // GET: FuncionarioRecords
+        /// <summary>
+        /// Retorna a página inicial que lista os funcionários .
+        /// </summary>
+        /// <returns>A página inicial com a lista de funcionários.</returns>
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -40,7 +48,12 @@ namespace ATLManager.Controllers
             return View(funcionarios);
         }
 
-        // GET: FuncionarioRecords/Details/5
+        /// <summary>
+        /// Retorna a página de detalhes do funcionário com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do funcionário.</param>
+        /// <returns>A página de detalhes do funcionário.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.FuncionarioRecord == null)
@@ -59,7 +72,12 @@ namespace ATLManager.Controllers
             return View(funcionarioRecord);
         }
 
-        // GET: FuncionarioRecords/Delete/5
+        /// <summary>
+        /// Retorna a página de exclusão do funcionário com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do funcionário.</param>
+        /// <returns>A página de exclusão do funcionário.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.FuncionarioRecord == null)
@@ -78,7 +96,12 @@ namespace ATLManager.Controllers
             return View(funcionarioRecord);
         }
 
-        // POST: FuncionarioRecords/Delete/5
+        /// <summary>
+        /// Remove o funcionário com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID do funcionário.</param>
+        /// <returns>Um redirecionamento para a página inicial.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -96,6 +119,12 @@ namespace ATLManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        /// <summary>
+        /// Verifica se um funcionário com o ID fornecido existe.
+        /// </summary>
+        /// <param name="id">O ID do funcionário.</param>
+        /// <returns>True se o funcionário existe; False caso contrário.</returns>
 
         private bool FuncionarioRecordExists(Guid id)
         {

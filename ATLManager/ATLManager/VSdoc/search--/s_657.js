@@ -1,0 +1,1 @@
+search_result['657']=["topic_0000000000000168.html","CoordenadoresController Class","Controlador para o modelo \u0027Coordenadores\u0027.\r\nContém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo."];

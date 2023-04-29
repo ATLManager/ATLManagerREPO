@@ -1,0 +1,1 @@
+search_result['594']=["topic_0000000000000144.html","AgrupamentosController.Index Method","Exibe a página inicial dos agrupamentos para um utilizador autenticado."];

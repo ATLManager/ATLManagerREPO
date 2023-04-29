@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['972',"ATLManager.Models.Historicos Namespace","topic_000000000000024E.html"],['1047',"ReciboRespostaRecord Class","topic_0000000000000293.html"],['1048',"ReciboRespostaRecord Constructor","topic_00000000000002A2.html"]];

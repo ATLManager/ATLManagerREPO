@@ -1,0 +1,1 @@
+c['595']=[['596',"Details Method","topic_00000000000001F9.html",0],['597',"Download Method","topic_00000000000001FF.html",0],['598',"Edit Method","topic_00000000000001FA_overloads--.html",1],['601',"Obrigado Method","topic_00000000000001FE.html",0],['602',"Responder Method","topic_00000000000001FC_overloads--.html",1]];

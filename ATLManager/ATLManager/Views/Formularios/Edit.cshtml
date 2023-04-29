@@ -1,9 +1,11 @@
 ﻿@model ATLManager.ViewModels.FormularioEditViewModel
+@using ATLManager.Services;
 @using Microsoft.AspNetCore.Identity
 @using ATLManager.Areas.Identity.Data
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
+@inject LanguageService language
 
 @{
 	ViewData["Title"] = "Editar Formulário";
@@ -104,41 +106,34 @@
 
 	<!-- Slide de Ajuda  -->
 	<div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
-
 		<div class="row text-center mt-2">
 			<div class="col-10 ">
-				<h2 class="text-white ms-5">Ajuda</h2>
+				<h2 class="text-white ms-5">@language.GetKey("help")</h2>
 			</div>
-
 			<div class="col-2">
 				<button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
 			</div>
 		</div>
 		<div class="">
 			<input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
-				   placeholder="Procure artigos que o ajude" aria-label="Search" style="border-radius: 10px;">
+				   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
 		</div>
 		<!-- -->
 		<ul class="row justify-content-center p-4 bg-white mt-4 "
-			style="position: absolute;   right: 0em; left: 0em; height: 80%;">
+			style="position: absolute; right: 0em; left: 0em; height: 80%;">
 			<li class="row">
 				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
 					<div class="d-flex align-items-center justify-content-center">
-
-						<span>Como alterar uma visita de estudo</span>
+						<span>
+							Como editar um formulário
+						</span>
 						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
 					</div>
 				</button>
-
-
 				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-					Here's some more textHere's some more textHere's some more textHere's some
-					more textHe
-
+					Para editar um formulário deverá de preencher todos os campos que deseja alterar. Não é necessário escolher uma nova data, nem uma foto de perfil nova.
 				</span>
 			</li>
-
-
 			<li class="row">
 				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
 					<div class="d-flex align-items-center justify-content-center">
@@ -146,7 +141,7 @@
 							<img src="~/images/guide/terms.png" class="">
 						</div>
 						<div class="col">
-							<span>Leia artigos de ajuda</span>
+							<span>@language.GetKey("readarticles")</span>
 						</div>
 					</div>
 				</button>
@@ -158,7 +153,7 @@
 							<img src="~/images/guide/comunity.png" class="">
 						</div>
 						<div class="col">
-							<span>Pergunte à comunidade</span>
+							<span>@language.GetKey("askcomunity")</span>
 						</div>
 					</div>
 				</button>
@@ -170,7 +165,7 @@
 							<img src="~/images/guide/new.png" class="">
 						</div>
 						<div class="col">
-							<span>Novas Atualizações</span>
+							<span>@language.GetKey("newsupdates")</span>
 						</div>
 					</div>
 				</button>
@@ -182,7 +177,11 @@
 							<img src="~/images/guide/feedback.png" class="">
 						</div>
 						<div class="col">
-							<span>Dê Feedback</span>
+							<span>
+								<a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+									@language.GetKey("givefeedback")
+								</a>
+							</span>
 						</div>
 					</div>
 

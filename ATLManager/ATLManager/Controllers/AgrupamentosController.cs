@@ -13,27 +13,37 @@ using System.Diagnostics;
 using ATLManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
+using ATLManager.Services;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Agrupamentos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class AgrupamentosController : Controller
     {
         private readonly ATLManagerAuthContext _context;
         private readonly UserManager<ATLManagerUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileManager _fileManager;
 
-		private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
+        private readonly string FolderName = "agrupamentos";
+        private readonly List<string> allowedPrefixesNIPC = new() { "5", "6", "7", "8", "9" };
 
 		public AgrupamentosController(ATLManagerAuthContext context,
             UserManager<ATLManagerUser> userManager,
-            IWebHostEnvironment webHostEnvironment)
+            IFileManager fileManager)
         {
             _context = context;
             _userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            _fileManager = fileManager;
         }
 
-        // GET: Agrupamentos
+        /// <summary>
+        /// Exibe a página inicial dos agrupamentos para um utilizador autenticado.
+        /// </summary>
+        /// <returns>Uma ActionResult que retorna a página Index com uma lista de agrupamentos.</returns>
+
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -53,7 +63,12 @@ namespace ATLManager.Controllers
             return View(agrupamentos);
         }
 
-        // GET: Agrupamentos/Details/5
+        /// <summary>
+        /// Exibe os detalhes de um agrupamento específico.
+        /// </summary>
+        /// <param name="id">O ID do agrupamento.</param>
+        /// <returns>Uma ActionResult que retorna a página Details com os detalhes do agrupamento.</returns>
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Agrupamento == null)
@@ -71,15 +86,22 @@ namespace ATLManager.Controllers
             return View(agrupamento);
         }
 
-        // GET: Agrupamentos/Create
+        /// <summary>
+        /// Exibe a página de criação de um novo agrupamento.
+        /// </summary>
+        /// <returns>Uma ActionResult que retorna a página Create com um novo AgrupamentoCreateViewModel.</returns>
+
         public IActionResult Create()
         {
             return View(new AgrupamentoCreateViewModel());
         }
 
-        // POST: Agrupamentos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Cria um novo agrupamento com base nos dados fornecidos pelo utilizador.
+        /// </summary>
+        /// <param name="viewModel">Um AgrupamentoCreateViewModel que contém os dados do novo agrupamento.</param>
+        /// <returns>Uma ActionResult que redireciona para a página Index se o novo agrupamento for criado com sucesso.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AgrupamentoCreateViewModel viewModel)
@@ -115,7 +137,7 @@ namespace ATLManager.Controllers
                     ContaId = userAccount?.ContaId
                 };
 
-                string fileName = UploadedFile(viewModel.LogoPicture);
+                string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
 
                 if (fileName != null)
                 {
@@ -133,7 +155,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Agrupamentos/Edit/5
+        /// <summary>
+        /// Retorna a view de edição de um agrupamento com o ID especificado.
+        /// </summary>
+        /// <param name="id">O ID do agrupamento a ser editado.</param>
+        /// <returns>A view de edição de um agrupamento.</returns>
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Agrupamento == null)
@@ -149,9 +176,13 @@ namespace ATLManager.Controllers
             return View(new AgrupamentoEditViewModel(agrupamento));
         }
 
-        // POST: Agrupamentos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Atualiza um agrupamento com as informações fornecidas pelo view model.
+        /// </summary>
+        /// <param name="id">O ID do agrupamento a ser atualizado.</param>
+        /// <param name="viewModel">O view model com as informações a serem atualizadas.</param>
+        /// <returns>A view de edição de um agrupamento se o modelo for inválido; caso contrário, redireciona para a página inicial de agrupamentos.</returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, AgrupamentoEditViewModel viewModel)
@@ -190,7 +221,7 @@ namespace ATLManager.Controllers
                         agrupamento.Location = viewModel.Location;
                         agrupamento.NIPC = viewModel.NIPC;
 
-					    string fileName = UploadedFile(viewModel.LogoPicture);
+					    string fileName = _fileManager.UploadFile(viewModel.LogoPicture, FolderName);
                         if (fileName != null)
                         {
                             agrupamento.LogoPicture = fileName;
@@ -216,7 +247,12 @@ namespace ATLManager.Controllers
             return View(viewModel);
         }
 
-        // GET: Agrupamentos/Delete/5
+        /// <summary>
+        /// Remove o agrupamento com o id fornecido.
+        /// </summary>
+        /// <param name="id">O id do agrupamento a ser removido.</param>
+        /// <returns>Uma instância de IActionResult.</returns>
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Agrupamento == null)
@@ -234,7 +270,12 @@ namespace ATLManager.Controllers
             return View(agrupamento);
         }
 
-        // POST: Agrupamentos/Delete/5
+        /// <summary>
+        /// Confirma a remoção do agrupamento com o id fornecido.
+        /// </summary>
+        /// <param name="id">O id do agrupamento a ser removido.</param>
+        /// <returns>Uma instância de IActionResult.</returns>
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -253,29 +294,24 @@ namespace ATLManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica se o agrupamento com o id fornecido existe.
+        /// </summary>
+        /// <param name="id">O id do agrupamento a ser verificado.</param>
+        /// <returns>Um valor booleano que indica se o agrupamento existe.</returns>
+
         private bool AgrupamentoExists(Guid id)
         {
             return _context.Agrupamento.Any(e => e.AgrupamentoID == id);
         }
 
-		private string UploadedFile(IFormFile logoPicture)
-		{
-			string uniqueFileName = null;
+        /// <summary>
+        /// Obtém todas as ATLs associadas ao agrupamento especificado.
+        /// </summary>
+        /// <param name="agrupamentoId">O id do agrupamento.</param>
+        /// <returns>Uma instância de IActionResult que representa as ATLs.</returns>
 
-			if (logoPicture != null)
-			{
-				string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/uploads/agrupamentos");
-				uniqueFileName = Guid.NewGuid().ToString() + "_" + logoPicture.FileName;
-				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					logoPicture.CopyTo(fileStream);
-				}
-			}
-			return uniqueFileName;
-		}
-
-		[HttpGet]
+        [HttpGet]
 		public async Task<IActionResult> GetATLsByAgrupamento(Guid agrupamentoId)
 		{
 			var atls = await _context.ATL
@@ -292,23 +328,26 @@ namespace ATLManager.Controllers
 
 			return Json(atls);
 		}
-        
-		[HttpGet]
+
+        /// <summary>
+        /// Obtém todos os coordenadores associados à ATL especificada.
+        /// </summary>
+        /// <param name="atlId">O id da ATL.</param>
+        /// <returns>Uma instância de IActionResult que representa os coordenadores.</returns>
+
+        [HttpGet]
 		public async Task<IActionResult> GetCoordenadoresByATL(Guid atlId)
 		{
 			var coordenadores = await _context.ContaAdministrativa
 				.Include(ca => ca.User)
 				.Where(ca => ca.AtlId == atlId)
 				.Select(ca => new {
-					FirstName = ca.User.FirstName,
-					LastName = ca.User.LastName
+                    ca.User.FirstName,
+					ca.User.LastName
 				})
 				.ToListAsync();
 
 			return Json(new { Coordenadores = coordenadores });
 		}
-
-
-
 	}
 }

@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ATLManager Reference","topic_00000000000004B8.html"],['696',"ATLManager.Migrations Namespace","topic_000000000000022D.html"],['707',"Encarregado_Nif Class","topic_0000000000000246.html"],['708',"Methods","topic_0000000000000246_methods--.html"],['711',"Up Method","topic_0000000000000247.html"]];

@@ -28,7 +28,7 @@ namespace ATLManager.ViewModels
         [DataType(DataType.Date)]
         [Display(Name = "Data")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public string? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [DataType(DataType.Upload)]
         [DisplayName("Local da Visita de Estudo")]
@@ -47,7 +47,7 @@ namespace ATLManager.ViewModels
             Name = visitaEstudo.Name;
             Location = visitaEstudo.Location;
             Descripton = visitaEstudo.Description;
-            Date = visitaEstudo.Date.ToShortDateString();
+            Date = visitaEstudo.Date;
         }
     }
 }

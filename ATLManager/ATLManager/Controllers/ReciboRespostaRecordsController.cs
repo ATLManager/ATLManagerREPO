@@ -13,6 +13,10 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace ATLManager.Controllers
 {
+    /// <summary>
+    /// Controlador para o modelo 'Históricos de Resposta de Recibos'.
+    /// Contém as ações básicas de CRUD e outras ações de detalhes para outros aspetos relacionados ao modelo.
+    /// </summary>
     public class ReciboRespostaRecordsController : Controller
     {
         private readonly ATLManagerAuthContext _context;
@@ -25,7 +29,11 @@ namespace ATLManager.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: ReciboRespostaRecords/Details/5
+        /// <summary>
+        /// Devolve a vista de detalhes de um ReciboRespostaRecord com base no id fornecido.
+        /// </summary>
+        /// <param name="id">O id do ReciboRespostaRecord para mostrar os detalhes.</param>
+        /// <returns>A vista de pormenor do ReciboRespostaRecord, se encontrado, ou um resultado NotFound.</returns>
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.ReciboRespostaRecord == null)
@@ -44,6 +52,11 @@ namespace ATLManager.Controllers
             return View(reciboRespostaRecord);
         }
 
+        /// <summary>
+        /// Devolve um ficheiro descarregado do ficheiro com o nome de ficheiro indicado.
+        /// </summary>
+        /// <param name="fileName">O nome do ficheiro a descarregar.</param>
+        /// <returns>O ficheiro como ficheiro descarregável.</returns>
         public IActionResult Download(string fileName)
         {
             string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "files/users/recibos");

@@ -52,7 +52,7 @@ namespace ATLManager.ViewModels
 		[DataType(DataType.Date)]
         [DisplayName("Data de Nascimento")]
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public EducandoEditViewModel()
         {

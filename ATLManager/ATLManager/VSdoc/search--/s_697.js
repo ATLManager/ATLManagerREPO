@@ -1,0 +1,1 @@
+search_result['697']=["topic_000000000000017C.html","EducandoResponsaveisController.Create (ResponsavelCreateViewModel) Method","Cria um novo responsável pelo educando."];
