@@ -115,39 +115,42 @@
 													@Html.DisplayFor(model => model.Encarregado.User.LastName)
 												</dd>
 											</div>
+
+											<div class="row">
+												<dt class="col text-right mr-2">
+													Declaracao Médica
+													@*@Html.DisplayNameFor(model => model.DeclaracaoMedica)*@
+												</dt>
+												<dd class="col text-left">
+													@if (Model.DeclaracaoMedica != null)
+													{
+														<a asp-action="Download" asp-route-fileName="@Model.DeclaracaoMedica">Descarregar ficheiro</a>
+													}
+													else
+													{
+														<span class="text-center"> - </span>
+													}
+												</dd>
+											</div>
+											<div class="row">
+												<dt class="col text-right mr-2">
+													Boletim Vacinas
+													@*@Html.DisplayNameFor(model => model.BoletimVacinas)*@
+												</dt>
+												<dd class="col text-left">
+													@if (Model.BoletimVacinas != null)
+													{
+														<a asp-action="Download" asp-route-fileName="@Model.BoletimVacinas">Descarregar ficheiro</a>
+													}
+													else
+													{
+														<span class="text-center"> - </span>
+													}
+												</dd>
+											</div>
+
 										</dl>
-										<div class="row">
-											<dt class="col mr-2">
-												Declaracao Médica
-												@*@Html.DisplayNameFor(model => model.DeclaracaoMedica)*@
-											</dt>
-											<dd class="col text-left">
-												@if (Model.DeclaracaoMedica != null)
-												{
-													<a asp-action="Download" asp-route-fileName="@Model.DeclaracaoMedica">Descarregar ficheiro</a>
-												}
-												else
-												{
-													<span class="text-center"> - </span>
-												}
-											</dd>
-										</div>
-										<div class="row">
-											<dt class="col mr-2">
-												Boletim Vacinas
-												@*@Html.DisplayNameFor(model => model.BoletimVacinas)*@
-											</dt>
-											<dd class="col text-left">
-												@if (Model.BoletimVacinas != null)
-												{
-													<a asp-action="Download" asp-route-fileName="@Model.BoletimVacinas">Descarregar ficheiro</a>
-												}
-												else
-												{
-													<span class="text-center"> - </span>
-												}
-											</dd>
-										</div>
+										
 										<hr />
 										<div class="d-flex text-center mt-4">
 											<div class="col-8 text-right">

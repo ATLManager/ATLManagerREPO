@@ -25,7 +25,17 @@
 					<!--text-center  -->
 					<div class="container">
 						<div class="row mt-3">
+						@if (language.GetCurrentLanguage() == "en")
+						{
+
 							<h1 class="display-4 text-center mb-4">Contact Us</h1>
+						}
+						else
+						{
+
+							<h1 class="display-4 text-center mb-4">Contacte-nos</h1>
+						}
+
 							<div class="row">
 								@*<p>@language.GetKey("txt1ContactUs")</p>*@
 								<p>@language.GetKey("txt2ContactUs") @language.GetKey("txt3ContactUs")</p>
