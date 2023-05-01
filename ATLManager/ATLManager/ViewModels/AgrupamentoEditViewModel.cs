@@ -12,12 +12,14 @@ namespace ATLManager.ViewModels
 
 		[Required]
 		[DisplayName("Nome")]
-		public string Name { get; set; }
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
+        public string Name { get; set; }
 
 		[Required]
 		[MaxLength(20)]
 		[DisplayName("Localização")]
-		public string Location { get; set; }
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
+        public string Location { get; set; }
 
 		[Required]
 		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]

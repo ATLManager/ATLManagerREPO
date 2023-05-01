@@ -13,7 +13,6 @@ namespace ATLManager.Models
 
         [Required]
         [Display(Name = "Nome")]
-        [Column(TypeName = "nvarchar(100)")]
         [StringLength(50, MinimumLength = 5)]
         public string Name { get; set; }
 

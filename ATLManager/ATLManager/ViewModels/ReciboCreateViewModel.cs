@@ -8,8 +8,8 @@ namespace ATLManager.ViewModels
     public class ReciboCreateViewModel
     {
         [Required]
-        [MaxLength(30)]
         [DisplayName("Nome")]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string Name { get; set; }
 
 		[Required]

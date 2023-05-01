@@ -12,7 +12,11 @@ namespace ATLManager.ViewModels
     public class FuncionarioEditViewModel
     {
         public Guid ContaId { get; set; }
+
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string FirstName { get; set; }
+
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string LastName { get; set; }
 
         [DataType(DataType.Date)]

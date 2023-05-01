@@ -13,12 +13,10 @@ namespace ATLManager.Models
         public Guid RefeicaoId { get; set; }
 
         [Required]
-        [MaxLength(20)]
         [Display(Name = "Nome")]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(20)]
         [Display(Name = "Categoria")]
         public string Categoria { get; set; }
 
@@ -29,7 +27,6 @@ namespace ATLManager.Models
         public DateTime Data { get; set; }
 
         [Required]
-        [MaxLength(255)]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 

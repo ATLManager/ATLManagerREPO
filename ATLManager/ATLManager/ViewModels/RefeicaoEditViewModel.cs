@@ -12,11 +12,11 @@ namespace ATLManager.ViewModels
         public Guid RefeicaoId { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string Categoria { get; set; }
 
         [DataType(DataType.Date)]
@@ -25,7 +25,7 @@ namespace ATLManager.ViewModels
         public DateTime? Data { get; set; }
 
         [Required]
-        [MaxLength(255)]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string Descricao { get; set; }
 
         [RegularExpression(@"^\d+(,\d+)?(.\d+)?$", ErrorMessage = "O valor inserido é inválido")]

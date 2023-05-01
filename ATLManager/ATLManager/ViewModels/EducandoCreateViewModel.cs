@@ -15,12 +15,12 @@ namespace ATLManager.ViewModels
     public class EducandoCreateViewModel
     {
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Name { get; set; }
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
+        public string Name { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Apelido { get; set; }
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
+        public string Apelido { get; set; }
 
 		[Required]
 		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]

@@ -11,8 +11,8 @@ namespace ATLManager.ViewModels
 		public Guid ReciboId { get; set; }
 
 		[Required]
-		[MaxLength(50)]
-		[DisplayName("Nome")]
+        [DisplayName("Nome")]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
 		public string Name { get; set; }
 
 		[Required]

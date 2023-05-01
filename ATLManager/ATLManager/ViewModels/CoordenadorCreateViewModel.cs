@@ -11,10 +11,12 @@ namespace ATLManager.ViewModels
     {
         [Required]
         [DataType(DataType.Text)]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string FirstName { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string LastName { get; set; }
 
         [Required]

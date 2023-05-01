@@ -16,7 +16,6 @@ namespace ATLManager.Models
 
         [Required]
         [DisplayName("Morada")]
-        [StringLength(50, MinimumLength = 5)]
         public string Address { get; set; }
 
         [Required]

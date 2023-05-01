@@ -129,13 +129,6 @@ namespace ATLManager.Controllers
                 ModelState.AddModelError("AtlId", validationMessage);
             }
 
-            if (!string.IsNullOrEmpty(viewModel.NIPC) && !string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
-            {
-                var validationMessage = "Apenas permitido introduzir um NIPC ou um Agrupamento";
-                ModelState.AddModelError("NIPC", validationMessage);
-                ModelState.AddModelError("AtlId", validationMessage);
-            }
-
             if (!string.IsNullOrEmpty(viewModel.NIPC))
             {
 				if (!allowedPrefixesNIPC.Contains(viewModel.NIPC.Trim().Substring(0, 1)))
@@ -262,13 +255,6 @@ namespace ATLManager.Controllers
             {
                 var validationMessage = "É necessário introduzir um NIPC ou ATLId";
                 ModelState.AddModelError("NIPC", validationMessage);             
-                ModelState.AddModelError("AtlId", validationMessage);
-            }
-            
-            if (!string.IsNullOrEmpty(viewModel.NIPC) && !string.IsNullOrEmpty(viewModel.AgrupamentoId.ToString()))
-            {
-                var validationMessage = "Apenas permitido introduzir um NIPC ou um ATLId";
-                ModelState.AddModelError("NIPC", validationMessage);
                 ModelState.AddModelError("AtlId", validationMessage);
             }
 

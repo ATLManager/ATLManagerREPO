@@ -11,11 +11,9 @@ namespace ATLManager.Models
         public Guid AgrupamentoID { get; set; }
 
 		[Required]
-        [MaxLength(20)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(20)]
         public string Location { get; set; }
 
         [Required]

@@ -10,7 +10,6 @@ namespace ATLManager.Models
         public Guid ReciboId { get; set; }
 
 		[Required]
-        [MaxLength(50)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 
