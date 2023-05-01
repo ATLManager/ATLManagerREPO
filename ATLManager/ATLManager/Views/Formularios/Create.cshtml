@@ -8,7 +8,7 @@
 @inject LanguageService language
 
 @{
-	ViewData["Title"] = "Criar Formulário";
+	ViewData["Title"] = @language.GetKey("menuFormulario");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -19,7 +19,7 @@
 	<!-- Container -->
 	<div class="container-fluid">
 		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-			<h1 class="me-3 fw-bold text-center mb-0">Criar Formulário</h1>
+			<h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("btnCreate") @language.GetKey("menuFormulario")</h1>
 			<img src="~/images/icons/add-group.png" width="50" height="50">
 		</div>
 		<div class="row" style="padding-left: 6em;">
@@ -46,18 +46,18 @@
 												<div class="col-6 mb-3">
 													<label class="form-label">Categoria</label>
 													<select class="form-control" id="comboCategoria">
-														<option value="">Escolha uma opção</option>
-														<option value="1">Visita de estudo</option>
-														<option value="2">Atividade</option>
-														<option value="3">Geral</option>
+														<option value="">@language.GetKey("chooseoption")</option>
+														<option value="1">@language.GetKey("choosevisita")</option>
+														<option value="2">@language.GetKey("chooseatividade")</option>
+														<option value="3">@language.GetKey("choosegeral")</option>
 													</select>
 												</div>
 												<div class="col-3"></div>
 											</div>
 											<div class="row mb-2">
 												<div class="col-6">
-													<label asp-for="Name" class="form-label"></label>
-													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
+													<label asp-for="Name" class="form-label">@language.GetKey("txtFirstName")</label>
+													<input asp-for="Name" class="form-control" placeholder="@language.GetKey("plname")" />
 													<span asp-validation-for="Name" class="text-danger"></span>
 												</div>
 												<div class="col-6 position-relative">
@@ -66,8 +66,8 @@
 															<!-- extended box content -->
 															<div class="row mb-2">
 																<div class="col">
-																	<label asp-for="Description" class="control-label">Descrição</label>
-																	<textarea asp-for="Description" class="form-control" id="descricao" style="resize:none;" placeholder="Insira uma descrição"></textarea>
+																	<label asp-for="Description" class="control-label">@language.GetKey("descricao")</label>
+																	<textarea asp-for="Description" class="form-control" id="descricao" style="resize:none;" placeholder="@language.GetKey("pldescricao")"></textarea>
 																	<span asp-validation-for="Description" class="text-danger"></span>
 																</div>
 															</div>
@@ -77,7 +77,7 @@
 											</div>
 											<div class="row mb-2">
 												<div class="col-6">
-													<label asp-for="DateLimit" class="control-label"></label>
+													<label asp-for="DateLimit" class="control-label">@language.GetKey("endate")</label>
 													<input asp-for="DateLimit" class="form-control" />
 													<span asp-validation-for="DateLimit" class="text-danger"></span>
 												</div>
@@ -90,14 +90,14 @@
 													<div class="form-group" id="divVisitaEstudo" style="display:none">
 														<label asp-for="VisitaEstudoId" class="control-label"></label>
 														<select asp-for="VisitaEstudoId" id="combobox2" class="form-control" asp-items="ViewBag.VisitaEstudoId">
-															<option value="">Escolha uma Visita de Estudo</option>
+															<option value="">@language.GetKey("escolhavisita")</option>
 														</select>
 													</div>
 													<!-- Se for Atividade apresenta lista de atividades -->
 													<div class="form-group" id="divAtividade" style="display:none">
 														<label asp-for="AtividadeId" class="control-label"></label>
 														<select asp-for="AtividadeId" id="combobox3" class="form-control" asp-items="ViewBag.AtividadeId">
-															<option value="">Escolha uma Atividade</option>
+															<option value="">@language.GetKey("escolhaatividade")</option>
 														</select>
 													</div>
 												</div>
@@ -105,16 +105,14 @@
 											</div>
 											<div class="d-flex text-center mt-0">
 											<div class="col text-right">
-												<a asp-action="Index">
-													<button type="button"
-															class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-														Voltar
-													</button>
+												<a asp-action="Index"
+													class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+															@language.GetKey("btnVoltar")
 												</a>
 											</div>
 											<div class="col text-left">
 												<div class="form-group">
-													<input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
+														<input type="submit" value="@language.GetKey("btnCreate")" class="btn btn-primary w-50" style="border-radius:6em" />
 												</div>
 											</div>
 									</div>
@@ -149,13 +147,13 @@
 			<li class="row">
 				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
 					<div class="d-flex align-items-center justify-content-center">
-						<span>Como criar um Formulário</span>
+						<span>@language.GetKey("howtocreate_formulario")</span>
 						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
 					</div>
 				</button>
 				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-					Para criar um Formulário deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.
-				</span>
+					@language.GetKey("showhowtocreate_formulario")
+					</span>
 			</li>
 			<li class="row">
 				<button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">

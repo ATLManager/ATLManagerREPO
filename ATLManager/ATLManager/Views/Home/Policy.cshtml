@@ -4,11 +4,13 @@
 
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
-@inject LanguageService language
+
 
 @{
 	ViewData["Title"] = "Policy";
 }
+@inject LanguageService language
+
 
 
     <!-- Fase 1  -->
@@ -30,127 +32,242 @@
 							</div>
 							<div class="d-flex justify-content-center mb-3">
 								<div class="row col-10">
-									<div class="col-md">
-                                    <h2><strong>Terms and Conditions</strong></h2>
+                                <div class="col-md">
+                                    @if (language.GetCurrentLanguage() == "en")
+                                    {
 
-                                    <p>Welcome to ATLManager!</p>
+                                        <h2><strong>Terms and Conditions</strong></h2>
 
-                                    <p>These terms and conditions outline the rules and regulations for the use of ATLManager's Website, located at <a href="https://atlmanager.azurewebsites.net/"> https://atlmanager.azurewebsites.net/</a> .</p>
+                                        <p>Welcome to ATLManager!</p>
 
-                                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use ATLManager if you do not agree to take all of the terms and conditions stated on this page.</p>
+                                        <p>These terms and conditions outline the rules and regulations for the use of ATLManager's Website, located at <a href="https://atlmanager.azurewebsites.net/"> https://atlmanager.azurewebsites.net/</a> .</p>
 
-                                    <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the Company's stated services, in accordance with and subject to, prevailing law of pt. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+                                        <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use ATLManager if you do not agree to take all of the terms and conditions stated on this page.</p>
 
-                                    <h3><strong>Cookies</strong></h3>
+                                        <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the Company's stated services, in accordance with and subject to, prevailing law of pt. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
 
-                                    <p>We employ the use of cookies. By accessing ATLManager, you agreed to use cookies in agreement with the ATLManager's Privacy Policy. </p>
+                                        <h3><strong>Cookies</strong></h3>
 
-                                    <p>Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
+                                        <p>We employ the use of cookies. By accessing ATLManager, you agreed to use cookies in agreement with the ATLManager's Privacy Policy. </p>
 
-                                    <h3><strong>License</strong></h3>
+                                        <p>Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
 
-                                    <p>Unless otherwise stated, ATLManager and/or its licensors own the intellectual property rights for all material on ATLManager. All intellectual property rights are reserved. You may access this from ATLManager for your own personal use subjected to restrictions set in these terms and conditions.</p>
+                                        <h3><strong>License</strong></h3>
 
-                                    <p>You must not:</p>
-                                    <ul>
-                                        <li>Republish material from ATLManager</li>
-                                        <li>Sell, rent or sub-license material from ATLManager</li>
-                                        <li>Reproduce, duplicate or copy material from ATLManager</li>
-                                        <li>Redistribute content from ATLManager</li>
-                                    </ul>
+                                        <p>Unless otherwise stated, ATLManager and/or its licensors own the intellectual property rights for all material on ATLManager. All intellectual property rights are reserved. You may access this from ATLManager for your own personal use subjected to restrictions set in these terms and conditions.</p>
 
-                                    <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. ATLManager does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of ATLManager,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, ATLManager shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
+                                        <p>You must not:</p>
+                                        <ul>
+                                            <li>Republish material from ATLManager</li>
+                                            <li>Sell, rent or sub-license material from ATLManager</li>
+                                            <li>Reproduce, duplicate or copy material from ATLManager</li>
+                                            <li>Redistribute content from ATLManager</li>
+                                        </ul>
 
-                                    <p>ATLManager reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. ATLManager does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of ATLManager,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, ATLManager shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
 
-                                    <p>You warrant and represent that:</p>
+                                        <p>ATLManager reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
 
-                                    <ul>
-                                        <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
-                                        <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;</li>
-                                        <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy</li>
-                                        <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
-                                    </ul>
+                                        <p>You warrant and represent that:</p>
 
-                                    <p>You hereby grant ATLManager a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.</p>
+                                        <ul>
+                                            <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
+                                            <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;</li>
+                                            <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy</li>
+                                            <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
+                                        </ul>
 
-                                    <h3><strong>Hyperlinking to our Content</strong></h3>
+                                        <p>You hereby grant ATLManager a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.</p>
 
-                                    <p>The following organizations may link to our Website without prior written approval:</p>
+                                        <h3><strong>Hyperlinking to our Content</strong></h3>
 
-                                    <ul>
-                                        <li>Government agencies;</li>
-                                        <li>Search engines;</li>
-                                        <li>News organizations;</li>
-                                        <li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
-                                        <li>System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.</li>
-                                    </ul>
+                                        <p>The following organizations may link to our Website without prior written approval:</p>
 
-                                    <p>These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party's site.</p>
+                                        <ul>
+                                            <li>Government agencies;</li>
+                                            <li>Search engines;</li>
+                                            <li>News organizations;</li>
+                                            <li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
+                                            <li>System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.</li>
+                                        </ul>
 
-                                    <p>We may consider and approve other link requests from the following types of organizations:</p>
+                                        <p>These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party's site.</p>
 
-                                    <ul>
-                                        <li>commonly-known consumer and/or business information sources;</li>
-                                        <li>dot.com community sites;</li>
-                                        <li>associations or other groups representing charities;</li>
-                                        <li>online directory distributors;</li>
-                                        <li>internet portals;</li>
-                                        <li>accounting, law and consulting firms; and</li>
-                                        <li>educational institutions and trade associations.</li>
-                                    </ul>
+                                        <p>We may consider and approve other link requests from the following types of organizations:</p>
 
-                                    <p>We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of ATLManager; and (d) the link is in the context of general resource information.</p>
+                                        <ul>
+                                            <li>commonly-known consumer and/or business information sources;</li>
+                                            <li>dot.com community sites;</li>
+                                            <li>associations or other groups representing charities;</li>
+                                            <li>online directory distributors;</li>
+                                            <li>internet portals;</li>
+                                            <li>accounting, law and consulting firms; and</li>
+                                            <li>educational institutions and trade associations.</li>
+                                        </ul>
 
-                                    <p>These organizations may link to our home page so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits within the context of the linking party's site.</p>
+                                        <p>We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of ATLManager; and (d) the link is in the context of general resource information.</p>
 
-                                    <p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to ATLManager. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.</p>
+                                        <p>These organizations may link to our home page so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits within the context of the linking party's site.</p>
 
-                                    <p>Approved organizations may hyperlink to our Website as follows:</p>
+                                        <p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to ATLManager. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.</p>
 
-                                    <ul>
-                                        <li>By use of our corporate name; or</li>
-                                        <li>By use of the uniform resource locator being linked to; or</li>
-                                        <li>By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party's site.</li>
-                                    </ul>
+                                        <p>Approved organizations may hyperlink to our Website as follows:</p>
 
-                                    <p>No use of ATLManager's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
+                                        <ul>
+                                            <li>By use of our corporate name; or</li>
+                                            <li>By use of the uniform resource locator being linked to; or</li>
+                                            <li>By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party's site.</li>
+                                        </ul>
 
-                                    <h3><strong>iFrames</strong></h3>
+                                        <p>No use of ATLManager's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
 
-                                    <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
+                                        <h3><strong>iFrames</strong></h3>
 
-                                    <h3><strong>Content Liability</strong></h3>
+                                        <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
 
-                                    <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
+                                        <h3><strong>Content Liability</strong></h3>
 
-                                    <h3><strong>Reservation of Rights</strong></h3>
+                                        <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
 
-                                    <p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amen these terms and conditions and it's linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
+                                        <h3><strong>Reservation of Rights</strong></h3>
 
-                                    <h3><strong>Removal of links from our website</strong></h3>
+                                        <p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amen these terms and conditions and it's linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
 
-                                    <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
+                                        <h3><strong>Removal of links from our website</strong></h3>
 
-                                    <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
+                                        <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
 
-                                    <h3><strong>Disclaimer</strong></h3>
+                                        <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
 
-                                    <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+                                        <h3><strong>Disclaimer</strong></h3>
 
-                                    <ul>
-                                        <li>limit or exclude our or your liability for death or personal injury;</li>
-                                        <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
-                                        <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
-                                        <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
-                                    </ul>
+                                        <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
 
-                                    <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
+                                        <ul>
+                                            <li>limit or exclude our or your liability for death or personal injury;</li>
+                                            <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+                                            <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
+                                            <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+                                        </ul>
 
-                                    <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
-									</div>
-								</div>
-							</div>
+                                        <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
+
+                                        <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
+
+                                    }
+                                    else
+                                    @if (language.GetCurrentLanguage() == "pt")
+                                    {
+
+                                        <h2><strong>Termos e Condições</strong></h2>
+                                        <p>Bem-vindo ao ATLManager!</p>
+
+                                        <p>Estes termos e condições estabelecem as regras e regulamentos para o uso do Website da ATLManager, localizado em <a href="https://atlmanager.azurewebsites.net/">https://atlmanager.azurewebsites.net/</a>.</p>
+
+                                        <p>Ao acessar este website, pressupomos que você aceite estes termos e condições. Não continue a usar o ATLManager se você não concordar em cumprir todos os termos e condições descritos nesta página.</p>
+
+                                        <p>A seguinte terminologia se aplica a estes Termos e Condições, Política de Privacidade e Aviso de Isenção de Responsabilidade e a todos os Acordos: "Cliente", "Você" e "Seu" se referem a você, a pessoa que se conecta a este website e que está em conformidade com os termos e condições da Empresa. "A Empresa", "Nós", "Nosso" e "Nossos" se referem à nossa Empresa. "Parte", "Partes" ou "Nós" se referem tanto ao Cliente quanto a nós mesmos. Todos os termos se referem à oferta, aceitação e consideração do pagamento necessário para realizar o processo de nossa assistência ao Cliente da maneira mais apropriada para o propósito expresso de atender às necessidades do Cliente em relação à provisão dos serviços declarados pela Empresa, de acordo com e sujeito à legislação vigente de pt. Qualquer uso da terminologia acima ou de outras palavras no singular, plural, capitalização e/ou ele/ela ou eles, são tomados como intercambiáveis e, portanto, como referindo-se ao mesmo.</p>
+
+                                        <h3><strong>Cookies</strong></h3>
+
+                                        <p>Utilizamos cookies. Ao acessar o ATLManager, você concorda em utilizar cookies de acordo com a Política de Privacidade da ATLManager.</p>
+
+                                        <p>A maioria dos sites interativos usa cookies para permitir que possamos recuperar os detalhes do usuário em cada visita. Cookies são usados ​​em nosso site para habilitar a funcionalidade de determinadas áreas e tornar mais fácil para as pessoas que visitam nosso site. Alguns dos nossos parceiros afiliados / publicitários também podem usar cookies.</p>
+
+                                        <h3><strong>Licença</strong></h3>
+
+                                        <p>A menos que indicado de outra forma, a ATLManager e/ou seus licenciadores detêm os direitos de propriedade intelectual de todo o material presente na ATLManager. Todos os direitos de propriedade intelectual são reservados. Você pode acessar este conteúdo da ATLManager para seu uso pessoal, sujeito às restrições estabelecidas nestes termos e condições.</p>
+
+                                        <p>Você não pode:</p>
+                                        <ul>
+                                            <li>Republicar material da ATLManager;</li>
+                                            <li>Vender, alugar ou sublicenciar material da ATLManager;</li>
+                                            <li>Reproduzir, duplicar ou copiar material da ATLManager;</li>
+                                            <li>Redistribuir conteúdo da ATLManager;</li>
+                                        </ul>
+
+                                      
+                                                <p>A AtlManager reserva-se o direito de monitorar todos os comentários e remover quaisquer comentários que possam ser considerados inadequados, ofensivos ou que violem estes Termos e Condições.</p>
+                                                <p>O ATLManager reserva o direito de monitorar todos os comentários e remover qualquer comentário que possa ser considerado inadequado, ofensivo ou que viole estes Termos e Condições.</p>
+
+                                                <p>Você garante e declara que:</p>
+
+                                                <ul>
+                                                    <li>Você tem o direito de postar os comentários em nosso site e possui todas as licenças e consentimentos necessários para fazê-lo;</li>
+                                                    <li>Os comentários não invadem nenhum direito de propriedade intelectual, incluindo sem limitação direitos autorais, patentes ou marcas registradas de terceiros;</li>
+                                                    <li>Os comentários não contêm nenhum material difamatório, calunioso, ofensivo, indecente ou ilegal que invada a privacidade;</li>
+                                                    <li>Os comentários não serão usados para solicitar ou promover negócios ou costumes, apresentar atividades comerciais ou atividades ilegais.</li>
+                                                </ul>
+
+                                                <p>Você concede ao ATLManager uma licença não exclusiva para usar, reproduzir, editar e autorizar outros a usar, reproduzir e editar quaisquer dos seus comentários em todas as formas, formatos ou mídias.</p>
+
+                                                <h3><strong>Hiperlinkagem para nosso Conteúdo</strong></h3>
+
+                                                <p>As seguintes organizações podem linkar para nosso site sem autorização prévia por escrito:</p>
+
+                                                <ul>
+                                                    <li>Agências governamentais;</li>
+                                                    <li>Motores de busca;</li>
+                                                    <li>Organizações de notícias;</li>
+                                                    <li>Distribuidores de diretórios on-line podem linkar para nosso site da mesma forma que fazem hiperlinks para as empresas listadas em outros sites; e</li>
+                                                    <li>Empresas credenciadas em todo o sistema, exceto organizações sem fins lucrativos que solicitam, shoppings de caridade e grupos de captação de recursos de caridade, que podem não fazer hiperlinks para nosso site.</li>
+                                                </ul>
+
+                                                <p>Essas organizações podem linkar para nossa página inicial, para publicações ou para outras informações do site, desde que o link: (a) não seja de forma alguma enganoso; (b) não sugira falsamente patrocínio, endosso ou aprovação da parte que faz o link e seus produtos e/ou serviços; e (c) esteja dentro do contexto do site da parte que faz o link.</p>
+
+                                                <p>Poderemos considerar e aprovar outros pedidos de link de tipos de organizações a seguir:</p>
+
+                                                <ul>
+                                                    <li>fontes de informações sobre negócios e/ou consumidores comumente conhecidas;</li>
+                                                    <li>sites da comunidade dot.com;</li>
+                                                    <li>associações ou outros grupos que representam instituições de caridade;</li>
+                                                    <li>distribuidores de diretórios on-line;</li>
+                                                    <li>portais de internet;</li>
+                                                    <li>empresas de contabilidade, direito e consultoria; e</li>
+                                                    <li>instituições educacionais e associações comerciais.</li>
+                                                </ul>
+
+                                                <p>Aprovaremos pedidos de links dessas organizações se decidirmos que: (a) o link não nos prejudicaria a nós mesmos ou aos nossos negócios credenciados; (b) a organização não tem nenhum registro negativo conosco; (c) o benefício para nós da visibilidade do hiperlink compensa a ausência do ATLManager; e (d) o link está no contexto de informações de recursos gerais.</p>
+
+                                                <p>Essas organizações podem vincular-se à nossa página inicial, desde que o link: (a) não seja de forma alguma enganoso; (b) não implique falsamente patrocínio, endosso ou aprovação da parte que vincula e seus produtos ou serviços; e (c) se enquadre no contexto do site da parte que vincula.</p>
+
+                                                <p>Se você é uma das organizações listadas no parágrafo 2 acima e está interessado em vincular-se ao nosso site, você deve nos informar enviando um e-mail para ATLManager. Por favor, inclua seu nome, nome da organização, informações de contato, bem como o URL do seu site, uma lista de quaisquer URLs a partir dos quais você pretende vincular ao nosso site e uma lista dos URLs em nosso site aos quais você gostaria de vincular. Aguarde 2-3 semanas por uma resposta.</p>
+
+                                                <p>As organizações aprovadas podem hiperlink para o nosso site da seguinte forma:</p>
+
+                                                <ul>
+                                                    <li>Usando o nome de nossa empresa; ou</li>
+                                                    <li>Usando o localizador uniforme de recursos que está sendo vinculado; ou</li>
+                                                    <li>Usando qualquer outra descrição do nosso site que faça sentido dentro do contexto e formato do conteúdo no site da parte que vincula.</li>
+                                                </ul>
+
+                                                <p>Nenhum uso do logotipo ou outra arte da ATLManager será permitido para vinculação sem um acordo de licença de marca registrada.</p>
+
+                                                <h3><strong>iFrames</strong></h3>
+
+                                                <p>Sem aprovação prévia e permissão por escrito, você não pode criar quadros em torno de nossas páginas da Web que alterem de qualquer forma a apresentação visual ou aparência do nosso site.</p>
+
+                                                <h3><strong>Responsabilidade pelo conteúdo</strong></h3>
+
+                                                <p>Não garantimos que as informações deste site estejam corretas, nem garantimos sua completude ou precisão; tampouco prometemos garantir que o site permaneça disponível ou que o material no site esteja atualizado.</p>
+                                                <h3><strong>Iscenção de responsabilidade</strong></h3>
+                                                <p>Na medida máxima permitida pela lei aplicável, excluímos todas as representações, garantias e condições relacionadas ao nosso site e ao uso deste site. Nada nesta isenção de responsabilidade irá:</p>
+                                                <ul>
+                                                    <li>limitar ou excluir nossa ou sua responsabilidade por morte ou lesão pessoal;</li>
+                                                    <li>limitar ou excluir nossa ou sua responsabilidade por fraude ou deturpação fraudulenta;</li>
+                                                    <li>limitar qualquer uma de nossas ou suas responsabilidades de maneira que não seja permitida pela lei aplicável; ou</li>
+                                                    <li>excluir quaisquer das nossas ou suas responsabilidades que não possam ser excluídas pela lei aplicável.</li>
+                                                </ul>
+                                                <p>As limitações e proibições de responsabilidade estabelecidas nesta Seção e em outros lugares nesta isenção de responsabilidade: (a) estão sujeitas ao parágrafo precedente; e (b) regem todas as responsabilidades decorrentes da isenção de responsabilidade, incluindo responsabilidades decorrentes de contrato, ilícito e violação de dever legal.</p>
+                                                <p>Enquanto o site e as informações e serviços no site forem fornecidos gratuitamente, não seremos responsáveis por qualquer perda ou dano de qualquer natureza.</p>
+
+
+                                             
+
+                                    }
+                                </div>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>

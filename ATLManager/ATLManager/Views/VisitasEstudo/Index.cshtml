@@ -8,7 +8,7 @@
 @inject LanguageService language
 
 @{
-    ViewData["Title"] = "Visitas de Estudo";
+    ViewData["Title"] = @language.GetKey("menuVisitaEstudo");
 }
 
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
@@ -30,7 +30,7 @@
     <!-- Container -->
     <div class="container-fluid">
         <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-            <h1 class="me-3 fw-bold text-center mb-0">Consultar Visitas de Estudo</h1>
+            <h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("tconsultar") @language.GetKey("menuVisitaEstudo")</h1>
             <img src="~/images/icons/search-group.png" width="50" height="50">
         </div>
 
@@ -73,7 +73,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <p class="text-end">
-                                                    <a asp-action="Create" class="btn btn-primary custom-button"> + Adicionar Visita de Estudo </a>
+                                                    <a asp-action="Create" class="btn btn-primary custom-button"> + @language.GetKey("tadd")  @language.GetKey("menuVisitaEstudo") </a>
                                                 </p>
                                             </div>
                                         </div>
@@ -83,18 +83,20 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center pr-2">
-                                                    Picture
+                                                     @language.GetKey("picture")
                                                 </th>
                                                 <th class="text-center pr-2">
-                                                    @Html.DisplayNameFor(model => model.Name)
+                                                     @language.GetKey("gname")
                                                 </th>
                                                 <th class="text-center pr-2">
-                                                    @Html.DisplayNameFor(model => model.Location)
+                                                     @language.GetKey("glocation")
                                                 </th>
                                                 <th class="text-center pr-2">
-                                                    @Html.DisplayNameFor(model => model.Date)
+                                                    @language.GetKey("gdate")
                                                 </th>
-                                                <th class="text-center"> Ações </th>
+                                                <th class="text-center"> 
+                                                    @language.GetKey("actions")
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
