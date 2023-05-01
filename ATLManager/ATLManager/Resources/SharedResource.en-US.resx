@@ -1150,10 +1150,6 @@
     <value>Details of Group</value>
   </data>
 
-   <data name="tconsultar" xml:space="preserve">
-    <value>Consult</value>
-  </data>
-
 <data
     name="gname" xml:space="preserve">
     <value>Name</value>
@@ -1420,10 +1416,6 @@
     <value>Escolha um atl</value>
   </data>
 
-    <data
-    name="howto_change_atl" xml:space="preserve">
-    <value>How to change atl</value>
-  </data>
     <data name="btnAlterar"
     xml:space="preserve">
     <value>Modify</value>
@@ -1583,33 +1575,6 @@ name="howtoedit_formulario" xml:space="preserve">
  name="showhowtoremove_formulario" xml:space="preserve">
 <value>To remove a form, click on the red button to remove it.</value>
 </data>
-
-  <!--  -->
- <data name="howtocreate_refeicao" xml:space="preserve">
-    <value>How to create a meal</value>
-  </data>
-    <data name="showhowtocreate_refeicao" xml:space="preserve">
-    <value>To create a meal, you must fill in all the fields, with the field to choose the image being optional.</value>
-  </data>
-
-<data
-name="howtoedit_formulario" xml:space="preserve">
-<value>How to edit a form</value>
-  </data>
-    <data
-    name="showhowtoedit_formulario" xml:space="preserve">
-    <value>To edit a form, you need to modify at least one field.</value>
-  </data>
-<data
- name="howtoremove_formulario" xml:space="preserve">
-<value>How to remove a form</value>
-</data>
-<data
- name="showhowtoremove_formulario" xml:space="preserve">
-<value>To remove a form, click on the red button to remove it.</value>
-</data>
-
-  <!--  -->
  <data name="howtocreate_refeicao" xml:space="preserve">
     <value>How to create a meal</value>
   </data>
