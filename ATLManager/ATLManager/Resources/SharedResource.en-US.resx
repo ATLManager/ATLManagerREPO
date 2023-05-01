@@ -1231,7 +1231,7 @@
     name="howto_create_coordinator" xml:space="preserve">
     <value>How to create a coordinator</value>
   </data>
-
+---
   <data
     name="howto_change_coordinator" xml:space="preserve">
     <value>How to change a coordinator</value>
@@ -1242,6 +1242,20 @@
     <value>How to remove a coordinator</value>
   </data>
 
+  <data
+  name="txt_change_group" xml:space="preserve">
+    <value>To change a group you'll need to change at least one field.</value>
+  </data>
+
+  <data
+    name="txt_delete_group" xml:space="preserve">
+    <value>To remove a group click on the red button to remove.</value>
+  </data>
+  
+  ---
+  
+  
+  
  <data
     name="txt_create_group" xml:space="preserve">
     <value>To create a group you'll need to insert data in each field, being the only optional one, the image.</value>
@@ -1556,10 +1570,68 @@
     <value>How to create a form</value>
   </data>
     <data name="showhowtocreate_formulario" xml:space="preserve">
-    <value>To create a form, you must fill in all the fields, with the field to choose the image being optional.</value>
+    <value>To create a form, you must fill in all the fields.</value>
   </data>
 
-<data
+  <data name="howtocreate_fatura" xml:space="preserve">
+    <value>How to create an invoice</value>
+  </data>
+  <data name="howtoedit_fatura" xml:space="preserve">
+    <value>How to change an invoice</value>
+  </data>
+  <data name="howtodelete_fatura" xml:space="preserve">
+    <value>How to remove an invoice</value>
+  </data>
+
+  <data name="showhowtocreate_fatura" xml:space="preserve">
+    <value>To create an invoice you must fill out and submit all fields.</value>
+  </data>
+  <data name="showhowtoedit_fatura" xml:space="preserve">
+    <value>To change an invoice you must change at least one field.</value>
+  </data>
+  <data name="showhowtodelete_fatura" xml:space="preserve">
+    <value>To remove an invoice click on the red button.</value>
+  </data>
+
+
+
+
+  <data name="funcionalidade_atividade" xml:space="preserve">
+  <value>Functionalities</value>
+</data>
+  <data name="howtocreate_atividade" xml:space="preserve">
+  <value>How to create an activity</value>
+</data>
+  <data name="howtoedit_atividade" xml:space="preserve">
+  <value>How to edit an activity</value>
+</data>
+  <data name="howtodelete_atividade" xml:space="preserve">
+  <value>How to delete an activity</value>
+</data>
+  <data name="showhowtofunction" xml:space="preserve">
+  <value>On the page, there is a button to add an activity to the calendar, or you can click on an existing activity in the calendar to view its information and, if you want, even edit and remove the activity.</value>
+</data>
+  <data name="showhowtocreate_atividade" xml:space="preserve">
+  <value>To create an activity, you must fill in and submit all fields.</value>
+</data>
+  <data name="showhowtoedit_atividade" xml:space="preserve">
+  <value>To edit an activity, you need to modify at least one field.</value>
+</data>
+  <data name="showhowtodelete_atividade" xml:space="preserve">
+  <value>To delete an activity, click on the red button.</value>
+</data>
+
+
+  <data name="howtohistorico" xml:space="preserve">
+  <value>Functionalities</value>
+</data>
+  <data name="showhowtohistorico" xml:space="preserve">
+  <value>On the page, there is a history of various elements related to the application that have already been "removed," and you can query the desired element.</value>
+</data>
+
+
+
+  <data
 name="howtoedit_formulario" xml:space="preserve">
 <value>How to edit a form</value>
   </data>
@@ -1589,6 +1661,19 @@ name="howtoedit_formulario" xml:space="preserve">
     <value>Choose an activity </value>
   </data>
 
+  <data name="howtofuncionalidades_estatistica" xml:space="preserve">
+    <value>Functionality</value>
+  </data>
+  <data name="txtfuncionalidades_estatistica" xml:space="preserve">
+    <value>On the page you will be able to select and view information in the form of graphics referring to an atl.</value>
+  </data>
+
+  <data name="howtocreate_responsavel" xml:space="preserve">
+    <value>How to create a responsible</value>
+  </data>
+  <data name="showhowtocreate_responsavel" xml:space="preserve">
+    <value>To create a responsible all fields are required to submit.</value>
+  </data>
 
  <data name="category" xml:space="preserve">
     <value>Choose a category</value>

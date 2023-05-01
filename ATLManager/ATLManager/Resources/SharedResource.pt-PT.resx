@@ -983,6 +983,14 @@
   <data name="txtfuncionalidades" xml:space="preserve">
     <value>Na página poderá encontrar procurar elementos numa lista, cada elemento é acompanhado por três botões, o botão de consultar, editar e remover o elemento em questão.</value>
   </data>
+
+  <data name="howtofuncionalidades_estatistica" xml:space="preserve">
+    <value>Funcionalidades</value>
+  </data>
+  <data name="txtfuncionalidades_estatistica" xml:space="preserve">
+    <value>Na página poderá selecionar e visualizar informação em forma de gráficos referentes a um atl.</value>
+  </data>
+  
   <data name="btnCreate" xml:space="preserve">
     <value>Criar</value>
   </data>
@@ -1046,6 +1054,34 @@
   <data name="showhowtocreate_visitaestudo" xml:space="preserve">
     <value>Para criar uma visita de estudo deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
   </data>
+
+  <data name="howtocreate_responsavel" xml:space="preserve">
+    <value>Como criar um responsável</value>
+  </data>
+  <data name="showhowtocreate_responsavel" xml:space="preserve">
+    <value>Para criar um responsável deverá de preencher todos os campos.</value>
+  </data>
+
+  <data
+  name="howto_change_responsible" xml:space="preserve">
+    <value>Como alterar um responsável</value>
+  </data>
+
+  <data
+    name="howto_delete_responsible" xml:space="preserve">
+    <value>Como remover um responsável</value>
+  </data>
+
+  <data
+  name="txt_change_responsible" xml:space="preserve">
+    <value>Para mudar alterar um responsável tem que se mudar pelo menos um campo.</value>
+  </data>
+
+  <data
+    name="txt_delete_responsible" xml:space="preserve">
+    <value>Para remover um responsável clique no botão vermelho para remover.</value>
+  </data>
+   
   <data name="create_coordenador" xml:space="preserve">
     <value>Criar Coordenador</value>
   </data>
@@ -1106,6 +1142,68 @@
   <data name="tatividade" xml:space="preserve">
     <value>Atividade</value>
   </data>
+
+
+  <data name="howtocreate_fatura" xml:space="preserve">
+    <value>Como criar uma fatura</value>
+  </data>
+  <data name="howtoedit_fatura" xml:space="preserve">
+    <value>Como alterar uma fatura</value>
+  </data>
+  <data name="howtodelete_fatura" xml:space="preserve">
+    <value>Como remover uma fatura</value>
+  </data>
+
+  
+  <data name="showhowtocreate_fatura" xml:space="preserve">
+    <value>Para criar uma fatura deverá de preencher e submeter todos os campos.</value>
+  </data>
+  <data name="showhowtoedit_fatura" xml:space="preserve">
+    <value>Para alterar uma fatura é necessário modificar pelo menos um campo.</value>
+  </data>
+  <data name="showhowtodelete_fatura" xml:space="preserve">
+    <value>Para remover uma fatura clique no botão vermelho.</value>
+  </data>
+
+
+
+
+  <data name="funcionalidade_atividade" xml:space="preserve">
+    <value>Funcionalidades</value>
+  </data>
+  <data name="howtocreate_atividade" xml:space="preserve">
+    <value>Como criar uma atividade</value>
+  </data>
+  <data name="howtoedit_atividade" xml:space="preserve">
+    <value>Como alterar uma atividade</value>
+  </data>
+  <data name="howtodelete_atividade" xml:space="preserve">
+    <value>Como remover uma atividade</value>
+  </data>
+
+  <data name="showhowtofunction" xml:space="preserve">
+    <value>Na página encontra-se um botão para adicionar uma atividade ao calendário, ou se quiser poderá clicar numa atividade já existente no calendário para visualizar a informação do mesmo e se assim o quiser ainda editar e remover a atividade.</value>
+  </data>
+  <data name="showhowtocreate_atividade" xml:space="preserve">
+    <value>Para criar uma atividade deverá de preencher e submeter todos os campos.</value>
+  </data>
+  <data name="showhowtoedit_atividade" xml:space="preserve">
+    <value>Para alterar uma atividade é necessário modificar pelo menos um campo.</value>
+  </data>
+  <data name="showhowtodelete_atividade" xml:space="preserve">
+    <value>Para remover uma atividade clique no botão vermelho.</value>
+  </data>
+
+
+  <data name="howtohistorico" xml:space="preserve">
+    <value>Funcionalidades</value>
+  </data>
+
+  <data name="showhowtohistorico" xml:space="preserve">
+    <value>Na página encontra-se o histórico de vários elementos relacionados na aplicação no qual já foram "removidos", poderá efeturar uma consulta ao elemento desejado.</value>
+  </data>
+  
+  
   <data name="howtoedit_visitaestudo" xml:space="preserve">
     <value>Como alterar uma visita de estudo</value>
   </data>
@@ -1122,7 +1220,7 @@
     <value>Como criar um formulario</value>
   </data>
   <data name="showhowtocreate_formulario" xml:space="preserve">
-    <value>Para criar um formulario deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+    <value>Para criar um formulario deverá de preencher todos os campos.</value>
   </data>
   <data name="howtoedit_formulario" xml:space="preserve">
     <value>Como alterar um formulario</value>
