@@ -72,27 +72,19 @@
                                                     <span asp-validation-for="City" class="text-danger"></span>
                                                 </div>
                                             </div>
-                                            <div class="form-switch row text-center mb-3">
-                                                <div class="col-6 text-end">@language.GetKey("askgroup1")</div>
-                                                <div class="col-2">
-                                                    <input class="form-check-input" style="float:left" type="checkbox"
-                                                           id="toggleSwitch">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3" id="divCertidao">
-                                                <div class="col-12">
+                                            
+                                            <div class="row mb-3">
+                                                <div class="col-6">
                                                     <label asp-for="NIPC" class="control-label"></label>
-                                                    <input asp-for="NIPC" class="form-control" placeholder="@language.GetKey("plinsert") @language.GetKey("plnipc")" />
+                                                    <input asp-for="NIPC" class="form-control" placeholder="@language.GetKey("plnipc")" />
                                                     <span asp-validation-for="NIPC" class="text-danger"></span>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-3" id="divAgrupamento" style="display: none;">
-                                                <div class="col-12">
-                                                <label asp-for="AgrupamentoId" class="form-label"> @language.GetKey("menuAgrupamento")</label>
-                                                <select asp-for="AgrupamentoId" class="form-control" asp-items="ViewBag.AgrupamentoId">
-                                                    <option value="">@language.GetKey("choosegroup")</option>
-                                                </select>
-                                                 </div>
+                                                <div class="col-6">
+                                                    <label asp-for="AgrupamentoId" class="form-label"> @language.GetKey("menuAgrupamento")</label>
+                                                    <select asp-for="AgrupamentoId" class="form-control" asp-items="ViewBag.AgrupamentoId">
+                                                        <option value=""> @language.GetKey("choosegroup") </option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label asp-for="LogoPicture" class="control-label">Logo</label>
@@ -242,24 +234,6 @@
     * @param {Event} event - O evento de mudança que ocorreu.
     */
 
-    <script>
-        const toggleSwitch = document.getElementById('toggleSwitch');
-        const divAgrupamento = document.getElementById('divAgrupamento');
-        const divCertidao = document.getElementById('divCertidao');
-
-
-        toggleSwitch.addEventListener('change', function () {
-            if (toggleSwitch.checked) {
-                divAgrupamento.style.display = 'block';
-                divCertidao.style.display = 'none';
-                divCertidao.disabled = true;
-            } else {
-                divAgrupamento.style.display = 'none';
-                divCertidao.style.display = 'block';
-                divCertidao.disabled = false;
-            }
-        });
-    </script>
     <!--  // Options Script -->
     @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

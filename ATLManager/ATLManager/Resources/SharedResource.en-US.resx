@@ -552,11 +552,21 @@
     name="txt2Configure2factorAuth" xml:space="preserve">
     <value>Google Authenticator for</value>
   </data>
+    <data
+    name="startdate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+    <data name="endate"
+    xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="tatividade" xml:space="preserve">
+    <value>Activity</value>
+  </data>
   <data
     name="txt2ContactUs" xml:space="preserve">
     <value>
     Our support team is available Monday through Friday from 9am to 6pm. We'll do our best to respond to you as quickly as possible.
-
     </value>
   </data>
   <data
@@ -1162,6 +1172,11 @@
 <data name="qremove" xml:space="preserve">
     <value>Are you sure you want to remove this grouping?</value>
   </data>
+  <data
+    name="qremove_visita" xml:space="preserve">
+    <value>Are you sure you want to remove this student visit?</value>
+  </data>
+
 
   <data
     name="tremove_agr" xml:space="preserve">
@@ -1405,10 +1420,12 @@
     <value>Escolha um atl</value>
   </data>
 
-    <data name="howto_change_atl" xml:space="preserve">
+    <data
+    name="howto_change_atl" xml:space="preserve">
     <value>How to change atl</value>
   </data>
-    <data name="btnAlterar" xml:space="preserve">
+    <data name="btnAlterar"
+    xml:space="preserve">
     <value>Modify</value>
   </data>
 
@@ -1416,63 +1433,308 @@
     <value>Details of ATL</value>
   </data>
 
-   <data name="qremove_atl" xml:space="preserve">
+   <data
+    name="qremove_atl" xml:space="preserve">
     <value>Are you sure you want to remove this atl?</value>
   </data>
 
-  <data name="create_coordenador" xml:space="preserve">
+  <data
+    name="create_coordenador" xml:space="preserve">
     <value>Create Coordinator</value>
   </data>
-  <data name="details_coordenador" xml:space="preserve">
+  <data
+    name="details_coordenador" xml:space="preserve">
     <value>Coordinator Details</value>
   </data>
-  <data name="edit_coordenador" xml:space="preserve">
+  <data
+    name="edit_coordenador" xml:space="preserve">
     <value>Edit Coordinator</value>
   </data>
-  <data name="delete_coordenador" xml:space="preserve">
+  <data
+    name="delete_coordenador" xml:space="preserve">
     <value>Delete Coordinator</value>
   </data>
-  <data name="index_coordenador" xml:space="preserve">
+  <data
+    name="index_coordenador" xml:space="preserve">
     <value>Coordinators</value>
   </data>
-  <data name="placeholder_choose_atl" xml:space="preserve">
+  <data
+    name="placeholder_choose_atl" xml:space="preserve">
     <value>Choose an ATL</value>
   </data>
-  <data name="date_of_birth" xml:space="preserve">
+  <data
+    name="date_of_birth" xml:space="preserve">
     <value>Date of Birth</value>
   </data>
-  <data name="howto_create_coord" xml:space="preserve">
+    <data name="gdate"
+    xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="howto_create_coord"
+    xml:space="preserve">
     <value>How to create a coordinator</value>
   </data>
-  <data name="txt_create_coord" xml:space="preserve">
+  <data name="txt_create_coord"
+    xml:space="preserve">
     <value>To create a coordinator you need to fill in all fields, the profile picture field being the only optional one.</value>
   </data>
-  <data name="ask_remove_coord" xml:space="preserve">
+  <data name="ask_remove_coord"
+    xml:space="preserve">
     <value>Are you sure you want to remove this coordinator?</value>
   </data>
-  <data name="howto_delete_coord" xml:space="preserve">
+  <data name="howto_delete_coord"
+    xml:space="preserve">
     <value>How to remove a coordinator</value>
   </data>
-  <data name="txt_delete_coord" xml:space="preserve">
+  <data name="txt_delete_coord"
+    xml:space="preserve">
     <value>To delete a coordinator you just need to press the red 'delete' button.</value>
   </data>
-  <data name="current_date_of_birth" xml:space="preserve">
+  <data name="current_date_of_birth"
+    xml:space="preserve">
     <value>Current Date of Birth</value>
   </data>
-  <data name="profile_picture" xml:space="preserve">
+  <data name="profile_picture"
+    xml:space="preserve">
     <value>Profile Picture</value>
   </data>
-  <data name="howto_edit_coord" xml:space="preserve">
+  <data name="howto_edit_coord"
+    xml:space="preserve">
     <value>How to edit a coordinator</value>
   </data>
   <data name="txt_edit_coord" xml:space="preserve">
     <value>To edit a coordinator you need to fill in every field you want to update. You do not need to choose a new date or picture if you don't want to change.</value>
   </data>
-  <data name="add_coord" xml:space="preserve">
+  <data
+    name="add_coord" xml:space="preserve">
     <value>+ Add Coordinator</value>
   </data>
-  <data name="actions" xml:space="preserve">
+  <data name="actions"
+    xml:space="preserve">
     <value>Actions</value>
+  </data>
+   <data name="descricao" xml:space="preserve">
+    <value>Description</value>
+  </data>
+   <data
+    name="pldescricao" xml:space="preserve">
+    <value>Insert a description</value>
+  </data>
+     <data name="tconsulta_visita"
+    xml:space="preserve">
+    <value>Consult Student Visit</value>
+  </data>
+    <data
+    name="placeholderName" xml:space="preserve">
+    <value>Insert first name</value>
+  </data>
+  <data
+    name="menuResources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+
+  <data
+    name="howtocreate_visitaestudo" xml:space="preserve">
+    <value>How to create a student visit</value>
+  </data>
+    <data
+    name="showhowtocreate_visitaestudo" xml:space="preserve">
+    <value>To create a student visit you'll need to insert data in each field, being the only optional one, the image.</value>
+  </data>
+
+  <data
+    name="howtoedit_visitaestudo" xml:space="preserve">
+    <value>How to change a student visit</value>
+  </data>
+    <data
+    name="showhowtoedit_visitaestudo" xml:space="preserve">
+    <value>To change a student visit you'll need to change at least one field.</value>
+  </data>
+
+  <data
+    name="howtoremove_visitaestudo" xml:space="preserve">
+    <value>How to remove a student visit</value>
+  </data>
+    <data
+    name="showhowtoremove_visitaestudo" xml:space="preserve">
+    <value>To remove a group click on the red button to remove.</value>
+  </data>
+
+<data name="howtocreate_formulario" xml:space="preserve">
+    <value>How to create a form</value>
+  </data>
+    <data name="showhowtocreate_formulario" xml:space="preserve">
+    <value>To create a form, you must fill in all the fields, with the field to choose the image being optional.</value>
+  </data>
+
+<data
+name="howtoedit_formulario" xml:space="preserve">
+<value>How to edit a form</value>
+  </data>
+    <data
+    name="showhowtoedit_formulario" xml:space="preserve">
+    <value>To edit a form, you need to modify at least one field.</value>
+  </data>
+<data
+ name="howtoremove_formulario" xml:space="preserve">
+<value>How to remove a form</value>
+</data>
+<data
+ name="showhowtoremove_formulario" xml:space="preserve">
+<value>To remove a form, click on the red button to remove it.</value>
+</data>
+
+  <!--  -->
+ <data name="howtocreate_refeicao" xml:space="preserve">
+    <value>How to create a meal</value>
+  </data>
+    <data name="showhowtocreate_refeicao" xml:space="preserve">
+    <value>To create a meal, you must fill in all the fields, with the field to choose the image being optional.</value>
+  </data>
+
+<data
+name="howtoedit_formulario" xml:space="preserve">
+<value>How to edit a form</value>
+  </data>
+    <data
+    name="showhowtoedit_formulario" xml:space="preserve">
+    <value>To edit a form, you need to modify at least one field.</value>
+  </data>
+<data
+ name="howtoremove_formulario" xml:space="preserve">
+<value>How to remove a form</value>
+</data>
+<data
+ name="showhowtoremove_formulario" xml:space="preserve">
+<value>To remove a form, click on the red button to remove it.</value>
+</data>
+
+  <!--  -->
+ <data name="howtocreate_refeicao" xml:space="preserve">
+    <value>How to create a meal</value>
+  </data>
+    <data name="showhowtocreate_refeicao" xml:space="preserve">
+    <value>To create a meal, you must fill in all the fields, with the field to choose the image being optional.</value>
+  </data>
+   <data name="escolhavisita" xml:space="preserve">
+    <value>Choose a student visit</value>
+  </data>
+
+   <data name="escolhaatividade" xml:space="preserve">
+    <value>Choose an activity </value>
+  </data>
+
+
+ <data name="category" xml:space="preserve">
+    <value>Choose a category</value>
+  </data>
+
+ <data name="chooseoption" xml:space="preserve">
+    <value>Choose a option</value>
+  </data>
+
+ <data name="choosevisita" xml:space="preserve">
+    <value>Student Visit</value>
+  </data>
+<data name="chooseatividade" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+
+   <data name="choosegeral" xml:space="preserve">
+    <value>General</value>
+  </data>
+
+<!--        Refeições          -->
+
+  <data name="create_meal" xml:space="preserve">
+    <value>Create Meal</value>
+  </data>
+  <data name="details_meal" xml:space="preserve">
+    <value>Meal Details</value>
+  </data>
+  <data name="edit_meal" xml:space="preserve">
+    <value>Edit Meal</value>
+  </data>
+  <data name="delete_meal" xml:space="preserve">
+    <value>Remove Meal</value>
+  </data>
+  <data name="index_meal" xml:space="preserve">
+    <value>Meals</value>
+  </data>
+  <data name="nutrition_info" xml:space="preserve">
+    <value>Nutritional Information</value>
+  </data>
+  <data name="protein" xml:space="preserve">
+    <value>Protein</value>
+  </data>
+  <data name="protein_amount" xml:space="preserve">
+    <value>Amount of Protein</value>
+  </data>
+  <data name="carbon_hydrates" xml:space="preserve">
+    <value>Carbohidrates</value>
+  </data>
+  <data name="ch_amount" xml:space="preserve">
+    <value>Amount of Carbohidrates</value>
+  </data>
+  <data name="vr" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="vr_amount" xml:space="preserve">
+    <value>Amount of VR</value>
+  </data>
+  <data name="sugar" xml:space="preserve">
+    <value>Sugar</value>
+  </data>
+  <data name="sugar_amount" xml:space="preserve">
+    <value>Amount of Sugar</value>
+  </data>
+  <data name="lipids" xml:space="preserve">
+    <value>Lipids</value>
+  </data>
+  <data name="lipids_amount" xml:space="preserve">
+    <value>Amount of Lipids</value>
+  </data>
+  <data name="energetic_value" xml:space="preserve">
+    <value>Energetic Value</value>
+  </data>
+  <data name="ev_amount" xml:space="preserve">
+    <value>Amount of Energetic Value</value>
+  </data>
+  <data name="ag_sat" xml:space="preserve">
+    <value>AG Sat</value>
+  </data>
+  <data name="ag_sat_amount" xml:space="preserve">
+    <value>Amount of AG Sat</value>
+  </data>
+  <data name="salt" xml:space="preserve">
+    <value>Salt</value>
+  </data>
+  <data name="salt_amount" xml:space="preserve">
+    <value>Amount of Salt</value>
+  </data>
+  <data name="category_label" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="meat" xml:space="preserve">
+    <value>Meat</value>
+  </data>
+  <data name="fish" xml:space="preserve">
+    <value>Fish</value>
+  </data>
+  <data name="vegetarian" xml:space="preserve">
+    <value>Vegetarian</value>
+  </data>
+  <data name="current_date" xml:space="preserve">
+    <value>Current Date</value>
+  </data>
+  <data name="select_student" xml:space="preserve">
+    <value>-- Choose a child --</value>
+  </data>
+  <data name="add_meal" xml:space="preserve">
+    <value>+ Create Meal</value>
+  </data>
+  <data name="ask_remove_meal" xml:space="preserve">
+    <value>Are you sure you want to remove this meal?</value>
   </data>
 
 </root>

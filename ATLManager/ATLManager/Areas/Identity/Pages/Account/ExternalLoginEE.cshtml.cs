@@ -282,8 +282,8 @@ namespace ATLManager.Areas.Identity.Pages.Account
                             values: new { area = "Identity", userId, code, returnUrl },
                             protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirme o seu email",
-                            $"Por favor confirme a sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
+                        await _emailSender.SendEmailAsync(Input.Email, "ATLManager - Confirme o seu email",
+                            $"Obrigado por escolher o ATLManager. Por favor confirme a sua conta de Encarregado <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
 
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)
                         {

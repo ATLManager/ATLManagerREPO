@@ -8,7 +8,7 @@
 @inject LanguageService language
 
 @{
-	ViewData["Title"] = "Editar Formulário";
+	ViewData["Title"] = @language.GetKey("menuFormulario");
 }
 <link rel='stylesheet' type='text/css' media='screen' href='~/css/custom-box-12.css'>
 
@@ -20,7 +20,7 @@
 	<!-- Container -->
 	<div class="container-fluid">
 		<div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
-			<h1 class="me-3 fw-bold text-center mb-0">Editar Formulário</h1>
+			<h1 class="me-3 fw-bold text-center mb-0">@language.GetKey("teditar") @language.GetKey("menuFormulario")</h1>
 			<img src="~/images/icons/edit-group.png" width="50" height="50">
 		</div>
 
@@ -46,8 +46,8 @@
 
 											<div class="row mb-2">
 												<div class="col-6">
-													<label asp-for="Name" class="form-label"></label>
-													<input asp-for="Name" class="form-control" placeholder="Insira o nome" />
+													<label asp-for="Name" class="form-label">@language.GetKey("txtFirstName")</label>
+													<input asp-for="Name" class="form-control" placeholder="@language.GetKey("plname")" />
 													<span asp-validation-for="Name" class="text-danger"></span>
 												</div>
 												<div class="col-6 position-relative">
@@ -56,8 +56,8 @@
 															<!-- extended box content -->
 															<div class="row mb-2">
 																<div class="col">
-																	<label asp-for="Description" class="control-label">Descrição</label>
-																	<textarea asp-for="Description" class="form-control" style="height:8em;resize:none"></textarea>
+																	<label asp-for="Description" class="control-label">@language.GetKey("descricao")</label>
+																	<textarea asp-for="Description" class="form-control" style="height:8em;resize:none" placeholder="@language.GetKey("pldescricao")"></textarea>
 																	<span asp-validation-for="Description" class="text-danger"></span>
 																</div>
 															</div>
@@ -68,7 +68,7 @@
 										
 											<div class="row mb-2">
 												<div class="col-6">
-													<label asp-for="DateLimit" class="control-label">End Date Atual - @Html.DisplayFor(model => model.DateLimit) </label>
+													<label asp-for="DateLimit" class="control-label">@language.GetKey("endate") Atual - @Html.DisplayFor(model => model.DateLimit) </label>
 													<input asp-for="DateLimit" class="form-control" />
 													<span asp-validation-for="DateLimit" class="text-danger"></span>
 												</div>
@@ -77,16 +77,14 @@
 											
 											<div class="d-flex text-center mt-4">
 											<div class="col text-right">
-												<a asp-action="Index">
-													<button type="button"
-															class="btn btn-secondary custom-button w-50" style="border-radius:6em">
-														Voltar
-													</button>
+												<a asp-action="Index"
+												class="btn btn-secondary custom-button w-50" style="border-radius:6em">
+														@language.GetKey("btnVoltar")
 												</a>
 											</div>
 											<div class="col text-left">
 												<div class="form-group">
-													<input type="submit" value="Create" class="btn btn-primary w-50" style="border-radius:6em" />
+														<input type="submit" value="@language.GetKey("btnAlterar")" class="btn btn-primary w-50" style="border-radius:6em" />
 												</div>
 											</div>
 									</div>
@@ -124,14 +122,12 @@
 			<li class="row">
 				<button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
 					<div class="d-flex align-items-center justify-content-center">
-						<span>
-							Como editar um formulário
-						</span>
+						<span>@language.GetKey("howtoedit_formulario")</span>
 						<img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
 					</div>
 				</button>
 				<span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
-					Para editar um formulário deverá de preencher todos os campos que deseja alterar. Não é necessário escolher uma nova data, nem uma foto de perfil nova.
+					@language.GetKey("showhowtoedit_formulario")
 				</span>
 			</li>
 			<li class="row">

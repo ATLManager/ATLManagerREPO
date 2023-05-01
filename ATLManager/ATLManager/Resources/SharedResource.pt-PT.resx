@@ -22,10 +22,8 @@
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing"
-  mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework
-  object]</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
                 
@@ -61,8 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -115,12 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0,
-      Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0,
-      Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="2factorAuth" xml:space="preserve">
     <value>Autenticação de dois factores</value>
@@ -145,6 +140,12 @@
   </data>
   <data name="btnDownloadPersonalData" xml:space="preserve">
     <value>Descarregar</value>
+  </data>
+  <data name="descricao" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="pldescricao" xml:space="preserve">
+    <value>Insira uma descrição</value>
   </data>
   <data name="btnGenerateRecoveryCodes" xml:space="preserve">
     <value>Gerar Códigos de Recuperação</value>
@@ -773,7 +774,6 @@
   <data name="colAções" xml:space="preserve">
     <value>Ações</value>
   </data>
-  <!-- Ajuda -->
   <data name="btnComoCriarFuncionario" xml:space="preserve">
     <value>Como Criar Funcionario</value>
   </data>
@@ -782,7 +782,6 @@
       A password deverá conter um minimo de 8 caracteres, 1 letra maiuscula e um caracter especial.
     </value>
   </data>
-  <!-- Titulos -->
   <data name="tituloCriarFuncionario" xml:space="preserve">
     <value>Criar Funcionário</value>
   </data>
@@ -817,7 +816,7 @@
     <value>Atividades</value>
   </data>
   <data name="menuEstatistica" xml:space="preserve">
-    <value>Educandos</value>
+    <value>Estatísticas</value>
   </data>
   <data name="menuFatura" xml:space="preserve">
     <value>Faturas</value>
@@ -867,11 +866,17 @@
   <data name="tconsulta_agrupamento" xml:space="preserve">
     <value>Detalhes do Agrupamento</value>
   </data>
+  <data name="tconsulta_visita" xml:space="preserve">
+    <value>Detalhes da Visita de estudo</value>
+  </data>
   <data name="tconsulta_atl" xml:space="preserve">
     <value>Detalhes do ATL</value>
   </data>
   <data name="gname" xml:space="preserve">
     <value>Nome</value>
+  </data>
+  <data name="gdate" xml:space="preserve">
+    <value>Data</value>
   </data>
   <data name="glocation" xml:space="preserve">
     <value>Localização</value>
@@ -881,6 +886,9 @@
   </data>
   <data name="qremove" xml:space="preserve">
     <value>Tens a certeza que queres remover este agrupamento?</value>
+  </data>
+  <data name="qremove_visita" xml:space="preserve">
+    <value>Tens a certeza que queres remover esta visita de estudo?</value>
   </data>
   <data name="tremove_agr" xml:space="preserve">
     <value>Remover Agrupamento</value>
@@ -993,6 +1001,12 @@
   <data name="plpostal" xml:space="preserve">
     <value>um código postal</value>
   </data>
+  <data name="startdate" xml:space="preserve">
+    <value>Data inicial</value>
+  </data>
+  <data name="endate" xml:space="preserve">
+    <value>Data final</value>
+  </data>
   <data name="pladdress" xml:space="preserve">
     <value>uma morada</value>
   </data>
@@ -1024,11 +1038,14 @@
     <value>Tens a certeza que queres remover este atl?</value>
   </data>
   <data name="Politica" xml:space="preserve">
-    <value>Policy</value>
+    <value>Politica</value>
   </data>
-
-  <!--         AQUI           -->
-
+  <data name="howtocreate_visitaestudo" xml:space="preserve">
+    <value>Como criar uma Visita de Estudo</value>
+  </data>
+  <data name="showhowtocreate_visitaestudo" xml:space="preserve">
+    <value>Para criar uma visita de estudo deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
   <data name="create_coordenador" xml:space="preserve">
     <value>Criar Coordenador</value>
   </data>
@@ -1083,15 +1100,169 @@
   <data name="actions" xml:space="preserve">
     <value>Ações</value>
   </data>
-</root>
-<!-- 
-@using ATLManager.Services
-@inject LanguageService language
-
-@language.GetKey("txtSearchHelpArticles")
-
-<data name="ASD" xml:space="preserve">
-    <value>ASDASD</value>
+  <data name="menuResources" xml:space="preserve">
+    <value>Recursos</value>
   </data>
-
-btnSave -->
+  <data name="tatividade" xml:space="preserve">
+    <value>Atividade</value>
+  </data>
+  <data name="howtoedit_visitaestudo" xml:space="preserve">
+    <value>Como alterar uma visita de estudo</value>
+  </data>
+  <data name="showhowtoedit_visitaestudo" xml:space="preserve">
+    <value>Para alterar uma visita de estudo é necessário modificar pelo menos um campo.</value>
+  </data>
+  <data name="howtoremove_visitaestudo" xml:space="preserve">
+    <value>Como remover uma visita de estudo </value>
+  </data>
+  <data name="showhowtoremove_visitaestudo" xml:space="preserve">
+    <value>Para remover uma visita de estudo clique no botão vermelho para remover.</value>
+  </data>
+  <data name="howtocreate_formulario" xml:space="preserve">
+    <value>Como criar um formulario</value>
+  </data>
+  <data name="showhowtocreate_formulario" xml:space="preserve">
+    <value>Para criar um formulario deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
+  <data name="howtoedit_formulario" xml:space="preserve">
+    <value>Como alterar um formulario</value>
+  </data>
+  <data name="showhowtoedit_formulario" xml:space="preserve">
+    <value>Para alterar um formulario é necessário modificar pelo menos um campo.</value>
+  </data>
+  <data name="howtoremove_formulario" xml:space="preserve">
+    <value>Como remover um formulario </value>
+  </data>
+  <data name="showhowtoremove_formulario" xml:space="preserve">
+    <value>Para remover um formulario clique no botão vermelho para remover.</value>
+  </data>
+  <data name="howtocreate_refeicao" xml:space="preserve">
+    <value>Como criar uma refeicao</value>
+  </data>
+  <data name="showhowtocreate_refeicao" xml:space="preserve">
+    <value>Para criar uma refeicao deverá de preencher todos os campos, sendo o campo para escolher a imagem opcional.</value>
+  </data>
+  <data name="howtoedit_refeicao" xml:space="preserve">
+    <value>Como alterar uma refeicao</value>
+  </data>
+  <data name="showhowtoedit_refeicao" xml:space="preserve">
+    <value>Para alterar uma refeicao é necessário modificar pelo menos um campo.</value>
+  </data>
+  <data name="howtoremove_refeicao" xml:space="preserve">
+    <value>Como remover uma refeicao</value>
+  </data>
+  <data name="showhowtoremove_refeicao" xml:space="preserve">
+    <value>Para remover uma refeicao clique no botão vermelho para remover.</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Escolha uma categoria</value>
+  </data>
+  <data name="chooseoption" xml:space="preserve">
+    <value>Escolha uma opção</value>
+  </data>
+  <data name="choosevisita" xml:space="preserve">
+    <value>Visita de estudo</value>
+  </data>
+  <data name="chooseatividade" xml:space="preserve">
+    <value>Atividade</value>
+  </data>
+  <data name="choosegeral" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="escolhavisita" xml:space="preserve">
+    <value>Escolha uma Visita de Estudo</value>
+  </data>
+  <data name="escolhaatividade" xml:space="preserve">
+    <value>Escolha uma Atidade </value>
+  </data>
+  <data name="create_meal" xml:space="preserve">
+    <value>Criar Refeição</value>
+  </data>
+  <data name="details_meal" xml:space="preserve">
+    <value>Detalhes da Refeição</value>
+  </data>
+  <data name="edit_meal" xml:space="preserve">
+    <value>Editar Refeição</value>
+  </data>
+  <data name="delete_meal" xml:space="preserve">
+    <value>Remover Refeição</value>
+  </data>
+  <data name="index_meal" xml:space="preserve">
+    <value>Refeições</value>
+  </data>
+  <data name="nutrition_info" xml:space="preserve">
+    <value>Informação Nutricional</value>
+  </data>
+  <data name="protein" xml:space="preserve">
+    <value>Proteína</value>
+  </data>
+  <data name="protein_amount" xml:space="preserve">
+    <value>Quantidade de proteína</value>
+  </data>
+  <data name="carbon_hydrates" xml:space="preserve">
+    <value>Hidratos de carbono</value>
+  </data>
+  <data name="ch_amount" xml:space="preserve">
+    <value>Quantidade de Hidratos de Carbono</value>
+  </data>
+  <data name="vr" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="vr_amount" xml:space="preserve">
+    <value>Quantidade de VR</value>
+  </data>
+  <data name="sugar" xml:space="preserve">
+    <value>Açúcar</value>
+  </data>
+  <data name="sugar_amount" xml:space="preserve">
+    <value>Quantidade de Açúcar</value>
+  </data>
+  <data name="lipids" xml:space="preserve">
+    <value>Lípidos</value>
+  </data>
+  <data name="lipids_amount" xml:space="preserve">
+    <value>Quantidade de Lípidos</value>
+  </data>
+  <data name="energetic_value" xml:space="preserve">
+    <value>Valor Energético</value>
+  </data>
+  <data name="ev_amount" xml:space="preserve">
+    <value>Quantidade de Valor Energético</value>
+  </data>
+  <data name="ag_sat" xml:space="preserve">
+    <value>AG Sat</value>
+  </data>
+  <data name="ag_sat_amount" xml:space="preserve">
+    <value>Quantidade de AG Sat</value>
+  </data>
+  <data name="salt" xml:space="preserve">
+    <value>Sal</value>
+  </data>
+  <data name="salt_amount" xml:space="preserve">
+    <value>Quantidade de Sal</value>
+  </data>
+  <data name="category_label" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="meat" xml:space="preserve">
+    <value>Carne</value>
+  </data>
+  <data name="fish" xml:space="preserve">
+    <value>Peixe</value>
+  </data>
+  <data name="vegetarian" xml:space="preserve">
+    <value>Vegetariano</value>
+  </data>
+  <data name="current_date" xml:space="preserve">
+    <value>Data atual</value>
+  </data>
+  <data name="select_student" xml:space="preserve">
+    <value>-- Selecione um educando --</value>
+  </data>
+  <data name="add_meal" xml:space="preserve">
+    <value>+ Adicionar Refeição</value>
+  </data>
+  <data name="ask_remove_meal" xml:space="preserve">
+    <value>Tens a certeza que queres remover esta refeição?</value>
+  </data>
+</root>
