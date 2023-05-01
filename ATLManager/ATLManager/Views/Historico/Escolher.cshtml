@@ -4,6 +4,10 @@
 @inject SignInManager<ATLManagerUser> SignInManager
 @inject UserManager<ATLManagerUser> UserManager
 
+@using ATLManager.Services
+@inject LanguageService language
+
+
 @{
     ViewData["Title"] = "Historico";
 }
@@ -15,6 +19,13 @@
     <div class="d-flex justify-content-center ms-2 pb-2" style="padding-left: 2%; padding-top: 0%;">
         <h1 class="me-3 fw-bold text-center mb-0">Consulta de histórico</h1>
         <img src="~/images/icons/search-group.png" width="50" height="50">
+    </div>
+    <div class="row" style="padding-left: 6em;">
+        <div class="col text-right pb-2" id="divQuestion">
+            <button class="btn btn-primary rounded-circle" id="btn-ajuda">
+                <img src="~/images/question.png" alt="Imagem 1" class="img-fluid" width="15">
+            </button>
+        </div>
     </div>
     <!-- Fase 1  -->
     <!-- d-flex -->
@@ -162,6 +173,91 @@
         </div>
         <!-- // Fase 1 -->
     </div>
+
+    <!-- Slide de Ajuda  -->
+    <div id="menu-ajuda" class="bg-primary animate__animated animate__slideInLeft">
+        <div class="row text-center mt-2">
+            <div class="col-10 ">
+                <h2 class="text-white ms-5">@language.GetKey("help")</h2>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn-close text-reset" id="close-ajuda" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="">
+            <input class="form-control mr-sm-2 mb-3 p-2 text-center" type="search"
+                   placeholder="@language.GetKey("txtSearchHelpArticles")" aria-label="Search" style="border-radius: 10px;">
+        </div>
+        <!-- -->
+        <ul class="row justify-content-center p-4 bg-white mt-4 "
+            style="position: absolute; right: 0em; left: 0em; height: 80%;">
+            <li class="row">
+                <button type="button" class="btn btn-help helpShadowButton border-0 mt-3 fw-bold" id="showText1">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <span>@language.GetKey("howtohistorico")</span>
+                        <img src="~/images/guide/dropdown.png" style="padding-left: 2%;">
+                    </div>
+                </button>
+                <span class="myText p-3 helpShadowButton" id="displayText1" style="display: none; position: relative;">
+                    @language.GetKey("showhowtohistorico")
+                </span>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/terms.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>@language.GetKey("readarticles")</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/comunity.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>@language.GetKey("askcomunity")</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/new.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>@language.GetKey("newsupdates")</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            <li class="row">
+                <button type="button" class="btn helpShadowButton border-0 mt-3 fw-bold" id="Artigos">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-3">
+                            <img src="~/images/guide/feedback.png" class="">
+                        </div>
+                        <div class="col">
+                            <span>
+                                <a asp-area="" asp-controller="Home" asp-action="Contacts" style="text-decoration:none;color:inherit;">
+                                    @language.GetKey("givefeedback")
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- // Slide de Ajuda  -->
 
 }
 
