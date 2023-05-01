@@ -134,6 +134,13 @@
     name="btnChangeEmail" xml:space="preserve">
     <value>Change email</value>
   </data>
+  <data name="howformularioresposta" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+
+  <data name="showformularioresposta" xml:space="preserve">
+    <value>You must authorize if you agree to it.</value>
+  </data>
   <data
     name="btnClickLogout" xml:space="preserve">
     <value>Click here to Logout</value>

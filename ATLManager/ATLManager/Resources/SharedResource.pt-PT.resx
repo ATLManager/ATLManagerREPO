@@ -1202,6 +1202,15 @@
   <data name="showhowtohistorico" xml:space="preserve">
     <value>Na página encontra-se o histórico de vários elementos relacionados na aplicação no qual já foram "removidos", poderá efeturar uma consulta ao elemento desejado.</value>
   </data>
+
+
+  <data name="howformularioresposta" xml:space="preserve">
+    <value>Autorização</value>
+  </data>
+
+  <data name="showformularioresposta" xml:space="preserve">
+    <value>Deverá autorizar se concordar com o mesmo.</value>
+  </data>
   
   
   <data name="howtoedit_visitaestudo" xml:space="preserve">
