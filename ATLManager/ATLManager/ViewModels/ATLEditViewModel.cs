@@ -17,11 +17,11 @@ namespace ATLManager.ViewModels
 		public string Name { get; set; }
 
 		[Required]
-		[StringLength(50, MinimumLength = 5)]
+		[StringLength(50, MinimumLength = 5, ErrorMessage = "Máximo 50 caratéres")]
 		public string Address { get; set; }
 
 		[Required]
-		[StringLength(20, MinimumLength = 5)]
+		[StringLength(20, MinimumLength = 5, ErrorMessage = "Máximo 20 caratéres")]
 		public string City { get; set; }
 
 		[Required]

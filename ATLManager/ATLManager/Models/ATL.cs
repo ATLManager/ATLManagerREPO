@@ -12,15 +12,12 @@ namespace ATLManager.Models
         public Guid AtlId { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
 		public string Name { get; set; }
 
 		[Required]
-        [StringLength(50, MinimumLength = 5)]
         public string Address { get; set; }
         
         [Required]
-		[StringLength(20, MinimumLength = 5)]
 		public string City { get; set; }
 
         [Required]

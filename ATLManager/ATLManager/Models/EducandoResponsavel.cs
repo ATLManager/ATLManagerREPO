@@ -18,11 +18,9 @@ namespace ATLManager.Models
         public Educando? Educando { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
 		public string Name { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
 		public string Apelido { get; set; }
 
 		[Required]

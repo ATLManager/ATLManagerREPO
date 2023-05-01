@@ -12,10 +12,11 @@ namespace ATLManager.ViewModels
         public Guid EducandoId { get; set; }
 
         [Required]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string Name { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
         public string Apelido { get; set; }
 
         [Required]

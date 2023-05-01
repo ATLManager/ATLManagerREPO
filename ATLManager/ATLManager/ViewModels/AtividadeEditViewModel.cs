@@ -12,8 +12,8 @@ namespace ATLManager.ViewModels
 
 		[Required]
 		[Display(Name = "Nome")]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Name { get; set; }
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
+        public string Name { get; set; }
 
 		[DataType(DataType.Date)]
 		[Display(Name = "Data de Emissão")]
@@ -26,8 +26,8 @@ namespace ATLManager.ViewModels
 		public DateTime? EndDate { get; set; }
 
 		[Required]
-		[StringLength(255)]
-		[DisplayName("Descrição")]
+        [StringLength(255, ErrorMessage = "Máximo 255 caratéres")]
+        [DisplayName("Descrição")]
 		public string Description { get; set; }
 
 		[DisplayName("Imagem da atividade")]

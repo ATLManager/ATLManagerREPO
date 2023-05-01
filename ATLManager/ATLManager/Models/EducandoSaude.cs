@@ -20,7 +20,6 @@ namespace ATLManager.Models
 
         [StringLength(3)]
         [DisplayName("Tipo sanguíneo")]
-        [Column(TypeName = "nvarchar(3)")]
 		public string? BloodType { get; set; }
 
         [Phone]

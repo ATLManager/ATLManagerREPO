@@ -14,12 +14,12 @@ namespace ATLManager.ViewModels
 		public Guid EducandoId { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Name { get; set; }
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
+        public string Name { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Apelido { get; set; }
+        [StringLength(20, ErrorMessage = "Máximo 20 caratéres")]
+        public string Apelido { get; set; }
 
 		[Required]
 		[StringLength(9, MinimumLength = 9, ErrorMessage = "Este campo deve conter 9 dígitos")]

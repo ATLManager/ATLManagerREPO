@@ -29,7 +29,6 @@ namespace ATLManager.Models
         public DateTime EndDate { get; set; }
 
         [Required]
-        [StringLength(255)]
         [DisplayName("Descrição")]
         public string Description { get; set; }
 

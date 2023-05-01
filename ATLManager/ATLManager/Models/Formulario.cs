@@ -11,7 +11,6 @@ namespace ATLManager.Models
         public Guid FormularioId { get; set; }
 
 		[Required]
-        [MaxLength(50)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 

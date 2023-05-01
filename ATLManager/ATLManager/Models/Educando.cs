@@ -14,11 +14,9 @@ namespace ATLManager.Models
 		public Guid EducandoId { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
 		public string Name { get; set; }
 
 		[Required]
-		[Column(TypeName = "nvarchar(100)")]
 		public string Apelido { get; set; }
 
 		[Required]

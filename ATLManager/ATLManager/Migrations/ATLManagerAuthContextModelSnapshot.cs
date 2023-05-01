@@ -111,8 +111,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoPicture")
                         .IsRequired()
@@ -125,14 +124,13 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AgrupamentoID");
 
                     b.HasIndex("ContaId");
 
-                    b.ToTable("Agrupamento", (string)null);
+                    b.ToTable("Agrupamento");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Atividade", b =>
@@ -146,8 +144,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -167,7 +164,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("Atividade", (string)null);
+                    b.ToTable("Atividade");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ATL", b =>
@@ -178,16 +175,14 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("AgrupamentoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoPicture")
                         .IsRequired()
@@ -199,7 +194,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -209,7 +204,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AgrupamentoId");
 
-                    b.ToTable("ATL", (string)null);
+                    b.ToTable("ATL");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ATLAdmin", b =>
@@ -230,7 +225,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("ContaId");
 
-                    b.ToTable("ATLAdmin", (string)null);
+                    b.ToTable("ATLAdmin");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ContaAdministrativa", b =>
@@ -264,7 +259,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ContaAdministrativa", (string)null);
+                    b.ToTable("ContaAdministrativa");
                 });
 
             modelBuilder.Entity("ATLManager.Models.CoordATL", b =>
@@ -285,7 +280,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("ContaId");
 
-                    b.ToTable("CoordATL", (string)null);
+                    b.ToTable("CoordATL");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Educando", b =>
@@ -296,7 +291,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Apelido")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("AtlId")
                         .HasColumnType("uniqueidentifier");
@@ -327,7 +322,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired()
@@ -339,7 +334,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EncarregadoId");
 
-                    b.ToTable("Educando", (string)null);
+                    b.ToTable("Educando");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EducandoResponsavel", b =>
@@ -350,7 +345,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Apelido")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CC")
                         .IsRequired()
@@ -362,7 +357,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Parentesco")
                         .HasColumnType("nvarchar(max)");
@@ -380,7 +375,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EducandoId");
 
-                    b.ToTable("EducandoResponsavel", (string)null);
+                    b.ToTable("EducandoResponsavel");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EducandoSaude", b =>
@@ -428,7 +423,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("EducandoId");
 
-                    b.ToTable("EducandoSaude", (string)null);
+                    b.ToTable("EducandoSaude");
                 });
 
             modelBuilder.Entity("ATLManager.Models.EncarregadoEducacao", b =>
@@ -439,8 +434,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -464,7 +458,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EncarregadoEducacao", (string)null);
+                    b.ToTable("EncarregadoEducacao");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Formulario", b =>
@@ -489,8 +483,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -506,7 +499,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("VisitaEstudoId");
 
-                    b.ToTable("Formulario", (string)null);
+                    b.ToTable("Formulario");
                 });
 
             modelBuilder.Entity("ATLManager.Models.FormularioResposta", b =>
@@ -536,7 +529,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("FormularioId");
 
-                    b.ToTable("FormularioResposta", (string)null);
+                    b.ToTable("FormularioResposta");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.AtividadeRecord", b =>
@@ -573,7 +566,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("AtividadeRecord", (string)null);
+                    b.ToTable("AtividadeRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.EducandoRecord", b =>
@@ -616,7 +609,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("EducandoRecord", (string)null);
+                    b.ToTable("EducandoRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.FormularioRecord", b =>
@@ -655,7 +648,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("FormularioRecord", (string)null);
+                    b.ToTable("FormularioRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.FormularioRespostaRecord", b =>
@@ -687,7 +680,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("FormularioRecordId");
 
-                    b.ToTable("FormularioRespostaRecord", (string)null);
+                    b.ToTable("FormularioRespostaRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.FuncionarioRecord", b =>
@@ -729,7 +722,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("FuncionarioRecord", (string)null);
+                    b.ToTable("FuncionarioRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.ReciboRecord", b =>
@@ -767,7 +760,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("ReciboRecord", (string)null);
+                    b.ToTable("ReciboRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.ReciboRespostaRecord", b =>
@@ -822,7 +815,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("ReciboRecordId");
 
-                    b.ToTable("ReciboRespostaRecord", (string)null);
+                    b.ToTable("ReciboRespostaRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.RefeicaoRecord", b =>
@@ -892,7 +885,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("RefeicaoRecord", (string)null);
+                    b.ToTable("RefeicaoRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Historicos.VisitaEstudoRecord", b =>
@@ -930,7 +923,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("VisitaEstudoRecord", (string)null);
+                    b.ToTable("VisitaEstudoRecord");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Notificacao", b =>
@@ -961,7 +954,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notificacoes", (string)null);
+                    b.ToTable("Notificacoes");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Recibo", b =>
@@ -991,8 +984,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Price")
                         .IsRequired()
@@ -1002,7 +994,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("Recibo", (string)null);
+                    b.ToTable("Recibo");
                 });
 
             modelBuilder.Entity("ATLManager.Models.ReciboResposta", b =>
@@ -1061,7 +1053,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("ReciboId");
 
-                    b.ToTable("ReciboResposta", (string)null);
+                    b.ToTable("ReciboResposta");
                 });
 
             modelBuilder.Entity("ATLManager.Models.Refeicao", b =>
@@ -1083,16 +1075,14 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Categoria")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HidratosCarbono")
                         .IsRequired()
@@ -1104,8 +1094,7 @@ namespace ATLManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Picture")
                         .IsRequired()
@@ -1131,7 +1120,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("Refeicao", (string)null);
+                    b.ToTable("Refeicao");
                 });
 
             modelBuilder.Entity("ATLManager.Models.VisitaEstudo", b =>
@@ -1169,7 +1158,7 @@ namespace ATLManager.Migrations
 
                     b.HasIndex("AtlId");
 
-                    b.ToTable("VisitaEstudo", (string)null);
+                    b.ToTable("VisitaEstudo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

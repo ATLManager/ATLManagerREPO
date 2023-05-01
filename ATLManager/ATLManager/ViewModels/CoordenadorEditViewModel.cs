@@ -12,7 +12,11 @@ namespace ATLManager.ViewModels
     public class CoordenadorEditViewModel
     {
         public Guid ContaId { get; set; }
+
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
         public string FirstName { get; set; }
+
+        [StringLength(50, ErrorMessage = "Máximo 50 caratéres")]
         public string LastName { get; set; }
         public Guid AtlId { get; set; }
 
